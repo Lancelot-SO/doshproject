@@ -9,12 +9,18 @@ import dosh from "../images/dosh_logo.png"
 
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import Financial from '../components/Financial.jsx';
 
 
 const ProductServices = () => {
 
     const [products] = useState(doshdata);
     const [index, setIndex] = useState(0);
+
+    const [showFinanceModal, setshowFinanceModal] = useState(false);
+
+
+
 
     useEffect(() => {
         const lastIndex = products.length - 1;
@@ -95,7 +101,7 @@ const ProductServices = () => {
                                                 <h4>{title}</h4>
                                                 <hr className='underline'></hr>
                                                 <p className='quote'>{quote}</p>
-                                                <Link to='/'>Read more
+                                                <Link onClick={() => setshowFinanceModal(true)}>Read more
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         width="14"
@@ -126,11 +132,10 @@ const ProductServices = () => {
                                         <FaArrowRightLong />
                                     </button>
                                 </div>
-
                             )
                         })
                     }
-
+                    {showFinanceModal && <Financial onClose={() => setshowFinanceModal(false)} />}
 
                 </div>
 

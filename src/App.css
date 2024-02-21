@@ -551,3 +551,143 @@ label {
 }
 
 /* CallModal styles end */
+
+/* financeModal styles start */
+
+.finance-modal {
+  display: flex;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.finance-modal-content {
+  display: flex;
+  width: 1139px;
+  height: 506px;
+  background: #fff;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.menu-links {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+.menu-links li {
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.1em;
+  text-align: left;
+  cursor: pointer;
+  text-transform: capitalize;
+  color: #000;
+  padding-bottom: 5px;
+}
+
+
+.finance-about__hand-shake {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 10px;
+  position: relative;
+  padding-bottom: 130px;
+}
+
+.finance-about_left {
+  margin-bottom: 30px;
+}
+
+.finance-about_left img {
+  width: 340px;
+  height: 300px;
+  margin-top: 50px;
+  border-radius: 100px 3.23px 3.23px 100px;
+}
+
+.finance-about__right {
+  position: absolute;
+  top: 0;
+  left: 320px;
+  width: 778px;
+  height: 284px;
+  border-radius: 5px;
+  background-color: var(--color-white);
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  margin-top: 70px;
+  box-shadow: 8px 10px 13px -2px rgba(167, 165, 165, 0.75);
+  -webkit-box-shadow: 8px 10px 13px -2px rgba(167, 165, 165, 0.75);
+  -moz-box-shadow: 8px 10px 13px -2px rgba(167, 165, 165, 0.75);
+}
+
+.finance-about__right h5 {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 13px;
+  letter-spacing: 1.9382811784744263px;
+  text-align: left;
+  margin-bottom: 10px;
+  color: rgba(71, 85, 105, 1);
+}
+
+.finance-about__right p {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+
+}
+
+.finance-about__right a {
+  font-family: 'Inter', sans-serif;
+  color: #9E825B;
+  width: 70px;
+  height: 16px;
+  gap: 10px;
+  align-items: center;
+  display: flex;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.finance-close {
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #987C55;
+  color: #fff;
+  cursor: pointer;
+  position: fixed;
+  top: 130px;
+  right: 250px;
+}
+
+.active {
+  border-bottom: 2px solid #000;
+}
+
+
+/* financeModal styles end */

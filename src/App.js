@@ -10,6 +10,7 @@ import Contact from "./pages/Contact"
 import ServiceProviders from "./pages/ServiceProviders"
 import ProductServices from './pages/ProductServices'
 import ErrorPage from './pages/ErrorPage'
+import Financial from './components/Financial'
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path='/contact' element={<Contact />} />
           <Route path='/serviceproviders' element={<ServiceProviders />} />
           <Route path='/productservices' element={<ProductServices />} />
+          <Route path='/financial' element={<Financial />} />
           <Route path='*' element={<Navigate to="/errorpage" />} />
         </Routes>
         <Footer />
