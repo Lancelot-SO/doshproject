@@ -721,6 +721,10 @@
 
 /* For screens smaller than or equal to 767px */
 @media (max-width: 767px) {
+    .main__hero {
+        overflow: hidden;
+    }
+
     .hero {
         width: 100%;
     }
@@ -757,8 +761,10 @@
         line-height: 12px;
         letter-spacing: 0.05em;
         text-align: left;
-        width: 292px;
+        width: 330px;
         height: 60px;
+        margin-left: 80px;
+        margin-top: 80px;
     }
 
     .second_slider-h2 {
@@ -774,28 +780,35 @@
         text-align: left;
         width: 292px;
         height: 60px;
+        padding-left: 20px;
     }
 
     .third_slider {
         font-family: "Inter", sans-serif;
-        font-size: 18px;
+        font-size: 24px;
         font-weight: 700;
-        line-height: 12px;
+        line-height: 20px;
         letter-spacing: 0.05em;
         text-align: left;
-        width: 292px;
-        height: 60px;
+        width: 400px;
+        height: 90px;
+        margin-left: 80px;
+        margin-top: 60px;
+        padding-left: 20px;
     }
 
     .fourth_slider {
         font-family: "Inter", sans-serif;
-        font-size: 18px;
+        font-size: 24px;
         font-weight: 700;
         line-height: 12px;
         letter-spacing: 0.05em;
         text-align: left;
-        width: 292px;
-        height: 60px;
+        width: 380px;
+        height: 40px;
+        margin-left: 80px;
+        padding-left: 20px;
+        margin-bottom: 0;
     }
 
     .fourth_slider_p {
@@ -807,6 +820,8 @@
         text-align: left;
         width: 292px;
         height: 60px;
+        margin-left: 80px;
+        padding-left: 20px;
     }
 
     .fifth_slider {
@@ -826,24 +841,29 @@
 
     .seventh_slider {
         font-family: "Inter", sans-serif;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 700;
-        line-height: 12px;
+        line-height: 20px;
         letter-spacing: 0.05em;
         text-align: left;
-        width: 292px;
-        height: 60px;
+        width: 350px;
+        height: 80px;
+        margin-right: 80px;
+        margin-top: 60px;
     }
 
     .eight_slider {
         font-family: "Inter", sans-serif;
         font-size: 18px;
         font-weight: 700;
-        line-height: 12px;
+        line-height: 16px;
         letter-spacing: 0.05em;
         text-align: left;
-        width: 292px;
-        height: 60px;
+        width: 350px;
+        height: 100px;
+        margin-right: 80px;
+        margin-top: 80px;
+        padding-top: 40px;
     }
 
     .eight_slider_p {
