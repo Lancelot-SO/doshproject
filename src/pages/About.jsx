@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 const About = () => {
     return (
-        <div>
+        <div className='sect'>
             <section>
                 <img src={about} alt='about' />
             </section>
@@ -17,8 +17,8 @@ const About = () => {
                 <div className='container about__hand-shake'>
                     <div className='about_left'>
                         <h3>Who we are? </h3>
-                        <p>Empowering Financial Wellness.</p>
-                        <p>In today’s ultra-competitive business world,
+                        <p>Empowering Financial Wellness.<br />
+                            In today’s ultra-competitive business world,
                             true leadership demands ambition, focus,
                             and an unerring drive.
                             At DOSH, we recognize and seek out like-minded

@@ -335,7 +335,7 @@ const Home = () => {
                             Globally, we have a vast network of accredited service providers that
                             ensure access to medical care, whenever and wherever you need it.
                         </p>
-                        <Link to='/'>Discover more
+                        <Link to='/'>Sign up
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"

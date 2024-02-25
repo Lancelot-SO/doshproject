@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import { Link } from "react-router-dom"
 import logo from "../images/dosh_logo.png";
 import '../App.css'
+import { RiMenu4Fill } from "react-icons/ri";
+import { FaTimes } from 'react-icons/fa'
 
 const Header = () => {
     const [activeLink, setActiveLink] = useState(null);
+    const [nav, setNav] = useState(false);
+
 
     const handleLinkClick = (index) => {
         setActiveLink(index);
@@ -24,7 +28,7 @@ const Header = () => {
                         >
                             Home
                         </Link>
-                    </li>                 <li>
+                    </li><li>
                         <Link
                             to="/about"
                             className={activeLink === 1 ? 'active' : ''}
@@ -41,7 +45,8 @@ const Header = () => {
                         >
                             Product & Services
                         </Link>
-                    </li>                     <li>
+                    </li>
+                    <li>
                         <Link
                             to="/serviceproviders"
                             className={activeLink === 3 ? 'active' : ''}
@@ -82,6 +87,74 @@ const Header = () => {
                     </Link>
 
                 </div>
+
+                <div onClick={() => setNav(!nav)} className='bars'>
+                    {nav ? <FaTimes size={30} /> : <RiMenu4Fill size={30} />}
+                </div>
+
+                {
+                    nav && (
+                        <div className='nav__links'>
+                            <ul class="mobile-nav-links">
+                                <li className='mobile-menu-link'>
+                                    <Link
+                                        to="/"
+                                        className={activeLink === 0 ? 'active' : ''}
+                                        onClick={() => handleLinkClick(0)}
+                                    >
+                                        Home
+                                    </Link>
+                                </li>
+                                <li className='mobile-menu-link'>
+                                    <Link
+                                        to="/about"
+                                        className={activeLink === 1 ? 'active' : ''}
+                                        onClick={() => handleLinkClick(1)}
+                                    >
+                                        About us
+                                    </Link>
+                                </li>
+                                <li className='mobile-menu-link'>
+                                    <Link
+                                        to="/productservices"
+                                        className={activeLink === 2 ? 'active' : ''}
+                                        onClick={() => handleLinkClick(2)}
+                                    >
+                                        Product & Services
+                                    </Link>
+                                </li>
+                                <li className='mobile-menu-link'>
+                                    <Link
+                                        to="/serviceproviders"
+                                        className={activeLink === 3 ? 'active' : ''}
+                                        onClick={() => handleLinkClick(3)}
+                                    >
+                                        Service Providers
+                                    </Link>
+                                </li>
+                                <li className='mobile-menu-link'>
+                                    <Link
+                                        to="/contact"
+                                        className={activeLink === 4 ? 'active' : ''}
+                                        onClick={() => handleLinkClick(4)}
+                                    >
+                                        Contact
+                                    </Link>
+                                </li>
+                            </ul>
+                            <div className='nav-mobile__signup'>
+                                <Link to='/login' className='nav__login-mobile'>Login</Link>
+                                <Link to='/register'>
+                                    <div className='nav__signup-mobile'>
+                                        Sign up
+                                    </div>
+                                </Link>
+                            </div>
+                        </div>
+
+                    )
+                }
+
             </div>
         </nav>
     )

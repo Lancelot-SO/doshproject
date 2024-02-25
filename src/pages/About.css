@@ -228,5 +228,157 @@
 
 .about__student-right img {
     width: 437px;
-    height: 485px
+    height: 485px;
+    border-radius: 10px;
+}
+
+@media (max-width: 767px) {
+    .about__section {
+        background: #E2E8F0;
+        color: #000;
+        overflow: hidden;
+    }
+
+    .about__section img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .about__hand-shake {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin-top: 0;
+        /* Change flex direction to column */
+    }
+
+    .about_left {
+        width: 361px;
+        height: 317px;
+        margin-top: 0;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .about_left p {
+        width: 361px;
+        height: 294px;
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+
+    .about__right {
+        padding-left: 15px;
+        border-radius: 30px;
+    }
+
+    .about__right img {
+        width: 355px;
+        height: 258px;
+        border-radius: 20px;
+    }
+
+    .next-about__hand-shake {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+
+    .next-about_left img {
+        height: 286px;
+        border-radius: 10px;
+        position: relative;
+    }
+
+    .next-about__right {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 1);
+        padding: 20px;
+        height: 194px;
+        width: 335px;
+    }
+
+    .next-about__right p {
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+        width: 313px;
+        height: 132px;
+    }
+
+    .next-about__settings {
+        display: flex;
+        flex-direction: column;
+        height: 800px;
+        padding: 0 20px;
+    }
+
+    .next-about-settings_left img {
+        height: 286px;
+        border-radius: 10px;
+        position: relative;
+    }
+
+    .next-about-settings__right {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 1);
+        padding: 20px;
+        height: 550px;
+        width: 335px;
+    }
+
+    .about__cards {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 60px;
+    }
+
+    .about__cards-left {
+        padding: 20px 30px;
+    }
+
+    .about__cards-right {
+        padding-top: 30px;
+        padding-bottom: 40px;
+    }
+
+    .about__student {
+        display: flex;
+        flex-direction: column-reverse;
+        padding-top: 150px;
+        padding-bottom: 150px;
+        padding-left: 20px;
+        padding-right: 40px;
+    }
+
+    .about__student-right {
+        flex: 1;
+        padding-left: 0;
+    }
+
+    .about__student-right {
+        padding-left: 40px;
+    }
+
+    .about__student-right img {
+        width: 268px;
+        height: 268px
+    }
 }
