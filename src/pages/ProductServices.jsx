@@ -44,7 +44,7 @@ const ProductServices = () => {
 
 
     return (
-        <div>
+        <div className='ps__page'>
             <div className='main__product'>
 
                 <img src={product} alt='product&services' />

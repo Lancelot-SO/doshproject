@@ -197,7 +197,6 @@ nav {
   nav {
     width: 100%;
     padding: 10px 0;
-    background: rgba(137, 18, 18, 0.4);
   }
 
   /* .container {
@@ -776,6 +775,60 @@ label {
 .active {
   border-bottom: 2px solid #000;
 }
+
+@media screen and (max-width: 767px) {
+  .finance-modal-content {
+    display: flex;
+    width: 1139px;
+    height: 100vh;
+    background: #fff;
+    flex-direction: column;
+  }
+
+  .finance-about__hand-shake {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px;
+    position: relative;
+  }
+
+  .finance-about__right {
+    position: absolute;
+    top: 40%;
+    left: 20px;
+    width: 320px;
+    height: 520px;
+    border-radius: 5px;
+    background-color: var(--color-white);
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    margin-top: 70px;
+    box-shadow: 8px 10px 13px -2px rgba(167, 165, 165, 0.75);
+    -webkit-box-shadow: 8px 10px 13px -2px rgba(167, 165, 165, 0.75);
+    -moz-box-shadow: 8px 10px 13px -2px rgba(167, 165, 165, 0.75);
+  }
+
+  .finance-close {
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #987C55;
+    color: #fff;
+    cursor: pointer;
+    position: fixed;
+    top: 310px;
+    right: 50px;
+    z-index: 1000;
+  }
+}
+
+.finance-about_left img {
+  border-radius: 100px 100px 0 0;
+}
+
 
 
 /* financeModal styles end */

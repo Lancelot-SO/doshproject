@@ -347,7 +347,7 @@
     .about__cards {
         display: flex;
         flex-direction: column;
-        margin-bottom: 60px;
+        margin-bottom: 130px;
     }
 
     .about__cards-left {
@@ -355,14 +355,14 @@
     }
 
     .about__cards-right {
-        padding-top: 30px;
-        padding-bottom: 40px;
+        padding-top: 20px;
+        padding-bottom: 30px;
     }
 
     .about__student {
         display: flex;
         flex-direction: column-reverse;
-        padding-top: 150px;
+        padding-top: 100px;
         padding-bottom: 150px;
         padding-left: 20px;
         padding-right: 40px;
