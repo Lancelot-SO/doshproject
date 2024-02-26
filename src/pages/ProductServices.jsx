@@ -83,7 +83,7 @@ const ProductServices = () => {
                     Achieve your Dreams with Seamless Funding Solutions
                 </h1>
                 <h2>Odio vulputate cras vel lacinia turpis volutpat adipiscing. Sollicitudin at velit, blandit tempus nunc in.</h2>
-                <div className='section-center'>
+                <div className='section1-center'>
                     {
                         products.map((item, indexPeople) => {
                             const { id, quote, image, title } = item;
@@ -97,7 +97,7 @@ const ProductServices = () => {
                             return (
                                 <div>
                                     <article className={position} key={id}>
-                                        <div className='divide'>
+                                        <div className='divider'>
                                             <div className='left'>
                                                 <h4>{title}</h4>
                                                 <hr className='underline'></hr>

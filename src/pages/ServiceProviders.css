@@ -289,6 +289,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 50px;
 }
 
 .person-container {
@@ -353,13 +354,13 @@
 }
 
 .section {
-    margin: 5rem auto;
+    padding: 5rem auto;
 }
 
 .section-center {
     margin: 0 auto;
     margin-top: 4rem;
-    width: 600px;
+    width: 800px;
     height: 450px;
     text-align: start;
     position: relative;
@@ -396,7 +397,7 @@ article.lastSlide {
 .previous,
 .nextitem {
     position: absolute;
-    top: 267.5px;
+    top: 318px;
     transform: translateY(-50%);
     color: #fff;
     width: 58px;
@@ -416,11 +417,11 @@ article.lastSlide {
 }
 
 .previous {
-    left: 227.5px;
+    left: 60px;
 }
 
 .nextitem {
-    right: 227px;
+    right: 60px;
 }
 
 .slider-indicators {
@@ -439,7 +440,7 @@ article.lastSlide {
     .previous,
     .nextitem {
         position: absolute;
-        top: 580px;
+        top: 420px;
         transform: translateY(-50%);
         color: #fff;
         width: 58px;
@@ -450,6 +451,8 @@ article.lastSlide {
         border: 1px solid #9E825B;
         font-size: 1rem;
         border: none;
+        left: 100px;
+        margin-left: 100px;
     }
 
     .previous:hover,
@@ -459,34 +462,42 @@ article.lastSlide {
     }
 
     .previous {
-        left: 100.5px;
+        left: 0;
     }
 
     .nextitem {
-        right: 900px;
+        left: 100px;
     }
 
     .slider-indicators {
         font-size: 16px;
         position: absolute;
-        top: 560px;
-        transform: translateY(-50%);
+        top: 500px;
+        transform: translate(-50%, -50%);
         width: 48px;
         height: 48px;
         display: grid;
-        place-items: center;
+        left: 30px;
     }
 
     .section-center {
-        height: 300px;
-        padding-top: 100px;
+        margin: 0 auto;
+        margin-top: 4rem;
+        padding-left: 100px;
+        width: 800px;
+        height: 550px;
+        text-align: start;
+        position: relative;
+        display: flex;
+        overflow: hidden;
+        flex-direction: row;
     }
 
     .divide {
         display: flex;
         flex-direction: row;
-        margin-right: 755px;
-        padding-top: 200px;
+        margin-right: 400px;
+        padding-top: 50px;
 
     }
 
