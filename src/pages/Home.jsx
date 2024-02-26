@@ -11,11 +11,11 @@ import slider2 from "../images/slider.png";
 import slider7 from '../images/slider7.png'
 
 import student from '../images/student-photo.png'
-import elevate from '../images/elevate.png'
-import money from '../images/money.png';
+import elevate2 from '../images/vector.png'
+import money from '../images/vector2.png';
 import seamless from "../images/seamless.png"
 import ride from '../images/ride.png'
-import reinvigorate from '../images/reinvigorate.png'
+import reinvigorate from '../images/Vector334.png'
 import scale from "../images/scale.png"
 
 
@@ -352,7 +352,7 @@ const Home = () => {
                         </Link>
                     </div>
                     <div className='home__student-right'>
-                        <img src={elevate} alt='student' />
+                        <img src={elevate2} alt='student' />
                     </div>
                 </div>
             </section>

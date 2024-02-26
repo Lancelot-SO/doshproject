@@ -956,8 +956,8 @@
     }
 
     .home__student-right img {
-        width: 305px;
-        height: 285px
+        width: 315.02px;
+        height: 239.50px
     }
 
     .home__money {
@@ -973,8 +973,8 @@
     }
 
     .home__money-left img {
-        width: 305px;
-        height: 285px
+        width: 315.02px;
+        height: 239.50px
     }
 
     .home__money-right {
@@ -1077,18 +1077,18 @@
     }
 
     .home__digital-right img {
-        width: 305px;
-        height: 285px
+        width: 315.02px;
+        height: 239.50px
     }
 
     .home__digital2-right {
         flex: 1;
-        padding-left: 15px;
+        padding-left: 20px;
     }
 
     .home__digital2-right img {
-        width: 305px;
-        height: 285px
+        width: 304.94px;
+        height: 213.37px
     }
 
     .ride__adventure {
@@ -1104,8 +1104,8 @@
     }
 
     .home__ride-left img {
-        width: 305px;
-        height: 285px
+        width: 304.94px;
+        height: 213.37px
     }
 
     .home__ride-right {
@@ -1161,8 +1161,8 @@
     }
 
     .home__ride2-left img {
-        width: 350px;
-        height: 285px
+        width: 315.02px;
+        height: 239.50px
     }
 
     .home__ride2-right {
