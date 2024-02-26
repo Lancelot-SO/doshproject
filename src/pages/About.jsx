@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 const About = () => {
     return (
         <div className='sect'>
-            <section>
+            <section className='about__header'>
                 <img src={about} alt='about' />
             </section>
             <section className='about__section'>

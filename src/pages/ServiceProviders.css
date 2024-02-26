@@ -52,7 +52,7 @@
         top: 500px;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 243px;
+        width: 349px;
         height: 100px;
         font-weight: bold;
         line-height: 1;
@@ -440,7 +440,7 @@ article.lastSlide {
     .previous,
     .nextitem {
         position: absolute;
-        top: 420px;
+        top: 395px;
         transform: translateY(-50%);
         color: #fff;
         width: 58px;
@@ -462,17 +462,17 @@ article.lastSlide {
     }
 
     .previous {
-        left: 0;
+        left: 30px;
     }
 
     .nextitem {
-        left: 100px;
+        left: 120px;
     }
 
     .slider-indicators {
         font-size: 16px;
         position: absolute;
-        top: 500px;
+        top: 480px;
         transform: translate(-50%, -50%);
         width: 48px;
         height: 48px;

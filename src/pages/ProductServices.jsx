@@ -157,7 +157,7 @@ const ProductServices = () => {
 
             <section className='insurance'>
                 <div className='prod-insure'>
-                    <h2>DOSH Insurance Products</h2>
+                    <h2>DOSH <br />Insurance Products</h2>
                 </div>
                 <div className='main-insurance'>
                     <div className='glass-bg'>

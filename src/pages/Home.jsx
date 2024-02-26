@@ -6,9 +6,8 @@ import slider3 from "../images/slider3.png";
 import slider4 from "../images/slider4.png";
 import slider5 from "../images/slider5.png";
 import slider6 from "../images/slider6.png";
-import slider8 from "../images/slider8.png";
+import slider7 from "../images/slider8.png";
 import slider2 from "../images/slider.png";
-import slider7 from '../images/slider7.png'
 
 import student from '../images/student-photo.png'
 import elevate2 from '../images/vector.png'
@@ -26,7 +25,7 @@ const Home = () => {
     useEffect(() => {
         const intervalId = setInterval(() => {
             document.getElementById('radio' + counter).checked = true;
-            setCounter(prevCounter => (prevCounter % 8) + 1);
+            setCounter(prevCounter => (prevCounter % 7) + 1);
         }, 5000);
 
         return () => clearInterval(intervalId);
@@ -44,7 +43,6 @@ const Home = () => {
                         <input type="radio" name="radio-button" id="radio5" />
                         <input type="radio" name="radio-button" id="radio6" />
                         <input type="radio" name="radio-button" id="radio7" />
-                        <input type="radio" name="radio-button" id="radio8" />
 
 
                         <div className='slide first'>
@@ -114,9 +112,8 @@ const Home = () => {
                         <div className='slide'>
                             <img src={slider3} alt='hero' />
                             <div className='hero__text'>
-                                <p className='third_slider'>Choose <b>comprehensive</b><br />
-                                    coverage that leaves no one<br />
-                                    behind.</p>
+                                <p className='third_slider'>Choose <b>comprehensive </b><br />
+                                    coverage that leaves no one <br />behind.</p>
                             </div>
 
                             <div className='slide-text'>
@@ -205,6 +202,11 @@ const Home = () => {
                         </div>
                         <div className='slide'>
                             <img src={slider6} alt='hero' />
+                            <div className='hero__text'>
+                                <p className='sixth__slider'>
+                                    Dail <b>*915#</b> to join the DOSH Revolution
+                                </p>
+                            </div>
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
@@ -227,37 +229,9 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
+
                         <div className='slide'>
                             <img src={slider7} alt='hero' />
-                            <div className='hero__text'>
-                                <p className='seventh_slider'> Another <b>round?</b><br />
-                                    The only health insurance that<br />
-                                    covers erectile dysfudysfunctions treatment </p>
-                            </div>
-                            <div className='slide-text'>
-                                <h3>People are signing  with us</h3>
-                                <div className="slide-arrow">
-                                    <Link to="/" className='slide__link'>
-                                        <small>Join DOSH</small>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="28"
-                                            height="28"
-                                            fill="currentColor"
-                                            class="bi bi-arrow-right"
-                                            viewBox="0 0 16 16"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-                                            />
-                                        </svg>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='slide'>
-                            <img src={slider8} alt='hero' />
                             <div className='hero__text'>
                                 <p className='eight_slider'>Overall wellness includes <b>Metal health.</b><br />
                                     We’ve got you covered.
@@ -296,7 +270,6 @@ const Home = () => {
                             <div className='auto-btn5'></div>
                             <div className='auto-btn6'></div>
                             <div className='auto-btn7'></div>
-                            <div className='auto-btn8'></div>
 
 
                         </div>
@@ -311,7 +284,6 @@ const Home = () => {
                         <label htmlFor='radio5' className='manual-btn'></label>
                         <label htmlFor='radio6' className='manual-btn'></label>
                         <label htmlFor='radio7' className='manual-btn'></label>
-                        <label htmlFor='radio8' className='manual-btn'></label>
 
 
                     </div>

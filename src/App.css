@@ -203,6 +203,10 @@ nav {
     padding: 10px 0;
   }
 
+  .nav__logo {
+    margin-left: 30px;
+  }
+
   /* .container {
     width: 100%;
   } */

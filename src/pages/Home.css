@@ -167,21 +167,20 @@
 
 }
 
-.seventh_slider {
+.sixth__slider {
     font-family: "Inter", sans-serif;
     font-size: 41px;
     line-height: 45px;
     letter-spacing: 0em;
     text-align: left;
-    font-size: 41px;
     width: 944px;
-    height: 131px;
+    height: 90px;
     margin-left: 200px;
+    margin-bottom: 10px;
 }
 
-.seventh_slider b {
+.sixth__slider b {
     color: rgba(206, 179, 138, 1);
-    ;
     font-weight: 900;
 }
 
@@ -291,10 +290,6 @@
     margin-left: -120%;
 }
 
-#radio8:checked~.first {
-    margin-left: -140%;
-}
-
 .navigate_auto {
     position: absolute;
     display: flex;
@@ -338,11 +333,7 @@
     background-color: #987C55;
 }
 
-#radio7:checked~.navigate_auto .auto-btn7 {
-    background-color: #987C55;
-}
-
-#radio8:checked~.navigate_auto .auto-btn8 {
+#radio7:checked~.navigate_auto .auto-btn8 {
     background-color: #987C55;
 }
 
@@ -729,16 +720,33 @@
         width: 100%;
     }
 
+    .cream__hero {
+        width: 100%;
+        height: 230px;
+        background-color: #FBF4E8;
+    }
+
     .container {
         width: var(--container-width-md);
     }
 
     .slide img {
         width: 415px;
-        height: 350px;
+        height: 450px;
     }
 
     .first_slider {
+        font-family: "Inter", sans-serif;
+        font-size: 12px;
+        letter-spacing: 0em;
+        text-align: left;
+        padding-left: 130px;
+        width: 500px;
+        height: 193px;
+        padding-top: 100px;
+    }
+
+    .first_slider br {
         display: none;
     }
 
@@ -777,58 +785,76 @@
         text-align: left;
         width: 330px;
         height: 60px;
-        margin-left: 80px;
-        margin-top: 80px;
+        margin-left: 130px;
+        margin-top: 60px;
     }
 
     .second_slider-h2 {
+        font-family: "Inter", sans-serif;
+        font-size: 30px;
+        line-height: 1.2;
+        letter-spacing: 0em;
+        text-align: left;
+        width: 380px;
+        height: 80px;
+        height: 75px;
+        padding-left: 40px;
+        margin-bottom: 30px;
+        margin-left: 75px;
+        padding-top: 60px;
+    }
+
+    .second_slider-h2 br {
         display: none;
     }
+
 
     .second_slider {
         font-family: "Inter", sans-serif;
         font-size: 12px;
-        font-weight: 700;
         line-height: 12px;
         letter-spacing: 0.05em;
         text-align: left;
-        width: 292px;
-        height: 60px;
-        padding-left: 20px;
+        width: 450px;
+        height: 40px;
+        padding-left: 110px;
+        padding-top: 30px;
     }
 
     .third_slider {
         font-family: "Inter", sans-serif;
-        font-size: 24px;
-        font-weight: 700;
-        line-height: 20px;
-        letter-spacing: 0.05em;
+        font-size: 30px;
+        line-height: 33px;
+        letter-spacing: 0em;
         text-align: left;
-        width: 400px;
-        height: 90px;
+        width: 420px;
+        height: 91px;
         margin-left: 80px;
         margin-top: 60px;
-        padding-left: 20px;
+        padding-left: 50px;
+    }
+
+    .third_slider br:nth-child(2) {
+        display: none;
     }
 
     .fourth_slider {
         font-family: "Inter", sans-serif;
-        font-size: 24px;
-        font-weight: 700;
-        line-height: 12px;
-        letter-spacing: 0.05em;
+        font-size: 30px;
+        line-height: 33px;
+        letter-spacing: 0em;
         text-align: left;
-        width: 380px;
-        height: 40px;
+        width: 362px;
+        height: 47px;
         margin-left: 80px;
+        margin-top: 60px;
         padding-left: 20px;
-        margin-bottom: 0;
+        padding-top: 50px;
     }
 
     .fourth_slider_p {
         font-family: "Inter", sans-serif;
         font-size: 12px;
-        font-weight: 700;
         line-height: 12px;
         letter-spacing: 0.05em;
         text-align: left;
@@ -836,48 +862,71 @@
         height: 60px;
         margin-left: 80px;
         padding-left: 20px;
+        padding-top: 60px;
     }
 
     .fifth_slider {
-        display: none;
+        font-family: "Inter", sans-serif;
+        font-size: 30px;
+        line-height: 33px;
+        letter-spacing: 0em;
+        text-align: left;
+        width: 362px;
+        height: 47px;
+        margin-left: 80px;
+        margin-top: 60px;
+        padding-left: 65px;
     }
 
     .fifth_slider_p {
         font-family: "Inter", sans-serif;
         font-size: 12px;
-        font-weight: 700;
         line-height: 12px;
         letter-spacing: 0.05em;
         text-align: left;
-        width: 292px;
-        height: 60px;
+        margin-top: 130px;
+        margin-right: 20px;
+        width: 359px;
+        height: 30px;
+    }
+
+    .sixth__slider {
+        font-family: "Inter", sans-serif;
+        font-size: 30px;
+        line-height: 30px;
+        letter-spacing: 0.05em;
+        text-align: left;
+        width: 350px;
+        height: 150px;
+        margin-right: 80px;
+        margin-top: 80px;
+        padding-top: 40px;
     }
 
     .seventh_slider {
         font-family: "Inter", sans-serif;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 20px;
+        font-size: 30px;
+        line-height: 30px;
         letter-spacing: 0.05em;
         text-align: left;
-        width: 350px;
-        height: 80px;
+        width: 400px;
+        height: 120px;
         margin-right: 80px;
-        margin-top: 60px;
+        margin-top: 50px;
     }
 
     .eight_slider {
         font-family: "Inter", sans-serif;
-        font-size: 18px;
-        font-weight: 700;
-        line-height: 16px;
+        font-size: 30px;
+        line-height: 30px;
         letter-spacing: 0.05em;
         text-align: left;
-        width: 350px;
-        height: 100px;
+        width: 400px;
+        height: 120px;
         margin-right: 80px;
-        margin-top: 80px;
+        margin-top: 60px;
         padding-top: 40px;
+        padding-left: 30px;
     }
 
     .eight_slider_p {
@@ -889,6 +938,8 @@
         text-align: left;
         width: 292px;
         height: 60px;
+        padding-top: 30px;
+        padding-left: 30px;
     }
 
     .home__student {
