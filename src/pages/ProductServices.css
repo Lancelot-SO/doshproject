@@ -163,6 +163,10 @@
     display: flex;
 }
 
+.productslider h2 {
+    display: none;
+}
+
 .section {
     margin: 5rem auto;
 }
@@ -321,8 +325,20 @@ article.lastSlide {
         height: 77px;
     }
 
+    .productslider h2 {
+        font-family: "Inter", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 29px;
+        letter-spacing: 0em;
+        text-align: center;
+        margin-top: 30px;
+        display: flex;
+    }
+
     .section-center {
-        height: 900px;
+        height: 1200px;
+        margin: 0;
     }
 
     /* 
@@ -397,7 +413,7 @@ article.lastSlide {
     .prev,
     .next {
         position: absolute;
-        top: 870px;
+        top: 1100px;
         transform: translateY(-50%);
         color: #9E825B;
         width: 48px;
