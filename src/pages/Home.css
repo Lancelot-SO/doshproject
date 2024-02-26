@@ -747,11 +747,25 @@
         flex-direction: row;
         color: white;
         background-color: #987C55;
-        width: 400px;
-        margin-left: 0;
+        width: 330px;
+        margin-left: 60px;
         padding: 10px;
         justify-content: space-between;
         align-items: center;
+    }
+
+    .slide-text h3 {
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .slide__link small {
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .slide-text a svg {
+        display: none;
     }
 
     .first_slider-p {
