@@ -734,7 +734,7 @@
     }
 
     .slide img {
-        width: 390px;
+        width: 415px;
         height: 350px;
     }
 
@@ -747,7 +747,7 @@
         flex-direction: row;
         color: white;
         background-color: #987C55;
-        width: 330px;
+        width: 354px;
         margin-left: 60px;
         padding: 10px;
         justify-content: space-between;
@@ -1161,7 +1161,7 @@
     }
 
     .home__ride2-left img {
-        width: 305px;
+        width: 350px;
         height: 285px
     }
 

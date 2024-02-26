@@ -12,6 +12,7 @@ const Header = () => {
 
     const handleLinkClick = (index) => {
         setActiveLink(index);
+        setNav(false);
     };
     return (
         <nav>

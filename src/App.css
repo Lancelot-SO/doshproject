@@ -8,7 +8,7 @@
 
   --color-bg: hwb(250 95% 0%);
 
-  --transition: all 300ms ease;
+  --transition: all 700s ease;
 
   --container-width-lg: 85%;
   --container-width-md: 100%;
@@ -26,6 +26,10 @@ body {
   font-size: 0.9rem;
   line-height: 1.6rem;
   background: #000;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 * {
@@ -224,18 +228,20 @@ nav {
 
   .nav__links {
     position: fixed;
-    top: 0;
+    top: 60px;
     left: 0;
-    width: 70vw;
-    height: 700px;
+    -webkit-overflow-scrolling: touch;
+    width: 100vw;
+    height: 600px;
     background: #000;
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-top: 80px;
+    padding-top: 40px;
     display: flex;
     overflow-y: auto;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .mobile-nav-links {
