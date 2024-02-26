@@ -35,7 +35,7 @@ const ServiceProviders = () => {
     useEffect(() => {
         let slider = setInterval(() => {
             setIndex(index + 1)
-        }, 5000);
+        }, 7000);
         return () => {
             clearInterval(slider)
         }
@@ -43,9 +43,8 @@ const ServiceProviders = () => {
 
 
     return (
-        <div>
+        <div className='main__package'>
             <div className='main__services'>
-
                 <img src={services} alt='servicesproviders' />
                 <div className='service__text'>
                     <h1>Greater Accra</h1>

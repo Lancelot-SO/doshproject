@@ -30,6 +30,50 @@
     padding-bottom: 20px;
 }
 
+@media screen and (max-width: 767px) {
+    .main__package {
+        overflow: hidden;
+    }
+
+    .main__services {
+        position: relative;
+        color: white;
+    }
+
+    .main__services img {
+        width: 394;
+        height: 666px;
+        display: block;
+        object-fit: cover;
+    }
+
+    .service__text {
+        position: absolute;
+        top: 500px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 243px;
+        height: 100px;
+        font-weight: bold;
+        line-height: 1;
+    }
+
+    .service__text p {
+        font-size: 16px;
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 16px;
+        letter-spacing: 0em;
+        text-align: left;
+        width: 300px;
+    }
+
+    .filter-section {
+        display: none;
+    }
+}
+
 .filter-section {
     background-color: #fff;
 }
@@ -147,10 +191,32 @@
     border-radius: 6px;
 }
 
+@media screen and (max-width: 767px) {
+    .anime {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        overflow-x: auto;
+        /* Add horizontal scrollbar */
+        white-space: nowrap;
+        /* Prevent items from wrapping to the next line */
+    }
+
+    .anime-card {
+        width: 188px;
+        height: 288px;
+        background-color: #fff;
+        border-radius: 8px;
+        display: inline-block;
+        /* Display cards in a row */
+        padding: 10px;
+    }
+}
+
 .anime-sect {
     display: flex;
     flex-direction: row;
-    gap: 15px;
+    gap: 10px;
     padding-bottom: 30px;
 }
 
@@ -178,21 +244,41 @@
     background-color: #C7AC83;
     height: 88px;
     width: 1040px;
-    padding: 0 30px;
+    padding: 0 20px;
+    gap: 10px;
 }
 
 .plan p {
     color: #fff;
-    font-size: 19px;
+    font-size: 8px;
 }
 
 .plan-btn {
-    height: 40px;
-    width: 157px;
+    height: 30px;
+    width: 100px;
     font-size: 11px;
     color: #B8964C;
     cursor: pointer;
     border-radius: 8px;
+}
+
+@media screen and (max-width: 767px) {
+    .service__cards {
+        padding-left: 10px;
+    }
+
+    .service__cards h4 {
+        font-family: "Inter", sans-serif;
+        font-size: 21px;
+        font-weight: 900;
+        line-height: 31px;
+        letter-spacing: 3px;
+        text-align: left;
+        width: 391px;
+        height: 110px;
+        padding-top: 40px;
+    }
+
 }
 
 .serviceslider {
@@ -273,8 +359,8 @@
 .section-center {
     margin: 0 auto;
     margin-top: 4rem;
-    width: 1135px;
-    height: 550px;
+    width: 600px;
+    height: 450px;
     text-align: start;
     position: relative;
     display: flex;
@@ -346,4 +432,77 @@ article.lastSlide {
     height: 48px;
     display: grid;
     place-items: center;
+}
+
+@media screen and (max-width: 767px) {
+
+    .previous,
+    .nextitem {
+        position: absolute;
+        top: 580px;
+        transform: translateY(-50%);
+        color: #fff;
+        width: 58px;
+        height: 48px;
+        display: grid;
+        background: #C7AC83;
+        place-items: center;
+        border: 1px solid #9E825B;
+        font-size: 1rem;
+        border: none;
+    }
+
+    .previous:hover,
+    .nextitem:hover {
+        background-color: var(--color-white);
+        color: #9E825B;
+    }
+
+    .previous {
+        left: 100.5px;
+    }
+
+    .nextitem {
+        right: 900px;
+    }
+
+    .slider-indicators {
+        font-size: 16px;
+        position: absolute;
+        top: 560px;
+        transform: translateY(-50%);
+        width: 48px;
+        height: 48px;
+        display: grid;
+        place-items: center;
+    }
+
+    .section-center {
+        height: 300px;
+        background-color: #007bff;
+        padding-top: 100px;
+    }
+
+    .divide {
+        display: flex;
+        flex-direction: row;
+        margin-right: 755px;
+        padding-top: 200px;
+
+    }
+
+    .service-img {
+        width: 221px;
+        height: 320px;
+    }
+
+    .service-quote {
+        color: #fff;
+        background-color: #1A202C;
+        font-size: 14px;
+        width: 180px;
+        height: 160px;
+        padding: 10px;
+        margin-top: 10px;
+    }
 }
