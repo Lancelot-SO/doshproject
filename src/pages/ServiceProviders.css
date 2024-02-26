@@ -483,7 +483,7 @@ article.lastSlide {
     .section-center {
         margin: 0 auto;
         margin-top: 4rem;
-        padding-left: 100px;
+        /* padding-left: 100px; */
         width: 800px;
         height: 550px;
         text-align: start;
@@ -514,5 +514,9 @@ article.lastSlide {
         height: 160px;
         padding: 10px;
         margin-top: 10px;
+    }
+
+    .testimonial {
+        padding-left: 30px;
     }
 }
