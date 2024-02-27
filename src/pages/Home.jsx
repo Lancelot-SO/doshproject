@@ -170,7 +170,7 @@ const Home = () => {
                         <div className='slide'>
                             <img src={slider5} alt='hero' />
                             <div className='hero__text'>
-                                <p className='fifth_slider'>Health insurance that covers <b>EYE<br />
+                                <p className='fifth_slider'>Health insurance that covers <b>EYE,<br />
                                     DENTAL, MENTAL HEALTH</b> care and more</p>
                                 <p className='fifth_slider_p'>
                                     With as little as <b>GHS 365</b>, you get up to <b>GHS 9000</b> WORTH OF QUALITY<br />
@@ -204,7 +204,7 @@ const Home = () => {
                             <img src={slider6} alt='hero' />
                             <div className='hero__text'>
                                 <p className='sixth__slider'>
-                                    Dail <b>*915#</b> to join the DOSH Revolution
+                                    Dial <b>*915#</b> to join the DOSH Revolution
                                 </p>
                             </div>
                             <div className='slide-text'>
@@ -233,7 +233,7 @@ const Home = () => {
                         <div className='slide'>
                             <img src={slider7} alt='hero' />
                             <div className='hero__text'>
-                                <p className='eight_slider'>Overall wellness includes <b>Metal health.</b><br />
+                                <p className='eight_slider'>Overall wellness includes <b>Mental health.</b><br />
                                     We’ve got you covered.
                                 </p>
                                 <p className='eight_slider_p'>The only health insurance with metal health coverage</p>
@@ -307,7 +307,7 @@ const Home = () => {
                             Globally, we have a vast network of accredited service providers that
                             ensure access to medical care, whenever and wherever you need it.
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up
+                        <Link to='https://dspm.onenet.xyz:50443/#/auth/login-type' target="_blank" rel="noopener noreferrer">Sign up
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
