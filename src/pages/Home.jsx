@@ -48,7 +48,7 @@ const Home = () => {
                         <div className='slide first'>
                             <img src={slider1} alt='hero' />
                             <div className='hero__text'>
-                                <p className='first_slider'>Health <b>insurance</b> for the<br />
+                                <p className='first_slider'>Health <b>insurance</b> for the <br />
                                     years you need it the most.</p>
                                 <p className='first_slider-p'>Your sixties must not be spent navigating arthritis and other medical
                                     emergencies. Allow DOSH to assist you with comprehensive health coverage
@@ -113,7 +113,7 @@ const Home = () => {
                             <img src={slider3} alt='hero' />
                             <div className='hero__text'>
                                 <p className='third_slider'>Choose <b>comprehensive </b><br />
-                                    coverage that leaves no one <br />behind.</p>
+                                    coverage that leaves no one behind.</p>
                             </div>
 
                             <div className='slide-text'>
