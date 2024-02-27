@@ -11,7 +11,7 @@ const About = () => {
     return (
         <div className='sect'>
             <section className='about__header'>
-                <img src={about} alt='about' />
+                <img src={about} alt='about' loading='lazy' />
             </section>
             <section className='about__section'>
                 <div className='container about__hand-shake'>
@@ -29,14 +29,14 @@ const About = () => {
                         </p>
                     </div>
                     <div className='about__right'>
-                        <img src={handshake} className='about__image' alt='handshake' />
+                        <img src={handshake} className='about__image' alt='handshake' loading='lazy' />
                     </div>
                 </div>
             </section>
             <section className='about__section'>
                 <div className='container next-about__hand-shake'>
                     <div className='next-about_left'>
-                        <img src={board} className='about__image' alt='handshake' />
+                        <img src={board} className='about__image' alt='handshake' loading='lazy' />
                     </div>
                     <div className='next-about__right'>
                         <h3>Our Mission</h3>
@@ -49,7 +49,7 @@ const About = () => {
             <section className='about__section'>
                 <div className='container next-about__settings'>
                     <div className='next-about-settings_left'>
-                        <img src={settings} className='about__image' alt='handshake' />
+                        <img src={settings} className='about__image' alt='handshake' loading='lazy' />
                     </div>
                     <div className='next-about-settings__right'>
                         <h3>Our Core Value</h3>
@@ -104,7 +104,7 @@ const About = () => {
                         <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Get Started</Link>
                     </div>
                     <div className='about__student-right'>
-                        <img src={student} alt='student' />
+                        <img src={student} alt='student' loading='lazy' />
                     </div>
                 </div>
             </section>

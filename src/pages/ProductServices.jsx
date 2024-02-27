@@ -47,7 +47,7 @@ const ProductServices = () => {
         <div className='ps__page'>
             <div className='main__product'>
 
-                <img src={product} alt='product&services' />
+                <img src={product} alt='product&services' loading='lazy' />
                 <div className='product__text'>
 
                     <p>Protect Your <b>Future</b> with Our
@@ -58,7 +58,7 @@ const ProductServices = () => {
             <section className='product'>
                 <div className='container products'>
                     <div className='product-left'>
-                        <img src={productservice} alt='productservice' />
+                        <img src={productservice} alt='productservice' loading='lazy' />
                     </div>
                     <div className='product-right'>
                         <h4>DOSH <br />SERVICES</h4>
@@ -120,7 +120,7 @@ const ProductServices = () => {
 
                                             </div>
                                             <div className='right'>
-                                                <img src={image} alt='person' className="person-img" />
+                                                <img src={image} alt='person' className="person-img" loading='lazy' />
                                             </div>
 
                                         </div>
@@ -145,7 +145,7 @@ const ProductServices = () => {
             <section className='video__section'>
                 <div className='container video-main'>
                     <div className='video__left'>
-                        <video src={doshvideo} autoPlay loop muted />
+                        <video src={doshvideo} autoPlay loop muted loading='lazy' />
                     </div>
                     <div className='video__right'>
                         <h4>SUCCESS STORIES VIDEO</h4>
@@ -164,7 +164,7 @@ const ProductServices = () => {
                         <div className='glass-table'>
                             <table>
                                 <tr>
-                                    <td className='dosh'><img src={dosh} alt='Dosh Logo' /></td>
+                                    <td className='dosh'><img src={dosh} alt='Dosh Logo' loading='lazy' /></td>
                                     <td className='price'>
                                         <h3>Insurance</h3>
                                         <span>GHS365</span>

@@ -18,7 +18,7 @@ const CallModal = ({ onClose }) => {
             <div ref={modalRef} onClick={closeModal} className='call-modal'>
                 <div className='call__modal-content'>
                     <div className='call-left'>
-                        <img src={caller} alt='caller' />
+                        <img src={caller} alt='caller' loading='lazy' />
                     </div>
                     <div className='call-right'>
                         <button type="button" onClick={onClose} className="call-close" data-dismiss="modal" aria-label="Close">

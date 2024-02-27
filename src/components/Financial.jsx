@@ -54,7 +54,7 @@ const Financial = ({ onClose }) => {
                             proj.map((item) => {
                                 return <div key={item.id} className='finance-about__hand-shake'>
                                     <div className='finance-about_left'>
-                                        <img src={item.img} className='finance-about__image' alt='handshake' />
+                                        <img src={item.img} className='finance-about__image' alt='handshake' loading='lazy' />
                                     </div>
                                     <div className='finance-about__right'>
                                         <h5>{item.title}</h5>

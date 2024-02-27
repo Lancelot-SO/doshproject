@@ -46,7 +46,7 @@ const ServiceProviders = () => {
     return (
         <div className='main__package'>
             <div className='main__services'>
-                <img src={services} alt='servicesproviders' />
+                <img src={services} alt='servicesproviders' loading='lazy' />
                 <div className='service__text'>
                     <h1>Greater Accra</h1>
                     <p>
@@ -73,37 +73,37 @@ const ServiceProviders = () => {
 
                     <div className='anime'>
                         <div className='anime-card'>
-                            <img src={anime} alt="anime" />
+                            <img src={anime} alt="anime" loading='lazy' />
                             <p>DOSH 365</p>
                             <small>Plan</small>
                             <button className='anime-btn'><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
                         </div>
                         <div className='anime-card'>
-                            <img src={anime} alt="anime" />
+                            <img src={anime} alt="anime" loading='lazy' />
                             <p>DOSH 750</p>
                             <small>Plan</small>
                             <button className='anime-btn'><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
                         </div>
                         <div className='anime-card'>
-                            <img src={anime} alt="anime" />
+                            <img src={anime} alt="anime" loading='lazy' />
                             <p>DOSH 1000</p>
                             <small>Plan</small>
                             <button className='anime-btn'><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
                         </div>
                         <div className='anime-card'>
-                            <img src={anime} alt="anime" />
+                            <img src={anime} alt="anime" loading='lazy' />
                             <p>DOSH 2500</p>
                             <small>Plan</small>
                             <button className='anime-btn'><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
                         </div>
                         <div className='anime-card'>
-                            <img src={anime} alt="anime" />
+                            <img src={anime} alt="anime" loading='lazy' />
                             <p>DOSH 5000</p>
                             <small>Plan</small>
                             <button className='anime-btn'><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
                         </div>
                         <div className='anime-card'>
-                            <img src={anime} alt="anime" />
+                            <img src={anime} alt="anime" loading='lazy' />
                             <p>DOSH 10000</p>
                             <small>Plan</small>
                             <button className='anime-btn'><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>

@@ -46,7 +46,7 @@ const Home = () => {
 
 
                         <div className='slide first'>
-                            <img src={slider1} alt='hero' />
+                            <img src={slider1} alt='hero' loading='lazy' />
                             <div className='hero__text'>
                                 <p className='first_slider'>Health <b>insurance</b> for the <br />
                                     years you need it the most.</p>
@@ -78,7 +78,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='slide'>
-                            <img src={slider2} alt='hero' />
+                            <img src={slider2} alt='hero' loading='lazy' />
                             <div className='hero__text'>
                                 <p className='second_slider-h2'>We've got <b>insurance</b> for your<br /> old girl.</p>
                                 <p className='second_slider'>Securing comprehensive health insurance for your folks is a thoughtful
@@ -110,7 +110,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='slide'>
-                            <img src={slider3} alt='hero' />
+                            <img src={slider3} alt='hero' loading='lazy' />
                             <div className='hero__text'>
                                 <p className='third_slider'>Choose <b>comprehensive </b><br />
                                     coverage that leaves no one behind.</p>
@@ -139,7 +139,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='slide'>
-                            <img src={slider4} alt='hero' />
+                            <img src={slider4} alt='hero' loading='lazy' />
                             <div className='hero__text'>
                                 <p className='fourth_slider'>Keep the <b>DAD</b> jokes coming</p>
                                 <p className='fourth_slider_p'>Protect old boy's health with DOSH insurance while protecting your savings.
@@ -168,7 +168,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='slide'>
-                            <img src={slider5} alt='hero' />
+                            <img src={slider5} alt='hero' loading='lazy' />
                             <div className='hero__text'>
                                 <p className='fifth_slider'>Health insurance that covers <b>EYE,<br />
                                     DENTAL, MENTAL HEALTH</b> care and more</p>
@@ -201,7 +201,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='slide'>
-                            <img src={slider6} alt='hero' />
+                            <img src={slider6} alt='hero' loading='lazy' />
                             <div className='hero__text'>
                                 <p className='sixth__slider'>
                                     Dial <b>*915#</b> to join the DOSH Revolution
@@ -231,7 +231,7 @@ const Home = () => {
                         </div>
 
                         <div className='slide'>
-                            <img src={slider7} alt='hero' />
+                            <img src={slider7} alt='hero' loading='lazy' />
                             <div className='hero__text'>
                                 <p className='eight_slider'>Overall wellness includes <b>Mental health.</b><br />
                                     We’ve got you covered.
@@ -324,14 +324,14 @@ const Home = () => {
                         </Link>
                     </div>
                     <div className='home__student-right'>
-                        <img src={elevate2} alt='student' />
+                        <img src={elevate2} alt='student' loading='lazy' />
                     </div>
                 </div>
             </section>
             <section className='money__section'>
                 <div className='container home__money'>
                     <div className='home__money-left'>
-                        <img src={money} alt='student' />
+                        <img src={money} alt='student' loading='lazy' />
                     </div>
                     <div className='home__money-right'>
                         <h4>DOSH FINANCE:</h4>
@@ -393,7 +393,7 @@ const Home = () => {
                         </Link>
                     </div>
                     <div className='home__digital-right'>
-                        <img src={seamless} alt='digital' />
+                        <img src={seamless} alt='digital' loading='lazy' />
                     </div>
                 </div>
             </section>
@@ -401,7 +401,7 @@ const Home = () => {
             <section className='ride__section'>
                 <div className='container ride__adventure'>
                     <div className='home__ride-left'>
-                        <img src={ride} alt='ride' />
+                        <img src={ride} alt='ride' loading='lazy' />
                     </div>
                     <div className='home__ride-right'>
                         <h4>DOSH RIDE:</h4>
@@ -463,7 +463,7 @@ const Home = () => {
                         </Link>
                     </div>
                     <div className='home__digital2-right'>
-                        <img src={reinvigorate} alt='digital' />
+                        <img src={reinvigorate} alt='digital' loading='lazy' />
                     </div>
                 </div>
             </section>
@@ -471,7 +471,7 @@ const Home = () => {
             <section className='ride__section'>
                 <div className='container ride__adventure'>
                     <div className='home__ride2-left'>
-                        <img src={scale} alt='ride' />
+                        <img src={scale} alt='ride' loading='lazy' />
                     </div>
                     <div className='home__ride2-right'>
                         <h4>DOSH-COMMERCE:</h4>
@@ -515,7 +515,7 @@ const Home = () => {
                         <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Get Started</Link>
                     </div>
                     <div className='about__student-right'>
-                        <img src={student} alt='student' />
+                        <img src={student} alt='student' loading='lazy' />
                     </div>
                 </div>
             </section>

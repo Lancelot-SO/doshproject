@@ -7,7 +7,7 @@ const Contact = () => {
             <div className='contact'>
                 <div className='contact__content'>
                     <div className='call'>
-                        <img src={caller} alt='caller' />
+                        <img src={caller} alt='caller' loading='lazy' />
                         <div className="call__modal-body">
                             <p className='call-head'>Send Us A Message</p>
                             <form>
