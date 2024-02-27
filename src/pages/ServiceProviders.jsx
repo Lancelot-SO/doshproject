@@ -8,6 +8,7 @@ import data from "../data"
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import FilterModal from '../components/FilterModal';
 import CallModal from '../components/CallModal';
+import { Link } from 'react-router-dom';
 
 const ServiceProviders = () => {
 
@@ -75,37 +76,37 @@ const ServiceProviders = () => {
                             <img src={anime} alt="anime" />
                             <p>DOSH 365</p>
                             <small>Plan</small>
-                            <button className='anime-btn'>Sign up</button>
+                            <button className='anime-btn'><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
                         </div>
                         <div className='anime-card'>
                             <img src={anime} alt="anime" />
                             <p>DOSH 750</p>
                             <small>Plan</small>
-                            <button className='anime-btn'>Sign up</button>
+                            <button className='anime-btn'><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
                         </div>
                         <div className='anime-card'>
                             <img src={anime} alt="anime" />
                             <p>DOSH 1000</p>
                             <small>Plan</small>
-                            <button className='anime-btn'>Sign up</button>
+                            <button className='anime-btn'><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
                         </div>
                         <div className='anime-card'>
                             <img src={anime} alt="anime" />
                             <p>DOSH 2500</p>
                             <small>Plan</small>
-                            <button className='anime-btn'>Sign up</button>
+                            <button className='anime-btn'><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
                         </div>
                         <div className='anime-card'>
                             <img src={anime} alt="anime" />
                             <p>DOSH 5000</p>
                             <small>Plan</small>
-                            <button className='anime-btn'>Sign up</button>
+                            <button className='anime-btn'><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
                         </div>
                         <div className='anime-card'>
                             <img src={anime} alt="anime" />
                             <p>DOSH 10000</p>
                             <small>Plan</small>
-                            <button className='anime-btn'>Sign up</button>
+                            <button className='anime-btn'><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
                         </div>
                     </div>
                     <div className='anime-sect'>

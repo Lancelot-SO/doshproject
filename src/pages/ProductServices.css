@@ -719,6 +719,11 @@ td {
     color: #9E825B;
 }
 
+.signup-button button a:hover {
+    background-color: #fff;
+    color: #9E825B;
+}
+
 @media screen and (max-width: 767px) {
     .ps__page {
         overflow: hidden;

@@ -58,7 +58,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to="/" className='slide__link'>
+                                    <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +90,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to="/" className='slide__link'>
+                                    <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +119,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to="/" className='slide__link'>
+                                    <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +148,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to="/" className='slide__link'>
+                                    <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -181,7 +181,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to="/" className='slide__link'>
+                                    <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -210,7 +210,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to="/" className='slide__link'>
+                                    <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -241,7 +241,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to="/" className='slide__link'>
+                                    <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -307,7 +307,7 @@ const Home = () => {
                             Globally, we have a vast network of accredited service providers that
                             ensure access to medical care, whenever and wherever you need it.
                         </p>
-                        <Link to='/'>Sign up
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -345,7 +345,7 @@ const Home = () => {
                             financial stability as you experience unparalleled growth with the unique
                             DOSH approach.
                         </p>
-                        <Link to='/'>Signup
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Signup
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -376,7 +376,7 @@ const Home = () => {
                             DOSH Pay is a hassle-free, integrated digital platform, designed to
                             simplify your everyday financial needs.
                         </p>
-                        <Link to='/'>Signup
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Signup
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -413,7 +413,7 @@ const Home = () => {
                             and comfortable vehicles. At DOSH Ride, our goal is to ensure that every
                             journey is an extraordinary experience!
                         </p>
-                        <Link to='/'>Signup
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Signup
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -446,7 +446,7 @@ const Home = () => {
                             DOSH ERP solutions, your business will ignite growth and propel you to
                             unprecedented success.
                         </p>
-                        <Link to='/'>Signup
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Signup
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -485,7 +485,7 @@ const Home = () => {
                             management systems, optimized returns processes,
                             and delivery systems.
                         </p>
-                        <Link to='/'>Signup
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Signup
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -512,7 +512,7 @@ const Home = () => {
                             Ac urna elementum purus vulputate tincidunt. Quam maecenas feugiat congue orci, eget tellus pellentesque aliquet.
                             Felis fringilla morbi dui ac consequat risus pharetra odio pulvinar. Id pellentesque in tortor nec nulla cras sapien. Adipiscing nisi tellus quisque aliquet sit risus elementum scelerisque.
                         </p>
-                        <Link to='/'>Get Started</Link>
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Get Started</Link>
                     </div>
                     <div className='about__student-right'>
                         <img src={student} alt='student' />
