@@ -11,6 +11,7 @@ import ServiceProviders from "./pages/ServiceProviders"
 import ProductServices from './pages/ProductServices'
 import ErrorPage from './pages/ErrorPage'
 import Financial from './components/Financial'
+import BackToTop from './components/BackToTop'
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
           <Route path='*' element={<Navigate to="/errorpage" />} />
         </Routes>
         <Footer />
+        <BackToTop />
       </BrowserRouter>
     </div>
   )

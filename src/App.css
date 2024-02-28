@@ -863,42 +863,30 @@ label {
   border-radius: 100px 100px 0 0;
 }
 
-
-
 /* financeModal styles end */
 
+
+/* back to top mobile styles start */
+.back-to-top {
+  background-color: #9E825B;
+  width: 3rem;
+  height: 3rem;
+  color: white;
+  border-radius: 50%;
+  position: fixed;
+  right: 6rem;
+  bottom: 6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* back to top styles end */
 
 
 @media (max-width: 767px) {
 
-
-  /* navbar mobile styles start */
-  /* nav {
-    background: rgba(242, 239, 239, 0.4);
-  }
-
-  .nav__menu {
-    display: none;
-  }
-
-  .nav__container {
-    display: flex;
-  }
-
-  .nav__signup-container {
-    display: none;
-  }
-
-  .bars {
-    display: flex;
-  }
-
-  .container {
-    width: 100vw;
-    margin: 0;
-  } */
-
-  /* navbar mobile styles end */
   footer {
     padding: 0;
     height: 100%;

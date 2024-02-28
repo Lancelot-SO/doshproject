@@ -19,7 +19,8 @@
     "reactstrap": "^9.2.2",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.0.6",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "react-scroll": "^1.8.6"
   },
   "scripts": {
     "start": "react-scripts start",
