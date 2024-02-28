@@ -68,7 +68,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +100,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +129,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -158,7 +158,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -191,7 +191,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -220,7 +220,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -251,7 +251,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
