@@ -720,6 +720,11 @@
         width: 100%;
     }
 
+    .navigate_auto,
+    .navigate_manual {
+        display: none;
+    }
+
     .cream__hero {
         width: 100%;
         height: 230px;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './About.css'
 import about from '../images/business.png'
 import handshake from "../images/about-handshake.png"
@@ -7,10 +7,20 @@ import settings from "../images/about-settings.png"
 import student from '../images/student-photo.png'
 import { Link } from 'react-router-dom'
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const About = () => {
+
+    useEffect(() => {
+        AOS.init({
+            duration: 2000,
+        });
+        AOS.refresh();
+    }, []);
     return (
         <div className='sect'>
-            <section className='about__header'>
+            <section data-aos="fade-down" className='about__header'>
                 <img src={about} alt='about' loading='lazy' />
             </section>
             <section className='about__section'>
@@ -28,13 +38,13 @@ const About = () => {
                             while bridging the financial divide that hinders true inclusion.
                         </p>
                     </div>
-                    <div className='about__right'>
+                    <div data-aos="zoom-in" className='about__right'>
                         <img src={handshake} className='about__image' alt='handshake' loading='lazy' />
                     </div>
                 </div>
             </section>
             <section className='about__section'>
-                <div className='container next-about__hand-shake'>
+                <div data-aos="zoom-in" className='container next-about__hand-shake'>
                     <div className='next-about_left'>
                         <img src={board} className='about__image' alt='handshake' loading='lazy' />
                     </div>
@@ -47,7 +57,7 @@ const About = () => {
                 </div>
             </section>
             <section className='about__section'>
-                <div className='container next-about__settings'>
+                <div data-aos="fade-up" className='container next-about__settings'>
                     <div className='next-about-settings_left'>
                         <img src={settings} className='about__image' alt='handshake' loading='lazy' />
                     </div>
@@ -67,7 +77,7 @@ const About = () => {
             </section>
 
             <section className='about__section'>
-                <div className='container about__cards'>
+                <div data-aos="flip-left" className='container about__cards'>
                     <div className='about__cards-left'>
                         <h3>OUR EXPERTISE</h3>
                         <p>Tenant: A DOSH client is unique.
@@ -103,7 +113,7 @@ const About = () => {
                         </p>
                         <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Get Started</Link>
                     </div>
-                    <div className='about__student-right'>
+                    <div data-aos="zoom-in" className='about__student-right'>
                         <img src={student} alt='student' loading='lazy' />
                     </div>
                 </div>

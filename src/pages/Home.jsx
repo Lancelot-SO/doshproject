@@ -17,6 +17,9 @@ import ride from '../images/ride.png'
 import reinvigorate from '../images/Vector334.png'
 import scale from "../images/scale.png"
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 
 
 const Home = () => {
@@ -30,6 +33,13 @@ const Home = () => {
 
         return () => clearInterval(intervalId);
     }, [counter]);
+
+    useEffect(() => {
+        AOS.init({
+            duration: 2000,
+        });
+        AOS.refresh();
+    }, []);
 
     return (
         <div className='main__hero'>
@@ -323,14 +333,14 @@ const Home = () => {
                             </svg>
                         </Link>
                     </div>
-                    <div className='home__student-right'>
+                    <div data-aos="zoom-in-left" className='home__student-right'>
                         <img src={elevate2} alt='student' loading='lazy' />
                     </div>
                 </div>
             </section>
             <section className='money__section'>
                 <div className='container home__money'>
-                    <div className='home__money-left'>
+                    <div data-aos="zoom-in-right" className='home__money-left'>
                         <img src={money} alt='student' loading='lazy' />
                     </div>
                     <div className='home__money-right'>
@@ -392,7 +402,7 @@ const Home = () => {
                             </svg>
                         </Link>
                     </div>
-                    <div className='home__digital-right'>
+                    <div data-aos="zoom-in-left" className='home__digital-right'>
                         <img src={seamless} alt='digital' loading='lazy' />
                     </div>
                 </div>
@@ -400,7 +410,7 @@ const Home = () => {
 
             <section className='ride__section'>
                 <div className='container ride__adventure'>
-                    <div className='home__ride-left'>
+                    <div data-aos="zoom-in-right" className='home__ride-left'>
                         <img src={ride} alt='ride' loading='lazy' />
                     </div>
                     <div className='home__ride-right'>
@@ -462,7 +472,7 @@ const Home = () => {
                             </svg>
                         </Link>
                     </div>
-                    <div className='home__digital2-right'>
+                    <div data-aos="zoom-in-left" className='home__digital2-right'>
                         <img src={reinvigorate} alt='digital' loading='lazy' />
                     </div>
                 </div>
@@ -471,7 +481,7 @@ const Home = () => {
             <section className='ride__section'>
                 <div className='container ride__adventure'>
                     <div className='home__ride2-left'>
-                        <img src={scale} alt='ride' loading='lazy' />
+                        <img data-aos="zoom-in-right" src={scale} alt='ride' loading='lazy' />
                     </div>
                     <div className='home__ride2-right'>
                         <h4>DOSH-COMMERCE:</h4>
@@ -514,7 +524,7 @@ const Home = () => {
                         </p>
                         <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Get Started</Link>
                     </div>
-                    <div className='about__student-right'>
+                    <div data-aos="zoom-in" className='about__student-right'>
                         <img src={student} alt='student' loading='lazy' />
                     </div>
                 </div>

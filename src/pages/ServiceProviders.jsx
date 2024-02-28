@@ -10,6 +10,9 @@ import FilterModal from '../components/FilterModal';
 import CallModal from '../components/CallModal';
 import { Link } from 'react-router-dom';
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const ServiceProviders = () => {
 
     const [people] = useState(data);
@@ -42,11 +45,18 @@ const ServiceProviders = () => {
         }
     }, [index])
 
+    useEffect(() => {
+        AOS.init({
+            duration: 2000,
+        });
+        AOS.refresh();
+    }, []);
+
 
     return (
         <div className='main__package'>
             <div className='main__services'>
-                <img src={services} alt='servicesproviders' loading='lazy' />
+                <img data-aos="fade-down" src={services} alt='servicesproviders' loading='lazy' />
                 <div className='service__text'>
                     <h1>Greater Accra</h1>
                     <p>

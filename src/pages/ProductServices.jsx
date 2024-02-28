@@ -6,11 +6,12 @@ import doshdata from "../doshdata.js"
 import doshvideo from '../images/dosh.mp4'
 
 import dosh from "../images/dosh_logo.png"
-
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import Financial from '../components/Financial.jsx';
 
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ProductServices = () => {
 
@@ -42,14 +43,19 @@ const ProductServices = () => {
         }
     }, [index])
 
+    useEffect(() => {
+        AOS.init({
+            duration: 2000,
+        });
+        AOS.refresh();
+    }, []);
+
 
     return (
         <div className='ps__page'>
             <div className='main__product'>
-
-                <img src={product} alt='product&services' loading='lazy' />
+                <img data-aos="fade-down" src={product} alt='product&services' loading='lazy' />
                 <div className='product__text'>
-
                     <p>Protect Your <b>Future</b> with Our
                         Comprehensive Insurance Policies
                     </p>
@@ -57,7 +63,7 @@ const ProductServices = () => {
             </div>
             <section className='product'>
                 <div className='container products'>
-                    <div className='product-left'>
+                    <div data-aos="zoom-in" className='product-left'>
                         <img src={productservice} alt='productservice' loading='lazy' />
                     </div>
                     <div className='product-right'>
