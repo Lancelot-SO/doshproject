@@ -26,13 +26,15 @@ const Footer = () => {
                                     <h4>8 Sir Arku Korsah, Rd Airport,
                                         Residential Area  Accra, Ghana</h4>
                                 </div>
-                                <div className='footer__icon-text2'>
-                                    <FaMobileAlt />
-                                    <h4>000-Dash-Me</h4>
-                                </div>
-                                <div className='footer__icon-text3'>
-                                    <IoIosMail />
-                                    <h4>000-Dash-Me</h4>
+                                <div>
+                                    <div className='footer__icon-text2'>
+                                        <FaMobileAlt />
+                                        <h4>000-Dash-Me</h4>
+                                    </div>
+                                    <div className='footer__icon-text3'>
+                                        <IoIosMail />
+                                        <h4>000-Dash-Me</h4>
+                                    </div>
                                 </div>
                             </div>
                             <div className='social__icons'>
@@ -43,48 +45,7 @@ const Footer = () => {
                                 <FaYoutube size={24} />
                             </div>
                         </div>
-                        <div className='footer__links'>
-                            <div>
-                                <h3>Banking Products</h3>
-                                <ul>
-                                    <Link><li>Personal Banking</li></Link>
-                                    <Link><li>Business Banking</li></Link>
-                                    <Link><li>Corporate Banking</li></Link>
-                                    <Link><li>Bank Assurance</li></Link>
-                                    <Link><li>Open An Account Online</li></Link>
-                                </ul>
-                            </div>
-                            <div>
-                                <h3>Customer Service</h3>
-                                <ul>
-                                    <Link><li>Frequently Asked Questions</li></Link>
-                                    <Link><li>Branches/ATM Locations</li></Link>
-                                    <Link><li>Download Forms</li></Link>
-                                    <Link><li>Contact Us</li></Link>
-                                    <Link><li>News & Stories</li></Link>
-                                </ul>
-                            </div>
-                            <div>
-                                <h3>About Us</h3>
-                                <ul>
-                                    <Link><li>About CalBank</li></Link>
-                                    <Link><li>Leadership</li></Link>
-                                    <Link><li>Investor Relations</li></Link>
-                                    <Link><li>Our People</li></Link>
-                                    <Link><li>Careers</li></Link>
-                                </ul>
-                            </div>
-                            <div>
-                                <h3>Useful Links</h3>
-                                <ul>
-                                    <Link><li>Cookie Policy</li></Link>
-                                    <Link><li>Privacy, Security & Fraud</li></Link>
-                                    <Link><li>Terms & Conditions</li></Link>
-                                    <Link><li>SCAM Alert</li></Link>
-                                    <Link><li>Notice of Dormant Account</li></Link>
-                                </ul>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </footer>
