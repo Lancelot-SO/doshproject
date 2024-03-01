@@ -107,10 +107,7 @@ const About = () => {
                 <div className='container about__student'>
                     <div className='about__student-left'>
                         <h3>Join the<br /><b>Revolution !</b></h3>
-                        <p>
-                            Ac urna elementum purus vulputate tincidunt. Quam maecenas feugiat congue orci, eget tellus pellentesque aliquet.
-                            Felis fringilla morbi dui ac consequat risus pharetra odio pulvinar. Id pellentesque in tortor nec nulla cras sapien. Adipiscing nisi tellus quisque aliquet sit risus elementum scelerisque.
-                        </p>
+
                         <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer">Get Started</Link>
                     </div>
                     <div data-aos="zoom-in" className='about__student-right'>

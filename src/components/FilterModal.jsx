@@ -54,7 +54,7 @@ const FilterModal = ({ showModal, onClose }) => {
                         </form>
 
                         <div className="modal-footer">
-                            <button type="button" className="search-btn">Search</button>
+                            <button type="button" className="search-btn">SEARCH</button>
                             <button type="button" className="clear-btn" data-dismiss="modal">Clear All filter</button>
                         </div>
                     </div>

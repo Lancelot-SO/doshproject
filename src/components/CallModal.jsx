@@ -20,11 +20,12 @@ const CallModal = ({ onClose }) => {
                     <div className='call-left'>
                         <img src={caller} alt='caller' loading='lazy' />
                     </div>
+
                     <div className='call-right'>
                         <button type="button" onClick={onClose} className="call-close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <div className="call__modal-body">
+                        <div className="callmodal">
                             <p className='call-head'>Request a call back</p>
                             <span>Thanks for your interest in our service. Please provide details to assists reach out to you.</span>
                             <form>
@@ -39,7 +40,7 @@ const CallModal = ({ onClose }) => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label for="phoneNumber">Enter Phone Number</label>
+                                    <label for="phoneNumber">Phone Number</label>
                                     <div className="input-group">
                                         <div className="input-icon">
                                             <HiOutlineDevicePhoneMobile className='call-icon' />
@@ -61,6 +62,7 @@ const CallModal = ({ onClose }) => {
 
 
                         </div>
+
                     </div>
                 </div>
             </div>

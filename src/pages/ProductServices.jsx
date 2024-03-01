@@ -15,12 +15,11 @@ import "aos/dist/aos.css";
 
 const ProductServices = () => {
 
+
     const [products] = useState(doshdata);
     const [index, setIndex] = useState(0);
 
     const [showFinanceModal, setshowFinanceModal] = useState(false);
-
-
 
 
     useEffect(() => {
@@ -37,7 +36,7 @@ const ProductServices = () => {
     useEffect(() => {
         let slider = setInterval(() => {
             setIndex(index + 1)
-        }, 8000);
+        }, 10000);
         return () => {
             clearInterval(slider)
         }
@@ -49,6 +48,15 @@ const ProductServices = () => {
         });
         AOS.refresh();
     }, []);
+
+    // Function to handle mouse enter
+    const handleMouseEnter = (e) => {
+        e.target.play();
+    };
+
+    const handleMouseLeave = (e) => {
+        e.target.pause();
+    };
 
 
     return (
@@ -150,9 +158,17 @@ const ProductServices = () => {
 
             <section className='video__section'>
                 <div className='container video-main'>
-                    <div className='video__left'>
-                        <video src={doshvideo} autoPlay loop muted loading='lazy' />
-                    </div>
+                    <div className='video__left' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                        <video
+                            className='video__left'
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
+                            src={doshvideo}
+                            autoPlay={false} // Autoplay set to false to play only on hover
+                            loop
+                            muted
+                            loading='lazy'
+                        />                    </div>
                     <div className='video__right'>
                         <h4>SUCCESS STORIES VIDEO</h4>
                         <h6>“ Affordable health insurance for you and your loved ones.</h6>

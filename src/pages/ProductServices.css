@@ -238,6 +238,7 @@ article.lastSlide {
     border-radius: 50%;
     border: 1px solid #9E825B;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .prev:hover,
@@ -415,6 +416,7 @@ article.lastSlide {
         border-radius: 50%;
         border: 1px solid #9E825B;
         font-size: 1rem;
+        cursor: pointer;
     }
 
     .prev:hover,
@@ -448,6 +450,8 @@ article.lastSlide {
     flex: 1;
     width: 578px;
     height: 362px;
+    cursor: pointer;
+    border-radius: 20px;
 }
 
 .video__left video {

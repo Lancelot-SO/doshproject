@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from "../images/dosh_logo.png";
 import { MdLocationOn } from "react-icons/md";
-import { FaMobileAlt, FaTwitter, FaFacebook, FaYoutube, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { FaMobileAlt, FaTwitter, FaFacebook, FaYoutube, FaInstagram, FaLinkedin, FaWhatsapp, FaTiktok } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { Link } from 'react-router-dom';
 //
@@ -42,11 +42,28 @@ const Footer = () => {
                                 </div>
                             </div>
                             <div className='social__icons'>
-                                <FaTwitter size={24} />
-                                <FaFacebook size={24} />
-                                <FaLinkedin size={24} />
-                                <FaInstagram size={24} />
-                                <FaYoutube size={24} />
+                                <Link to='https://x.com/dosh_revolution?s=21&t=-BrXbfatLtONPkJKS4q8HQ' target="_blank" rel="noopener noreferrer">
+                                    <FaTwitter size={24} />
+                                </Link>
+                                <Link to='https://www.facebook.com/DOSH.Revolution?mibextid=LQQJ4d' target="_blank" rel="noopener noreferrer">
+                                    <FaFacebook size={24} />
+                                </Link>
+                                <Link to='https://www.linkedin.com/company/dosh-revolution/' target="_blank" rel="noopener noreferrer">
+                                    <FaLinkedin size={24} />
+                                </Link>
+                                <Link to='https://www.instagram.com/dosh_revolution?igsh=MXQ3Z2d6aTMxMHA3ZA%3D%3D&utm_source=qr' target="_blank" rel="noopener noreferrer">
+                                    <FaInstagram size={24} />
+                                </Link>
+                                <Link to='https://youtube.com/@DOSHRevolution?si=H6MOS8Wj6Se8eegI' target="_blank" rel="noopener noreferrer">
+                                    <FaYoutube size={24} />
+                                </Link>
+                                <Link to='https://www.tiktok.com/@dosh.revolution?_t=8kJif6YpYMX&_r=1' target="_blank" rel="noopener noreferrer">
+                                    <FaTiktok size={24} />
+                                </Link>
+
+
+
+
                             </div>
                         </div>
 

@@ -29,7 +29,7 @@ const Home = () => {
         const intervalId = setInterval(() => {
             document.getElementById('radio' + counter).checked = true;
             setCounter(prevCounter => (prevCounter % 7) + 1);
-        }, 5000);
+        }, 8000);
 
         return () => clearInterval(intervalId);
     }, [counter]);
@@ -246,7 +246,7 @@ const Home = () => {
                                 <p className='eight_slider'>Overall wellness includes <b>Mental health.</b><br />
                                     We’ve got you covered.
                                 </p>
-                                <p className='eight_slider_p'>The only health insurance with metal health coverage</p>
+                                <p className='eight_slider_p'>The only health insurance with mental health coverage</p>
                             </div>
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
@@ -355,7 +355,7 @@ const Home = () => {
                             financial stability as you experience unparalleled growth with the unique
                             DOSH approach.
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Signup
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -386,7 +386,7 @@ const Home = () => {
                             DOSH Pay is a hassle-free, integrated digital platform, designed to
                             simplify your everyday financial needs.
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Signup
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -416,14 +416,14 @@ const Home = () => {
                     <div className='home__ride-right'>
                         <h4>DOSH RIDE:</h4>
                         <h3>Where safety<br />
-                            meet adventure</h3>
+                            meets adventure</h3>
                         <p>
                             In our fast-paced world, DOSH Ride redefines transportation excellence.
                             With every booking, you enjoy secure travel, professional drivers,
                             and comfortable vehicles. At DOSH Ride, our goal is to ensure that every
                             journey is an extraordinary experience!
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Signup
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -456,7 +456,7 @@ const Home = () => {
                             DOSH ERP solutions, your business will ignite growth and propel you to
                             unprecedented success.
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Signup
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -495,7 +495,7 @@ const Home = () => {
                             management systems, optimized returns processes,
                             and delivery systems.
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Signup
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -518,10 +518,7 @@ const Home = () => {
                 <div className='container about__student'>
                     <div className='about__student-left'>
                         <h3>Join the<br /><b>Revolution !</b></h3>
-                        <p>
-                            Ac urna elementum purus vulputate tincidunt. Quam maecenas feugiat congue orci, eget tellus pellentesque aliquet.
-                            Felis fringilla morbi dui ac consequat risus pharetra odio pulvinar. Id pellentesque in tortor nec nulla cras sapien. Adipiscing nisi tellus quisque aliquet sit risus elementum scelerisque.
-                        </p>
+
                         <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Get Started</Link>
                     </div>
                     <div data-aos="zoom-in" className='about__student-right'>

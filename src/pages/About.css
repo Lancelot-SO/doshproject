@@ -188,7 +188,7 @@
 
 .about__student-left {
     flex: 1;
-    padding-top: 100px;
+    padding-top: 150px;
 }
 
 .about__student-left h3 {
@@ -203,9 +203,9 @@
 
 }
 
-.about__student-left p {
+/* .about__student-left p {
     margin-bottom: 30px;
-}
+} */
 
 .about__student-left a {
     background-color: rgb(200, 173, 132);
