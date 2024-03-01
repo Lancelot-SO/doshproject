@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from "../images/dosh_logo.png";
 import { MdLocationOn } from "react-icons/md";
-import { FaMobileAlt, FaTwitter, FaFacebook, FaYoutube, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaMobileAlt, FaTwitter, FaFacebook, FaYoutube, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { Link } from 'react-router-dom';
 //
@@ -29,11 +29,15 @@ const Footer = () => {
                                 <div>
                                     <div className='footer__icon-text2'>
                                         <FaMobileAlt />
-                                        <h4>000-Dash-Me</h4>
+                                        <h4>0800-DOSH-ME</h4>
                                     </div>
                                     <div className='footer__icon-text3'>
                                         <IoIosMail />
-                                        <h4>000-Dash-Me</h4>
+                                        <h4>info@0800dosh.me</h4>
+                                    </div>
+                                    <div className='footer__icon-text3'>
+                                        <FaWhatsapp />
+                                        <h4>+1 (203) 293-9850</h4>
                                     </div>
                                 </div>
                             </div>
