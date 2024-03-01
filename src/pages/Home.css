@@ -781,6 +781,11 @@
         display: none;
     }
 
+    .first_slider b {
+        font-weight: bolder;
+        font-size: 40px;
+    }
+
     .first_slider-p {
         font-family: "Inter", sans-serif;
         font-size: 12px;
