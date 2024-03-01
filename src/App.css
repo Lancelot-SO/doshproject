@@ -291,7 +291,6 @@ footer {
   height: 280px;
   padding: 10px 90px;
   box-sizing: border-box;
-  /*background: rgba(0, 0, 0, 0.4); */
   background: #181A1A;
 }
 
@@ -305,23 +304,35 @@ footer {
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 1100px;
 }
 
 .footer__logo {
   display: flex;
   flex-direction: row;
-  gap: 10px;
-  padding-top: 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  padding-top: 50px;
 }
 
 .footer__logo img {
   width: 100px;
+  padding-top: 20px;
 }
 
 .footer__contacts {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   color: #fff;
+  gap: 250px;
+  width: 1000px;
+  padding-top: 30px;
+}
+
+.footer__icon-texts {
+  display: flex;
+  gap: 50px;
 }
 
 .footer__icon-text1,
@@ -347,25 +358,11 @@ footer {
 .social__icons {
   gap: 20px;
   display: flex;
-  padding: 10px 0;
-  color: #fff;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  color: #987C55;
 }
 
-.footer__links {
-  display: flex;
-  gap: 50px;
-  margin-top: 15px;
-}
-
-.footer__links h3 {
-  color: #BCB9B9;
-  padding-bottom: 15px;
-}
-
-.footer__links ul li {
-  color: #BCB9B9;
-  padding-bottom: 5px;
-}
 
 /* footer css end  */
 
@@ -882,6 +879,24 @@ label {
   justify-content: center;
 }
 
+
+@media (max-width: 767px) {
+  .back-to-top {
+    background-color: #9E825B;
+    width: 3rem;
+    height: 3rem;
+    color: white;
+    border-radius: 50%;
+    position: fixed;
+    right: 6rem;
+    bottom: 6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 /* back to top styles end */
 
 
@@ -890,11 +905,12 @@ label {
   footer {
     padding: 0;
     height: 100%;
+    overflow: hidden;
   }
 
   .footer__container {
     display: flex;
-    flex-direction: column;
+    width: 100%;
   }
 
   .footer__logo {
@@ -904,10 +920,44 @@ label {
     justify-content: left;
     margin-right: 150px;
     padding-left: 20px;
+    gap: 10px;
   }
 
-  .footer__links {
+  .footer__logo img {
+    width: 100px;
+    padding-top: 20px;
+  }
+
+  .footer__contacts {
     display: flex;
     flex-direction: column;
+    color: #fff;
+    gap: 0;
+    width: 1000px;
+    padding-top: 30px;
+  }
+
+  .footer__icon-texts {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .footer__icon-text1 {
+    display: flex;
+    margin: 10px;
+    align-items: center;
+    gap: 5px;
+    width: 250px;
+  }
+
+  .footer__icon-text2,
+  .social__icons,
+  .footer__icon-text3 {
+    padding-left: 10px;
+  }
+
+  .social__icons {
+    padding-bottom: 20px;
   }
 }
