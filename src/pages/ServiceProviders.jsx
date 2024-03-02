@@ -152,7 +152,7 @@ const ServiceProviders = () => {
                                     <img src={item.pic} alt='person' className="service-img" />
                                     <div className='service-name-quote'>
                                         <span className='service-name'>{item.name}</span>
-                                        <p className='service-quote'>Dosh insurance company prioritizes customer satisfaction and is committed to providing exceptional service to our clients.</p>
+                                        <p className='service-quote'>{item.testimony}</p>
                                     </div>
                                 </div>
                             </article>

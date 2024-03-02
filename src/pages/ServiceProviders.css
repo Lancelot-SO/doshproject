@@ -342,7 +342,13 @@
     width: 344px;
     height: 166px;
     padding: 20px;
+    overflow-y: scroll;
     /* Adjust font size */
+}
+
+.service-quote::-webkit-scrollbar {
+    display: none;
+    /* Hide scrollbar for WebKit browsers */
 }
 
 .serviceslider {
@@ -515,6 +521,7 @@ article.lastSlide {
         height: 160px;
         padding: 10px;
         margin-top: 10px;
+        overflow-y: scroll;
     }
 
     .testimonial {
