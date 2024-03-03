@@ -1,75 +1,176 @@
-.contact__content {
+.contact__head {
     position: relative;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 20px;
+    color: white;
 }
 
-.call img {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-}
-
-.call__modal-body {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 1;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    /* Ensure the modal body appears on top */
-}
-
-.call-head {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.call-icon {
-    width: 20px;
-    height: 20px;
-}
-
-.input-group {
-    margin-bottom: 15px;
-}
-
-.form-control {
+.contact__head img {
     width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.contact__text {
+    position: absolute;
+    top: 420px;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    width: 823px;
+    height: 149px;
+    font-size: 50px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.contact__main {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    background: linear-gradient(90deg, #C7AC83, #9E825B);
+    display: flex;
+    flex-direction: column;
+    margin: 40px 0;
+    width: 754px;
+    height: 620px;
+    padding: 50px;
+}
+
+form p {
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    font-size: 35px;
+    line-height: 42px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+.input__form {
+    display: flex;
+    flex-direction: row;
+    width: 658px;
+    height: 60px;
+    gap: 28px;
+    margin-bottom: 30px;
+    padding-left: 40px;
+    color: #fff;
+}
+
+.input__form input {
+    width: 265px;
+    color: #fff;
+    padding-left: 30px;
+    border: 1px solid #d3d1d1;
+    background-color: transparent;
+}
+
+input::placeholder {
+    color: #fff;
+    /* Change to whatever color you want */
 }
 
 textarea {
-    margin-right: 50px;
-}
-
-.request {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
+    margin-left: 40px;
+    padding: 30px;
+    width: 555px;
+    border: 1px solid #d3d1d1;
     color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    background-color: transparent;
 }
 
-/* Media query for mobile screens */
-@media screen and (max-width: 767px) {
-    .call {
-        max-width: 80%;
-        /* Adjust max-width for smaller screens */
+textarea::placeholder {
+    color: #fff;
+}
+
+.form__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    margin-top: 20px;
+
+}
+
+.submit__btn {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0em;
+    width: 194px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.contact__logo {
+    padding-left: 40px;
+    padding-bottom: 40PX;
+    margin-top: 30px;
+    width: 200px;
+    height: 79px;
+}
+
+@media (max-width: 767px) {
+    .cont {
+        overflow: hidden;
     }
 
-    .contact {
-        overflow: hidden;
+    .contact__head {
+        position: relative;
+        color: white;
+    }
+
+    .contact__head img {
+        width: 100vw;
+        height: 351px;
+        display: block;
+        object-fit: cover;
+    }
+
+    .contact__text {
+        position: absolute;
+        top: 280px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 443px;
+        height: 129px;
+        font-size: 30px;
+        font-weight: bold;
+        line-height: 1;
+        padding-left: 40px;
+        padding-right: 20px;
+    }
+
+    form {
+        padding: 0;
+        width: 100%;
+
+    }
+
+    .input__form {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 60px;
+    }
+
+    .input__form input {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    textarea {
+        width: 265px;
+    }
+
+    .form__btn {
+        display: flex;
+        align-items: center;
+        margin-left: 8px;
+        margin-top: 20px;
+
     }
 }
