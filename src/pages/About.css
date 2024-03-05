@@ -178,58 +178,12 @@
     text-align: left;
 }
 
-.about__student {
-    display: flex;
-    padding-top: 150px;
-    padding-bottom: 150px;
-    padding-left: 80px;
-    padding-right: 80px;
+.about__banner {
+    padding: 40px 0;
 }
 
-.about__student-left {
-    flex: 1;
-    padding-top: 150px;
-}
-
-.about__student-left h3 {
-    width: 240px;
-    line-height: 1;
-    font-size: 24px;
-    margin-bottom: 30px;
-}
-
-.about__student-left h3 b {
-    font-size: 40px;
-
-}
-
-/* .about__student-left p {
-    margin-bottom: 30px;
-} */
-
-.about__student-left a {
-    background-color: rgb(200, 173, 132);
-    color: var(--color-white);
-    cursor: pointer;
-    padding: 15px;
-    width: 133px;
-    height: 24px;
-    font-size: 14px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.about__student-right {
-    flex: 1;
-    padding-left: 262px;
-}
-
-.about__student-right img {
-    width: 437px;
-    height: 485px;
-    border-radius: 10px;
+.about__banner img {
+    height: 547px;
 }
 
 @media (max-width: 767px) {

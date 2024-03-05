@@ -9,7 +9,7 @@ import slider6 from "../images/slider6.png";
 import slider7 from "../images/slider8.png";
 import slider2 from "../images/slider.png";
 
-import student from '../images/student-photo.png'
+import banner from '../images/dosh-banner.png'
 import elevate2 from '../images/vector.png'
 import money from '../images/vector2.png';
 import seamless from "../images/seamless.png"
@@ -29,7 +29,7 @@ const Home = () => {
         const intervalId = setInterval(() => {
             document.getElementById('radio' + counter).checked = true;
             setCounter(prevCounter => (prevCounter % 7) + 1);
-        }, 8000);
+        }, 10000);
 
         return () => clearInterval(intervalId);
     }, [counter]);
@@ -515,15 +515,8 @@ const Home = () => {
             </section>
 
             <section className='about__section'>
-                <div className='container about__student'>
-                    <div className='about__student-left'>
-                        <h3>Join the<br /><b>Revolution !</b></h3>
-
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Get Started</Link>
-                    </div>
-                    <div data-aos="zoom-in" className='about__student-right'>
-                        <img src={student} alt='student' loading='lazy' />
-                    </div>
+                <div className='about__banner'>
+                    <Link to='https://dsp.onenet.xyz:50443/#/'><img src={banner} alt='banner' /></Link>
                 </div>
             </section>
 

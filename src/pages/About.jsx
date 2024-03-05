@@ -4,7 +4,7 @@ import about from '../images/business.png'
 import handshake from "../images/about-handshake.png"
 import board from "../images/about-board.png"
 import settings from "../images/about-settings.png"
-import student from '../images/student-photo.png'
+import banner from '../images/dosh-banner.png'
 import { Link } from 'react-router-dom'
 
 import AOS from "aos";
@@ -104,15 +104,8 @@ const About = () => {
             </section>
 
             <section className='about__section'>
-                <div className='container about__student'>
-                    <div className='about__student-left'>
-                        <h3>Join the<br /><b>Revolution !</b></h3>
-
-                        <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer">Get Started</Link>
-                    </div>
-                    <div data-aos="zoom-in" className='about__student-right'>
-                        <img src={student} alt='student' loading='lazy' />
-                    </div>
+                <div className='about__banner'>
+                    <Link to='https://dsp.onenet.xyz:50443/#/'><img src={banner} alt='banner' /></Link>
                 </div>
             </section>
         </div>
