@@ -179,29 +179,24 @@
 }
 
 .about__banner {
-    display: flex;
     width: 1200px;
-    align-items: center;
-    justify-content: center;
     border-radius: 30px;
     padding: 30px 10px;
-    margin-left: 150px;
+    margin-left: 200px;
+    background-color: red;
 
 }
 
 .about__banner img {
     height: 347px;
     width: 1150px;
-    border-radius: 30px
+    border-radius: 30px;
 }
 
 @media (max-width: 767px) {
 
     .about__banner {
-        display: flex;
         width: 100%;
-        align-items: center;
-        justify-content: center;
         border-radius: 30px;
         padding: 10px 10px;
         margin-left: 0;
