@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import "./Home.css"
 import { Link } from "react-router-dom"
-import slider1 from "../images/granny.png";
+import slider1 from "../images/granny1.png";
 import slider3 from "../images/slider3.png";
 import slider4 from "../images/slider4.png";
-import slider5 from "../images/slider5.png";
+import slider5 from "../images/slider666.png";
 import slider6 from "../images/slider6.png";
 import slider7 from "../images/slider8.png";
 import slider2 from "../images/slider.png";
@@ -214,7 +214,7 @@ const Home = () => {
                             <img src={slider6} alt='hero' loading='lazy' />
                             <div className='hero__text'>
                                 <p className='sixth__slider'>
-                                    Dial <b>*915#</b> to join the DOSH Revolution
+                                    Dial <b>*915#</b><br />to join the DOSH Revolution
                                 </p>
                             </div>
                             <div className='slide-text'>

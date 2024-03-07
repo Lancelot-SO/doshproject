@@ -1,7 +1,8 @@
 import React from 'react'
-import logo from "../images/dosh_logo.png";
+import logo from "../images/dosh-footer-logo.png";
 import { FaTwitter, FaFacebook, FaYoutube, FaInstagram, FaLinkedin, FaTiktok } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import bg from "../images/footer-bg.png";
 //
 
 
@@ -9,10 +10,12 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <div>
+        <div className='main__footer'>
+            <img src={bg} alt='footerbg' />
+
             <footer>
                 <div className='container footer__container'>
-                    <div className='contact__logo'>
+                    <div className='contact__logo2'>
                         <div className='footer__logo'>
                             <img src={logo} alt='dosh-logo' />
                         </div>
@@ -50,7 +53,6 @@ const Footer = () => {
                         </Link>
                     </div>
 
-
                 </div>
 
             </footer>
@@ -58,7 +60,6 @@ const Footer = () => {
             <div className='container copyright'>
                 <p>Powered by OPIN Technologies ®</p>
             </div>
-
         </div>
     )
 }

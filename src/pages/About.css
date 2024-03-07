@@ -179,14 +179,41 @@
 }
 
 .about__banner {
-    padding: 40px 0;
+    display: flex;
+    width: 1200px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    padding: 30px 10px;
+    margin-left: 150px;
+
 }
 
 .about__banner img {
-    height: 547px;
+    height: 347px;
+    width: 1150px;
+    border-radius: 30px
 }
 
 @media (max-width: 767px) {
+
+    .about__banner {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        border-radius: 30px;
+        padding: 10px 10px;
+        margin-left: 0;
+
+    }
+
+    .about__banner img {
+        height: 347px;
+        width: 100%;
+        border-radius: 30px
+    }
+
     .about__section {
         background: #E2E8F0;
         color: #000;
