@@ -957,8 +957,8 @@ label {
   color: white;
   border-radius: 50%;
   position: fixed;
-  right: 6rem;
-  bottom: 6rem;
+  right: 3rem;
+  bottom: 3rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -974,8 +974,8 @@ label {
     color: white;
     border-radius: 50%;
     position: fixed;
-    right: 6rem;
-    bottom: 6rem;
+    right: 2rem;
+    bottom: 2rem;
     cursor: pointer;
     display: flex;
     align-items: center;
