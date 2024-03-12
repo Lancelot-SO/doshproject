@@ -29,7 +29,7 @@
     justify-content: center;
 }
 
-form {
+.form__main {
     background: linear-gradient(90deg, #C7AC83, #9E825B);
     display: flex;
     flex-direction: column;
@@ -145,7 +145,7 @@ textarea::placeholder {
         padding-right: 20px;
     }
 
-    form {
+    .form__main {
         padding: 40px;
         height: 650px;
         width: 100%;

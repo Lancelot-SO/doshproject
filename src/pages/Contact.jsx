@@ -26,7 +26,7 @@ const Contact = () => {
                 </div>
             </div>
             <div className='contact__main'>
-                <form action='#'>
+                <form action='#' className='form__main'>
                     <p>Get in touch with us</p>
                     <div>
                         <div className='input__form'>

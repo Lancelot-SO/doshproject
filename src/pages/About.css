@@ -17,8 +17,10 @@
 
 .about_left h3 {
     color: #A38861;
-    font-size: 40px;
+    font-size: 56px;
     margin: 20px 0;
+    font-weight: bolder;
+    font-family: "Inter", sans-serif;
 }
 
 .about__right {
