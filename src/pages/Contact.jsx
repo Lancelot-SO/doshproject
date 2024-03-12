@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import "./Contact.css"
-import contact from '../images/contactus.png'
+import contact from '../images/contactdosh.png'
 import logo from "../images/dosh_logo.png"
 
 import AOS from "aos";
@@ -21,7 +21,7 @@ const Contact = () => {
                 <img data-aos="fade-down" src={contact} alt='about' loading='lazy' />
                 <div className='contact__text'>
                     <p>
-                        Contact US
+                        Contact Us
                     </p>
                 </div>
             </div>
