@@ -24,15 +24,26 @@ import "aos/dist/aos.css";
 
 const Home = () => {
     const [counter, setCounter] = useState(1);
+    const [isPaused, setIsPaused] = useState(false);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            document.getElementById('radio' + counter).checked = true;
-            setCounter(prevCounter => (prevCounter % 7) + 1);
-        }, 10000);
+            if (!isPaused) {
+                document.getElementById('radio' + counter).checked = true;
+                setCounter(prevCounter => (prevCounter % 7) + 1);
+            }
+        }, 8000);
 
         return () => clearInterval(intervalId);
-    }, [counter]);
+    }, [counter, isPaused]);
+
+    const handleMouseDown = () => {
+        setIsPaused(true);
+    };
+
+    const handleMouseUp = () => {
+        setIsPaused(false);
+    };
 
     useEffect(() => {
         AOS.init({
@@ -45,7 +56,7 @@ const Home = () => {
         <div className='main__hero'>
             <div className='hero'>
                 <div className='slider'>
-                    <div className='slides'>
+                    <div className='slides' onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
                         <input type="radio" name="radio-button" id="radio1" />
                         <input type="radio" name="radio-button" id="radio2" />
                         <input type="radio" name="radio-button" id="radio3" />
@@ -272,7 +283,7 @@ const Home = () => {
                         </div>
 
 
-                        <div className='navigate_auto'>
+                        <div className='navigate_auto' onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
                             <div className='auto-btn1'></div>
                             <div className='auto-btn2'></div>
                             <div className='auto-btn3'></div>
@@ -286,7 +297,7 @@ const Home = () => {
 
                     </div>
 
-                    <div className='navigate_manual'>
+                    <div className='navigate_manual' onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
                         <label htmlFor='radio1' className='manual-btn'></label>
                         <label htmlFor='radio2' className='manual-btn'></label>
                         <label htmlFor='radio3' className='manual-btn'></label>

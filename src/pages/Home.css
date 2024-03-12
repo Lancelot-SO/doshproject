@@ -253,7 +253,7 @@
 }
 
 .manual-btn {
-    border: 2px solid #987C55;
+    border: 2px solid #cecbc4;
     padding: 2px;
     cursor: pointer;
     transition: 1s;
@@ -305,7 +305,7 @@
 }
 
 .navigate_auto div {
-    border: 2px solid #987C55;
+    border: 2px solid #cecbc4;
     padding: 2px;
     transition: 1s;
 }
@@ -793,7 +793,7 @@
 
     .first_slider-p {
         font-family: "Inter", sans-serif;
-        font-size: 12px;
+        font-size: 6px;
         line-height: 12px;
         letter-spacing: 0.05em;
         text-align: left;
@@ -825,7 +825,7 @@
 
     .second_slider {
         font-family: "Inter", sans-serif;
-        font-size: 10px;
+        font-size: 6px;
         line-height: 12px;
         letter-spacing: 0.05em;
         text-align: left;
@@ -868,7 +868,7 @@
 
     .fourth_slider_p {
         font-family: "Inter", sans-serif;
-        font-size: 10px;
+        font-size: 6px;
         line-height: 12px;
         letter-spacing: 0.05em;
         text-align: left;
@@ -894,7 +894,7 @@
 
     .fifth_slider_p {
         font-family: "Inter", sans-serif;
-        font-size: 10px;
+        font-size: 6px;
         line-height: 12px;
         letter-spacing: 0.05em;
         text-align: left;
@@ -935,7 +935,7 @@
 
     .eight_slider_p {
         font-family: "Inter", sans-serif;
-        font-size: 10px;
+        font-size: 6px;
         line-height: 12px;
         letter-spacing: 0.05em;
         text-align: left;
