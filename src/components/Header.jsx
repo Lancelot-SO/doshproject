@@ -144,8 +144,8 @@ const Header = () => {
                                 </li>
                             </ul>
                             <div className='nav-mobile__signup'>
-                                <Link to='/login' className='nav__login-mobile'>Login</Link>
-                                <Link to='/register'>
+                                <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='nav__login-mobile'>Login</Link>
+                                <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer">
                                     <div className='nav__signup-mobile'>
                                         Sign up
                                     </div>

@@ -231,6 +231,10 @@
     align-items: center;
 }
 
+.slide-text h3 {
+    opacity: 0;
+}
+
 .slide-arrow {
     display: flex;
     align-items: center;
