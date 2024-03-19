@@ -218,9 +218,12 @@ nav {
     height: 100%;
   }
 
-  .nav__menu,
-  .nav__signup-container {
+  .nav__menu {
     display: none;
+  }
+
+  .nav__signup-container {
+    display: flex;
   }
 
   .bars {
@@ -236,7 +239,7 @@ nav {
     left: 0;
     -webkit-transition: height 2s;
     width: 100vw;
-    height: 600px;
+    height: 450px;
     background: #000;
     color: #fff;
     display: flex;
@@ -263,7 +266,7 @@ nav {
   }
 
   .nav-mobile__signup {
-    display: flex;
+    display: none;
     flex-direction: column;
     padding-left: 20px;
     font-size: 24px;

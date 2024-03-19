@@ -245,6 +245,11 @@
         padding-right: 20px;
     }
 
+    .about_left h3 {
+        font-size: 30px;
+        line-height: 20px;
+    }
+
     .about_left p {
         width: 361px;
         height: 294px;
