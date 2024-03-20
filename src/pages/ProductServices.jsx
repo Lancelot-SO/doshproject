@@ -167,6 +167,7 @@ const ProductServices = () => {
                             autoPlay={false} // Autoplay set to false to play only on hover
                             loop
                             muted
+                            controls
                             loading='lazy'
                         />                    </div>
                     <div className='video__right'>
