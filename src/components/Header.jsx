@@ -67,7 +67,7 @@ const Header = () => {
                     </li>
                 </ul>
                 <div className='nav__signup-container'>
-                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='nav__login'>Login</Link>
+                    <Link to="/login" className='nav__login'>Login</Link>
                     <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer">
                         <div className='nav__signup'>
                             Sign up
