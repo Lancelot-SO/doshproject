@@ -258,7 +258,7 @@
 
 .manual-btn {
     border: 2px solid #cecbc4;
-    padding: 2px;
+    padding: 4px;
     cursor: pointer;
     transition: 1s;
 }
@@ -310,7 +310,7 @@
 
 .navigate_auto div {
     border: 2px solid #cecbc4;
-    padding: 2px;
+    padding: 4px;
     transition: 1s;
 }
 
@@ -342,7 +342,7 @@
     background-color: #987C55;
 }
 
-#radio7:checked~.navigate_auto .auto-btn8 {
+#radio7:checked~.navigate_auto .auto-btn7 {
     background-color: #987C55;
 }
 

@@ -3,6 +3,7 @@ import login from "../images/login-image.png";
 import { IoMdRefresh } from "react-icons/io";
 import "./Login.css";
 import { Link } from 'react-router-dom';
+import card from "../images/card.svg"
 
 const Login = () => {
     const [captcha, setCaptcha] = useState('');
@@ -132,7 +133,65 @@ const Login = () => {
                         </div>
                     </div>
                 </div>
-                <div className='right__log'></div>
+                <div className='right__log'>
+                    <div>
+                        <div className='right__overlay'>
+                            <div className='right__content'>
+                                <div className='right__grid'>
+                                    <div className='grid__card'>
+                                        <small>DOSH Pay</small>
+                                        <div className='grid__pay'>
+                                            <img src={card} alt='credit-card' />
+                                            <span>View</span>
+                                        </div>
+                                    </div>
+                                    <div className='grid__card'>
+                                        <small>DOSH Pay</small>
+                                        <div className='grid__pay'>
+                                            <img src={card} alt='credit-card' />
+                                            <span>View</span>
+                                        </div>
+                                    </div>
+                                    <div className='grid__card'>
+                                        <small>DOSH Pay</small>
+                                        <div className='grid__pay'>
+                                            <img src={card} alt='credit-card' />
+                                            <span>View</span>
+                                        </div>
+                                    </div>
+                                    <div className='grid__card'>
+                                        <small>DOSH Pay</small>
+                                        <div className='grid__pay'>
+                                            <img src={card} alt='credit-card' />
+                                            <span>View</span>
+                                        </div>
+                                    </div>
+                                    <div className='grid__card'>
+                                        <small>DOSH Pay</small>
+                                        <div className='grid__pay'>
+                                            <img src={card} alt='credit-card' />
+                                            <span>View</span>
+                                        </div>
+                                    </div>
+                                    <div className='grid__card'>
+                                        <small>DOSH Pay</small>
+                                        <div className='grid__pay'>
+                                            <img src={card} alt='credit-card' />
+                                            <span>View</span>
+                                        </div>
+                                    </div>
+                                    <div className='grid__card'>
+                                        <small>DOSH Pay</small>
+                                        <div className='grid__pay'>
+                                            <img src={card} alt='credit-card' />
+                                            <span>View</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

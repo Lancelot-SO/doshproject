@@ -19,6 +19,7 @@ import scale from "../images/scale.png"
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Draggable from 'react-draggable';
 
 
 
@@ -32,7 +33,7 @@ const Home = () => {
                 document.getElementById('radio' + counter).checked = true;
                 setCounter(prevCounter => (prevCounter % 7) + 1);
             }
-        }, 8000);
+        }, 10000);
 
         return () => clearInterval(intervalId);
     }, [counter, isPaused]);
@@ -56,246 +57,250 @@ const Home = () => {
         <div className='main__hero'>
             <div className='hero'>
                 <div className='slider'>
-                    <div className='slides' onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
-                        <input type="radio" name="radio-button" id="radio1" />
-                        <input type="radio" name="radio-button" id="radio2" />
-                        <input type="radio" name="radio-button" id="radio3" />
-                        <input type="radio" name="radio-button" id="radio4" />
-                        <input type="radio" name="radio-button" id="radio5" />
-                        <input type="radio" name="radio-button" id="radio6" />
-                        <input type="radio" name="radio-button" id="radio7" />
+                    <Draggable axis='x'>
+                        <div className='slides' onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
+                            <input type="radio" name="radio-button" id="radio1" />
+                            <input type="radio" name="radio-button" id="radio2" />
+                            <input type="radio" name="radio-button" id="radio3" />
+                            <input type="radio" name="radio-button" id="radio4" />
+                            <input type="radio" name="radio-button" id="radio5" />
+                            <input type="radio" name="radio-button" id="radio6" />
+                            <input type="radio" name="radio-button" id="radio7" />
 
 
-                        <div className='slide first'>
-                            <img src={slider1} alt='hero' loading='lazy' />
-                            <div className='hero__text'>
-                                <p className='first_slider'>Health <b>insurance</b> for the <br />
-                                    years you need it the most.</p>
-                                <p className='first_slider-p'>Your sixties must not be spent navigating arthritis and other medical
-                                    emergencies. Allow DOSH to assist you with comprehensive health coverage
-                                    while you enjoy the love of family and friends. Dial *915# now to sign up
-                                </p>
-                            </div>
-                            <div className='slide-text'>
-                                <h3>People are signing  with us</h3>
-                                <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="28"
-                                            height="28"
-                                            fill="currentColor"
-                                            class="bi bi-arrow-right"
-                                            viewBox="0 0 16 16"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-                                            />
-                                        </svg>
-                                    </Link>
+
+                            <div className='slide first'>
+                                <img src={slider1} alt='hero' loading='lazy' />
+                                <div className='hero__text'>
+                                    <p className='first_slider'>Health <b>insurance</b> for the <br />
+                                        years you need it the most.</p>
+                                    <p className='first_slider-p'>Your sixties must not be spent navigating arthritis and other medical
+                                        emergencies. Allow DOSH to assist you with comprehensive health coverage
+                                        while you enjoy the love of family and friends. Dial *915# now to sign up
+                                    </p>
+                                </div>
+                                <div className='slide-text'>
+                                    <h3>People are signing  with us</h3>
+                                    <div className="slide-arrow">
+                                        <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                            <small>Join DOSH</small>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="28"
+                                                height="28"
+                                                fill="currentColor"
+                                                class="bi bi-arrow-right"
+                                                viewBox="0 0 16 16"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                                                />
+                                            </svg>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className='slide'>
-                            <img src={slider2} alt='hero' loading='lazy' />
-                            <div className='hero__text'>
-                                <p className='second_slider-h2'>We've got <b>insurance</b> for your<br /> old girl.</p>
-                                <p className='second_slider'>Securing comprehensive health insurance for your folks is a thoughtful
-                                    investment in their health and your savings. DOSH provides affordable yet
-                                    quality health insurance that allows them to access healthcare services
-                                    anywhere in the country.
-                                </p>
-                            </div>
-                            <div className='slide-text'>
-                                <h3>People are signing  with us</h3>
-                                <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="28"
-                                            height="28"
-                                            fill="currentColor"
-                                            class="bi bi-arrow-right"
-                                            viewBox="0 0 16 16"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-                                            />
-                                        </svg>
-                                    </Link>
+                            <div className='slide'>
+                                <img src={slider2} alt='hero' loading='lazy' />
+                                <div className='hero__text'>
+                                    <p className='second_slider-h2'>We've got <b>insurance</b> for your<br /> old girl.</p>
+                                    <p className='second_slider'>Securing comprehensive health insurance for your folks is a thoughtful
+                                        investment in their health and your savings. DOSH provides affordable yet
+                                        quality health insurance that allows them to access healthcare services
+                                        anywhere in the country.
+                                    </p>
+                                </div>
+                                <div className='slide-text'>
+                                    <h3>People are signing  with us</h3>
+                                    <div className="slide-arrow">
+                                        <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                            <small>Join DOSH</small>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="28"
+                                                height="28"
+                                                fill="currentColor"
+                                                class="bi bi-arrow-right"
+                                                viewBox="0 0 16 16"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                                                />
+                                            </svg>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className='slide'>
-                            <img src={slider3} alt='hero' loading='lazy' />
-                            <div className='hero__text'>
-                                <p className='third_slider'>Choose <b>comprehensive </b><br />
-                                    coverage that leaves no one behind.</p>
-                            </div>
+                            <div className='slide'>
+                                <img src={slider3} alt='hero' loading='lazy' />
+                                <div className='hero__text'>
+                                    <p className='third_slider'>Choose <b>comprehensive </b><br />
+                                        coverage that leaves no one behind.</p>
+                                </div>
 
-                            <div className='slide-text'>
-                                <h3>People are signing  with us</h3>
-                                <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="28"
-                                            height="28"
-                                            fill="currentColor"
-                                            class="bi bi-arrow-right"
-                                            viewBox="0 0 16 16"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-                                            />
-                                        </svg>
-                                    </Link>
+                                <div className='slide-text'>
+                                    <h3>People are signing  with us</h3>
+                                    <div className="slide-arrow">
+                                        <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                            <small>Join DOSH</small>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="28"
+                                                height="28"
+                                                fill="currentColor"
+                                                class="bi bi-arrow-right"
+                                                viewBox="0 0 16 16"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                                                />
+                                            </svg>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className='slide'>
-                            <img src={slider4} alt='hero' loading='lazy' />
-                            <div className='hero__text'>
-                                <p className='fourth_slider'>Keep the <b>DAD</b> jokes coming</p>
-                                <p className='fourth_slider_p'>Protect old boy's health with DOSH insurance while protecting your savings.
-                                </p>
-                            </div>
-                            <div className='slide-text'>
-                                <h3>People are signing  with us</h3>
-                                <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="28"
-                                            height="28"
-                                            fill="currentColor"
-                                            class="bi bi-arrow-right"
-                                            viewBox="0 0 16 16"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-                                            />
-                                        </svg>
-                                    </Link>
+                            <div className='slide'>
+                                <img src={slider4} alt='hero' loading='lazy' />
+                                <div className='hero__text'>
+                                    <p className='fourth_slider'>Keep the <b>DAD</b> jokes coming</p>
+                                    <p className='fourth_slider_p'>Protect old boy's health with DOSH insurance while protecting your savings.
+                                    </p>
+                                </div>
+                                <div className='slide-text'>
+                                    <h3>People are signing  with us</h3>
+                                    <div className="slide-arrow">
+                                        <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                            <small>Join DOSH</small>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="28"
+                                                height="28"
+                                                fill="currentColor"
+                                                class="bi bi-arrow-right"
+                                                viewBox="0 0 16 16"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                                                />
+                                            </svg>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className='slide'>
-                            <img src={slider5} alt='hero' loading='lazy' />
-                            <div className='hero__text'>
-                                <p className='fifth_slider'>Health insurance that covers <b>EYE,<br />
-                                    DENTAL, MENTAL HEALTH</b> care and more</p>
-                                <p className='fifth_slider_p'>
-                                    With as little as <b>GHS 365</b>, you get up to <b>GHS 9000</b> WORTH OF QUALITY<br />
-                                    healthcare at any medical facility. You also get safe and instant access<br />
-                                    to medical claims. No delays..
-                                </p>
-                            </div>
-                            <div className='slide-text'>
-                                <h3>People are signing  with us</h3>
-                                <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="28"
-                                            height="28"
-                                            fill="currentColor"
-                                            class="bi bi-arrow-right"
-                                            viewBox="0 0 16 16"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-                                            />
-                                        </svg>
-                                    </Link>
+                            <div className='slide'>
+                                <img src={slider5} alt='hero' loading='lazy' />
+                                <div className='hero__text'>
+                                    <p className='fifth_slider'>Health insurance that covers <b>EYE,<br />
+                                        DENTAL, MENTAL HEALTH</b> care and more</p>
+                                    <p className='fifth_slider_p'>
+                                        With as little as <b>GHS 365</b>, you get up to <b>GHS 9000</b> WORTH OF QUALITY<br />
+                                        healthcare at any medical facility. You also get safe and instant access<br />
+                                        to medical claims. No delays..
+                                    </p>
+                                </div>
+                                <div className='slide-text'>
+                                    <h3>People are signing  with us</h3>
+                                    <div className="slide-arrow">
+                                        <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                            <small>Join DOSH</small>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="28"
+                                                height="28"
+                                                fill="currentColor"
+                                                class="bi bi-arrow-right"
+                                                viewBox="0 0 16 16"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                                                />
+                                            </svg>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className='slide'>
-                            <img src={slider6} alt='hero' loading='lazy' />
-                            <div className='hero__text'>
-                                <p className='sixth__slider'>
-                                    Dial <b>*915#</b><br />to join the DOSH Revolution
-                                </p>
-                            </div>
-                            <div className='slide-text'>
-                                <h3>People are signing  with us</h3>
-                                <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="28"
-                                            height="28"
-                                            fill="currentColor"
-                                            class="bi bi-arrow-right"
-                                            viewBox="0 0 16 16"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-                                            />
-                                        </svg>
-                                    </Link>
+                            <div className='slide'>
+                                <img src={slider6} alt='hero' loading='lazy' />
+                                <div className='hero__text'>
+                                    <p className='sixth__slider'>
+                                        Dial <b>*915#</b><br />to join the DOSH Revolution
+                                    </p>
+                                </div>
+                                <div className='slide-text'>
+                                    <h3>People are signing  with us</h3>
+                                    <div className="slide-arrow">
+                                        <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                            <small>Join DOSH</small>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="28"
+                                                height="28"
+                                                fill="currentColor"
+                                                class="bi bi-arrow-right"
+                                                viewBox="0 0 16 16"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                                                />
+                                            </svg>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className='slide'>
-                            <img src={slider7} alt='hero' loading='lazy' />
-                            <div className='hero__text'>
-                                <p className='eight_slider'>Overall wellness includes <b>Mental health.</b><br />
-                                    We’ve got you covered.
-                                </p>
-                                <p className='eight_slider_p'>The only health insurance with mental health coverage</p>
-                            </div>
-                            <div className='slide-text'>
-                                <h3>People are signing  with us</h3>
-                                <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="28"
-                                            height="28"
-                                            fill="currentColor"
-                                            class="bi bi-arrow-right"
-                                            viewBox="0 0 16 16"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-                                            />
-                                        </svg>
-                                    </Link>
+                            <div className='slide'>
+                                <img src={slider7} alt='hero' loading='lazy' />
+                                <div className='hero__text'>
+                                    <p className='eight_slider'>Overall wellness includes <b>Mental health.</b><br />
+                                        We’ve got you covered.
+                                    </p>
+                                    <p className='eight_slider_p'>The only health insurance with mental health coverage</p>
+                                </div>
+                                <div className='slide-text'>
+                                    <h3>People are signing  with us</h3>
+                                    <div className="slide-arrow">
+                                        <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                            <small>Join DOSH</small>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="28"
+                                                height="28"
+                                                fill="currentColor"
+                                                class="bi bi-arrow-right"
+                                                viewBox="0 0 16 16"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                                                />
+                                            </svg>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
+
+
+                            <div className='navigate_auto' onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
+                                <div className='auto-btn1'></div>
+                                <div className='auto-btn2'></div>
+                                <div className='auto-btn3'></div>
+                                <div className='auto-btn4'></div>
+                                <div className='auto-btn5'></div>
+                                <div className='auto-btn6'></div>
+                                <div className='auto-btn7'></div>
+
+
+                            </div>
+
                         </div>
+                    </Draggable>
 
-
-                        <div className='navigate_auto' onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
-                            <div className='auto-btn1'></div>
-                            <div className='auto-btn2'></div>
-                            <div className='auto-btn3'></div>
-                            <div className='auto-btn4'></div>
-                            <div className='auto-btn5'></div>
-                            <div className='auto-btn6'></div>
-                            <div className='auto-btn7'></div>
-
-
-                        </div>
-
-                    </div>
 
                     <div className='navigate_manual' onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
                         <label htmlFor='radio1' className='manual-btn'></label>
@@ -308,7 +313,6 @@ const Home = () => {
 
 
                     </div>
-
                 </div>
 
             </div>
