@@ -1,0 +1,143 @@
+.reg__modal {
+    width: 100%;
+    height: 100%;
+    margin-top: 100px;
+    background-color: #fff;
+}
+
+.reg__container {
+    max-width: 75%;
+    margin-left: 185px;
+    padding: 10px;
+}
+
+.sect {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sect h4 {
+    opacity: 0;
+}
+
+.dosh__list {
+    max-width: 70%;
+}
+
+.dosh__lists {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.single__list {
+    width: 200px;
+    height: 56px;
+    background-color: #F6F7F9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+    color: #90A3BF;
+    border-radius: 1px;
+}
+
+.dosh__prices {
+    width: 700px;
+    height: 20px;
+    margin-top: 10px;
+    margin-left: 400px;
+
+}
+
+.price__lists {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.price__list {
+    color: #90A3BF;
+}
+
+.reg__section {
+    width: 1440;
+    height: 415px;
+    display: flex;
+    margin-top: 20px;
+    gap: 30px;
+}
+
+.reg__left {
+    flex: 1;
+}
+
+.reg__left img {
+    width: 380px;
+    height: 384px;
+}
+
+.reg__right {
+    flex: 2;
+    margin-top: 20px;
+}
+
+.reg__right span {
+    font-family: "Inter", sans-serif;
+    font-size: 48.96px;
+    font-weight: 300;
+    line-height: 48.96px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.reg__right h2 {
+    font-family: "Inter", sans-serif;
+    font-size: 48.96px;
+    font-weight: 800;
+    line-height: 48.96px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.reg__right h3 {
+    font-family: "Inter", sans-serif;
+    font-size: 24.98px;
+    font-weight: 300;
+    line-height: 29.6px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.reg__right p {
+    font-family: "Inter", sans-serif;
+    font-size: 12.99px;
+    font-weight: 400;
+    line-height: 23.98px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.icon__button {
+    width: 203px;
+    height: 35px;
+    padding: 6.5px 25px 6.5px 25px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: linear-gradient(251.21deg, #987C55 0%, #D0B58C 100%);
+    justify-content: space-between;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.dosh__btn {
+    background-color: transparent;
+    color: #fff;
+}

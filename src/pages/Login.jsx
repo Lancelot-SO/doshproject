@@ -146,21 +146,22 @@ const Login = () => {
                                         </div>
                                     </div>
                                     <div className='grid__card'>
-                                        <small>DOSH Pay</small>
+                                        <small>Load Account</small>
                                         <div className='grid__pay'>
                                             <img src={card} alt='credit-card' />
                                             <span>View</span>
                                         </div>
                                     </div>
                                     <div className='grid__card'>
-                                        <small>DOSH Pay</small>
+                                        <small>Send Money</small>
                                         <div className='grid__pay'>
                                             <img src={card} alt='credit-card' />
                                             <span>View</span>
                                         </div>
                                     </div>
                                     <div className='grid__card'>
-                                        <small>DOSH Pay</small>
+                                        <small>Bulk
+                                            Disbursement</small>
                                         <div className='grid__pay'>
                                             <img src={card} alt='credit-card' />
                                             <span>View</span>
