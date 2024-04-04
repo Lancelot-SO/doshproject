@@ -11,13 +11,13 @@
     padding: 10px;
 }
 
-.sect {
+.sector {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.sect h4 {
+.sector h4 {
     opacity: 0;
 }
 

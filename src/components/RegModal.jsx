@@ -26,7 +26,7 @@ const RegModal = () => {
     return (
         <div className='reg__modal'>
             <div className='reg__container'>
-                <div className='sect'>
+                <div className='sector'>
                     <h4>hello</h4>
                     <select className='select'>
                         <option value="">Select an option</option>

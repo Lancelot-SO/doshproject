@@ -239,6 +239,7 @@ article.lastSlide {
     border: 1px solid #9E825B;
     font-size: 1rem;
     cursor: pointer;
+    background-color: #fff;
 }
 
 .prev:hover,
