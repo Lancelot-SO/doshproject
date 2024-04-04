@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./ServiceProviders.css"
-import services from "../images/services.png"
+import services from "../images/clinic.png"
 import { FaFilter } from "react-icons/fa";
 import { IoIosSearch } from "react-icons/io";
 import anime from '../images/anime.png'
