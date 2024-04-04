@@ -53,6 +53,11 @@
 
 }
 
+.activer {
+    background-color: #D0B58C;
+    color: white;
+}
+
 .price__lists {
     display: flex;
     flex-direction: row;
@@ -63,6 +68,35 @@
 
 .price__list {
     color: #90A3BF;
+    cursor: pointer;
+}
+
+.price__list {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+    padding-bottom: 5px;
+}
+
+.price__list::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #000;
+    transition: width 0.5s ease;
+}
+
+.price__list:hover::after,
+.price__list.active::after {
+    width: 100%;
+}
+
+.price__list.active {
+    color: #000;
 }
 
 .reg__section {
@@ -90,7 +124,7 @@
 .reg__right span {
     font-family: "Inter", sans-serif;
     font-size: 48.96px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 48.96px;
     text-align: left;
     margin-bottom: 20px;

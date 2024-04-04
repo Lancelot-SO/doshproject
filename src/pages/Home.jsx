@@ -300,8 +300,6 @@ const Home = () => {
 
                         </div>
                     </Draggable>
-
-
                     <div className='navigate_manual' onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
                         <label htmlFor='radio1' className='manual-btn'></label>
                         <label htmlFor='radio2' className='manual-btn'></label>
@@ -310,8 +308,6 @@ const Home = () => {
                         <label htmlFor='radio5' className='manual-btn'></label>
                         <label htmlFor='radio6' className='manual-btn'></label>
                         <label htmlFor='radio7' className='manual-btn'></label>
-
-
                     </div>
                 </div>
 

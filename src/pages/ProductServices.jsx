@@ -236,24 +236,24 @@ const ProductServices = () => {
                                     <td className='row-center-total'>GHS 30,000</td>
                                     <td className='row-center-total'>GHS 60,000</td>
                                     <td className='row-center-total'>GHS 95,000</td>
-                                    <td className='row-center-total'>GHS 95,000</td>
+                                    <td className='row-center-total'>GHS 190,000</td>
                                 </tr>
                                 <tr>
                                     <td className='heading'>Out Patient Limit (OP)</td>
                                     <td className='row-center'>GHS 1,500</td>
-                                    <td className='row-center'>GHS 3000</td>
+                                    <td className='row-center'>GHS 3,000</td>
                                     <td className='row-center'>GHS 5,000</td>
                                     <td className='row-center'>GHS 10,000</td>
                                     <td className='row-center'>GHS 20,000</td>
-                                    <td className='row-center'>GHS 20,000</td>
+                                    <td className='row-center'>GHS 40,000</td>
                                 </tr>
                                 <tr>
                                     <td className='heading'>In Patient Limit (IP)</td>
-                                    <td className='row-center'>GHS 7,500</td>
-                                    <td className='row-center'>GHS 1,500</td>
-                                    <td className='row-center'>GHS 2,500</td>
-                                    <td className='row-center'>GHS 5,000</td>
-                                    <td className='row-center'>GHS 75,000</td>
+                                    <td className='row-center'>GHS 6,100</td>
+                                    <td className='row-center'>GHS 12,600</td>
+                                    <td className='row-center'>GHS 21,500</td>
+                                    <td className='row-center'>GHS 41,250</td>
+                                    <td className='row-center'>GHS 115,000</td>
                                     <td className='row-center'>GHS 75,000</td>
                                 </tr>
                                 <tr>
@@ -262,8 +262,8 @@ const ProductServices = () => {
                                     <td className='row-center'>GHS 900</td>
                                     <td className='row-center'>GHS 1,500</td>
                                     <td className='row-center'>GHS 3,700</td>
-                                    <td className='row-center'>GHS 75,000</td>
-                                    <td className='row-center'>GHS 75,000</td>
+                                    <td className='row-center'>GHS 7,500</td>
+                                    <td className='row-center'>GHS 15,000</td>
                                 </tr>
                                 <tr >
                                     <td className='heading'>Lab/Scan Limit (IP/OP)</td>
@@ -272,7 +272,7 @@ const ProductServices = () => {
                                     <td className='row-center'>GHS 2,000</td>
                                     <td className='row-center'>GHS 5,000</td>
                                     <td className='row-center'>GHS 10,000</td>
-                                    <td className='row-center'>GHS 10,000</td>
+                                    <td className='row-center'>GHS 20,000</td>
                                 </tr>
                                 <tr>
                                     <td className='heading-last'></td>
