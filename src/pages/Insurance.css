@@ -1,0 +1,227 @@
+.insurance {
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: #fff;
+}
+
+.insurance__container {
+    display: flex;
+    padding: 50px 80px;
+}
+
+.insurance__left {
+    flex: 1;
+    background-color: red;
+}
+
+.insurance__left img {
+    width: 440.34px;
+    height: 617px;
+}
+
+.insurance__right {
+    flex: 2;
+    background: url("../images/insurance-dosh.png")no-repeat;
+    border-radius: 20px;
+    width: 836px;
+    height: 617px;
+    display: flex;
+    justify-content: center;
+    /* Center horizontally */
+    align-items: flex-start;
+    position: relative;
+
+}
+
+.insurance__right h2 {
+    position: absolute;
+    top: 30px;
+    left: 280px;
+    transform: translateY(-50%);
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.36px;
+    text-align: center;
+    color: #868686;
+    margin-bottom: 10px;
+}
+
+.insurance__form {
+    background: linear-gradient(86.16deg, rgba(0, 0, 0, 0.8) 11.14%, rgba(28, 26, 26, 0.08) 113.29%);
+    background-blend-mode: overlay;
+    width: 320px;
+    height: 498px;
+    top: 90px;
+    left: 240px;
+    border-radius: 10px;
+    position: absolute;
+    padding: 20px;
+}
+
+.insurance__type {
+    width: 260px;
+    height: 58px;
+    display: flex;
+    flex-direction: column;
+}
+
+.insurance__type label {
+    width: 90px;
+    height: 15px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 14.52px;
+    text-align: left;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.insurance__type select.mySelect {
+    width: 260px;
+    height: 34px;
+    padding: 5px;
+    color: #868686;
+    border-radius: 5px;
+}
+
+.account__buttons {
+    width: 259px;
+    height: 59px;
+    padding: 0px 0px 3px 0px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+}
+
+.account__buttons p {
+    width: 263px;
+    height: 32px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15.62px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.decision {
+    gap: 10px;
+    display: flex;
+}
+
+.decision label {
+    color: #fff;
+}
+
+.Payment__type {
+    width: 260px;
+    height: 58px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Payment__type label {
+    width: 150px;
+    height: 15px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 14.52px;
+    text-align: left;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.Payment__type select.mySelect {
+    width: 260px;
+    height: 34px;
+    padding: 5px;
+    color: #868686;
+    border-radius: 5px;
+}
+
+.account__button {
+    width: 259px;
+    height: 59px;
+    padding: 0px 0px 3px 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.account__button p {
+    width: 263px;
+    height: 32px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15.62px;
+    text-align: left;
+}
+
+.financial__type {
+    width: 260px;
+    height: 56px;
+}
+
+.financial__type label {
+    width: 132px;
+    height: 14px;
+    font-family: "Inter";
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 13.8px;
+    text-align: left;
+    color: #fff;
+}
+
+.finance__input {
+    width: 260px;
+    height: 34px;
+    border-radius: 5px;
+    border: 1px solid #CCCCCC;
+    padding: 10px;
+}
+
+.Username__type {
+    width: 260px;
+    height: 56px;
+    margin-bottom: 10px;
+}
+
+.Username__type label {
+    width: 132px;
+    height: 14px;
+    font-family: "Inter";
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 13.8px;
+    text-align: left;
+    color: #fff;
+}
+
+.user__input {
+    width: 260px;
+    height: 34px;
+    border-radius: 5px;
+    border: 1px solid #CCCCCC;
+    padding: 10px;
+}
+
+.step__btn {
+    width: 260px;
+    height: 35px;
+    border-radius: 10px;
+    margin-top: 15px;
+    background: linear-gradient(251.21deg, #987C55 0%, #D0B58C 100%);
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16.94px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+}

@@ -19,7 +19,7 @@ import scale from "../images/scale.png"
 
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Draggable from 'react-draggable';
+// import Draggable from 'react-draggable';
 
 
 

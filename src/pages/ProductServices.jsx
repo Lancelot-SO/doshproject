@@ -169,7 +169,8 @@ const ProductServices = () => {
                             muted
                             controls
                             loading='lazy'
-                        />                    </div>
+                        />
+                    </div>
                     <div className='video__right'>
                         <h4>SUCCESS STORIES VIDEO</h4>
                         <h6>“ Affordable health insurance for you and your loved ones.</h6>

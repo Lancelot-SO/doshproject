@@ -78,7 +78,7 @@ const RegModal = () => {
                                             Out-Patient services.
                                             DOSH 365 is specifically designed to shoulder the unforeseen medical
                                         </p>
-                                        <div className='icon__button'>
+                                        <Link to="/insurance" className='icon__button'>
                                             <button type='submit' className='dosh__btn'>Continue</button>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +93,7 @@ const RegModal = () => {
                                                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
                                                 />
                                             </svg>
-                                        </div>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@ const RegModal = () => {
                                         <p>DOSH 750 comes with add-ons and quintessential incentives targeted at individuals, families and their dependents with a slightly higher premium. It is gratifying to know that with DOSH, your family and dependents’ health care needs are furnished with a cover up to GHS 18,000 for only GHS 750 annual premium. This package is specially recommended for new employees or young families seeking affordable and cost-effective health insurance products. An annual premium of GHS 750 comes with health insurance cover of up to GHS 15,000 for In-Patient and GHS 3,000 for Out-Patient services respectively.
 
                                         </p>
-                                        <div className='icon__button'>
+                                        <Link to="/insurance" className='icon__button'>
                                             <button type='submit' className='dosh__btn'>Continue</button>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -124,7 +124,7 @@ const RegModal = () => {
                                                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
                                                 />
                                             </svg>
-                                        </div>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@ const RegModal = () => {
                                         <h3>Description</h3>
                                         <p>The package is distinctively designed to offer members absolute serenity with regards to their health care needs offering an extended cover of up to a whopping GHS 30,000 for an annual premium of only GHS1,000. DOSH1000 offers an In-Patient Limit of GHS 25,000 and Out-Patient Limit of GHS 5,000, offering members value for their investments.
                                         </p>
-                                        <div className='icon__button'>
+                                        <Link to="/insurance" className='icon__button'>
                                             <button type='submit' className='dosh__btn'>Continue</button>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -154,7 +154,7 @@ const RegModal = () => {
                                                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
                                                 />
                                             </svg>
-                                        </div>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +169,7 @@ const RegModal = () => {
                                         <h3>Description</h3>
                                         <p>For Individuals and Corporate organizations interested in prudent financial planning in all crucial areas of life or business with the rainy-days in mind, DOSH 2500 health insurance plan comes highly recommended with an annual cover up to GHS 60,000. DOSH 2500 offers GHS 50,000 In-Patient and GHS 10,000 Out-Patient services for an annual premium of GHS 2,500.
                                         </p>
-                                        <div className='icon__button'>
+                                        <Link to="/insurance" className='icon__button'>
                                             <button type='submit' className='dosh__btn'>Continue</button>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -184,7 +184,7 @@ const RegModal = () => {
                                                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
                                                 />
                                             </svg>
-                                        </div>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -199,7 +199,7 @@ const RegModal = () => {
                                         <h3>Description</h3>
                                         <p>This premium offer is bespoke to coddle the health insurance needs of our high value clients. It is an exclusive package exceptionally centered on delivering superb healthcare services to our valued clients, offering a total annual cover of up to GHS 95,000 with GHS 75,000 and GHS 20,000 In-Patient and Out-Patient allocations respectively. This package is recommended to individuals or businesses with amplified health care needs.
                                         </p>
-                                        <div className='icon__button'>
+                                        <Link to="/insurance" className='icon__button'>
                                             <button type='submit' className='dosh__btn'>Continue</button>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -214,7 +214,7 @@ const RegModal = () => {
                                                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
                                                 />
                                             </svg>
-                                        </div>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -229,7 +229,7 @@ const RegModal = () => {
                                         <h3>Description</h3>
                                         <p>DOS 10,000 delivers health care services cover of up to GHS 190,000, and is highly suited for clients who desire peace of mind with regards to 360 healthcare delivery. This esteemed package provides up to GHS 150,000 for In-Patient and GHS 40,000 Out-Patient health care services at an annual premium of GHS 10,000 and accessible nationwide at all the major health care service providers.
                                         </p>
-                                        <div className='icon__button'>
+                                        <Link to="/insurance" className='icon__button'>
                                             <button type='submit' className='dosh__btn'>Continue</button>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -244,7 +244,7 @@ const RegModal = () => {
                                                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
                                                 />
                                             </svg>
-                                        </div>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

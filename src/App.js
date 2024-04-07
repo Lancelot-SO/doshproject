@@ -13,6 +13,7 @@ import ErrorPage from './pages/ErrorPage'
 import Financial from './components/Financial'
 import BackToTop from './components/BackToTop'
 import RegModal from './components/RegModal'
+import Insurance from './pages/Insurance'
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
           <Route path='/productservices' element={<ProductServices />} />
           <Route path='/financial' element={<Financial />} />
           <Route path='/regmodal' element={<RegModal />} />
+          <Route path='/insurance' element={<Insurance />} />
           <Route path='*' element={<Navigate to="/errorpage" />} />
         </Routes>
         <Footer />
