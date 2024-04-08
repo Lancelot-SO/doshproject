@@ -225,7 +225,8 @@
     color: white;
     background-color: #987C55;
     width: 1000px;
-    margin-left: 100px;
+    float: right;
+    /* margin-left: 100px; */
     padding: 10px;
     justify-content: space-between;
     align-items: center;
@@ -1268,5 +1269,9 @@
         justify-content: center;
         margin-top: 15px;
         margin-bottom: 15px;
+    }
+
+    .slide-arrow small {
+        padding-right: 30px;
     }
 }
