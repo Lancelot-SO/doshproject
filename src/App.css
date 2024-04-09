@@ -162,17 +162,18 @@ nav {
 .nav__signup-container {
   display: flex;
   flex-direction: row;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .nav__login {
   align-items: center;
   display: flex;
   margin-top: 0.3rem;
+  padding-left: 20px;
 }
 
 .nav__signup {
-  width: 129px;
+  width: 119px;
   height: 35px;
   display: flex;
   background-color: #987C55;
@@ -182,6 +183,7 @@ nav {
   border-radius: var(--radius-2);
   color: var(--color-white);
   transition: var(--transition);
+  margin-right: 10px;
 }
 
 .nav__signup svg {

@@ -1,9 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Insurance.css"
 import newAnime from "../images/dosh-365.png"
 // import bginsure from "../images/insurance-dosh.png"
 
 const Insurance = () => {
+
+    const [formStepsNum, setFormStepsNum] = useState(0);
+
+    const formSteps = document.querySelectorAll('.form__step');
+    const progressSteps = document.querySelectorAll('.progress__step');
+
+    const handleNextStep = () => {
+        setFormStepsNum(prevNum => {
+            const nextNum = prevNum + 1;
+            updateFormSteps(nextNum);
+            updateProgressbar(nextNum);
+            return nextNum;
+        });
+    };
+
+    const handlePrevStep = () => {
+        setFormStepsNum(prevNum => {
+            const nextNum = prevNum - 1;
+            updateFormSteps(nextNum);
+            updateProgressbar(nextNum);
+            return nextNum;
+        });
+    };
+
+    const updateFormSteps = (stepNum) => {
+        formSteps.forEach((formStep, index) => {
+            if (index === stepNum) {
+                formStep.classList.add('active');
+            } else {
+                formStep.classList.remove('active');
+            }
+        });
+    };
+
+    const updateProgressbar = (stepNum) => {
+        progressSteps.forEach((progressStep, index) => {
+            if (index < stepNum + 1) {
+                progressStep.classList.add('active');
+            } else {
+                progressStep.classList.remove('active');
+            }
+        });
+
+        const progressActive = document.querySelectorAll('.progress__step.active');
+        const progress = document.getElementById('progress');
+        progress.style.width = ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + '%';
+    };
     return (
         <div className='insurance'>
             <div className='insurance__container'>
@@ -12,8 +59,15 @@ const Insurance = () => {
                 </div>
                 <div className='insurance__right'>
                     <h2>DOSH Insurance Signup</h2>
+
+                    <div className='progressbar'>
+                        <div className='progress' id='progress'></div>
+                        <div className='progress__step active' data-title="Payment"></div>
+                        <div className='progress__step' data-title="ID Verification"></div>
+                        <div className='progress__step' data-title="Personalize"></div>
+                    </div>
                     <form className='insurance__form'>
-                        <div>
+                        <div className={`form__step ${formStepsNum === 0 ? 'active' : ''}`}>
                             <div className='insurance__type'>
                                 <label htmlFor='insurance'>Insurance Type</label>
                                 <select className="mySelect">
@@ -66,10 +120,10 @@ const Insurance = () => {
                                 <input type='text' className='user__input' name='username' placeholder='Enter Username' />
                             </div>
 
-                            <button type='button' className='step__btn'>GO TO NEXT STEP</button>
+                            <button type='button' onClick={handleNextStep} className='btn step__btn'>GO TO NEXT STEP</button>
                         </div>
 
-                        <div>
+                        <div className={`form__step ${formStepsNum === 1 ? 'active' : ''}`}>
                             <div className='insurance__type'>
                                 <label htmlFor='insurance'>Country</label>
                                 <select className="mySelect">
@@ -117,12 +171,12 @@ const Insurance = () => {
                                 </select>
                             </div>
 
-                            <button type='button' className='step__btn'>GO TO NEXT STEP</button>
-                            <button type='button' className='steps__btn'>Back</button>
+                            <button type='button' onClick={handleNextStep} className='btn step__btn'>GO TO NEXT STEP</button>
+                            <button type='button' onClick={handlePrevStep} className='btn steps__btn'>Back</button>
 
                         </div>
 
-                        <div>
+                        <div className={`form__step ${formStepsNum === 2 ? 'active' : ''}`}>
                             <div className='insurance__type'>
                                 <label htmlFor='insurance'>Country</label>
                                 <select className="mySelect">
@@ -170,8 +224,8 @@ const Insurance = () => {
                                 </select>
                             </div>
 
-                            <button type='button' className='step__btn'>GO TO NEXT STEP</button>
-                            <button type='button' className='steps__btn'>Back</button>
+                            <button type='button' className='step__btn'>Submit</button>
+                            <button type='button' onClick={handlePrevStep} className='btn steps__btn'>Back</button>
 
                         </div>
 

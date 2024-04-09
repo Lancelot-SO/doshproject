@@ -8,12 +8,11 @@
 
 .insurance__container {
     display: flex;
-    padding: 50px 80px;
+    padding: 50px;
 }
 
 .insurance__left {
     flex: 1;
-    background-color: red;
 }
 
 .insurance__left img {
@@ -49,6 +48,63 @@
     margin-bottom: 10px;
 }
 
+.progressbar {
+    position: relative;
+    display: flex;
+    top: 50px;
+    left: -60px;
+    width: 300px;
+    counter-reset: step;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.progress__step {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: rgb(212, 208, 208);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.progressbar::before,
+.progress {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    background-color: #dcdcdc;
+}
+
+.progress {
+    background-color: #D0B58C;
+    width: 0;
+    transition: 0.3s ease-in-out;
+}
+
+.progress__step::before {
+    counter-increment: step;
+    content: counter(step);
+}
+
+.progress__step::after {
+    content: attr(data-title);
+    position: absolute;
+    top: calc(100% + 0.2rem);
+    font-weight: 600;
+    color: #939090;
+}
+
+.progress__step.active {
+    background-color: #D0B58C;
+    color: #fff;
+}
+
 .insurance__form {
     background: linear-gradient(86.16deg, rgba(0, 0, 0, 0.8) 11.14%, rgba(28, 26, 26, 0.08) 113.29%);
     background-blend-mode: overlay;
@@ -58,7 +114,9 @@
     left: 240px;
     border-radius: 10px;
     position: absolute;
-    padding: 20px;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-left: 30px;
     display: flex;
 }
 
@@ -242,4 +300,26 @@
     color: #987C55;
     cursor: pointer;
     border: 1px solid #987C55
+}
+
+.form__step {
+    display: none;
+    transform-origin: right;
+    animation: animate 0.5s;
+}
+
+@keyframes animate {
+    from {
+        transform: scale(1, 0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+}
+
+.form__step.active {
+    display: block;
 }
