@@ -12,7 +12,7 @@ import slider2 from "../images/slider.png";
 import banner from '../images/dosh-banner.png'
 import elevate2 from '../images/vector.png'
 import money from '../images/vector2.png';
-import seamless from "../images/seamless.png"
+// import seamless from "../images/seamless.png"
 import ride from '../images/ride.png'
 import reinvigorate from '../images/Vector334.png'
 import scale from "../images/scale.png"
@@ -315,6 +315,12 @@ const Home = () => {
 
             <div className='cream__hero'></div>
 
+            <section className='about__section'>
+                <div className='about__banner'>
+                    <Link to='https://dsp.onenet.xyz:50443/#/'><img src={banner} alt='banner' /></Link>
+                </div>
+            </section>
+
             <section className='home__section'>
                 <div className='container home__student'>
                     <div className='home__student-left'>
@@ -328,7 +334,7 @@ const Home = () => {
                             Globally, we have a vast network of accredited service providers that
                             ensure access to medical care, whenever and wherever you need it.
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/#/auth/login-type' target="_blank" rel="noopener noreferrer">Sign up
+                        <Link to='https://dspm.onenet.xyz:50443/#/auth/login-type' target="_blank" rel="noopener noreferrer">Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -366,7 +372,7 @@ const Home = () => {
                             financial stability as you experience unparalleled growth with the unique
                             DOSH approach.
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -385,7 +391,7 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className='digital__section'>
+            {/*<section className='digital__section'>
                 <div className='container home__digital'>
                     <div className='home__digital-left'>
                         <h4>DOSH PAY:</h4>
@@ -397,7 +403,7 @@ const Home = () => {
                             DOSH Pay is a hassle-free, integrated digital platform, designed to
                             simplify your everyday financial needs.
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -417,7 +423,7 @@ const Home = () => {
                         <img src={seamless} alt='digital' loading='lazy' />
                     </div>
                 </div>
-            </section>
+    </section>*/}
 
             <section className='ride__section'>
                 <div className='container ride__adventure'>
@@ -434,7 +440,7 @@ const Home = () => {
                             and comfortable vehicles. At DOSH Ride, our goal is to ensure that every
                             journey is an extraordinary experience!
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -467,7 +473,7 @@ const Home = () => {
                             DOSH ERP solutions, your business will ignite growth and propel you to
                             unprecedented success.
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -506,7 +512,7 @@ const Home = () => {
                             management systems, optimized returns processes,
                             and delivery systems.
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign up
+                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -525,11 +531,7 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className='about__section'>
-                <div className='about__banner'>
-                    <Link to='https://dsp.onenet.xyz:50443/#/'><img src={banner} alt='banner' /></Link>
-                </div>
-            </section>
+
 
         </div>
     )
