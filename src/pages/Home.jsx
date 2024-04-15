@@ -74,8 +74,7 @@ const Home = () => {
                                 <p className='first_slider'>Health <b>insurance</b> for the <br />
                                     years you need it the most.</p>
                                 <p className='first_slider-p'>Your sixties must not be spent navigating arthritis and other medical
-                                    emergencies. Allow DOSH to assist you with comprehensive health coverage
-                                    while you enjoy the love of family and friends. Dial *915# now to sign up
+                                    emergencies. Let DOSH help you with all-inclusive health coverage while you bask in the affection of loved ones. Dial *915# to sign up now.
                                 </p>
                             </div>
                             <div className='slide-text'>
@@ -105,9 +104,7 @@ const Home = () => {
                             <div className='hero__text'>
                                 <p className='second_slider-h2'>We've got <b>insurance</b> for your<br /> old girl.</p>
                                 <p className='second_slider'>Securing comprehensive health insurance for your folks is a thoughtful
-                                    investment in their health and your savings. DOSH provides affordable yet
-                                    quality health insurance that allows them to access healthcare services
-                                    anywhere in the country.
+                                    investment in their health and your savings. Dosh provides quality healthcare insurance anywhere in the country. It's Available, Accessible and Affordable.
                                 </p>
                             </div>
                             <div className='slide-text'>
@@ -198,7 +195,7 @@ const Home = () => {
                                 <p className='fifth_slider_p'>
                                     With as little as <b>GHS 365</b>, you get up to <b>GHS 9000</b> WORTH OF QUALITY<br />
                                     healthcare at any medical facility. You also get safe and instant access<br />
-                                    to medical claims. No delays..
+                                    to medical claims. No delays.
                                 </p>
                             </div>
                             <div className='slide-text'>
@@ -325,13 +322,13 @@ const Home = () => {
                 <div className='container home__student'>
                     <div className='home__student-left'>
                         <h4>DOSH HEALTH INSURANCE:</h4>
-                        <h3>Elevate your Healthcare
-                            Experience</h3>
+                        <h3>Elevate your healthcare
+                            experience</h3>
                         <p>
                             Take control of your healthcare the DOSH way. DOSH Health insurance is
                             an all-inclusive service that provides coverage for medical consultations,
                             surgical care, dental care, optical care, and prescription medication.
-                            Globally, we have a vast network of accredited service providers that
+                            We have a vast network of accredited service providers that
                             ensure access to medical care, whenever and wherever you need it.
                         </p>
                         <Link to='https://dspm.onenet.xyz:50443/#/auth/login-type' target="_blank" rel="noopener noreferrer">Read more
@@ -464,12 +461,12 @@ const Home = () => {
                     <div className='home__digital-left'>
                         <h4>DOSH ERP:</h4>
                         <h3>Reinvigorate your<br />
-                            business growth</h3>
+                            business</h3>
                         <p>
                             Successful business enterprises are built on efficiency, agility, and proper
                             organization. Our comprehensive software will streamline your business
-                            operations, bolster your Supply Chain Management, optimize your Human
-                            Resources, and unleash the full potential of your work processes. With
+                            operations, bolster your supply chain management, optimize your human
+                            resources, and unleash the full potential of your work processes. With
                             DOSH ERP solutions, your business will ignite growth and propel you to
                             unprecedented success.
                         </p>

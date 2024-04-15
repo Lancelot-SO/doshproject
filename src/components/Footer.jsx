@@ -58,7 +58,7 @@ const Footer = () => {
             </footer>
             <div className='footer__gold'></div>
             <div className='container copyright'>
-                <p>Powered by OPIN Technologies ®</p>
+                <p>Powered by Interactive Digital ®</p>
             </div>
         </div>
     )

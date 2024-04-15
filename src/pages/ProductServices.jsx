@@ -65,7 +65,7 @@ const ProductServices = () => {
                 <img data-aos="fade-down" src={product} alt='product&services' loading='lazy' />
                 <div className='product__text'>
                     <p>Protect Your <b>Future</b> with Our
-                        Comprehensive Insurance Policies
+                        Comprehensive Health Insurance Policies
                     </p>
                 </div>
             </div>
