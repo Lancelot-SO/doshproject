@@ -9,7 +9,7 @@ import slider6 from "../images/slider6.png";
 import slider7 from "../images/slider8.png";
 import slider2 from "../images/slider.png";
 
-import banner from '../images/dosh-banner.png'
+// import banner from '../images/dosh-banner.png'
 import elevate2 from '../images/vector.png'
 import money from '../images/vector2.png';
 // import seamless from "../images/seamless.png"
@@ -315,11 +315,11 @@ const Home = () => {
 
             <div className='cream__hero'></div>
 
-            <section className='about__section'>
+            {/*<section className='about__section'>
                 <div className='about__banner'>
                     <Link to='https://dsp.onenet.xyz:50443/#/'><img src={banner} alt='banner' /></Link>
                 </div>
-            </section>
+    </section>*/}
 
             <section className='home__section'>
                 <div className='container home__student'>
