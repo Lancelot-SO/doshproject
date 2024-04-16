@@ -7,7 +7,8 @@ import slider4 from "../images/slider4.png";
 import slider5 from "../images/slider666.png";
 import slider6 from "../images/slider6.png";
 import slider7 from "../images/slider8.png";
-import slider2 from "../images/slider.png";
+import slider2 from "../images/practitioner.png";
+import slider8 from "../images/slider-last.png";
 
 // import banner from '../images/dosh-banner.png'
 import elevate2 from '../images/vector.png'
@@ -31,7 +32,7 @@ const Home = () => {
         const intervalId = setInterval(() => {
             if (!isPaused) {
                 document.getElementById('radio' + counter).checked = true;
-                setCounter(prevCounter => (prevCounter % 7) + 1);
+                setCounter(prevCounter => (prevCounter % 8) + 1);
             }
         }, 10000);
 
@@ -65,6 +66,8 @@ const Home = () => {
                         <input type="radio" name="radio-button" id="radio5" />
                         <input type="radio" name="radio-button" id="radio6" />
                         <input type="radio" name="radio-button" id="radio7" />
+                        <input type="radio" name="radio-button" id="radio8" />
+
 
 
 
@@ -102,7 +105,7 @@ const Home = () => {
                         <div className='slide'>
                             <img src={slider2} alt='hero' loading='lazy' />
                             <div className='hero__text'>
-                                <p className='second_slider-h2'>We've got <b>insurance</b> for your<br /> old girl.</p>
+                                <p className='second_slider-h2'>We've got <b>insurance</b> for <br /> your old girl.</p>
                                 <p className='second_slider'>Securing comprehensive health insurance for your folks is a thoughtful
                                     investment in their health and your savings. Dosh provides quality healthcare insurance anywhere in the country. It's Available, Accessible and Affordable.
                                 </p>
@@ -281,6 +284,38 @@ const Home = () => {
                             </div>
                         </div>
 
+                        <div className='slide'>
+                            <img src={slider8} alt='hero' loading='lazy' />
+                            <div className='hero__text'>
+                                <p className='ninth_slider'><b>Get an insurance cover
+                                    <br />that’s got your back.</b>
+                                </p>
+                                <span>The only health insurance that<br />
+                                    covers chiropractic services.</span>
+                            </div>
+                            <div className='slide-text'>
+                                <h3>People are signing  with us</h3>
+                                <div className="slide-arrow">
+                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                        <small>Join DOSH</small>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="28"
+                                            height="28"
+                                            fill="currentColor"
+                                            class="bi bi-arrow-right"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                                            />
+                                        </svg>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div className='navigate_auto' onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
                             <div className='auto-btn1'></div>
@@ -290,8 +325,7 @@ const Home = () => {
                             <div className='auto-btn5'></div>
                             <div className='auto-btn6'></div>
                             <div className='auto-btn7'></div>
-
-
+                            <div className='auto-btn8'></div>
                         </div>
 
                     </div>
@@ -304,6 +338,8 @@ const Home = () => {
                         <label htmlFor='radio5' className='manual-btn'></label>
                         <label htmlFor='radio6' className='manual-btn'></label>
                         <label htmlFor='radio7' className='manual-btn'></label>
+                        <label htmlFor='radio8' className='manual-btn'></label>
+
 
                     </div>
                 </div>
