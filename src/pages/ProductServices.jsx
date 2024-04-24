@@ -5,6 +5,8 @@ import productservice from "../images/productservice.png"
 import doshdata from "../doshdata.js"
 import doshvideo from '../images/dosh.mp4'
 
+import { useLocation } from 'react-router-dom';
+
 import dosh from "../images/dosh_logo.png"
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
@@ -12,8 +14,13 @@ import Financial from '../components/Financial.jsx';
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import VideoPopup from '../components/VideoPopup.jsx';
 
 const ProductServices = () => {
+
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const showVideoPopup = queryParams.get('videopopup') === 'true';
 
 
     const [products] = useState(doshdata);
@@ -301,6 +308,13 @@ const ProductServices = () => {
                     </div>
                 </div>
             </section>
+
+            <div className='ps__page'>
+                {/* Your existing content */}
+
+                {showVideoPopup && <VideoPopup />}
+            </div>
+
 
         </div>
     )

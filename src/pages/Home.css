@@ -230,6 +230,30 @@
     margin-bottom: 10px;
 }
 
+@media (max-width: 767px) {
+    .ninth_slider {
+        font-family: "Inter", sans-serif;
+        font-size: 25px;
+        line-height: 33px;
+        letter-spacing: 0em;
+        text-align: left;
+        width: 362px;
+        height: 47px;
+        margin-left: 80px;
+        margin-top: 100px;
+        padding-left: 65px;
+    }
+
+    .hero__text span {
+        padding-left: 200px;
+        width: 400px;
+    }
+
+    .hero__text span br {
+        display: none;
+    }
+}
+
 .ninth_slider b {
     color: rgba(206, 179, 138, 1);
     font-weight: 900;
@@ -959,8 +983,6 @@
         margin-top: 180px;
         padding-top: 40px;
     }
-
-
 
     .eight_slider {
         font-family: "Inter", sans-serif;

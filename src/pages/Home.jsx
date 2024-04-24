@@ -28,6 +28,7 @@ const Home = () => {
     const [counter, setCounter] = useState(1);
     const [isPaused, setIsPaused] = useState(false);
 
+
     useEffect(() => {
         const intervalId = setInterval(() => {
             if (!isPaused) {
