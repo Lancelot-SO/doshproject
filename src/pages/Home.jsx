@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./Home.css"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import slider1 from "../images/granny1.png";
 import slider3 from "../images/slider3.png";
 import slider4 from "../images/slider4.png";
@@ -22,11 +22,18 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 // import Draggable from 'react-draggable';
 
+import VideoPopup from '../components/VideoPopup.jsx';
+
+
 
 
 const Home = () => {
     const [counter, setCounter] = useState(1);
     const [isPaused, setIsPaused] = useState(false);
+
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const showVideoPopup = queryParams.get('videopopup') === 'true';
 
 
     useEffect(() => {
@@ -565,7 +572,11 @@ const Home = () => {
                 </div>
             </section>
 
+            <div className='ps__page'>
+                {/* Your existing content */}
 
+                {showVideoPopup && <VideoPopup />}
+            </div>
 
         </div>
     )
