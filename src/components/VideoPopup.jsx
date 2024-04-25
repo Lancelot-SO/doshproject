@@ -18,6 +18,7 @@ const VideoPopup = () => {
                     src={doshvideo}
                     autoPlay={true}
                     loop
+                    muted
                     controls
                     loading='lazy'
                 />

@@ -58,11 +58,10 @@ const ServiceProviders = () => {
             <div className='main__services'>
                 <img data-aos="fade-down" src={services} alt='servicesproviders' loading='lazy' />
                 <div className='service__text'>
-                    <h1>Greater Accra</h1>
-                    <p>
-                        We offer a wide range of healthcare covers for our clients.<br />
-                        Our clients benefit by getting personalized, quality service that is beyond comparison.
-                    </p>
+                    <h1>Everything is seamless on <b>DOSH</b></h1>
+                    <span>
+                        DOSH guarantees instant payment of medical claims for Health Service providers.
+                    </span>
                 </div>
             </div>
             <section className='filter-section'>

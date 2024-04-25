@@ -6,14 +6,14 @@ const products = [
         title: 'DOSH FINANACIAL',
         image: Finance,
         readmore: '/financial',
-        quote: 'You have the dream, we have the funds its the perfect love story.Get the right financial help for your personal and business needs anytime with less paperwork on DOSH.',
+        quote: 'You have the dream, we have the funds its the perfect love story. Get the right financial help for your personal and business needs anytime with less paperwork on DOSH.',
     },
     {
         id: 2,
         title: 'DOSH INSURANCE',
         image: Finance,
         readmore: '/insurance',
-        quote: 'DOSH Health Insurance offers an all-around medical care package for you and your loved ones, which includes among others, hospital consultations, surgeries, dental care, prescribed drugs, and optical care. We provide you with services in hospitals, clinics, and laboratories across the 16 regions of Ghana.',
+        quote: 'DOSH Health Insurance offers an all-around medical care package for you and your loved ones. This includes, hospital consultations, dental care, prescribed drugs, optical care, mental health, chiropractic care, infertility, and even erectile dysfunction treatment. We provide you with services in hospitals, clinics. We provide you with available, accessible, and affordable healthcare all year round.',
     },
 ]
 

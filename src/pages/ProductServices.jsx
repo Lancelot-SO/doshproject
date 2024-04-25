@@ -67,7 +67,7 @@ const ProductServices = () => {
                 <img data-aos="fade-down" src={product} alt='product&services' loading='lazy' />
                 <div className='product__text'>
                     <p>Protect Your <b>Future</b> with Our
-                        Comprehensive Health Insurance Policies
+                        Comprehensive Health Insurance packages
                     </p>
                 </div>
             </div>
@@ -84,10 +84,8 @@ const ProductServices = () => {
                             and advancement in the global economy. DOSH's mission
                             is to provide unrivaled solutions to individuals, SOHO
                             and SMB in emerging markets where access to financial
-                            services has previously been inaccessible or prohibitively
-                            expensive. DOSH has fabricated an unprecedented synthesis of
-                            leading-edge technologies that offer fast, reliable and dependable
-                            access to cutting-edge financial services at the lowest possible cost.
+                            services has previously been inaccessible. DOSH has fabricated an unprecedented ecosystem of
+                            leading-edge technologies that offer fast, reliable access to financial services at the lowest possible cost.
                             We empower markets to bridge the financial divide.
                         </p>
                     </div>
@@ -183,7 +181,7 @@ const ProductServices = () => {
 
             <section className='insurance'>
                 <div className='prod-insure'>
-                    <h2>DOSH <br />Insurance Products</h2>
+                    <h2>DOSH <br />Health Insurance packages</h2>
                 </div>
                 <div className='main-insurance'>
                     <div className='glass-bg'>

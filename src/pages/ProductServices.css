@@ -160,9 +160,13 @@
     padding-bottom: 30px;
 }
 
-.productslider h1 {
+/* .productslider h1 {
     align-items: center;
     display: flex;
+} */
+
+.productslider h1 {
+    display: none;
 }
 
 .productslider h2 {
@@ -269,6 +273,7 @@ article.lastSlide {
     text-align: left;
     width: 597px;
     height: 140px;
+    margin-bottom: 55px;
 }
 
 .left a {
@@ -497,7 +502,7 @@ article.lastSlide {
     }
 
     .video__left {
-        padding-left: 35px;
+        padding-left: 10px;
     }
 
     .video__left video {
