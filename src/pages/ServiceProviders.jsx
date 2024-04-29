@@ -3,7 +3,7 @@ import "./ServiceProviders.css"
 import services from "../images/clinic.png"
 import { FaFilter } from "react-icons/fa";
 import { IoIosSearch } from "react-icons/io";
-import anime from '../images/anime.png'
+import anime from '../images/Enterprise1.png'
 import data from "../data"
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import FilterModal from '../components/FilterModal';

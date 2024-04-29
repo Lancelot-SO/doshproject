@@ -589,29 +589,6 @@ form p {
 
 /* filterModal styles end */
 
-.video-modal {
-  display: flex;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(5px);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.popupvid {
-  width: 400px;
-  height: 250px;
-}
-
-
 /* CallModal styles start */
 
 .call-modal {
@@ -993,20 +970,6 @@ label {
   justify-content: center;
 }
 
-.section-to-top {
-  background-color: #9E825B;
-  width: 3rem;
-  height: 3rem;
-  color: white;
-  border-radius: 50%;
-  position: fixed;
-  right: 3rem;
-  bottom: 6rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 
 @media (max-width: 767px) {

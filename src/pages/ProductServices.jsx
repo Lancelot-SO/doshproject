@@ -12,10 +12,33 @@ import Financial from '../components/Financial.jsx';
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { IoIosArrowDown } from 'react-icons/io';
 
 const ProductServices = () => {
 
+    const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
+    const sections = ['service', 'slider', 'video', 'insurance']; // Add more section IDs here if needed
+
+    const scrollToNextSection = (event) => {
+        event.preventDefault();
+        const nextIndex = currentSectionIndex + 1;
+        if (nextIndex < sections.length) {
+            setCurrentSectionIndex(nextIndex);
+            const nextSectionId = sections[nextIndex];
+            const section = document.getElementById(nextSectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            // Reset to the first section when reaching the last section
+            setCurrentSectionIndex(0);
+            const firstSection = document.getElementById(sections[0]);
+            if (firstSection) {
+                firstSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    };
 
 
     const [products] = useState(doshdata);
@@ -71,7 +94,10 @@ const ProductServices = () => {
                     </p>
                 </div>
             </div>
-            <section className='product'>
+            <button className="scroll-button" onClick={scrollToNextSection}>
+                <IoIosArrowDown size={30} />
+            </button>
+            <section id='service' className='product'>
                 <div className='container products'>
                     <div data-aos="zoom-in" className='product-left'>
                         <img src={productservice} alt='productservice' loading='lazy' />
@@ -92,7 +118,7 @@ const ProductServices = () => {
                 </div>
             </section>
 
-            <section className='productslider'>
+            <section id='slider' className='productslider'>
                 <h1 className='title'>Streamlined Financial Solutions<br />
                     Achieve your Dreams with Seamless Funding Solutions
                 </h1>
@@ -156,7 +182,7 @@ const ProductServices = () => {
 
             </section>
 
-            <section className='video__section'>
+            <section id='video' className='video__section'>
                 <div className='container video-main'>
                     <div className='video__left' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                         <video
@@ -179,7 +205,7 @@ const ProductServices = () => {
                 </div>
             </section>
 
-            <section className='insurance'>
+            <section id='insurance' className='insurance'>
                 <div className='prod-insure'>
                     <h2>DOSH <br />Health Insurance packages</h2>
                 </div>

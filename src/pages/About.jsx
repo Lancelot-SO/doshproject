@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './About.css'
 import about from '../images/business.png'
 import handshake from "../images/about-handshake.png"
@@ -9,8 +9,33 @@ import { Link } from 'react-router-dom'
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { IoIosArrowDown } from 'react-icons/io'
 
 const About = () => {
+
+    const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+
+    const sections = ['handshake', 'mission', 'values', 'expertise', 'banner']; // Add more section IDs here if needed
+
+    const scrollToNextSection = (event) => {
+        event.preventDefault();
+        const nextIndex = currentSectionIndex + 1;
+        if (nextIndex < sections.length) {
+            setCurrentSectionIndex(nextIndex);
+            const nextSectionId = sections[nextIndex];
+            const section = document.getElementById(nextSectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            // Reset to the first section when reaching the last section
+            setCurrentSectionIndex(0);
+            const firstSection = document.getElementById(sections[0]);
+            if (firstSection) {
+                firstSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    };
 
     useEffect(() => {
         AOS.init({
@@ -23,7 +48,10 @@ const About = () => {
             <section data-aos="fade-down" className='about__header'>
                 <img src={about} alt='about' loading='lazy' />
             </section>
-            <section className='about__section'>
+            <button className="scroll-button" onClick={scrollToNextSection}>
+                <IoIosArrowDown size={30} />
+            </button>
+            <section id='handshake' className='about__section'>
                 <div className='container about__hand-shake'>
                     <div className='about_left'>
                         <h3>Who we are </h3>
@@ -43,7 +71,7 @@ const About = () => {
                     </div>
                 </div>
             </section>
-            <section className='about__section'>
+            <section id='mission' className='about__section'>
                 <div data-aos="zoom-in" className='container next-about__hand-shake'>
                     <div className='next-about_left'>
                         <img src={board} className='about__image' alt='handshake' loading='lazy' />
@@ -56,7 +84,7 @@ const About = () => {
                     </div>
                 </div>
             </section>
-            <section className='about__section'>
+            <section id='values' className='about__section'>
                 <div data-aos="fade-up" className='container next-about__settings'>
                     <div className='next-about-settings_left'>
                         <img src={settings} className='about__image' alt='handshake' loading='lazy' />
@@ -76,7 +104,7 @@ const About = () => {
                 </div>
             </section>
 
-            <section className='about__section'>
+            <section id='expertise' className='about__section'>
                 <div data-aos="flip-left" className='container about__cards'>
                     <div className='about__cards-left'>
                         <h3>OUR EXPERTISE</h3>

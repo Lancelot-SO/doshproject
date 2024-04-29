@@ -3,6 +3,22 @@
     color: white;
 }
 
+.scroll-button {
+    background-color: #9E825B;
+    width: 3rem;
+    height: 3rem;
+    color: white;
+    border-radius: 50%;
+    position: fixed;
+    right: 3rem;
+    bottom: 7rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+}
+
 .main__product img {
     width: 100%;
     height: auto;

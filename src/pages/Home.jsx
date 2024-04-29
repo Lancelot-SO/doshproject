@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./Home.css"
+import "./Home.css";
 import { Link, useLocation } from "react-router-dom"
 import slider1 from "../images/granny1.png";
 import slider3 from "../images/slider3.png";
@@ -23,11 +23,37 @@ import "aos/dist/aos.css";
 // import Draggable from 'react-draggable';
 
 import VideoPopup from '../components/VideoPopup.jsx';
-
+import { IoIosArrowDown } from 'react-icons/io';
 
 
 
 const Home = () => {
+
+    const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+
+    const sections = ['home', 'money', 'ride', 'digital', 'lastride']; // Add more section IDs here if needed
+
+    const scrollToNextSection = (event) => {
+        event.preventDefault();
+        const nextIndex = currentSectionIndex + 1;
+        if (nextIndex < sections.length) {
+            setCurrentSectionIndex(nextIndex);
+            const nextSectionId = sections[nextIndex];
+            const section = document.getElementById(nextSectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            // Reset to the first section when reaching the last section
+            setCurrentSectionIndex(0);
+            const firstSection = document.getElementById(sections[0]);
+            if (firstSection) {
+                firstSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    };
+
+
     const [counter, setCounter] = useState(1);
     const [isPaused, setIsPaused] = useState(false);
 
@@ -356,13 +382,17 @@ const Home = () => {
 
             <div className='cream__hero'></div>
 
+            <button className="scroll-button" onClick={scrollToNextSection}>
+                <IoIosArrowDown size={30} />
+            </button>
+
             {/*<section className='about__section'>
                 <div className='about__banner'>
                     <Link to='https://dsp.onenet.xyz:50443/#/'><img src={banner} alt='banner' /></Link>
                 </div>
     </section>*/}
 
-            <section className='home__section'>
+            <section id='home' className='home__section'>
                 <div className='container home__student'>
                     <div className='home__student-left'>
                         <h4>DOSH HEALTH INSURANCE:</h4>
@@ -396,7 +426,7 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            <section className='money__section'>
+            <section id='money' className='money__section'>
                 <div className='container home__money'>
                     <div data-aos="zoom-in-right" className='home__money-left'>
                         <img src={money} alt='student' loading='lazy' />
@@ -466,7 +496,7 @@ const Home = () => {
                 </div>
     </section>*/}
 
-            <section className='ride__section'>
+            <section id='ride' className='ride__section'>
                 <div className='container ride__adventure'>
                     <div data-aos="zoom-in-right" className='home__ride-left'>
                         <img src={ride} alt='ride' loading='lazy' />
@@ -500,7 +530,7 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className='digital__section'>
+            <section id='digital' className='digital__section'>
                 <div className='container home__digital'>
                     <div className='home__digital-left'>
                         <h4>DOSH ERP:</h4>
@@ -536,7 +566,7 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className='ride__section'>
+            <section id='lastride' className='ride__section'>
                 <div className='container ride__adventure'>
                     <div className='home__ride2-left'>
                         <img data-aos="zoom-in-right" src={scale} alt='ride' loading='lazy' />

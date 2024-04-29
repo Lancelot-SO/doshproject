@@ -1,28 +1,9 @@
-import React from 'react';
-import { IoIosArrowDown } from "react-icons/io";
-import "../App.css";
+import React from 'react'
 
-const SectionMove = ({ nextSectionRef }) => {
-
-    const scrollToNextSection = () => {
-        if (nextSectionRef.current) {
-            nextSectionRef.current.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
+const SectionMove = () => {
     return (
-
-        <button
-            type="button"
-
-            className="section-to-top"
-            onClick={scrollToNextSection}
-
-        >
-            <IoIosArrowDown size={30} />
-        </button>
+        <div>SectionMove</div>
     )
+}
 
-};
-
-export default SectionMove;
+export default SectionMove

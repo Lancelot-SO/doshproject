@@ -3,6 +3,22 @@
     color: #000;
 }
 
+.scroll-button {
+    background-color: #9E825B;
+    width: 3rem;
+    height: 3rem;
+    color: white;
+    border-radius: 50%;
+    position: fixed;
+    right: 3rem;
+    bottom: 7rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+}
+
 .about__hand-shake {
     display: flex;
     flex-direction: row;
