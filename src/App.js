@@ -14,7 +14,6 @@ import Financial from './components/Financial'
 import BackToTop from './components/BackToTop'
 import RegModal from './components/RegModal'
 import Insurance from './pages/Insurance'
-import SectionMove from './components/SectionMove'
 
 const App = () => {
   return (
@@ -36,7 +35,6 @@ const App = () => {
           <Route path='*' element={<Navigate to="/errorpage" />} />
         </Routes>
         <Footer />
-        <SectionMove />
         <BackToTop />
       </BrowserRouter>
     </div>
