@@ -103,8 +103,6 @@ const Home = () => {
                         <input type="radio" name="radio-button" id="radio8" />
 
 
-
-
                         <div className='slide first'>
                             <img src={slider1} alt='hero' loading='lazy' />
                             <div className='hero__text'>
@@ -324,8 +322,9 @@ const Home = () => {
                                 <p className='ninth_slider'><b>Get an insurance cover
                                     <br />that’s got your back.</b>
                                 </p>
-                                <span>The only health insurance that<br />
-                                    covers chiropractic services.</span>
+                                <span className='ninth'>The only health insurance that<br />
+                                    covers chiropractic services.
+                                </span>
                             </div>
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>

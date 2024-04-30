@@ -260,13 +260,15 @@
         padding-left: 65px;
     }
 
-    .hero__text span {
-        padding-left: 200px;
-        width: 400px;
-    }
+    .ninth {
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        line-height: 33px;
+        padding-left: 145px;
+        align-items: flex-start;
+        display: flex;
+        margin-top: 20px;
 
-    .hero__text span br {
-        display: none;
     }
 }
 
@@ -876,7 +878,7 @@
 
     .first_slider-p {
         font-family: "Inter", sans-serif;
-        font-size: 6px;
+        font-size: 14px;
         line-height: 12px;
         letter-spacing: 0.05em;
         text-align: left;
@@ -908,7 +910,7 @@
 
     .second_slider {
         font-family: "Inter", sans-serif;
-        font-size: 6px;
+        font-size: 14px;
         line-height: 12px;
         letter-spacing: 0.05em;
         text-align: left;
@@ -951,7 +953,7 @@
 
     .fourth_slider_p {
         font-family: "Inter", sans-serif;
-        font-size: 6px;
+        font-size: 14px;
         line-height: 12px;
         letter-spacing: 0.05em;
         text-align: left;
@@ -977,7 +979,7 @@
 
     .fifth_slider_p {
         font-family: "Inter", sans-serif;
-        font-size: 6px;
+        font-size: 14px;
         line-height: 12px;
         letter-spacing: 0.05em;
         text-align: left;
@@ -1016,7 +1018,7 @@
 
     .eight_slider_p {
         font-family: "Inter", sans-serif;
-        font-size: 6px;
+        font-size: 14px;
         line-height: 12px;
         letter-spacing: 0.05em;
         text-align: left;
@@ -1256,12 +1258,12 @@
         line-height: 20px;
         letter-spacing: 3px;
         text-align: left;
-        color: #000;
+        color: #fff;
         padding-bottom: 10px;
     }
 
     .home__ride-right p {
-        color: rgba(19, 18, 20, 1);
+        color: #fff;
         font-family: 'Inter', sans-serif;
         font-size: 14px;
         font-weight: 400;
@@ -1313,12 +1315,12 @@
         line-height: 20px;
         letter-spacing: 3px;
         text-align: left;
-        color: #000;
+        color: #fff;
         padding-bottom: 10px;
     }
 
     .home__ride2-right p {
-        color: rgba(19, 18, 20, 1);
+        color: #fff;
         font-family: 'Inter', sans-serif;
         font-size: 14px;
         font-weight: 400;
