@@ -3,7 +3,7 @@ import Finance from "./images/dosh-financial.jpg"
 const products = [
     {
         id: 1,
-        title: 'DOSH FINANACIAL',
+        title: 'DOSH FINANCIAL',
         image: Finance,
         readmore: '/financial',
         quote: 'You have the dream, we have the funds its the perfect love story. Get the right financial help for your personal and business needs anytime with less paperwork on DOSH.',

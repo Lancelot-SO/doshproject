@@ -27,7 +27,7 @@ const CallModal = ({ onClose }) => {
                         </button>
                         <div className="callmodal">
                             <p className='call-head'>Request a call back</p>
-                            <span>Thanks for your interest in our service. Please provide details to assists reach out to you.</span>
+                            <span>Please provide your details for assistance.</span>
                             <form>
                                 <div className="form-group">
                                     <label for="fullName">Enter Full Name</label>

@@ -8,7 +8,7 @@ import data from "../data"
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import FilterModal from '../components/FilterModal';
 import CallModal from '../components/CallModal';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -64,73 +64,39 @@ const ServiceProviders = () => {
                     </span>
                 </div>
             </div>
-            <section className='filter-section'>
-                <div className='container filter__search'>
-                    <button className="filter-button" onClick={toggleModal}><FaFilter /> Filter</button>
-                    <div className="search-container">
-                        <IoIosSearch className='search-icon' />
-                        <input type="text" className="search-bar" placeholder="Search users by country, Region or District" />
-                    </div>
-                </div>
-                <FilterModal showModal={showModal} onClose={toggleModal} />
-            </section>
+
 
             <section className='provider-container'>
                 <div className='container service__cards'>
-                    <h4>DOSH <br />INSURANCE PACKAGES</h4>
+                    <h4>Locate a DOSH service provider near you</h4>
                     <hr className='underline'></hr>
 
-                    <div className='anime'>
-                        <div className='anime-card'>
-                            {/*<img src={anime} alt="anime" loading='lazy' />*/}
-                            <p>DOSH 365</p>
-                            <small>Plan</small>
-                            <button className='anime-btn'><Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
+                    <section className='filter-section'>
+                        <div className='container filter__search'>
+                            <button className="filter-button" onClick={toggleModal}><FaFilter /> Filter</button>
+                            <div className="search-container">
+                                <IoIosSearch className='search-icon' />
+                                <input type="text" className="search-bar" placeholder="Search users by country, Region or District" />
+                            </div>
                         </div>
-                        <div className='anime-card'>
-                            {/*<img src={anime} alt="anime" loading='lazy' />*/}
-                            <p>DOSH 750</p>
-                            <small>Plan</small>
-                            <button className='anime-btn'><Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
-                        </div>
-                        <div className='anime-card'>
-                            {/*<img src={anime} alt="anime" loading='lazy' />*/}
-                            <p>DOSH 1000</p>
-                            <small>Plan</small>
-                            <button className='anime-btn'><Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
-                        </div>
-                        <div className='anime-card'>
-                            {/*<img src={anime} alt="anime" loading='lazy' />*/}
-                            <p>DOSH 2500</p>
-                            <small>Plan</small>
-                            <button className='anime-btn'><Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
-                        </div>
-                        <div className='anime-card'>
-                            {/*<img src={anime} alt="anime" loading='lazy' />*/}
-                            <p>DOSH 5000</p>
-                            <small>Plan</small>
-                            <button className='anime-btn'><Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
-                        </div>
-                        <div className='anime-card'>
-                            {/*<img src={anime} alt="anime" loading='lazy' />*/}
-                            <p>DOSH 10000</p>
-                            <small>Plan</small>
-                            <button className='anime-btn'><Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer">Sign up</Link></button>
-                        </div>
-                    </div>
+                        <FilterModal showModal={showModal} onClose={toggleModal} />
+                    </section>
+
                     <div className='anime-sect'>
                         <div className='empty-container'></div>
                         <div className='empty-container'></div>
                         <div className='empty-container'></div>
                         <div className='plan'>
                             <p>Need a plan today ? Call us to Assist you.</p>
-                            <button type='button' onClick={() => setshowCallModal(true)} className='plan-btn'>Call us</button>
+                            <button type='button' onClick={() => setshowCallModal(true)} className='plan-btn'>Request a call</button>
                         </div>
                     </div>
                     {showCallModal && <CallModal onClose={() => setshowCallModal(false)} />}
 
                 </div>
             </section>
+
+
 
             <section className='serviceslider'>
                 <div className='section-center'>

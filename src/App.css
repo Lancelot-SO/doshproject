@@ -504,8 +504,6 @@ footer {
   padding-bottom: 20px;
 }
 
-
-
 .modal-backdrop {
   display: none;
 }
@@ -585,6 +583,53 @@ form p {
 
 .modal .btn {
   margin-left: 0.5rem;
+}
+
+@media screen and (max-width: 767px) {
+  .modal-content {
+    width: 90%;
+    /* Adjust the width of the modal content */
+    max-width: 100%;
+    margin: 0 auto;
+    /* Center the modal horizontally */
+    margin-bottom: 20px;
+    /* Adjust the margin-bottom */
+  }
+
+  .modal-header {
+    margin-bottom: 0;
+    /* Remove the bottom margin */
+  }
+
+  .close {
+    font-size: 20px;
+    /* Decrease the font size of the close button */
+    width: 25px;
+    /* Decrease the width of the close button */
+    height: 25px;
+    /* Decrease the height of the close button */
+  }
+
+  .modal-footer {
+    flex-direction: column;
+    /* Stack the modal footer items vertically */
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    /* Adjust the top padding */
+  }
+
+  .modal-footer .btn {
+    margin-left: 0;
+    /* Reset the margin for buttons */
+    margin-top: 10px;
+    /* Add top margin to buttons */
+  }
+
+  .modal form {
+    flex-direction: column;
+    /* Stack the form elements vertically */
+  }
 }
 
 /* filterModal styles end */

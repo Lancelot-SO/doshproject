@@ -89,8 +89,8 @@ const ProductServices = () => {
             <div className='main__product'>
                 <img data-aos="fade-down" src={product} alt='product&services' loading='lazy' />
                 <div className='product__text'>
-                    <p>Protect Your <b>Future</b> with Our
-                        Comprehensive Health Insurance packages
+                    <p>Protect your <b>future</b> with our
+                        comprehensive health insurance packages
                     </p>
                 </div>
             </div>
@@ -221,8 +221,18 @@ const ProductServices = () => {
                                         <small><Link>Read More</Link></small>
                                     </td>
                                     <td className='price-like'>
+                                        <h3>Enhanced</h3>
+                                        <span>GHS365</span>
+                                        <small><Link>Read More</Link></small>
+                                    </td>
+                                    <td className='price-next'>
                                         <h3>Insurance</h3>
-                                        <span>GHS500</span>
+                                        <span>GHS750</span>
+                                        <small><Link>Read More</Link></small>
+                                    </td>
+                                    <td className='price-next'>
+                                        <h3>Enhanced</h3>
+                                        <span>GHS750</span>
                                         <small><Link>Read More</Link></small>
                                     </td>
                                     <td className='price-next'>
@@ -231,7 +241,17 @@ const ProductServices = () => {
                                         <small><Link>Read More</Link></small>
                                     </td>
                                     <td className='price-next'>
+                                        <h3>Enhanced</h3>
+                                        <span>GHS1200</span>
+                                        <small><Link>Read More</Link></small>
+                                    </td>
+                                    <td className='price-next'>
                                         <h3>Insurance</h3>
+                                        <span>GHS2500</span>
+                                        <small><Link>Read More</Link></small>
+                                    </td>
+                                    <td className='price-next'>
+                                        <h3>Enhanced</h3>
                                         <span>GHS2500</span>
                                         <small><Link>Read More</Link></small>
                                     </td>
@@ -241,8 +261,8 @@ const ProductServices = () => {
                                         <small><Link>Read More</Link></small>
                                     </td>
                                     <td className='price-next'>
-                                        <h3>Insurance</h3>
-                                        <span>GHS10000</span>
+                                        <h3>Enhanced</h3>
+                                        <span>GHS5000</span>
                                         <small><Link>Read More</Link></small>
                                     </td>
                                     <td className='price-next'>
@@ -251,27 +271,7 @@ const ProductServices = () => {
                                         <small><Link>Read More</Link></small>
                                     </td>
                                     <td className='price-next'>
-                                        <h3>Insurance</h3>
-                                        <span>GHS10000</span>
-                                        <small><Link>Read More</Link></small>
-                                    </td>
-                                    <td className='price-next'>
-                                        <h3>Insurance</h3>
-                                        <span>GHS10000</span>
-                                        <small><Link>Read More</Link></small>
-                                    </td>
-                                    <td className='price-next'>
-                                        <h3>Insurance</h3>
-                                        <span>GHS10000</span>
-                                        <small><Link>Read More</Link></small>
-                                    </td>
-                                    <td className='price-next'>
-                                        <h3>Insurance</h3>
-                                        <span>GHS10000</span>
-                                        <small><Link>Read More</Link></small>
-                                    </td>
-                                    <td className='price-next'>
-                                        <h3>Insurance</h3>
+                                        <h3>Enhanced</h3>
                                         <span>GHS10000</span>
                                         <small><Link>Read More</Link></small>
                                     </td>
