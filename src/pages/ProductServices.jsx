@@ -222,7 +222,7 @@ const ProductServices = () => {
                                     </td>
                                     <td className='price-like'>
                                         <h3>Insurance</h3>
-                                        <span>GHS750</span>
+                                        <span>GHS500</span>
                                         <small><Link>Read More</Link></small>
                                     </td>
                                     <td className='price-next'>
@@ -245,62 +245,236 @@ const ProductServices = () => {
                                         <span>GHS10000</span>
                                         <small><Link>Read More</Link></small>
                                     </td>
+                                    <td className='price-next'>
+                                        <h3>Insurance</h3>
+                                        <span>GHS10000</span>
+                                        <small><Link>Read More</Link></small>
+                                    </td>
+                                    <td className='price-next'>
+                                        <h3>Insurance</h3>
+                                        <span>GHS10000</span>
+                                        <small><Link>Read More</Link></small>
+                                    </td>
+                                    <td className='price-next'>
+                                        <h3>Insurance</h3>
+                                        <span>GHS10000</span>
+                                        <small><Link>Read More</Link></small>
+                                    </td>
+                                    <td className='price-next'>
+                                        <h3>Insurance</h3>
+                                        <span>GHS10000</span>
+                                        <small><Link>Read More</Link></small>
+                                    </td>
+                                    <td className='price-next'>
+                                        <h3>Insurance</h3>
+                                        <span>GHS10000</span>
+                                        <small><Link>Read More</Link></small>
+                                    </td>
+                                    <td className='price-next'>
+                                        <h3>Insurance</h3>
+                                        <span>GHS10000</span>
+                                        <small><Link>Read More</Link></small>
+                                    </td>
+
 
                                 </tr>
                                 <tr>
-                                    <td className='heading'>Premium</td>
+                                    <td className='heading'>Annual Premium</td>
                                     <td className='row-center'>GHS 365</td>
+                                    <td className='row-center'>GHS 500</td>
                                     <td className='row-center'>GHS 750</td>
+                                    <td className='row-center'>GHS 900</td>
                                     <td className='row-center'>GHS 1000</td>
+                                    <td className='row-center'>GHS 1200</td>
                                     <td className='row-center'>GHS 2500</td>
+                                    <td className='row-center'>GHS 2800</td>
                                     <td className='row-center'>GHS 5000</td>
+                                    <td className='row-center'>GHS 5500</td>
                                     <td className='row-center'>GHS 10000</td>
+                                    <td className='row-center'>GHS 11000</td>
+
                                 </tr>
                                 <tr>
-                                    <td className='heading-total'>Total Cover</td>
+                                    <td className='heading-total'>Total sum assured</td>
                                     <td className='row-center-total'>GHS 9,000</td>
+                                    <td className='row-center-total'>GHS 21,000</td>
                                     <td className='row-center-total'>GHS 18,000</td>
+                                    <td className='row-center-total'>GHS 42,000</td>
                                     <td className='row-center-total'>GHS 30,000</td>
+                                    <td className='row-center-total'>GHS 54,000</td>
                                     <td className='row-center-total'>GHS 60,000</td>
                                     <td className='row-center-total'>GHS 95,000</td>
+                                    <td className='row-center-total'>GHS 108,000</td>
+                                    <td className='row-center-total'>GHS 167,000</td>
                                     <td className='row-center-total'>GHS 190,000</td>
+                                    <td className='row-center-total'>GHS 286,000</td>
                                 </tr>
                                 <tr>
-                                    <td className='heading'>Out Patient Limit (OP)</td>
+                                    <td className='heading'>Out Patient Limit OP (member)</td>
+                                    <td className='row-center'>GHS 1,500</td>
                                     <td className='row-center'>GHS 1,500</td>
                                     <td className='row-center'>GHS 3,000</td>
+                                    <td className='row-center'>GHS 3,000</td>
                                     <td className='row-center'>GHS 5,000</td>
-                                    <td className='row-center'>GHS 10,000</td>
-                                    <td className='row-center'>GHS 20,000</td>
-                                    <td className='row-center'>GHS 40,000</td>
+                                    <td className='row-center'>GHS 5,000</td>
+                                    <td className='row-center-total'>GHS 10,000</td>
+                                    <td className='row-center-total'>GHS 10,000</td>
+                                    <td className='row-center-total'>GHS 20,000</td>
+                                    <td className='row-center-total'>GHS 20,000</td>
+                                    <td className='row-center-total'>GHS 40,000</td>
+                                    <td className='row-center-total'>GHS 40,000</td>
                                 </tr>
                                 <tr>
-                                    <td className='heading'>In Patient Limit (IP)</td>
+                                    <td className='heading'>In Patient Limit IP (member)</td>
+                                    <td className='row-center'>GHS 6,100</td>
                                     <td className='row-center'>GHS 6,100</td>
                                     <td className='row-center'>GHS 12,600</td>
+                                    <td className='row-center'>GHS 12,500</td>
                                     <td className='row-center'>GHS 21,500</td>
-                                    <td className='row-center'>GHS 41,250</td>
-                                    <td className='row-center'>GHS 115,000</td>
-                                    <td className='row-center'>GHS 75,000</td>
+                                    <td className='row-center'>GHS 21,500</td>
+                                    <td className='row-center-total'>GHS 41,250</td>
+                                    <td className='row-center-total'>GHS 41,250</td>
+                                    <td className='row-center-total'>GHS 57,500</td>
+                                    <td className='row-center-total'>GHS 57,500</td>
+                                    <td className='row-center-total'>GHS 115,000</td>
+                                    <td className='row-center-total'>GHS 115,000</td>
                                 </tr>
                                 <tr>
-                                    <td className='heading'>Medication Limit</td>
+                                    <td className='heading'>Medication Limit OP/IP (member)</td>
+                                    <td className='row-center'>GHS 500</td>
                                     <td className='row-center'>GHS 500</td>
                                     <td className='row-center'>GHS 900</td>
-                                    <td className='row-center'>GHS 1,500</td>
-                                    <td className='row-center'>GHS 3,700</td>
-                                    <td className='row-center'>GHS 7,500</td>
-                                    <td className='row-center'>GHS 15,000</td>
-                                </tr>
-                                <tr >
-                                    <td className='heading'>Lab/Scan Limit (IP/OP)</td>
                                     <td className='row-center'>GHS 900</td>
                                     <td className='row-center'>GHS 1,500</td>
-                                    <td className='row-center'>GHS 2,000</td>
-                                    <td className='row-center'>GHS 5,000</td>
-                                    <td className='row-center'>GHS 10,000</td>
-                                    <td className='row-center'>GHS 20,000</td>
+                                    <td className='row-center'>GHS 1,000</td>
+                                    <td className='row-center-total'>GHS 3,750</td>
+                                    <td className='row-center-total'>GHS 3,750</td>
+                                    <td className='row-center-total'>GHS 7,500</td>
+                                    <td className='row-center-total'>GHS 7,500</td>
+                                    <td className='row-center-total'>GHS 15,000</td>
+                                    <td className='row-center-total'>GHS 15,000</td>
                                 </tr>
+                                <tr >
+                                    <td className='heading'>Lab/Scan Limit OP/IP (member)</td>
+                                    <td className='row-center'>GHS 900</td>
+                                    <td className='row-center'>GHS 900</td>
+                                    <td className='row-center'>GHS 1,500</td>
+                                    <td className='row-center'>GHS 1,500</td>
+                                    <td className='row-center'>GHS 2,000</td>
+                                    <td className='row-center'>GHS 2,000</td>
+                                    <td className='row-center-total'>GHS 5,000</td>
+                                    <td className='row-center-total'>GHS 5,000</td>
+                                    <td className='row-center-total'>GHS 10,000</td>
+                                    <td className='row-center-total'>GHS 10,000</td>
+                                    <td className='row-center-total'>GHS 20,000</td>
+                                    <td className='row-center-total'>GHS 20,000</td>
+                                </tr>
+                                <tr >
+                                    <td className='heading'>Death (member)</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 2,500</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 5,000</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 5,000</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 10,000</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 15,000</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 20,000</td>
+                                </tr>
+                                <tr >
+                                    <td className='heading'>Death (Spouse)</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 2,500</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 5,000</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 5,000</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 10,000</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 15,000</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 20,000</td>
+                                </tr>
+                                <tr >
+                                    <td className='heading'>Death (2x Dependants)</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 1,250</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 2,500</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 2,500</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 5,000</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 7,500</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 10,000</td>
+                                </tr>
+                                <tr >
+                                    <td className='heading'>Critical illness (member)</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 1,250</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 2,500</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 2,500</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 5,000</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 7,500</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 10,000</td>
+                                </tr>
+                                <tr >
+                                    <td className='heading'>Permanent Disability (member)</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 1,250</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 2,500</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 2,500</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 5,000</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 7,500</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 10,000</td>
+                                </tr>
+                                <tr >
+                                    <td className='heading'>Personal Accident (each person)</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 200</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 1,000</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>GHS 1,000</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 2,000</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 3,000</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>GHS 4,000</td>
+                                </tr>
+                                <tr >
+                                    <td className='heading'>** Partial Disability</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>3%-60%</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>3%-60%</td>
+                                    <td className='row-center'>-</td>
+                                    <td className='row-center'>3%-60%</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>3%-60%</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>3%-60%</td>
+                                    <td className='row-center-total'>-</td>
+                                    <td className='row-center-total'>3%-60%</td>
+                                </tr>
+
                                 <tr>
                                     <td className='heading-last'></td>
                                     <td className="signup-button">
@@ -316,6 +490,20 @@ const ProductServices = () => {
                                         <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
+                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                    </td>
+                                    <td className="signup-button">
+                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                    </td>
+                                    <td className="signup-button">
+                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                    </td><td className="signup-button">
+                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                    </td><td className="signup-button">
+                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                    </td><td className="signup-button">
+                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                    </td><td className="signup-button">
                                         <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">

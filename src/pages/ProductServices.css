@@ -584,28 +584,29 @@ article.lastSlide {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 895px;
-    margin-top: 30px;
+    height: 1050px;
+    margin-top: 10px;
     position: relative;
 }
 
 .glass-bg {
-    width: 1140px;
-    height: 653px;
+    width: 1500px;
+    height: 960px;
     position: absolute;
     background: linear-gradient(135deg, rgba(72, 72, 72, 0.36), rgba(72, 72, 72, 0.36));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-    margin-top: 140px;
-    margin-left: 190px;
+    margin-top: 80px;
+    margin-left: 10px;
+    /* margin-right: 10px; */
 }
 
 .glass-table {
-    width: 1035px;
+    width: 100%;
     height: 527px;
-    padding-left: 30px;
+    padding-left: 10px;
     padding-top: 30px;
 
 }
@@ -616,19 +617,19 @@ table {
     background: linear-gradient(135deg, rgba(72, 72, 72, 0.36), rgba(72, 72, 72, 0.36));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 2px solid #9E825B;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
 }
 
 td {
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 8px;
+    padding: 4px;
     text-align: start;
 
 }
 
 .dosh {
-    width: 150px;
+    width: 100px;
     height: 120px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-right: #FDFEFF;
@@ -637,7 +638,7 @@ td {
 .dosh img {
     display: flex;
     justify-content: center;
-    width: 100px;
+    width: 80px;
     align-items: center;
     margin-left: 20px;
 }
@@ -645,7 +646,7 @@ td {
 .heading,
 .heading-total {
     display: flex;
-    width: 180px;
+    width: 150px;
     height: 50px;
     color: #FDFEFF;
 }
@@ -662,11 +663,10 @@ td {
 .price-like,
 .price-next {
     border: 1px solid rgba(255, 255, 255, 0.1);
-    ;
-    width: 110px;
-    padding-top: 20px;
+    width: 60px;
+    padding-top: 10px;
     letter-spacing: 2px;
-    padding-left: 20px;
+    padding-left: 5px;
     font-family: "Inter", sans-serif;
 }
 
@@ -674,7 +674,7 @@ td {
 .price-like h3,
 .price-next h3 {
     color: #FFE9CA;
-    font-size: 19px;
+    font-size: 16px;
 }
 
 .price span,
@@ -682,7 +682,7 @@ td {
 .price-next span {
     color: var(--color-white);
     font-weight: 600;
-    font-size: 23px;
+    font-size: 16px;
 }
 
 .price small,
@@ -696,7 +696,7 @@ td {
 .price-like small a,
 .price-next small a {
     color: #FFE9CA;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: bold;
 }
 
@@ -717,7 +717,7 @@ td {
 
 .row-center,
 .row-center-total {
-    padding-left: 30px;
+    padding-left: 10px;
     color: #FDFEFF;
 }
 
