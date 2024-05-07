@@ -165,6 +165,38 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='slide'>
+                            <img src={slider8} alt='hero' loading='lazy' />
+                            <div className='hero__text'>
+                                <p className='ninth_slider'><b>Get an insurance cover
+                                    <br />that’s got your back.</b>
+                                </p>
+                                <span className='ninth'>The only health insurance that<br />
+                                    covers chiropractic services.
+                                </span>
+                            </div>
+                            <div className='slide-text'>
+                                <h3>People are signing  with us</h3>
+                                <div className="slide-arrow">
+                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                        <small>Join DOSH</small>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="28"
+                                            height="28"
+                                            fill="currentColor"
+                                            class="bi bi-arrow-right"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                                            />
+                                        </svg>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='slide'>
                             <img src={slider3} alt='hero' loading='lazy' />
                             <div className='hero__text'>
                                 <p className='third_slider'>Choose <b>comprehensive </b><br />
@@ -292,39 +324,6 @@ const Home = () => {
                                     We’ve got you covered.
                                 </p>
                                 <p className='eight_slider_p'>The only health insurance with mental health coverage</p>
-                            </div>
-                            <div className='slide-text'>
-                                <h3>People are signing  with us</h3>
-                                <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="28"
-                                            height="28"
-                                            fill="currentColor"
-                                            class="bi bi-arrow-right"
-                                            viewBox="0 0 16 16"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-                                            />
-                                        </svg>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className='slide'>
-                            <img src={slider8} alt='hero' loading='lazy' />
-                            <div className='hero__text'>
-                                <p className='ninth_slider'><b>Get an insurance cover
-                                    <br />that’s got your back.</b>
-                                </p>
-                                <span className='ninth'>The only health insurance that<br />
-                                    covers chiropractic services.
-                                </span>
                             </div>
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
