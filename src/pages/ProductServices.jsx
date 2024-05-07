@@ -216,64 +216,52 @@ const ProductServices = () => {
                                 <tr>
                                     <td className='dosh'><img src={dosh} alt='Dosh Logo' loading='lazy' /></td>
                                     <td className='price'>
-                                        <h3>Insurance</h3>
+                                        <h3 className='hide'>Insurance</h3>
                                         <span>GHS365</span>
-                                        <small><Link>Read More</Link></small>
                                     </td>
                                     <td className='price-like'>
                                         <h3>Enhanced</h3>
                                         <span>GHS365</span>
-                                        <small><Link>Read More</Link></small>
                                     </td>
                                     <td className='price-next'>
-                                        <h3>Insurance</h3>
-                                        <span>GHS750</span>
-                                        <small><Link>Read More</Link></small>
+                                        <h3 className='hide'>Insurance</h3>
+                                        <span className='push'>GHS750</span>
                                     </td>
                                     <td className='price-next'>
                                         <h3>Enhanced</h3>
                                         <span>GHS750</span>
-                                        <small><Link>Read More</Link></small>
                                     </td>
                                     <td className='price-next'>
-                                        <h3>Insurance</h3>
-                                        <span>GHS1000</span>
-                                        <small><Link>Read More</Link></small>
+                                        <h3 className='hide'>Insurance</h3>
+                                        <span className='push'>GHS1000</span>
                                     </td>
                                     <td className='price-next'>
                                         <h3>Enhanced</h3>
                                         <span>GHS1200</span>
-                                        <small><Link>Read More</Link></small>
                                     </td>
                                     <td className='price-next'>
-                                        <h3>Insurance</h3>
-                                        <span>GHS2500</span>
-                                        <small><Link>Read More</Link></small>
+                                        <h3 className='hide'>Insurance</h3>
+                                        <span className='push'>GHS2500</span>
                                     </td>
                                     <td className='price-next'>
                                         <h3>Enhanced</h3>
                                         <span>GHS2500</span>
-                                        <small><Link>Read More</Link></small>
                                     </td>
                                     <td className='price-next'>
-                                        <h3>Insurance</h3>
-                                        <span>GHS5000</span>
-                                        <small><Link>Read More</Link></small>
+                                        <h3 className='hide'>Insurance</h3>
+                                        <span className='push'>GHS5000</span>
                                     </td>
                                     <td className='price-next'>
                                         <h3>Enhanced</h3>
                                         <span>GHS5000</span>
-                                        <small><Link>Read More</Link></small>
                                     </td>
                                     <td className='price-next'>
-                                        <h3>Insurance</h3>
-                                        <span>GHS10000</span>
-                                        <small><Link>Read More</Link></small>
+                                        <h3 className='hide'>Insurance</h3>
+                                        <span className='push'>GHS10000</span>
                                     </td>
                                     <td className='price-next'>
                                         <h3>Enhanced</h3>
                                         <span>GHS10000</span>
-                                        <small><Link>Read More</Link></small>
                                     </td>
 
 
@@ -298,7 +286,7 @@ const ProductServices = () => {
                                     <td className='heading-total'>Total sum assured</td>
                                     <td className='row-center-total'>GHS 9,000</td>
                                     <td className='row-center-total'>GHS 21,000</td>
-                                    <td className='row-center-total'>GHS 18,000</td>
+                                    <td className='row-center-total'>GHS18,000</td>
                                     <td className='row-center-total'>GHS 42,000</td>
                                     <td className='row-center-total'>GHS 30,000</td>
                                     <td className='row-center-total'>GHS 54,000</td>
