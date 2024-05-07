@@ -237,7 +237,7 @@ const ProductServices = () => {
                                     </td>
                                     <td className='price-next'>
                                         <h3>Enhanced</h3>
-                                        <span>DOSH-1200</span>
+                                        <span>DOSH-1000</span>
                                     </td>
                                     <td className='price-next'>
                                         <h3 className='hide'>Insurance</h3>
@@ -261,7 +261,7 @@ const ProductServices = () => {
                                     </td>
                                     <td className='price-next'>
                                         <h3>Enhanced</h3>
-                                        <span>DOSH-11000</span>
+                                        <span>DOSH-10000</span>
                                     </td>
 
 
