@@ -664,11 +664,10 @@ td {
 .price-like,
 .price-next {
     border: 1px solid rgba(255, 255, 255, 0.1);
-    width: 110px;
+    width: 115px;
     border-right: 2px solid #9E825B;
     /* padding-top: 10px; */
     letter-spacing: 2px;
-    padding-left: 5px;
     font-family: "Inter", sans-serif;
 }
 
@@ -711,6 +710,12 @@ td {
     color: var(--color-white);
     font-weight: 600;
     font-size: 12px;
+    border-radius: 10px;
+    padding-left: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, rgb(158, 130, 91), rgb(207, 205, 205));
 }
 
 .price small,
