@@ -1,10 +1,11 @@
 import Finance from "./images/dosh-financial.jpg"
+import Lady from "./images/prettylady.jpg"
 
 const products = [
     {
         id: 1,
         title: 'DOSH FINANCIAL',
-        image: Finance,
+        image: Lady,
         readmore: '/financial',
         quote: 'You have the dream, we have the funds its the perfect love story. Get the right financial help for your personal and business needs anytime with less paperwork on DOSH.',
     },
@@ -34,7 +35,7 @@ export const projectDetails = [
         img: Finance,
         category: 'finance',
         title: 'DOSH FINANCE',
-        details: 'Lorem ipsum dolor',
+        details: 'You have the dream, we have the funds its the perfect love story.',
     },
     {
         id: 2,

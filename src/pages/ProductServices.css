@@ -715,7 +715,7 @@ td {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to right, rgb(158, 130, 91), rgb(207, 205, 205));
+    /* background: linear-gradient(to right, rgb(158, 130, 91), rgb(207, 205, 205)); */
 }
 
 .price small,
