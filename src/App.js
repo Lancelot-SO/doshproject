@@ -14,6 +14,7 @@ import Financial from './components/Financial'
 import BackToTop from './components/BackToTop'
 import RegModal from './components/RegModal'
 import Insurance from './pages/Insurance'
+import HomeTest from './pages/HomeTest'
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
           <Route path='/financial' element={<Financial />} />
           <Route path='/regmodal' element={<RegModal />} />
           <Route path='/insurance' element={<Insurance />} />
+          <Route path='/home_test' element={<HomeTest />} />
           <Route path='*' element={<Navigate to="/errorpage" />} />
         </Routes>
         <Footer />
