@@ -30,6 +30,8 @@ import { IoIosArrowDown } from 'react-icons/io';
 const HomeTest = () => {
 
     const [slides, setSlides] = useState([]);
+    const baseURL = 'https://doshcms.interactivedigital.com.gh/';
+
 
 
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
@@ -119,9 +121,8 @@ const HomeTest = () => {
 
                         <div>
                             {slides.map((slide, index) => (
-
                                 <div className='slide first' key={index}>
-                                    <img src={slide.slideshow_image} alt='bing' loading='lazy' />
+                                    <img src={`${baseURL}${slide.slideshow_image.replace(/\\/g, '')}`} alt='bing' loading='lazy' />
                                     <div className='hero__text'>
                                         <p className='first_slider'>{slide.caption}</p>
                                         <p className='first_slider-p'>{slide.body}</p>
@@ -148,6 +149,7 @@ const HomeTest = () => {
                                         </div>
                                     </div>
                                 </div>
+
                             ))}
 
                         </div>
