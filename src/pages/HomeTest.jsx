@@ -29,6 +29,9 @@ import { IoIosArrowDown } from 'react-icons/io';
 
 const HomeTest = () => {
 
+    const [slides, setSlides] = useState([]);
+
+
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
     const sections = ['home', 'money', 'ride', 'digital', 'lastride']; // Add more section IDs here if needed
@@ -68,7 +71,7 @@ const HomeTest = () => {
                 document.getElementById('radio' + counter).checked = true;
                 setCounter(prevCounter => (prevCounter % 8) + 1);
             }
-        }, 10000);
+        }, 100000);
 
         return () => clearInterval(intervalId);
     }, [counter, isPaused]);
@@ -88,53 +91,67 @@ const HomeTest = () => {
         AOS.refresh();
     }, []);
 
+    useEffect(() => {
+        fetch('https://doshcms.interactivedigital.com.gh/api/show-slideshow')
+            .then(response => response.json())
+            .then(data => {
+                setSlides(data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }, []);
+
     return (
         <div className='main__hero'>
             <div className='hero'>
                 <div className='slider'>
                     <div className='slides' onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
                         <input type="radio" name="radio-button" id="radio1" />
-                        <input type="radio" name="radio-button" id="radio2" />
+                        {/*<input type="radio" name="radio-button" id="radio2" />
                         <input type="radio" name="radio-button" id="radio3" />
                         <input type="radio" name="radio-button" id="radio4" />
                         <input type="radio" name="radio-button" id="radio5" />
                         <input type="radio" name="radio-button" id="radio6" />
                         <input type="radio" name="radio-button" id="radio7" />
-                        <input type="radio" name="radio-button" id="radio8" />
+                        <input type="radio" name="radio-button" id="radio8" />*/}
 
 
-                        <div className='slide first'>
-                            <img src={slider1} alt='hero' loading='lazy' />
-                            <div className='hero__text'>
-                                <p className='first_slider'>Health <b>insurance</b> for the <br />
-                                    years you need it the most.</p>
-                                <p className='first_slider-p'>Your sixties must not be spent navigating arthritis and other medical
-                                    emergencies. Let DOSH help you with all-inclusive health coverage while you bask in the affection of loved ones. Dial *915# to sign up now.
-                                </p>
-                            </div>
-                            <div className='slide-text'>
-                                <h3>People are signing  with us</h3>
-                                <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="28"
-                                            height="28"
-                                            fill="currentColor"
-                                            class="bi bi-arrow-right"
-                                            viewBox="0 0 16 16"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-                                            />
-                                        </svg>
-                                    </Link>
+                        <div>
+                            {slides.map((slide, index) => (
+
+                                <div className='slide first' key={index}>
+                                    <img src={slide.slideshow_image} alt='bing' loading='lazy' />
+                                    <div className='hero__text'>
+                                        <p className='first_slider'>{slide.caption}</p>
+                                        <p className='first_slider-p'>{slide.body}</p>
+                                    </div>
+                                    <div className='slide-text'>
+                                        <h3>People are signing  with us</h3>
+                                        <div className="slide-arrow">
+                                            <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                                <small>Join DOSH</small>
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="28"
+                                                    height="28"
+                                                    fill="currentColor"
+                                                    class="bi bi-arrow-right"
+                                                    viewBox="0 0 16 16"
+                                                >
+                                                    <path
+                                                        fill-rule="evenodd"
+                                                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                                                    />
+                                                </svg>
+                                            </Link>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            ))}
+
                         </div>
-                        <div className='slide'>
+                        {/*<div className='slide'>
                             <img src={slider2} alt='hero' loading='lazy' />
                             <div className='hero__text'>
                                 <p className='second_slider-h2'>We've got <b>insurance</b> for <br /> your old girl.</p>
@@ -346,31 +363,31 @@ const HomeTest = () => {
                                     </Link>
                                 </div>
                             </div>
-                        </div>
+                        </div>*/}
 
 
                         <div className='navigate_auto' onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
                             <div className='auto-btn1'></div>
-                            <div className='auto-btn2'></div>
+                            {/*<div className='auto-btn2'></div>
                             <div className='auto-btn3'></div>
                             <div className='auto-btn4'></div>
                             <div className='auto-btn5'></div>
                             <div className='auto-btn6'></div>
                             <div className='auto-btn7'></div>
-                            <div className='auto-btn8'></div>
+                            <div className='auto-btn8'></div>*/}
                         </div>
 
                     </div>
 
                     <div className='navigate_manual' onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
                         <label htmlFor='radio1' className='manual-btn'></label>
-                        <label htmlFor='radio2' className='manual-btn'></label>
+                        {/* <label htmlFor='radio2' className='manual-btn'></label>
                         <label htmlFor='radio3' className='manual-btn'></label>
                         <label htmlFor='radio4' className='manual-btn'></label>
                         <label htmlFor='radio5' className='manual-btn'></label>
                         <label htmlFor='radio6' className='manual-btn'></label>
                         <label htmlFor='radio7' className='manual-btn'></label>
-                        <label htmlFor='radio8' className='manual-btn'></label>
+                        <label htmlFor='radio8' className='manual-btn'></label>*/}
 
 
                     </div>
