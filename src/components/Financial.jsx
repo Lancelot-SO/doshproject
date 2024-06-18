@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 const Financial = ({ onClose }) => {
     const modalRef = useRef();
 
-    const [item, setItem] = useState({ name: 'finance' })
+    const [item, setItem] = useState({ name: 'insurance' })
     const [proj, setProj] = useState([]);
     const [active, setActive] = useState(0)
 
@@ -23,7 +23,7 @@ const Financial = ({ onClose }) => {
 
     useEffect(() => {
         const filteredProjects = projectDetails.filter(project => {
-            return item.name === 'finance' ? project.category === 'finance' : project.category === item.name;
+            return item.name === 'insurance' ? project.category === 'insurance' : project.category === item.name;
         });
         setProj(filteredProjects);
     }, [item]);

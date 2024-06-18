@@ -910,7 +910,11 @@ label {
   line-height: 25px;
   letter-spacing: 0em;
   text-align: left;
+  color: #000;
+}
 
+.finance-about__right span {
+  color: #000;
 }
 
 .finance-about__right a {

@@ -1,5 +1,11 @@
 import Finance from "./images/dosh-financial.jpg"
 import Lady from "./images/prettylady.jpg"
+import Insurance from "./images/elevate2.png"
+import Money from "./images/money.png"
+import Ride from "./images/ride.png"
+import Ecommerce from "./images/Vector334.png"
+import Pay from "./images/scale.png"
+
 
 const products = [
     {
@@ -22,26 +28,86 @@ export default products;
 
 export const projectLinks = [
     {
-        name: 'finance',
+        name: 'financial',
     },
     {
         name: 'insurance',
+    },
+    {
+        name: 'ride',
+    },
+    {
+        name: 'e-commerce',
+    },
+    {
+        name: 'pay',
+    },
+    {
+        name: 'erp',
     },
 ]
 
 export const projectDetails = [
     {
         id: 1,
-        img: Finance,
-        category: 'finance',
+        img: Money,
+        category: 'financial',
         title: 'DOSH FINANCE',
-        details: 'You have the dream, we have the funds its the perfect love story.',
+        details: `At DOSH, we offer customized financial assistance for all your personal and business needs. Access the funds you need, on your terms. DOSH offers accessible and innovative funding options, coupled with low to no-interest repayment options. Whether it's for your business, entrepreneurial ventures, or personal needs, our well-curated funding options cater to any long-term or short-term financial need.  Our licensed services provide benefits to our clients, worldwide, ensuring a reliable funding experience. Let DOSH empower you to turn your dreams into reality.`,
     },
     {
         id: 2,
-        img: Finance,
+        img: Insurance,
         title: 'DOSH INSURANCE',
         category: 'insurance',
+        desc: 'Experience Comprehensive Coverage for Your Medical Needs.',
+        lastdesc: 'Safeguard your health with DOSH Insurance.',
+        details: `Experience Comprehensive Coverage for Your Medical Needs.
+Our mission at DOSH Insurance is to empower lives by ensuring your access to funds for quality healthcare. We are dedicated to helping you and your loved ones live life to the fullest, by providing reliable health insurance solutions. Our extensive network of accredited service providers spans all regions and offers comprehensive healthcare coverage. Our team of experienced finance and health experts have curated a wide range of product options that cater to businesses, individuals, and employees at all levels.
+Safeguard your health with DOSH Insurance.`,
+    },
+    {
+        id: 3,
+        img: Ride,
+        title: 'DOSH RIDE',
+        category: 'ride',
+        desc: 'Experience Comprehensive Coverage for Your Medical Needs.',
+        lastdesc: 'Safeguard your health with DOSH Insurance.',
+        details: `Experience Comprehensive Coverage for Your Medical Needs.
+Our mission at DOSH Insurance is to empower lives by ensuring your access to funds for quality healthcare. We are dedicated to helping you and your loved ones live life to the fullest, by providing reliable health insurance solutions. Our extensive network of accredited service providers spans all regions and offers comprehensive healthcare coverage. Our team of experienced finance and health experts have curated a wide range of product options that cater to businesses, individuals, and employees at all levels.
+Safeguard your health with DOSH Insurance`,
+    },
+    {
+        id: 4,
+        img: Ecommerce,
+        title: 'DOSH E-COMMERCE',
+        category: 'e-commerce',
+        desc: 'Experience Comprehensive Coverage for Your Medical Needs.',
+        lastdesc: 'Safeguard your health with DOSH Insurance.',
+        details: `Our mission at DOSH Insurance is to empower lives by ensuring 
+                your access to funds for quality healthcare.
+                We are dedicated to helping you and your loved ones live life to the fullest, 
+                by providing reliable health insurance solutions.Our extensive network of accredited 
+                service providers spans all regions and offers comprehensive healthcare coverage.
+                Our team of experienced finance and health experts have curated a wide range of product 
+                options that cater to businesses, individuals, and employees at all levels.`,
+    },
+    {
+        id: 5,
+        img: Pay,
+        title: 'DOSH PAY',
+        category: 'pay',
+        desc: 'Experience Comprehensive Coverage for Your Medical Needs.',
+        lastdesc: 'Safeguard your health with DOSH Insurance.',
+        details: `Experience Comprehensive Coverage for Your Medical Needs.
+Our mission at DOSH Insurance is to empower lives by ensuring your access to funds for quality healthcare. We are dedicated to helping you and your loved ones live life to the fullest, by providing reliable health insurance solutions. Our extensive network of accredited service providers spans all regions and offers comprehensive healthcare coverage. Our team of experienced finance and health experts have curated a wide range of product options that cater to businesses, individuals, and employees at all levels.
+Safeguard your health with DOSH Insurance`,
+    },
+    {
+        id: 6,
+        img: Finance,
+        title: 'DOSH ERP',
+        category: 'erp',
         desc: 'Experience Comprehensive Coverage for Your Medical Needs.',
         lastdesc: 'Safeguard your health with DOSH Insurance.',
         details: `Our mission at DOSH Insurance is to empower lives by ensuring 

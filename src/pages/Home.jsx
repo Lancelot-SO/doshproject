@@ -24,10 +24,13 @@ import "aos/dist/aos.css";
 
 import VideoPopup from '../components/VideoPopup.jsx';
 import { IoIosArrowDown } from 'react-icons/io';
+import Financial from '../components/Financial.jsx';
 
 
 
 const Home = () => {
+
+
 
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
@@ -53,6 +56,7 @@ const Home = () => {
         }
     };
 
+    const [showFinanceModal, setShowFinanceModal] = useState(false);
 
     const [counter, setCounter] = useState(1);
     const [isPaused, setIsPaused] = useState(false);
@@ -403,7 +407,7 @@ const Home = () => {
                             We have a vast network of accredited service providers that
                             ensure access to medical care, whenever and wherever you need it.
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/#/auth/login-type' target="_blank" rel="noopener noreferrer">Read more
+                        <Link onClick={() => setShowFinanceModal(true)}>Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -423,6 +427,8 @@ const Home = () => {
                         <img src={elevate2} alt='student' loading='lazy' />
                     </div>
                 </div>
+                {showFinanceModal && <Financial onClose={() => setShowFinanceModal(false)} />}
+
             </section>
             <section id='money' className='money__section'>
                 <div className='container home__money'>
@@ -441,7 +447,7 @@ const Home = () => {
                             financial stability as you experience unparalleled growth with the unique
                             DOSH approach.
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Read more
+                        <Link onClick={() => setShowFinanceModal(true)}>Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -458,6 +464,8 @@ const Home = () => {
                         </Link>
                     </div>
                 </div>
+                {showFinanceModal && <Financial onClose={() => setShowFinanceModal(false)} />}
+
             </section>
 
             {/*<section className='digital__section'>
@@ -509,7 +517,7 @@ const Home = () => {
                             and comfortable vehicles. At DOSH Ride, our goal is to ensure that every
                             journey is an extraordinary experience!
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Read more
+                        <Link onClick={() => setShowFinanceModal(true)}>Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -526,6 +534,8 @@ const Home = () => {
                         </Link>
                     </div>
                 </div>
+                {showFinanceModal && <Financial onClose={() => setShowFinanceModal(false)} />}
+
             </section>
 
             <section id='digital' className='digital__section'>
@@ -542,7 +552,7 @@ const Home = () => {
                             DOSH ERP solutions, your business will ignite growth and propel you to
                             unprecedented success.
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Read more
+                        <Link onClick={() => setShowFinanceModal(true)}>Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -562,6 +572,8 @@ const Home = () => {
                         <img src={reinvigorate} alt='digital' loading='lazy' />
                     </div>
                 </div>
+                {showFinanceModal && <Financial onClose={() => setShowFinanceModal(false)} />}
+
             </section>
 
             <section id='lastride' className='ride__section'>
@@ -581,7 +593,7 @@ const Home = () => {
                             management systems, optimized returns processes,
                             and delivery systems.
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Read more
+                        <Link onClick={() => setShowFinanceModal(true)}>Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -598,6 +610,8 @@ const Home = () => {
                         </Link>
                     </div>
                 </div>
+                {showFinanceModal && <Financial onClose={() => setShowFinanceModal(false)} />}
+
             </section>
 
             <div className='ps__page'>
