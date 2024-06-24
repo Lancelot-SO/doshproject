@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './ProductServices.css';
 import product from '../images/prodNew.png'
-import productservice from "../images/productservice.png"
+// import productservice from "../images/productservice.png"
 import doshdata from "../doshdata.js"
 import doshvideo from '../images/dosh.mp4'
 
@@ -13,8 +13,19 @@ import Financial from '../components/Financial.jsx';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { IoIosArrowDown } from 'react-icons/io';
+import Insure from '../components/Insure.jsx';
 
 const ProductServices = () => {
+
+    const [showInsureModal, setShowInsureModal] = useState(false);
+
+    const handleReadMore = (id) => {
+        if (id === 1) {
+            setShowInsureModal(true);
+        } else if (id === 2) {
+            setShowFinanceModal(true);
+        }
+    };
 
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
@@ -44,7 +55,7 @@ const ProductServices = () => {
     const [products] = useState(doshdata);
     const [index, setIndex] = useState(0);
 
-    const [showFinanceModal, setshowFinanceModal] = useState(false);
+    const [showFinanceModal, setShowFinanceModal] = useState(false);
 
 
     useEffect(() => {
@@ -97,7 +108,7 @@ const ProductServices = () => {
             <button className="scroll-button" onClick={scrollToNextSection}>
                 <IoIosArrowDown size={30} />
             </button>
-            <section id='service' className='product'>
+            {/* <section id='service' className='product'>
                 <div className='container products'>
                     <div data-aos="zoom-in" className='product-left'>
                         <img src={productservice} alt='productservice' loading='lazy' />
@@ -116,7 +127,7 @@ const ProductServices = () => {
                         </p>
                     </div>
                 </div>
-            </section>
+            </section>*/}
 
             <section id='slider' className='productslider'>
                 <h1 className='title'>Streamlined Financial Solutions<br />
@@ -124,60 +135,55 @@ const ProductServices = () => {
                 </h1>
                 <h2>Odio vulputate cras vel lacinia turpis volutpat adipiscing. Sollicitudin at velit, blandit tempus nunc in.</h2>
                 <div className='section1-center'>
-                    {
-                        products.map((item, indexPeople) => {
-                            const { id, quote, image, title } = item;
-                            let position = "nextSlide";
-                            if (indexPeople === index) {
-                                position = "activeSlide";
-                            }
-                            if (indexPeople === index - 1 || (index === 0 && indexPeople === products.length - 1)) {
-                                position = "lastSlide"
-                            }
-                            return (
-                                <div>
-                                    <article className={position} key={id}>
-                                        <div className='divider'>
-                                            <div className='left'>
-                                                <h4>{title}</h4>
-                                                <hr className='underline'></hr>
-                                                <p className='quote'>{quote}</p>
-                                                <Link onClick={() => setshowFinanceModal(true)}>Read more
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        width="14"
-                                                        height="14"
-                                                        fill="currentColor"
-                                                        class="bi bi-arrow-right"
-                                                        viewBox="0 0 16 16"
-                                                    >
-                                                        <path
-                                                            fill-rule="evenodd"
-                                                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-                                                        />
-                                                    </svg>
-                                                </Link>
-
-                                            </div>
-                                            <div className='right'>
-                                                <img src={image} alt='person' className="person-img" loading='lazy' />
-                                            </div>
-
+                    {products.map((item, indexPeople) => {
+                        const { id, quote, image, title } = item;
+                        let position = 'nextSlide';
+                        if (indexPeople === index) {
+                            position = 'activeSlide';
+                        }
+                        if (indexPeople === index - 1 || (index === 0 && indexPeople === products.length - 1)) {
+                            position = 'lastSlide';
+                        }
+                        return (
+                            <div key={id}>
+                                <article className={position}>
+                                    <div className='divider'>
+                                        <div className='left'>
+                                            <h4>{title}</h4>
+                                            <hr className='underline'></hr>
+                                            <p className='quote'>{quote}</p>
+                                            <Link onClick={() => handleReadMore(id)}>Read more
+                                                <svg
+                                                    xmlns='http://www.w3.org/2000/svg'
+                                                    width='14'
+                                                    height='14'
+                                                    fill='currentColor'
+                                                    className='bi bi-arrow-right'
+                                                    viewBox='0 0 16 16'
+                                                >
+                                                    <path
+                                                        fillRule='evenodd'
+                                                        d='M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8'
+                                                    />
+                                                </svg>
+                                            </Link>
                                         </div>
-
-                                    </article>
-                                    <button className='prev' onClick={() => setIndex(index - 1)}>
-                                        <FaArrowLeftLong />
-                                    </button>
-                                    <button className='next' onClick={() => setIndex(index + 1)}>
-                                        <FaArrowRightLong />
-                                    </button>
-                                </div>
-                            )
-                        })
-                    }
-                    {showFinanceModal && <Financial onClose={() => setshowFinanceModal(false)} />}
-
+                                        <div className='right'>
+                                            <img src={image} alt='person' className='person-img' loading='lazy' />
+                                        </div>
+                                    </div>
+                                </article>
+                                <button className='prev' onClick={() => setIndex(index - 1)}>
+                                    <FaArrowLeftLong />
+                                </button>
+                                <button className='next' onClick={() => setIndex(index + 1)}>
+                                    <FaArrowRightLong />
+                                </button>
+                            </div>
+                        );
+                    })}
+                    {showFinanceModal && <Financial onClose={() => setShowFinanceModal(false)} />}
+                    {showInsureModal && <Insure onClose={() => setShowInsureModal(false)} />}
                 </div>
 
             </section>

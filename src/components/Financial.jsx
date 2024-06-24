@@ -63,7 +63,7 @@ const Financial = ({ onClose, initialItem }) => {
                                             <span>{item.desc}</span>
                                             <p>{item.details}</p>
                                             <span>{item.lastdesc}</span>
-                                            <Link to="/register">Sign up
+                                            <Link to="https://dsp.onenet.xyz:50443/#/" target='_blank' rel='noopener noreferrer'>Sign up
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     width="14"
