@@ -4,7 +4,7 @@ import Insurance from "./images/elevate2.png"
 import Money from "./images/money.png"
 import Ride from "./images/ride.png"
 import Ecommerce from "./images/Vector334.png"
-import Pay from "./images/scale.png"
+import Scale from "./images/scale.png"
 
 
 const products = [
@@ -40,9 +40,6 @@ export const projectLinks = [
         name: 'e-commerce',
     },
     {
-        name: 'pay',
-    },
-    {
         name: 'erp',
     },
 ]
@@ -74,12 +71,12 @@ Safeguard your health with DOSH Insurance.`,
         desc: 'Experience Comprehensive Coverage for Your Medical Needs.',
         lastdesc: 'Safeguard your health with DOSH Insurance.',
         details: `Experience Comprehensive Coverage for Your Medical Needs.
-Our mission at DOSH Insurance is to empower lives by ensuring your access to funds for quality healthcare. We are dedicated to helping you and your loved ones live life to the fullest, by providing reliable health insurance solutions. Our extensive network of accredited service providers spans all regions and offers comprehensive healthcare coverage. Our team of experienced finance and health experts have curated a wide range of product options that cater to businesses, individuals, and employees at all levels.
-Safeguard your health with DOSH Insurance`,
+                  Our mission at DOSH Insurance is to empower lives by ensuring your access to funds for quality healthcare. We are dedicated to helping you and your loved ones live life to the fullest, by providing reliable health insurance solutions. Our extensive network of accredited service providers spans all regions and offers comprehensive healthcare coverage. Our team of experienced finance and health experts have curated a wide range of product options that cater to businesses, individuals, and employees at all levels.
+                  Safeguard your health with DOSH Insurance`,
     },
     {
         id: 4,
-        img: Ecommerce,
+        img: Scale,
         title: 'DOSH E-COMMERCE',
         category: 'e-commerce',
         desc: 'Experience Comprehensive Coverage for Your Medical Needs.',
@@ -94,18 +91,7 @@ Safeguard your health with DOSH Insurance`,
     },
     {
         id: 5,
-        img: Pay,
-        title: 'DOSH PAY',
-        category: 'pay',
-        desc: 'Experience Comprehensive Coverage for Your Medical Needs.',
-        lastdesc: 'Safeguard your health with DOSH Insurance.',
-        details: `Experience Comprehensive Coverage for Your Medical Needs.
-Our mission at DOSH Insurance is to empower lives by ensuring your access to funds for quality healthcare. We are dedicated to helping you and your loved ones live life to the fullest, by providing reliable health insurance solutions. Our extensive network of accredited service providers spans all regions and offers comprehensive healthcare coverage. Our team of experienced finance and health experts have curated a wide range of product options that cater to businesses, individuals, and employees at all levels.
-Safeguard your health with DOSH Insurance`,
-    },
-    {
-        id: 6,
-        img: Finance,
+        img: Ecommerce,
         title: 'DOSH ERP',
         category: 'erp',
         desc: 'Experience Comprehensive Coverage for Your Medical Needs.',

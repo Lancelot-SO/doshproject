@@ -2,13 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { projectLinks, projectDetails } from '../doshdata';
 import { Link } from 'react-router-dom';
 
-const Financial = ({ onClose, initialItem }) => {
+const Ecommerce = ({ onClose, initialItem }) => {
     const modalRef = useRef();
 
-    const [item, setItem] = useState({ name: initialItem || 'financial' });
+    const [item, setItem] = useState({ name: initialItem || 'e-commerce' });
     const [proj, setProj] = useState([]);
     const [active, setActive] = useState(
-        projectLinks.findIndex(link => link.name === (initialItem || 'financial'))
+        projectLinks.findIndex(link => link.name === (initialItem || 'e-commerce'))
     );
 
     const closeModal = (e) => {
@@ -20,7 +20,7 @@ const Financial = ({ onClose, initialItem }) => {
     // set links based on items clicked
     useEffect(() => {
         const filteredProjects = projectDetails.filter(project => {
-            return item.name === 'financial' ? project.category === 'financial' : project.category === item.name;
+            return item.name === 'e-commerce' ? project.category === 'e-commerce' : project.category === item.name;
         });
         setProj(filteredProjects);
     }, [item]);
@@ -90,4 +90,4 @@ const Financial = ({ onClose, initialItem }) => {
     );
 };
 
-export default Financial;
+export default Ecommerce;

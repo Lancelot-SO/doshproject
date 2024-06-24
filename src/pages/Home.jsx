@@ -25,6 +25,10 @@ import "aos/dist/aos.css";
 import VideoPopup from '../components/VideoPopup.jsx';
 import { IoIosArrowDown } from 'react-icons/io';
 import Financial from '../components/Financial.jsx';
+import Insure from '../components/Insure.jsx';
+import Ride from '../components/Ride.jsx';
+import Ecommerce from '../components/Ecommerce.jsx';
+import Erp from '../components/Erp.jsx';
 
 
 
@@ -57,6 +61,16 @@ const Home = () => {
     };
 
     const [showFinanceModal, setShowFinanceModal] = useState(false);
+    const [showInsureModal, setShowInsureModal] = useState(false);
+    const [showRideModal, setShowRideModal] = useState(false);
+    const [showEcommerceModal, setShowEcommerceModal] = useState(false);
+    const [showErpModal, setShowErpModal] = useState(false);
+
+
+
+
+    const [initialItem, setInitialItem] = useState('');
+
 
     const [counter, setCounter] = useState(1);
     const [isPaused, setIsPaused] = useState(false);
@@ -398,8 +412,7 @@ const Home = () => {
                 <div className='container home__student'>
                     <div className='home__student-left'>
                         <h4>DOSH HEALTH INSURANCE:</h4>
-                        <h3>Elevate your healthcare
-                            experience</h3>
+                        <h3>Elevate your healthcare experience</h3>
                         <p>
                             Take control of your healthcare the DOSH way. DOSH Health insurance is
                             an all-inclusive service that provides coverage for medical consultations,
@@ -407,17 +420,17 @@ const Home = () => {
                             We have a vast network of accredited service providers that
                             ensure access to medical care, whenever and wherever you need it.
                         </p>
-                        <Link onClick={() => setShowFinanceModal(true)}>Read more
+                        <Link onClick={() => { setShowInsureModal(true); setInitialItem('insurance'); }}>Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
                                 height="16"
                                 fill="currentColor"
-                                class="bi bi-arrow-right"
+                                className="bi bi-arrow-right"
                                 viewBox="0 0 16 16"
                             >
                                 <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
                                 />
                             </svg>
@@ -427,8 +440,7 @@ const Home = () => {
                         <img src={elevate2} alt='student' loading='lazy' />
                     </div>
                 </div>
-                {showFinanceModal && <Financial onClose={() => setShowFinanceModal(false)} />}
-
+                {showInsureModal && <Insure onClose={() => setShowInsureModal(false)} initialItem={initialItem} />}
             </section>
             <section id='money' className='money__section'>
                 <div className='container home__money'>
@@ -437,8 +449,7 @@ const Home = () => {
                     </div>
                     <div className='home__money-right'>
                         <h4>DOSH FINANCE:</h4>
-                        <h3>Make your money<br />
-                            work for you</h3>
+                        <h3>Make your money<br /> work for you</h3>
                         <p>
                             DOSH Finance provides access to personalized financial solutions,
                             including financial advisory, investment guidance, and wealth
@@ -447,25 +458,24 @@ const Home = () => {
                             financial stability as you experience unparalleled growth with the unique
                             DOSH approach.
                         </p>
-                        <Link onClick={() => setShowFinanceModal(true)}>Read more
+                        <Link onClick={() => { setShowFinanceModal(true); setInitialItem('financial'); }}>Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
                                 height="16"
                                 fill="currentColor"
-                                class="bi bi-arrow-right"
+                                className="bi bi-arrow-right"
                                 viewBox="0 0 16 16"
                             >
                                 <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
                                 />
                             </svg>
                         </Link>
                     </div>
                 </div>
-                {showFinanceModal && <Financial onClose={() => setShowFinanceModal(false)} />}
-
+                {showFinanceModal && <Financial onClose={() => setShowFinanceModal(false)} initialItem={initialItem} />}
             </section>
 
             {/*<section className='digital__section'>
@@ -517,7 +527,7 @@ const Home = () => {
                             and comfortable vehicles. At DOSH Ride, our goal is to ensure that every
                             journey is an extraordinary experience!
                         </p>
-                        <Link onClick={() => setShowFinanceModal(true)}>Read more
+                        <Link onClick={() => { setShowRideModal(true); setInitialItem('ride'); }}>Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -534,7 +544,7 @@ const Home = () => {
                         </Link>
                     </div>
                 </div>
-                {showFinanceModal && <Financial onClose={() => setShowFinanceModal(false)} />}
+                {showRideModal && <Ride onClose={() => setShowRideModal(false)} initialItem={initialItem} />}
 
             </section>
 
@@ -552,7 +562,7 @@ const Home = () => {
                             DOSH ERP solutions, your business will ignite growth and propel you to
                             unprecedented success.
                         </p>
-                        <Link onClick={() => setShowFinanceModal(true)}>Read more
+                        <Link onClick={() => setShowErpModal(true)}>Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -572,7 +582,7 @@ const Home = () => {
                         <img src={reinvigorate} alt='digital' loading='lazy' />
                     </div>
                 </div>
-                {showFinanceModal && <Financial onClose={() => setShowFinanceModal(false)} />}
+                {showErpModal && <Erp onClose={() => setShowErpModal(false)} />}
 
             </section>
 
@@ -593,7 +603,7 @@ const Home = () => {
                             management systems, optimized returns processes,
                             and delivery systems.
                         </p>
-                        <Link onClick={() => setShowFinanceModal(true)}>Read more
+                        <Link onClick={() => setShowEcommerceModal(true)}>Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -610,7 +620,7 @@ const Home = () => {
                         </Link>
                     </div>
                 </div>
-                {showFinanceModal && <Financial onClose={() => setShowFinanceModal(false)} />}
+                {showEcommerceModal && <Ecommerce onClose={() => setShowEcommerceModal(false)} />}
 
             </section>
 
