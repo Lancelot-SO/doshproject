@@ -62,7 +62,7 @@ const Register = () => {
                                     <form className='log__form' onSubmit={handleFormSubmit}>
                                         <div className='form__log'>
                                             <button type='submit' className='log__btn'>Continue</button>
-                                            <span>Don't have an account ? <Link to='https://dsp.onenet.xyz:50443/#/' className='linker__signup' target="_blank" rel="noopener noreferrer">Login</Link></span>
+                                            <span>Don't have an account ? <Link to='/login' className='linker__signup'>Login</Link></span>
                                         </div>
                                     </form>
                                 </div>

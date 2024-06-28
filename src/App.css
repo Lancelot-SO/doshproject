@@ -95,6 +95,38 @@ img {
   width: 100%;
 }
 
+/* errorPage css start  */
+
+.main__error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.error-content {
+  width: 500px;
+  height: 400px;
+  background-color: #fff;
+  color: #0c0c22;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.error__link {
+  font-size: 50px;
+  color: #987C55;
+  font-weight: 800;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* errorPage css end  */
+
 /* header css start  */
 
 nav {

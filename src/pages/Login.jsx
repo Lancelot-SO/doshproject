@@ -3,7 +3,7 @@ import login from "../images/login-image.png";
 import { IoMdRefresh } from "react-icons/io";
 import "./Login.css";
 import { Link } from 'react-router-dom';
-import card from "../images/card.svg"
+// import card from "../images/card.svg"
 
 const Login = () => {
     const [captcha, setCaptcha] = useState('');
@@ -42,9 +42,10 @@ const Login = () => {
             case 0:
                 return (
                     <div className='log__input'>
-                        <label htmlFor='email'>Email Address</label>
-                        <input type='email' name='email' placeholder='Enter your email' className='inp' />
+                        <label htmlFor='dosh'>Dosh No.</label>
+                        <input type='text' name='doshnum' placeholder='Dosh Number' className='inp' />
                     </div>
+
                 );
             case 1:
                 return (
@@ -56,17 +57,11 @@ const Login = () => {
             case 2:
                 return (
                     <div className='log__input'>
-                        <label htmlFor='dosh'>Dosh No.</label>
-                        <input type='text' name='doshnum' placeholder='Dosh Number' className='inp' />
+                        <label htmlFor='email'>Email Address</label>
+                        <input type='email' name='email' placeholder='Enter your email' className='inp' />
                     </div>
                 );
-            case 3:
-                return (
-                    <div className='log__input'>
-                        <label htmlFor='username'>Username</label>
-                        <input type='text' name='username' placeholder='Enter Username' className='inp' />
-                    </div>
-                );
+
             default:
                 return null;
         }
@@ -85,7 +80,7 @@ const Login = () => {
                             <p className='radio__tag'>Login with</p>
                             <div className='radios'>
                                 <div className='radio'>
-                                    {["Email", "Phone", "Dosh No.", "Username"].map((option, index) => (
+                                    {["Dosh No.", "Phone", "Email",].map((option, index) => (
                                         <div key={index}>
                                             <input type='radio' className='main__radio' name='loginOption' onChange={() => handleRadioChange(index)} checked={selectedRadio === index} />
                                             <label>{option}</label>
@@ -126,7 +121,7 @@ const Login = () => {
                                     </div>
                                     <div className='form__log'>
                                         <button type='submit' className='log__btn'>Continue</button>
-                                        <span>Don't have an account ? <Link to='https://dsp.onenet.xyz:50443/#/' className='linker__signup' target="_blank" rel="noopener noreferrer">Sign up</Link></span>
+                                        <span>Don't have an account ? <Link to='/register' className='linker__signup'>Sign up</Link></span>
                                     </div>
                                 </form>
                             </div>
@@ -135,7 +130,7 @@ const Login = () => {
                 </div>
                 <div className='right__log'>
                     <div>
-                        <div className='right__overlay'>
+                        {/*<div className='right__overlay'>
                             <div className='right__content'>
                                 <div className='right__grid'>
                                     <div className='grid__card'>
@@ -190,7 +185,7 @@ const Login = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>*/}
                     </div>
                 </div>
             </div>

@@ -25,15 +25,23 @@ import "aos/dist/aos.css";
 import VideoPopup from '../components/VideoPopup.jsx';
 import { IoIosArrowDown } from 'react-icons/io';
 import Financial from '../components/Financial.jsx';
-import Insure from '../components/Insure.jsx';
+// import Insure from '../components/Insure.jsx';
 import Ride from '../components/Ride.jsx';
 import Ecommerce from '../components/Ecommerce.jsx';
 import Erp from '../components/Erp.jsx';
 
 
+import Insure from '../components/Insure.jsx';
+
 
 const Home = () => {
 
+    const [showInsureModal, setShowInsureModal] = useState(false);
+    const [activePackage, setActivePackage] = useState('');
+
+    const setInitialItem = (itemName) => {
+        setActivePackage(itemName); // Set the active package based on the link clicked
+    };
 
 
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
@@ -61,7 +69,7 @@ const Home = () => {
     };
 
     const [showFinanceModal, setShowFinanceModal] = useState(false);
-    const [showInsureModal, setShowInsureModal] = useState(false);
+    // const [showInsureModal, setShowInsureModal] = useState(false);
     const [showRideModal, setShowRideModal] = useState(false);
     const [showEcommerceModal, setShowEcommerceModal] = useState(false);
     const [showErpModal, setShowErpModal] = useState(false);
@@ -69,7 +77,7 @@ const Home = () => {
 
 
 
-    const [initialItem, setInitialItem] = useState('');
+    const [initialItem] = useState('');
 
 
     const [counter, setCounter] = useState(1);
@@ -420,7 +428,8 @@ const Home = () => {
                             We have a vast network of accredited service providers that
                             ensure access to medical care, whenever and wherever you need it.
                         </p>
-                        <Link onClick={() => { setShowInsureModal(true); setInitialItem('insurance'); }}>Read more
+                        <Link onClick={() => { setShowInsureModal(true); setInitialItem('insurance'); }}>
+                            Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -440,7 +449,9 @@ const Home = () => {
                         <img src={elevate2} alt='student' loading='lazy' />
                     </div>
                 </div>
-                {showInsureModal && <Insure onClose={() => setShowInsureModal(false)} initialItem={initialItem} />}
+                {showInsureModal && <Insure onClose={() => setShowInsureModal(false)} initialItem={activePackage} />}
+
+
             </section>
             <section id='money' className='money__section'>
                 <div className='container home__money'>
