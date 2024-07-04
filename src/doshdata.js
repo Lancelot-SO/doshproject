@@ -7,6 +7,13 @@ import Ecommerce from "./images/Vector334.png"
 import Scale from "./images/scale.png"
 
 import Avatar from "./images/dosh-365.png"
+import Ph1 from "./images/ph1.png"
+import ph2 from "./images/ph2.png"
+import ph3 from "./images/ph3.png"
+import ph4 from "./images/ph4.png"
+import ph5 from "./images/ph5.png"
+import ph6 from "./images/ph6.png"
+
 
 
 const products = [
@@ -76,7 +83,7 @@ export const packagelist = [
 export const insuranceDetails = [
     {
         id: "1",
-        img: Avatar,
+        img: Ph1,
         title: "DOSH",
         number: "365",
         desc: "Description",
@@ -86,7 +93,7 @@ export const insuranceDetails = [
     },
     {
         id: "2",
-        img: Avatar,
+        img: ph2,
         title: "DOSH",
         number: "750",
         desc: "Description",
@@ -96,7 +103,7 @@ export const insuranceDetails = [
     },
     {
         id: "3",
-        img: Avatar,
+        img: ph3,
         title: "DOSH",
         number: "1000",
         desc: "Description",
@@ -106,7 +113,7 @@ export const insuranceDetails = [
     },
     {
         id: "4",
-        img: Avatar,
+        img: ph4,
         title: "DOSH",
         number: "2500",
         desc: "Description",
@@ -116,7 +123,7 @@ export const insuranceDetails = [
     },
     {
         id: "5",
-        img: Avatar,
+        img: ph5,
         title: "DOSH",
         number: "5000",
         desc: "Description",
@@ -126,7 +133,7 @@ export const insuranceDetails = [
     },
     {
         id: "6",
-        img: Avatar,
+        img: ph6,
         title: "DOSH",
         number: "10000",
         desc: "Description",

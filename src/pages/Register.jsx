@@ -3,9 +3,10 @@ import login from "../images/login-image.png";
 import "./Login.css";
 import './Register.css';
 import { Link } from 'react-router-dom';
-import card from "../images/card.svg"
-import RegModal from '../components/RegModal';
+// import card from "../images/card.svg"
+// import RegModal from '../components/RegModal';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import Insurance from './Insurance';
 
 const Register = () => {
     const [selectedOption, setSelectedOption] = useState("selfregister");
@@ -20,7 +21,7 @@ const Register = () => {
         event.preventDefault();
         if (selectedOption === "selfregister") {
             setShowModal(true);
-            navigate('/regmodal');
+            navigate('/insurance');
         }
     };
     const closeModal = () => {
@@ -36,7 +37,7 @@ const Register = () => {
                     {showModal && selectedOption === "selfregister" && (
                         <div className="reg__modal-overlay">
                             <div className="reg__modal-content">
-                                <RegModal />
+                                <Insurance />
                                 <button className="reg__close-modal" onClick={closeModal}>X</button>
                             </div>
                         </div>
@@ -71,63 +72,62 @@ const Register = () => {
                     </div>
                     <div className='right__log'>
                         <div>
-
-                            <div className='right__overlay'>
-                                <div className='right__content'>
-                                    <div className='right__grid'>
-                                        <div className='grid__card'>
-                                            <small>DOSH Pay</small>
-                                            <div className='grid__pay'>
-                                                <img src={card} alt='credit-card' />
-                                                <span>View</span>
-                                            </div>
+                            {/*<div className='right__overlay'>
+                            <div className='right__content'>
+                                <div className='right__grid'>
+                                    <div className='grid__card'>
+                                        <small>DOSH Pay</small>
+                                        <div className='grid__pay'>
+                                            <img src={card} alt='credit-card' />
+                                            <span>View</span>
                                         </div>
-                                        <div className='grid__card'>
-                                            <small>Load Account</small>
-                                            <div className='grid__pay'>
-                                                <img src={card} alt='credit-card' />
-                                                <span>View</span>
-                                            </div>
+                                    </div>
+                                    <div className='grid__card'>
+                                        <small>Load Account</small>
+                                        <div className='grid__pay'>
+                                            <img src={card} alt='credit-card' />
+                                            <span>View</span>
                                         </div>
-                                        <div className='grid__card'>
-                                            <small>Send Money</small>
-                                            <div className='grid__pay'>
-                                                <img src={card} alt='credit-card' />
-                                                <span>View</span>
-                                            </div>
+                                    </div>
+                                    <div className='grid__card'>
+                                        <small>Send Money</small>
+                                        <div className='grid__pay'>
+                                            <img src={card} alt='credit-card' />
+                                            <span>View</span>
                                         </div>
-                                        <div className='grid__card'>
-                                            <small>Bulk
-                                                Disbursement</small>
-                                            <div className='grid__pay'>
-                                                <img src={card} alt='credit-card' />
-                                                <span>View</span>
-                                            </div>
+                                    </div>
+                                    <div className='grid__card'>
+                                        <small>Bulk
+                                            Disbursement</small>
+                                        <div className='grid__pay'>
+                                            <img src={card} alt='credit-card' />
+                                            <span>View</span>
                                         </div>
-                                        <div className='grid__card'>
-                                            <small>DOSH Pay</small>
-                                            <div className='grid__pay'>
-                                                <img src={card} alt='credit-card' />
-                                                <span>View</span>
-                                            </div>
+                                    </div>
+                                    <div className='grid__card'>
+                                        <small>DOSH Pay</small>
+                                        <div className='grid__pay'>
+                                            <img src={card} alt='credit-card' />
+                                            <span>View</span>
                                         </div>
-                                        <div className='grid__card'>
-                                            <small>DOSH Pay</small>
-                                            <div className='grid__pay'>
-                                                <img src={card} alt='credit-card' />
-                                                <span>View</span>
-                                            </div>
+                                    </div>
+                                    <div className='grid__card'>
+                                        <small>DOSH Pay</small>
+                                        <div className='grid__pay'>
+                                            <img src={card} alt='credit-card' />
+                                            <span>View</span>
                                         </div>
-                                        <div className='grid__card'>
-                                            <small>DOSH Pay</small>
-                                            <div className='grid__pay'>
-                                                <img src={card} alt='credit-card' />
-                                                <span>View</span>
-                                            </div>
+                                    </div>
+                                    <div className='grid__card'>
+                                        <small>DOSH Pay</small>
+                                        <div className='grid__pay'>
+                                            <img src={card} alt='credit-card' />
+                                            <span>View</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>*/}
                         </div>
                     </div>
                 </div>

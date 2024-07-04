@@ -1,7 +1,7 @@
 .insure-modal {
     display: flex;
     position: fixed;
-    z-index: 1000;
+    z-index: 500;
     left: 0;
     top: 0;
     width: 100%;
@@ -18,7 +18,7 @@
 .insure-content {
     display: flex;
     width: 1239px;
-    height: 606px;
+    height: 686px;
     background: #eae7e7;
     padding: 20px;
     flex-direction: column;
@@ -32,9 +32,18 @@
 
 .top__section-close {
     cursor: pointer;
-    width: 20px;
-    height: 20px;
-    background-color: chocolate;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background-color: #987C55;
+}
+
+.selector {
+    opacity: 0;
 }
 
 .top_list {
@@ -56,16 +65,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: gray;
+    background-color: #cacbcd;
     border-radius: 30px;
+    color: #90A3BF;
+    cursor: pointer;
 }
 
 .activator {
     background-color: #987C55;
-}
-
-.link_underline {
-    text-decoration: underline;
 }
 
 .package_list {
@@ -77,70 +84,85 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
-    gap: 10px;
-    margin-top: 10px;
+    justify-content: end;
+    gap: 60px;
+    margin-top: 30px;
+
 }
 
 .package_link {
-    color: #9E825B;
+    color: #90A3BF;
+    display: flex;
+}
+
+.link_underline {
+    font-size: 20px;
+    color: black;
+    font-weight: bolder;
 }
 
 .main_package {
     display: flex;
     margin-top: 40px;
-    max-width: 90%;
-    background-color: #ada7a0;
+    max-width: 100%;
+    background: url("/src/images/ModalBg.png");
     gap: 50px;
 }
 
 .package_left {
     margin-top: 20px;
-}
-
-.package_left img {
-    width: 380px;
-    height: 384px;
+    flex: 1;
 }
 
 .package_right {
     margin-top: 20px;
+    flex: 2;
 }
 
-.package_right h1 {
+.package_title {
     font-family: "Inter", sans-serif;
     font-size: 48.96px;
     font-weight: 400;
     line-height: 48.96px;
     text-align: left;
     margin-bottom: 20px;
+    color: #000;
 }
 
-.package_right h2 {
+.package_number {
     font-family: "Inter", sans-serif;
     font-size: 48.96px;
     font-weight: 800;
     line-height: 48.96px;
     text-align: left;
     margin-bottom: 10px;
+    color: #987C55;
 }
 
-.package_right span {
+.package_desc {
     font-family: "Inter", sans-serif;
     font-size: 24.98px;
     font-weight: 300;
     line-height: 29.6px;
     text-align: left;
     margin-bottom: 10px;
+    color: #000;
 }
 
-.package_right p {
+.package_details {
     font-family: "Inter", sans-serif;
     font-size: 12.99px;
     font-weight: 400;
     line-height: 23.98px;
     text-align: left;
     margin-bottom: 20px;
+    color: #000;
+}
+
+.flyer-link {
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    color: #987C55;
 }
 
 .package_right small {

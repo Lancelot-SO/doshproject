@@ -3,12 +3,12 @@ import login from "../images/login-image.png";
 import { IoMdRefresh } from "react-icons/io";
 import "./Login.css";
 import { Link } from 'react-router-dom';
-// import card from "../images/card.svg"
 
 const Login = () => {
     const [captcha, setCaptcha] = useState('');
     const [userInput, setUserInput] = useState('');
     const [selectedRadio, setSelectedRadio] = useState(null);
+    const [isValidCaptcha, setIsValidCaptcha] = useState(null);
 
     useEffect(() => {
         generateCaptcha();
@@ -21,15 +21,22 @@ const Login = () => {
             sum += alpha[Math.floor(Math.random() * alpha.length)];
         }
         setCaptcha(sum);
+        setIsValidCaptcha(null);
     };
 
-    const validateCaptcha = (e) => {
+    const handleFormSubmit = (e) => {
+        e.preventDefault(); // Prevent form submission to handle validation
+        validateCaptcha();
+    };
 
+    const validateCaptcha = () => {
         if (captcha === userInput) {
-            alert("Text is valid");
-            e.preventDefault()
+            setIsValidCaptcha(true);
+            // alert("Text is valid");
+            // You can add further form submission logic here
         } else {
-            alert("Text is invalid");
+            setIsValidCaptcha(false);
+            // alert("Text is invalid");
         }
     };
 
@@ -45,7 +52,6 @@ const Login = () => {
                         <label htmlFor='dosh'>Dosh No.</label>
                         <input type='text' name='doshnum' placeholder='Dosh Number' className='inp' />
                     </div>
-
                 );
             case 1:
                 return (
@@ -61,7 +67,6 @@ const Login = () => {
                         <input type='email' name='email' placeholder='Enter your email' className='inp' />
                     </div>
                 );
-
             default:
                 return null;
         }
@@ -80,14 +85,14 @@ const Login = () => {
                             <p className='radio__tag'>Login with</p>
                             <div className='radios'>
                                 <div className='radio'>
-                                    {["Dosh No.", "Phone", "Email",].map((option, index) => (
+                                    {["Dosh No.", "Phone", "Email"].map((option, index) => (
                                         <div key={index}>
                                             <input type='radio' className='main__radio' name='loginOption' onChange={() => handleRadioChange(index)} checked={selectedRadio === index} />
                                             <label>{option}</label>
                                         </div>
                                     ))}
                                 </div>
-                                <form className='log__form'>
+                                <form className='log__form' onSubmit={handleFormSubmit}>
                                     <div className='log__fin'>
                                         <label htmlFor='service'>Service type</label>
                                         <select className='select'>
@@ -110,18 +115,24 @@ const Login = () => {
 
                                     <div className='capture'>
                                         <div className='refresh'>
-                                            <input className='gen__cap' type='text' value={captcha} readOnly='readonly' />
+                                            <input className='gen__cap' type='text' value={captcha} readOnly />
                                             <div className='captcha'>
                                                 <small>Can't See?</small>
                                                 <IoMdRefresh className='refresh__icon' onClick={generateCaptcha} />
                                             </div>
                                         </div>
-                                        <input className='cap' type='text' placeholder='Type text here...' value={userInput} onChange={(e) => setUserInput(e.target.value)} />
-                                        <button className='check__btn' onClick={validateCaptcha}>Check</button>
+                                        <label htmlFor='capture'>Enter Captcha text</label>
+                                        <input
+                                            className={`cap ${isValidCaptcha === null ? '' : isValidCaptcha ? 'input-valid' : 'input-invalid'}`} // Apply class for border color
+                                            type='text'
+                                            placeholder='Type text here...'
+                                            value={userInput}
+                                            onChange={(e) => setUserInput(e.target.value)}
+                                        />
                                     </div>
                                     <div className='form__log'>
                                         <button type='submit' className='log__btn'>Continue</button>
-                                        <span>Don't have an account ? <Link to='/register' className='linker__signup'>Sign up</Link></span>
+                                        <span>Don't have an account? <Link to='/register' className='linker__signup'>Sign up</Link></span>
                                     </div>
                                 </form>
                             </div>
@@ -129,64 +140,6 @@ const Login = () => {
                     </div>
                 </div>
                 <div className='right__log'>
-                    <div>
-                        {/*<div className='right__overlay'>
-                            <div className='right__content'>
-                                <div className='right__grid'>
-                                    <div className='grid__card'>
-                                        <small>DOSH Pay</small>
-                                        <div className='grid__pay'>
-                                            <img src={card} alt='credit-card' />
-                                            <span>View</span>
-                                        </div>
-                                    </div>
-                                    <div className='grid__card'>
-                                        <small>Load Account</small>
-                                        <div className='grid__pay'>
-                                            <img src={card} alt='credit-card' />
-                                            <span>View</span>
-                                        </div>
-                                    </div>
-                                    <div className='grid__card'>
-                                        <small>Send Money</small>
-                                        <div className='grid__pay'>
-                                            <img src={card} alt='credit-card' />
-                                            <span>View</span>
-                                        </div>
-                                    </div>
-                                    <div className='grid__card'>
-                                        <small>Bulk
-                                            Disbursement</small>
-                                        <div className='grid__pay'>
-                                            <img src={card} alt='credit-card' />
-                                            <span>View</span>
-                                        </div>
-                                    </div>
-                                    <div className='grid__card'>
-                                        <small>DOSH Pay</small>
-                                        <div className='grid__pay'>
-                                            <img src={card} alt='credit-card' />
-                                            <span>View</span>
-                                        </div>
-                                    </div>
-                                    <div className='grid__card'>
-                                        <small>DOSH Pay</small>
-                                        <div className='grid__pay'>
-                                            <img src={card} alt='credit-card' />
-                                            <span>View</span>
-                                        </div>
-                                    </div>
-                                    <div className='grid__card'>
-                                        <small>DOSH Pay</small>
-                                        <div className='grid__pay'>
-                                            <img src={card} alt='credit-card' />
-                                            <span>View</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>*/}
-                    </div>
                 </div>
             </div>
         </div>

@@ -6,37 +6,144 @@
     background-color: #fff;
 }
 
-.insurance__container {
+/*first form step data*/
+
+.firststep_data {
     display: flex;
-    padding: 50px;
+    flex-direction: column;
+    margin-bottom: 10px;
 }
 
-.insurance__left {
-    flex: 1;
+.firststep_data label {
+    color: white;
+}
+
+.firststep_selector {
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.firststep_condition {
+    width: 263px;
+    height: 32px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15.62px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.firststep_radiobtn {
+    gap: 10px;
+    display: flex;
+}
+
+.firststep_radiobtn span {
+    color: white;
+}
+
+.phone_number {
+    width: 100%;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: black;
+    background-color: white;
+}
+
+.PhoneInputInput {
+    background-color: transparent;
+    color: black;
+    border-left: #000 1px solid;
+    padding-left: 5px;
+}
+
+.phone_number:focus {
+    outline: black;
+    border-color: red;
+}
+
+.PhoneInputInput::placeholder {
+    color: #000;
+    opacity: 50%;
+}
+
+/*first form step data*/
+
+/*second form step data*/
+.menu-flags {
+    font-size: 0.875rem;
+    border-radius: 0.375rem;
+    background-color: white;
+    color: black;
+}
+
+.menu-flags .flag-select__option {
+    font-size: 0.875rem;
+    color: black;
+}
+
+.menu-flags .flag-select__search input {
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+}
+
+.menu-flags .flag-select__search input:focus {
+    outline: none;
+    /* Example focus color */
+}
+
+.menu-flags .flag-select__search::placeholder {
+    color: #6b7280;
+    /* Placeholder text color */
+    opacity: 1;
+    /* Ensure placeholder text is visible */
+}
+
+/*second form step data*/
+
+.label_category {
+    width: 400px;
+    padding-bottom: 30px;
+}
+
+.insurance__container {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    height: 800px;
 }
 
 .insurance__left img {
     width: 440.34px;
-    height: 617px;
+    height: 767px;
 }
 
 .insurance__right {
-    flex: 2;
-    background: url("../images/insurance-dosh.png")no-repeat;
-    border-radius: 20px;
+    /* background: url("../images/insurance-dosh.png")no-repeat; */
     width: 836px;
-    height: 617px;
+    height: 767px;
     display: flex;
     justify-content: center;
     /* Center horizontally */
     align-items: flex-start;
     position: relative;
+    background-color: green;
 
 }
 
 .insurance__right h2 {
     position: absolute;
-    top: 30px;
+    top: 10px;
     left: 280px;
     transform: translateY(-50%);
     font-family: "Inter", sans-serif;
@@ -51,8 +158,8 @@
 .progressbar {
     position: relative;
     display: flex;
-    top: 50px;
-    left: -60px;
+    top: 30px;
+    left: -30px;
     width: 300px;
     counter-reset: step;
     align-items: center;
@@ -108,9 +215,9 @@
 .insurance__form {
     background: linear-gradient(86.16deg, rgba(0, 0, 0, 0.8) 11.14%, rgba(28, 26, 26, 0.08) 113.29%);
     background-blend-mode: overlay;
-    width: 320px;
-    height: 498px;
-    top: 90px;
+    width: 350px;
+    height: 650px;
+    top: 70px;
     left: 240px;
     border-radius: 10px;
     position: absolute;
@@ -125,6 +232,7 @@
     height: 58px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 30px;
 }
 
 .insurance__type label {
@@ -199,7 +307,7 @@
     width: 260px;
     height: 34px;
     padding: 5px;
-    color: #868686;
+    color: #000;
     border-radius: 5px;
 }
 
@@ -269,6 +377,16 @@
     border-radius: 5px;
     border: 1px solid #CCCCCC;
     padding: 10px;
+}
+
+.user__input::placeholder {
+    color: #000;
+    opacity: 50%;
+}
+
+.finance__input::placeholder {
+    color: #000;
+    opacity: 50%;
 }
 
 .step__btn {

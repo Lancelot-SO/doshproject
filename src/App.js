@@ -19,6 +19,10 @@ import Insure from './components/Insure'
 import Ride from './components/Ride'
 import Ecommerce from './components/Ecommerce'
 import Erp from './components/Erp'
+import Flyer from './components/Flyer'
+import Otp from './components/Otp'
+
+
 
 const App = () => {
   return (
@@ -36,10 +40,11 @@ const App = () => {
           <Route path='/productservices' element={<ProductServices />} />
           <Route path='/financial' element={<Financial />} />
           <Route path='/insure' element={<Insure />} />
+          <Route path='/otp' element={<Otp />} />
+          <Route path='/flyer' element={<Flyer />} />
           <Route path='/ride' element={<Ride />} />
           <Route path='/ecommerce' element={<Ecommerce />} />
           <Route path='/erp' element={<Erp />} />
-
           <Route path='/regmodal' element={<RegModal />} />
           <Route path='/insurance' element={<Insurance />} />
           <Route path='/home_test' element={<HomeTest />} />

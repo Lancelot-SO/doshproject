@@ -2,19 +2,22 @@ import React, { useState, useEffect } from 'react';
 import './Insure.css';
 import { Link } from 'react-router-dom';
 import { projectLinks, packagelist, insuranceDetails, financePackage, financeDetails } from '../doshdata';
+import Flyer from './Flyer';
 
-const Insure = () => {
+const Insure = ({ onClose }) => {
     const [activePackage, setActivePackage] = useState('');
-    const [activeLink, setActiveLink] = useState('insurance'); // Set 'insurance' as the active link initially
+    const [activeLinks, setActiveLinks] = useState('insurance'); // Set 'insurance' as the active link initially
     const [currentPackageList, setCurrentPackageList] = useState([]);
     const [currentDetailList, setCurrentDetailList] = useState([]);
 
+    const [showFlyerModal, setShowFlyerModal] = useState(false)
+
     useEffect(() => {
-        if (activeLink === 'financial') {
+        if (activeLinks === 'financial') {
             setCurrentPackageList(financePackage);
             setCurrentDetailList(financeDetails);
             setActivePackage(financePackage[0].name);
-        } else if (activeLink === 'insurance') {
+        } else if (activeLinks === 'insurance') {
             setCurrentPackageList(packagelist);
             setCurrentDetailList(insuranceDetails);
             setActivePackage(packagelist[0].name); // Set 'DOSH 365' as active initially
@@ -22,7 +25,7 @@ const Insure = () => {
             setCurrentPackageList([]);
             setCurrentDetailList([]);
         }
-    }, [activeLink]);
+    }, [activeLinks]);
 
     const activeDetail = currentDetailList.find(detail => detail.category === activePackage);
 
@@ -30,14 +33,14 @@ const Insure = () => {
         <div className="insure-modal">
             <div className="insure-content">
                 <div className='top__section'>
-                    <select className='select'>
+                    <select className='selector'>
                         <option value="">Select an option</option>
                         <option value="option1">Finance</option>
                         <option value="option2">Insurance</option>
                         <option value="option3">Loan</option>
                     </select>
                     <div>
-                        <button className='top__section-close'>X</button>
+                        <button onClick={onClose} className='top__section-close'>X</button>
                     </div>
                 </div>
 
@@ -45,9 +48,9 @@ const Insure = () => {
                 <div className='top_list'>
                     <ul className='top_lists'>
                         {projectLinks.map((link, index) => (
-                            <li key={index} className={`top_link ${link.name === activeLink ? 'activator' : ''}`}>
+                            <li key={index} className={`top_link ${link.name === activeLinks ? 'activator' : ''}`}>
                                 <Link
-                                    onClick={() => setActiveLink(link.name)}
+                                    onClick={() => setActiveLinks(link.name)}
                                 >
                                     {link.name}
                                 </Link>
@@ -79,10 +82,11 @@ const Insure = () => {
                             {activeDetail.img && <img src={activeDetail.img} alt='avatar' />}
                         </div>
                         <div className='package_right'>
-                            <h1>{activeDetail.title}</h1>
-                            {activeDetail.number && <h2>{activeDetail.number}</h2>}
-                            <span>{activeDetail.desc}</span>
-                            <p>{activeDetail.details}</p>
+                            <h1 className='package_title'>{activeDetail.title}</h1>
+                            {activeDetail.number && <h2 className='package_number'>{activeDetail.number}</h2>}
+                            <span className='package_desc'>{activeDetail.desc}</span>
+                            <p className='package_details'>{activeDetail.details}</p>
+                            <Link onClick={() => { setShowFlyerModal(true) }} className='flyer-link'>Click here to View full flyer</Link>
                             <small>
                                 <Link to={activeDetail.link}>Sign up</Link>
                                 <svg
@@ -99,6 +103,8 @@ const Insure = () => {
                                     />
                                 </svg>
                             </small>
+                            {showFlyerModal && <Flyer onClose={() => setShowFlyerModal(false)} />}
+
                         </div>
                     </div>
                 )}
