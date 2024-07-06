@@ -3,40 +3,47 @@ import login from "../images/login-image.png";
 import { IoMdRefresh } from "react-icons/io";
 import "./Login.css";
 import { Link } from 'react-router-dom';
+import Otp from '../components/Otp';
 
-const Login = () => {
+const Login = ({ onClose }) => {
     const [captcha, setCaptcha] = useState('');
     const [userInput, setUserInput] = useState('');
     const [selectedRadio, setSelectedRadio] = useState(null);
     const [isValidCaptcha, setIsValidCaptcha] = useState(null);
+    const [showOtpModal, setShowOtpModal] = useState(false);
 
     useEffect(() => {
         generateCaptcha();
     }, []);
 
+    useEffect(() => {
+        validateCaptcha();
+    }, [userInput]);
+
     const generateCaptcha = () => {
-        var alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
-        var sum = '';
-        for (var i = 0; i < 6; i++) {
+        const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
+        let sum = '';
+        for (let i = 0; i < 6; i++) {
             sum += alpha[Math.floor(Math.random() * alpha.length)];
         }
         setCaptcha(sum);
         setIsValidCaptcha(null);
     };
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault(); // Prevent form submission to handle validation
-        validateCaptcha();
-    };
-
     const validateCaptcha = () => {
-        if (captcha === userInput) {
+        if (userInput === '') {
+            setIsValidCaptcha(null);
+        } else if (captcha === userInput) {
             setIsValidCaptcha(true);
-            // alert("Text is valid");
-            // You can add further form submission logic here
         } else {
             setIsValidCaptcha(false);
-            // alert("Text is invalid");
+        }
+    };
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        if (isValidCaptcha) {
+            setShowOtpModal(true);
         }
     };
 
@@ -134,6 +141,7 @@ const Login = () => {
                                         <button type='submit' className='log__btn'>Continue</button>
                                         <span>Don't have an account? <Link to='/register' className='linker__signup'>Sign up</Link></span>
                                     </div>
+                                    {showOtpModal && <Otp onClose={() => setShowOtpModal(false)} />}
                                 </form>
                             </div>
                         </div>

@@ -129,7 +129,7 @@
 }
 
 .insurance__right {
-    /* background: url("../images/insurance-dosh.png")no-repeat; */
+    background: url("../images/masterCard.png")no-repeat;
     width: 836px;
     height: 767px;
     display: flex;
@@ -137,7 +137,7 @@
     /* Center horizontally */
     align-items: flex-start;
     position: relative;
-    background-color: green;
+    /* background-color: green; */
 
 }
 

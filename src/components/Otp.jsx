@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import "./Otp.css";
 import sphoto from "../images/sphoto.png";
+import SignIn from './SignIn';
 
-const Otp = () => {
+const Otp = ({ onClose }) => {
+
+    const [showSignInModal, setShowSignInModal] = useState(false)
+
     const [otp, setOtp] = useState(new Array(6).fill(""));
 
     const handleChange = (e, index) => {
@@ -29,7 +33,7 @@ const Otp = () => {
                     <div className='otp__card'>
                         <div className='otp__enter'>
                             <h1>Enter OTP</h1>
-                            <button className='otp__close'>X</button>
+                            <button onClick={onClose} className='otp__close'>X</button>
                         </div>
                         <span>
                             A 6 digit code has been sent to
@@ -51,6 +55,12 @@ const Otp = () => {
                                 );
                             })}
                         </div>
+
+                        <div onClick={() => setShowSignInModal(true)} className='otp__login'>
+                            Login
+                        </div>
+                        {showSignInModal && <SignIn onClose={() => setShowSignInModal(false)} />}
+
                     </div>
                 </div>
             </div>

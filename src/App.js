@@ -21,6 +21,8 @@ import Ecommerce from './components/Ecommerce'
 import Erp from './components/Erp'
 import Flyer from './components/Flyer'
 import Otp from './components/Otp'
+import SignIn from './components/SignIn'
+import HomePreview from './pages/HomePreview'
 
 
 
@@ -40,6 +42,7 @@ const App = () => {
           <Route path='/productservices' element={<ProductServices />} />
           <Route path='/financial' element={<Financial />} />
           <Route path='/insure' element={<Insure />} />
+          <Route path='/signin' element={<SignIn />} />
           <Route path='/otp' element={<Otp />} />
           <Route path='/flyer' element={<Flyer />} />
           <Route path='/ride' element={<Ride />} />
@@ -48,6 +51,7 @@ const App = () => {
           <Route path='/regmodal' element={<RegModal />} />
           <Route path='/insurance' element={<Insurance />} />
           <Route path='/home_test' element={<HomeTest />} />
+          <Route path='/home_preview' element={<HomePreview />} />
           <Route path='*' element={<Navigate to="/errorpage" />} />
         </Routes>
         <Footer />

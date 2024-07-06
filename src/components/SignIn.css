@@ -1,4 +1,4 @@
-.otp__modal {
+.signin__modal {
     display: flex;
     position: fixed;
     z-index: 1000;
@@ -15,7 +15,7 @@
     justify-content: center;
 }
 
-.otp__content {
+.signin__content {
     display: flex;
     width: 1200px;
     height: 658px;
@@ -25,16 +25,16 @@
     image-rendering: auto;
 }
 
-.otp__left {
+.signin__left {
     flex: 1;
 }
 
-.otp__left img {
+.signin__left img {
     width: 400px;
     height: 658px;
 }
 
-.otp__right {
+.signin__right {
     flex: 2;
     display: flex;
     align-items: center;
@@ -43,35 +43,31 @@
     /* background-color: red; */
 }
 
-.otp__card {
+.signin__card {
     width: 500px;
     height: 300px;
     padding: 20px;
     display: flex;
-    gap: 20px;
     flex-direction: column;
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(107, 107, 110, 0.75);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);
+    background: linear-gradient(86.16deg, rgba(0, 0, 0, 0.8) 11.14%, rgba(28, 26, 26, 0.08) 113.29%);
+    background-blend-mode: overlay;
 }
 
-.otp__enter {
+.signin__enter {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.otp__enter h1 {
-    font-size: 25px;
+.signin__enter h1 {
+    font-size: 20px;
     font-family: "Inter", sans-serif;
-    font-weight: 700;
-    line-height: 30.26px;
+    font-weight: 300;
+    line-height: 24.26px;
     color: #fff;
 }
 
-.otp__close {
+.signin__close {
     width: 30px;
     height: 30px;
     background: rgb(208, 181, 140);
@@ -79,7 +75,22 @@
     color: #fff;
 }
 
-.otp__right span {
+.signin__name {
+    font-size: 30px;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    line-height: 30.26px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.signin__name hr {
+    width: 96px;
+    height: 1px;
+    background-color: #ED8B00;
+}
+
+.signin__right span {
     width: 231px;
     height: 36px;
     font-family: "Inter", sans-serif;
@@ -89,24 +100,33 @@
     color: #fff;
 }
 
-.otp__area {
-    width: 70%;
+.signin__input {
     display: flex;
-    gap: 10px;
+    flex-direction: column;
     margin-bottom: 20px;
-    align-self: center;
 }
 
-.otp__input {
-    width: 47px;
-    padding: 10px;
-    outline: none;
-    text-align: center;
+.signin__input label {
+    color: #fff;
+}
+
+.signin__input input {
+    width: 334px;
+    padding: 5px;
+    color: black;
     border-radius: 11px;
+}
+
+.signin__input input::placeholder {
     color: black;
 }
 
-.otp__login {
+.signin__link {
+    font-family: "Inter", sans-serif;
+    color: #d0b58c;
+}
+
+.signin__login {
     width: 260px;
     height: 35px;
     font-size: 14px;
