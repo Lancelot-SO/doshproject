@@ -24,14 +24,15 @@ import "aos/dist/aos.css";
 
 import VideoPopup from '../components/VideoPopup.jsx';
 import { IoIosArrowDown } from 'react-icons/io';
-import Financial from '../components/Financial.jsx';
+// import Financial from '../components/Financial.jsx';
 // import Insure from '../components/Insure.jsx';
-import Ride from '../components/Ride.jsx';
-import Ecommerce from '../components/Ecommerce.jsx';
-import Erp from '../components/Erp.jsx';
+// import Ride from '../components/Ride.jsx';
+// import Ecommerce from '../components/Ecommerce.jsx';
+// import Erp from '../components/Erp.jsx';
 
 
 import Insure from '../components/Insure.jsx';
+import FinanceSideModal from '../components/FinanceSideModal.jsx';
 
 
 const Home = () => {
@@ -70,9 +71,9 @@ const Home = () => {
 
     const [showFinanceModal, setShowFinanceModal] = useState(false);
     // const [showInsureModal, setShowInsureModal] = useState(false);
-    const [showRideModal, setShowRideModal] = useState(false);
-    const [showEcommerceModal, setShowEcommerceModal] = useState(false);
-    const [showErpModal, setShowErpModal] = useState(false);
+    // const [showRideModal, setShowRideModal] = useState(false);
+    // const [showEcommerceModal, setShowEcommerceModal] = useState(false);
+    // const [showErpModal, setShowErpModal] = useState(false);
 
 
 
@@ -486,7 +487,7 @@ const Home = () => {
                         </Link>
                     </div>
                 </div>
-                {showFinanceModal && <Financial onClose={() => setShowFinanceModal(false)} initialItem={initialItem} />}
+                {showFinanceModal && <FinanceSideModal onClose={() => setShowFinanceModal(false)} initialItem={initialItem} />}
             </section>
 
             {/*<section className='digital__section'>
@@ -538,8 +539,8 @@ const Home = () => {
                             and comfortable vehicles. At DOSH Ride, our goal is to ensure that every
                             journey is an extraordinary experience!
                         </p>
-                        <Link onClick={() => { setShowRideModal(true); setInitialItem('ride'); }}>Read more
-                            <svg
+                        <Link >Comming Soon
+                            {/*<svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
                                 height="16"
@@ -551,11 +552,10 @@ const Home = () => {
                                     fill-rule="evenodd"
                                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
                                 />
-                            </svg>
+                            </svg>*/}
                         </Link>
                     </div>
                 </div>
-                {showRideModal && <Ride onClose={() => setShowRideModal(false)} initialItem={initialItem} />}
 
             </section>
 
@@ -573,8 +573,8 @@ const Home = () => {
                             DOSH ERP solutions, your business will ignite growth and propel you to
                             unprecedented success.
                         </p>
-                        <Link onClick={() => setShowErpModal(true)}>Read more
-                            <svg
+                        <Link>Coming Soon
+                            {/*<svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
                                 height="16"
@@ -586,14 +586,13 @@ const Home = () => {
                                     fill-rule="evenodd"
                                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
                                 />
-                            </svg>
+                            </svg>*/}
                         </Link>
                     </div>
                     <div data-aos="zoom-in-left" className='home__digital2-right'>
                         <img src={reinvigorate} alt='digital' loading='lazy' />
                     </div>
                 </div>
-                {showErpModal && <Erp onClose={() => setShowErpModal(false)} />}
 
             </section>
 
@@ -614,8 +613,8 @@ const Home = () => {
                             management systems, optimized returns processes,
                             and delivery systems.
                         </p>
-                        <Link onClick={() => setShowEcommerceModal(true)}>Read more
-                            <svg
+                        <Link>Coming Soon
+                            {/*<svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
                                 height="16"
@@ -627,11 +626,10 @@ const Home = () => {
                                     fill-rule="evenodd"
                                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
                                 />
-                            </svg>
+                            </svg>*/}
                         </Link>
                     </div>
                 </div>
-                {showEcommerceModal && <Ecommerce onClose={() => setShowEcommerceModal(false)} />}
 
             </section>
 

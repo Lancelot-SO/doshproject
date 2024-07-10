@@ -3,14 +3,14 @@ import "./Insurance.css";
 import newAnime from "../images/sphoto.png";
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css'
-import ReactFlagsSelect from "react-flags-select";
+// import ReactFlagsSelect from "react-flags-select";
 
 
 const Insurance = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [paymentMethod, setPaymentMethod] = useState('');
 
-    const [selectedFlag, setSelecteFlag] = useState("");
+    // const [selectedFlag, setSelecteFlag] = useState("");
 
 
     const [showSecondSelector, setShowSecondSelector] = useState(false);
@@ -267,7 +267,7 @@ const Insurance = () => {
                                 <input type='password' name="confirmPassword" className='user__input' placeholder='Enter your password' />
                             </div>
 
-                            <button type='button' className='step__btn'>Submit</button>
+                            <a href='/login'><button type='button' className='step__btn'>Submit</button></a>
                             <button type='button' onClick={handlePrevStep} className='btn steps__btn'>Back</button>
                         </div>
                     </form>

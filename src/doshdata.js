@@ -43,15 +43,7 @@ export const projectLinks = [
     {
         name: 'financial',
     },
-    {
-        name: 'ride',
-    },
-    {
-        name: 'e-commerce',
-    },
-    {
-        name: 'erp',
-    },
+
 ]
 
 export const packagelist = [
