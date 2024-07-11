@@ -106,7 +106,6 @@ const Login = ({ onClose }) => {
                                             <option value="">Select an option</option>
                                             <option value="option1">Finance</option>
                                             <option value="option2">Insurance</option>
-                                            <option value="option3">Loan</option>
                                         </select>
                                     </div>
                                     <div className='log__fin'>
@@ -115,7 +114,6 @@ const Login = ({ onClose }) => {
                                             <option value="">Select an option</option>
                                             <option value="option1">Finance</option>
                                             <option value="option2">Insurance</option>
-                                            <option value="option3">Loan</option>
                                         </select>
                                     </div>
                                     {selectedRadio !== null && renderInputs()}

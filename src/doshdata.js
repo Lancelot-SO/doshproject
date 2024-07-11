@@ -172,7 +172,7 @@ export const financeDetails = [
         img: Avatar,
         title: "Family",
         desc: "Description",
-        details: `DOSH 750 comes with add-ons and quintessential incentives targeted at individuals, families and their dependents with a slightly higher premium. It is gratifying to know that with DOSH, your family and dependents’ health care needs are furnished with a cover up to GHS 18,000 for only GHS 750 annual premium. This package is specially recommended for new employees or young families seeking affordable and cost-effective health insurance products. An annual premium of GHS 750 comes with health insurance cover of up to GHS 15,000 for In-Patient and GHS 3,000 for Out-Patient services respectively.`,
+        details: `Family financial management involves effectively meeting your family's everyday expenses, handling unexpected bills and saving for the future. At Dosh, our Family account puts you in control of your money, helping you avoid stress, whilst making you feel more secured. In addition to the 5 different accounts available with the Personal Account package, the Family Account offers 5 additional users with current sub accounts.`,
         link: "/insurance",
         category: "Family"
     },
