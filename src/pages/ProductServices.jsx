@@ -133,7 +133,6 @@ const ProductServices = () => {
                 <h1 className='title'>Streamlined Financial Solutions<br />
                     Achieve your Dreams with Seamless Funding Solutions
                 </h1>
-                <h2>Odio vulputate cras vel lacinia turpis volutpat adipiscing. Sollicitudin at velit, blandit tempus nunc in.</h2>
                 <div className='section1-center'>
                     {products.map((item, indexPeople) => {
                         const { id, quote, image, title } = item;

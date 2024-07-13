@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom';
 import { projectLinks, packagelist, insuranceDetails, financePackage, financeDetails } from '../doshdata';
 import Flyer from './Flyer';
 
+const flyerPath = "/smallflyer.png";
+
 const Insure = ({ onClose }) => {
+
     const [activePackage, setActivePackage] = useState('');
     const [activeLinks, setActiveLinks] = useState('insurance'); // Set 'insurance' as the active link initially
     const [currentPackageList, setCurrentPackageList] = useState([]);
@@ -28,6 +31,18 @@ const Insure = ({ onClose }) => {
     }, [activeLinks]);
 
     const activeDetail = currentDetailList.find(detail => detail.category === activePackage);
+
+    const handleFlyerClick = () => {
+        if (window.innerWidth < 768) {
+            const link = document.createElement('a');
+            link.href = flyerPath;
+            link.download = "flyer2.png";
+            link.click();
+        } else {
+            setShowFlyerModal(true);
+        }
+    };
+
 
     return (
         <div className="insure-modal">
@@ -86,7 +101,7 @@ const Insure = ({ onClose }) => {
                             {activeDetail.number && <h2 className='package_number'>{activeDetail.number}</h2>}
                             <span className='package_desc'>{activeDetail.desc}</span>
                             <p className='package_details'>{activeDetail.details}</p>
-                            <Link onClick={() => { setShowFlyerModal(true) }} className='flyer-link'>Click here to View full flyer</Link>
+                            <Link onClick={handleFlyerClick} className='flyer-link-insure'>Click here to View full flyer</Link>
                             <small>
                                 <Link to={activeDetail.link}>Sign up</Link>
                                 <svg

@@ -441,3 +441,69 @@
 .form__step.active {
     display: block;
 }
+
+@media (max-width: 768px) {
+    .insurance__left {
+        display: none;
+    }
+
+    .insurance__right {
+        background: url("../images/masterCard.png") no-repeat;
+        background-size: cover;
+        /* Ensure background image covers the container */
+        width: 100%;
+        /* Full width */
+        height: 767px;
+        /* Maintain original height */
+        display: flex;
+        justify-content: center;
+        /* Center horizontally */
+        align-items: flex-start;
+        /* Align items to the top */
+        position: relative;
+    }
+
+    .insurance__right h2 {
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        /* Adjust left position */
+        transform: translateY(-50%);
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        /* Adjust font size as needed */
+        font-weight: 700;
+        line-height: 19.36px;
+        text-align: left;
+        /* Align text to the left */
+        color: #868686;
+        margin-bottom: 10px;
+    }
+
+    .insurance__left img {
+        width: 100%;
+        /* Ensure image takes full width of its container */
+        height: auto;
+        /* Maintain aspect ratio */
+    }
+
+    .insurance__form {
+        background: linear-gradient(86.16deg, rgba(0, 0, 0, 0.8) 11.14%, rgba(28, 26, 26, 0.08) 113.29%);
+        background-blend-mode: overlay;
+        width: 100%;
+        /* Full width */
+        height: 650px;
+        /* Maintain original height */
+        top: 70px;
+        left: 0;
+        /* Position at left edge */
+        border-radius: 10px;
+        position: absolute;
+        padding: 20px;
+        /* Adjust padding as needed */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

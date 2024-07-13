@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './FinanceSideModal.css';
 import { Link } from 'react-router-dom';
 import { projectLinks, packagelist, insuranceDetails, financePackage, financeDetails } from '../doshdata';
-import Flyer from './Flyer';
+// import Flyer from './Flyer';
 
 const FinanceSideModal = ({ onClose }) => {
     const [activePackage, setActivePackage] = useState(financePackage[0].name); // Set the initial package to the first finance package
@@ -10,7 +10,7 @@ const FinanceSideModal = ({ onClose }) => {
     const [currentPackageList, setCurrentPackageList] = useState(financePackage);
     const [currentDetailList, setCurrentDetailList] = useState(financeDetails);
 
-    const [showFlyerModal, setShowFlyerModal] = useState(false);
+    // const [showFlyerModal, setShowFlyerModal] = useState(false);
 
     useEffect(() => {
         if (activeLinks === 'financial') {
@@ -86,7 +86,6 @@ const FinanceSideModal = ({ onClose }) => {
                             {activeDetail.number && <h2 className='package_number'>{activeDetail.number}</h2>}
                             <span className='package_desc'>{activeDetail.desc}</span>
                             <p className='package_details'>{activeDetail.details}</p>
-                            <Link onClick={() => { setShowFlyerModal(true) }} className='flyer-link'>Click here to View full flyer</Link>
                             <small>
                                 <Link to={activeDetail.link}>Sign up</Link>
                                 <svg
@@ -103,7 +102,7 @@ const FinanceSideModal = ({ onClose }) => {
                                     />
                                 </svg>
                             </small>
-                            {showFlyerModal && <Flyer onClose={() => setShowFlyerModal(false)} />}
+                            {/*showFlyerModal && <Flyer onClose={() => setShowFlyerModal(false)} />*/}
                         </div>
                     </div>
                 )}

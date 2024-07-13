@@ -10,7 +10,6 @@
     background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
     overflow: hidden;
-    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -18,7 +17,9 @@
 .signin__content {
     display: flex;
     width: 1200px;
+    /* Larger screen width */
     height: 658px;
+    /* Larger screen height */
     position: relative;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -40,12 +41,13 @@
     align-items: center;
     justify-content: center;
     background: url("/src/images/OtpImg.png") no-repeat;
-    /* background-color: red; */
 }
 
 .signin__card {
     width: 500px;
+    /* Larger screen width */
     height: 300px;
+    /* Larger screen height */
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -139,4 +141,66 @@
     color: #fff;
     background: rgb(208, 181, 140);
     background: linear-gradient(27deg, rgba(208, 181, 140, 1) 0%, rgba(208, 181, 140, 1) 52%, rgba(152, 124, 80, 1) 90%, rgba(152, 124, 80, 1) 100%);
+}
+
+@media (max-width: 767px) {
+    @media (max-width: 767px) {
+
+
+        .signin__enter {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    .signin__content {
+        width: 100%;
+        /* Full width for small screens */
+        height: 100%;
+        /* Full height for small screens */
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+    }
+
+    .signin__left {
+        display: none;
+    }
+
+    .signin__card {
+        width: 380px;
+        /* Adjust card width for small screens */
+        height: auto;
+        /* Allow height to adjust */
+        padding: 20px;
+    }
+
+    .signin__enter h1 {
+        font-size: 18px;
+        /* Adjust font size */
+    }
+
+    .signin__name {
+        font-size: 24px;
+        /* Adjust font size */
+        margin-bottom: 10px;
+    }
+
+    .signin__right span {
+        font-size: 14px;
+        /* Adjust font size */
+    }
+
+    .signin__input input {
+        width: 100%;
+        /* Full width input */
+    }
+
+    .signin__login {
+        width: 100%;
+        /* Full width button */
+        margin-top: 10px;
+        /* Add margin */
+    }
 }

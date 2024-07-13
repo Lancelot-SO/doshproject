@@ -172,7 +172,7 @@ export const financeDetails = [
         img: Avatar,
         title: "Family",
         desc: "Description",
-        details: `Family financial management involves effectively meeting your family's everyday expenses, handling unexpected bills and saving for the future. At Dosh, our Family account puts you in control of your money, helping you avoid stress, whilst making you feel more secured. In addition to the 5 different accounts available with the Personal Account package, the Family Account offers 5 additional users with current sub accounts.`,
+        details: `Family financial management involves effectively meeting your family's everyday expenses, handling unexpected bills and saving for the future. At DOSH, our Family account puts you in control of your money, helping you avoid stress, whilst making you feel more secured. In addition to the 5 different accounts available with the Personal Account package, the Family Account offers 5 additional users with current sub accounts.`,
         link: "/insurance",
         category: "Family"
     },

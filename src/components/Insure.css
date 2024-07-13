@@ -6,28 +6,29 @@
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
     background-color: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(5px);
-    overflow: hidden;
-    display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .insure-content {
     display: flex;
-    width: 1239px;
-    height: 686px;
+    width: 90%;
+    max-width: 1239px;
+    max-height: 90%;
     background: #eae7e7;
     padding: 20px;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 .top__section {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .top__section-close {
@@ -40,6 +41,7 @@
     justify-content: center;
     font-size: 24px;
     background-color: #987C55;
+    color: white;
 }
 
 .selector {
@@ -54,8 +56,7 @@
 .top_lists {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    /* justify-content: space-around; */
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -69,6 +70,11 @@
     border-radius: 30px;
     color: #90A3BF;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.top_link:hover {
+    background-color: #b0b1b3;
 }
 
 .activator {
@@ -83,16 +89,26 @@
 .package_lists {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: end;
-    gap: 60px;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-top: 30px;
-
 }
 
 .package_link {
     color: #90A3BF;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+    background-color: #cacbcd;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.package_link:hover {
+    background-color: #b0b1b3;
 }
 
 .link_underline {
@@ -103,27 +119,31 @@
 
 .main_package {
     display: flex;
+    flex-direction: row;
     margin-top: 40px;
     max-width: 100%;
     background: url("/src/images/ModalBg.png");
     gap: 50px;
+    background-size: cover;
+    padding: 20px;
+    border-radius: 8px;
 }
 
 .package_left {
-    margin-top: 20px;
     flex: 1;
+    margin-top: 20px;
 }
 
 .package_right {
-    margin-top: 20px;
     flex: 2;
+    margin-top: 20px;
 }
 
 .package_title {
     font-family: "Inter", sans-serif;
-    font-size: 48.96px;
+    font-size: 1.5rem;
     font-weight: 400;
-    line-height: 48.96px;
+    line-height: 1.2;
     text-align: left;
     margin-bottom: 20px;
     color: #000;
@@ -131,9 +151,9 @@
 
 .package_number {
     font-family: "Inter", sans-serif;
-    font-size: 48.96px;
+    font-size: 1.5rem;
     font-weight: 800;
-    line-height: 48.96px;
+    line-height: 1.2;
     text-align: left;
     margin-bottom: 10px;
     color: #987C55;
@@ -141,9 +161,9 @@
 
 .package_desc {
     font-family: "Inter", sans-serif;
-    font-size: 24.98px;
+    font-size: 1.25rem;
     font-weight: 300;
-    line-height: 29.6px;
+    line-height: 1.5;
     text-align: left;
     margin-bottom: 10px;
     color: #000;
@@ -151,30 +171,83 @@
 
 .package_details {
     font-family: "Inter", sans-serif;
-    font-size: 12.99px;
+    font-size: 1rem;
     font-weight: 400;
-    line-height: 23.98px;
+    line-height: 1.5;
     text-align: left;
     margin-bottom: 20px;
     color: #000;
 }
 
-.flyer-link {
+.flyer-link-insure {
     font-family: "Inter", sans-serif;
-    font-size: 14px;
+    font-size: 1rem;
     color: #987C55;
 }
 
 .package_right small {
     width: 153px;
     height: 35px;
-    padding: 6.5px 25px 6.5px 25px;
+    padding: 6.5px 25px;
     border-radius: 8px;
     display: flex;
-    flex-direction: row;
     align-items: center;
+    justify-content: center;
     background: linear-gradient(251.21deg, #987C55 0%, #D0B58C 100%);
-    justify-content: space-between;
     margin-top: 10px;
     cursor: pointer;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .insure-content {
+        width: 95%;
+        height: auto;
+    }
+
+    .main_package {
+        flex-direction: column-reverse;
+        gap: 20px;
+    }
+
+    .package_left,
+    .package_right {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .top_list,
+    .package_list {
+        margin-left: 20px;
+    }
+
+    .top_link,
+    .package_link {
+        width: auto;
+        height: auto;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+
+
+    .package_desc,
+    .package_details,
+    .flyer-link {
+        font-size: 1rem;
+    }
+
+    .package_title,
+    .package_number {
+        font-size: 1.5rem;
+    }
+
+    .package_right small {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
 }
