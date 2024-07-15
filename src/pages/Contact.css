@@ -22,174 +22,140 @@
     line-height: 1;
 }
 
-.contact__main {
-    background-color: #fff;
+/* ContactForm.css */
+.dosh-main-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px;
+    background-color: white;
 }
 
-.form__main {
-    background: linear-gradient(90deg, #C7AC83, #9E825B);
+.dosh-form-container {
+    width: 1100px;
+    display: flex;
+    height: 700px;
+    gap: 30px;
+}
+
+.dosh-form-card {
+    flex: 1;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 40px 0;
-    width: 754px;
-    height: 620px;
-    padding: 50px;
 }
 
-form p {
-    color: #fff;
-    font-family: "Inter", sans-serif;
-    font-size: 35px;
-    line-height: 42px;
-    letter-spacing: 0em;
-    text-align: center;
-}
-
-.input__form {
+.dosh-form {
     display: flex;
-    flex-direction: row;
-    width: 658px;
-    height: 60px;
-    gap: 28px;
-    margin-bottom: 30px;
-    padding-left: 40px;
-    color: #fff;
+    gap: 20px;
 }
 
-.input__form input {
-    width: 265px;
-    color: #fff;
-    padding-left: 30px;
-    border: 1px solid #d3d1d1;
-    background-color: transparent;
+.dosh-label-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
 }
 
-input::placeholder {
-    color: #fff;
-    /* Change to whatever color you want */
+.dosh-first,
+.dosh-last {
+    padding: 10px;
+    width: 250px;
+    border-radius: 10px;
+    border: 1px solid rgb(218, 215, 215);
 }
 
-textarea {
-    margin-left: 40px;
-    padding: 30px;
-    width: 555px;
-    border: 1px solid #d3d1d1;
-    color: #fff;
-    background-color: transparent;
+.dosh-email,
+.dosh-phone,
+.dosh-select,
+.dosh-textarea {
+    padding: 10px;
+    width: 520px;
+    border-radius: 10px;
+    border: 1px solid rgb(218, 215, 215);
 }
 
-textarea::placeholder {
-    color: #fff;
+.dosh-button {
+    width: 520px;
+    height: 37px;
+    background-color: #987C55;
+    color: white;
+    border-radius: 10px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
 }
 
-.form__btn {
+.dosh-contact-logo {
+    width: 206px;
+    height: 80px;
+    display: flex;
+    align-self: flex-start;
+    margin-top: 50px;
+}
+
+.dosh-contact-image {
+    flex: 1.5;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 8px;
-    margin-top: 20px;
-    background-color: #fff;
-    width: 200px;
-    margin-left: 200px;
-
 }
 
-.submit__btn {
-    font-family: "Inter", sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 22px;
-    letter-spacing: 0em;
-    width: 194px;
-    height: 60px;
-    cursor: pointer;
-    border-radius: 10px;
-    color: #9E825B;
+
+.dosh-contact-image img {
+    width: 550px;
+    height: 600px;
+    border-radius: 20px;
 }
 
-.contact__logo {
-    padding-left: 40px;
-    padding-bottom: 40PX;
-    margin-top: 30px;
-    width: 200px;
-    height: 79px;
-}
-
+/* Media Queries for Mobile Responsiveness */
 @media (max-width: 767px) {
-    .cont {
-        overflow: hidden;
-    }
-
-    .contact__head {
-        position: relative;
-        color: white;
+    .contact__text {
+        top: 320px;
+        left: 52%;
+        width: 100%;
+        font-size: 30px;
     }
 
     .contact__head img {
-        width: 100vw;
-        height: 351px;
-        display: block;
-        object-fit: cover;
+        height: 300px;
     }
 
-    .contact__text {
-        position: absolute;
-        top: 330px;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 443px;
-        height: 129px;
-        font-size: 40px;
-        font-weight: bold;
-        line-height: 1;
-        padding-left: 40px;
-        padding-right: 20px;
-    }
-
-    .form__main {
-        padding: 40px;
-        height: 650px;
-        width: 100%;
-
-    }
-
-    .input__form {
-        display: flex;
+    .dosh-form-container {
         flex-direction: column;
-        margin-bottom: 60px;
+        width: 100%;
+        height: auto;
     }
 
-    .input__form input {
-        padding-top: 10px;
-        padding-bottom: 10px;
+    .dosh-contact-image {
+        display: none;
     }
 
-    textarea {
-        width: 265px;
+
+    .dosh-form-card {
+        width: 100%;
     }
 
-    .form__btn {
-        display: flex;
-        align-items: center;
-        margin-left: 0;
-        margin-top: 20px;
-        margin-right: 4;
-
-
+    .dosh-form {
+        flex-direction: column;
     }
 
-    .submit__btn {
-        font-family: "Inter", sans-serif;
-        font-size: 12px;
-        font-weight: 600;
-        line-height: 22px;
-        letter-spacing: 0em;
-        width: 174px;
-        height: 60px;
-        cursor: pointer;
-        border-radius: 10px;
+    .dosh-first,
+    .dosh-last,
+    .dosh-email,
+    .dosh-phone,
+    .dosh-button {
+        width: 100%;
+    }
+
+    .dosh-select,
+    .dosh-textarea {
+        width: 230px;
+    }
+
+
+    .dosh-contact-logo {
+        align-self: center;
     }
 }

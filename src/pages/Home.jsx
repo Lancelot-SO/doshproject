@@ -11,8 +11,8 @@ import slider2 from "../images/practitioner.png";
 import slider8 from "../images/slider-last.png";
 
 // import banner from '../images/dosh-banner.png'
-import elevate2 from '../images/vector1.png'
-import money from '../images/vector2.png';
+import elevate2 from '../images/img2.png'
+import money from '../images/img1.png';
 // import seamless from "../images/seamless.png"
 import ride from '../images/ride.png'
 import reinvigorate from '../images/Vector334.png'

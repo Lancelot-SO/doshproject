@@ -78,8 +78,8 @@ const About = () => {
                     </div>
                     <div className='next-about__right'>
                         <h3>Our Mission</h3>
-                        <p>We empower you to maximize your economic opportunities.The DOSH mandate is to provide fast, reliable and dependable
-                            access to cutting edge tech-enabled solutions at the lowest possible cost.
+                        <p>
+                            We are dedicated to safeguarding your financial status, by ensuring the decisions you make are well-informed. DOSH provides valuable insight and financial solutions that empower you to maximize your economic opportunities.
                         </p>
                     </div>
                 </div>
@@ -120,8 +120,8 @@ const About = () => {
                     </div>
                     <div className='about__cards-right'>
                         <h3>Our Inspiration</h3>
-                        <p>Your success. DOSH is committed to providing the fundational system that fosters your
-                            financial stability and well-being. With us you can continue the pursuit of your goals without constraint.
+                        <p>
+                            When you are a successful DOSH client, we are inspired because we know that DOSH is providing the foundational system that fosters your financial stability and well-being, thus allowing you to continue the pursuit of all your goals, without constraint.
                         </p>
                     </div>
 

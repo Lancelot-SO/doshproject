@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import "./Contact.css"
-import contact from '../images/contactdosh.png'
+import contact from '../images/doshContact.png'
 import logo from "../images/dosh_logo.png"
+import contactImage from "../images/contactImage.png"
 
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Link } from 'react-router-dom';
 
 const Contact = () => {
 
@@ -25,32 +25,55 @@ const Contact = () => {
                     </p>
                 </div>
             </div>
-            <div className='contact__main'>
-                <form action='#' className='form__main'>
-                    <p>Get in touch with us</p>
-                    <div>
-                        <div className='input__form'>
-                            <input type='text' name='name' placeholder='Your name*' required />
-                            <input type='email' name='email' placeholder='Email*' required />
 
+            <div className='dosh-main-container'>
+                <div className='dosh-form-container'>
+                    <form className='dosh-form-card'>
+                        <div className='dosh-form'>
+                            <div className='dosh-label-input'>
+                                <label>First Name</label>
+                                <input type='text' name='firstname' className='dosh-first' placeholder='Enter your first name' />
+                            </div>
+                            <div className='dosh-label-input'>
+                                <label>Last Name</label>
+                                <input type='text' name='lastname' className='dosh-last' placeholder='Enter your last name' />
+                            </div>
                         </div>
-                        <div className='input__form'>
-                            <input type='tel' name='phone' placeholder='Phone Number*' required />
-                            <input type='text' name='city' placeholder='City*' required />
+                        <div className='dosh-label-input'>
+                            <label>Email</label>
+                            <input type='text' name='email' className='dosh-email' placeholder='Enter your email address' />
+                        </div>
+                        <div className='dosh-label-input'>
+                            <label>Phone Number</label>
+                            <input type='tel' name='telephone' className="dosh-phone" placeholder='223 456 7890' />
+                        </div>
 
+                        <div className='dosh-label-input'>
+                            <label>City</label>
+                            <select className='dosh-select'>
+                                <option>--Select a city--</option>
+                                <option>Accra</option>
+                                <option>Accra</option>
+                                <option>Kumasi</option>
+                                <option>Cape Coast</option>
+
+                            </select>
                         </div>
-                        <textarea name="message" rows="4" placeholder='Your Message'></textarea>
-                        <div className='form__btn'>
-                            <button className='submit__btn' type='submit'>Submit Message</button>
+                        <div className='dosh-label-input'>
+                            <label>Message</label>
+                            <textarea type='text' name='message' className='dosh-textarea' placeholder='Type your message here'></textarea>
                         </div>
 
+                        <div className='dosh-button'>
+                            <button>SEND MESSAGE</button>
+                        </div>
+
+                        <img src={logo} alt='logo' className='dosh-contact-logo' />
+                    </form>
+                    <div className='dosh-contact-image'>
+                        <img src={contactImage} alt='dosh' />
                     </div>
-                    <div className='contact__logo'>
-                        <Link to='/' className="cont__logo">
-                            <img src={logo} alt='navbar logo' />
-                        </Link>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     )
