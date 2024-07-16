@@ -1,30 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { animateScroll as scroll } from 'react-scroll';
 import { IoIosArrowUp } from "react-icons/io";
+import whatsapp from "../images/whatsapp.png"
 import "../App.css";
 
 const BackToTopBtn = () => {
     const [show, setShow] = useState(false);
 
     useEffect(() => {
-        window.addEventListener('scroll', () => (window.scrollY > 600 ? setShow(true)
-            : setShow(false)));
-    });
+        const handleScroll = () => {
+            setShow(window.scrollY > 600);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const scrollToTop = () => {
         scroll.scrollToTop();
     };
 
     return (
-        show && (
-            <button
-                type="button"
-                onClick={() => scrollToTop()}
-                className="back-to-top"
+        <>
+            {show && (
+                <button
+                    type="button"
+                    onClick={scrollToTop}
+                    className="back-to-top"
+                >
+                    <IoIosArrowUp size={30} />
+                </button>
+            )}
+            <a
+                href="https:/wa.me/233556318804"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="whatsapp_float"
             >
-                <IoIosArrowUp size={30} />
-            </button>
-        )
+                <img src={whatsapp} alt='app' className='cursor-pointer ' />
+            </a>
+        </>
     );
 };
 

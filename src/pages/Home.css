@@ -1292,7 +1292,7 @@
     }
 
     .home__ride-right a {
-        background-color: rgb(16, 15, 13);
+        /* background-color: rgb(16, 15, 13); */
         color: var(--color-white);
         cursor: pointer;
         width: 186px;
@@ -1350,7 +1350,7 @@
     }
 
     .home__ride2-right a {
-        background-color: rgb(16, 15, 13);
+        /* background-color: rgb(16, 15, 13); */
         color: var(--color-white);
         cursor: pointer;
         width: 186px;

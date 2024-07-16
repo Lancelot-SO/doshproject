@@ -108,21 +108,13 @@ const About = () => {
                 <div data-aos="flip-left" className='container about__cards'>
                     <div className='about__cards-left'>
                         <h3>OUR EXPERTISE</h3>
-                        <p>A DOSH client is unique.
-                            More importantly, a DOSH client is the ONLY client.
-                        </p>
-                        <p>At DOSH this bedrock tenant is the pillar of our business philosophy.
-                            We have built a vertically integrated network of insurance and finance
-                            managers, who design solutions that are client-specifi. Our only goal is to
-                            enhance your personal life and business operative through expert guidance and premium
-                            solutions.
-                        </p>
+                        A DOSH client is unique. More importantly, a DOSH client is the ONLY client.
+                        At DOSH this bedrock tenant is the pillar of our business philosophy. We have built a vertically integrated network of insurance and finance managers, who design solutions that are client-specific and tailored to enhance your personal life and business operations. Our only goal is to provide expert guidance and premium service that ensures DOSH clients attain their financial goals.
                     </div>
                     <div className='about__cards-right'>
                         <h3>Our Inspiration</h3>
                         <p>
-                            When you are a successful DOSH client, we are inspired because we know that DOSH is providing the foundational system that fosters your financial stability and well-being, thus allowing you to continue the pursuit of all your goals, without constraint.
-                        </p>
+                            When you are a successful DOSH client, we are inspired because we know that DOSH is providing the foundational system that fosters your financial stability and well-being, thus allowing you to continue the pursuit of all your goals, without constraint.                        </p>
                     </div>
 
                 </div>
