@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { animateScroll as scroll } from 'react-scroll';
 import { IoIosArrowUp } from "react-icons/io";
-// import whatsapp from "../images/whatsapp.png"
+import whatsapp from "../images/whatsapp.png"
 import "../App.css";
 
 const BackToTopBtn = () => {
@@ -35,12 +35,12 @@ const BackToTopBtn = () => {
                 </button>
             )}
             <a
-                href="https:/wa.me/233"
+                href="https:/wa.me/+12032939850"
                 target="_blank"
                 rel="noopener noreferrer"
-            // className="whatsapp_float"
+                className="whatsapp_float"
             >
-                {/* <img src={whatsapp} alt='app' className='cursor-pointer ' />*/}
+                <img src={whatsapp} alt='app' className='cursor-pointer ' />
             </a>
         </>
     );
