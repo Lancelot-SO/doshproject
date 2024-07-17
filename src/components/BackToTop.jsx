@@ -35,7 +35,7 @@ const BackToTopBtn = () => {
                 </button>
             )}
             <a
-                href="https:/wa.me/233556318804"
+                href="https:/wa.me/233203150079"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="whatsapp_float"
