@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './ProductServices.css';
-import product from '../images/prodnew.png'
+import product from '../images/ppp.jpg'
 // import productservice from "../images/productservice.png"
 import doshdata from "../doshdata.js"
 import doshvideo from '../images/dosh.mp4'

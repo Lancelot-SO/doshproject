@@ -64,6 +64,22 @@
         padding-left: 40px;
         padding-right: 20px;
     }
+
+    .scroll-button {
+        background-color: #9E825B;
+        width: 3rem;
+        height: 3rem;
+        color: white;
+        border-radius: 50%;
+        position: fixed;
+        right: 2rem;
+        bottom: 7rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
+    }
 }
 
 .product__text p b {

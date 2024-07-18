@@ -103,7 +103,7 @@ const Insure = ({ onClose }) => {
                             <p className='package_details'>{activeDetail.details}</p>
                             <Link onClick={handleFlyerClick} className='flyer-link-insure'>Click here to View full flyer</Link>
                             <small>
-                                <Link to={activeDetail.link}>Sign up</Link>
+                                <Link to={activeDetail.link} target="_blank" rel="noopener noreferrer">Sign up</Link>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="28"

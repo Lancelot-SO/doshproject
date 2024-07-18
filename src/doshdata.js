@@ -80,7 +80,7 @@ export const insuranceDetails = [
         number: "365",
         desc: "Description",
         details: `DOSH 365 package births an array of hope for individuals who hitherto are unable to access health insurance services due to the absence of affordable packages one the market. Dosh is changing the narrative on health insurance provision with the DOSH365 package, which is highly affordable and offering a new health insurance experience, designed with the individual in mind. An amount of GHS 1 per day or a total of GHS 365 per year, provides a membership cover of GHS 9,000 annually. Out of the GHS 9,000, an amount of GHS 7,500 is allocated towards In-Patient services and the remaining GHS 1,500 for Out-Patient services. DOSH 365 is specifically designed to shoulder the unforeseen medical`,
-        link: "/insurance",
+        link: "https://dsp.onenet.xyz:50443/#/",
         category: "DOSH 365"
     },
     {
@@ -164,7 +164,7 @@ export const financeDetails = [
         title: "Personal",
         desc: "Description",
         details: `Whether at home or at work, banking shouldn’t be a problem with Dosh. Our uniquely designed and tailor-made personal account offers 1 user with 5 different types of accounts, making it easy for our clients to always stay on top of their personal finances. We have the option of additional accounts at configurable fee per each additional account.`,
-        link: "/insurance",
+        link: "https://dsp.onenet.xyz:50443/#/",
         category: "Personal"
     },
     {
