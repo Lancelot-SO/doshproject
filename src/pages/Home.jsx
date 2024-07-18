@@ -9,12 +9,13 @@ import slider6 from "../images/slider6.png";
 import slider7 from "../images/slider8.png";
 import slider2 from "../images/practitioner.png";
 import slider8 from "../images/slider-last.png";
+import slidermobile from "../images/slidermobile.png"
 
 // import banner from '../images/dosh-banner.png'
 import elevate2 from '../images/img2.png'
 import money from '../images/img1.png';
 // import seamless from "../images/seamless.png"
-import ride from '../images/ride.png'
+import ride from '../images/newride.png'
 import reinvigorate from '../images/Vector334.png'
 import scale from "../images/scale.png"
 
@@ -192,10 +193,11 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='slide'>
-                            <img src={slider8} alt='hero' loading='lazy' />
+                            <img src={slider8} alt='hero' loading='lazy' className='sliderslaptop' />
+                            <img src={slidermobile} alt='hero' loading='lazy' className='slidersmobile' />
                             <div className='hero__text'>
-                                <p className='ninth_slider'><b>Get an insurance cover
-                                    <br />that’s got your back.</b>
+                                <p className='ninth_sliders'>Get an <b className='ninth__sliders__bold'>insurance</b> cover
+                                    <br />that’s got your back.
                                 </p>
                                 <span className='ninth'>The only health insurance that<br />
                                     covers chiropractic services.
