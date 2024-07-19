@@ -96,7 +96,7 @@ const Home = () => {
                 document.getElementById('radio' + counter).checked = true;
                 setCounter(prevCounter => (prevCounter % 8) + 1);
             }
-        }, 10000);
+        }, 100000);
 
         return () => clearInterval(intervalId);
     }, [counter, isPaused]);
@@ -199,9 +199,11 @@ const Home = () => {
                                 <p className='ninth_sliders'>Get an <b className='ninth__sliders__bold'>insurance</b> cover
                                     <br />that’s got your back.
                                 </p>
-                                <span className='ninth'>The only health insurance that<br />
+                                <span className='ninth'>The only health insurance that <br />
                                     covers chiropractic services.
                                 </span>
+                                <p className='caption'>The only health insurance that
+                                    covers chiropractic <br />services. </p>
                             </div>
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
