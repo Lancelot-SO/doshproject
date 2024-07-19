@@ -96,7 +96,7 @@ const Home = () => {
                 document.getElementById('radio' + counter).checked = true;
                 setCounter(prevCounter => (prevCounter % 8) + 1);
             }
-        }, 100000);
+        }, 10000);
 
         return () => clearInterval(intervalId);
     }, [counter, isPaused]);
