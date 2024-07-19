@@ -22,7 +22,9 @@ const products = [
         title: 'DOSH INSURANCE',
         image: Finance,
         readmore: '/financial',
-        quote: 'DOSH Health Insurance offers an all-around medical care package for you and your loved ones. This includes, hospital consultations, dental care, prescribed drugs, optical care, mental health, chiropractic care, infertility, and even erectile dysfunction treatment. We provide you with services in hospitals, clinics. We provide you with available, accessible, and affordable healthcare all year round.',
+        quote: `Experience comprehensive coverage for your medical needs.
+Experience comprehensive coverage for your medical needs.Our mission at DOSH Insurance is to empower lives by ensuring your access to funds for quality healthcare.We are dedicated to helping you and your loved ones live life to the fullest by providing reliable health insurance solutions.
+Our extensive network of accredited service providers spans all regions and offers comprehensive healthcare coverage.Our team of experienced finance and health experts has curated a wide range of product options that cater to businesses, individuals, and employees at all levels.Safeguard your health with DOSH Insurance.`,
 
     },
     {
@@ -30,7 +32,7 @@ const products = [
         title: 'DOSH FINANCIAL',
         image: Lady,
         readmore: '/insure',
-        quote: 'You have the dream, we have the funds its the perfect love story. Get the right financial help for your personal and business needs anytime with less paperwork on DOSH.',
+        quote: `At DOSH, we provide tailored financial assistance for all your personal and business needs. Get the funds you need on your terms with our accessible and innovative funding options, including low- to no-interest repayment plans. Whether it's for business, entrepreneurship, or personal use, our funding solutions are designed to meet both long-term and short-term financial needs. Our licensed services benefit clients worldwide, offering a reliable and empowering funding experience. Let DOSH help you turn your dreams into reality.`,
     },
 ]
 
@@ -79,7 +81,7 @@ export const insuranceDetails = [
         title: "DOSH",
         number: "365",
         desc: "Description",
-        details: `DOSH 365 package births an array of hope for individuals who hitherto are unable to access health insurance services due to the absence of affordable packages one the market. Dosh is changing the narrative on health insurance provision with the DOSH365 package, which is highly affordable and offering a new health insurance experience, designed with the individual in mind. An amount of GHS 1 per day or a total of GHS 365 per year, provides a membership cover of GHS 9,000 annually. Out of the GHS 9,000, an amount of GHS 7,500 is allocated towards In-Patient services and the remaining GHS 1,500 for Out-Patient services. DOSH 365 is specifically designed to shoulder the unforeseen medical`,
+        details: `The DOSH 365 package births an array of hope for people who haven't been able to get health insurance at an affordable option. Dosh is rewriting the story on health insurance with the DOSH365 package. This package is highly affordable and offers a new health insurance experience designed with the individual in mind. An amount of GHS 1 per day, or a total of GHS 365 per year, provides a membership cover of GHS 9,000 annually. Out of the GHS 9,000, an amount of GHS 7,500 is allocated to in-patient services, and the remaining GHS 1,500 is for out-patient services. DOSH 365 is specifically designed to shoulder the unforeseen medical situations`,
         link: "https://dsp.onenet.xyz:50443/#/",
         category: "DOSH 365"
     },
@@ -89,7 +91,7 @@ export const insuranceDetails = [
         title: "DOSH",
         number: "750",
         desc: "Description",
-        details: `DOSH 750 comes with add-ons and quintessential incentives targeted at individuals, families and their dependents with a slightly higher premium. It is gratifying to know that with DOSH, your family and dependents’ health care needs are furnished with a cover up to GHS 18,000 for only GHS 750 annual premium. This package is specially recommended for new employees or young families seeking affordable and cost-effective health insurance products. An annual premium of GHS 750 comes with health insurance cover of up to GHS 15,000 for In-Patient and GHS 3,000 for Out-Patient services respectively.`,
+        details: `DOSH 750 comes with add-ons and quintessential incentives targeted at individuals, families, and their dependents, with a slightly higher premium. It is gratifying to know that with DOSH, your family and dependents’ health care needs are covered with a cover-up of up to GHS 18,000 for only a GHS 750 annual premium. This package is perfect for new employees or young families looking for affordable health insurance. An annual premium of GHS 750 comes with health insurance coverage of up to GHS 15,000 for in-patient and GHS 3,000 for out-patient services, respectively.`,
         link: "/insurance",
         category: "DOSH 750"
     },
@@ -99,7 +101,7 @@ export const insuranceDetails = [
         title: "DOSH",
         number: "1000",
         desc: "Description",
-        details: `The package is distinctively designed to offer members absolute serenity with regards to their health care needs offering an extended cover of up to a whopping GHS 30,000 for an annual premium of only GHS1,000. DOSH1000 offers an In-Patient Limit of GHS 25,000 and Out-Patient Limit of GHS 5,000, offering members value for their investments.`,
+        details: `The package is distinctively designed to offer members absolute serenity with regard to their healthcare needs, offering an extended cover of up to a whopping GHS 30,000 for an annual premium of only GHS 1,000. DOSH1000 offers an in-patient limit of GHS 25,000 and an out-patient limit of GHS 5,000, offering members value for their investments.`,
         link: "/insurance",
         category: "DOSH 1000"
     },
@@ -109,7 +111,8 @@ export const insuranceDetails = [
         title: "DOSH",
         number: "2500",
         desc: "Description",
-        details: `For Individuals and Corporate organizations interested in prudent financial planning in all crucial areas of life or business with the rainy-days in mind, DOSH 2500 health insurance plan comes highly recommended with an annual cover up to GHS 60,000. DOSH 2500 offers GHS 50,000 In-Patient and GHS 10,000 Out-Patient services for an annual premium of GHS 2,500.`,
+        details: `This package is ideal for new employees or young families who want affordable health insurance.
+For people and businesses looking to manage their finances wisely and prepare for tough times, the DOSH 2500 health insurance plan is highly recommended. It offers annual coverage of up to GHS 60,000. DOSH 2500 offers GHS 50,000 in-patient and GHS 10,000 out-patient services for an annual premium of GHS 2,500.`,
         link: "/insurance",
         category: "DOSH 2500"
     },
@@ -119,7 +122,8 @@ export const insuranceDetails = [
         title: "DOSH",
         number: "5000",
         desc: "Description",
-        details: `This premium offer is bespoke to coddle the health insurance needs of our high value clients. It is an exclusive package exceptionally centered on delivering superb healthcare services to our valued clients, offering a total annual cover of up to GHS 95,000 with GHS 75,000 and GHS 20,000 In-Patient and Out-Patient allocations respectively. This package is recommended to individuals or businesses with amplified health care needs.`,
+        details: `This premium offer is tailored to meet the health insurance needs of our high-value clients. It provides excellent healthcare services with annual coverage of up to GHS 95,000, including GHS 75,000 for in-patient care and GHS 20,000 for out-patient care. 
+This package is recommended for individuals or businesses with amplified healthcare needs.`,
         link: "/insurance",
         category: "DOSH 5000"
     },
@@ -129,7 +133,8 @@ export const insuranceDetails = [
         title: "DOSH",
         number: "10000",
         desc: "Description",
-        details: `DOS 10,000 delivers health care services cover of up to GHS 190,000, and is highly suited for clients who desire peace of mind with regards to 360 healthcare delivery. This esteemed package provides up to GHS 150,000 for In-Patient and GHS 40,000 Out-Patient health care services at an annual premium of GHS 10,000 and accessible nationwide at all the major health care service providers.`,
+        details: `The DOS 10,000 plan offers up to GHS 190,000 in health coverage, perfect for those seeking comprehensive healthcare and peace of mind. With this plan, you get GHS 150,000 for in-patient care and GHS 40,000 for out-patient care, all for an annual premium of GHS 10,000. 
+The services offered by this plan are accessible at all significant healthcare providers around the country.`,
         link: "/insurance",
         category: "DOSH 10000"
     },
