@@ -1,6 +1,7 @@
 import Finance from "./images/dosh-financial.jpg"
 import Lady from "./images/prettylady.jpg"
 import Insurance from "./images/elevate2.png"
+import Family from "./images/dosh-family.png"
 // import Money from "./images/money.png"
 import Ride from "./images/ride.png"
 import Ecommerce from "./images/Vector334.png"
@@ -21,7 +22,7 @@ const products = [
         id: 1,
         title: 'DOSH INSURANCE',
         image: Finance,
-        readmore: '/financial',
+        readmore: '/insure',
         quote: `Experience comprehensive coverage for your medical needs.Our mission at DOSH Insurance is to empower lives by ensuring your access to funds for quality healthcare.We are dedicated to helping you and your loved ones live life to the fullest by providing reliable health insurance solutions.Our extensive network of accredited service providers spans all regions and offers comprehensive healthcare coverage.Our team of experienced finance and health experts has curated a wide range of product options that cater to businesses, individuals, and employees at all levels.Safeguard your health with DOSH Insurance.`,
 
     },
@@ -163,7 +164,7 @@ export const financePackage = [
 export const financeDetails = [
     {
         id: "1",
-        img: Avatar,
+        img: Lady,
         title: "Personal",
         desc: "Description",
         details: `Whether at home or at work, banking shouldn’t be a problem with Dosh. Our uniquely designed and tailor-made personal account offers 1 user with 5 different types of accounts, making it easy for our clients to always stay on top of their personal finances. We have the option of additional accounts at configurable fee per each additional account.`,
@@ -172,7 +173,7 @@ export const financeDetails = [
     },
     {
         id: "2",
-        img: Avatar,
+        img: Family,
         title: "Family",
         desc: "Description",
         details: `Family financial management involves effectively meeting your family's everyday expenses, handling unexpected bills and saving for the future. At DOSH, our Family account puts you in control of your money, helping you avoid stress, whilst making you feel more secured. In addition to the 5 different accounts available with the Personal Account package, the Family Account offers 5 additional users with current sub accounts.`,

@@ -14,6 +14,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { IoIosArrowDown } from 'react-icons/io';
 import Insure from '../components/Insure.jsx';
+import FinanceSideModal from '../components/FinanceSideModal.jsx';
 
 const ProductServices = () => {
 
@@ -181,7 +182,7 @@ const ProductServices = () => {
                             </div>
                         );
                     })}
-                    {showFinanceModal && <Financial onClose={() => setShowFinanceModal(false)} />}
+                    {showFinanceModal && <FinanceSideModal onClose={() => setShowFinanceModal(false)} />}
                     {showInsureModal && <Insure onClose={() => setShowInsureModal(false)} />}
                 </div>
 

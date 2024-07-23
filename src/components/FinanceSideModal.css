@@ -441,3 +441,7 @@
 .form__step.active {
     display: block;
 }
+
+.package_left img {
+    height: 300px;
+}
