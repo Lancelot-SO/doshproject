@@ -589,21 +589,23 @@
     line-height: 22px;
     letter-spacing: 0em;
     text-align: left;
+    margin-bottom: 20px;
 }
 
 .home__money-right a {
-    background-color: rgb(16, 15, 13);
+    background-color: rgb(200, 173, 132);
     color: var(--color-white);
     cursor: pointer;
-    width: 186px;
-    height: 35px;
+    padding: 10px;
+    width: 225px;
+    height: 44px;
     font-size: 14px;
+    font-weight: bold;
     border-radius: 8px;
     gap: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 30px;
 }
 
 .digital__section {
@@ -653,21 +655,23 @@
     letter-spacing: 0em;
     text-align: left;
     color: #000;
+    margin-bottom: 20px;
 }
 
 .home__digital-left a {
-    background-color: #987C55;
+    background-color: rgb(200, 173, 132);
     color: var(--color-white);
     cursor: pointer;
-    width: 156px;
-    height: 35px;
+    padding: 10px;
+    width: 225px;
+    height: 44px;
     font-size: 14px;
+    font-weight: bold;
     border-radius: 8px;
     gap: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 30px;
 }
 
 .home__digital-right {
@@ -760,21 +764,23 @@
     height: 88px;
     letter-spacing: 0em;
     text-align: left;
+    margin-bottom: 20px;
 }
 
 .home__ride2-right a {
-    background-color: #987C55;
+    background-color: rgb(200, 173, 132);
     color: var(--color-white);
     cursor: pointer;
-    width: 186px;
-    height: 35px;
+    padding: 10px;
+    width: 225px;
+    height: 44px;
     font-size: 14px;
+    font-weight: bold;
     border-radius: 8px;
     gap: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 30px;
 }
 
 .home__ride-right {
@@ -817,7 +823,7 @@
 }
 
 .home__ride-right a {
-    background-color: #987C55;
+    background-color: rgb(200, 173, 132);
     color: var(--color-white);
     cursor: pointer;
     width: 186px;
@@ -1182,19 +1188,21 @@
     }
 
     .home__money-right a {
-        background-color: rgb(16, 15, 13);
+        background-color: rgb(200, 173, 132);
         color: var(--color-white);
         cursor: pointer;
+        padding: 10px;
         width: 127px;
         height: 35px;
         font-size: 14px;
+        font-weight: bold;
         border-radius: 8px;
         gap: 10px;
         display: flex;
+        margin-bottom: 20px;
         align-items: center;
         justify-content: center;
-        margin-top: 15px;
-        margin-bottom: 15px;
+        /* margin-left: 30px; */
     }
 
     .home__digital {
@@ -1231,19 +1239,21 @@
     }
 
     .home__digital-left a {
-        background-color: #987C55;
+        background-color: rgb(200, 173, 132);
         color: var(--color-white);
         cursor: pointer;
+        padding: 10px;
         width: 127px;
         height: 35px;
         font-size: 14px;
+        font-weight: bold;
         border-radius: 8px;
         gap: 10px;
         display: flex;
+        margin-bottom: 20px;
         align-items: center;
         justify-content: center;
-        margin-top: 15px;
-        margin-bottom: 15px;
+        /* margin-left: 30px; */
     }
 
     .home__digital-right {
@@ -1314,19 +1324,21 @@
     }
 
     .home__ride-right a {
-        /* background-color: rgb(16, 15, 13); */
+        background-color: rgb(200, 173, 132);
         color: var(--color-white);
         cursor: pointer;
-        width: 186px;
+        padding: 10px;
+        width: 127px;
         height: 35px;
         font-size: 14px;
+        font-weight: bold;
         border-radius: 8px;
         gap: 10px;
         display: flex;
+        margin-bottom: 20px;
         align-items: center;
         justify-content: center;
-        margin-top: 15px;
-        margin-bottom: 15px;
+        /* margin-left: 30px; */
     }
 
     .home__ride2-left {
@@ -1372,19 +1384,21 @@
     }
 
     .home__ride2-right a {
-        /* background-color: rgb(16, 15, 13); */
+        background-color: rgb(200, 173, 132);
         color: var(--color-white);
         cursor: pointer;
-        width: 186px;
+        padding: 10px;
+        width: 127px;
         height: 35px;
         font-size: 14px;
+        font-weight: bold;
         border-radius: 8px;
         gap: 10px;
         display: flex;
+        margin-bottom: 20px;
         align-items: center;
         justify-content: center;
-        margin-top: 15px;
-        margin-bottom: 15px;
+        /* margin-left: 30px; */
     }
 
     .slide-arrow small {
