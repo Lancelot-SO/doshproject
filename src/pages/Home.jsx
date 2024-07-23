@@ -543,7 +543,7 @@ const Home = () => {
                             and comfortable vehicles. At DOSH Ride, our goal is to ensure that every
                             journey is an extraordinary experience!
                         </p>
-                        <Link className='linkers'>Comming Soon
+                        <Link className='linkers'>Coming Soon
                             {/*<svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
