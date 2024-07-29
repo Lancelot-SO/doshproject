@@ -404,6 +404,10 @@ footer {
   color: #987C55;
 }
 
+.location a {
+  color: #987C55;
+}
+
 .socials {
   display: flex;
   align-items: center;

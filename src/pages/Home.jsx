@@ -96,7 +96,7 @@ const Home = () => {
                 document.getElementById('radio' + counter).checked = true;
                 setCounter(prevCounter => (prevCounter % 8) + 1);
             }
-        }, 10000);
+        }, 100000);
 
         return () => clearInterval(intervalId);
     }, [counter, isPaused]);
@@ -132,7 +132,7 @@ const Home = () => {
 
 
                         <div className='slide first'>
-                            <img src={slider1} alt='hero' loading='lazy' />
+                            <img src={slider1} alt='hero' loading='lazy' className='slide-one-laptop' />
                             <div className='hero__text'>
                                 <p className='first_slider'>Health <b>insurance</b> for the <br />
                                     years you need it the most.</p>
@@ -163,7 +163,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='slide'>
-                            <img src={slider2} alt='hero' loading='lazy' />
+                            <img src={slider2} alt='hero' loading='lazy' className='slide-two-laptop' />
                             <div className='hero__text'>
                                 <p className='second_slider-h2'>We've got <b>insurance</b> for <br /> your old girl.</p>
                                 <p className='second_slider'>Securing comprehensive health insurance for your folks is a thoughtful
@@ -228,7 +228,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='slide'>
-                            <img src={slider3} alt='hero' loading='lazy' />
+                            <img src={slider3} alt='hero' loading='lazy' className='slide-three-laptop' />
                             <div className='hero__text'>
                                 <p className='third_slider'>Choose <b>comprehensive </b><br />
                                     coverage that leaves no one behind.</p>
@@ -257,7 +257,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='slide'>
-                            <img src={slider4} alt='hero' loading='lazy' />
+                            <img src={slider4} alt='hero' loading='lazy' className='slide-four-laptop' />
                             <div className='hero__text'>
                                 <p className='fourth_slider'>Keep the <b>DAD</b> jokes coming</p>
                                 <p className='fourth_slider_p'>Protect old boy's health with DOSH insurance while protecting your savings.
@@ -286,7 +286,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='slide'>
-                            <img src={slider5} alt='hero' loading='lazy' />
+                            <img src={slider5} alt='hero' loading='lazy' className='slide-five-laptop' />
                             <div className='hero__text'>
                                 <p className='fifth_slider'>Health insurance that covers <b>EYE,<br />
                                     DENTAL, MENTAL HEALTH</b> care and more</p>
@@ -319,7 +319,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='slide'>
-                            <img src={slider6} alt='hero' loading='lazy' />
+                            <img src={slider6} alt='hero' loading='lazy' className='slide-six-laptop' />
                             <div className='hero__text'>
                                 <p className='sixth__slider'>
                                     Dial <b>*915#</b><br />to join the DOSH Revolution
@@ -349,7 +349,7 @@ const Home = () => {
                         </div>
 
                         <div className='slide'>
-                            <img src={slider7} alt='hero' loading='lazy' />
+                            <img src={slider7} alt='hero' loading='lazy' className='slide-seven-laptop' />
                             <div className='hero__text'>
                                 <p className='eight_slider'>Overall wellness includes <b>Mental health.</b><br />
                                     We’ve got you covered.

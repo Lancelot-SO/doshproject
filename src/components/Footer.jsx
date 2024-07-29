@@ -27,8 +27,7 @@ const Footer = () => {
                             <div className='location'>
                                 <p>Phone: 0800-DOSH-ME</p>
                                 <p>Fax: 0800-DOSH-ME</p>
-                                <p>Online Support</p>
-                                <p>Request Service</p>
+                                <Link to="/contact">Online Support</Link>
                             </div>
                         </div>
                     </div>
