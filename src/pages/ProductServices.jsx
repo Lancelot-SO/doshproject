@@ -205,8 +205,8 @@ const ProductServices = () => {
                     </div>
                     <div className='video__right'>
                         <h4>SUCCESS STORIES VIDEO</h4>
-                        <h6>“ Affordable health insurance for you and your loved ones.</h6>
-                        <small>Dial *915# to sign up with as low as GHS 365 and get GHS 9000 worth of cover at any medical facility.<br />Join the DOSH Revolution!. ”</small>
+                        <h6>Affordable health insurance for you and your loved ones.</h6>
+                        <small>Dial *915# to sign up with as low as GHS 365 and get GHS 9000 worth of cover at any medical facility.<br />Join the DOSH Revolution!.</small>
                     </div>
                 </div>
             </section>

@@ -23,7 +23,7 @@ const products = [
         title: 'DOSH INSURANCE',
         image: Finance,
         readmore: '/insure',
-        quote: `Experience comprehensive coverage for your medical needs.Our mission at DOSH Insurance is to empower lives by ensuring your access to funds for quality healthcare.We are dedicated to helping you and your loved ones live life to the fullest by providing reliable health insurance solutions.Our extensive network of accredited service providers spans all regions and offers comprehensive healthcare coverage.Our team of experienced finance and health experts has curated a wide range of product options that cater to businesses, individuals, and employees at all levels.Safeguard your health with DOSH Insurance.`,
+        quote: `Experience comprehensive coverage for your medical needs. Our mission at DOSH Insurance is to empower lives by ensuring your access to funds for quality healthcare. We are dedicated to helping you and your loved ones live life to the fullest by providing reliable health insurance solutions. Our extensive network of accredited service providers spans all regions and offers comprehensive healthcare coverage. Our team of experienced finance and health experts has curated a wide range of product options that cater to businesses, individuals, and employees at all levels. Safeguard your health with DOSH Insurance.`,
 
     },
     {
