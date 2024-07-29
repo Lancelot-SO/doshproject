@@ -844,6 +844,45 @@
 
 }
 
+
+/* all big screen  images for slider with mobile image disabled */
+
+.slide-two-mobile,
+.slide-three-mobile,
+.slide-four-mobile,
+.slide-five-mobile,
+.slide-six-mobile,
+.slide-seven-mobile,
+.slide-one-mobile {
+    display: none;
+}
+
+/* all mobile images for slider */
+
+@media (max-width: 767px) {
+
+    .slide-one-laptop,
+    .slide-two-laptop,
+    .slide-three-laptop,
+    .slide-four-laptop,
+    .slide-five-laptop,
+    .slide-six-laptop,
+    .slide-seven-laptop {
+        display: none;
+    }
+
+
+    .slide-one-mobile,
+    .slide-two-mobile,
+    .slide-three-mobile,
+    .slide-four-mobile,
+    .slide-five-mobile,
+    .slide-six-mobile,
+    .slide-seven-mobile {
+        display: block
+    }
+}
+
 /* For screens smaller than or equal to 767px */
 @media (max-width: 767px) {
     .main__hero {
@@ -871,7 +910,7 @@
 
     .slide img {
         width: 415px;
-        height: 450px;
+        height: auto;
     }
 
     .first_slider {

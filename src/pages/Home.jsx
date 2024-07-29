@@ -9,7 +9,20 @@ import slider6 from "../images/slider6.png";
 import slider7 from "../images/slider8.png";
 import slider2 from "../images/practitioner.png";
 import slider8 from "../images/slider-last.png";
+
+
 import slidermobile from "../images/slidermobile.png"
+import slider1mobile from "../images/granny1-mobile.png"
+import slider2mobile from "../images/practitioner-mobile.png"
+import slider3mobile from "../images/slider3-mobile.png"
+import slider4mobile from "../images/slider4-mobile.png"
+import slider5mobile from "../images/slider666-mobile.png"
+import slider6mobile from "../images/slider6-mobile.png"
+import slider7mobile from "../images/slider8-mobile.png"
+
+
+
+
 
 // import banner from '../images/dosh-banner.png'
 import elevate2 from '../images/img2.png'
@@ -133,6 +146,8 @@ const Home = () => {
 
                         <div className='slide first'>
                             <img src={slider1} alt='hero' loading='lazy' className='slide-one-laptop' />
+                            <img src={slider1mobile} alt='hero' loading='lazy' className='slide-one-mobile' />
+
                             <div className='hero__text'>
                                 <p className='first_slider'>Health <b>insurance</b> for the <br />
                                     years you need it the most.</p>
@@ -164,6 +179,8 @@ const Home = () => {
                         </div>
                         <div className='slide'>
                             <img src={slider2} alt='hero' loading='lazy' className='slide-two-laptop' />
+                            <img src={slider2mobile} alt='hero' loading='lazy' className='slide-two-mobile' />
+
                             <div className='hero__text'>
                                 <p className='second_slider-h2'>We've got <b>insurance</b> for <br /> your old girl.</p>
                                 <p className='second_slider'>Securing comprehensive health insurance for your folks is a thoughtful
@@ -229,6 +246,8 @@ const Home = () => {
                         </div>
                         <div className='slide'>
                             <img src={slider3} alt='hero' loading='lazy' className='slide-three-laptop' />
+                            <img src={slider3mobile} alt='hero' loading='lazy' className='slide-three-mobile' />
+
                             <div className='hero__text'>
                                 <p className='third_slider'>Choose <b>comprehensive </b><br />
                                     coverage that leaves no one behind.</p>
@@ -258,6 +277,8 @@ const Home = () => {
                         </div>
                         <div className='slide'>
                             <img src={slider4} alt='hero' loading='lazy' className='slide-four-laptop' />
+                            <img src={slider4mobile} alt='hero' loading='lazy' className='slide-four-mobile' />
+
                             <div className='hero__text'>
                                 <p className='fourth_slider'>Keep the <b>DAD</b> jokes coming</p>
                                 <p className='fourth_slider_p'>Protect old boy's health with DOSH insurance while protecting your savings.
@@ -287,6 +308,8 @@ const Home = () => {
                         </div>
                         <div className='slide'>
                             <img src={slider5} alt='hero' loading='lazy' className='slide-five-laptop' />
+                            <img src={slider5mobile} alt='hero' loading='lazy' className='slide-five-mobile' />
+
                             <div className='hero__text'>
                                 <p className='fifth_slider'>Health insurance that covers <b>EYE,<br />
                                     DENTAL, MENTAL HEALTH</b> care and more</p>
@@ -320,6 +343,8 @@ const Home = () => {
                         </div>
                         <div className='slide'>
                             <img src={slider6} alt='hero' loading='lazy' className='slide-six-laptop' />
+                            <img src={slider6mobile} alt='hero' loading='lazy' className='slide-six-mobile' />
+
                             <div className='hero__text'>
                                 <p className='sixth__slider'>
                                     Dial <b>*915#</b><br />to join the DOSH Revolution
@@ -350,6 +375,8 @@ const Home = () => {
 
                         <div className='slide'>
                             <img src={slider7} alt='hero' loading='lazy' className='slide-seven-laptop' />
+                            <img src={slider7mobile} alt='hero' loading='lazy' className='slide-seven-mobile' />
+
                             <div className='hero__text'>
                                 <p className='eight_slider'>Overall wellness includes <b>Mental health.</b><br />
                                     We’ve got you covered.
