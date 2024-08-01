@@ -68,7 +68,7 @@ const ServiceProviders = () => {
 
             <section className='provider-container'>
                 <div className='container service__cards'>
-                    <h4>Locate a DOSH service provider near you</h4>
+                    <h4>Find the closest service provider on DOSH</h4>
                     <hr className='underline'></hr>
 
                     <section className='filter-section'>
