@@ -451,7 +451,7 @@ const Home = () => {
             <section id='home' className='home__section'>
                 <div className='container home__student'>
                     <div className='home__student-left'>
-                        <h4>DOSH HEALTH INSURANCE:</h4>
+                        <h4>HEALTH INSURANCE:</h4>
                         <h3>Elevate your healthcare experience</h3>
                         <p>
                             Take control of your healthcare the DOSH way. DOSH Health insurance is
@@ -491,7 +491,7 @@ const Home = () => {
                         <img src={money} alt='student' loading='lazy' />
                     </div>
                     <div className='home__money-right'>
-                        <h4>DOSH FINANCE:</h4>
+                        <h4>FINANCIAL SERVICES:</h4>
                         <h3>Make your money<br /> work for you</h3>
                         <p>
                             DOSH Finance provides access to personalized financial solutions,
