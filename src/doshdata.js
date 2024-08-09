@@ -20,7 +20,7 @@ import ph6 from "./images/ph6.png"
 const products = [
     {
         id: 1,
-        title: 'DOSH INSURANCE',
+        title: 'HEALTH INSURANCE',
         image: Finance,
         readmore: '/insure',
         quote: `Experience comprehensive coverage for your medical needs. Our mission at DOSH Insurance is to empower lives by ensuring your access to funds for quality healthcare. We are dedicated to helping you and your loved ones live life to the fullest by providing reliable health insurance solutions. Our extensive network of accredited service providers spans all regions and offers comprehensive healthcare coverage. Our team of experienced finance and health experts has curated a wide range of product options that cater to businesses, individuals, and employees at all levels. Safeguard your health with DOSH Insurance.`,
@@ -28,7 +28,7 @@ const products = [
     },
     {
         id: 2,
-        title: 'DOSH FINANCIAL',
+        title: 'FINANCIAL SERVICES',
         image: Lady,
         readmore: '/insure',
         quote: `At DOSH, we provide tailored financial assistance for all your personal and business needs. Get the funds you need on your terms with our accessible and innovative funding options, including low- to no-interest repayment plans. Whether it's for business, entrepreneurship, or personal use, our funding solutions are designed to meet both long-term and short-term financial needs. Our licensed services benefit clients worldwide, offering a reliable and empowering funding experience. Let DOSH help you turn your dreams into reality.`,

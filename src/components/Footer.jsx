@@ -20,10 +20,10 @@ const Footer = () => {
                             <img src={logo} alt='dosh-logo' />
                         </div>
                         <div className='footer__text'>
-                            <p>8 Sir Arku Korsah <br /> Rd. Airport <br />Residential Area <br />Accra, Ghana</p>
+                            <p>10 MIREKU WE <br /> LP <br />GA-504-4280 <br />Dansoman, Accra</p>
                         </div>
                         <div className='contacts'>
-                            <h3>    CONTACTS</h3>
+                            <h3>CONTACTS</h3>
                             <div className='location'>
                                 <p>Phone: 0800-DOSH-ME</p>
                                 <p>Fax: 0800-DOSH-ME</p>
@@ -56,7 +56,7 @@ const Footer = () => {
 
             </footer>
             <div className='footer__gold'></div>
-            <div className='container copyright'>
+            <div className='copyright'>
                 <p>Powered by OPIN Technologies ®</p>
             </div>
         </div>

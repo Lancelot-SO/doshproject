@@ -28,9 +28,9 @@ import slider7mobile from "../images/slider8-mobile.png"
 import elevate2 from '../images/img2.png'
 import money from '../images/img1.png';
 // import seamless from "../images/seamless.png"
-import ride from '../images/newride.png'
-import reinvigorate from '../images/Vector334.png'
-import scale from "../images/scale.png"
+import ride from '../images/ridenew.png'
+import reinvigorate from '../images/erpImage.png'
+import scale from "../images/scalenew.png"
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -451,7 +451,7 @@ const Home = () => {
             <section id='home' className='home__section'>
                 <div className='container home__student'>
                     <div className='home__student-left'>
-                        <h4>HEALTH INSURANCE:</h4>
+                        <h4>HEALTH INSURANCE SERVICES:</h4>
                         <h3>Elevate your healthcare experience</h3>
                         <p>
                             Take control of your healthcare the DOSH way. DOSH Health insurance is
@@ -593,7 +593,7 @@ const Home = () => {
             <section id='digital' className='digital__section'>
                 <div className='container home__digital'>
                     <div className='home__digital-left'>
-                        <h4>DOSH ERP:</h4>
+                        <h4>ERP:</h4>
                         <h3>Reinvigorate your<br />
                             business</h3>
                         <p>
@@ -633,7 +633,7 @@ const Home = () => {
                         <img data-aos="zoom-in-right" src={scale} alt='ride' loading='lazy' />
                     </div>
                     <div className='home__ride2-right'>
-                        <h4>DOSH-COMMERCE:</h4>
+                        <h4>ECOMMERCE:</h4>
                         <h3>Scale to new heights<br />
                             reach new markets</h3>
                         <p>

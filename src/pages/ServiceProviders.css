@@ -581,3 +581,58 @@ article.lastSlide {
         padding-left: 30px;
     }
 }
+
+
+/* hsp table start */
+.tablecontainer {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.searchfilters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.searchfilter-button {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.searchfilter-button:hover {
+    background-color: #f0f0f0;
+}
+
+.hospital-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.hospital-table th,
+.hospital-table td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+.hospital-table th {
+    background-color: #f8f8f8;
+}
+
+.hospital-table td {
+    vertical-align: middle;
+}
+
+.hospital-logo {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* hsp table end */

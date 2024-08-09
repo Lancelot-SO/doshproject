@@ -13,6 +13,8 @@ import CallModal from '../components/CallModal';
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+
+
 const ServiceProviders = () => {
 
     const [people] = useState(data);
@@ -80,6 +82,18 @@ const ServiceProviders = () => {
                             </div>
                         </div>
                         <FilterModal showModal={showModal} onClose={toggleModal} />
+                    </section>
+
+                    <section>
+                        <div>
+                            <div>
+                                <div>
+                                    <p>Country</p>
+                                    <p>Region</p>
+                                    <p>District</p>
+                                </div>
+                            </div>
+                        </div>
                     </section>
 
                     <div className='anime-sect'>
