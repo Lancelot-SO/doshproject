@@ -80,7 +80,7 @@
     font-family: 'Inter', sans-serif;
     font-size: 41px;
     font-weight: 400;
-    line-height: 45px;
+    line-height: 35px;
     letter-spacing: 0em;
     text-align: left;
     margin-bottom: 5px;
@@ -88,6 +88,7 @@
 
 .hero__text .first_slider b {
     color: rgba(206, 179, 138, 1);
+    font-weight: bolder;
 }
 
 .first_slider {
@@ -99,12 +100,13 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 16px;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     text-align: left;
+    margin-top: 20px;
 }
 
 .second_slider-h2 b {
-    font-weight: 900;
+    font-weight: bolder;
     color: rgba(206, 179, 138, 1);
 }
 
@@ -127,6 +129,10 @@
     text-align: left;
     width: 601px;
     height: 64px;
+}
+
+.second_slider p {
+    display: none;
 }
 
 .third_slider {
@@ -185,7 +191,7 @@
 
 .fifth_slider b {
     color: rgba(206, 179, 138, 1);
-    font-weight: bold;
+    font-weight: 900;
 }
 
 .fifth_slider_p {
@@ -197,7 +203,10 @@
     font-size: 16px;
     font-weight: 400;
     margin-left: 180px;
+}
 
+.fifth_slider_p span {
+    display: none;
 }
 
 .sixth__slider {
@@ -246,6 +255,44 @@
     text-align: left;
 }
 
+.overlay-container {
+    position: relative;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 195px;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0) 0%,
+            /* Transparent at the top */
+            rgba(0, 0, 0, 0.1),
+            /* Darker in the middle */
+            rgba(0, 0, 0, 0) 100%
+            /* Transparent at the bottom */
+        );
+    z-index: 1;
+}
+
+.imageoverlay {
+    position: absolute;
+    top: 195px;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0) 0%,
+            /* Transparent at the top */
+            rgba(0, 0, 0, 0.5),
+            /* Darker in the middle */
+            rgba(0, 0, 0, 0) 100%
+            /* Transparent at the bottom */
+        );
+    z-index: 1;
+}
+
 .ninth_sliders {
     font-family: "Inter", sans-serif;
     font-size: 41px;
@@ -270,7 +317,7 @@
 .ninth {
     width: 450px;
     font-family: "Inter", sans-serif;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 400;
     line-height: 16px;
     letter-spacing: 0.05em;
@@ -306,7 +353,7 @@
         display: block;
         margin-left: 200px;
         padding-left: 20px;
-        line-height: 10px;
+        line-height: 15px;
     }
 
     .scroll-button {
@@ -915,12 +962,12 @@
 
     .first_slider {
         font-family: "Inter", sans-serif;
-        font-size: 8px;
         text-align: left;
         padding-left: 130px;
         width: 500px;
-        height: 193px;
-        padding-top: 100px;
+        height: 173px;
+        line-height: 0px;
+        padding-top: 180px;
     }
 
     .first_slider br {
@@ -961,13 +1008,13 @@
     .first_slider-p {
         font-family: "Inter", sans-serif;
         font-size: 14px;
-        line-height: 12px;
+        line-height: 15px;
         letter-spacing: 0.05em;
         text-align: left;
         width: 330px;
         height: 60px;
         margin-left: 130px;
-        margin-top: 50px;
+        margin-top: 120px;
     }
 
     .second_slider-h2 {
@@ -1054,15 +1101,20 @@
         text-align: left;
         width: 362px;
         height: 47px;
+        font-weight: bold;
         margin-left: 58px;
         margin-top: 100px;
         padding-left: 65px;
     }
 
+    .fifth_slider br {
+        display: none;
+    }
+
     .fifth_slider_p {
         font-family: "Inter", sans-serif;
-        font-size: 14px;
-        line-height: 12px;
+        font-size: 12px;
+        line-height: 14px;
         letter-spacing: 0.05em;
         text-align: left;
         margin-top: 60px;
@@ -1070,6 +1122,10 @@
         margin-left: 120px;
         width: 359px;
         height: 30px;
+    }
+
+    .fifth_slider_p br {
+        display: none;
     }
 
     .sixth__slider {

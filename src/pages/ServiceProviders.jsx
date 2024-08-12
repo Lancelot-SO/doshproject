@@ -12,6 +12,7 @@ import CallModal from '../components/CallModal';
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import HospitalTable from '../components/HospitalTable';
 
 
 
@@ -86,13 +87,14 @@ const ServiceProviders = () => {
 
                     <section>
                         <div>
-                            <div>
+                            {/* <div>
                                 <div>
                                     <p>Country</p>
                                     <p>Region</p>
                                     <p>District</p>
                                 </div>
-                            </div>
+                            </div> */}
+                            <HospitalTable />
                         </div>
                     </section>
 

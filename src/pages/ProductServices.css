@@ -1,6 +1,7 @@
 .main__product {
     position: relative;
     color: white;
+    overflow: hidden;
 }
 
 .scroll-button {
@@ -21,7 +22,7 @@
 
 .main__product img {
     width: 100%;
-    height: 650px;
+    height: 580px;
     display: block;
     object-fit: cover;
 }
@@ -188,7 +189,7 @@
 
 .productslider {
     background: rgba(241, 245, 249, 1);
-    padding-top: 30px;
+    padding-top: 10px;
     padding-bottom: 30px;
 }
 
@@ -211,7 +212,7 @@
 
 .section1-center {
     margin: 0 auto;
-    margin-top: 4rem;
+    /* margin-top: 2rem; */
     width: 1135px;
     height: 750px;
     text-align: start;

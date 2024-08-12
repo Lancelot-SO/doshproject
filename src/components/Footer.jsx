@@ -20,7 +20,11 @@ const Footer = () => {
                             <img src={logo} alt='dosh-logo' />
                         </div>
                         <div className='footer__text'>
-                            <p>10 MIREKU WE <br /> LP <br />GA-504-4280 <br />Dansoman, Accra</p>
+                            <Link to="https://maps.app.goo.gl/d7qvqRwCwEeuM5Le6"
+                                target='_blank' rel="noopener noreferrer"
+                            >
+                                <p>10 MIREKU WE <br /> LP <br />GA-504-4280 <br />Dansoman, Accra</p>
+                            </Link>
                         </div>
                         <div className='contacts'>
                             <h3>CONTACTS</h3>

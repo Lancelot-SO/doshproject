@@ -109,7 +109,7 @@ const Home = () => {
                 document.getElementById('radio' + counter).checked = true;
                 setCounter(prevCounter => (prevCounter % 8) + 1);
             }
-        }, 10000);
+        }, 100000);
 
         return () => clearInterval(intervalId);
     }, [counter, isPaused]);
@@ -151,8 +151,7 @@ const Home = () => {
                             <div className='hero__text'>
                                 <p className='first_slider'>Health <b>insurance</b> for the <br />
                                     years you need it the most.</p>
-                                <p className='first_slider-p'>Your sixties must not be spent navigating arthritis and other medical
-                                    emergencies. Let DOSH help you with all-inclusive health coverage while you bask in the affection of loved ones. Dial *915# to sign up now.
+                                <p className='first_slider-p'>Live your retirement worry-free with an insurance plan made just for you.
                                 </p>
                             </div>
                             <div className='slide-text'>
@@ -184,7 +183,7 @@ const Home = () => {
                             <div className='hero__text'>
                                 <p className='second_slider-h2'>We've got <b>insurance</b> for <br /> your old girl.</p>
                                 <p className='second_slider'>Securing comprehensive health insurance for your folks is a thoughtful
-                                    investment in their health and your savings. Dosh provides quality healthcare insurance anywhere in the country. It's Available, Accessible and Affordable.
+                                    investment in their health and your savings. <p>Dosh provides quality healthcare insurance anywhere in the country. It's Available, Accessible and Affordable.</p>
                                 </p>
                             </div>
                             <div className='slide-text'>
@@ -210,13 +209,16 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='slide'>
-                            <img src={slider8} alt='hero' loading='lazy' className='sliderslaptop' />
-                            <img src={slidermobile} alt='hero' loading='lazy' className='slidersmobile' />
+                            <div className='overlay-container'>
+                                <img src={slider8} alt='hero' loading='lazy' className='sliderslaptop' />
+                                <img src={slidermobile} alt='hero' loading='lazy' className='slidersmobile' />
+                                <div className='image-overlay'></div>
+                            </div>
                             <div className='hero__text'>
                                 <p className='ninth_sliders'>Get an <b className='ninth__sliders__bold'>insurance</b> cover
                                     <br />that’s got your back.
                                 </p>
-                                <span className='ninth'>The only health insurance that <br />
+                                <span className='ninth'>The only health insurance that
                                     covers chiropractic services.
                                 </span>
                                 <p className='caption'>The only health insurance that
@@ -311,13 +313,18 @@ const Home = () => {
                             <img src={slider5mobile} alt='hero' loading='lazy' className='slide-five-mobile' />
 
                             <div className='hero__text'>
-                                <p className='fifth_slider'>Health insurance that covers <b>EYE,<br />
-                                    DENTAL, MENTAL HEALTH</b> care and more</p>
-                                <p className='fifth_slider_p'>
-                                    With as little as <b>GHS 365</b>, you get up to <b>GHS 9000</b> WORTH OF QUALITY<br />
-                                    healthcare at any medical facility. You also get safe and instant access<br />
-                                    to medical claims. No delays.
-                                </p>
+                                <div className='overlay-container'>
+                                    <p className='fifth_slider'>Health insurance that covers <b>EYE, <br />
+                                        DENTAL, MENTAL HEALTH</b> care and more</p>
+                                    <p className='fifth_slider_p'>
+                                        With as little as <b>GHS 365</b>, you get up to <b>GHS 9000</b> worth of quality <br />
+                                        healthcare at any medical facility. <span>You also get safe and instant access<br />
+                                            to medical claims. No delays.</span>
+                                    </p>
+                                    <div className='imageoverlay'></div>
+
+                                </div>
+
                             </div>
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
@@ -561,7 +568,7 @@ const Home = () => {
                         <img src={ride} alt='ride' loading='lazy' />
                     </div>
                     <div className='home__ride-right'>
-                        <h4>DOSH RIDE:</h4>
+                        <h4>RIDE:</h4>
                         <h3>Where safety<br />
                             meets adventure</h3>
                         <p>

@@ -80,7 +80,7 @@ export const insuranceDetails = [
         title: "DOSH",
         number: "365",
         desc: "Description",
-        details: `The DOSH 365 package births an array of hope for people who haven't been able to get health insurance at an affordable option. Dosh is rewriting the story on health insurance with the DOSH365 package. This package is highly affordable and offers a new health insurance experience designed with the individual in mind. An amount of GHS 1 per day, or a total of GHS 365 per year, provides a membership cover of GHS 9,000 annually. Out of the GHS 9,000, an amount of GHS 7,500 is allocated to in-patient services, and the remaining GHS 1,500 is for out-patient services. DOSH 365 is specifically designed to shoulder the unforeseen medical situations`,
+        details: `Dosh is rewriting the story on health insurance with the DOSH365 package. This package is highly affordable and offers a new health insurance experience designed with the individual in mind. An amount of GHS 1 per day, or a total of GHS 365 per year, provides a membership cover of GHS 9,000 annually. Out of the GHS 9,000, an amount of GHS 7,500 is allocated to in-patient services, and the remaining GHS 1,500 is for out-patient services. DOSH 365 is specifically designed to shoulder the unforeseen medical situations`,
         link: "https://dsp.onenet.xyz:50443/#/",
         category: "DOSH 365"
     },
