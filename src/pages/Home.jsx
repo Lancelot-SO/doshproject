@@ -6,7 +6,7 @@ import slider3 from "../images/slider3.png";
 import slider4 from "../images/slider4.png";
 import slider5 from "../images/slider666.png";
 import slider6 from "../images/slider6.png";
-import slider7 from "../images/slider8.png";
+import slider7 from "../images/mentalhealth.png";
 import slider2 from "../images/practitioner.png";
 import slider8 from "../images/slider-last.png";
 
@@ -18,7 +18,7 @@ import slider3mobile from "../images/slider3-mobile.png"
 import slider4mobile from "../images/slider4-mobile.png"
 import slider5mobile from "../images/slider666-mobile.png"
 import slider6mobile from "../images/slider6-mobile.png"
-import slider7mobile from "../images/slider8-mobile.png"
+import slider7mobile from "../images/mh-mobile.png"
 
 
 
@@ -109,7 +109,7 @@ const Home = () => {
                 document.getElementById('radio' + counter).checked = true;
                 setCounter(prevCounter => (prevCounter % 8) + 1);
             }
-        }, 100000);
+        }, 10000);
 
         return () => clearInterval(intervalId);
     }, [counter, isPaused]);
