@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import "./Home.css";
 import { Link, useLocation } from "react-router-dom"
-import slider1 from "../images/granny1.png";
-import slider3 from "../images/slider3.png";
-import slider4 from "../images/slider4.png";
-import slider5 from "../images/slider666.png";
-import slider6 from "../images/slider6.png";
-import slider7 from "../images/mentalhealth.png";
-import slider2 from "../images/practitioner.png";
-import slider8 from "../images/slider-last.png";
+import slider1 from "../images/firsthero.png";
+import slider3 from "../images/fourthhero.png";
+import slider4 from "../images/fifthhero.png";
+import slider5 from "../images/sixthhero.png";
+import slider6 from "../images/seventhhero.png";
+import slider7 from "../images/eighthero.png";
+import slider2 from "../images/secondhero.png";
+import slider8 from "../images/thirdhero.png";
 
 
-import slidermobile from "../images/slidermobile.png"
-import slider1mobile from "../images/granny1-mobile.png"
-import slider2mobile from "../images/practitioner-mobile.png"
-import slider3mobile from "../images/slider3-mobile.png"
-import slider4mobile from "../images/slider4-mobile.png"
-import slider5mobile from "../images/slider666-mobile.png"
-import slider6mobile from "../images/slider6-mobile.png"
-import slider7mobile from "../images/mh-mobile.png"
+import slidermobile from "../images/thirdmobile.png"
+import slider1mobile from "../images/firstmobile.png"
+import slider2mobile from "../images/secondmobile.png"
+import slider3mobile from "../images/fourthmobile.png"
+import slider4mobile from "../images/fifthmobile.png"
+import slider5mobile from "../images/sixthmobile.png"
+import slider6mobile from "../images/seventhmobile.png"
+import slider7mobile from "../images/eightmobile.png"
 
 
 
@@ -568,7 +568,7 @@ const Home = () => {
                         <img src={ride} alt='ride' loading='lazy' />
                     </div>
                     <div className='home__ride-right'>
-                        <h4>RIDE:</h4>
+                        <h4>RIDE HAILING SERVICES:</h4>
                         <h3>Where safety<br />
                             meets adventure</h3>
                         <p>
@@ -600,7 +600,7 @@ const Home = () => {
             <section id='digital' className='digital__section'>
                 <div className='container home__digital'>
                     <div className='home__digital-left'>
-                        <h4>ERP:</h4>
+                        <h4>ERP SERVICES:</h4>
                         <h3>Reinvigorate your<br />
                             business</h3>
                         <p>
@@ -616,7 +616,7 @@ const Home = () => {
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
                                 height="16"
-                                fill="currentColor"
+                                fill="currentColor" 
                                 class="bi bi-arrow-right"
                                 viewBox="0 0 16 16"
                             >
@@ -640,7 +640,7 @@ const Home = () => {
                         <img data-aos="zoom-in-right" src={scale} alt='ride' loading='lazy' />
                     </div>
                     <div className='home__ride2-right'>
-                        <h4>ECOMMERCE:</h4>
+                        <h4>E-COMMERCE SERVICES:</h4>
                         <h3>Scale to new heights<br />
                             reach new markets</h3>
                         <p>

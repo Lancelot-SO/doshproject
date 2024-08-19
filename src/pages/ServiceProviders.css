@@ -160,6 +160,10 @@
     padding-top: 20px;
 }
 
+.hospital__main {
+    margin-bottom: 50px;
+}
+
 .anime {
     display: flex;
     flex-direction: row;

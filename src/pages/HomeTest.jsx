@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import "./Home.css";
 import { Link, useLocation } from "react-router-dom"
-import slider1 from "../images/granny1.png";
-import slider3 from "../images/slider3.png";
-import slider4 from "../images/slider4.png";
-import slider5 from "../images/slider666.png";
-import slider6 from "../images/slider6.png";
-import slider7 from "../images/slider8.png";
-import slider2 from "../images/practitioner.png";
-import slider8 from "../images/slider-last.png";
+import slider1 from "../images/firsthero.png";
+import slider3 from "../images/firsthero.png";
+import slider4 from "../images/firsthero.png";
+import slider5 from "../images/firsthero.png";
+import slider6 from "../images/firsthero.png";
+import slider7 from "../images/firsthero.png";
+import slider2 from "../images/firsthero.png";
+import slider8 from "../images/firsthero.png";
 
 // import banner from '../images/dosh-banner.png'
 import elevate2 from '../images/vector1.png'
