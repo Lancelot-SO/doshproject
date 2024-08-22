@@ -322,5 +322,101 @@ export const hospitalData = {
         { name: 'Worae Care Clinic', location: '' },
         { name: 'CHIRAA', location: 'Chira' },
         { name: 'Busunya Polyclinic', location: 'Busunya' }
-    ]
+    ],
+    "Ahafo": [
+        { name: 'Techimantia Government Hospital', location: 'Techiman' },
+        { name: 'Asunafo South District Hospital', location: 'Goase' },
+        { name: 'Bibiani Municipal Hospital', location: 'Bibiani' },
+        { name: 'Kukuom District Hospital', location: 'Asunafo South District' },
+        { name: 'Goaso Municipal Government Hospital', location: 'Goase' },
+        { name: 'St Elizabeth Catholic Hospital', location: 'Hwidiem' },
+        { name: 'Kenyasi District Hospital', location: 'Asutifi North' },
+        { name: 'Techimantia Government Hospital', location: 'Techiman' },
+        { name: 'Banhart Hospital', location: 'Asutifi North' },
+        { name: 'Bechem Government Hospital', location: 'Sunyani' },
+        { name: 'Health Point Hospital', location: '' },
+        { name: 'Holy Family Hospital', location: 'Techiman-Tamale Road, Techiman' },
+        { name: 'Sunyani Municipal Hospital', location: 'Sunyani-Wenchi Rd, Sunyani' },
+        { name: 'Bono Regional Hospital', location: 'Sunyani-Wenchi Rd, Sunyani' },
+        { name: 'Abrafi Women And Children Hospital', location: 'AN1 Nana Dwamena St, Techiman' },
+        { name: 'Nsoatre Health Centre', location: 'Nsuatre' },
+        { name: 'Tuobodom Health Centre', location: 'Tuobodom' },
+        { name: 'Mim Health Center', location: 'Mim' },
+        { name: 'Aspire Clinic and Maternity Home', location: 'Sunyani' },
+        { name: 'Divine Star Clinic and Maternity', location: '' },
+        { name: 'Aspire Clinic And Maternity Home', location: 'Off Techiman Rd, Kotokrom Aviation, Sunyani' },
+        { name: 'Rabito Clinic', location: 'Sunyani' },
+        { name: 'Chiraa', location: 'Sunyani' },
+        { name: 'Medcourt Pharmacy', location: 'Bechem' }
+    ],
+    "Eastern": [
+        { name: 'Tetteh Quashie Memorial Hospital', location: 'Mampong' },
+        { name: 'Kade Government Hospital', location: 'Kade' },
+        { name: 'Oda Government Hospital', location: 'Koforidua' },
+        { name: 'Nsawam Government Hospital', location: 'Nsawam' },
+        { name: 'SDA Hospital', location: 'Koforidua' },
+        { name: 'Divine Victory Hospital', location: 'Akim, Oda' },
+        { name: 'Nsawam Government Hospital', location: 'Nsawam' },
+        { name: 'Enyirese Municipal Hospital', location: 'Akyem, Enyiresi' },
+        { name: 'Kenop Hospital Care', location: 'Nkwakaw' },
+        { name: 'Suhum Government Hospital', location: 'Suhum' },
+        { name: 'Akim Oda Government Hospital', location: '9 Kade-Brofoyedru Rd, Akim Oda' },
+        { name: 'Asamankese Government Hospital', location: 'Asamankese' },
+        { name: 'Holy Family Hospital', location: 'Nkwakaw' },
+        { name: 'Suhum Government Hospital', location: 'Suhum' },
+        { name: 'Kade Government Hospital', location: 'Kade' },
+        { name: 'Eastern Regional Hospital', location: 'Koforidua' },
+        { name: 'St. Johns Hospital And Fertility Centre', location: 'Nsawam' },
+        { name: 'Newlands Medical Centre', location: 'Koforidua' },
+        { name: 'Rabito Clinic', location: 'Koforidua' },
+        { name: 'Catholic Community & Maternity Clinic', location: 'Akim, Swedru' },
+        { name: 'Jacob Dental Clinic', location: 'Akwapim South' },
+        { name: 'Rabito Clinic', location: 'Adiebera-Kumasi' },
+        { name: 'St. John Polyclinic', location: '' }
+    ],
+    "Oti": [
+        { name: 'Nkwanta Municipal Hospital', location: 'Nkwanta' },
+        { name: 'Worawora Government Hospital', location: 'Kadjebi' },
+        { name: 'Nkwanta Municipal Hospital', location: 'Nkwanta' },
+        { name: 'Krachi Municipal Hospital', location: 'Kyinderi' },
+        { name: 'Chinderi Health Centre', location: 'Kyinderi' },
+        { name: 'Kadjebi Health Centre', location: 'Kadjebi' },
+        { name: 'St. Lukes Clinic', location: 'Senchi Street' }
+    ],
+    "Northern": [
+        { name: 'Tamale West Hospital', location: 'Tamale' },
+        { name: 'Tamale SDA Hospital', location: 'Salaga Rd, Tamale' },
+        { name: 'Tamale Teaching Hospital', location: 'Tamale' },
+        { name: 'Tatale District Hospital', location: 'Tamale' },
+        { name: 'Bimbilla Municipal Hospital', location: 'Bimbilla' },
+        { name: 'Zamzugu District Hospital', location: 'Zamzugu' },
+        { name: 'Yendi Municipal Hospital', location: 'Yendi' },
+        { name: 'Kintampo South District Hospital', location: 'Jema' },
+        { name: 'Gushegu Municipal Hospital', location: 'Yendi-Gushiegu Rd.' },
+        { name: 'Tolon District Hospital', location: 'Tamale-Tolon Rd.' },
+        { name: 'Northern Regional Hospital', location: 'Tamale' },
+        { name: 'Karaga District Hospital', location: 'Karaga' },
+        { name: 'Kpandai District Hospital', location: 'Kpandai' },
+        { name: 'Nanton Health Centre', location: 'Nanton' },
+        { name: 'Saboba Health Centre', location: 'Saboba' },
+        { name: 'Sang Health Centre', location: 'Sang' },
+        { name: 'Choggu Health Centre', location: 'Tamale' },
+        { name: 'Kumbumgu Health Centre', location: 'Tamale' },
+        { name: 'Rabito Clinic', location: 'Tamale' }
+    ],
+    "Upper West": [
+        { name: 'Rabito Clinic', location: 'Upper West Wa' },
+        { name: 'Jirapa Urban Health', location: 'Upper West Wa' }
+    ],
+    "Upper East": [
+        { name: 'Rabito Clinic', location: 'Upper East Bolgatanga' },
+    ],
+    "Savannah": [
+        { name: 'Daboya Health Centre', location: 'Savannah	Damongo' },
+        { name: 'Buipe Health Centre', location: 'Savannah	N10, Buipe' }
+    ],
+
+
+
+
 }

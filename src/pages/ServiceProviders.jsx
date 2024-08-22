@@ -34,9 +34,32 @@ const ServiceProviders = () => {
                 filtered = hospitalData['Western'];
             } else if (region === 'Volta') {
                 filtered = hospitalData['Volta'];
-            }
-            else if (region === 'Bono') {
+            } else if (region === 'Bono') {
                 filtered = hospitalData['Bono'];
+            }
+            else if (region === 'Ahafo') {
+                filtered = hospitalData['Ahafo'];
+            }
+            else if (region === 'Eastern') {
+                filtered = hospitalData['Eastern'];
+            }
+            else if (region === 'Oti') {
+                filtered = hospitalData['Oti'];
+            }
+            else if (region === 'Northern') {
+                filtered = hospitalData['Northern'];
+            }
+            else if (region === 'Upper West') {
+                filtered = hospitalData['Upper West'];
+            }
+            else if (region === 'Upper East') {
+                filtered = hospitalData['Upper East'];
+            }
+            else if (region === 'Savannah') {
+                filtered = hospitalData['Savannah'];
+            }
+            else if (region === 'Central') {
+                filtered = hospitalData['Central'];
             }
             // Add conditions for other regions if needed
         }
