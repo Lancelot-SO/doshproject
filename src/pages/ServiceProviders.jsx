@@ -110,6 +110,8 @@ const ServiceProviders = () => {
                     <hr className='underline'></hr>
 
                     <section className='filter-section'>
+                        <h1 className='hsp__text'>Click on filter to search for hsp</h1>
+
                         <div className='container filter__search'>
                             <button className="filter-button" onClick={toggleModal}><FaFilter /> Filter</button>
                             <div className="search-container">

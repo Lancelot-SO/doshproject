@@ -160,6 +160,11 @@
     padding-top: 20px;
 }
 
+.hsp__text {
+    color: #B8964C;
+    font-size: 30px;
+}
+
 .hospital__main {
     margin-bottom: 50px;
 }
