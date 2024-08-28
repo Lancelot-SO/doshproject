@@ -1,4 +1,3 @@
-// ServiceProviders.js
 import React, { useEffect, useState } from 'react';
 import './ServiceProviders.css';
 import services from '../images/clinic.png';
@@ -16,6 +15,7 @@ const ServiceProviders = () => {
     const [showCallModal, setShowCallModal] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [filteredData, setFilteredData] = useState([]);
+    const [searchQuery, setSearchQuery] = useState(''); // State for search input
 
     const toggleModal = () => {
         setShowModal(!showModal);
@@ -68,6 +68,19 @@ const ServiceProviders = () => {
         toggleModal(); // Close the modal after filtering
     };
 
+    const handleSearch = (event) => {
+        const query = event.target.value.toLowerCase();
+        setSearchQuery(query);
+
+        const allHospitals = Object.values(hospitalData).flat();
+        const filtered = allHospitals.filter(hospital =>
+            hospital.name.toLowerCase().includes(query) ||
+            hospital.location.toLowerCase().includes(query)
+        );
+
+        setFilteredData(filtered);
+    };
+
     useEffect(() => {
         const lastIndex = hospitalData['Greater Accra']?.length - 1 || 0;
         if (index < 0) {
@@ -110,13 +123,19 @@ const ServiceProviders = () => {
                     <hr className='underline'></hr>
 
                     <section className='filter-section'>
-                        <h1 className='hsp__text'>Click on filter to search for hsp</h1>
+                        <h1 className='hsp__text'>Click on filter to search for HSP</h1>
 
                         <div className='container filter__search'>
                             <button className="filter-button" onClick={toggleModal}><FaFilter /> Filter</button>
                             <div className="search-container">
                                 <IoIosSearch className='search-icon' />
-                                <input type="text" className="search-bar" placeholder="Search users by country, Region or District" />
+                                <input
+                                    type="text"
+                                    className="search-bar"
+                                    placeholder="Search by hospital name or location"
+                                    value={searchQuery}
+                                    onChange={handleSearch}
+                                />
                             </div>
                         </div>
                         <FilterModal showModal={showModal} onClose={toggleModal} onFilter={handleFilter} />
