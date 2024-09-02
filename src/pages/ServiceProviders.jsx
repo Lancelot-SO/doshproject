@@ -61,6 +61,12 @@ const ServiceProviders = () => {
             else if (region === 'Central') {
                 filtered = hospitalData['Central'];
             }
+            else if (region === 'North East') {
+                filtered = hospitalData['North East'];
+            }
+            else if (region === 'Western North') {
+                filtered = hospitalData['Western North'];
+            }
             // Add conditions for other regions if needed
         }
 
