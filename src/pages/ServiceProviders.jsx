@@ -80,12 +80,17 @@ const ServiceProviders = () => {
 
         const allHospitals = Object.values(hospitalData).flat();
         const filtered = allHospitals.filter(hospital =>
-            hospital.name.toLowerCase().includes(query) ||
-            hospital.location.toLowerCase().includes(query)
+            (hospital.name && hospital.name.toLowerCase().includes(query)) ||
+            (hospital.district && hospital.district.toLowerCase().includes(query)) ||
+            (hospital.contact && hospital.contact.toLowerCase().includes(query)) ||
+            (hospital.latitude && hospital.latitude.toLowerCase().includes(query)) ||
+            (hospital.longitude && hospital.longitude.toLowerCase().includes(query)) ||
+            (hospital.email && hospital.email.toLowerCase().includes(query))
         );
 
         setFilteredData(filtered);
     };
+
 
     useEffect(() => {
         const lastIndex = hospitalData['Greater Accra']?.length - 1 || 0;
