@@ -1,7 +1,7 @@
 // HospitalTable.js
 import React from 'react';
 import "./HospitalTable.css";
-import doshlogo from "../images/hsp.png";
+// import doshlogo from "../images/hsp.png";
 
 const HospitalTable = ({ data }) => {
     return (
@@ -11,9 +11,11 @@ const HospitalTable = ({ data }) => {
                     <tr>
                         <th>Hospital Name</th>
                         <th>Region Name</th>
-                        <th>Location</th>
-                        <th>Contact Number</th>
+                        <th>District</th>
+                        <th>Contact</th>
                         <th>Email</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,15 +23,17 @@ const HospitalTable = ({ data }) => {
                         data.map((hospital, index) => (
                             <tr key={index}>
                                 <td>{hospital.name}</td>
-                                <td>{hospital.regionName}</td>
-                                <td>{hospital.location}</td>
-                                <td>{hospital.contactNumber}</td>
+                                <td>{hospital.region}</td>
+                                <td>{hospital.district}</td>
+                                <td>{hospital.contact}</td>
                                 <td>{hospital.email}</td>
+                                <td>{hospital.latitude}</td>
+                                <td>{hospital.longitude}</td>
                             </tr>
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="5">No hospitals found</td>
+                            <td colSpan="7">No hospitals found</td>
                         </tr>
                     )}
                 </tbody>
