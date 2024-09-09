@@ -627,6 +627,10 @@ form p {
   margin-left: 0.5rem;
 }
 
+.district {
+  display: none;
+}
+
 @media screen and (max-width: 767px) {
   .modal-content {
     width: 90%;
