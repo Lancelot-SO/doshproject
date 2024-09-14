@@ -1,13 +1,44 @@
-// FilterModal.js
 import React, { useRef, useState } from 'react';
 import '../App.css';
 
+// Move countryRegions and regionDistricts outside the component
+const countryRegions = {
+    'Ghana': ['Greater Accra', 'Western Region', 'Ashanti Region', 'Western North', 'Central', 'Eastern', 'Volta', 'Oti', 'Bono East', 'Bono', 'Ahafo', 'Northern', 'Savannah', 'North East', 'Upper East', 'Upper West'],
+    'Nigeria': ['Lagos', 'Kano', 'Kaduna', 'Rivers', 'Oyo'],
+    'South Africa': ['Gauteng', 'KwaZulu-Natal', 'Western Cape', 'Eastern Cape', 'Free State'],
+    'Kenya': [],
+    'Uganda': [],
+    'Tanzania': [],
+    'Rwanda': [],
+    'Egypt': [],
+    'Morocco': [],
+    'Algeria': [],
+    'United States': [],
+    'United Kingdom': [],
+    'India': [],
+    'China': [],
+    'Brazil': [],
+    'Australia': [],
+    'Canada': [],
+    'Germany': [],
+    'France': [],
+};
+
+const regionDistricts = {
+    'Ghana': {
+        'Greater Accra': ['Accra', 'Tema', 'Nungua', 'Teshie', 'Madina', 'Adenta', 'Dome', 'Ga West', 'Ga East', 'Ga South'],
+        'Ashanti Region': [],
+        'Western Region': [],
+        // Add other regions' districts similarly...
+    },
+};
+
 const FilterModal = ({ showModal, onClose, onFilter }) => {
     const modalRef = useRef();
-    const [selectedCountry, setSelectedCountry] = useState('');
+    const [selectedCountry, setSelectedCountry] = useState('Ghana'); // Default to 'Ghana'
     const [selectedRegion, setSelectedRegion] = useState('');
     const [selectedDistrict, setSelectedDistrict] = useState('');
-    const [regions, setRegions] = useState([]);
+    const [regions, setRegions] = useState(countryRegions['Ghana']); // Set initial regions to Ghana's regions
     const [districts, setDistricts] = useState([]);
 
     const closeModal = (e) => {
@@ -21,12 +52,14 @@ const FilterModal = ({ showModal, onClose, onFilter }) => {
         setSelectedCountry(country);
         setRegions(countryRegions[country] || []);
         setDistricts([]);
+        setSelectedRegion(''); // Reset region when country changes
     };
 
     const handleRegionChange = (e) => {
         const region = e.target.value;
         setSelectedRegion(region);
         setDistricts(regionDistricts[selectedCountry]?.[region] || []);
+        setSelectedDistrict(''); // Reset district when region changes
     };
 
     const handleSearch = () => {
@@ -35,21 +68,6 @@ const FilterModal = ({ showModal, onClose, onFilter }) => {
             region: selectedRegion,
             district: selectedDistrict,
         });
-    };
-
-    const countryRegions = {
-        'Ghana': ['Greater Accra', 'Western Region', 'Ashanti Region', 'Western North', 'Central', 'Eastern', 'Volta', 'Oti', 'Bono East', 'Bono', 'Ahafo', 'Northern', 'Savannah', 'North East', 'Upper East', 'Upper West'],
-        'Nigeria': ['Lagos', 'Kano', 'Kaduna', 'Rivers', 'Oyo'],
-        'South Africa': ['Gauteng', 'KwaZulu-Natal', 'Western Cape', 'Eastern Cape', 'Free State'],
-    };
-
-    const regionDistricts = {
-        'Ghana': {
-            'Greater Accra': ['Accra', 'Tema', 'Nungua', 'Teshie', 'Madina', 'Adenta', 'Dome', 'Ga West', 'Ga East', 'Ga South'],
-            'Ashanti Region': [],
-            'Western Region': [],
-            // Add other regions' districts similarly...
-        },
     };
 
     if (!showModal) return null;
