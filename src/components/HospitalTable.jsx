@@ -1,9 +1,16 @@
-// HospitalTable.js
 import React from 'react';
 import "./HospitalTable.css";
-// import doshlogo from "../images/hsp.png";
+import { Link } from 'react-router-dom';
 
 const HospitalTable = ({ data }) => {
+    // Function to get Google Maps link based on latitude and longitude
+    const getGoogleMapsLink = (latitude, longitude) => {
+        if (!latitude || !longitude) return "N/A";
+        const lat = encodeURIComponent(latitude);
+        const long = encodeURIComponent(longitude);
+        return `https://www.google.com/maps?q=${lat},${long}`;
+    };
+
     return (
         <div className="hospital-table-container">
             <table className="hospital-table">
@@ -14,8 +21,7 @@ const HospitalTable = ({ data }) => {
                         <th>District</th>
                         <th>Contact</th>
                         <th>Email</th>
-                        <th>Latitude</th>
-                        <th>Longitude</th>
+                        <th>Google Maps</th> {/* New column for the Google Maps link */}
                     </tr>
                 </thead>
                 <tbody>
@@ -27,13 +33,25 @@ const HospitalTable = ({ data }) => {
                                 <td>{hospital.district}</td>
                                 <td>{hospital.contact}</td>
                                 <td>{hospital.email}</td>
-                                <td>{hospital.latitude}</td>
-                                <td>{hospital.longitude}</td>
+                                <td>
+                                    {hospital.latitude && hospital.longitude ? (
+                                        <Link
+                                            to={getGoogleMapsLink(hospital.latitude, hospital.longitude)}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="view_maps"
+                                        >
+                                            View on Map
+                                        </Link>
+                                    ) : (
+                                        "N/A"
+                                    )}
+                                </td>
                             </tr>
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="7">No hospitals found</td>
+                            <td colSpan="6">No hospitals found</td>
                         </tr>
                     )}
                 </tbody>

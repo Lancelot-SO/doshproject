@@ -1,6 +1,6 @@
 .containertabs {
-    width: 90%;
-    margin: 20px auto;
+    width: 100%;
+    /* margin: 20px auto; */
     padding: 20px;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -29,7 +29,7 @@
 }
 
 .hospital-table {
-    width: 90%;
+    width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     margin-left: 25px;
@@ -59,6 +59,12 @@
     width: 25px;
     vertical-align: middle;
     margin-right: 10px;
+}
+
+.view_maps {
+    text-decoration: underline;
+    color: #987C55;
+    font-size: 12px;
 }
 
 @media (max-width: 767px) {
