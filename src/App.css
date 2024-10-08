@@ -202,6 +202,7 @@ nav {
   display: flex;
   margin-top: 0.3rem;
   padding-left: 20px;
+  color: #ffffff;
 }
 
 .nav__signup {

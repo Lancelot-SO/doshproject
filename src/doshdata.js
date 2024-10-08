@@ -33,16 +33,23 @@ const products = [
         readmore: '/insure',
         quote: `At DOSH, we provide tailored financial assistance for all your personal and business needs. Get the funds you need on your terms with our accessible and innovative funding options, including low- to no-interest repayment plans. Whether it's for business, entrepreneurship, or personal use, our funding solutions are designed to meet both long-term and short-term financial needs. Our licensed services benefit clients worldwide, offering a reliable and empowering funding experience. Let DOSH help you turn your dreams into reality.`,
     },
+    {
+        id: 3,
+        title: 'DOSH RISK',
+        image: Lady,
+        readmore: '/insure',
+        quote: `Wading through the insurance landscape is a unique kind of struggle. Our mission here at DOSH is to provide tailored brokerage services that empower you to navigate confusion and uncertainties with confidence. With years of industry experience and a dedicated team of experts, we are committed to delivering innovative solutions that protect your assets and enhance your operations. Our exceptional insurance brokerage services deliver competitive rates, convenience, and unparalleled support in a one-stop shop for auto, home, health, and business insurance.`,
+    },
 ]
 
 export default products;
 
 export const projectLinks = [
     {
-        name: 'insurance',
+        name: 'Insurance',
     },
     {
-        name: 'financial',
+        name: 'Financial',
     },
 
 ]
@@ -82,8 +89,8 @@ export const insuranceDetails = [
         title: "DOSH",
         number: "365",
         desc: "Description",
-        details: `Dosh is rewriting the story on health insurance with the DOSH365 package. This package is highly affordable and offers a new health insurance experience designed with the individual in mind. An amount of GHS 1 per day, or a total of GHS 365 per year, provides a membership cover of GHS 9,000 annually. Out of the GHS 9,000, an amount of GHS 7,500 is allocated to in-patient services, and the remaining GHS 1,500 is for out-patient services. DOSH 365 is specifically designed to shoulder the unforeseen medical situations`,
-        link: "https://dsp.onenet.xyz:50443/#/?page=dosh-insurance",
+        details: `Dosh is rewriting the story on health insurance with the DOSH365 package. This package is highly affordable and offers a new health insurance experience designed with the individual in mind. An amount of GHS 1 per day, or a total of GHS 365 per year, provides a membership cover of GHS 9,000 annually. Out of the GHS 9,000 an amount of GHS 7,500 is allocated to in-patient services, and the remaining GHS 1,500 is for out-patient services. DOSH 365 is specifically designed to shoulder the unforeseen medical situations`,
+        link: "/register",
         category: "DOSH 365"
     },
     {
@@ -93,7 +100,7 @@ export const insuranceDetails = [
         number: "750",
         desc: "Description",
         details: `DOSH 750 comes with add-ons and quintessential incentives targeted at individuals, families, and their dependents, with a slightly higher premium. It is gratifying to know that with DOSH, your family and dependents’ health care needs are covered with a cover-up of up to GHS 18,000 for only a GHS 750 annual premium. This package is perfect for new employees or young families looking for affordable health insurance. An annual premium of GHS 750 comes with health insurance coverage of up to GHS 15,000 for in-patient and GHS 3,000 for out-patient services, respectively.`,
-        link: "https://dsp.onenet.xyz:50443/#/?page=dosh-insurance",
+        link: "/register",
         category: "DOSH 750"
     },
     {
@@ -103,7 +110,7 @@ export const insuranceDetails = [
         number: "1000",
         desc: "Description",
         details: `The package is distinctively designed to offer members absolute serenity with regard to their healthcare needs, offering an extended cover of up to a whopping GHS 30,000 for an annual premium of only GHS 1,000. DOSH1000 offers an in-patient limit of GHS 25,000 and an out-patient limit of GHS 5,000, offering members value for their investments.`,
-        link: "https://dsp.onenet.xyz:50443/#/?page=dosh-insurance",
+        link: "/register",
         category: "DOSH 1000"
     },
     {
@@ -114,7 +121,7 @@ export const insuranceDetails = [
         desc: "Description",
         details: `This package is ideal for new employees or young families who want affordable health insurance.
 For people and businesses looking to manage their finances wisely and prepare for tough times, the DOSH 2500 health insurance plan is highly recommended. It offers annual coverage of up to GHS 60,000. DOSH 2500 offers GHS 50,000 in-patient and GHS 10,000 out-patient services for an annual premium of GHS 2,500.`,
-        link: "https://dsp.onenet.xyz:50443/#/?page=dosh-insurance",
+        link: "/register",
         category: "DOSH 2500"
     },
     {
@@ -125,7 +132,7 @@ For people and businesses looking to manage their finances wisely and prepare fo
         desc: "Description",
         details: `This premium offer is tailored to meet the health insurance needs of our high-value clients. It provides excellent healthcare services with annual coverage of up to GHS 95,000, including GHS 75,000 for in-patient care and GHS 20,000 for out-patient care. 
 This package is recommended for individuals or businesses with amplified healthcare needs.`,
-        link: "https://dsp.onenet.xyz:50443/#/?page=dosh-insurance",
+        link: "/register",
         category: "DOSH 5000"
     },
     {
@@ -136,7 +143,7 @@ This package is recommended for individuals or businesses with amplified healthc
         desc: "Description",
         details: `The DOS 10,000 plan offers up to GHS 190,000 in health coverage, perfect for those seeking comprehensive healthcare and peace of mind. With this plan, you get GHS 150,000 for in-patient care and GHS 40,000 for out-patient care, all for an annual premium of GHS 10,000. 
 The services offered by this plan are accessible at all significant healthcare providers around the country.`,
-        link: "https://dsp.onenet.xyz:50443/#/?page=dosh-insurance",
+        link: "/register",
         category: "DOSH 10000"
     },
 ]

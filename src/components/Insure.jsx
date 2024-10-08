@@ -9,18 +9,18 @@ const flyerPath = "/smallflyer.png";
 const Insure = ({ onClose }) => {
 
     const [activePackage, setActivePackage] = useState('');
-    const [activeLinks, setActiveLinks] = useState('insurance'); // Set 'insurance' as the active link initially
+    const [activeLinks, setActiveLinks] = useState('Insurance'); // Set 'insurance' as the active link initially
     const [currentPackageList, setCurrentPackageList] = useState([]);
     const [currentDetailList, setCurrentDetailList] = useState([]);
 
     const [showFlyerModal, setShowFlyerModal] = useState(false)
 
     useEffect(() => {
-        if (activeLinks === 'financial') {
+        if (activeLinks === 'Financial') {
             setCurrentPackageList(financePackage);
             setCurrentDetailList(financeDetails);
             setActivePackage(financePackage[0].name);
-        } else if (activeLinks === 'insurance') {
+        } else if (activeLinks === 'Insurance') {
             setCurrentPackageList(packagelist);
             setCurrentDetailList(insuranceDetails);
             setActivePackage(packagelist[0].name); // Set 'DOSH 365' as active initially
@@ -63,13 +63,14 @@ const Insure = ({ onClose }) => {
                 <div className='top_list'>
                     <ul className='top_lists'>
                         {projectLinks.map((link, index) => (
-                            <li key={index} className={`top_link ${link.name === activeLinks ? 'activator' : ''}`}>
-                                <Link
-                                    onClick={() => setActiveLinks(link.name)}
-                                >
+                            <Link
+                                onClick={() => setActiveLinks(link.name)}
+                            >
+                                <li key={index} className={`top_link ${link.name === activeLinks ? 'activator' : ''}`}>
                                     {link.name}
-                                </Link>
-                            </li>
+
+                                </li>
+                            </Link>
                         ))}
                     </ul>
                 </div>
@@ -106,8 +107,8 @@ const Insure = ({ onClose }) => {
                                 <Link to={activeDetail.link} target="_blank" rel="noopener noreferrer">Sign up</Link>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="28"
-                                    height="28"
+                                    width="20"
+                                    height="20"
                                     fill="#fff"
                                     className="bi bi-arrow-right"
                                     viewBox="0 0 16 16"

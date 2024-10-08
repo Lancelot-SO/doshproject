@@ -6,18 +6,18 @@ import { projectLinks, packagelist, insuranceDetails, financePackage, financeDet
 
 const FinanceSideModal = ({ onClose }) => {
     const [activePackage, setActivePackage] = useState(financePackage[0].name); // Set the initial package to the first finance package
-    const [activeLinks, setActiveLinks] = useState('financial'); // Set 'financial' as the active link initially
+    const [activeLinks, setActiveLinks] = useState('Financial'); // Set 'financial' as the active link initially
     const [currentPackageList, setCurrentPackageList] = useState(financePackage);
     const [currentDetailList, setCurrentDetailList] = useState(financeDetails);
 
     // const [showFlyerModal, setShowFlyerModal] = useState(false);
 
     useEffect(() => {
-        if (activeLinks === 'financial') {
+        if (activeLinks === 'Financial') {
             setCurrentPackageList(financePackage);
             setCurrentDetailList(financeDetails);
             setActivePackage(financePackage[0].name);
-        } else if (activeLinks === 'insurance') {
+        } else if (activeLinks === 'Insurance') {
             setCurrentPackageList(packagelist);
             setCurrentDetailList(insuranceDetails);
             setActivePackage(packagelist[0].name); // Set 'DOSH 365' as active initially

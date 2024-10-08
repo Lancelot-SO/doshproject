@@ -18,8 +18,13 @@
     width: 90%;
     max-width: 1239px;
     max-height: 90%;
-    background: #eae7e7;
-    padding: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 10px;
     flex-direction: column;
     overflow-y: auto;
 }
@@ -68,22 +73,23 @@
     justify-content: center;
     background-color: #cacbcd;
     border-radius: 30px;
-    color: #90A3BF;
+    color: #000000;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-.top_link:hover {
+/* .top_link:hover {
     background-color: #b0b1b3;
-}
+} */
 
 .activator {
     background-color: #987C55;
+    color: #ffffff;
 }
 
 .package_list {
     max-width: 100%;
-    margin-left: 100px;
+    margin-left: 80px;
 }
 
 .package_lists {
@@ -99,9 +105,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 200px;
+    width: 170px;
     height: 50px;
-    background-color: #cacbcd;
+    background-color: #ffffff;
     border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -129,8 +135,8 @@
     border-radius: 8px;
 }
 
-.package_left {
-    flex: 1;
+.package_left img {
+    object-fit: cover;
     margin-top: 20px;
 }
 
@@ -146,12 +152,12 @@
     line-height: 1.2;
     text-align: left;
     margin-bottom: 20px;
-    color: #000;
+    color: #ffffff;
 }
 
 .package_number {
     font-family: "Inter", sans-serif;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 800;
     line-height: 1.2;
     text-align: left;
@@ -166,7 +172,7 @@
     line-height: 1.5;
     text-align: left;
     margin-bottom: 10px;
-    color: #000;
+    color: #ffffff;
 }
 
 .package_details {
@@ -176,13 +182,13 @@
     line-height: 1.5;
     text-align: left;
     margin-bottom: 20px;
-    color: #000;
+    color: #ffffff;
 }
 
 .flyer-link-insure {
     font-family: "Inter", sans-serif;
     font-size: 1rem;
-    color: #987C55;
+    color: #ffffff;
 }
 
 .package_right small {
@@ -196,6 +202,10 @@
     background: linear-gradient(251.21deg, #987C55 0%, #D0B58C 100%);
     margin-top: 10px;
     cursor: pointer;
+}
+
+.package_right small a {
+    color: #ffffff;
 }
 
 /* Responsive styles */

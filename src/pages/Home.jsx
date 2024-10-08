@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import "./Home.css";
 import { Link, useLocation } from "react-router-dom"
-import slider1 from "../images/firsthero.png";
-import slider3 from "../images/fourthhero.png";
-import slider4 from "../images/fifthhero.png";
+import slider1 from "../images/fourthhero.png";
+import slider3 from "../images/fifthhero.png";
+import slider4 from "../images/tenthhero.png";
 import slider5 from "../images/sixthhero.png";
 import slider6 from "../images/seventhhero.png";
-import slider7 from "../images/eighthero.png";
-import slider2 from "../images/secondhero.png";
-import slider8 from "../images/thirdhero.png";
+import slider7 from "../images/secondhero.png";
+import slider2 from "../images/thirdhero.png";
+import slider8 from "../images/eighthero.png";
+import slider10 from "../images/firsthero.png";
 
 
-import slidermobile from "../images/thirdmobile.png"
-import slider1mobile from "../images/firstmobile.png"
-import slider2mobile from "../images/secondmobile.png"
-import slider3mobile from "../images/fourthmobile.png"
-import slider4mobile from "../images/fifthmobile.png"
+
+import slidermobile from "../images/eightmobile.png"
+import slider1mobile from "../images/fourthmobile.png"
+import slider2mobile from "../images/thirdmobile.png"
+import slider3mobile from "../images/fifthmobile.png"
+import slider4mobile from "../images/tenthmobile.png"
 import slider5mobile from "../images/sixthmobile.png"
 import slider6mobile from "../images/seventhmobile.png"
-import slider7mobile from "../images/eightmobile.png"
+import slider7mobile from "../images/secondmobile.png"
+import slider10mobile from "../images/firstmobile.png"
+
 
 
 
@@ -27,10 +31,10 @@ import slider7mobile from "../images/eightmobile.png"
 // import banner from '../images/dosh-banner.png'
 import elevate2 from '../images/img2.png'
 import money from '../images/img1.png';
-// import seamless from "../images/seamless.png"
+import seamless from "../images/seamless.png"
 import ride from '../images/ridenew.png'
-import reinvigorate from '../images/erpImage.png'
-import scale from "../images/scalenew.png"
+import reinvigorate from '../images/erpImg.jpeg'
+import scale from "../images/commerceImg.jpeg"
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -142,6 +146,7 @@ const Home = () => {
                         <input type="radio" name="radio-button" id="radio6" />
                         <input type="radio" name="radio-button" id="radio7" />
                         <input type="radio" name="radio-button" id="radio8" />
+                        <input type="radio" name="radio-button" id="radio9" />
 
 
                         <div className='slide first'>
@@ -413,6 +418,32 @@ const Home = () => {
                             </div>
                         </div>
 
+                        <div className='slide'>
+                            <img src={slider10} alt='hero' loading='lazy' className='slide-ten-laptop' />
+                            <img src={slider10mobile} alt='hero' loading='lazy' className='slide-ten-mobile' />
+                            <div className='slide-text'>
+                                <h3>People are signing  with us</h3>
+                                <div className="slide-arrow">
+                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                        <small>Join DOSH</small>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="28"
+                                            height="28"
+                                            fill="currentColor"
+                                            class="bi bi-arrow-right"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                                            />
+                                        </svg>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div className='navigate_auto' onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
                             <div className='auto-btn1'></div>
@@ -423,6 +454,7 @@ const Home = () => {
                             <div className='auto-btn6'></div>
                             <div className='auto-btn7'></div>
                             <div className='auto-btn8'></div>
+                            <div className='auto-btn9'></div>
                         </div>
 
                     </div>
@@ -436,8 +468,7 @@ const Home = () => {
                         <label htmlFor='radio6' className='manual-btn'></label>
                         <label htmlFor='radio7' className='manual-btn'></label>
                         <label htmlFor='radio8' className='manual-btn'></label>
-
-
+                        <label htmlFor='radio9' className='manual-btn'></label>
                     </div>
                 </div>
 
@@ -528,20 +559,17 @@ const Home = () => {
                 {showFinanceModal && <FinanceSideModal onClose={() => setShowFinanceModal(false)} initialItem={initialItem} />}
             </section>
 
-            {/*<section className='digital__section'>
+            <section className='digital__section'>
                 <div className='container home__digital'>
                     <div className='home__digital-left'>
-                        <h4>DOSH PAY:</h4>
-                        <h3>Seamless Digital<br />
-                            Transfers</h3>
+                        <h4>DOSH RISK:</h4>
+                        <h3>An Affordable Way to <br />Protect What Matters</h3>
                         <p>
-                            Access a world of secure transactions with DOSH Pay. Experience
-                            the convenience of easy bill payments and real-time money transfers.
-                            DOSH Pay is a hassle-free, integrated digital platform, designed to
-                            simplify your everyday financial needs.
+                            DOSH Risk helps you navigate the complexities of insurance options. We are a top-class brokerage service that assists you in finding the perfect policies and insurers for general insurance, life insurance, or health insurance.
+                            With our strong industry relationships and team of experts, we deliver solutions and guarantee satisfaction, all at 5% minimum lower premiums than the market average, and a 70% commission for our agents.
                         </p>
-                        <Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Read more
-                            <svg
+                        <Link className='linkers'>Coming Soon
+                            {/*<svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
                                 height="16"
@@ -553,14 +581,14 @@ const Home = () => {
                                     fill-rule="evenodd"
                                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
                                 />
-                            </svg>
+                            </svg>*/}
                         </Link>
                     </div>
                     <div data-aos="zoom-in-left" className='home__digital-right'>
                         <img src={seamless} alt='digital' loading='lazy' />
                     </div>
                 </div>
-    </section>*/}
+            </section>
 
             <section id='ride' className='ride__section'>
                 <div className='container ride__adventure'>
@@ -568,7 +596,7 @@ const Home = () => {
                         <img src={ride} alt='ride' loading='lazy' />
                     </div>
                     <div className='home__ride-right'>
-                        <h4>RIDE HAILING SERVICES:</h4>
+                        <h4>RIDE SERVICES:</h4>
                         <h3>Where safety<br />
                             meets adventure</h3>
                         <p>

@@ -55,14 +55,14 @@ const About = () => {
                 <div className='container about__hand-shake'>
                     <div className='about_left'>
                         <h3>Who we are </h3>
-                        <p>Empowering Financial Wellness.<br />
+                        <p><b>Empowering your Financial Wellness.</b><br />
                             In today’s ultra-competitive business world,
                             true leadership demands ambition, focus,
                             and an unerring drive.
                             At DOSH, we recognize and seek out like-minded
                             businesses and individuals.
                             With over 20 years of financial and insurance expertise, we provide essential support via an accessible,
-                            affordable, and convenient service-specific ecosystem. The DOSH mandate is simple: To provide industry-leading solutions and services to our clients,
+                            affordable, and available service-specific ecosystem. The DOSH mandate is simple: To provide industry-leading solutions and services to our clients,
                             while bridging the financial divide that hinders true inclusion.
                         </p>
                     </div>
@@ -79,7 +79,7 @@ const About = () => {
                     <div className='next-about__right'>
                         <h3>Our Mission</h3>
                         <p>
-                            We are dedicated to safeguarding your financial status, by ensuring the decisions you make are well-informed. DOSH provides valuable insight and financial solutions that empower you to maximize your economic opportunities.
+                            DOSH provides valuable insight and financial solutions that empower you to maximize your economic opportunities.
                         </p>
                     </div>
                 </div>
@@ -96,7 +96,7 @@ const About = () => {
                         </p>
                         <p><b>Support:</b> DOSH is devoted to assisting you in navigating your financial landscape, ensuring you have access to the necessary support and infrastructure to maximize your economic potential.
                         </p>
-                        <p><b>Innovation:</b> DOSH continuously evaluates and develops new avenues in financial management. We employ industry best practices, and class-leading technological innovation, which serves to enhance our commitment to ensuring your financial success.
+                        <p><b>Innovation:</b> DOSH continuously evaluates and develops new avenues in financial management. We employ industry best practices, and class-leading technological innovation, which serve to enhance our commitment to ensuring your financial success.
                         </p>
                         <p>At DOSH, we believe that financial viability should be accessible to everyone. Join the DOSH Revolution and unlock the full potential of your financial portfolio.
                         </p>
@@ -114,7 +114,7 @@ const About = () => {
                     <div className='about__cards-right'>
                         <h3>Our Inspiration</h3>
                         <p>
-                            When you are a successful DOSH client, we are inspired because we know that DOSH is providing the foundational system that fosters your financial stability and well-being, thus allowing you to continue the pursuit of all your goals, without constraint.                        </p>
+                            When you succeed as a DOSH client, it inspires us because we know that DOSH is delivering the core financial framework that supports your stability and well-being. This empowers you to pursue your goals without limitations, and we are proud to be part of that journey.                        </p>
                     </div>
 
                 </div>
