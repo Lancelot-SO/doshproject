@@ -112,8 +112,11 @@ const Login = ({ onClose }) => {
                                         <label htmlFor='service'>Account type</label>
                                         <select className='select'>
                                             <option value="">Select an option</option>
-                                            <option value="option1">Finance</option>
-                                            <option value="option2">Insurance</option>
+                                            <option value="option1">Family</option>
+                                            <option value="option2">Personal</option>
+                                            <option value="option3">SMB</option>
+                                            <option value="option4">SOHO</option>
+                                            <option value="option4">Enterprise</option>
                                         </select>
                                     </div>
                                     {selectedRadio !== null && renderInputs()}

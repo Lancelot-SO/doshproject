@@ -156,7 +156,7 @@ const Insurance = () => {
                                     value={paymentMethod}
                                     onChange={(e) => setPaymentMethod(e.target.value)}
                                 >
-                                    <option value="">-- Select Payment Method --</option>
+                                    <option value="">-- Select Payment Mode --</option>
                                     <option value="DOSH">DOSH</option>
                                     <option value="MTN Mobile Money">MTN Mobile Money</option>
                                     <option value="AirtelTigo Money">AirtelTigo Money</option>
