@@ -61,7 +61,8 @@
     margin-right: 10px;
 }
 
-.view_maps {
+.view_maps,
+.email_link {
     text-decoration: underline;
     color: #987C55;
     font-size: 12px;

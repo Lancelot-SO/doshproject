@@ -560,17 +560,17 @@ export const hospitalData = {
         { name: "Damongo Health Centre", region: "Savannah", district: "West Gonja Municipal", latitude: "9°04'57.2\"N", longitude: "1°49'05.0\"W", contact: "0243448794", email: "abdulganiyunuhu5@gmail.com" }
     ],
     "North East": [
-        { name: "Walewale Municipal Hospital", regionName: "North East", location: "Walewale", contactNumber: "0596492224", email: "slouknaan@yahoo.com" },
-        { name: "Nasuan Health Centre", regionName: "North East", location: "Nasuan", contactNumber: "0242205337", email: "ballahmusah@gmail.com" },
-        { name: "Nalerigu College Of Health, Health Centre", regionName: "North East", location: "Nalerigu", contactNumber: "0247072678", email: "seidusalam53@gmail.com" },
-        { name: "Binde Hospital", regionName: "North East", location: "Bende", contactNumber: "0244298735", email: "susanasign72@gmail.com" },
-        { name: "Wa West District Hospital", regionName: "North East", location: "Wa", contactNumber: "0243786735", email: "jadongo@ymail.com" },
-        { name: "Chereponi District Hospital", regionName: "North East", location: "Chereponi", contactNumber: "0243507575", email: "emmakanto4u@gmail.com" },
-        { name: "Yunyoo Health Centre", regionName: "North East", location: "Yunyoo Nasuan", contactNumber: "0540715344", email: "ballahmusah@gmail.com" },
-        { name: "Kuburi Polyclinic", regionName: "North East", location: "", contactNumber: "0242064000", email: "rafsaleman@gmail.com" },
-        { name: "Yagaba Health Centre", regionName: "North East", location: "Yagaba", contactNumber: "0208256757", email: "rafsuleman@gmail.com" },
-        { name: "Janga Hospital", regionName: "North East", location: "Janga", contactNumber: "0540833587", email: "valerialolig7@gmail.com" },
-        { name: "Rabito Clinic", regionName: "North East", location: "Wa", contactNumber: "0502538689", email: "" }
+        { name: "Walewale Municipal Hospital", region: "North East", district: "Walewale", latitude: "10°20'52.0\"N", longitude: "0°48'31.4\"W", contact: "0596492224", email: "slouknaan@yahoo.com" },
+        { name: "Nasuan Health Centre", region: "North East", district: "Nasuan", contact: "0242205337", email: "ballahmusah@gmail.com" },
+        { name: "Nalerigu College Of Health, Health Centre", region: "North East", district: "Nalerigu", contact: "0247072678", email: "seidusalam53@gmail.com" },
+        { name: "Binde Hospital", region: "North East", district: "Bende", contact: "0244298735", email: "susanasign72@gmail.com" },
+        { name: "Wa West District Hospital", region: "North East", district: "Wa", contact: "0243786735", email: "jadongo@ymail.com" },
+        { name: "Chereponi District Hospital", region: "North East", district: "Chereponi", contact: "0243507575", email: "emmakanto4u@gmail.com" },
+        { name: "Yunyoo Health Centre", region: "North East", district: "Yunyoo Nasuan", contact: "0540715344", email: "ballahmusah@gmail.com" },
+        { name: "Kuburi Polyclinic", region: "North East", district: "", contact: "0242064000", email: "rafsaleman@gmail.com" },
+        { name: "Yagaba Health Centre", region: "North East", district: "Yagaba", contact: "0208256757", email: "rafsuleman@gmail.com" },
+        { name: "Janga Hospital", region: "North East", district: "Janga", contact: "0540833587", email: "valerialolig7@gmail.com" },
+        { name: "Rabito Clinic", region: "North East", district: "Wa", contact: "0502538689", email: "" }
     ],
     "Western North": [
         { name: "Essam Government Hospital", region: "Western North", district: "Bia West District", latitude: "6°40'00.5\"N", longitude: "3°06'30.8\"W", contact: "0553040973", email: "benebuah5@gmail.com" },

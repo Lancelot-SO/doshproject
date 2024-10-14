@@ -1,5 +1,5 @@
 import React from 'react';
-import "./HospitalTable.css";
+import './HospitalTable.css';
 import { Link } from 'react-router-dom';
 
 const HospitalTable = ({ data }) => {
@@ -9,6 +9,12 @@ const HospitalTable = ({ data }) => {
         const lat = encodeURIComponent(latitude);
         const long = encodeURIComponent(longitude);
         return `https://www.google.com/maps?q=${lat},${long}`;
+    };
+
+    // Function to generate a mailto link for email addresses
+    const getMailToLink = (email) => {
+        if (!email) return "N/A";
+        return `mailto:${email}`;
     };
 
     return (
@@ -32,7 +38,18 @@ const HospitalTable = ({ data }) => {
                                 <td>{hospital.region}</td>
                                 <td>{hospital.district}</td>
                                 <td>{hospital.contact}</td>
-                                <td>{hospital.email}</td>
+                                <td>
+                                    {hospital.email ? (
+                                        <a
+                                            href={getMailToLink(hospital.email)}
+                                            className="email_link"
+                                        >
+                                            {hospital.email}
+                                        </a>
+                                    ) : (
+                                        "N/A"
+                                    )}
+                                </td>
                                 <td>
                                     {hospital.latitude && hospital.longitude ? (
                                         <Link

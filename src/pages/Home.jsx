@@ -566,7 +566,7 @@ const Home = () => {
                         <h3>An Affordable Way to <br />Protect What Matters</h3>
                         <p>
                             DOSH Risk helps you navigate the complexities of insurance options. We are a top-class brokerage service that assists you in finding the perfect policies and insurers for general insurance, life insurance, or health insurance.
-                            With our strong industry relationships and team of experts, we deliver solutions and guarantee satisfaction, all at 5% minimum lower premiums than the market average, and a 70% commission for our agents.
+                            With our strong industry relationships and team of experts, we deliver solutions and guarantee satisfaction, all at 5% minimum lower premiums than the market average.
                         </p>
                         <Link className='linkers'>Coming Soon
                             {/*<svg

@@ -166,7 +166,7 @@ export const financePackage = [
     },
     {
 
-        name: 'Enterpirse',
+        name: 'Enterprise',
     },
 ]
 
@@ -210,11 +210,11 @@ export const financeDetails = [
     {
         id: "5",
         img: Avatar,
-        number: "Enterpirse",
+        number: "Enterprise",
         desc: "Description",
         details: `The Enterprise Account is designed to provide financial solutions to large corporations and comes with same features as the SMB Account with added offerings: 20 additional users 5 additional departments or call centers. The enterprise account therefore offers customers with the convenience of 30 users and 10 departments or call centers; in addition to all the default benefits embedded in our SOHO Account.`,
         link: "https://dsp.onenet.xyz:50443/#/?page=dosh-financial",
-        category: "Enterpirse"
+        category: "Enterprise"
     },
 ]
 
