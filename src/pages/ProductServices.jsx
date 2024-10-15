@@ -226,48 +226,48 @@ const ProductServices = () => {
                                         <span>DOSH-365</span>
                                     </td>
                                     <td className='price-like'>
-                                        <h3>Enhanced</h3>
-                                        <span>DOSH-365</span>
+                                        <h3 className='hide'>Enhanced</h3>
+                                        <span>DOSH-500</span>
                                     </td>
                                     <td className='price-next'>
                                         <h3 className='hide'>Insurance</h3>
                                         <span className='push'>DOSH-750</span>
                                     </td>
                                     <td className='price-next'>
-                                        <h3>Enhanced</h3>
-                                        <span>DOSH-750</span>
+                                        <h3 className='hide'>Enhanced</h3>
+                                        <span>DOSH-900</span>
                                     </td>
                                     <td className='price-next'>
                                         <h3 className='hide'>Insurance</h3>
                                         <span className='push'>DOSH-1000</span>
                                     </td>
                                     <td className='price-next'>
-                                        <h3>Enhanced</h3>
-                                        <span>DOSH-1000</span>
+                                        <h3 className='hide'>Enhanced</h3>
+                                        <span>DOSH-1200</span>
                                     </td>
                                     <td className='price-next'>
                                         <h3 className='hide'>Insurance</h3>
                                         <span className='push'>DOSH-2500</span>
                                     </td>
                                     <td className='price-next'>
-                                        <h3>Enhanced</h3>
-                                        <span>DOSH-2500</span>
+                                        <h3 className='hide'>Enhanced</h3>
+                                        <span>DOSH-2800</span>
                                     </td>
                                     <td className='price-next'>
                                         <h3 className='hide'>Insurance</h3>
                                         <span className='push'>DOSH-5000</span>
                                     </td>
                                     <td className='price-next'>
-                                        <h3>Enhanced</h3>
-                                        <span>DOSH-5000</span>
+                                        <h3 className='hide'>Enhanced</h3>
+                                        <span>DOSH-5500</span>
                                     </td>
                                     <td className='price-next'>
                                         <h3 className='hide'>Insurance</h3>
                                         <span className='push'>DOSH-10000</span>
                                     </td>
                                     <td className='price-next'>
-                                        <h3>Enhanced</h3>
-                                        <span>DOSH-10000</span>
+                                        <h3 className='hide'>Enhanced</h3>
+                                        <span>DOSH-11000</span>
                                     </td>
 
 
@@ -441,7 +441,7 @@ const ProductServices = () => {
                                 <tr >
                                     <td className='heading'>Personal Accident (each person)</td>
                                     <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 200</td>
+                                    <td className='row-center'>GHS 500</td>
                                     <td className='row-center'>-</td>
                                     <td className='row-center'>GHS 1,000</td>
                                     <td className='row-center'>-</td>
@@ -472,36 +472,36 @@ const ProductServices = () => {
                                 <tr>
                                     <td className='heading-last'></td>
                                     <td className="signup-button">
-                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td><td className="signup-button">
-                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td><td className="signup-button">
-                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td><td className="signup-button">
-                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td><td className="signup-button">
-                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='https://dspm.onenet.xyz:50443/' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                 </tr>
                             </table>

@@ -33,8 +33,8 @@ import elevate2 from '../images/img2.png'
 import money from '../images/img1.png';
 import seamless from "../images/seamless.png"
 import ride from '../images/ridenew.png'
-import reinvigorate from '../images/erpImg.jpeg'
-import scale from "../images/commerceImg.jpeg"
+import reinvigorate from '../images/erpImg1.png'
+import scale from "../images/e-commerce1.png"
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -490,7 +490,7 @@ const Home = () => {
                 <div className='container home__student'>
                     <div className='home__student-left'>
                         <h4>HEALTH INSURANCE SERVICES:</h4>
-                        <h3>Elevate your healthcare experience</h3>
+                        <h3 className="elevate">Elevate your healthcare experience</h3>
                         <p>
                             Take control of your healthcare the DOSH way. DOSH Health insurance is
                             an all-inclusive service that provides coverage for medical consultations,
@@ -568,7 +568,7 @@ const Home = () => {
                             DOSH Risk helps you navigate the complexities of insurance options. We are a top-class brokerage service that assists you in finding the perfect policies and insurers for general insurance, life insurance, or health insurance.
                             With our strong industry relationships and team of experts, we deliver solutions and guarantee satisfaction, all at 5% minimum lower premiums than the market average.
                         </p>
-                        <Link className='linkers'>Coming Soon
+                        <Link to="/productservices" className='linkers'>Coming Soon
                             {/*<svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"

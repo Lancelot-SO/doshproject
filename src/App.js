@@ -23,6 +23,8 @@ import Flyer from './components/Flyer'
 import Otp from './components/Otp'
 import SignIn from './components/SignIn'
 import HomePreview from './pages/HomePreview'
+import MainDashboard from './dashboard/MainDashboard'
+
 
 
 
@@ -56,6 +58,13 @@ const App = () => {
         </Routes>
         <Footer />
         <BackToTop />
+
+      </BrowserRouter>
+
+      <BrowserRouter>
+        <Routes>
+          <Route path='/dashboard' element={<MainDashboard />} />
+        </Routes>
       </BrowserRouter>
     </div>
   )

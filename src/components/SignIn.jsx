@@ -1,6 +1,7 @@
 import React from 'react';
 import "./SignIn.css";
 import sphoto from "../images/sphoto.png";
+import { Link } from 'react-router-dom';
 
 const SignIn = ({ onClose }) => {
 
@@ -32,7 +33,7 @@ const SignIn = ({ onClose }) => {
                         </div>
 
                         <div className='signin__login'>
-                            Login
+                            <Link to="/maindashboard">Login</Link>
                         </div>
                     </div>
                 </div>

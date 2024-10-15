@@ -98,9 +98,9 @@ const Insure = ({ onClose }) => {
                             {activeDetail.img && <img src={activeDetail.img} alt='avatar' />}
                         </div>
                         <div className='package_right'>
-                            <h1 className='package_title'>{activeDetail.title}</h1>
+                            {/* <h1 className='package_title'>{activeDetail.title}</h1> */}
                             {activeDetail.number && <h2 className='package_number'>{activeDetail.number}</h2>}
-                            <span className='package_desc'>{activeDetail.desc}</span>
+                            {/* <span className='package_desc'>{activeDetail.desc}</span> */}
                             <p className='package_details'>{activeDetail.details}</p>
                             <Link onClick={handleFlyerClick} className='flyer-link-insure'>Click here to View full flyer</Link>
                             <Link to={activeDetail.link} target="_blank" rel="noopener noreferrer">

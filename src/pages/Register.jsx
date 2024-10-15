@@ -57,7 +57,7 @@ const Register = () => {
                                         </div>
                                         <div className='reg__input'>
                                             <input type='radio' name='registerOption' id='usevoucher' value='usevoucher' checked={selectedOption === "usevoucher"} onChange={handleOptionChange} />
-                                            <label htmlFor='selfregister'>Use Voucher</label>
+                                            <label htmlFor='selfregister'>Enter Referral Code</label>
                                         </div>
                                     </div>
                                     <form className='log__form' onSubmit={handleFormSubmit}>
