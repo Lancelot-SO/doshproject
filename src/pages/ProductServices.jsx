@@ -1,36 +1,102 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import './ProductServices.css';
-import product from '../images/ppp.jpg'
-// import productservice from "../images/productservice.png"
-import doshdata from "../doshdata.js"
-import doshvideo from '../images/dosh.mp4'
-
-import dosh from "../images/dosh_logo.png"
+import Slider from "react-slick";
+import doshdata from "../doshdata.js";
+import doshvideo from '../images/dosh.mp4';
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
-import Financial from '../components/Financial.jsx';
-
+import { IoIosArrowDown } from 'react-icons/io';
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { IoIosArrowDown } from 'react-icons/io';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import InsuranceTable from '../components/InsuranceTable.jsx';
+// import { useNavigate } from 'react-router-dom';
 import Insure from '../components/Insure.jsx';
+import InsuranceDetails from '../components/InsuranceDetails.jsx';
+import FinancialDetails from '../components/FinancialDetails.jsx';
 import FinanceSideModal from '../components/FinanceSideModal.jsx';
 
 const ProductServices = () => {
+    const [isPopupOpen, setPopupOpen] = useState(false);
+    const [isInsureOpen, setInsureOpen] = useState(false);  // State for Insure modal
+    const [currentModal, setCurrentModal] = useState(null);  // State to handle which modal is open
 
-    const [showInsureModal, setShowInsureModal] = useState(false);
+    const NextArrow = ({ onClick }) => (
+        <button
+            className="absolute bottom-0 lg:bottom-4 left-[52%] md:left-[55%] lg:left-[60%] transform -translate-x-1/2 bg-transparent text-[#9E825B] text-2xl p-4 hover:bg-[#9E825B] hover:text-white transition duration-300 z-10 rounded-full border"
+            onClick={onClick}
+        >
+            <FaArrowRightLong />
+        </button>
+    );
 
-    const handleReadMore = (id) => {
-        if (id === 1) {
-            setShowInsureModal(true);
-        } else if (id === 2) {
-            setShowFinanceModal(true);
+    const PrevArrow = ({ onClick }) => (
+        <button
+            className="absolute bottom-0 lg:bottom-4 left-[48%] md:left-[45%] lg:left-[40%] transform -translate-x-1/2 bg-transparent text-[#9E825B] text-2xl p-4 hover:bg-[#9E825B] hover:text-white transition duration-300 z-10 rounded-full border"
+            onClick={onClick}
+        >
+            <FaArrowLeftLong />
+        </button>
+    );
+
+    // const navigate = useNavigate();
+
+    //popup for the table
+    const openPopup = () => {
+        setPopupOpen(true);
+    };
+
+    const closePopup = () => {
+        setPopupOpen(false);
+    };
+
+    // Open Insure modal when "Pick a Package" is clicked
+    const openInsure = () => {
+        setInsureOpen(true);
+    };
+
+    const closeInsure = () => {
+        setInsureOpen(false);
+    };
+
+    const [isFinancialPopupOpen, setFinancialPopupOpen] = useState(false);  // State for Financial popup
+
+    // Open Financial popup when "Pick a Package" for Financial Services is clicked
+    const openFinancialPopup = () => {
+        setFinancialPopupOpen(true);
+    };
+
+    const closeFinancialPopup = () => {
+        setFinancialPopupOpen(false);
+    };
+
+    // Open the appropriate modal based on current slide index
+    const openModal = (index) => {
+        if (index === 0) {
+            setCurrentModal('insurance');  // Open InsuranceDetails modal
+        } else if (index === 1) {
+            setCurrentModal('finance');    // Open FinancialDetails modal
         }
+        // Add more conditions if you have more slides/modals
+    };
+
+    const closeModal = () => {
+        setCurrentModal(null);
+    };
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
+        beforeChange: (oldIndex, newIndex) => setIndex(newIndex), // Update index on slide change
     };
 
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
-
-    const sections = ['service', 'slider', 'video', 'insurance']; // Add more section IDs here if needed
+    const sections = ['service', 'slider', 'video', 'insurance'];
 
     const scrollToNextSection = (event) => {
         event.preventDefault();
@@ -43,7 +109,6 @@ const ProductServices = () => {
                 section.scrollIntoView({ behavior: 'smooth' });
             }
         } else {
-            // Reset to the first section when reaching the last section
             setCurrentSectionIndex(0);
             const firstSection = document.getElementById(sections[0]);
             if (firstSection) {
@@ -52,12 +117,8 @@ const ProductServices = () => {
         }
     };
 
-
     const [products] = useState(doshdata);
     const [index, setIndex] = useState(0);
-
-    const [showFinanceModal, setShowFinanceModal] = useState(false);
-
 
     useEffect(() => {
         const lastIndex = products.length - 1;
@@ -67,17 +128,16 @@ const ProductServices = () => {
         if (index > lastIndex) {
             setIndex(0);
         }
-
     }, [index, products]);
 
     useEffect(() => {
         let slider = setInterval(() => {
-            setIndex(index + 1)
+            setIndex(index + 1);
         }, 15000);
         return () => {
-            clearInterval(slider)
-        }
-    }, [index])
+            clearInterval(slider);
+        };
+    }, [index]);
 
     useEffect(() => {
         AOS.init({
@@ -86,7 +146,6 @@ const ProductServices = () => {
         AOS.refresh();
     }, []);
 
-    // Function to handle mouse enter
     const handleMouseEnter = (e) => {
         e.target.play();
     };
@@ -95,11 +154,10 @@ const ProductServices = () => {
         e.target.pause();
     };
 
-
     return (
         <div className='ps__page'>
             <div className='main__product'>
-                <img data-aos="fade-down" src={product} alt='product&services' loading='lazy' />
+                <img data-aos="fade-down" src={require('../images/ppp.jpg')} alt='product&services' loading='lazy' />
                 <div className='product__text'>
                     <p>Protect your <b>future</b> with our
                         comprehensive health insurance packages
@@ -109,84 +167,78 @@ const ProductServices = () => {
             <button className="scroll-button" onClick={scrollToNextSection}>
                 <IoIosArrowDown size={30} />
             </button>
-            {/* <section id='service' className='product'>
-                <div className='container products'>
-                    <div data-aos="zoom-in" className='product-left'>
-                        <img src={productservice} alt='productservice' loading='lazy' />
-                    </div>
-                    <div className='product-right'>
-                        <h4>DOSH <br />SERVICES</h4>
-                        <hr className='underline'></hr>
-                        <p>
-                            Financial inclusion is the key to participation
-                            and advancement in the global economy. DOSH's mission
-                            is to provide unrivaled solutions to individuals, SOHO
-                            and SMB in emerging markets where access to financial
-                            services has previously been inaccessible. DOSH has fabricated an unprecedented ecosystem of
-                            leading-edge technologies that offer fast, reliable access to financial services at the lowest possible cost.
-                            We empower markets to bridge the financial divide.
-                        </p>
-                    </div>
-                </div>
-            </section>*/}
 
-            <section id='slider' className='productslider'>
-                <h1 className='title'>Streamlined Financial Solutions<br />
-                    Achieve your Dreams with Seamless Funding Solutions
-                </h1>
-                <div className='section1-center'>
-                    {products.map((item, indexPeople) => {
-                        const { id, quote, image, title } = item;
-                        let position = 'nextSlide';
-                        if (indexPeople === index) {
-                            position = 'activeSlide';
-                        }
-                        if (indexPeople === index - 1 || (index === 0 && indexPeople === products.length - 1)) {
-                            position = 'lastSlide';
-                        }
-                        return (
-                            <div key={id}>
-                                <article className={position}>
-                                    <div className='divider'>
-                                        <div className='left'>
-                                            <h4>{title}</h4>
-                                            <hr className='underline'></hr>
-                                            <p className='quote'>{quote}</p>
-                                            <Link onClick={() => handleReadMore(id)}>Read more
-                                                <svg
-                                                    xmlns='http://www.w3.org/2000/svg'
-                                                    width='14'
-                                                    height='14'
-                                                    fill='currentColor'
-                                                    className='bi bi-arrow-right'
-                                                    viewBox='0 0 16 16'
-                                                >
-                                                    <path
-                                                        fillRule='evenodd'
-                                                        d='M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8'
-                                                    />
-                                                </svg>
-                                            </Link>
-                                        </div>
-                                        <div className='right'>
-                                            <img src={image} alt='person' className='person-img' loading='lazy' />
+            <section id="slider" className="psl relative">
+                <Slider {...settings}>
+                    {products.map((product, productIndex) => (
+                        <div
+                            key={product.id}
+                            className={`w-full h-full flex items-center justify-center lg:h-full ${!product.comparetext && !product.picker ? 'bg-none' : 'bg-default'}`}
+                        >
+                            <div className="container mx-auto px-4">
+                                <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                                    {/* Text section */}
+                                    <div className="flex-1 text-white space-y-4">
+                                        <h4 className="text-[24px] md:text-[32px] lg:text-[44px] font-bold text-[#9E825B] mb-2">
+                                            {product.title}
+                                        </h4>
+                                        <p className="text-sm md:text-lg leading-relaxed">
+                                            {product.quote}
+                                        </p>
+                                        <div className="flex space-x-4 mt-4">
+                                            <button
+                                                onClick={() => openModal(productIndex)}
+                                                className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
+                                            >
+                                                {product.read}
+                                            </button>
+                                            {/* Conditionally render comparetext and picker buttons */}
+                                            {product.comparetext && (
+                                                <button onClick={openPopup} className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
+                                                    {product.comparetext}
+                                                </button>
+                                            )}
+                                            {product.picker && product.id === 1 && (
+                                                <button onClick={openInsure} className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
+                                                    {product.picker}
+                                                </button>
+                                            )}
+                                            {product.picker && product.id === 2 && (
+                                                <button onClick={openFinancialPopup} className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
+                                                    {product.picker}
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
-                                </article>
-                                <button className='prev' onClick={() => setIndex(index - 1)}>
-                                    <FaArrowLeftLong />
-                                </button>
-                                <button className='next' onClick={() => setIndex(index + 1)}>
-                                    <FaArrowRightLong />
-                                </button>
+
+                                    {/* Image section */}
+                                    <div className="flex-1 w-full">
+                                        <img
+                                            src={product.image}
+                                            alt={product.title}
+                                            className="w-full h-40 md:h-80 lg:h-full object-cover rounded-lg shadow-lg"
+                                        />
+                                    </div>
+                                </div>
                             </div>
-                        );
-                    })}
-                    {showFinanceModal && <FinanceSideModal onClose={() => setShowFinanceModal(false)} />}
-                    {showInsureModal && <Insure onClose={() => setShowInsureModal(false)} />}
+                        </div>
+                    ))}
+                </Slider>
+
+                {/* Arrows with text in between */}
+                <div className="absolute bottom-4 left-[50%] transform -translate-x-1/2 text-center text-[#9E825B] text-lg py-4">
+                    <p>More Services</p>
                 </div>
 
+                {isPopupOpen && <InsuranceTable closePopup={closePopup} />}
+                {isInsureOpen && <Insure onClose={closeInsure} />}
+                {isFinancialPopupOpen && <FinanceSideModal onClose={closeFinancialPopup} />}
+
+                {/* Render InsuranceDetails or FinancialDetails modals based on currentModal state */}
+                {currentModal === 'insurance' && <InsuranceDetails onClose={closeModal} />}
+                {currentModal === 'finance' && <FinancialDetails onClose={closeModal} />}
             </section>
+
 
             <section id='video' className='video__section'>
                 <div className='container video-main'>
@@ -196,7 +248,7 @@ const ProductServices = () => {
                             onMouseEnter={handleMouseEnter}
                             onMouseLeave={handleMouseLeave}
                             src={doshvideo}
-                            autoPlay={false} // Autoplay set to false to play only on hover
+                            autoPlay={false}
                             loop
                             muted
                             controls
@@ -211,306 +263,8 @@ const ProductServices = () => {
                 </div>
             </section>
 
-            <section id='insurance' className='insurance'>
-                <div className='prod-insure'>
-                    <h2>DOSH <br />Health Insurance packages</h2>
-                </div>
-                <div className='main-insurance'>
-                    <div className='glass-bg'>
-                        <div className='glass-table'>
-                            <table>
-                                <tr>
-                                    <td className='dosh'><img src={dosh} alt='Dosh Logo' loading='lazy' /></td>
-                                    <td className='price'>
-                                        <h3 className='hide'>Insurance</h3>
-                                        <span>DOSH-365</span>
-                                    </td>
-                                    <td className='price-like'>
-                                        <h3 className='hide'>Enhanced</h3>
-                                        <span>DOSH-500</span>
-                                    </td>
-                                    <td className='price-next'>
-                                        <h3 className='hide'>Insurance</h3>
-                                        <span className='push'>DOSH-750</span>
-                                    </td>
-                                    <td className='price-next'>
-                                        <h3 className='hide'>Enhanced</h3>
-                                        <span>DOSH-900</span>
-                                    </td>
-                                    <td className='price-next'>
-                                        <h3 className='hide'>Insurance</h3>
-                                        <span className='push'>DOSH-1000</span>
-                                    </td>
-                                    <td className='price-next'>
-                                        <h3 className='hide'>Enhanced</h3>
-                                        <span>DOSH-1200</span>
-                                    </td>
-                                    <td className='price-next'>
-                                        <h3 className='hide'>Insurance</h3>
-                                        <span className='push'>DOSH-2500</span>
-                                    </td>
-                                    <td className='price-next'>
-                                        <h3 className='hide'>Enhanced</h3>
-                                        <span>DOSH-2800</span>
-                                    </td>
-                                    <td className='price-next'>
-                                        <h3 className='hide'>Insurance</h3>
-                                        <span className='push'>DOSH-5000</span>
-                                    </td>
-                                    <td className='price-next'>
-                                        <h3 className='hide'>Enhanced</h3>
-                                        <span>DOSH-5500</span>
-                                    </td>
-                                    <td className='price-next'>
-                                        <h3 className='hide'>Insurance</h3>
-                                        <span className='push'>DOSH-10000</span>
-                                    </td>
-                                    <td className='price-next'>
-                                        <h3 className='hide'>Enhanced</h3>
-                                        <span>DOSH-11000</span>
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td className='heading'>Annual Premium</td>
-                                    <td className='row-center'>GHS 365</td>
-                                    <td className='row-center'>GHS 500</td>
-                                    <td className='row-center'>GHS 750</td>
-                                    <td className='row-center'>GHS 900</td>
-                                    <td className='row-center'>GHS 1000</td>
-                                    <td className='row-center'>GHS 1200</td>
-                                    <td className='row-center'>GHS 2500</td>
-                                    <td className='row-center'>GHS 2800</td>
-                                    <td className='row-center'>GHS 5000</td>
-                                    <td className='row-center'>GHS 5500</td>
-                                    <td className='row-center'>GHS 10000</td>
-                                    <td className='row-center'>GHS 11000</td>
-
-                                </tr>
-                                <tr>
-                                    <td className='heading-total'>Total sum assured</td>
-                                    <td className='row-center-total'>GHS 9,000</td>
-                                    <td className='row-center-total'>GHS 21,000</td>
-                                    <td className='row-center-total'>GHS18,000</td>
-                                    <td className='row-center-total'>GHS 42,000</td>
-                                    <td className='row-center-total'>GHS 30,000</td>
-                                    <td className='row-center-total'>GHS 54,000</td>
-                                    <td className='row-center-total'>GHS 60,000</td>
-                                    <td className='row-center-total'>GHS 95,000</td>
-                                    <td className='row-center-total'>GHS 108,000</td>
-                                    <td className='row-center-total'>GHS 167,000</td>
-                                    <td className='row-center-total'>GHS 190,000</td>
-                                    <td className='row-center-total'>GHS 286,000</td>
-                                </tr>
-                                <tr>
-                                    <td className='heading'>Out Patient Limit OP (member)</td>
-                                    <td className='row-center'>GHS 1,500</td>
-                                    <td className='row-center'>GHS 1,500</td>
-                                    <td className='row-center'>GHS 3,000</td>
-                                    <td className='row-center'>GHS 3,000</td>
-                                    <td className='row-center'>GHS 5,000</td>
-                                    <td className='row-center'>GHS 5,000</td>
-                                    <td className='row-center-total'>GHS 10,000</td>
-                                    <td className='row-center-total'>GHS 10,000</td>
-                                    <td className='row-center-total'>GHS 20,000</td>
-                                    <td className='row-center-total'>GHS 20,000</td>
-                                    <td className='row-center-total'>GHS 40,000</td>
-                                    <td className='row-center-total'>GHS 40,000</td>
-                                </tr>
-                                <tr>
-                                    <td className='heading'>In Patient Limit IP (member)</td>
-                                    <td className='row-center'>GHS 6,100</td>
-                                    <td className='row-center'>GHS 6,100</td>
-                                    <td className='row-center'>GHS 12,600</td>
-                                    <td className='row-center'>GHS 12,500</td>
-                                    <td className='row-center'>GHS 21,500</td>
-                                    <td className='row-center'>GHS 21,500</td>
-                                    <td className='row-center-total'>GHS 41,250</td>
-                                    <td className='row-center-total'>GHS 41,250</td>
-                                    <td className='row-center-total'>GHS 57,500</td>
-                                    <td className='row-center-total'>GHS 57,500</td>
-                                    <td className='row-center-total'>GHS 115,000</td>
-                                    <td className='row-center-total'>GHS 115,000</td>
-                                </tr>
-                                <tr>
-                                    <td className='heading'>Medication Limit OP/IP (member)</td>
-                                    <td className='row-center'>GHS 500</td>
-                                    <td className='row-center'>GHS 500</td>
-                                    <td className='row-center'>GHS 900</td>
-                                    <td className='row-center'>GHS 900</td>
-                                    <td className='row-center'>GHS 1,500</td>
-                                    <td className='row-center'>GHS 1,000</td>
-                                    <td className='row-center-total'>GHS 3,750</td>
-                                    <td className='row-center-total'>GHS 3,750</td>
-                                    <td className='row-center-total'>GHS 7,500</td>
-                                    <td className='row-center-total'>GHS 7,500</td>
-                                    <td className='row-center-total'>GHS 15,000</td>
-                                    <td className='row-center-total'>GHS 15,000</td>
-                                </tr>
-                                <tr >
-                                    <td className='heading'>Lab/Scan Limit OP/IP (member)</td>
-                                    <td className='row-center'>GHS 900</td>
-                                    <td className='row-center'>GHS 900</td>
-                                    <td className='row-center'>GHS 1,500</td>
-                                    <td className='row-center'>GHS 1,500</td>
-                                    <td className='row-center'>GHS 2,000</td>
-                                    <td className='row-center'>GHS 2,000</td>
-                                    <td className='row-center-total'>GHS 5,000</td>
-                                    <td className='row-center-total'>GHS 5,000</td>
-                                    <td className='row-center-total'>GHS 10,000</td>
-                                    <td className='row-center-total'>GHS 10,000</td>
-                                    <td className='row-center-total'>GHS 20,000</td>
-                                    <td className='row-center-total'>GHS 20,000</td>
-                                </tr>
-                                <tr >
-                                    <td className='heading'>Death (member)</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 2,500</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 5,000</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 5,000</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 10,000</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 15,000</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 20,000</td>
-                                </tr>
-                                <tr >
-                                    <td className='heading'>Death (Spouse)</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 2,500</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 5,000</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 5,000</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 10,000</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 15,000</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 20,000</td>
-                                </tr>
-                                <tr >
-                                    <td className='heading'>Death (2x Dependants)</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 1,250</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 2,500</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 2,500</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 5,000</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 7,500</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 10,000</td>
-                                </tr>
-                                <tr >
-                                    <td className='heading'>Critical illness (member)</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 1,250</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 2,500</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 2,500</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 5,000</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 7,500</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 10,000</td>
-                                </tr>
-                                <tr >
-                                    <td className='heading'>Permanent Disability (member)</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 1,250</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 2,500</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 2,500</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 5,000</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 7,500</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 10,000</td>
-                                </tr>
-                                <tr >
-                                    <td className='heading'>Personal Accident (each person)</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 500</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 1,000</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>GHS 1,000</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 2,000</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 3,000</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>GHS 4,000</td>
-                                </tr>
-                                <tr >
-                                    <td className='heading'>** Partial Disability</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>3%-60%</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>3%-60%</td>
-                                    <td className='row-center'>-</td>
-                                    <td className='row-center'>3%-60%</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>3%-60%</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>3%-60%</td>
-                                    <td className='row-center-total'>-</td>
-                                    <td className='row-center-total'>3%-60%</td>
-                                </tr>
-
-                                <tr>
-                                    <td className='heading-last'></td>
-                                    <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
-                                    </td>
-                                    <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
-                                    </td>
-                                    <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
-                                    </td>
-                                    <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
-                                    </td>
-                                    <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
-                                    </td>
-                                    <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
-                                    </td>
-                                    <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
-                                    </td><td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
-                                    </td><td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
-                                    </td><td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
-                                    </td><td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
-                                    </td>
-                                    <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
-    )
-}
+    );
+};
 
-export default ProductServices
+export default ProductServices;

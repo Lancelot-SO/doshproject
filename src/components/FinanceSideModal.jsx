@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './FinanceSideModal.css';
 import { Link } from 'react-router-dom';
-import { projectLinks, packagelist, insuranceDetails, financePackage, financeDetails } from '../doshdata';
-// import Flyer from './Flyer';
+import { financelink, financePackage, financeDetails } from '../doshdata';
 
 const FinanceSideModal = ({ onClose }) => {
     const [activePackage, setActivePackage] = useState(financePackage[0].name); // Set the initial package to the first finance package
@@ -10,20 +9,11 @@ const FinanceSideModal = ({ onClose }) => {
     const [currentPackageList, setCurrentPackageList] = useState(financePackage);
     const [currentDetailList, setCurrentDetailList] = useState(financeDetails);
 
-    // const [showFlyerModal, setShowFlyerModal] = useState(false);
-
     useEffect(() => {
         if (activeLinks === 'Financial') {
             setCurrentPackageList(financePackage);
             setCurrentDetailList(financeDetails);
             setActivePackage(financePackage[0].name);
-        } else if (activeLinks === 'Insurance') {
-            setCurrentPackageList(packagelist);
-            setCurrentDetailList(insuranceDetails);
-            setActivePackage(packagelist[0].name); // Set 'DOSH 365' as active initially
-        } else {
-            setCurrentPackageList([]);
-            setCurrentDetailList([]);
         }
     }, [activeLinks]);
 
@@ -33,21 +23,16 @@ const FinanceSideModal = ({ onClose }) => {
         <div className="insure-modal">
             <div className="insure-content">
                 <div className='top__section'>
-                    <select className='selector'>
-                        <option value="">Select an option</option>
-                        <option value="option1">Finance</option>
-                        <option value="option2">Insurance</option>
-                        <option value="option3">Loan</option>
-                    </select>
+                    <h2 className='text-[32px] text-[#A2865F]'>DOSH Financial</h2>
                     <div>
                         <button onClick={onClose} className='top__section-close'>X</button>
                     </div>
                 </div>
 
-                {/* List of products */}
-                <div className='top_list'>
-                    <ul className='top_lists'>
-                        {projectLinks.map((link, index) => (
+                {/* List of links (financelink) */}
+                <div className='package_list'>
+                    <ul className='package_lists'>
+                        {financelink.map((link, index) => (
                             <li key={index} className={`top_link ${link.name === activeLinks ? 'activator' : ''}`}>
                                 <Link
                                     onClick={() => setActiveLinks(link.name)}
@@ -102,7 +87,6 @@ const FinanceSideModal = ({ onClose }) => {
                                     />
                                 </svg>
                             </small>
-                            {/*showFlyerModal && <Flyer onClose={() => setShowFlyerModal(false)} />*/}
                         </div>
                     </div>
                 )}

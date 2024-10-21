@@ -29,7 +29,7 @@ import slider10mobile from "../images/firstmobile.png"
 
 
 // import banner from '../images/dosh-banner.png'
-import elevate2 from '../images/img2.png'
+import elevate2 from '../images/elevate2.png'
 import money from '../images/img1.png';
 import seamless from "../images/seamless.png"
 import ride from '../images/ridenew.png'
@@ -49,13 +49,16 @@ import { IoIosArrowDown } from 'react-icons/io';
 // import Erp from '../components/Erp.jsx';
 
 
-import Insure from '../components/Insure.jsx';
+// import Insure from '../components/InsuranceDetails.jsx';
 import FinanceSideModal from '../components/FinanceSideModal.jsx';
+import InsuranceDetails from '../components/InsuranceDetails.jsx';
+import FinanceDetails from '../components/FinancialDetails.jsx';
 
 
 const Home = () => {
 
-    const [showInsureModal, setShowInsureModal] = useState(false);
+    const [showInsuranceDetailModal, setInsuranceDetailModal] = useState(false);
+
     const [activePackage, setActivePackage] = useState('');
 
     const setInitialItem = (itemName) => {
@@ -87,12 +90,11 @@ const Home = () => {
         }
     };
 
-    const [showFinanceModal, setShowFinanceModal] = useState(false);
+    const [showFinanceDetailModal, setShowFinanceDetailModal] = useState(false);
     // const [showInsureModal, setShowInsureModal] = useState(false);
     // const [showRideModal, setShowRideModal] = useState(false);
     // const [showEcommerceModal, setShowEcommerceModal] = useState(false);
     // const [showErpModal, setShowErpModal] = useState(false);
-
 
 
 
@@ -194,7 +196,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                    <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -232,7 +234,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                    <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -263,7 +265,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                    <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -294,7 +296,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                    <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -334,7 +336,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                    <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -365,7 +367,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                    <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -398,7 +400,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                    <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -424,7 +426,7 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                    <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join DOSH</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -498,7 +500,7 @@ const Home = () => {
                             We have a vast network of accredited service providers that
                             ensure access to medical care, whenever and wherever you need it.
                         </p>
-                        <Link onClick={() => { setShowInsureModal(true); setInitialItem('insurance'); }}>
+                        <Link onClick={() => { setInsuranceDetailModal(true) }}>
                             Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -519,7 +521,7 @@ const Home = () => {
                         <img src={elevate2} alt='student' loading='lazy' />
                     </div>
                 </div>
-                {showInsureModal && <Insure onClose={() => setShowInsureModal(false)} initialItem={activePackage} />}
+                {showInsuranceDetailModal && <InsuranceDetails onClose={() => setInsuranceDetailModal(false)} />}
 
 
             </section>
@@ -539,7 +541,7 @@ const Home = () => {
                             financial stability as you experience unparalleled growth with the unique
                             DOSH approach.
                         </p>
-                        <Link onClick={() => { setShowFinanceModal(true); setInitialItem('financial'); }}>Read more
+                        <Link onClick={() => { setShowFinanceDetailModal(true) }}>Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -556,7 +558,7 @@ const Home = () => {
                         </Link>
                     </div>
                 </div>
-                {showFinanceModal && <FinanceSideModal onClose={() => setShowFinanceModal(false)} initialItem={initialItem} />}
+                {showFinanceDetailModal && <FinanceDetails onClose={() => setShowFinanceDetailModal(false)} />}
             </section>
 
             <section className='digital__section'>

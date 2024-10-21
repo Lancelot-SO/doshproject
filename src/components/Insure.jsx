@@ -1,111 +1,99 @@
 import React, { useState, useEffect } from 'react';
 import './Insure.css';
 import { Link } from 'react-router-dom';
-import { projectLinks, packagelist, insuranceDetails, financePackage, financeDetails } from '../doshdata';
-import Flyer from './Flyer';
-
-const flyerPath = "/smallflyer.png";
+import { packagelist, enhancelist, insuranceDetails } from '../doshdata'; // Import insurance data
+import Flyer from './Flyer'; // Import Flyer component
 
 const Insure = ({ onClose }) => {
-
-    const [activePackage, setActivePackage] = useState('');
-    const [activeLinks, setActiveLinks] = useState('Insurance'); // Set 'insurance' as the active link initially
+    const [activePackage, setActivePackage] = useState('DOSH 365'); // Default to DOSH 365
     const [currentPackageList, setCurrentPackageList] = useState([]);
     const [currentDetailList, setCurrentDetailList] = useState([]);
-
-    const [showFlyerModal, setShowFlyerModal] = useState(false)
+    const [activeLabel, setActiveLabel] = useState('Standard'); // Default to Standard
+    const [showFlyerModal, setShowFlyerModal] = useState(false); // State for controlling Flyer modal
 
     useEffect(() => {
-        if (activeLinks === 'Financial') {
-            setCurrentPackageList(financePackage);
-            setCurrentDetailList(financeDetails);
-            setActivePackage(financePackage[0].name);
-        } else if (activeLinks === 'Insurance') {
+        // Set the default package list to 'Standard' and the active package to 'DOSH 365'
+        setCurrentPackageList(packagelist);
+        setCurrentDetailList(insuranceDetails);
+        setActivePackage('DOSH 365');
+        setActiveLabel('Standard');
+    }, []);
+
+    // Handle label change (Standard / Enhanced)
+    const handleLabelChange = (label) => {
+        setActiveLabel(label);
+        if (label === 'Standard') {
             setCurrentPackageList(packagelist);
-            setCurrentDetailList(insuranceDetails);
-            setActivePackage(packagelist[0].name); // Set 'DOSH 365' as active initially
+            setActivePackage('DOSH 365'); // Reset to default when switching back to Standard
         } else {
-            setCurrentPackageList([]);
-            setCurrentDetailList([]);
-        }
-    }, [activeLinks]);
-
-    const activeDetail = currentDetailList.find(detail => detail.category === activePackage);
-
-    const handleFlyerClick = () => {
-        if (window.innerWidth < 768) {
-            const link = document.createElement('a');
-            link.href = flyerPath;
-            link.download = "flyer2.png";
-            link.click();
-        } else {
-            setShowFlyerModal(true);
+            setCurrentPackageList(enhancelist);
+            setActivePackage(enhancelist[0].name); // Set first enhanced package by default
         }
     };
 
+    // Find active package details
+    const activeDetail = currentDetailList.find(detail => detail.category === activePackage);
 
     return (
         <div className="insure-modal">
             <div className="insure-content">
                 <div className='top__section'>
-                    <select className='selector'>
-                        <option value="">Select an option</option>
-                        <option value="option1">Finance</option>
-                        <option value="option2">Insurance</option>
-                        <option value="option3">Loan</option>
-                    </select>
+                    <h2 className='text-[32px] text-[#A2865F]'>DOSH Health Insurance</h2>
                     <div>
                         <button onClick={onClose} className='top__section-close'>X</button>
                     </div>
                 </div>
 
-                {/* List of products */}
-                <div className='top_list'>
-                    <ul className='top_lists'>
-                        {projectLinks.map((link, index) => (
-                            <Link
-                                onClick={() => setActiveLinks(link.name)}
-                            >
-                                <li key={index} className={`top_link ${link.name === activeLinks ? 'activator' : ''}`}>
-                                    {link.name}
-
-                                </li>
-                            </Link>
-                        ))}
+                {/* List of labels (Standard / Enhanced) */}
+                <div className='package_list'>
+                    <ul className='package_lists'>
+                        <li
+                            className={`package_link ${activeLabel === 'Standard' ? 'link_underline' : ''}`}
+                            onClick={() => handleLabelChange('Standard')}
+                        >
+                            Standard
+                        </li>
+                        <li
+                            className={`package_link ${activeLabel === 'Enhanced' ? 'link_underline' : ''}`}
+                            onClick={() => handleLabelChange('Enhanced')}
+                        >
+                            Enhanced
+                        </li>
                     </ul>
                 </div>
 
                 {/* List of packages */}
-                <div className='package_list'>
-                    <ul className='package_lists'>
-                        {currentPackageList.map((packageItem, index) => (
-                            <li key={index}>
-                                <Link
-                                    className={`package_link ${packageItem.name === activePackage ? 'link_underline' : ''}`}
-                                    onClick={() => setActivePackage(packageItem.name)}
-                                >
-                                    {packageItem.name}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                <ul className='package_lists'>
+                    {currentPackageList.map((packageItem, index) => (
+                        <li key={index}>
+                            <Link
+                                className={`package_link ${packageItem.name === activePackage ? 'link_underline' : ''}`}
+                                onClick={() => setActivePackage(packageItem.name)}
+                            >
+                                {packageItem.name}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
 
                 {/* Details of active package */}
-                {activeDetail && (
+                {activeLabel === 'Standard' && activeDetail && (
                     <div className='main_package'>
                         <div className='package_left'>
                             {activeDetail.img && <img src={activeDetail.img} alt='avatar' />}
                         </div>
                         <div className='package_right'>
-                            {/* <h1 className='package_title'>{activeDetail.title}</h1> */}
                             {activeDetail.number && <h2 className='package_number'>{activeDetail.number}</h2>}
-                            {/* <span className='package_desc'>{activeDetail.desc}</span> */}
                             <p className='package_details'>{activeDetail.details}</p>
-                            <Link onClick={handleFlyerClick} className='flyer-link-insure'>Click here to View full flyer</Link>
+                            <Link
+                                onClick={() => setShowFlyerModal(true)} // Trigger Flyer modal
+                                className='flyer-link-insure'
+                            >
+                                Click here to view full flyer
+                            </Link>
                             <Link to={activeDetail.link} target="_blank" rel="noopener noreferrer">
                                 <small>
-                                    <h6>Sign up</h6>
+                                    <h6 className='text-white'>Sign up</h6>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="20"
@@ -122,7 +110,15 @@ const Insure = ({ onClose }) => {
                                 </small>
                             </Link>
                             {showFlyerModal && <Flyer onClose={() => setShowFlyerModal(false)} />}
+                        </div>
+                    </div>
+                )}
 
+                {/* "Coming Soon" for Enhanced Packages */}
+                {activeLabel === 'Enhanced' && (
+                    <div className='main_package'>
+                        <div className='package_left'>
+                            <h2 className='package_number'>Coming Soon</h2>
                         </div>
                     </div>
                 )}

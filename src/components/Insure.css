@@ -89,7 +89,7 @@
 
 .package_list {
     max-width: 100%;
-    margin-left: 80px;
+    /* margin-left: 80px; */
 }
 
 .package_lists {
@@ -113,14 +113,19 @@
     transition: background-color 0.3s;
 }
 
+.standard {
+    background-color: #987C55;
+}
+
 .package_link:hover {
-    background-color: #b0b1b3;
+    background-color: #987C55;
 }
 
 .link_underline {
     font-size: 20px;
-    color: black;
+    color: #ffffff;
     font-weight: bolder;
+    background-color: #987C55;
 }
 
 .main_package {

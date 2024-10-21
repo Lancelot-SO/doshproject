@@ -1,6 +1,5 @@
 import React from 'react';
-import "./Flyer.css";
-import flyer from "../images/flyer2.png"
+import './Flyer.css';
 import { FaDownload } from 'react-icons/fa';
 
 const Flyer = ({ onClose }) => {
@@ -14,7 +13,7 @@ const Flyer = ({ onClose }) => {
                         <option value="option2">Insurance</option>
                         <option value="option3">Loan</option>
                     </select>
-                    <a href={flyer} download="flyer2.png" className='flyer_link'>
+                    <a href="/dosh_insurance.pdf" download="dosh_insurance.pdf" className='flyer_link'>
                         <FaDownload />
                     </a>
                     <button onClick={onClose} className='flyer_close'>X</button>

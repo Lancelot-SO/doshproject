@@ -5,11 +5,11 @@ import animefive from "../images/dosh-5000.png"
 import animetwo from "../images/dosh-2500.png"
 import animeth from "../images/dosh-1000.png"
 import animesev from "../images/dosh-750.png"
-import animethr from "../images/dosh-365.png"
+import animethr from "../images/dosh-financial.jpg"
 import animeten from "../images/dosh-10000.png"
 import animeper from "../images/dosh-personal.png"
 import animefam from "../images/dosh-family.png"
-import animesoho from "../images/SOHO.png"
+import animesoho from "../images/soho.png"
 import animesmb from "../images/SMB.png"
 import animeent from "../images/Enterprise.png"
 
@@ -66,7 +66,7 @@ const RegModal = () => {
                                         <span>DOSH</span>
                                         <h2>365</h2>
                                         <h3>Description</h3>
-                                        <p>EDOSH 365 package births an array of hope for individuals who
+                                        <p>DOSH 365 package births an array of hope for individuals who
                                             hitherto are unable to access health insurance services due to the
                                             absence of affordable packages one the market.
                                             Dosh is changing the narrative on health insurance provision with the

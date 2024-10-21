@@ -1,13 +1,20 @@
 import Finance from "./images/dosh-financial.jpg"
 import Lady from "./images/prettylady.jpg"
+import Personal from "./images/personalnew.png"
 import Insurance from "./images/elevate2.png"
-import Family from "./images/dosh-family.png"
+import Family from "./images/familynew.png"
+import Risk from "./images/seamlessnew.png"
+import Money from "./images/img1.png"
 // import Money from "./images/money.png"
 import Ride from "./images/ride.png"
 import Ecommerce from "./images/Vector334.png"
 import Scale from "./images/scale.png"
 
-import Avatar from "./images/dosh-365.png"
+import Enterprise from "./images/enterprisenew.png"
+import Soho from "./images/soho.png"
+import Smb from "./images/smbnew.png"
+
+
 import Ph1 from "./images/ph1.png"
 import ph2 from "./images/ph2.png"
 import ph3 from "./images/ph3.png"
@@ -20,24 +27,31 @@ import ph6 from "./images/ph6.png"
 const products = [
     {
         id: 1,
-        title: 'HEALTH INSURANCE',
+        title: 'Health Insurance',
         image: Finance,
-        readmore: '/insure',
+        readmore: '/insuredetails',
         quote: `Experience comprehensive coverage for your medical needs. Our mission at DOSH Insurance is to empower lives by ensuring your access to funds for quality healthcare. We are dedicated to helping you and your loved ones live life to the fullest by providing reliable health insurance solutions. Our extensive network of accredited service providers spans all regions and offers comprehensive healthcare coverage. Our team of experienced finance and health experts has curated a wide range of product options that cater to businesses, individuals, and employees at all levels. Safeguard your health with DOSH Insurance.`,
-
+        pick: '/insure',
+        comparetext: 'Compare',
+        picker: 'Pick a Package',
+        read: 'Read More',
     },
     {
         id: 2,
-        title: 'FINANCIAL SERVICES',
-        image: Lady,
-        readmore: '/insure',
+        title: 'Financial Services',
+        image: Money,
+        readmore: '/financedetails',
         quote: `At DOSH, we provide tailored financial assistance for all your personal and business needs. Get the funds you need on your terms with our accessible and innovative funding options, including low- to no-interest repayment plans. Whether it's for business, entrepreneurship, or personal use, our funding solutions are designed to meet both long-term and short-term financial needs. Our licensed services benefit clients worldwide, offering a reliable and empowering funding experience. Let DOSH help you turn your dreams into reality.`,
+        pick: '/financemodal',
+        picker: 'Pick a Package',
+        read: 'Read More',
     },
     {
         id: 3,
-        title: 'DOSH RISK',
-        image: Lady,
-        readmore: '/insure',
+        title: 'DOSH Risk',
+        image: Risk,
+        readmore: '/riskdetails',
+        read: 'Read More',
         quote: `Wading through the insurance landscape is a unique kind of struggle. Our mission here at DOSH is to provide tailored brokerage services that empower you to navigate confusion and uncertainties with confidence. With years of industry experience and a dedicated team of experts, we are committed to delivering innovative solutions that protect your assets and enhance your operations. Our exceptional insurance brokerage services deliver competitive rates, convenience, and unparalleled support in a one-stop shop for auto, home, health, and business insurance.`,
     },
 ]
@@ -48,10 +62,22 @@ export const projectLinks = [
     {
         name: 'Insurance',
     },
+
+]
+
+export const financelink = [
     {
         name: 'Financial',
-    },
+    }
+]
 
+export const packagelabel = [
+    {
+        name: 'Standard',
+    },
+    {
+        name: 'Enhanced',
+    }
 ]
 
 export const packagelist = [
@@ -77,6 +103,32 @@ export const packagelist = [
     {
 
         name: 'DOSH 10000',
+    },
+]
+
+export const enhancelist = [
+    {
+        name: 'DOSH 500',
+    },
+    {
+
+        name: 'DOSH 900',
+    },
+    {
+
+        name: 'DOSH 1200',
+    },
+    {
+
+        name: 'DOSH 2800',
+    },
+    {
+
+        name: 'DOSH 5500',
+    },
+    {
+
+        name: 'DOSH 11000',
     },
 ]
 
@@ -170,10 +222,10 @@ export const financePackage = [
 export const financeDetails = [
     {
         id: "1",
-        img: Lady,
+        img: Personal,
         number: "Personal",
         desc: "Description",
-        details: `At home or at work, managing your finances shouldn't be a hassle with Dosh. Our uniquely designed and tailor-made personal account offers one user five different types of accounts, allowing our clients to effortlessly stay on top of their personal finances. Additionally, we provide the option for extra accounts at a configurable fee, ensuring flexibility and convenience for all your financial needs.`,
+        details: `At home or at work, managing your finances shouldn't be a hassle. With DOSH, our uniquely designed and tailor-made personal account offers one user five different types of accounts, allowing our clients to effortlessly stay on top of their personal finances. Additionally, we provide the option for extra accounts at a configurable fee, ensuring flexibility and convenience for all your financial needs.`,
         link: "https://dsp.onenet.xyz:50443/#/?page=dosh-financial",
         category: "Personal"
     },
@@ -182,13 +234,13 @@ export const financeDetails = [
         img: Family,
         number: "Family",
         desc: "Description",
-        details: `At home or at work, managing your finances shouldn't be a hassle with DOSH. Our uniquely designed and tailor-made personal account offers one user five different types of accounts, allowing our clients to effortlessly stay on top of their personal finances. Additionally, we provide the option for extra accounts at a configurable fee, ensuring flexibility and convenience for all your financial needs.`,
+        details: `Family financial management involves effectively meeting your family's everyday expenses, handling unexpected bills and saving for the future. At DOSH, our Family account puts you in control of your money, helping you avoid stress, whilst making you feel more secured. In addition to the 5 different accounts available with the Personal Account package, the Family Account offers 5 additional users with current sub accounts.`,
         link: "https://dsp.onenet.xyz:50443/#/?page=dosh-financial",
         category: "Family"
     },
     {
         id: "3",
-        img: Avatar,
+        img: Soho,
         number: "SOHO",
         desc: "Description",
         details: `The SOHO Account offers numerous benefits to help your business grow. With this account, you gain access to loan and credit facilities, while keeping your personal assets separate from your business transactions for added protection. This package includes five default accounts, five additional current sub-accounts, and two departmental or cost centers. Each department or cost center can be configured with varying access levels for you and your employees. This setup allows you to control who can create new users, add bank accounts, perform transactions, view and transfer funds, audit accounts, and set limits on sub-accounts, enhancing your financial management.`,
@@ -197,7 +249,7 @@ export const financeDetails = [
     },
     {
         id: "4",
-        img: Avatar,
+        img: Smb,
         number: "SMB",
         desc: "Description",
         details: `This account has advanced benefits and features compared to the SOHO Account. It comes with 5 additional users and a total of 5 departments or cost centers with the convenient option of adding more users as the business grows. In effect, the SMB Account offers subscribers 10 sub-accounts and 5 departments or call centers with different levels of access and control.`,
@@ -206,7 +258,7 @@ export const financeDetails = [
     },
     {
         id: "5",
-        img: Avatar,
+        img: Enterprise,
         number: "Enterprise",
         desc: "Description",
         details: `The Enterprise Account is designed to provide financial solutions to large corporations and comes with the same features as the SMB Account with added offerings: 20 additional users 5 additional departments or call centers. The enterprise account therefore offers customers the convenience of 30 users and 10 departments or call centers; in addition to all the default benefits embedded in our SOHO Account.`,
