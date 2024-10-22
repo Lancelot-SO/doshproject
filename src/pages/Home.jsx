@@ -53,6 +53,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 import FinanceSideModal from '../components/FinanceSideModal.jsx';
 import InsuranceDetails from '../components/InsuranceDetails.jsx';
 import FinanceDetails from '../components/FinancialDetails.jsx';
+import RiskDetails from '../components/RiskDetails.jsx';
 
 
 const Home = () => {
@@ -91,7 +92,7 @@ const Home = () => {
     };
 
     const [showFinanceDetailModal, setShowFinanceDetailModal] = useState(false);
-    // const [showInsureModal, setShowInsureModal] = useState(false);
+    const [showRiskModal, setShowRiskModal] = useState(false);
     // const [showRideModal, setShowRideModal] = useState(false);
     // const [showEcommerceModal, setShowEcommerceModal] = useState(false);
     // const [showErpModal, setShowErpModal] = useState(false);
@@ -570,7 +571,7 @@ const Home = () => {
                             DOSH Risk helps you navigate the complexities of insurance options. We are a top-class brokerage service that assists you in finding the perfect policies and insurers for general insurance, life insurance, or health insurance.
                             With our strong industry relationships and team of experts, we deliver solutions and guarantee satisfaction, all at 5% minimum lower premiums than the market average.
                         </p>
-                        <Link to="/productservices" className='linkers'>Coming Soon
+                        <Link onClick={() => { setShowRiskModal(true) }} className='linkers'>Read More
                             {/*<svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -590,6 +591,8 @@ const Home = () => {
                         <img src={seamless} alt='digital' loading='lazy' />
                     </div>
                 </div>
+                {showRiskModal && <RiskDetails onClose={() => setShowRiskModal(false)} />}
+
             </section>
 
             <section id='ride' className='ride__section'>

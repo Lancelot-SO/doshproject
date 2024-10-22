@@ -31,10 +31,10 @@ const FinanceDetails = ({ onClose }) => {
                         <h2 className="text-3xl font-bold mb-6 text-gray-800">Financial Services</h2>
                         <div className="space-y-4 text-gray-600">
                             <p>
-                                At Dosh Financial, we understand that protecting your family's future is paramount. Our comprehensive insurance solutions are designed to provide you with peace of mind and financial security in an ever-changing world.
+                                At Dosh Financial, we understand that protecting your family's future is paramount. Our comprehensive financial solutions are designed to provide you with peace of mind and financial security in an ever-changing world.
                             </p>
                             <p>
-                                Our expert team of advisors works tirelessly to craft personalized insurance packages that cater to your unique needs and circumstances. Whether you're looking for life insurance, health coverage, property protection, or retirement planning, we have you covered.
+                                Our expert team of advisors works tirelessly to craft personalized financial packages that cater to your unique needs and circumstances. Whether you're looking for life insurance, health coverage, property protection, or retirement planning, we have you covered.
                             </p>
                             <p>
                                 With our state-of-the-art risk assessment tools and deep industry knowledge, we ensure that you receive the most competitive rates without compromising on coverage. We believe that high-quality insurance should be accessible to everyone, and we're committed to making that a reality.

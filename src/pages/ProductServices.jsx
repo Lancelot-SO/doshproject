@@ -15,11 +15,14 @@ import Insure from '../components/Insure.jsx';
 import InsuranceDetails from '../components/InsuranceDetails.jsx';
 import FinancialDetails from '../components/FinancialDetails.jsx';
 import FinanceSideModal from '../components/FinanceSideModal.jsx';
+import RiskDetails from '../components/RiskDetails.jsx';
 
 const ProductServices = () => {
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [isInsureOpen, setInsureOpen] = useState(false);  // State for Insure modal
     const [currentModal, setCurrentModal] = useState(null);  // State to handle which modal is open
+    const [isRiskDetailsOpen, setRiskDetailsOpen] = useState(false);  // State for RiskDetails popup
+
 
     const NextArrow = ({ onClick }) => (
         <button
@@ -76,9 +79,11 @@ const ProductServices = () => {
             setCurrentModal('insurance');  // Open InsuranceDetails modal
         } else if (index === 1) {
             setCurrentModal('finance');    // Open FinancialDetails modal
+        } else if (index === 2) {  // Assuming the DOSH Risk is the 3rd slide
+            setCurrentModal('risk');      // Open RiskDetails modal
         }
-        // Add more conditions if you have more slides/modals
     };
+
 
     const closeModal = () => {
         setCurrentModal(null);
@@ -237,6 +242,7 @@ const ProductServices = () => {
                 {/* Render InsuranceDetails or FinancialDetails modals based on currentModal state */}
                 {currentModal === 'insurance' && <InsuranceDetails onClose={closeModal} />}
                 {currentModal === 'finance' && <FinancialDetails onClose={closeModal} />}
+                {currentModal === 'risk' && <RiskDetails onClose={closeModal} />}
             </section>
 
 
