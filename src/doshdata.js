@@ -197,6 +197,69 @@ export const insuranceDetails = [
     },
 ]
 
+export const enhanceDetails = [
+    {
+        id: "1",
+        img: Ph1,
+        title: "",
+        number: "DOSH 500",
+        desc: "Description",
+        details: `The DOSH 500 offers enhanced coverage and benefits, ensuring you're protected wherever life takes you. Building on our Standard packages, the DOSH 500 gets you up to  GHS 21000 in total coverage, going the extra mile to provide coverage in cases of partial and permanent disability, critical illness, and even death. Upgrade your insurance today and get the premium protection you deserve!`,
+        link: "/register",
+        category: "DOSH 500"
+    },
+    {
+        id: "2",
+        img: ph2,
+        title: "",
+        number: "DOSH 900",
+        desc: "Description",
+        details: `DOSH knows you deserve better than the basics, and that’s exactly what the DOSH 900 package delivers. With customisable coverage options totally tailored to keep you covered from every angle, the DOSH 900 gets you more of what matters, so you can keep living your best life`,
+        link: "/register",
+        category: "DOSH 900"
+    },
+    {
+        id: "3",
+        img: ph3,
+        title: "",
+        number: "DOSH 1200",
+        desc: "Description",
+        details: `With the DOSH 1200, your health needs are sorted! For up to GHS 54000 in coverage, members get access to comprehensive health services, from in-patient and out-patient care, to medication and even critical illness. Make the choice today, so you can handle those unexpected moments without breaking a sweat.`,
+        link: "/register",
+        category: "DOSH 1200"
+    },
+    {
+        id: "4",
+        img: ph4,
+        title: "",
+        number: "DOSH 2800",
+        desc: "Description",
+        details: `At DOSH, we understand that life can be unpredictable, and protecting your family’s future is paramount. That’s why we’ve enhanced our insurance policies to provide you with comprehensive protection, extending coverage to cases of death and disability. Explore our range of enhanced plans, tailored to meet your specific needs and ensure peace of mind.`,
+        link: "/register",
+        category: "DOSH 2800"
+    },
+    {
+        id: "5",
+        img: ph5,
+        title: "",
+        number: "DOSH 5500",
+        desc: "Description",
+        details: `The DOSH 5500 is designed for individuals looking for straightforward and reliable protection, ensuring that even in challenging circumstances, your family’s future remains secure. Regain your peace of mind knowing that life’s uncertainties won’t disrupt your family’s financial stability. This plan is ideal for those who won’t compromise on solid coverage.`,
+        link: "/register",
+        category: "DOSH 5500"
+    },
+    {
+        id: "6",
+        img: ph6,
+        title: "",
+        number: "DOSH 11000",
+        desc: "Description",
+        details: `If you believe in going all-in on peace of mind, the DOSH 11000 plan has your name written all over it. This top-shelf coverage gives you everything for those "just in case" moments. With this plan, you're not just prepared for the worst — you're ready for anything.`,
+        link: "/register",
+        category: "DOSH 11000"
+    },
+]
+
 export const financePackage = [
     {
         name: 'Personal',

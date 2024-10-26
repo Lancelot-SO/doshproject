@@ -1,5 +1,9 @@
-.dashboard {
-    display: flex;
-    font-size: 50px;
-    color: white;
+/* Hide scrollbar for Chrome, Safari, Edge, and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.no-scrollbar {
+    scrollbar-width: none;
 }

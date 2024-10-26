@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Insure.css';
 import { Link } from 'react-router-dom';
-import { packagelist, enhancelist, insuranceDetails } from '../doshdata'; // Import insurance data
+import { packagelist, enhancelist, insuranceDetails, enhanceDetails } from '../doshdata'; // Import insurance data
 import Flyer from './Flyer'; // Import Flyer component
 
 const Insure = ({ onClose }) => {
@@ -24,9 +24,11 @@ const Insure = ({ onClose }) => {
         setActiveLabel(label);
         if (label === 'Standard') {
             setCurrentPackageList(packagelist);
+            setCurrentDetailList(insuranceDetails);
             setActivePackage('DOSH 365'); // Reset to default when switching back to Standard
         } else {
             setCurrentPackageList(enhancelist);
+            setCurrentDetailList(enhanceDetails);
             setActivePackage(enhancelist[0].name); // Set first enhanced package by default
         }
     };
@@ -77,7 +79,7 @@ const Insure = ({ onClose }) => {
                 </ul>
 
                 {/* Details of active package */}
-                {activeLabel === 'Standard' && activeDetail && (
+                {activeDetail && (
                     <div className='main_package'>
                         <div className='package_left'>
                             {activeDetail.img && <img src={activeDetail.img} alt='avatar' />}
@@ -110,15 +112,6 @@ const Insure = ({ onClose }) => {
                                 </small>
                             </Link>
                             {showFlyerModal && <Flyer onClose={() => setShowFlyerModal(false)} />}
-                        </div>
-                    </div>
-                )}
-
-                {/* "Coming Soon" for Enhanced Packages */}
-                {activeLabel === 'Enhanced' && (
-                    <div className='main_package'>
-                        <div className='package_left'>
-                            <h2 className='package_number'>Coming Soon</h2>
                         </div>
                     </div>
                 )}

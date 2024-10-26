@@ -33,7 +33,7 @@ const SignIn = ({ onClose }) => {
                         </div>
 
                         <div className='signin__login'>
-                            <Link to="/maindashboard">Login</Link>
+                            <Link to="/dashboard">Login</Link>
                         </div>
                     </div>
                 </div>
