@@ -28,8 +28,8 @@ const InsuranceDetails = ({ onClose }) => {
     };
 
     return (
-        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4'>
-            <div className="w-full max-w-4xl h-[80vh] bg-white rounded-xl shadow-md overflow-hidden relative flex flex-col">
+        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4'>
+            <div className="w-full max-w-4xl mt-16 h-[85vh] bg-white rounded-xl shadow-md overflow-hidden relative flex flex-col">
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-10 h-10 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 transition duration-300 ease-in-out z-10"
@@ -39,7 +39,7 @@ const InsuranceDetails = ({ onClose }) => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
-                <div className="h-1/3 flex-shrink-0">
+                <div className="h-[330px] flex-shrink-0">
                     <img
                         className="w-full h-full object-cover"
                         src={fam}
@@ -48,33 +48,53 @@ const InsuranceDetails = ({ onClose }) => {
                 </div>
                 <div className="flex flex-col flex-grow overflow-hidden">
                     <div className="flex-grow overflow-y-auto p-6">
-                        <h2 className="text-3xl font-bold mb-6 text-gray-800">Health Insurance</h2>
+                        <h2 className="text-3xl font-bold mb-6 text-gray-800">What's the Deal with Health Insurance?</h2>
                         <div className="space-y-4 text-gray-600">
                             <p>
-                                At Dosh, we understand that protecting your family's future is paramount. Our comprehensive insurance solutions are designed to provide you with peace of mind and financial security in an ever-changing world.
+                                Let's get real: health insurance is your financial armor against surprise medical bills in a world where healthcare costs are sky-high. Each year, over 100 million people are pushed into poverty by medical expenses. From routine check-ups to major surgeries, insurance helps keep both your health and wallet intact.
                             </p>
                             <p>
-                                Our expert team of advisors works tirelessly to craft personalized insurance packages that cater to your unique needs and circumstances. Whether you're looking for life insurance, health coverage, property protection, or retirement planning, we have you covered.
+                                In Ghana and similar countries, 36% of healthcare costs come straight out of pocket, leaving families vulnerable to financial shocks. Health insurance lightens that load, making healthcare accessible without the stress.
                             </p>
+
+                            <h3 className="text-2xl font-bold mt-6 mb-4 text-gray-800">Why Do People Struggle with Health Insurance?</h3>
                             <p>
-                                With our state-of-the-art risk assessment tools and deep industry knowledge, we ensure that you receive the most competitive rates without compromising on coverage. We believe that high-quality insurance should be accessible to everyone, and we're committed to making that a reality.
+                                Our customers' frustrations mirror global trends, and we're on a mission to simplify things:
                             </p>
+                            <ol className="list-decimal list-inside space-y-2 ml-4">
+                                <li><strong>Cost Concerns:</strong> When healthcare bills outstrip monthly incomes, affordability is a must. In Sub-Saharan Africa, over 50% lack essential coverage because of cost.</li>
+                                <li><strong>Jargon Overload:</strong> Insurance language can be baffling. About 60% of people feel lost in the terminology, which keeps them from signing up.</li>
+                                <li><strong>Access to Quality Care:</strong> Everyone wants good care nearby, but it's not always available. In Ghana, 40% of folks live in rural areas with limited access to quality facilities.</li>
+                                <li><strong>Unexpected Expenses:</strong> Even with insurance, surprise bills can strike. Households without coverage often spend over 10% of their income on healthcare.</li>
+                                <li><strong>Low Preventive Care Utilization:</strong> Preventive care saves lives and costs, but many plans don't prioritize it. Low usage rates lead to bigger issues down the line.</li>
+                            </ol>
+
+                            <h3 className="text-2xl font-bold mt-6 mb-4 text-gray-800">How We Step Up</h3>
                             <p>
-                                Our customer-centric approach means that we're always here to support you. From the initial consultation to filing a claim, our dedicated support team is available 24/7 to assist you with any questions or concerns you may have.
+                                We've crafted our plans to tackle these pain points head-on, offering peace of mind and solid coverage:
                             </p>
+                            <ol className="list-decimal list-inside space-y-2 ml-4">
+                                <li><strong>Affordable, Transparent Pricing:</strong> Our plans fit various budgets, with clear pricing—no hidden fees here! We aim to keep healthcare stress-free.</li>
+                                <li><strong>Simple Policies:</strong> We cut the jargon so you know what's covered—no fine print. Just reliable coverage you can trust.</li>
+                                <li><strong>Access to Quality Providers:</strong> Whether you're in the city or the countryside, our extensive network means you can choose quality care close to home.</li>
+                                <li><strong>Predictable Costs:</strong> Forget surprise bills! Our plans come with clear out-of-pocket limits, so you'll know what to expect.</li>
+                                <li><strong>Preventive Care Focus:</strong> With routine screenings included, we help you catch issues early, saving you from bigger headaches (and expenses) later.</li>
+                            </ol>
+
+                            <h3 className="text-2xl font-bold mt-6 mb-4 text-gray-800">Ready for Better Coverage?</h3>
                             <p>
-                                We pride ourselves on transparency and education. That's why we offer regular workshops and resources to help you understand your coverage better and make informed decisions about your insurance needs.
+                                Let us ease your healthcare worries. Our plans make quality care accessible, affordable, and predictable. Join others who are discovering a smarter way to safeguard their health and finances.
                             </p>
-                            <p>
-                                Choose Dosh Financial for a partner who truly cares about your well-being and financial future. Let us help you build a robust safety net that allows you to live life to the fullest, knowing that you and your loved ones are protected.
+                            <p className="font-bold">
+                                Sign up today and experience health insurance designed for you!
                             </p>
                         </div>
                     </div>
                     <div className="p-6 flex-shrink-0 flex gap-4">
-                        <button onClick={openPopup} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-lg focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
+                        <button onClick={openPopup} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-[50px] focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
                             Compare
                         </button>
-                        <button onClick={openInsure} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-lg focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
+                        <button onClick={openInsure} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-[50px] focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
                             Pick a Package
                         </button>
                     </div>

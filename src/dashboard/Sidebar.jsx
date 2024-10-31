@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ChevronDown, Grid, FileText, Users, Share2 } from 'lucide-react';
 import { MdGroups } from "react-icons/md";
 import logo from "../images/dashboard/dash_logo.png";
-import profile from "../images/dashboard/profile_pic.png";
+import profilepic from "../images/dashboard/profile/profilepic.png"
 import './Sidebar.css';
 import referprofile from "../images/dashboard/referprofile.png"
 import referbg from "../images/dashboard/referbg.png"
@@ -29,28 +29,31 @@ const Sidebar = ({ onPageChange, activeLink }) => {
     };
 
     return (
-        <div className="w-[220px] h-screen text-white flex flex-col" style={{ background: 'linear-gradient(180deg, #3E3D45 0%, #202020 100%)' }}>
+        <div className="w-[250px] h-screen text-white flex flex-col no-scrollbar" style={{ background: 'linear-gradient(180deg, #3E3D45 0%, #202020 100%)' }}>
             {/* Dashboard Logo Section */}
-            <div className="p-4">
+            <div className="p-2">
                 <div className="flex items-center gap-4 mb-3 pb-2 border-b border-white">
                     <img src={logo} alt='logo' className='object-cover w-5 h-5' />
                     <h1 className="text-[16px] font-bold">DOSH Dashboard</h1>
                 </div>
                 {/* User Section */}
-                <div className="flex items-center mt-8 pb-2 border-b border-white">
-                    <img src={profile} alt="User avatar" className="w-8 h-8 rounded-full mr-2" />
+                <div
+                    onClick={() => handleMainClick('UserProfile')}
+                    className={`flex items-center mt-8 pb-2 border-b border-white cursor-pointer ${activeLink.main === 'UserProfile' ? 'bg-[#A2865F]' : 'hover:bg-[#A2865F]'} transition-colors duration-200`}>
+                    <img src={profilepic} alt="User avatar" className="w-8 h-8 rounded-full mr-2" />
                     <span>Alex Jerry Sam</span>
                     <ChevronDown className="ml-auto" size={16} />
                 </div>
+
             </div>
 
             {/* Menu Items */}
             <div className="flex-grow overflow-y-auto">
-                <div className="p-4">
+                <div className="p-2">
                     {/* Dashboards Button */}
                     <button
                         className={`flex items-center justify-between w-full p-2 rounded 
-                        ${activeLink.main === 'dashboards' ? 'bg-[#A2865F]' : 'hover:bg-gray-700'} transition-colors duration-200`}
+                        ${activeLink.main === 'dashboards' ? 'bg-[#A2865F]' : 'hover:bg-[#A2865F]'} transition-colors duration-200`}
                         onClick={() => handleMainClick('dashboards')}
                     >
                         <div className="flex items-center">
@@ -62,10 +65,10 @@ const Sidebar = ({ onPageChange, activeLink }) => {
                 </div>
 
                 {/* Pages Section */}
-                <div className="p-4">
+                <div className="p-2">
                     <button
                         className={`flex items-center justify-between w-full p-2 rounded 
-                        ${activeLink.main === 'pages' ? '' : 'hover:bg-gray-700'} transition-colors duration-200`}
+                        ${activeLink.main === 'pages' ? '' : 'hover:bg-[#A2865F]'} transition-colors duration-200`}
                         onClick={() => toggleDropdown('pages')}
                     >
                         <span className={activeLink.main === 'pages' ? 'text-white' : 'text-gray-300'}>Pages</span>
@@ -74,7 +77,7 @@ const Sidebar = ({ onPageChange, activeLink }) => {
                     <div className={`ml-4 overflow-hidden no-scrollbar transition-all delay-75 duration-500 ease-in-out-cubic ${isOpen.pages ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'}`}>
                         <button
                             className={`flex items-center justify-between w-full p-2 rounded 
-                            ${activeLink.main === 'claims' ? 'bg-[#A2865F]' : 'hover:bg-gray-700'} transition-colors duration-200`}
+                            ${activeLink.main === 'claims' ? 'bg-[#A2865F]' : 'hover:bg-[#A2865F]'} transition-colors duration-200`}
                             onClick={() => {
                                 toggleDropdown('claims');
                                 handleMainClick('claims');
@@ -90,7 +93,7 @@ const Sidebar = ({ onPageChange, activeLink }) => {
                         {/* Subfields for Claims */}
                         <div className={`ml-4 overflow-hidden no-scrollbar transition-all duration-500 ${isOpen.claims ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
                             <button
-                                className={`flex items-center w-full p-2 rounded hover:bg-gray-700 transition-colors duration-200 mb-1 
+                                className={`flex items-center w-full p-2 rounded hover:bg-[#A2865F] hover:text-white transition-colors duration-200 mb-1 
                                 ${activeLink.sub === 'PendingClaims' ? 'text-[#A2865F]' : 'text-gray-300'}`}
                                 onClick={() => handleSubClick('claims', 'PendingClaims')}
                             >
@@ -98,7 +101,7 @@ const Sidebar = ({ onPageChange, activeLink }) => {
                                 <span className='text-[12px]'>Pending Claims</span>
                             </button>
                             <button
-                                className={`flex items-center w-full p-2 rounded hover:bg-gray-700 transition-colors duration-200 
+                                className={`flex items-center w-full p-2 rounded hover:bg-[#A2865F] hover:text-white transition-colors duration-200 
                                 ${activeLink.sub === 'AllClaims' ? 'text-[#A2865F]' : 'text-gray-300'}`}
                                 onClick={() => handleSubClick('claims', 'AllClaims')}
                             >
@@ -107,11 +110,18 @@ const Sidebar = ({ onPageChange, activeLink }) => {
                             </button>
                         </div>
 
-                        <button className="flex items-center w-full p-2 rounded hover:bg-gray-700 transition-colors duration-200 mb-1">
+                        <button
+                            className={`${activeLink.sub === 'Dependent' ? 'bg-[#A2865F]' : 'hover:bg-[#A2865F]'} flex items-center w-full p-2 rounded hover:bg-[#A2865F] transition-colors duration-200 mb-1`}
+                            onClick={() => handleMainClick('Dependent')}>
                             <Users size={16} className="mr-2" />
-                            <span className='text-gray-300'>Dependent</span>
+                            <span
+
+                            >Dependent
+                            </span>
                         </button>
-                        <button className="flex items-center w-full p-2 rounded hover:bg-gray-700 transition-colors duration-200">
+                        <button
+                            onClick={() => handleMainClick('Referral')}
+                            className={`${activeLink.sub === 'Referral' ? 'bg-[#A2865F]' : 'hover:bg-[#A2865F]'} flex items-center w-full p-2 rounded hover:bg-[#A2865F] transition-colors duration-200`}>
                             <Share2 size={16} className="mr-2" />
                             <span className='text-gray-300'>Referral</span>
                         </button>
@@ -128,22 +138,22 @@ const Sidebar = ({ onPageChange, activeLink }) => {
                 >
                     <MdGroups size={24} className="mr-2" />
                     <span>Refer a Friend</span>
-                    <span className='text-[11px] w-[138px] h-[32px] leading-4 font-semibold text-left'>Increase your speed with more referrals</span>
+                    <span className='text-[11px] w-[138px] h-[32px] leading-4 font-semibold text-left'>Increase your earnings with more referrals</span>
                 </button>
             </div>
 
             {/* Referral Popup */}
             {showReferralPopup && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                <div className="fixed inset-0 flex items-center justify-center rounded-[25px] bg-black bg-opacity-50 z-50">
                     <div
-                        className="relative bg-cover bg-center w-[386px] h-[440px] p-6 rounded-lg"
+                        className="relative bg-cover bg-center w-[386px] h-[440px] p-6 rounded-[25px]"
                         style={{
                             backgroundImage: `url(${referbg})`,
                             borderImageSource: 'linear-gradient(135.59deg, rgba(88, 130, 193, 0.49) 1.28%, rgba(88, 130, 193, 0.11) 96.26%)'
                         }}
                     >
                         {/* Overlay */}
-                        <div className="absolute inset-0 bg-black bg-opacity-60 rounded-lg"></div>
+                        <div className="absolute inset-0 bg-black bg-opacity-60 rounded-[25px]"></div>
                         <button
                             className="absolute top-4 right-4 text-white hover:text-gray-800 text-[32px] font-bold"
                             onClick={toggleReferralPopup} // Close popup

@@ -25,6 +25,7 @@
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     padding: 10px;
+    margin-top: 78px;
     flex-direction: column;
     overflow-y: auto;
 }
@@ -106,6 +107,19 @@
     align-items: center;
     justify-content: center;
     width: 170px;
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.package_linker {
+    color: #90A3BF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
     height: 50px;
     background-color: #ffffff;
     border-radius: 30px;

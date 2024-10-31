@@ -1,64 +1,74 @@
 import React, { useState, useEffect } from 'react';
 import './FinanceSideModal.css';
 import { Link } from 'react-router-dom';
-import { financelink, financePackage, financeDetails } from '../doshdata';
+import { personalPackages, businessPackages, personalDetails, businessDetails } from '../doshdata'; // Import finance data
 
 const FinanceSideModal = ({ onClose }) => {
-    const [activePackage, setActivePackage] = useState(financePackage[0].name); // Set the initial package to the first finance package
-    const [activeLinks, setActiveLinks] = useState('Financial'); // Set 'financial' as the active link initially
-    const [currentPackageList, setCurrentPackageList] = useState(financePackage);
-    const [currentDetailList, setCurrentDetailList] = useState(financeDetails);
+    const [activePackage, setActivePackage] = useState('Personal'); // Default to Personal
+    const [currentPackageList, setCurrentPackageList] = useState(personalPackages);
+    const [currentDetailList, setCurrentDetailList] = useState(personalDetails);
+    const [activeLabel, setActiveLabel] = useState('Personal'); // Default to Personal
 
     useEffect(() => {
-        if (activeLinks === 'Financial') {
-            setCurrentPackageList(financePackage);
-            setCurrentDetailList(financeDetails);
-            setActivePackage(financePackage[0].name);
+        // Set the default package list and details based on the active label
+        if (activeLabel === 'Personal') {
+            setCurrentPackageList(personalPackages);
+            setCurrentDetailList(personalDetails);
+            setActivePackage('Personal');
+        } else {
+            setCurrentPackageList(businessPackages);
+            setCurrentDetailList(businessDetails);
+            setActivePackage('SOHO'); // Set the first business package by default
         }
-    }, [activeLinks]);
+    }, [activeLabel]);
 
+    // Handle label change between Personal and Business
+    const handleLabelChange = (label) => {
+        setActiveLabel(label);
+    };
+
+    // Find active package details
     const activeDetail = currentDetailList.find(detail => detail.category === activePackage);
 
     return (
         <div className="insure-modal">
             <div className="insure-content">
                 <div className='top__section'>
-                    <h2 className='text-[32px] text-[#A2865F]'>DOSH Financial</h2>
-                    <div>
-                        <button onClick={onClose} className='top__section-close'>X</button>
-                    </div>
+                    <h2 className='text-[32px] text-[#A2865F]'>DOSH Financial Services</h2>
+                    <button onClick={onClose} className='top__section-close'>X</button>
                 </div>
 
-                {/* List of links (financelink) */}
+                {/* List of labels (Personal / Business) */}
                 <div className='package_list'>
                     <ul className='package_lists'>
-                        {financelink.map((link, index) => (
-                            <li key={index} className={`top_link ${link.name === activeLinks ? 'activator' : ''}`}>
-                                <Link
-                                    onClick={() => setActiveLinks(link.name)}
-                                >
-                                    {link.name}
-                                </Link>
-                            </li>
-                        ))}
+                        <li
+                            className={`package_link ${activeLabel === 'Personal' ? 'link_underline' : ''}`}
+                            onClick={() => handleLabelChange('Personal')}
+                        >
+                            Personal
+                        </li>
+                        <li
+                            className={`package_link ${activeLabel === 'Business' ? 'link_underline' : ''}`}
+                            onClick={() => handleLabelChange('Business')}
+                        >
+                            Business
+                        </li>
                     </ul>
                 </div>
 
                 {/* List of packages */}
-                <div className='package_list'>
-                    <ul className='package_lists'>
-                        {currentPackageList.map((packageItem, index) => (
-                            <li key={index}>
-                                <Link
-                                    className={`package_link ${packageItem.name === activePackage ? 'link_underline' : ''}`}
-                                    onClick={() => setActivePackage(packageItem.name)}
-                                >
-                                    {packageItem.name}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                <ul className='package_lists'>
+                    {currentPackageList.map((packageItem, index) => (
+                        <li key={index}>
+                            <Link
+                                className={`package_linker ${packageItem.name === activePackage ? 'link_underline' : ''}`}
+                                onClick={() => setActivePackage(packageItem.name)}
+                            >
+                                {packageItem.name}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
 
                 {/* Details of active package */}
                 {activeDetail && (

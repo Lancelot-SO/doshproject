@@ -29,7 +29,7 @@ import slider10mobile from "../images/firstmobile.png"
 
 
 // import banner from '../images/dosh-banner.png'
-import elevate2 from '../images/elevate2.png'
+import elevate2 from '../images/vector1.png'
 import money from '../images/img1.png';
 import seamless from "../images/seamless.png"
 import ride from '../images/ridenew.png'

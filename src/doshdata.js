@@ -45,6 +45,8 @@ const products = [
         pick: '/financemodal',
         picker: 'Pick a Package',
         read: 'Read More',
+        comparetext: 'Compare',
+
     },
     {
         id: 3,
@@ -260,7 +262,16 @@ export const enhanceDetails = [
     },
 ]
 
-export const financePackage = [
+export const financelabel = [
+    {
+        name: 'Personal',
+    },
+    {
+        name: 'Business',
+    }
+]
+
+export const personalPackages = [
     {
         name: 'Personal',
     },
@@ -268,6 +279,9 @@ export const financePackage = [
 
         name: 'Family',
     },
+]
+
+export const businessPackages = [
     {
 
         name: 'SOHO',
@@ -282,14 +296,14 @@ export const financePackage = [
     },
 ]
 
-export const financeDetails = [
+export const personalDetails = [
     {
         id: "1",
         img: Personal,
         number: "Personal",
         desc: "Description",
         details: `At home or at work, managing your finances shouldn't be a hassle. With DOSH, our uniquely designed and tailor-made personal account offers one user five different types of accounts, allowing our clients to effortlessly stay on top of their personal finances. Additionally, we provide the option for extra accounts at a configurable fee, ensuring flexibility and convenience for all your financial needs.`,
-        link: "https://dsp.onenet.xyz:50443/#/?page=dosh-financial",
+        link: "/register",
         category: "Personal"
     },
     {
@@ -298,34 +312,38 @@ export const financeDetails = [
         number: "Family",
         desc: "Description",
         details: `Family financial management involves effectively meeting your family's everyday expenses, handling unexpected bills and saving for the future. At DOSH, our Family account puts you in control of your money, helping you avoid stress, whilst making you feel more secured. In addition to the 5 different accounts available with the Personal Account package, the Family Account offers 5 additional users with current sub accounts.`,
-        link: "https://dsp.onenet.xyz:50443/#/?page=dosh-financial",
+        link: "/register",
         category: "Family"
     },
+]
+
+
+export const businessDetails = [
     {
-        id: "3",
+        id: "1",
         img: Soho,
         number: "SOHO",
         desc: "Description",
         details: `The SOHO Account offers numerous benefits to help your business grow. With this account, you gain access to loan and credit facilities, while keeping your personal assets separate from your business transactions for added protection. This package includes five default accounts, five additional current sub-accounts, and two departmental or cost centers. Each department or cost center can be configured with varying access levels for you and your employees. This setup allows you to control who can create new users, add bank accounts, perform transactions, view and transfer funds, audit accounts, and set limits on sub-accounts, enhancing your financial management.`,
-        link: "https://dsp.onenet.xyz:50443/#/?page=dosh-financial",
+        link: "/register",
         category: "SOHO"
     },
     {
-        id: "4",
+        id: "2",
         img: Smb,
         number: "SMB",
         desc: "Description",
         details: `This account has advanced benefits and features compared to the SOHO Account. It comes with 5 additional users and a total of 5 departments or cost centers with the convenient option of adding more users as the business grows. In effect, the SMB Account offers subscribers 10 sub-accounts and 5 departments or call centers with different levels of access and control.`,
-        link: "https://dsp.onenet.xyz:50443/#/?page=dosh-financial",
+        link: "/register",
         category: "SMB"
     },
     {
-        id: "5",
+        id: "3",
         img: Enterprise,
         number: "Enterprise",
         desc: "Description",
         details: `The Enterprise Account is designed to provide financial solutions to large corporations and comes with the same features as the SMB Account with added offerings: 20 additional users 5 additional departments or call centers. The enterprise account therefore offers customers the convenience of 30 users and 10 departments or call centers; in addition to all the default benefits embedded in our SOHO Account.`,
-        link: "https://dsp.onenet.xyz:50443/#/?page=dosh-financial",
+        link: "/register",
         category: "Enterprise"
     },
 ]

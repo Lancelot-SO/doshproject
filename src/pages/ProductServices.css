@@ -377,7 +377,7 @@
 }
 
 .glass-bg {
-    width: 1500px;
+    width: 1550px;
     height: 960px;
     position: absolute;
     background: linear-gradient(135deg, rgba(72, 72, 72, 0.36), rgba(72, 72, 72, 0.36));
@@ -565,7 +565,7 @@ td {
     background-color: #A2865F;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
 }
 
@@ -646,4 +646,9 @@ td {
         width: 33.33%;
         /* Adjust width for smaller screens */
     }
+}
+
+.text-align-justify {
+    text-align: justify;
+    /* Ensure text stretches to fill the available space */
 }

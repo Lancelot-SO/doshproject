@@ -569,7 +569,7 @@
     height: 44px;
     font-size: 14px;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: 50px;
     gap: 10px;
     display: flex;
     align-items: center;
@@ -658,7 +658,7 @@
     height: 44px;
     font-size: 14px;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: 50px;
     gap: 10px;
     display: flex;
     align-items: center;
@@ -725,7 +725,7 @@
     height: 44px;
     font-size: 14px;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: 50px;
     gap: 10px;
     display: flex;
     align-items: center;
@@ -826,6 +826,7 @@
     margin-bottom: 20px;
 }
 
+
 .home__ride2-right a {
     background-color: rgb(200, 173, 132);
     color: var(--color-white);
@@ -835,7 +836,7 @@
     height: 44px;
     font-size: 14px;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: 50px;
     gap: 10px;
     display: flex;
     align-items: center;
@@ -888,7 +889,7 @@
     width: 186px;
     height: 35px;
     font-size: 14px;
-    border-radius: 8px;
+    border-radius: 50px;
     gap: 10px;
     display: flex;
     align-items: center;

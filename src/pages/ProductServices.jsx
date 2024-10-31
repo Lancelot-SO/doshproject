@@ -10,6 +10,8 @@ import "aos/dist/aos.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import InsuranceTable from '../components/InsuranceTable.jsx';
+import FinanceTable from '../components/FinanceTable.jsx';
+
 // import { useNavigate } from 'react-router-dom';
 import Insure from '../components/Insure.jsx';
 import InsuranceDetails from '../components/InsuranceDetails.jsx';
@@ -45,13 +47,23 @@ const ProductServices = () => {
     // const navigate = useNavigate();
 
     //popup for the table
-    const openPopup = () => {
-        setPopupOpen(true);
+    const openPopup = (productIndex) => {
+        const product = products[productIndex];
+        if (product.id === 2) {  // Finance Services ID
+            setFinanceTableOpen(true);  // Open FinanceTable for finance services
+        } else {
+            setPopupOpen(true);  // Open InsuranceTable for other services
+        }
     };
 
     const closePopup = () => {
         setPopupOpen(false);
+        setFinanceTableOpen(false);
     };
+
+    // const closePopup = () => {
+    //     setPopupOpen(false);
+    // };
 
     // Open Insure modal when "Pick a Package" is clicked
     const openInsure = () => {
@@ -63,6 +75,8 @@ const ProductServices = () => {
     };
 
     const [isFinancialPopupOpen, setFinancialPopupOpen] = useState(false);  // State for Financial popup
+    const [isFinanceTableOpen, setFinanceTableOpen] = useState(false);  // State for FinanceTable
+
 
     // Open Financial popup when "Pick a Package" for Financial Services is clicked
     const openFinancialPopup = () => {
@@ -178,7 +192,7 @@ const ProductServices = () => {
                     {products.map((product, productIndex) => (
                         <div
                             key={product.id}
-                            className={`w-full h-full flex items-center justify-center lg:h-full ${!product.comparetext && !product.picker ? 'bg-none' : 'bg-default'}`}
+                            className={`w-full h-full flex items-center justify-center px-16 lg:h-full ${!product.comparetext && !product.picker ? 'bg-none' : 'bg-default'}`}
                         >
                             <div className="container mx-auto px-4">
                                 <div className="flex flex-col md:flex-row items-center justify-between gap-8">
@@ -187,7 +201,7 @@ const ProductServices = () => {
                                         <h4 className="text-[24px] md:text-[32px] lg:text-[44px] font-bold text-[#9E825B] mb-2">
                                             {product.title}
                                         </h4>
-                                        <p className="text-sm md:text-lg leading-relaxed">
+                                        <p className="text-sm lg:text-[16px] leading-relaxed text-align-justify">
                                             {product.quote}
                                         </p>
                                         <div className="flex space-x-4 mt-4">
@@ -199,7 +213,7 @@ const ProductServices = () => {
                                             </button>
                                             {/* Conditionally render comparetext and picker buttons */}
                                             {product.comparetext && (
-                                                <button onClick={openPopup} className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
+                                                <button onClick={() => openPopup(productIndex)} className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
                                                     {product.comparetext}
                                                 </button>
                                             )}
@@ -236,6 +250,8 @@ const ProductServices = () => {
                 </div>
 
                 {isPopupOpen && <InsuranceTable closePopup={closePopup} />}
+                {isFinanceTableOpen && <FinanceTable closePopup={closePopup} />}
+
                 {isInsureOpen && <Insure onClose={closeInsure} />}
                 {isFinancialPopupOpen && <FinanceSideModal onClose={closeFinancialPopup} />}
 

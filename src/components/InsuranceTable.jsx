@@ -84,14 +84,14 @@ const InsuranceTable = ({ closePopup }) => {
                                     <td className='row-center'>GHS 500</td>
                                     <td className='row-center'>GHS 750</td>
                                     <td className='row-center'>GHS 900</td>
-                                    <td className='row-center'>GHS 1000</td>
-                                    <td className='row-center'>GHS 1200</td>
-                                    <td className='row-center'>GHS 2500</td>
-                                    <td className='row-center'>GHS 2800</td>
-                                    <td className='row-center'>GHS 5000</td>
-                                    <td className='row-center'>GHS 5500</td>
-                                    <td className='row-center'>GHS 10000</td>
-                                    <td className='row-center'>GHS 11000</td>
+                                    <td className='row-center'>GHS 1,000</td>
+                                    <td className='row-center'>GHS 1,200</td>
+                                    <td className='row-center'>GHS 2,500</td>
+                                    <td className='row-center'>GHS 2,800</td>
+                                    <td className='row-center'>GHS 5,000</td>
+                                    <td className='row-center'>GHS 5,500</td>
+                                    <td className='row-center'>GHS 10,000</td>
+                                    <td className='row-center'>GHS 11,000</td>
 
                                 </tr>
                                 <tr>

@@ -9,6 +9,7 @@ import { BsCurrencyDollar } from "react-icons/bs";
 import { ChevronRight } from 'lucide-react';
 
 import profile from "../../images/dashboard/profilepic.png"
+import Circle from '../Circle';
 
 
 
@@ -48,19 +49,7 @@ const InsurancePage = () => {
                     <div className='relative'>
                         <img src={glasscard} alt='glasscard' className="inset-0 w-full h-full" />
                         <div className='absolute top-[50px] left-[270px] z-20 w-[258px] h-[258px] bg-black rounded-[30px] flex flex-col items-center'>
-                            <div className='main_box'>
-                                <div className='outter_circle'>
-                                    <div className='inner_circle'>
-                                        <div id='text'>
-                                            <h2 className='text-white text-[14px]'>Total Cover</h2>
-                                            <small className='text-[#7B78AA] text-[10px]'>Available Balance</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='py-5'>
-                                <p className='text-white'>USED</p>
-                            </div>
+                            <Circle usedAmount={500} totalAmount={1000} />
                         </div>
 
                         <div className='absolute top-[50px] left-[550px] z-20 w-[700px] h-[258px] flex flex-col gap-[20px] items-center justify-center'>
@@ -264,7 +253,7 @@ const InsurancePage = () => {
                                     <div className='bg-black bg-opacity-70 w-[267px] h-[144px] rounded-[16px] border border-gray-500 flex items-center justify-center'>
                                         <div className='w-[219px] h-[96px]'>
                                             <div className='flex justify-between'>
-                                                <p className='text-[18px] font-medium text-white'>Chiro.. Consultant</p>
+                                                <p className='text-[18px] font-medium text-white'>Mental Health</p>
                                                 <div className='w-[40px] h-[40px] rounded-full bg-[#343839] bg-opacity-70 flex items-center justify-center'>
                                                     <FaAmbulance size={20} className='text-[#0099CC]' />
                                                 </div>
@@ -338,7 +327,7 @@ const InsurancePage = () => {
                                     <div className='bg-black bg-opacity-70 w-[267px] h-[144px] rounded-[16px] border border-gray-500 flex items-center justify-center'>
                                         <div className='w-[219px] h-[96px]'>
                                             <div className='flex justify-between'>
-                                                <p className='text-[18px] font-medium text-white'>Erectal Disfuction</p>
+                                                <p className='text-[18px] font-medium text-white'>Erectile Dysfunction</p>
                                                 <div className='w-[40px] h-[40px] rounded-full bg-[#343839] bg-opacity-70 flex items-center justify-center'>
                                                     <BsCurrencyDollar size={20} className='text-[#0099CC]' />
                                                 </div>

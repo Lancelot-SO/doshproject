@@ -4,6 +4,9 @@ import Navbar from './Navbar';   // Import Navbar component
 import InsurancePage from './insurance/InsurancePage';
 import PendingClaims from './claims/PendingClaims';
 import AllClaims from './claims/AllClaims';
+import Dependent from './dependent/Dependent';
+import Referral from './referral/Referral';
+import UserProfile from './profile/UserProfile';
 
 
 const MainDashboard = () => {
@@ -31,6 +34,10 @@ const MainDashboard = () => {
                     {activePage === 'InsurancePage' && <InsurancePage />}
                     {activePage === 'PendingClaims' && <PendingClaims />}
                     {activePage === 'AllClaims' && <AllClaims />}
+                    {activePage === 'Dependent' && <Dependent />}
+                    {activePage === 'Referral' && <Referral />}
+                    {activePage === 'UserProfile' && <UserProfile />}
+
                     {/* Add other pages as needed */}
                 </div>
             </div>

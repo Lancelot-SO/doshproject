@@ -1,5 +1,5 @@
 import React from 'react'
-import fam from "../images/dosh-financial.jpg"
+import fam from "../images/risk_detail.png"
 
 
 
@@ -8,8 +8,8 @@ const RiskDetails = ({ onClose }) => {
 
 
     return (
-        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4'>
-            <div className="w-full max-w-4xl h-[80vh] bg-white rounded-xl shadow-md overflow-hidden relative flex flex-col">
+        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4'>
+            <div className="w-full max-w-4xl mt-16 h-[85vh] bg-white rounded-xl shadow-md overflow-hidden relative flex flex-col">
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-10 h-10 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 transition duration-300 ease-in-out z-10"
@@ -19,7 +19,7 @@ const RiskDetails = ({ onClose }) => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
-                <div className="h-1/3 flex-shrink-0">
+                <div className="h-[330px] flex-shrink-0">
                     <img
                         className="w-full h-full object-cover"
                         src={fam}
@@ -28,33 +28,42 @@ const RiskDetails = ({ onClose }) => {
                 </div>
                 <div className="flex flex-col flex-grow overflow-hidden">
                     <div className="flex-grow overflow-y-auto p-6">
-                        <h2 className="text-3xl font-bold mb-6 text-gray-800">DOSH RISK</h2>
+                        <h2 className="text-3xl font-bold mb-6 text-gray-800">Risk Brokerage Services: Your Shield Against Surprises</h2>
                         <div className="space-y-4 text-gray-600">
                             <p>
-                                We understand that protecting your family's future is paramount. Our comprehensive brokerage solutions are designed to provide you with peace of mind and financial security in an ever-changing world.
-                            </p>
+                                Life and business throw curveballs, but with us, you’re covered. Our brokerage services turn those “uh-oh” moments into “we’ve got this” moments. We protect your assets and peace of mind with smart, tailored strategies. Here’s the reality: 80% of businesses face major disruptions early on. Let us ensure those disruptions don’t derail your success.                            </p>
+
+                            <h3 className="text-2xl font-bold mt-6 mb-4 text-gray-800">
+                                What Annoys Our Clients about Risk Management?                                </h3>
+                            <ol className="list-decimal list-inside space-y-2">
+                                <li>Confusing Jargon: Insurance should be clear, but 53% of businesses find policies confusing. We skip the fine print and make coverage crystal clear.</li>
+                                <li>Coverage Gaps: Many clients think they’re covered until they’re not. With 70% lacking a formal risk plan, we close every gap.</li>
+                                <li>One-Size-Fits-None: Only 40% feel their policies meet their needs. We offer customized solutions that fit you and your business.</li>
+                                <li>No Strategy, Just Policies: Insurance alone isn’t enough. We add proactive strategies to keep risks at bay.</li>
+                                <li> Vanishing Act Service: 60% of clients feel abandoned by their brokers. We stay by your side with consistent support.</li>
+                            </ol>
+                            <h3 className="text-2xl font-bold mt-6 mb-4 text-gray-800">How We're Different</h3>
+                            <ol className="list-decimal list-inside space-y-2">
+                                <li> Clear Policies: No legalese—just transparent, no-surprise coverage.</li>
+                                <li>Custom Coverage: Policies built to fit your specific needs.</li>
+                                <li>Thorough Risk Assessments: We cover every angle to keep you ready for anything.</li>
+                                <li> Proactive Protection: Strategies that help you dodge risks before they happen.</li>
+                                <li>Always-On Support: Real people, real help, whenever you need it.</li>
+                            </ol>
+                            <h3 className="text-2xl font-bold mt-6 mb-4 text-gray-800">Let’s Lock Down Your Worries!</h3>
                             <p>
-                                Our expert team of advisors works tirelessly to craft personalized brokerage packages that cater to your unique needs and circumstances. Whether you're looking for life insurance, health coverage, property protection, or retirement planning, we have you covered.
+                                Turn risk into resilience with a partner you can trust. Call us today and get the protection you deserve.
                             </p>
-                            <p>
-                                With our state-of-the-art risk assessment tools and deep industry knowledge, we ensure that you receive the most competitive rates without compromising on coverage. We believe that high-quality insurance should be accessible to everyone, and we're committed to making that a reality.
-                            </p>
-                            <p>
-                                Our customer-centric approach means that we're always here to support you. From the initial consultation to filing a claim, our dedicated support team is available 24/7 to assist you with any questions or concerns you may have.
-                            </p>
-                            <p>
-                                We pride ourselves on transparency and education. That's why we offer regular workshops and resources to help you understand your coverage better and make informed decisions about your insurance needs.
-                            </p>
-                            <p>
-                                Choose Dosh Risk for a partner who truly cares about your well-being and financial future. Let us help you build a robust safety net that allows you to live life to the fullest, knowing that you and your loved ones are protected.
+                            <p className="font-bold">
+                                Apply now to get started!
                             </p>
                         </div>
                     </div>
                     {/* <div className="p-6 flex-shrink-0 flex gap-4">
-                        <button onClick={openPopup} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-lg focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
+                        <button onClick={openPopup} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-[50px] focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
                             Compare
                         </button>
-                        <button onClick={openInsure} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-lg focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
+                        <button onClick={openFinance} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-[50px] focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
                             Pick a Package
                         </button>
                     </div> */}
