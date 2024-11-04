@@ -1,52 +1,63 @@
 import React, { useState, useEffect } from 'react';
 import './Insure.css';
 import { Link } from 'react-router-dom';
-import { packagelist, enhancelist, insuranceDetails, enhanceDetails } from '../doshdata'; // Import insurance data
-import Flyer from './Flyer'; // Import Flyer component
+import { packagelist, enhancelist, insuranceDetails, enhanceDetails } from '../doshdata';
+import Flyer from './Flyer';
+
+import standard from "../images/ph1.png";
+import enhanced from "../images/ph2.png";
 
 const Insure = ({ onClose }) => {
-    const [activePackage, setActivePackage] = useState('DOSH 365'); // Default to DOSH 365
+    const [activePackage, setActivePackage] = useState(null); // Start with no specific package
     const [currentPackageList, setCurrentPackageList] = useState([]);
     const [currentDetailList, setCurrentDetailList] = useState([]);
     const [activeLabel, setActiveLabel] = useState('Standard'); // Default to Standard
-    const [showFlyerModal, setShowFlyerModal] = useState(false); // State for controlling Flyer modal
+    const [showFlyerModal, setShowFlyerModal] = useState(false);
 
     useEffect(() => {
-        // Set the default package list to 'Standard' and the active package to 'DOSH 365'
+        // Default to 'Standard' label with standard details
         setCurrentPackageList(packagelist);
         setCurrentDetailList(insuranceDetails);
-        setActivePackage('DOSH 365');
         setActiveLabel('Standard');
+        setActivePackage(null); // No specific package selected by default
     }, []);
 
-    // Handle label change (Standard / Enhanced)
     const handleLabelChange = (label) => {
         setActiveLabel(label);
         if (label === 'Standard') {
             setCurrentPackageList(packagelist);
             setCurrentDetailList(insuranceDetails);
-            setActivePackage('DOSH 365'); // Reset to default when switching back to Standard
+            setActivePackage(null); // No active package, show default
         } else {
             setCurrentPackageList(enhancelist);
             setCurrentDetailList(enhanceDetails);
-            setActivePackage(enhancelist[0].name); // Set first enhanced package by default
+            setActivePackage(null); // No active package, show default
         }
     };
 
-    // Find active package details
-    const activeDetail = currentDetailList.find(detail => detail.category === activePackage);
+    // Determine details to display based on active package and label
+    const activeDetail = activePackage
+        ? currentDetailList.find(detail => detail.category === activePackage)
+        : activeLabel === 'Standard'
+            ? {
+                img: standard,
+                number: "Standard Packages",
+                details: "For health insurance that covers life basics, DOSH’s Standard Packages are a no-brainer! Cover essentials like eyecare, mental health, and more, with plans that make healthcare affordable, accessible and available, and get back to living your best life—worry-free! "
+            }
+            : {
+                img: enhanced,
+                number: "Enhanced Packages",
+                details: "It pays to be prepared, no matter what life throws your way. And with DOSH’s Enhanced Packages, you get policies that cover you from every angle and guarantee your peace of mind. Built on the foundation of our Standard Packages, these policies go the extra mile in providing comprehensive coverage in cases of partial and permanent disability, critical illness, and even death."
+            };
 
     return (
         <div className="insure-modal">
             <div className="insure-content">
                 <div className='top__section'>
                     <h2 className='text-[32px] text-[#A2865F]'>DOSH Health Insurance</h2>
-                    <div>
-                        <button onClick={onClose} className='top__section-close'>X</button>
-                    </div>
+                    <button onClick={onClose} className='top__section-close'>X</button>
                 </div>
 
-                {/* List of labels (Standard / Enhanced) */}
                 <div className='package_list'>
                     <ul className='package_lists'>
                         <li
@@ -64,7 +75,6 @@ const Insure = ({ onClose }) => {
                     </ul>
                 </div>
 
-                {/* List of packages */}
                 <ul className='package_lists'>
                     {currentPackageList.map((packageItem, index) => (
                         <li key={index}>
@@ -78,21 +88,20 @@ const Insure = ({ onClose }) => {
                     ))}
                 </ul>
 
-                {/* Details of active package */}
-                {activeDetail && (
-                    <div className='main_package'>
-                        <div className='package_left'>
-                            {activeDetail.img && <img src={activeDetail.img} alt='avatar' />}
-                        </div>
-                        <div className='package_right'>
-                            {activeDetail.number && <h2 className='package_number'>{activeDetail.number}</h2>}
-                            <p className='package_details'>{activeDetail.details}</p>
-                            <Link
-                                onClick={() => setShowFlyerModal(true)} // Trigger Flyer modal
-                                className='flyer-link-insure'
-                            >
-                                Click here to view full flyer
-                            </Link>
+                <div className='main_package'>
+                    <div className='package_left'>
+                        <img src={activeDetail.img} alt={activeDetail.title} loading='lazy' />
+                    </div>
+                    <div className='package_right'>
+                        {activeDetail.number && <h2 className='package_number'>{activeDetail.number}</h2>}
+                        <p className='package_details w-[600px]'>{activeDetail.details}</p>
+                        <Link
+                            onClick={() => setShowFlyerModal(true)}
+                            className='flyer-link-insure'
+                        >
+                            {activeDetail.flyer}
+                        </Link>
+                        {activeDetail.link && (
                             <Link to={activeDetail.link} target="_blank" rel="noopener noreferrer">
                                 <small>
                                     <h6 className='text-white'>Sign up</h6>
@@ -111,10 +120,10 @@ const Insure = ({ onClose }) => {
                                     </svg>
                                 </small>
                             </Link>
-                            {showFlyerModal && <Flyer onClose={() => setShowFlyerModal(false)} />}
-                        </div>
+                        )}
+                        {showFlyerModal && <Flyer onClose={() => setShowFlyerModal(false)} />}
                     </div>
-                )}
+                </div>
             </div>
         </div>
     );

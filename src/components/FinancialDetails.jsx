@@ -1,15 +1,11 @@
-import React, { useState } from 'react'
-import fam from "../images/finance_detail.png"
-import FinanceTable from './FinanceTable'
-import FinanceSideModal from './FinanceSideModal'
-
-
+import React, { useState } from 'react';
+import fam from "../images/finance_detail.png";
+import FinanceTable from './FinanceTable';
+import FinanceSideModal from './FinanceSideModal';
 
 const FinanceDetails = ({ onClose }) => {
-
     const [isPopupOpen, setPopupOpen] = useState(false);
-    const [isfinanceOpen, setFinanceOpen] = useState(false);  // State for Insure modal
-
+    const [isfinanceOpen, setFinanceOpen] = useState(false);
 
     const openPopup = () => {
         setPopupOpen(true);
@@ -19,7 +15,6 @@ const FinanceDetails = ({ onClose }) => {
         setPopupOpen(false);
     };
 
-    // Open Financial modal when "Pick a Package" is clicked
     const openFinance = () => {
         setFinanceOpen(true);
     };
@@ -28,11 +23,9 @@ const FinanceDetails = ({ onClose }) => {
         setFinanceOpen(false);
     };
 
-
-
     return (
-        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4'>
-            <div className="w-full max-w-4xl mt-16 h-[85vh] z-40 bg-white rounded-xl shadow-md overflow-hidden relative flex flex-col">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4">
+            <div className="w-full max-w-4xl mt-16 h-[85vh] z-40 bg-white rounded-xl shadow-md overflow-y-auto relative flex flex-col">
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-10 h-10 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 transition duration-300 ease-in-out z-10"
@@ -42,15 +35,16 @@ const FinanceDetails = ({ onClose }) => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
-                <div className="h-[330px] flex-shrink-0">
+                {/* Scrollable content container */}
+                <div className="overflow-y-auto">
+                    {/* Scrollable image */}
                     <img
-                        className="w-full h-full object-cover"
+                        className="w-full h-[330px] object-cover"
                         src={fam}
                         alt="Family enjoying financial security"
                     />
-                </div>
-                <div className="flex flex-col flex-grow overflow-hidden">
-                    <div className="flex-grow overflow-y-auto p-6">
+                    {/* Scrollable text content */}
+                    <div className="p-6">
                         <h2 className="text-3xl font-bold mb-6 text-gray-800">Why Financial Services Matter</h2>
                         <div className="space-y-4 text-gray-600">
                             <p>
@@ -84,22 +78,20 @@ const FinanceDetails = ({ onClose }) => {
                             </p>
                         </div>
                     </div>
-                    <div className="p-6 flex-shrink-0 flex gap-4">
-                        <button onClick={openPopup} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-[50px] focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
-                            Compare
-                        </button>
-                        <button onClick={openFinance} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-[50px] focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
-                            Pick a Package
-                        </button>
-                    </div>
+                </div>
+                <div className="p-6 flex-shrink-0 flex gap-4">
+                    <button onClick={openPopup} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-[50px] focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
+                        Compare
+                    </button>
+                    <button onClick={openFinance} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-[50px] focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
+                        Pick a Package
+                    </button>
                 </div>
             </div>
             {isPopupOpen && <FinanceTable closePopup={closePopup} />}
             {isfinanceOpen && <FinanceSideModal onClose={closeFinance} />}
-
-
         </div>
-    )
-}
+    );
+};
 
-export default FinanceDetails
+export default FinanceDetails;

@@ -1,6 +1,8 @@
 import React from 'react'
 import logo from "../images/dosh-footer-logo.png";
-import { FaTwitter, FaFacebook, FaYoutube, FaInstagram, FaLinkedin, FaTiktok } from "react-icons/fa";
+import { FaFacebook, FaYoutube, FaInstagram, FaLinkedin, FaTiktok } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+
 import { Link } from 'react-router-dom';
 import bg from "../images/footer-bg.png";
 //
@@ -37,7 +39,7 @@ const Footer = () => {
                     </div>
                     <div className='socials'>
                         <Link to='https://x.com/dosh_revolution?s=21&t=-BrXbfatLtONPkJKS4q8HQ' target="_blank" rel="noopener noreferrer">
-                            <FaTwitter size={24} />
+                            <FaXTwitter size={24} />
                         </Link>
                         <Link to='https://www.facebook.com/DOSH.Revolution?mibextid=LQQJ4d' target="_blank" rel="noopener noreferrer">
                             <FaFacebook size={24} />

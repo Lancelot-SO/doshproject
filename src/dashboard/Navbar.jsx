@@ -67,9 +67,9 @@ const Navbar = ({ onNavigate, activeLink }) => {
                                 DOSH Insurance
                             </a>
                             <a href="/" className="text-white text-[12px] hover:bg-[#A2865F] p-1 rounded">Financial Insurance</a>
+                            <a href="/" className="text-white text-[12px] hover:bg-[#A2865F] p-1 rounded">DOSH Risk</a>
                             <a href="/" className="text-white text-[12px] hover:bg-[#A2865F] p-1 rounded">DOSH Ride</a>
                             <a href="/" className="text-white text-[12px] hover:bg-[#A2865F] p-1 rounded">DOSH Commerce</a>
-                            <a href="/" className="text-white text-[12px] hover:bg-[#A2865F] p-1 rounded">POS Inventory</a>
                         </div>
                     )}
                 </div>

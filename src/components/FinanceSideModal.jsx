@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './FinanceSideModal.css';
 import { Link } from 'react-router-dom';
-import { personalPackages, businessPackages, personalDetails, businessDetails } from '../doshdata'; // Import finance data
+import { personalPackages, businessPackages, personalDetails, businessDetails } from '../doshdata';
 
 const FinanceSideModal = ({ onClose }) => {
-    const [activePackage, setActivePackage] = useState('Personal'); // Default to Personal
+    const [activePackage, setActivePackage] = useState('Individual'); // Default to Individual
     const [currentPackageList, setCurrentPackageList] = useState(personalPackages);
     const [currentDetailList, setCurrentDetailList] = useState(personalDetails);
     const [activeLabel, setActiveLabel] = useState('Personal'); // Default to Personal
@@ -14,7 +14,7 @@ const FinanceSideModal = ({ onClose }) => {
         if (activeLabel === 'Personal') {
             setCurrentPackageList(personalPackages);
             setCurrentDetailList(personalDetails);
-            setActivePackage('Personal');
+            setActivePackage('Individual'); // Set default to Individual for Personal
         } else {
             setCurrentPackageList(businessPackages);
             setCurrentDetailList(businessDetails);

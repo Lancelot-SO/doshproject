@@ -3,7 +3,7 @@ import Lady from "./images/prettylady.jpg"
 import Personal from "./images/personalnew.png"
 import Insurance from "./images/elevate2.png"
 import Family from "./images/familynew.png"
-import Risk from "./images/seamlessnew.png"
+import Risk from "./images/seamless.png"
 import Money from "./images/Financial_img.png"
 // import Money from "./images/money.png"
 import Ride from "./images/ride.png"
@@ -143,9 +143,10 @@ export const insuranceDetails = [
         title: "",
         number: "DOSH 365",
         desc: "Description",
-        details: `DOSH is rewriting the story on health insurance with the DOSH 365 package. This package is highly affordable and offers a new health insurance experience designed with the individual in mind. An amount of GHS 1 per day, or a total of GHS 365 per year, provides a membership cover of GHS 9,000 annually. Out of the GHS 9,000 an amount of GHS 7,500 is allocated to in-patient services, and the remaining GHS 1,500 is for out-patient services. DOSH 365 is specifically designed to shoulder unforeseen medical situations.`,
+        details: `DOSH is redefining health insurance with the DOSH 365 package—just GHS 1 a day for GHS 9,000 in annual coverage. For GHS 365 a year, you get GHS 6100 for in-patient and GHS 1500 for out-patient services, all designed to keep you covered when the unexpected hits. `,
         link: "/register",
-        category: "DOSH 365"
+        category: "DOSH 365",
+        flyer: "Click here to view full flyer"
     },
     {
         id: "2",
@@ -153,9 +154,10 @@ export const insuranceDetails = [
         title: "",
         number: "DOSH 750",
         desc: "Description",
-        details: `This plan comes with add-ons and quintessential incentives targeted at individuals, families, and their dependents, with a slightly higher premium. It is gratifying to know that with DOSH, your family and dependents’ health care needs are covered with a cover-up of up to GHS 18,000 for only a GHS 750 annual premium. This package is perfect for new employees or young families looking for affordable health insurance. An annual premium of GHS 750 comes with health insurance coverage of up to GHS 15,000 for in-patient and GHS 3,000 for out-patient services, respectively.`,
+        details: `With a GHS 750 annual premium, DOSH offers up to GHS 18000 in coverage, perfect for individuals, families, and dependents. This package is ideal for young families or new employees, providing GHS 12600 for in-patient and GHS 3000 for out-patient services—affordable, comprehensive, and family-friendly!`,
         link: "/register",
-        category: "DOSH 750"
+        category: "DOSH 750",
+        flyer: "Click here to view full flyer"
     },
     {
         id: "3",
@@ -163,9 +165,10 @@ export const insuranceDetails = [
         title: "",
         number: "DOSH 1000",
         desc: "Description",
-        details: `This package is distinctively designed to offer members absolute serenity with regard to their healthcare needs, offering an extended cover of up to a whopping GHS 30,000 for an annual premium of only GHS 1,000. DOSH1000 offers an in-patient limit of GHS 25,000 and an out-patient limit of GHS 5,000 offering members value for their investments.`,
+        details: `The DOSH 1000 package provides peace of mind with up to GHS 30000 in coverage for just a GHS 1,000 annual premium—GHS 21500 for in-patient and GHS 5000 for out-patient care. A solid investment in your health! `,
         link: "/register",
-        category: "DOSH 1000"
+        category: "DOSH 1000",
+        flyer: "Click here to view full flyer"
     },
     {
         id: "4",
@@ -173,9 +176,10 @@ export const insuranceDetails = [
         title: "",
         number: "DOSH 2500",
         desc: "Description",
-        details: `This package is ideal for new employees or young families who want affordable health insurance. For people and businesses looking to manage their finances wisely and prepare for tough times, the DOSH 2500 health insurance plan is highly recommended. It offers annual coverage of up to GHS 60,000. DOSH 2500 offers GHS 50,000 in-patient and GHS 10,000 out-patient services for an annual premium of GHS 2,500.`,
+        details: `The DOSH 2500 plan is perfect for young families or new employees seeking affordable health coverage, offering up to GHS 60,000 annually—GHS 41,250 for in-patient and GHS 10,000 for out-patient care—all for a GHS 2500 premium. Smart coverage for tough times! `,
         link: "/register",
-        category: "DOSH 2500"
+        category: "DOSH 2500",
+        flyer: "Click here to view full flyer"
     },
     {
         id: "5",
@@ -183,9 +187,10 @@ export const insuranceDetails = [
         title: "",
         number: "DOSH 5000",
         desc: "Description",
-        details: `This premium offer is tailored to meet the health insurance needs of our high-value clients. It provides excellent healthcare services with annual coverage of up to GHS 95,000 including GHS 75,000 for in-patient care and GHS 20,000 for out-patient care. This package is recommended for individuals or businesses with amplified healthcare needs.`,
+        details: `Tailored for high-value clients, this premium plan offers up to GHS 95,000 in annual coverage—GHS 57,500 for in-patient and GHS 20,000 for out-patient care—ideal for those with elevated healthcare needs.`,
         link: "/register",
-        category: "DOSH 5000"
+        category: "DOSH 5000",
+        flyer: "Click here to view full flyer"
     },
     {
         id: "6",
@@ -193,9 +198,10 @@ export const insuranceDetails = [
         title: "",
         number: "DOSH 10000",
         desc: "Description",
-        details: `This plan offers up to GHS 190,000 in health coverage, perfect for those seeking comprehensive healthcare and peace of mind. With this plan, you get GHS 150,000 for in-patient care and GHS 40,000 for out-patient care, all for an annual premium of GHS 10,000. The services offered by this plan are accessible to all significant healthcare providers around the country.`,
+        details: `This plan provides comprehensive coverage up to GHS 190,000—GHS 115,000 for in-patient and GHS 40,000 for out-patient care—for a GHS 10,000 annual premium, with access to top healthcare providers nationwide.`,
         link: "/register",
-        category: "DOSH 10000"
+        category: "DOSH 10000",
+        flyer: "Click here to view full flyer"
     },
 ]
 
@@ -206,9 +212,10 @@ export const enhanceDetails = [
         title: "",
         number: "DOSH 500",
         desc: "Description",
-        details: `The DOSH 500 offers enhanced coverage and benefits, ensuring you're protected wherever life takes you. Building on our Standard packages, the DOSH 500 gets you up to  GHS 21000 in total coverage, going the extra mile to provide coverage in cases of partial and permanent disability, critical illness, and even death. Upgrade your insurance today and get the premium protection you deserve!`,
+        details: `The DOSH 500 offers up to GHS 21000 in coverage, providing affordable, solid protection with GHS 6100 for in-patient care, GHS 1500 for out-patient, and GHS 8750 for death, disability, and accident coverage.`,
         link: "/register",
-        category: "DOSH 500"
+        category: "DOSH 500",
+        flyer: "Click here to view full flyer"
     },
     {
         id: "2",
@@ -216,9 +223,10 @@ export const enhanceDetails = [
         title: "",
         number: "DOSH 900",
         desc: "Description",
-        details: `DOSH knows you deserve better than the basics, and that’s exactly what the DOSH 900 package delivers. With customisable coverage options totally tailored to keep you covered from every angle, the DOSH 900 gets you more of what matters, so you can keep living your best life`,
+        details: `DOSH knows you deserve better than the basics. And with GHS 42000 in total coverage, the DOSH 900 package delivers! Providing GHS 12600 for inpatient care, GHS 3000 for outpatient care, and GHS 18500 for death, disability, and accidents, the DOSH 900 gets you more of what matters, so you can keep living your best life!`,
         link: "/register",
-        category: "DOSH 900"
+        category: "DOSH 900",
+        flyer: "Click here to view full flyer"
     },
     {
         id: "3",
@@ -226,9 +234,10 @@ export const enhanceDetails = [
         title: "",
         number: "DOSH 1200",
         desc: "Description",
-        details: `With the DOSH 1200, your health needs are sorted! For up to GHS 54000 in coverage, members get access to comprehensive health services, from in-patient and out-patient care, to medication and even critical illness. Make the choice today, so you can handle those unexpected moments without breaking a sweat.`,
+        details: `The DOSH 1200 has you covered with up to GHS 54000 in total protection: GHS 5000 for outpatient care, GHS 21500 for inpatient care, and GHS 18500 for death, disability, and accident coverage. Choose DOSH 1200 today and face life's surprises with confidence.`,
         link: "/register",
-        category: "DOSH 1200"
+        category: "DOSH 1200",
+        flyer: "Click here to view full flyer"
     },
     {
         id: "4",
@@ -236,9 +245,10 @@ export const enhanceDetails = [
         title: "",
         number: "DOSH 2800",
         desc: "Description",
-        details: `At DOSH, we understand that life can be unpredictable, and protecting your family’s future is paramount. That’s why we’ve enhanced our insurance policies to provide you with comprehensive protection, extending coverage to cases of death and disability. Explore our range of enhanced plans, tailored to meet your specific needs and ensure peace of mind.`,
+        details: `At DOSH, we know life is full of surprises, so we've designed our plans to keep you protected. With up to GHS 95,000 in total coverage, including GHS 10,000 for outpatient care, GHS 41,250 for inpatient care, and GHS 37,000 for death, disability, and accident coverage, our enhanced policies offer the comprehensive protection you and your family deserve. Stay prepared and secure peace of mind with DOSH.`,
         link: "/register",
-        category: "DOSH 2800"
+        category: "DOSH 2800",
+        flyer: "Click here to view full flyer"
     },
     {
         id: "5",
@@ -246,9 +256,10 @@ export const enhanceDetails = [
         title: "",
         number: "DOSH 5500",
         desc: "Description",
-        details: `The DOSH 5500 is designed for individuals looking for straightforward and reliable protection, ensuring that even in challenging circumstances, your family’s future remains secure. Regain your peace of mind knowing that life’s uncertainties won’t disrupt your family’s financial stability. This plan is ideal for those who won’t compromise on solid coverage.`,
+        details: `The DOSH 5500 provides solid, no-nonsense protection with GHS 167,000 in total coverage, including GHS 20,000 for outpatient care, GHS 57,500 for inpatient care, and GHS 55,500 for death, disability, and accident coverage. Rest easy knowing that life’s uncertainties won’t shake your family’s financial security. Choose DOSH 5500 for coverage you can count on.`,
         link: "/register",
-        category: "DOSH 5500"
+        category: "DOSH 5500",
+        flyer: "Click here to view full flyer"
     },
     {
         id: "6",
@@ -256,9 +267,10 @@ export const enhanceDetails = [
         title: "",
         number: "DOSH 11000",
         desc: "Description",
-        details: `If you believe in going all-in on peace of mind, the DOSH 11000 plan has your name written all over it. This top-shelf coverage gives you everything for those "just in case" moments. With this plan, you're not just prepared for the worst — you're ready for anything.`,
+        details: `For those who go all-in on peace of mind, the DOSH 11000 plan is the perfect match. With up to GHS 286,000 in total coverage, including GHS 40,000 for outpatient care, GHS 115,000 for inpatient care, and GHS 74,000 for death, disability, and accident coverage, this plan ensures you’re prepared for whatever life throws your way. Be ready for anything with DOSH 11000.`,
         link: "/register",
-        category: "DOSH 11000"
+        category: "DOSH 11000",
+        flyer: "Click here to view full flyer"
     },
 ]
 
@@ -273,7 +285,7 @@ export const financelabel = [
 
 export const personalPackages = [
     {
-        name: 'Personal',
+        name: 'Individual',
     },
     {
 
@@ -300,11 +312,11 @@ export const personalDetails = [
     {
         id: "1",
         img: Personal,
-        number: "Personal",
+        number: "Individual",
         desc: "Description",
         details: `At home or at work, managing your finances shouldn't be a hassle. With DOSH, our uniquely designed and tailor-made personal account offers one user five different types of accounts, allowing our clients to effortlessly stay on top of their personal finances. Additionally, we provide the option for extra accounts at a configurable fee, ensuring flexibility and convenience for all your financial needs.`,
         link: "/register",
-        category: "Personal"
+        category: "Individual"
     },
     {
         id: "2",

@@ -1,14 +1,11 @@
-import React, { useState } from 'react'
-import fam from "../images/dosh-financial.jpg"
+import React, { useState } from 'react';
+import fam from "../images/dosh-financial.jpg";
 import InsuranceTable from '../components/InsuranceTable.jsx';
 import Insure from './Insure.jsx';
 
-
 const InsuranceDetails = ({ onClose }) => {
-
     const [isPopupOpen, setPopupOpen] = useState(false);
-    const [isInsureOpen, setInsureOpen] = useState(false);  // State for Insure modal
-
+    const [isInsureOpen, setInsureOpen] = useState(false);
 
     const openPopup = () => {
         setPopupOpen(true);
@@ -18,7 +15,6 @@ const InsuranceDetails = ({ onClose }) => {
         setPopupOpen(false);
     };
 
-    // Open Insure modal when "Pick a Package" is clicked
     const openInsure = () => {
         setInsureOpen(true);
     };
@@ -39,22 +35,21 @@ const InsuranceDetails = ({ onClose }) => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
-                <div className="h-[330px] flex-shrink-0">
+
+                <div className="flex-grow overflow-y-auto">
                     <img
-                        className="w-full h-full object-cover"
+                        className="w-full h-[300px] object-cover"
                         src={fam}
                         alt="Family enjoying financial security"
                     />
-                </div>
-                <div className="flex flex-col flex-grow overflow-hidden">
-                    <div className="flex-grow overflow-y-auto p-6">
+                    <div className="p-6">
                         <h2 className="text-3xl font-bold mb-6 text-gray-800">What's the Deal with Health Insurance?</h2>
                         <div className="space-y-4 text-gray-600">
                             <p>
-                                Let's get real: health insurance is your financial armor against surprise medical bills in a world where healthcare costs are sky-high. Each year, over 100 million people are pushed into poverty by medical expenses. From routine check-ups to major surgeries, insurance helps keep both your health and wallet intact.
+                                Let’s get real: health insurance is your financial armor against surprise medical bills in a world where healthcare costs are sky-high. Each year, over 100 million people are pushed into poverty by medical expenses.<sup><a href="#reference1">1</a></sup> From routine check-ups to major surgeries, insurance helps keep both your health and wallet intact.
                             </p>
                             <p>
-                                In Ghana and similar countries, 36% of healthcare costs come straight out of pocket, leaving families vulnerable to financial shocks. Health insurance lightens that load, making healthcare accessible without the stress.
+                                In Ghana and similar countries, 36% of out-of-pocket spending goes towards healthcare, leaving families vulnerable to financial shocks.<sup><a href="#reference2">2</a></sup> Health insurance lightens that load, making healthcare accessible without the stress.
                             </p>
 
                             <h3 className="text-2xl font-bold mt-6 mb-4 text-gray-800">Why Do People Struggle with Health Insurance?</h3>
@@ -62,10 +57,9 @@ const InsuranceDetails = ({ onClose }) => {
                                 Our customers' frustrations mirror global trends, and we're on a mission to simplify things:
                             </p>
                             <ol className="list-decimal list-inside space-y-2 ml-4">
-                                <li><strong>Cost Concerns:</strong> When healthcare bills outstrip monthly incomes, affordability is a must. In Sub-Saharan Africa, over 50% lack essential coverage because of cost.</li>
-                                <li><strong>Jargon Overload:</strong> Insurance language can be baffling. About 60% of people feel lost in the terminology, which keeps them from signing up.</li>
-                                <li><strong>Access to Quality Care:</strong> Everyone wants good care nearby, but it's not always available. In Ghana, 40% of folks live in rural areas with limited access to quality facilities.</li>
-                                <li><strong>Unexpected Expenses:</strong> Even with insurance, surprise bills can strike. Households without coverage often spend over 10% of their income on healthcare.</li>
+                                <li><strong>Cost Concerns:</strong> When healthcare bills outstrip monthly incomes, affordability is a must. In Sub-Saharan Africa, over 50% lack essential coverage because of cost.<sup><a href="#reference3">3</a></sup></li>
+                                <li><strong>Jargon Overload:</strong> Insurance language can be baffling. About 60% of people feel lost in the terminology, which keeps them from signing up.<sup><a href="#reference4">4</a></sup></li>
+                                <li><strong>Unexpected Expenses:</strong> Even with insurance, surprise bills can strike. Households without coverage often spend over 10% of their income on healthcare.<sup><a href="#reference5">5</a></sup></li>
                                 <li><strong>Low Preventive Care Utilization:</strong> Preventive care saves lives and costs, but many plans don't prioritize it. Low usage rates lead to bigger issues down the line.</li>
                             </ol>
 
@@ -90,22 +84,34 @@ const InsuranceDetails = ({ onClose }) => {
                             </p>
                         </div>
                     </div>
-                    <div className="p-6 flex-shrink-0 flex gap-4">
-                        <button onClick={openPopup} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-[50px] focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
-                            Compare
-                        </button>
-                        <button onClick={openInsure} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-[50px] focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
-                            Pick a Package
-                        </button>
+
+                    {/* References Section */}
+                    <div className="bg-gray-100 p-4 mt-4">
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">References</h3>
+                        <ul className="list-disc list-inside text-gray-600 space-y-1">
+                            <li><sup id="reference1">1</sup> <a href="https://www.weforum.org/press/2020/half-the-world-lacks-access-to-essential-health-services" target="_blank" rel="noopener noreferrer">Half of the world’s population lack access to essential health services – World Economic Forum</a></li>
+                            <li><sup id="reference2">2</sup> <a href="https://www.statista.com/statistics/ghana-healthcare-cost" target="_blank" rel="noopener noreferrer">Ghana: out-of-pocket spending as share of health spending – Statista</a></li>
+                            <li><sup id="reference3">3</sup> <a href="https://www.healthaffairs.org/do/10.1377/hlthaff.2020.00410" target="_blank" rel="noopener noreferrer">Health Insurance Coverage In Low- And Middle-Income Countries – Health Affairs</a></li>
+                            <li><sup id="reference4">4</sup> <a href="https://www.healthleadersmedia.com/most-adults-experience-problems-health-insurance" target="_blank" rel="noopener noreferrer">Most Adults Experience Problems With Their Health Insurance – HealthLeaders Media</a></li>
+                            <li><sup id="reference5">5</sup> <a href="https://www.worldbank.org/en/news/press-release/half-the-world-lacks-access-to-essential-health-services" target="_blank" rel="noopener noreferrer">World Bank and WHO: Half the world lacks access to essential health services</a></li>
+                        </ul>
                     </div>
                 </div>
+                <div className="p-6 flex gap-4">
+                    <button onClick={openPopup} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-[50px] focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
+                        Compare
+                    </button>
+                    <button onClick={openInsure} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-[50px] focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
+                        Pick a Package
+                    </button>
+                </div>
+
+
             </div>
             {isPopupOpen && <InsuranceTable closePopup={closePopup} />}
-            {isInsureOpen && <Insure onClose={closeInsure} />}  {/* Render Insure modal */}
-
-
+            {isInsureOpen && <Insure onClose={closeInsure} />}
         </div>
-    )
-}
+    );
+};
 
-export default InsuranceDetails
+export default InsuranceDetails;
