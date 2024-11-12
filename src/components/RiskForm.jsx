@@ -21,7 +21,7 @@ const RiskForm = ({ onClose }) => {
                         href="mailto:Info@example.com"
                         className="text-blue-500 hover:underline ml-2"
                     >
-                        Info@example.com
+                        risk@0800dosh.me
                     </a>
                 </h2>
                 <p className="text-gray-700 text-[14px] font-bold mb-4">Enterprise Insurance</p>

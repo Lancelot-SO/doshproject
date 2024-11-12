@@ -4,12 +4,12 @@ import { MdGroups } from "react-icons/md";
 import logo from "../images/dashboard/dash_logo.png";
 import profilepic from "../images/dashboard/profile/profilepic.png"
 import './Sidebar.css';
-import referprofile from "../images/dashboard/referprofile.png"
-import referbg from "../images/dashboard/referbg.png"
+import ReferralPopup from './ReferralPopup';
 
 const Sidebar = ({ onPageChange, activeLink }) => {
     const [isOpen, setIsOpen] = useState({ dashboards: false, pages: true, claims: false });
     const [showReferralPopup, setShowReferralPopup] = useState(false); // State for referral popup
+
 
     const toggleDropdown = (key) => {
         setIsOpen(prev => ({ ...prev, [key]: !prev[key] }));
@@ -28,14 +28,19 @@ const Sidebar = ({ onPageChange, activeLink }) => {
         setShowReferralPopup(!showReferralPopup);
     };
 
+
+
     return (
-        <div className="w-[250px] h-screen text-white flex flex-col no-scrollbar" style={{ background: 'linear-gradient(180deg, #3E3D45 0%, #202020 100%)' }}>
+        <div className="lg:w-[250px] hidden h-screen text-white lg:flex flex-col no-scrollbar" style={{ background: 'linear-gradient(180deg, #3E3D45 0%, #202020 100%)' }}>
+
             {/* Dashboard Logo Section */}
             <div className="p-2">
                 <div className="flex items-center gap-4 mb-3 pb-2 border-b border-white">
                     <img src={logo} alt='logo' className='object-cover w-5 h-5' />
                     <h1 className="text-[16px] font-bold">DOSH Dashboard</h1>
                 </div>
+                {/* Toggle Icon for Mobile View */}
+
                 {/* User Section */}
                 <div
                     onClick={() => handleMainClick('UserProfile')}
@@ -144,45 +149,8 @@ const Sidebar = ({ onPageChange, activeLink }) => {
 
             {/* Referral Popup */}
             {showReferralPopup && (
-                <div className="fixed inset-0 flex items-center justify-center rounded-[25px] bg-black bg-opacity-50 z-50">
-                    <div
-                        className="relative bg-cover bg-center w-[386px] h-[440px] p-6 rounded-[25px]"
-                        style={{
-                            backgroundImage: `url(${referbg})`,
-                            borderImageSource: 'linear-gradient(135.59deg, rgba(88, 130, 193, 0.49) 1.28%, rgba(88, 130, 193, 0.11) 96.26%)'
-                        }}
-                    >
-                        {/* Overlay */}
-                        <div className="absolute inset-0 bg-black bg-opacity-60 rounded-[25px]"></div>
-                        <button
-                            className="absolute top-4 right-4 text-white hover:text-gray-800 text-[32px] font-bold"
-                            onClick={toggleReferralPopup} // Close popup
-                        >
-                            &times;
-                        </button>
+                <ReferralPopup onClose={toggleReferralPopup} />
 
-                        <div className="relative z-10">
-                            <div className='mt-16'>
-                                <img src={referprofile} alt="Referral" className="mx-auto mb-4 w-[120px] h-[120px]" />
-                                <p className="text-center text-gray-100 mb-4">Ask your friends to sign up with your referral code and make an initial payment. Once done, both you and your friends each earn.</p>
-                                <div className="flex gap-1 justify-center items-center">
-                                    <div className="newglass py-2 px-4 rounded-lg flex gap-1 items-center justify-between w-full">
-                                        <span className="text-white">DOSH7689004</span>
-                                        <div className="flex items-center space-x-2">
-                                            <button className=" text-white px-2 py-1 rounded-lg">Copy</button>
-
-                                        </div>
-                                    </div>
-                                    <button className="bg-[#A2865F] text-white px-2 py-1 rounded-lg flex items-center space-x-1">
-                                        <Share2 size={16} />
-                                        <span>Share</span>
-                                    </button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
             )}
 
         </div>

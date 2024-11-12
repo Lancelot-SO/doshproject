@@ -23,6 +23,7 @@
     background-size: cover;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     image-rendering: auto;
+    margin-top: 60px;
 }
 
 .flyer-top {
@@ -31,7 +32,7 @@
     align-items: center;
     gap: 10px;
     position: absolute;
-    top: 20px;
+    top: 30px;
     right: 20px;
 }
 

@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { packagelist, enhancelist, insuranceDetails, enhanceDetails } from '../doshdata';
 import Flyer from './Flyer';
 
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+
+
 import standard from "../images/ph1.png";
 import enhanced from "../images/ph2.png";
 
@@ -49,6 +52,19 @@ const Insure = ({ onClose }) => {
                 number: "Enhanced Packages",
                 details: "It pays to be prepared, no matter what life throws your way. And with DOSH’s Enhanced Packages, you get policies that cover you from every angle and guarantee your peace of mind. Built on the foundation of our Standard Packages, these policies go the extra mile in providing comprehensive coverage in cases of partial and permanent disability, critical illness, and even death."
             };
+
+    // Functions to navigate between packages
+    const goToNextPackage = () => {
+        const currentIndex = currentPackageList.findIndex(item => item.name === activePackage);
+        const nextIndex = (currentIndex + 1) % currentPackageList.length;
+        setActivePackage(currentPackageList[nextIndex].name);
+    };
+
+    const goToPreviousPackage = () => {
+        const currentIndex = currentPackageList.findIndex(item => item.name === activePackage);
+        const previousIndex = (currentIndex - 1 + currentPackageList.length) % currentPackageList.length;
+        setActivePackage(currentPackageList[previousIndex].name);
+    };
 
     return (
         <div className="insure-modal">
@@ -121,6 +137,25 @@ const Insure = ({ onClose }) => {
                                 </small>
                             </Link>
                         )}
+
+                        {/* Navigation arrows - show only if a specific package is selected */}
+                        {activePackage && (
+                            <div className="flex gap-6 h-[40px] items-center justify-center">
+                                <div className='flex items-center gap-2'>
+                                    <h5>Click here to see previous product</h5>
+                                    <div onClick={goToPreviousPackage} className='cursor-pointer w-8 h-8 flex items-center justify-center rounded-full
+                                 bg-transparent hover:bg-[#987C55] border'><FaArrowLeft /></div>
+                                </div>
+
+                                <div className='flex items-center gap-2'>
+                                    <div onClick={goToNextPackage} className="cursor-pointer w-8 h-8 flex items-center justify-center rounded-full
+                                 bg-transparent hover:bg-[#987C55] border"><FaArrowRight /></div>
+                                    <h5>Click here to see next product</h5>
+                                </div>
+
+                            </div>
+                        )}
+
                         {showFlyerModal && <Flyer onClose={() => setShowFlyerModal(false)} />}
                     </div>
                 </div>

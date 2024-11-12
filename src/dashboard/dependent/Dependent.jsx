@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
 import pendingImg from "../../images/dashboard/claims/pendingImg.png";
-import logo from "../../images/dashboard/dash_logo.png"; // Assuming you have a logo image imported
+import logo from "../../images/dashboard/dash_logo.png";
 import { FaAddressBook, FaPlus } from "react-icons/fa";
+import AddDependent from './AddDependent';
 
 const Dependent = () => {
-    const [isClicked, setIsClicked] = useState(false); // State to track click
+    const [showAddDependent, setShowAddDependent] = useState(false);
+    const [formSubmitted, setFormSubmitted] = useState(false); // New state to track form submission
 
-    const handleDependentClick = () => {
-        setIsClicked(true); // Set clicked to true
+    const handleAddDependentClick = () => {
+        setShowAddDependent(true);
+    };
+
+    const handleCloseAddDependent = () => {
+        setShowAddDependent(false);
+    };
+
+    // Function to handle form submission
+    const handleFormSubmit = () => {
+        setFormSubmitted(true);
+        setShowAddDependent(false); // Close the popup once submitted
     };
 
     return (
@@ -24,7 +36,8 @@ const Dependent = () => {
 
                 {/* Add Dependent button */}
                 <button
-                    className={`absolute top-4 right-4 text-white flex items-center gap-2 text-sm font-bold py-2 px-4 rounded-full z-10`}
+                    onClick={handleAddDependentClick}
+                    className="absolute top-4 right-4 text-white flex items-center gap-2 text-sm font-bold py-2 px-4 rounded-full z-10"
                     style={{
                         background: 'linear-gradient(251.21deg, #987C55 0%, #D0B58C 100%)',
                     }}
@@ -32,14 +45,14 @@ const Dependent = () => {
                     Add Dependent <FaPlus />
                 </button>
 
-                {/* Cards section in a row */}
-                {isClicked && (
+                {/* Cards section */}
+                {formSubmitted && (
                     <div className="flex space-x-4 absolute top-20 left-4 z-20">
-                        {/* First Card (Green Border) */}
-                        <div className="w-[300px] h-[150px] bg-gray-800 rounded-xl border-2 border-green-500 p-4 flex flex-col justify-between overflow-hidden">
+                        {/* First Card */}
+                        <div className="w-[300px] h-[150px] bg-gray-800 rounded-xl border-2 border-green-500 p-4 flex flex-col justify-between">
                             <div className="flex items-start justify-between">
                                 <div className="flex items-center space-x-2">
-                                    <div className="w-10 h-10 bg-pink-200 rounded-full flex items-center justify-center overflow-hidden">
+                                    <div className="w-10 h-10 bg-pink-200 rounded-full flex items-center justify-center">
                                         <FaAddressBook className="w-8 h-8 text-gray-800" />
                                     </div>
                                     <div>
@@ -62,43 +75,14 @@ const Dependent = () => {
                                 </div>
                             </div>
                         </div>
-
-                        {/* Second Card (Orange Border) */}
-                        <div className="w-[300px] h-[150px] bg-gray-800 rounded-xl border-2 border-orange-500 p-4 flex flex-col justify-between overflow-hidden">
-                            <div className="flex items-start justify-between">
-                                <div className="flex items-center space-x-2">
-                                    <div className="w-10 h-10 bg-pink-200 rounded-full flex items-center justify-center overflow-hidden">
-                                        <FaAddressBook className="w-8 h-8 text-gray-800" />
-                                    </div>
-                                    <div>
-                                        <h2 className="text-white text-lg font-semibold">Sarah Johnson</h2>
-                                        <p className="text-gray-400 text-sm">Dependent</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex justify-between items-end">
-                                <div className="text-white text-sm font-medium">
-                                    DOSH 365
-                                    <br />
-                                    PREMIUM
-                                </div>
-                                <div className="flex flex-col items-end space-y-2">
-                                    <img src={logo} alt='logo' className="w-6 h-6" />
-                                    <div className="bg-orange-200 text-orange-800 px-2 py-1 rounded text-xs font-medium">
-                                        Pending
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 )}
 
-                {/* Conditionally render the "No Dependant" section */}
-                {!isClicked && (
+                {/* "No Dependant" section */}
+                {!formSubmitted && !showAddDependent && (
                     <div className="flex items-center justify-center h-full">
                         <div
                             className="text-center relative z-10 w-[184px] h-[233px] bg-[#161717] bg-opacity-[20%] rounded-[29px] p-4 flex flex-col items-center justify-center cursor-pointer"
-                            onClick={handleDependentClick} // Click handler to display the cards and hide this section
                         >
                             <div className="inline-flex items-center justify-center w-24 h-24 mb-4">
                                 <img src={pendingImg} className="w-full h-full" alt="pending" />
@@ -110,6 +94,9 @@ const Dependent = () => {
                         </div>
                     </div>
                 )}
+
+                {/* AddDependent Popup */}
+                {showAddDependent && <AddDependent onClose={handleCloseAddDependent} onSubmit={handleFormSubmit} />}
             </div>
         </div>
     );

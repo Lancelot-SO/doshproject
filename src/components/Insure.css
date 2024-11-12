@@ -287,4 +287,8 @@
         height: auto;
         padding: 10px;
     }
+
+    .package_details {
+        width: auto;
+    }
 }
