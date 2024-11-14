@@ -1,45 +1,54 @@
 import React, { useState } from 'react';
-import Sidebar from './Sidebar'; // Import Sidebar component
-import Navbar from './Navbar';   // Import Navbar component
-import InsurancePage from './insurance/InsurancePage';
-import PendingClaims from './claims/PendingClaims';
-import AllClaims from './claims/AllClaims';
-import Dependent from './dependent/Dependent';
-import Referral from './referral/Referral';
-import UserProfile from './profile/UserProfile';
-
+import Sidebar from './Sidebar';
+import Navbar from './Navbar';
+import MainContent from './MainContent';
+import MenuLinks from './MenuLinks';
 
 const MainDashboard = () => {
-    const [activePage, setActivePage] = useState('InsurancePage'); // Default page
-    const [activeLink, setActiveLink] = useState({ main: 'pages', sub: 'InsurancePage' });
+    const [activeMenu, setActiveMenu] = useState("DOSH Insurance");
+    const [activeSubmenuItem, setActiveSubmenuItem] = useState("");
 
-    // Handle page change
-    const handlePageChange = (page) => {
-        setActivePage(page);
+    // Update active menu
+    const handleMenuClick = (menu) => {
+        setActiveMenu(menu);
+        setActiveSubmenuItem("");
+    };
 
-        // Update the active link state based on the page
-        setActiveLink(prev => ({
-            ...prev,
-            sub: page,
-            main: page === 'PendingClaims' || page === 'AllClaims' ? 'claims' : 'pages' // Set main based on page
-        }));
+    // Update active submenu item
+    const handleSubmenuClick = (submenu) => {
+        setActiveSubmenuItem(submenu);
+    };
+
+    // Handle profile section click to show user profile
+    const handleProfileClick = () => {
+        setActiveSubmenuItem("UserProfile");
+    };
+
+    // Handle Home breadcrumb click
+    const handleHomeClick = () => {
+        setActiveMenu("Home");
+        setActiveSubmenuItem("");
+    };
+
+    // Handle breadcrumb clicks for specific sections
+    const handleBreadcrumbClick = (section) => {
+        setActiveMenu("DOSH Insurance");
+        setActiveSubmenuItem(section);
     };
 
     return (
         <div className="flex h-screen bg-[#333333] overflow-hidden">
-            <Sidebar onPageChange={handlePageChange} activeLink={activeLink} /> {/* Pass function and active link to Sidebar */}
+            <Sidebar activeMenu={activeMenu} onSubmenuClick={handleSubmenuClick} onProfileClick={handleProfileClick} />
             <div className="flex flex-col flex-grow overflow-hidden">
-                <Navbar onNavigate={handlePageChange} activePage={activePage} activeLink={activeLink} /> {/* Pass function and active page to Navbar */}
-                <div className="flex-grow overflow-y-auto no-scrollbar">
-                    {activePage === 'InsurancePage' && <InsurancePage />}
-                    {activePage === 'PendingClaims' && <PendingClaims />}
-                    {activePage === 'AllClaims' && <AllClaims />}
-                    {activePage === 'Dependent' && <Dependent />}
-                    {activePage === 'Referral' && <Referral />}
-                    {activePage === 'UserProfile' && <UserProfile />}
+                <Navbar
+                    onHomeClick={handleHomeClick}
+                    onBreadcrumbClick={handleBreadcrumbClick}
+                    activeSubmenuItem={activeSubmenuItem}
+                    activeMenu={activeMenu}
 
-                    {/* Add other pages as needed */}
-                </div>
+                />
+                <MenuLinks onMenuClick={handleMenuClick} />
+                <MainContent activeMenu={activeMenu} activeSubmenuItem={activeSubmenuItem} />
             </div>
         </div>
     );

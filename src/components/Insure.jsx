@@ -8,7 +8,7 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
 
 import standard from "../images/ph1.png";
-import enhanced from "../images/ph2.png";
+import enhanced from "../images/mainenhanced.jpg";
 
 const Insure = ({ onClose }) => {
     const [activePackage, setActivePackage] = useState(null); // Start with no specific package
@@ -142,15 +142,15 @@ const Insure = ({ onClose }) => {
                         {activePackage && (
                             <div className="flex gap-6 h-[40px] items-center justify-center">
                                 <div className='flex items-center gap-2'>
-                                    <h5>Click here to see previous product</h5>
+                                    <p className='text-white'>Click here to see previous product</p>
                                     <div onClick={goToPreviousPackage} className='cursor-pointer w-8 h-8 flex items-center justify-center rounded-full
-                                 bg-transparent hover:bg-[#987C55] border'><FaArrowLeft /></div>
+                                 bg-transparent hover:bg-[#987C55] border text-white'><FaArrowLeft className='texte-white' /></div>
                                 </div>
 
                                 <div className='flex items-center gap-2'>
                                     <div onClick={goToNextPackage} className="cursor-pointer w-8 h-8 flex items-center justify-center rounded-full
-                                 bg-transparent hover:bg-[#987C55] border"><FaArrowRight /></div>
-                                    <h5>Click here to see next product</h5>
+                                 bg-transparent hover:bg-[#987C55] border text-white"><FaArrowRight className='texte-white' /></div>
+                                    <p className='text-white'>Click here to see next product</p>
                                 </div>
 
                             </div>

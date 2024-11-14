@@ -22,6 +22,20 @@ import ph4 from "./images/ph4.png"
 import ph5 from "./images/ph5.png"
 import ph6 from "./images/ph6.png"
 
+//enhanced images
+
+import Phone from "./images/dosh500.jpg"
+import Phone1 from "./images/dosh900.jpg"
+import Phone2 from "./images/dosh1200.jpg"
+import Phone3 from "./images/dosh2800.jpg"
+import Phone4 from "./images/dosh5500.jpg"
+import Phone5 from "./images/dosh11000.jpg"
+
+
+
+
+
+
 
 
 const products = [
@@ -208,7 +222,7 @@ export const insuranceDetails = [
 export const enhanceDetails = [
     {
         id: "1",
-        img: Ph1,
+        img: Phone,
         title: "",
         number: "DOSH 500",
         desc: "Description",
@@ -219,7 +233,7 @@ export const enhanceDetails = [
     },
     {
         id: "2",
-        img: ph2,
+        img: Phone1,
         title: "",
         number: "DOSH 900",
         desc: "Description",
@@ -230,7 +244,7 @@ export const enhanceDetails = [
     },
     {
         id: "3",
-        img: ph3,
+        img: Phone2,
         title: "",
         number: "DOSH 1200",
         desc: "Description",
@@ -241,7 +255,7 @@ export const enhanceDetails = [
     },
     {
         id: "4",
-        img: ph4,
+        img: Phone3,
         title: "",
         number: "DOSH 2800",
         desc: "Description",
@@ -252,7 +266,7 @@ export const enhanceDetails = [
     },
     {
         id: "5",
-        img: ph5,
+        img: Phone4,
         title: "",
         number: "DOSH 5500",
         desc: "Description",
@@ -263,7 +277,7 @@ export const enhanceDetails = [
     },
     {
         id: "6",
-        img: ph6,
+        img: Phone5,
         title: "",
         number: "DOSH 11000",
         desc: "Description",

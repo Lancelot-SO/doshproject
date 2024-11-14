@@ -1,159 +1,193 @@
 import React, { useState } from 'react';
-import { ChevronDown, Grid, FileText, Users, Share2 } from 'lucide-react';
-import { MdGroups } from "react-icons/md";
+import { ChevronDown, FileText, UserPlus, Grid } from 'lucide-react';
+import { FaLink, FaBars, FaExchangeAlt, FaCoins, FaUserFriends } from 'react-icons/fa';
+import { MdLock, MdGroups, MdAssignment, MdAccountBalance, MdSavings, MdAttachMoney, MdPerson } from 'react-icons/md';
 import logo from "../images/dashboard/dash_logo.png";
-import profilepic from "../images/dashboard/profile/profilepic.png"
+import profilepic from "../images/dashboard/profile/profilepic.png";
 import './Sidebar.css';
 import ReferralPopup from './ReferralPopup';
 
-const Sidebar = ({ onPageChange, activeLink }) => {
-    const [isOpen, setIsOpen] = useState({ dashboards: false, pages: true, claims: false });
-    const [showReferralPopup, setShowReferralPopup] = useState(false); // State for referral popup
 
 
-    const toggleDropdown = (key) => {
-        setIsOpen(prev => ({ ...prev, [key]: !prev[key] }));
+const Sidebar = ({ activeMenu, onSubmenuClick, onProfileClick }) => {
+    const [showClaimsSubmenu, setShowClaimsSubmenu] = useState(false);
+    const [activeSubmenu, setActiveSubmenu] = useState(null); // Track the active submenu item
+    const [showReferralPopup, setShowReferralPopup] = useState(false);
+
+
+
+
+
+    const toggleClaimsSubmenu = () => {
+        setShowClaimsSubmenu(!showClaimsSubmenu);
     };
 
-    const handleMainClick = (main) => {
-        onPageChange(main);
+    const handleSubmenuClick = (submenu) => {
+        setActiveSubmenu(submenu);
+        onSubmenuClick(submenu);
     };
 
-    const handleSubClick = (main, sub) => {
-        onPageChange(sub);
-    };
-
-    // Function to toggle the referral popup
     const toggleReferralPopup = () => {
         setShowReferralPopup(!showReferralPopup);
     };
 
-
-
-    return (
-        <div className="lg:w-[250px] hidden h-screen text-white lg:flex flex-col no-scrollbar" style={{ background: 'linear-gradient(180deg, #3E3D45 0%, #202020 100%)' }}>
-
-            {/* Dashboard Logo Section */}
-            <div className="p-2">
-                <div className="flex items-center gap-4 mb-3 pb-2 border-b border-white">
-                    <img src={logo} alt='logo' className='object-cover w-5 h-5' />
-                    <h1 className="text-[16px] font-bold">DOSH Dashboard</h1>
-                </div>
-                {/* Toggle Icon for Mobile View */}
-
-                {/* User Section */}
-                <div
-                    onClick={() => handleMainClick('UserProfile')}
-                    className={`flex items-center mt-8 pb-2 border-b border-white cursor-pointer ${activeLink.main === 'UserProfile' ? 'bg-[#A2865F]' : 'hover:bg-[#A2865F]'} transition-colors duration-200`}>
-                    <img src={profilepic} alt="User avatar" className="w-8 h-8 rounded-full mr-2" />
-                    <span>Alex Jerry Sam</span>
-                    <ChevronDown className="ml-auto" size={16} />
-                </div>
-
-            </div>
-
-            {/* Menu Items */}
-            <div className="flex-grow overflow-y-auto">
-                <div className="p-2">
-                    {/* Dashboards Button */}
-                    <button
-                        className={`flex items-center justify-between w-full p-2 rounded 
-                        ${activeLink.main === 'dashboards' ? 'bg-[#A2865F]' : 'hover:bg-[#A2865F]'} transition-colors duration-200`}
-                        onClick={() => handleMainClick('dashboards')}
-                    >
-                        <div className="flex items-center">
-                            <Grid size={16} className="mr-2" />
-                            <span className={activeLink.main === 'dashboards' ? 'text-white' : 'text-gray-300'}>Dashboards</span>
-                        </div>
-                        <ChevronDown size={16} className={`transform transition-transform duration-500 ${isOpen.dashboards ? 'rotate-180' : ''}`} />
-                    </button>
-                </div>
-
-                {/* Pages Section */}
-                <div className="p-2">
-                    <button
-                        className={`flex items-center justify-between w-full p-2 rounded 
-                        ${activeLink.main === 'pages' ? '' : 'hover:bg-[#A2865F]'} transition-colors duration-200`}
-                        onClick={() => toggleDropdown('pages')}
-                    >
-                        <span className={activeLink.main === 'pages' ? 'text-white' : 'text-gray-300'}>Pages</span>
-                        <ChevronDown size={16} className={`transform transition-transform duration-500 ${isOpen.pages ? 'rotate-180' : ''}`} />
-                    </button>
-                    <div className={`ml-4 overflow-hidden no-scrollbar transition-all delay-75 duration-500 ease-in-out-cubic ${isOpen.pages ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'}`}>
-                        <button
-                            className={`flex items-center justify-between w-full p-2 rounded 
-                            ${activeLink.main === 'claims' ? 'bg-[#A2865F]' : 'hover:bg-[#A2865F]'} transition-colors duration-200`}
-                            onClick={() => {
-                                toggleDropdown('claims');
-                                handleMainClick('claims');
-                            }}
-                        >
-                            <div className="flex items-center">
-                                <FileText size={16} className="mr-2" />
-                                <span className={activeLink.main === 'claims' ? 'text-white' : 'text-gray-300'}>Claims</span>
-                            </div>
-                            <ChevronDown size={16} className={`transform transition-transform duration-500 ${isOpen.claims ? 'rotate-180' : ''}`} />
-                        </button>
-
-                        {/* Subfields for Claims */}
-                        <div className={`ml-4 overflow-hidden no-scrollbar transition-all duration-500 ${isOpen.claims ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
-                            <button
-                                className={`flex items-center w-full p-2 rounded hover:bg-[#A2865F] hover:text-white transition-colors duration-200 mb-1 
-                                ${activeLink.sub === 'PendingClaims' ? 'text-[#A2865F]' : 'text-gray-300'}`}
-                                onClick={() => handleSubClick('claims', 'PendingClaims')}
-                            >
-                                <FileText size={16} className="mr-2" />
-                                <span className='text-[12px]'>Pending Claims</span>
-                            </button>
-                            <button
-                                className={`flex items-center w-full p-2 rounded hover:bg-[#A2865F] hover:text-white transition-colors duration-200 
-                                ${activeLink.sub === 'AllClaims' ? 'text-[#A2865F]' : 'text-gray-300'}`}
-                                onClick={() => handleSubClick('claims', 'AllClaims')}
-                            >
-                                <FileText size={16} className="mr-2" />
-                                <span className='text-[12px]'>All Claims</span>
-                            </button>
-                        </div>
-
-                        <button
-                            className={`${activeLink.sub === 'Dependent' ? 'bg-[#A2865F]' : 'hover:bg-[#A2865F]'} flex items-center w-full p-2 rounded hover:bg-[#A2865F] transition-colors duration-200 mb-1`}
-                            onClick={() => handleMainClick('Dependent')}>
-                            <Users size={16} className="mr-2" />
-                            <span
-
-                            >Dependent
-                            </span>
-                        </button>
-                        <button
-                            onClick={() => handleMainClick('Referral')}
-                            className={`${activeLink.sub === 'Referral' ? 'bg-[#A2865F]' : 'hover:bg-[#A2865F]'} flex items-center w-full p-2 rounded hover:bg-[#A2865F] transition-colors duration-200`}>
-                            <Share2 size={16} className="mr-2" />
-                            <span className='text-gray-300'>Referral</span>
-                        </button>
+    const renderSidebarContent = () => {
+        if (activeMenu === "DOSH Financial") {
+            return (
+                <div className='flex flex-col gap-3'>
+                    <h2 className="text-sm font-bold text-white my-1">PAGES</h2>
+                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                        <FaLink className="text-xl" />
+                        <span className="text-sm">Link Account</span>
+                    </div>
+                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                        <FaExchangeAlt className="text-xl" />
+                        <span className="text-sm">Transactions</span>
+                    </div>
+                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                        <FaCoins className="text-xl" />
+                        <span className="text-sm">Investments</span>
+                    </div>
+                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                        <FaUserFriends className="text-xl" />
+                        <span className="text-sm">Referral</span>
+                    </div>
+                    <h2 className="text-sm font-bold text-white mt-4 mb-2">OTHERS</h2>
+                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                        <MdLock className="text-xl" />
+                        <span className="text-sm">Auth Code</span>
+                    </div>
+                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                        <MdAssignment className="text-xl" />
+                        <span className="text-sm">Standing Orders</span>
+                    </div>
+                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                        <MdSavings className="text-xl" />
+                        <span className="text-sm">Saved Template</span>
+                    </div>
+                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                        <MdAccountBalance className="text-xl" />
+                        <span className="text-sm">Vouchers</span>
+                    </div>
+                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                        <MdAttachMoney className="text-xl" />
+                        <span className="text-sm">Dosh Till</span>
+                    </div>
+                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                        <MdPerson className="text-xl" />
+                        <span className="text-sm">Child Account</span>
                     </div>
                 </div>
+            );
+        }
+        // Default content for other menus
+        return (
+            <div className='flex flex-col justify-between h-full'>
+                <div>
+                    <h2 className="text-[14px] font-bold mb-2">PAGES</h2>
+                    <div
+                        className={`flex items-center gap-2 p-2 rounded cursor-pointer 
+                            ${activeSubmenu === 'Claims' ? 'bg-[#A2865F]' : ''}`} // Active background for Claims menu item
+                        onClick={toggleClaimsSubmenu}
+                    >
+                        <FileText size={16} />
+                        <span>Claims</span>
+                        <ChevronDown className={`ml-auto transition-transform ${showClaimsSubmenu ? 'rotate-180' : ''}`} size={16} />
+                    </div>
+                    {showClaimsSubmenu && (
+                        <div className="ml-8">
+                            <div
+                                className={`flex items-center gap-2 mt-2 p-2 rounded cursor-pointer 
+                                    ${activeSubmenu === "Pending Claims" ? 'text-[#A2865F]' : ''}`}
+                                onClick={() => handleSubmenuClick("Pending Claims")}
+                            >
+                                <FileText size={14} />
+                                <span>Pending Claims</span>
+                            </div>
+                            <div
+                                className={`flex items-center gap-2 mt-2 p-2 rounded cursor-pointer 
+                                    ${activeSubmenu === "All Claims" ? 'text-[#A2865F]' : ''}`}
+                                onClick={() => handleSubmenuClick("All Claims")}
+                            >
+                                <FileText size={14} />
+                                <span>All Claims</span>
+                            </div>
+                        </div>
+                    )}
+                    <div
+                        className={`flex items-center gap-2 mt-2 p-2 rounded cursor-pointer 
+                            ${activeSubmenu === "Dependent" ? 'bg-[#A2865F]' : ''}`} // Active state styling
+                        onClick={() => handleSubmenuClick("Dependent")}
+                    >
+                        <UserPlus size={16} />
+                        <span>Dependent</span>
+                    </div>
+                    <div
+                        className={`flex items-center gap-2 mt-2 p-2 rounded cursor-pointer 
+                            ${activeSubmenu === "Referral" ? 'bg-[#A2865F]' : ''}`} // Active state styling
+                        onClick={() => handleSubmenuClick("Referral")}
+                    >
+                        <FaBars size={16} />
+                        <span>Referral</span>
+                    </div>
+                </div>
+
+                <div className="p-2 border-t border-gray-700 w-[180px] h-[200px] mt-4">
+                    <button
+                        onClick={toggleReferralPopup}
+                        className="flex flex-col items-start justify-center cursor-pointer shadow-md w-full h-[179px] text-white py-2 px-4 rounded-[30px] transition-colors duration-200"
+                        style={{ background: 'linear-gradient(230.04deg, #A2875F 2.11%, #462D0B 102.63%)' }}
+                    >
+                        <MdGroups size={24} className="mr-2" />
+                        <span>Refer a Friend</span>
+                        <span className='text-[11px] w-[138px] h-[32px] leading-4 font-semibold text-left'>Increase your earnings with more referrals</span>
+                    </button>
+                </div>
+
+                {showReferralPopup && <ReferralPopup onClose={toggleReferralPopup} />}
+
+            </div>
+        );
+    };
+
+    return (
+        <div className="lg:w-[250px] hidden px-4 h-screen text-white lg:flex flex-col no-scrollbar" style={{ background: 'linear-gradient(180deg, #3E3D45 0%, #202020 100%)' }}>
+            <div className="p-2">
+                <div className="flex items-center gap-4 mb-3 pb-2 border-b border-white">
+                    <img src={logo} alt="logo" className="object-cover w-5 h-5" />
+                    <span className="text-[12px] font-semibold">DOSH Dashboard</span>
+                </div>
             </div>
 
-            {/* Footer Section */}
-            <div className="p-2 border-t border-gray-700 w-[180px] h-[200px]">
+            {/*profile section */}
+            <div
+                onClick={onProfileClick} // Trigger profile section click
+
+                className={`flex mb-4 items-center pb-2 border-b border-white cursor-pointer transition-colors duration-200`}
+            >
+                <img src={profilepic} alt="User avatar" className="w-8 h-8 rounded-full mr-2" />
+                <span>Alex Jerry Sam</span>
+                <ChevronDown className="ml-auto" size={16} />
+            </div>
+
+            <div className="">
+                {/* Dashboards Button */}
                 <button
-                    className="flex flex-col items-start justify-center cursor-pointer shadow-md w-full h-[179px] text-white py-2 px-4 rounded-[30px] transition-colors duration-200"
-                    style={{ background: 'linear-gradient(230.04deg, #A2875F 2.11%, #462D0B 102.63%)' }}
-                    onClick={toggleReferralPopup} // Open popup when clicked
+                    className={`flex items-center justify-between w-full p-2 rounded 
+                         transition-colors duration-200 bg-[#A2865F]`}
+
                 >
-                    <MdGroups size={24} className="mr-2" />
-                    <span>Refer a Friend</span>
-                    <span className='text-[11px] w-[138px] h-[32px] leading-4 font-semibold text-left'>Increase your earnings with more referrals</span>
+                    <div className="flex items-center">
+                        <Grid size={16} className="mr-2" />
+                        <span className="">Dashboards</span>
+                    </div>
+                    <ChevronDown size={16} className={`transform transition-transform duration-500`} />
                 </button>
             </div>
 
-            {/* Referral Popup */}
-            {showReferralPopup && (
-                <ReferralPopup onClose={toggleReferralPopup} />
 
-            )}
-
-        </div>
+            {renderSidebarContent()}
+        </div >
     );
 };
 

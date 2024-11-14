@@ -24,7 +24,6 @@ const RiskForm = ({ onClose }) => {
                         risk@0800dosh.me
                     </a>
                 </h2>
-                <p className="text-gray-700 text-[14px] font-bold mb-4">Enterprise Insurance</p>
 
                 <ul className="space-y-2">
                     <li className="flex justify-between items-center border-b border-gray-300 p-2">
@@ -58,7 +57,7 @@ const RiskForm = ({ onClose }) => {
                         </a>
                     </li>
                     <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>4. enterprise assets all risk proposal form</span>
+                        <span className='text-black'>4. assets all risk proposal form</span>
                         <a
                             href="/enterpriseforms/enterprise_assets_all_risk_proposal_form.pdf"
                             download
@@ -68,7 +67,7 @@ const RiskForm = ({ onClose }) => {
                         </a>
                     </li>
                     <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>5. enterprise commercial vehicle insurance</span>
+                        <span className='text-black'>5. commercial vehicle insurance</span>
                         <a
                             href="/enterpriseforms/enterprise_commercial_vehicle_insurance.pdf"
                             download
@@ -78,7 +77,7 @@ const RiskForm = ({ onClose }) => {
                         </a>
                     </li>
                     <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>6. enterprise fidelity quarantee claim form</span>
+                        <span className='text-black'>6. fidelity quarantee claim form</span>
                         <a
                             href="/enterpriseforms/enterprise_fidelity_guarantee_claim_form.pdf"
                             download
@@ -88,7 +87,7 @@ const RiskForm = ({ onClose }) => {
                         </a>
                     </li>
                     <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>7. enterprise fire insurance proposal form</span>
+                        <span className='text-black'>7. fire insurance proposal form</span>
                         <a
                             href="/enterpriseforms/enterprise_fire_insurance_proposal_form.pdf"
                             download
@@ -98,7 +97,7 @@ const RiskForm = ({ onClose }) => {
                         </a>
                     </li>
                     <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>8. enterprise home protection -with content</span>
+                        <span className='text-black'>8. home protection -with content</span>
                         <a
                             href="/enterpriseforms/enterprise_home_protection_with_content.pdf"
                             download
@@ -108,7 +107,7 @@ const RiskForm = ({ onClose }) => {
                         </a>
                     </li>
                     <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>9. enterprise marine open cover</span>
+                        <span className='text-black'>9. marine open cover</span>
                         <a
                             href="/enterpriseforms/enterprise_marine_open_cover.pdf"
                             download
@@ -118,7 +117,7 @@ const RiskForm = ({ onClose }) => {
                         </a>
                     </li>
                     <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>10. enterprise motor insurance - endorsement only</span>
+                        <span className='text-black'>10.motor insurance - endorsement only</span>
                         <a
                             href="/enterpriseforms/enterprise_motor_insurance_endorsements_only.pdf"
                             download
@@ -128,7 +127,7 @@ const RiskForm = ({ onClose }) => {
                         </a>
                     </li>
                     <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>11. enterprise private motor insurance proposal form latest 1</span>
+                        <span className='text-black'>11. private motor insurance proposal form latest 1</span>
                         <a
                             href="/enterpriseforms/enterprise_private_motor_insurance_proposal_form_latest_1.pdf"
                             download
@@ -138,7 +137,7 @@ const RiskForm = ({ onClose }) => {
                         </a>
                     </li>
                     <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>12. enterprise professional indemnity form</span>
+                        <span className='text-black'>12. professional indemnity form</span>
                         <a
                             href="/enterpriseforms/enterprise_professtional_indemnity_form.pdf"
                             download
@@ -148,7 +147,7 @@ const RiskForm = ({ onClose }) => {
                         </a>
                     </li>
                     <li className="flex justify-between items-center border-b border-gray-300  p-2">
-                        <span className='text-black'>13. enterprise theft insurance proposal form</span>
+                        <span className='text-black'>13. theft insurance proposal form</span>
                         <a
                             href="/enterpriseforms/enterprise_theft_insurance_proposal_form.pdf"
                             download

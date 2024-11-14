@@ -16,13 +16,13 @@ import Circle from '../Circle';
 const InsurancePage = () => {
 
     return (
-        <div className="relative min-h-screen overflow-auto">
+        <div className="relative h-screen overflow-scroll no-scrollbar">
 
             {/* Background Glass Effect */}
-            <div className=" min-h-screen">
+            <div className="min-h-screen">
 
                 <div className=" min-h-screen">
-                    <section className="absolute top-[12px] left-[1px] z-20 p-6">
+                    <section className="absolute top-[4px] left-[1px] z-20 p-6">
                         <div className='w-[174px] h-[280px] ml-10 bg-black rounded-md flex items-center justify-center'>
                             <div className='w-[165px] h-[256px] bg-black rounded-[9px] p-1 border border-t-4 border-gray-500 border-opacity-50 shadow-lg'>
 

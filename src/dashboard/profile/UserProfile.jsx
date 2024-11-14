@@ -34,7 +34,7 @@ const UserProfile = () => {
     };
 
     return (
-        <div>
+        <div className='overflow-y-scroll h-full no-scrollbar'>
             <div className="relative">
                 <img src={profilebg} alt='profile' className="w-full h-auto object-cover" loading='lazy' />
                 <div className="absolute inset-0 text-white p-4">
@@ -54,10 +54,10 @@ const UserProfile = () => {
                             <div className="max-w-[1100px] mx-auto h-20 flex items-center justify-between">
                                 {/* Left side - Profile info */}
                                 {isEditing ? (
-                                    <a href='#' className="flex items-center text-white  gap-2 text-sm" onClick={handleEditToggle}>
+                                    <button className="flex items-center text-white  gap-2 text-sm" onClick={handleEditToggle}>
                                         <FiArrowLeft className="w-4 h-4 text-white " />
                                         Back
-                                    </a>
+                                    </button>
                                 ) : (
                                     <div className="flex items-center gap-3">
                                         <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/10">
