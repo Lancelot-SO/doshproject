@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { ChevronDown, FileText, UserPlus, Grid } from 'lucide-react';
+import { MdPrivacyTip } from "react-icons/md";
 import { FaLink, FaBars, FaExchangeAlt, FaCoins, FaUserFriends } from 'react-icons/fa';
 import { MdLock, MdGroups, MdAssignment, MdAccountBalance, MdSavings, MdAttachMoney, MdPerson } from 'react-icons/md';
 import logo from "../images/dashboard/dash_logo.png";
 import profilepic from "../images/dashboard/profile/profilepic.png";
 import './Sidebar.css';
 import ReferralPopup from './ReferralPopup';
+import PrivacyPolicy from './PrivacyPolicy';
 
 
 
@@ -13,6 +15,8 @@ const Sidebar = ({ activeMenu, onSubmenuClick, onProfileClick }) => {
     const [showClaimsSubmenu, setShowClaimsSubmenu] = useState(false);
     const [activeSubmenu, setActiveSubmenu] = useState(null); // Track the active submenu item
     const [showReferralPopup, setShowReferralPopup] = useState(false);
+    const [showPrivacyPopup, setShowPrivacyPopup] = useState(false);
+
 
 
 
@@ -31,37 +35,60 @@ const Sidebar = ({ activeMenu, onSubmenuClick, onProfileClick }) => {
         setShowReferralPopup(!showReferralPopup);
     };
 
+    const togglePrivacyPopup = () => {
+        setShowPrivacyPopup(!showPrivacyPopup);
+    };
+
+
     const renderSidebarContent = () => {
         if (activeMenu === "DOSH Financial") {
             return (
-                <div className='flex flex-col gap-3'>
+                <div className='flex flex-col gap-2'>
                     <h2 className="text-sm font-bold text-white my-1">PAGES</h2>
-                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                    <div
+                        className={`flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700 ${activeSubmenu === 'Link Account' ? 'bg-[#A2865F]' : ''}`}
+                        onClick={() => handleSubmenuClick('Link Account')}
+                    >
                         <FaLink className="text-xl" />
                         <span className="text-sm">Link Account</span>
                     </div>
-                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+
+                    <div
+                        className={`flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700 ${activeSubmenu === 'Transactions' ? 'bg-[#A2865F]' : ''}`}
+                        onClick={() => handleSubmenuClick('Transactions')}
+                    >
                         <FaExchangeAlt className="text-xl" />
                         <span className="text-sm">Transactions</span>
                     </div>
-                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+
+                    <div
+                        className={`flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700 ${activeSubmenu === 'Investments' ? 'bg-[#A2865F]' : ''}`}
+                        onClick={() => handleSubmenuClick('Investments')}
+                    >
                         <FaCoins className="text-xl" />
                         <span className="text-sm">Investments</span>
                     </div>
-                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+
+                    <div
+                        className={`flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700 ${activeSubmenu === 'Referral' ? 'bg-[#A2865F]' : ''}`}
+                        onClick={() => handleSubmenuClick('Referral')}
+                    >
                         <FaUserFriends className="text-xl" />
                         <span className="text-sm">Referral</span>
                     </div>
                     <h2 className="text-sm font-bold text-white mt-4 mb-2">OTHERS</h2>
-                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                    <div
+                        className={`flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700 ${activeSubmenu === 'Auth Code' ? 'bg-[#A2865F]' : ''}`} onClick={() => handleSubmenuClick('Auth Code')}>
                         <MdLock className="text-xl" />
                         <span className="text-sm">Auth Code</span>
                     </div>
-                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                    <div
+                        className={`flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700 ${activeSubmenu === 'Standing Orders' ? 'bg-[#A2865F]' : ''}`} onClick={() => handleSubmenuClick('Standing Orders')}>
                         <MdAssignment className="text-xl" />
                         <span className="text-sm">Standing Orders</span>
                     </div>
-                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                    <div
+                        className={`flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700 ${activeSubmenu === 'Saved Template' ? 'bg-[#A2865F]' : ''}`} onClick={() => handleSubmenuClick('Saved Template')}>
                         <MdSavings className="text-xl" />
                         <span className="text-sm">Saved Template</span>
                     </div>
@@ -77,7 +104,17 @@ const Sidebar = ({ activeMenu, onSubmenuClick, onProfileClick }) => {
                         <MdPerson className="text-xl" />
                         <span className="text-sm">Child Account</span>
                     </div>
+                    <div
+                        onClick={togglePrivacyPopup}
+                        className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                        <MdPrivacyTip className="text-xl" />
+                        <span className="text-sm">Privacy Policy</span>
+                    </div>
+
+                    {showPrivacyPopup && <PrivacyPolicy onClose={togglePrivacyPopup} />}
+
                 </div>
+
             );
         }
         // Default content for other menus
@@ -130,6 +167,14 @@ const Sidebar = ({ activeMenu, onSubmenuClick, onProfileClick }) => {
                         <FaBars size={16} />
                         <span>Referral</span>
                     </div>
+
+                    <div
+                        onClick={togglePrivacyPopup}
+                        className={`flex items-center gap-2 mt-2 p-2 rounded cursor-pointer`}
+                    >
+                        <MdPrivacyTip size={16} />
+                        <span>Privacy Policy</span>
+                    </div>
                 </div>
 
                 <div className="p-2 border-t border-gray-700 w-[180px] h-[200px] mt-4">
@@ -144,8 +189,8 @@ const Sidebar = ({ activeMenu, onSubmenuClick, onProfileClick }) => {
                     </button>
                 </div>
 
+                {showPrivacyPopup && <PrivacyPolicy onClose={togglePrivacyPopup} />}
                 {showReferralPopup && <ReferralPopup onClose={toggleReferralPopup} />}
-
             </div>
         );
     };

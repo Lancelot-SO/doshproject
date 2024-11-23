@@ -46,7 +46,7 @@ const About = () => {
     return (
         <div className='sect'>
             <section data-aos="fade-down" className='about__header'>
-                <img src={about} alt='about' loading='lazy' />
+                <img src={about} alt='about' className='object-cover' loading='lazy' />
             </section>
             <button className="scroll-button" onClick={scrollToNextSection}>
                 <IoIosArrowDown size={30} />
@@ -55,7 +55,7 @@ const About = () => {
                 <div className='container about__hand-shake'>
                     <div className='about_left'>
                         <h3>Who we are </h3>
-                        <p><b>Empowering your Financial Wellness.</b><br />
+                        <p className=''><b>Empowering your Financial Wellness.</b><br />
                             In today’s ultra-competitive business world, true leadership demands ambition, focus, and an unerring drive.
                             At DOSH, we recognize and seek out like-minded businesses and individuals. With over 20 years of financial and insurance expertise,
                             we provide essential support via an accessible, affordable, and available service-specific ecosystem. The DOSH mandate is simple:

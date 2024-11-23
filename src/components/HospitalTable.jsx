@@ -1,8 +1,9 @@
-import React from 'react';
-import './HospitalTable.css';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const HospitalTable = ({ data }) => {
+    const [expandedRow, setExpandedRow] = useState(null);
+
     // Function to get Google Maps link based on latitude and longitude
     const getGoogleMapsLink = (latitude, longitude) => {
         if (!latitude || !longitude) return "N/A";
@@ -17,58 +18,160 @@ const HospitalTable = ({ data }) => {
         return `mailto:${email}`;
     };
 
+    const toggleRow = (index) => {
+        setExpandedRow(expandedRow === index ? null : index);
+    };
+
     return (
-        <div className="hospital-table-container">
-            <table className="hospital-table">
-                <thead>
+        <div className="overflow-x-auto w-full max-w-7xl mx-auto p-4 bg-white">
+            <table className="min-w-full table-auto border-collapse bg-white shadow-md rounded-lg">
+                {/* Table Header */}
+                <thead className="bg-gray-100 border-b-2 border-gray-200">
                     <tr>
-                        <th>Hospital Name</th>
-                        <th>Region Name</th>
-                        <th>District</th>
-                        <th>Contact</th>
-                        <th>Email</th>
-                        <th>Google Maps</th> {/* New column for the Google Maps link */}
+                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                            Hospital Name
+                        </th>
+                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                            Region Name
+                        </th>
+                        <th className="hidden md:table-cell px-4 py-2 text-left text-sm font-medium text-gray-700">
+                            District
+                        </th>
+                        <th className="hidden md:table-cell px-4 py-2 text-left text-sm font-medium text-gray-700">
+                            Contact
+                        </th>
+                        <th className="hidden md:table-cell px-4 py-2 text-left text-sm font-medium text-gray-700">
+                            Email
+                        </th>
+                        <th className="hidden md:table-cell px-4 py-2 text-left text-sm font-medium text-gray-700">
+                            Google Maps
+                        </th>
+                        <th className="md:hidden px-4 py-2 text-left text-sm font-medium text-gray-700">
+                            Actions
+                        </th>
                     </tr>
                 </thead>
+
+                {/* Table Body */}
                 <tbody>
                     {data.length > 0 ? (
                         data.map((hospital, index) => (
-                            <tr key={index}>
-                                <td>{hospital.name}</td>
-                                <td>{hospital.region}</td>
-                                <td>{hospital.district}</td>
-                                <td>{hospital.contact}</td>
-                                <td>
-                                    {hospital.email ? (
-                                        <a
-                                            href={getMailToLink(hospital.email)}
-                                            className="email_link"
+                            <React.Fragment key={index}>
+                                <tr
+                                    className={`border-b transition-colors duration-200 ${expandedRow === index ? "bg-gray-100" : "hover:bg-gray-50"
+                                        }`}
+                                >
+                                    {/* Hospital Name */}
+                                    <td className="px-4 py-2 bg-white">{hospital.name}</td>
+                                    {/* Region Name */}
+                                    <td className="px-4 py-2 bg-white">{hospital.region}</td>
+                                    {/* Expand/Collapse button for smaller screens */}
+                                    <td className="md:hidden px-4 py-2 bg-white">
+                                        <button
+                                            onClick={() => toggleRow(index)}
+                                            className="text-[#9e825b] hover:text-gray-800 focus:outline-none pl-2"
                                         >
-                                            {hospital.email}
-                                        </a>
-                                    ) : (
-                                        "N/A"
-                                    )}
-                                </td>
-                                <td>
-                                    {hospital.latitude && hospital.longitude ? (
-                                        <Link
-                                            to={getGoogleMapsLink(hospital.latitude, hospital.longitude)}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="view_maps"
+                                            {expandedRow === index ? (
+                                                <FaEyeSlash size={24} className="inline" />
+                                            ) : (
+                                                <FaEye size={24} className="inline" />
+                                            )}
+                                        </button>
+                                    </td>
+                                    {/* Additional fields (hidden on smaller screens) */}
+                                    <td className="hidden md:table-cell px-4 py-2 bg-white">
+                                        {hospital.district}
+                                    </td>
+                                    <td className="hidden md:table-cell px-4 py-2 bg-white">
+                                        {hospital.contact}
+                                    </td>
+                                    <td className="hidden md:table-cell px-4 py-2 bg-white">
+                                        {hospital.email ? (
+                                            <a
+                                                href={getMailToLink(hospital.email)}
+                                                className="text-[#9e825b] hover:underline"
+                                            >
+                                                {hospital.email}
+                                            </a>
+                                        ) : (
+                                            "N/A"
+                                        )}
+                                    </td>
+                                    <td className="hidden md:table-cell px-4 py-2 bg-white">
+                                        {hospital.latitude && hospital.longitude ? (
+                                            <a
+                                                href={getGoogleMapsLink(
+                                                    hospital.latitude,
+                                                    hospital.longitude
+                                                )}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-[#9e825b] hover:underline"
+                                            >
+                                                View on Map
+                                            </a>
+                                        ) : (
+                                            "N/A"
+                                        )}
+                                    </td>
+                                </tr>
+                                {/* Expanded content for smaller screens */}
+                                {expandedRow === index && (
+                                    <tr className="md:hidden bg-gray-100">
+                                        <td
+                                            colSpan="3"
+                                            className="px-4 py-2 text-sm text-gray-600 space-y-2"
                                         >
-                                            View on Map
-                                        </Link>
-                                    ) : (
-                                        "N/A"
-                                    )}
-                                </td>
-                            </tr>
+                                            <p>
+                                                <strong>District:</strong> {hospital.district}
+                                            </p>
+                                            <p>
+                                                <strong>Contact:</strong> {hospital.contact}
+                                            </p>
+                                            <p>
+                                                <strong>Email:</strong>{" "}
+                                                {hospital.email ? (
+                                                    <a
+                                                        href={getMailToLink(hospital.email)}
+                                                        className="text-[#9e825b] hover:underline"
+                                                    >
+                                                        {hospital.email}
+                                                    </a>
+                                                ) : (
+                                                    "N/A"
+                                                )}
+                                            </p>
+                                            <p>
+                                                <strong>Google Maps:</strong>{" "}
+                                                {hospital.latitude && hospital.longitude ? (
+                                                    <a
+                                                        href={getGoogleMapsLink(
+                                                            hospital.latitude,
+                                                            hospital.longitude
+                                                        )}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="text-[#9e825b] hover:underline"
+                                                    >
+                                                        View on Map
+                                                    </a>
+                                                ) : (
+                                                    "N/A"
+                                                )}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                )}
+                            </React.Fragment>
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="6">No hospitals found</td>
+                            <td
+                                colSpan="6"
+                                className="px-4 py-4 text-center text-gray-500 font-medium bg-white"
+                            >
+                                No hospitals found
+                            </td>
                         </tr>
                     )}
                 </tbody>

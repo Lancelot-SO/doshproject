@@ -1,0 +1,139 @@
+/* Card.css */
+.card-container {
+  width: 300px;
+  height: 200px;
+  background-color: #242424;
+  border-radius: 15px;
+  color: #fff;
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid rgba(204, 92, 180, 0.51);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.dosh-logo {
+  width: 68px;
+  height: 26px;
+}
+
+.business-label {
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.network__section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.network {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.balance-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 10px;
+}
+
+.balance-label {
+  font-size: 14px;
+  color: #d2d2d2;
+}
+
+.balance-amount {
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.card-number {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+}
+
+.card-number span {
+  font-family: "Dhurjati", serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 25.28px;
+  letter-spacing: 4px;
+  width: 270px;
+}
+
+.validity {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  opacity: 70%;
+}
+
+.val {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  /* Controlled spacing between text elements */
+}
+
+span {
+  margin: 0;
+  /* Remove default margins */
+  line-height: 1;
+  /* Set a consistent line height */
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.cardholder-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.visa-logo {
+  width: 60px;
+}
+
+/* Hide scrollbar for Chrome, Safari, Edge, and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.blurry {
+  box-shadow: -146px -58px 53px 31px rgba(252, 251, 251, 0.99);
+  -webkit-box-shadow: -146px -58px 53px 31px rgba(252, 251, 251, 0.99);
+  -moz-box-shadow: -146px -58px 53px 31px rgba(252, 251, 251, 0.99);
+}

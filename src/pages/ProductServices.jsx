@@ -28,7 +28,7 @@ const ProductServices = () => {
 
     const NextArrow = ({ onClick }) => (
         <button
-            className="absolute bottom-0 lg:bottom-4 left-[52%] md:left-[55%] lg:left-[60%] transform -translate-x-1/2 bg-transparent text-[#9E825B] text-2xl p-4 hover:bg-[#9E825B] hover:text-white transition duration-300 z-10 rounded-full border"
+            className="absolute bottom-0 lg:bottom-4 left-[60%] md:left-[55%] lg:left-[60%] transform -translate-x-1/2 bg-transparent text-[#9E825B] text-2xl p-4 hover:bg-[#9E825B] hover:text-white transition duration-300 z-10 rounded-full border"
             onClick={onClick}
         >
             <FaArrowRightLong />
@@ -37,7 +37,7 @@ const ProductServices = () => {
 
     const PrevArrow = ({ onClick }) => (
         <button
-            className="absolute bottom-0 lg:bottom-4 left-[48%] md:left-[45%] lg:left-[40%] transform -translate-x-1/2 bg-transparent text-[#9E825B] text-2xl p-4 hover:bg-[#9E825B] hover:text-white transition duration-300 z-10 rounded-full border"
+            className="absolute bottom-0 lg:bottom-4 left-[37%] md:left-[45%] lg:left-[40%] transform -translate-x-1/2 bg-transparent text-[#9E825B] text-2xl p-4 hover:bg-[#9E825B] hover:text-white transition duration-300 z-10 rounded-full border"
             onClick={onClick}
         >
             <FaArrowLeftLong />
@@ -176,7 +176,7 @@ const ProductServices = () => {
     return (
         <div className='ps__page'>
             <div className='main__product'>
-                <img data-aos="fade-down" src={require('../images/ppp.jpg')} alt='product&services' loading='lazy' />
+                <img data-aos="fade-down" src={require('../images/ppp.jpg')} alt='product&services' className='object-cover' loading='lazy' />
                 <div className='product__text'>
                     <p>Protect your <b>future</b> with our
                         comprehensive health insurance packages
@@ -192,7 +192,7 @@ const ProductServices = () => {
                     {products.map((product, productIndex) => (
                         <div
                             key={product.id}
-                            className={`w-full h-full flex items-center justify-center px-16 lg:h-full ${!product.comparetext && !product.picker ? 'bg-none' : 'bg-default'}`}
+                            className={`w-full h-full flex items-center justify-center lg:px-16 lg:h-full ${!product.comparetext && !product.picker ? 'bg-none' : 'bg-default'}`}
                         >
                             <div className="container mx-auto px-4">
                                 <div className="flex flex-col md:flex-row items-center justify-between gap-8">
@@ -245,7 +245,7 @@ const ProductServices = () => {
                 </Slider>
 
                 {/* Arrows with text in between */}
-                <div className="absolute bottom-4 left-[50%] transform -translate-x-1/2 text-center text-[#9E825B] text-lg py-4">
+                <div className="absolute lg:bottom-4 bottom-14 left-[50%] transform -translate-x-1/2 text-center text-[#9E825B] text-lg py-4">
                     <p>More Services</p>
                 </div>
 

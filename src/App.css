@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dhurjati&display=swap");
 
 :root {
   --color-primary: #6f6af8;
@@ -118,7 +119,7 @@ img {
 
 .error__link {
   font-size: 50px;
-  color: #987C55;
+  color: #987c55;
   font-weight: 800;
   text-decoration: underline;
   cursor: pointer;
@@ -159,7 +160,7 @@ nav {
   align-items: center;
   gap: 2rem;
   margin-left: 5rem;
-  margin-top: 0.3rem
+  margin-top: 0.3rem;
 }
 
 .nav__menu li {
@@ -173,17 +174,17 @@ nav {
 }
 
 .nav__menu li a.active {
-  color: #987C55;
+  color: #987c55;
 }
 
 .nav__menu li a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #987C55;
+  background-color: #987c55;
   transition: width 0.3s ease;
 }
 
@@ -209,7 +210,7 @@ nav {
   width: 119px;
   height: 35px;
   display: flex;
-  background-color: #987C55;
+  background-color: #987c55;
   align-items: center;
   justify-content: center;
   gap: 15px;
@@ -220,7 +221,7 @@ nav {
 }
 
 .nav__signup svg {
-  background-color: #987C55;
+  background-color: #987c55;
 }
 
 .bars {
@@ -283,9 +284,8 @@ nav {
     padding-top: 40px;
     display: flex;
     overflow-y: auto;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
-
 
   .mobile-nav-links {
     padding-left: 20px;
@@ -313,9 +313,8 @@ nav {
   }
 
   .nav__signup-mobile {
-    color: #987C55;
+    color: #987c55;
   }
-
 }
 
 /* header mobile css end  */
@@ -351,7 +350,7 @@ footer {
 .contact__logo2 {
   display: flex;
   flex-direction: row;
-  padding-bottom: 40PX;
+  padding-bottom: 40px;
   margin-top: 5px;
 }
 
@@ -369,12 +368,12 @@ footer {
 
 .footer__text {
   height: 104px;
-  width: 160px;
+  width: 260px;
   padding-top: 30px;
 }
 
 .footer__text p {
-  width: 130px;
+  width: 250px;
   color: #fff;
   font-family: "Inter", sans-serif;
 }
@@ -402,11 +401,11 @@ footer {
   display: flex;
   flex-direction: column;
   width: 250px;
-  color: #987C55;
+  color: #987c55;
 }
 
 .location a {
-  color: #987C55;
+  color: #987c55;
 }
 
 .socials {
@@ -415,14 +414,14 @@ footer {
 }
 
 .socials a {
-  color: #987C55;
+  color: #987c55;
 }
 
 .socials a:hover {
   color: #fff;
 }
 
-.socials>* {
+.socials > * {
   margin-left: 10px;
   /* Adjust spacing between social media icons */
 }
@@ -430,7 +429,7 @@ footer {
 .footer__gold {
   width: 100%;
   height: 2px;
-  background-color: #987C55;
+  background-color: #987c55;
 }
 
 .copyright {
@@ -442,6 +441,15 @@ footer {
   padding-right: 60px;
 }
 
+/* Hide scrollbar for Chrome, Safari, Edge, and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.no-scrollbar {
+  scrollbar-width: none;
+}
 
 @media (max-width: 767px) {
   .main__footer {
@@ -496,7 +504,6 @@ footer {
   display: flex;
   width: 100%;
   height: 100%;
-
 }
 
 .modal-content {
@@ -528,7 +535,7 @@ footer {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #987C55;
+  background-color: #987c55;
   color: #fff;
   cursor: pointer;
 }
@@ -559,13 +566,11 @@ footer {
   align-items: center;
   gap: 10px;
   border-bottom: 1px solid rgba(225, 230, 233, 1);
-
 }
 
 form p {
   padding-bottom: 10px;
 }
-
 
 .form-select {
   padding: 0.5rem;
@@ -593,8 +598,7 @@ form p {
 }
 
 .search-btn {
-
-  color: #987C55;
+  color: #987c55;
   text-align: center;
   font-family: "Inter", sans-serif;
   font-size: 14px;
@@ -612,7 +616,6 @@ form p {
 }
 
 .clear-btn {
-
   color: rgba(2, 2, 2, 0.56);
   text-align: center;
   font-family: "Inter", sans-serif;
@@ -634,18 +637,26 @@ form p {
 
 @media screen and (max-width: 767px) {
   .modal-content {
-    width: 90%;
-    /* Adjust the width of the modal content */
-    max-width: 100%;
+    width: 100%;
     margin: 0 auto;
-    /* Center the modal horizontally */
     margin-bottom: 20px;
-    /* Adjust the margin-bottom */
+  }
+
+  .modal .hsp__form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(225, 230, 233, 1);
   }
 
   .modal-header {
     margin-bottom: 0;
     /* Remove the bottom margin */
+  }
+
+  .hsp__form {
+    display: flex;
   }
 
   .close {
@@ -658,10 +669,11 @@ form p {
   }
 
   .modal-footer {
-    flex-direction: column;
+    flex-direction: row;
+    display: flex;
     /* Stack the modal footer items vertically */
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     padding-top: 10px;
     /* Adjust the top padding */
   }
@@ -729,7 +741,7 @@ form p {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #987C55;
+  background-color: #987c55;
   color: #fff;
   cursor: pointer;
   position: fixed;
@@ -748,7 +760,7 @@ form p {
   line-height: 35px;
   letter-spacing: 0px;
   text-align: left;
-  color: #CDB289;
+  color: #cdb289;
   padding-bottom: 15px;
 }
 
@@ -770,7 +782,6 @@ form {
   align-items: center;
   width: 338px;
   height: 50px;
-
 }
 
 .call-icon {
@@ -824,11 +835,11 @@ label {
   height: 39px;
   padding: 10px, 19.57px, 10px, 19.57px;
   border-radius: 6.26px;
-  background: linear-gradient(251.21deg, #987C55 0%, #D0B58C 100%);
+  background: linear-gradient(251.21deg, #987c55 0%, #d0b58c 100%);
   color: #fff;
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width: 767px) {
   .call-left {
     display: none;
   }
@@ -842,7 +853,7 @@ label {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #987C55;
+    background-color: #987c55;
     color: #fff;
     cursor: pointer;
     position: fixed;
@@ -901,7 +912,6 @@ label {
   padding-bottom: 5px;
 }
 
-
 .finance-about__hand-shake {
   display: flex;
   flex-direction: row;
@@ -940,7 +950,7 @@ label {
 }
 
 .finance-about__right h5 {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 13px;
   font-weight: 700;
   line-height: 13px;
@@ -951,7 +961,7 @@ label {
 }
 
 .finance-about__right p {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 25px;
@@ -965,8 +975,8 @@ label {
 }
 
 .finance-about__right a {
-  font-family: 'Inter', sans-serif;
-  color: #9E825B;
+  font-family: "Inter", sans-serif;
+  color: #9e825b;
   width: 70px;
   height: 16px;
   gap: 10px;
@@ -982,7 +992,7 @@ label {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #987C55;
+  background-color: #987c55;
   color: #fff;
   cursor: pointer;
   position: fixed;
@@ -1033,7 +1043,7 @@ label {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #987C55;
+    background-color: #987c55;
     color: #fff;
     cursor: pointer;
     position: fixed;
@@ -1049,10 +1059,9 @@ label {
 
 /* financeModal styles end */
 
-
 /* back to top mobile styles start */
 .back-to-top {
-  background-color: #9E825B;
+  background-color: #9e825b;
   width: 3rem;
   height: 3rem;
   color: white;
@@ -1066,11 +1075,9 @@ label {
   justify-content: center;
 }
 
-
-
 @media (max-width: 767px) {
   .back-to-top {
-    background-color: #9E825B;
+    background-color: #9e825b;
     width: 3rem;
     height: 3rem;
     color: white;
@@ -1086,7 +1093,6 @@ label {
 }
 
 /* back to top styles end */
-
 
 /* whatsapp styles start */
 .whatsapp_float {

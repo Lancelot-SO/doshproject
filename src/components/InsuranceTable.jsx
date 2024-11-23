@@ -7,11 +7,11 @@ import "./InsuranceTable.css"
 const InsuranceTable = ({ closePopup }) => {
     return (
         <div className="fixed top-20 left-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="relative glassed-bg rounded-lg shadow-lg w-full h-[100%] flex flex-col">
-                <div className="p-4 h-full flex flex-col justify-between">
+            <div className="relative glassed-bg rounded-lg shadow-lg w-full h-[100%] flex flex-col overflow-scroll">
+                <div className="lg:p-4 h-full flex flex-col justify-between overflow-scroll">
                     {/* Header section with title and close button */}
                     <div className="flex justify-between items-center mb-4">
-                        <h2 className="text-[44px] text-[#A2865F] font-bold">DOSH Health Insurance Packages</h2>
+                        <h2 className="lg:text-[44px] text-[20px] text-[#A2865F] font-bold">DOSH Health Insurance Packages</h2>
                         <button
                             type="button"
                             className="bg-[#A2865F] text-white w-[40px] h-[40px] rounded-full"
@@ -22,11 +22,12 @@ const InsuranceTable = ({ closePopup }) => {
                     </div>
 
                     {/* Table section */}
-                    <div className="flex-grow p-4">
+                    <div className="flex-grow lg:p-4 overflow-x-scroll">
                         <div className="glass-table overflow-auto">
-                            <table className='w-full'>
+                            <table className='lg:w-full'>
                                 <tr>
-                                    <td className='dosh'><img src={dosh} alt='Dosh Logo' loading='lazy' /></td>
+                                    <td className='dosh'>
+                                        <img src={dosh} alt='Dosh Logo' loading='lazy' /></td>
                                     <td className='price'>
                                         <h3 className='hide'>Insurance</h3>
                                         <span>DOSH-365</span>

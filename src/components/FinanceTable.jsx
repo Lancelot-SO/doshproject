@@ -6,8 +6,8 @@ import "./InsuranceTable.css"
 
 const FinanceTable = ({ closePopup }) => {
     return (
-        <div className="fixed top-20 left-0 bg-black  ml-[300px] flex items-center justify-center z-50">
-            <div className="relative rounded-lg shadow-lg w-[1000px] h-[100%] flex flex-col">
+        <div className="fixed lg:top-20 top-0 left-0 bg-black  lg:ml-[300px] flex items-center justify-center z-50">
+            <div className="relative rounded-lg shadow-lg lg:w-[1000px] h-[100%] flex flex-col">
                 <div className="p-4 h-full flex flex-col justify-between">
                     {/* Header section with title and close button */}
                     <div className="flex justify-between items-center mb-4">
@@ -100,7 +100,6 @@ const FinanceTable = ({ closePopup }) => {
                                     <td className="signup-button">
                                         <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
-
                                 </tr>
                             </table>
                         </div>

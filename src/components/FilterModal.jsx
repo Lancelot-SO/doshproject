@@ -80,7 +80,7 @@ const FilterModal = ({ showModal, onClose, onFilter }) => {
                         <h5 className="modal-title">In this view show records</h5>
                     </div>
                     <div className="modal-body">
-                        <form>
+                        <form className='hsp__form'>
                             <p>Where</p>
                             <div className="country">
                                 <select className="form-select" id="country" value={selectedCountry} onChange={handleCountryChange}>

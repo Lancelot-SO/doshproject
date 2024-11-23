@@ -104,11 +104,11 @@ const Insure = ({ onClose }) => {
                     ))}
                 </ul>
 
-                <div className='main_package'>
+                <div className='main_package no-scrollbar'>
                     <div className='package_left'>
                         <img src={activeDetail.img} alt={activeDetail.title} loading='lazy' />
                     </div>
-                    <div className='package_right'>
+                    <div className='package_right no-scrollbar'>
                         {activeDetail.number && <h2 className='package_number'>{activeDetail.number}</h2>}
                         <p className='package_details w-[600px]'>{activeDetail.details}</p>
                         <Link
@@ -142,7 +142,7 @@ const Insure = ({ onClose }) => {
                         {activePackage && (
                             <div className="flex gap-6 h-[40px] items-center justify-center">
                                 <div className='flex items-center gap-2'>
-                                    <p className='text-white'>Click here to see previous product</p>
+                                    <p className='text-white'>Previous product</p>
                                     <div onClick={goToPreviousPackage} className='cursor-pointer w-8 h-8 flex items-center justify-center rounded-full
                                  bg-transparent hover:bg-[#987C55] border text-white'><FaArrowLeft className='texte-white' /></div>
                                 </div>
@@ -150,7 +150,7 @@ const Insure = ({ onClose }) => {
                                 <div className='flex items-center gap-2'>
                                     <div onClick={goToNextPackage} className="cursor-pointer w-8 h-8 flex items-center justify-center rounded-full
                                  bg-transparent hover:bg-[#987C55] border text-white"><FaArrowRight className='texte-white' /></div>
-                                    <p className='text-white'>Click here to see next product</p>
+                                    <p className='text-white'>Next product</p>
                                 </div>
 
                             </div>

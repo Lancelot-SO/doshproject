@@ -43,7 +43,7 @@ const InsuranceDetails = ({ onClose }) => {
                         alt="Family enjoying financial security"
                     />
                     <div className="p-6">
-                        <h2 className="text-3xl font-bold mb-6 text-gray-800">What's the Deal with Health Insurance?</h2>
+                        <h2 className="lg:text-3xl text-[16px] font-bold mb-6 text-gray-800">What's the Deal with Health Insurance?</h2>
                         <div className="space-y-4 text-gray-600">
                             <p>
                                 Let’s get real: health insurance is your financial armor against surprise medical bills in a world where healthcare costs are sky-high. Each year, over 100 million people are pushed into poverty by medical expenses.<sup><a href="#reference1">1</a></sup> From routine check-ups to major surgeries, insurance helps keep both your health and wallet intact.
@@ -52,7 +52,7 @@ const InsuranceDetails = ({ onClose }) => {
                                 In Ghana and similar countries, 36% of out-of-pocket spending goes towards healthcare, leaving families vulnerable to financial shocks.<sup><a href="#reference2">2</a></sup> Health insurance lightens that load, making healthcare accessible without the stress.
                             </p>
 
-                            <h3 className="text-2xl font-bold mt-6 mb-4 text-gray-800">Why Do People Struggle with Health Insurance?</h3>
+                            <h3 className="lg:text-2xl text-[16px] font-bold mt-6 mb-4 text-gray-800">Why Do People Struggle with Health Insurance?</h3>
                             <p>
                                 Our customers' frustrations mirror global trends, and we're on a mission to simplify things:
                             </p>
@@ -63,7 +63,7 @@ const InsuranceDetails = ({ onClose }) => {
                                 <li><strong>Low Preventive Care Utilization:</strong> Preventive care saves lives and costs, but many plans don't prioritize it. Low usage rates lead to bigger issues down the line.</li>
                             </ol>
 
-                            <h3 className="text-2xl font-bold mt-6 mb-4 text-gray-800">How We Step Up</h3>
+                            <h3 className="lg:text-2xl text-[16px] font-bold mt-6 mb-4 text-gray-800">How We Step Up</h3>
                             <p>
                                 We've crafted our plans to tackle these pain points head-on, offering peace of mind and solid coverage:
                             </p>
@@ -75,7 +75,7 @@ const InsuranceDetails = ({ onClose }) => {
                                 <li><strong>Preventive Care Focus:</strong> With routine screenings included, we help you catch issues early, saving you from bigger headaches (and expenses) later.</li>
                             </ol>
 
-                            <h3 className="text-2xl font-bold mt-6 mb-4 text-gray-800">Ready for Better Coverage?</h3>
+                            <h3 className="lg:text-2xl text-[16px] font-bold mt-6 mb-4 text-gray-800">Ready for Better Coverage?</h3>
                             <p>
                                 Let us ease your healthcare worries. Our plans make quality care accessible, affordable, and predictable. Join others who are discovering a smarter way to safeguard their health and finances.
                             </p>

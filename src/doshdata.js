@@ -160,7 +160,7 @@ export const insuranceDetails = [
         details: `DOSH is redefining health insurance with the DOSH 365 package—just GHS 1 a day for GHS 9,000 in annual coverage. For GHS 365 a year, you get GHS 6100 for in-patient and GHS 1500 for out-patient services, all designed to keep you covered when the unexpected hits. `,
         link: "/register",
         category: "DOSH 365",
-        flyer: "Click here to view full flyer"
+        flyer: "View flyer"
     },
     {
         id: "2",
@@ -171,7 +171,7 @@ export const insuranceDetails = [
         details: `With a GHS 750 annual premium, DOSH offers up to GHS 18000 in coverage, perfect for individuals, families, and dependents. This package is ideal for young families or new employees, providing GHS 12600 for in-patient and GHS 3000 for out-patient services—affordable, comprehensive, and family-friendly!`,
         link: "/register",
         category: "DOSH 750",
-        flyer: "Click here to view full flyer"
+        flyer: "View flyer"
     },
     {
         id: "3",
@@ -182,7 +182,7 @@ export const insuranceDetails = [
         details: `The DOSH 1000 package provides peace of mind with up to GHS 30000 in coverage for just a GHS 1,000 annual premium—GHS 21500 for in-patient and GHS 5000 for out-patient care. A solid investment in your health! `,
         link: "/register",
         category: "DOSH 1000",
-        flyer: "Click here to view full flyer"
+        flyer: "View flyer"
     },
     {
         id: "4",
@@ -193,7 +193,7 @@ export const insuranceDetails = [
         details: `The DOSH 2500 plan is perfect for young families or new employees seeking affordable health coverage, offering up to GHS 60,000 annually—GHS 41,250 for in-patient and GHS 10,000 for out-patient care—all for a GHS 2500 premium. Smart coverage for tough times! `,
         link: "/register",
         category: "DOSH 2500",
-        flyer: "Click here to view full flyer"
+        flyer: "View flyer"
     },
     {
         id: "5",
@@ -204,7 +204,7 @@ export const insuranceDetails = [
         details: `Tailored for high-value clients, this premium plan offers up to GHS 95,000 in annual coverage—GHS 57,500 for in-patient and GHS 20,000 for out-patient care—ideal for those with elevated healthcare needs.`,
         link: "/register",
         category: "DOSH 5000",
-        flyer: "Click here to view full flyer"
+        flyer: "View flyer"
     },
     {
         id: "6",
@@ -215,7 +215,7 @@ export const insuranceDetails = [
         details: `This plan provides comprehensive coverage up to GHS 190,000—GHS 115,000 for in-patient and GHS 40,000 for out-patient care—for a GHS 10,000 annual premium, with access to top healthcare providers nationwide.`,
         link: "/register",
         category: "DOSH 10000",
-        flyer: "Click here to view full flyer"
+        flyer: "View flyer"
     },
 ]
 
@@ -229,7 +229,7 @@ export const enhanceDetails = [
         details: `The DOSH 500 offers up to GHS 21000 in coverage, providing affordable, solid protection with GHS 6100 for in-patient care, GHS 1500 for out-patient, and GHS 8750 for death, disability, and accident coverage.`,
         link: "/register",
         category: "DOSH 500",
-        flyer: "Click here to view full flyer"
+        flyer: "View flyer"
     },
     {
         id: "2",
@@ -240,7 +240,7 @@ export const enhanceDetails = [
         details: `DOSH knows you deserve better than the basics. And with GHS 42000 in total coverage, the DOSH 900 package delivers! Providing GHS 12600 for inpatient care, GHS 3000 for outpatient care, and GHS 18500 for death, disability, and accidents, the DOSH 900 gets you more of what matters, so you can keep living your best life!`,
         link: "/register",
         category: "DOSH 900",
-        flyer: "Click here to view full flyer"
+        flyer: "View flyer"
     },
     {
         id: "3",
@@ -251,7 +251,7 @@ export const enhanceDetails = [
         details: `The DOSH 1200 has you covered with up to GHS 54000 in total protection: GHS 5000 for outpatient care, GHS 21500 for inpatient care, and GHS 18500 for death, disability, and accident coverage. Choose DOSH 1200 today and face life's surprises with confidence.`,
         link: "/register",
         category: "DOSH 1200",
-        flyer: "Click here to view full flyer"
+        flyer: "View flyer"
     },
     {
         id: "4",
@@ -259,10 +259,10 @@ export const enhanceDetails = [
         title: "",
         number: "DOSH 2800",
         desc: "Description",
-        details: `At DOSH, we know life is full of surprises, so we've designed our plans to keep you protected. With up to GHS 95,000 in total coverage, including GHS 10,000 for outpatient care, GHS 41,250 for inpatient care, and GHS 37,000 for death, disability, and accident coverage, our enhanced policies offer the comprehensive protection you and your family deserve. Stay prepared and secure peace of mind with DOSH.`,
+        details: `At DOSH, we know life is full of surprises, so we've designed our plans to keep you protected. With up to GHS 95,000 in total coverage, including GHS 10,000 for outpatient care, GHS 41,250 for inpatient care, and GHS 37,000 for death, disability, and accident coverage, our enhanced policies offer the comprehensive protection you and your family deserve. Stay prepared and secure your peace of mind with DOSH.`,
         link: "/register",
         category: "DOSH 2800",
-        flyer: "Click here to view full flyer"
+        flyer: "View flyer"
     },
     {
         id: "5",
@@ -273,7 +273,7 @@ export const enhanceDetails = [
         details: `The DOSH 5500 provides solid, no-nonsense protection with GHS 167,000 in total coverage, including GHS 20,000 for outpatient care, GHS 57,500 for inpatient care, and GHS 55,500 for death, disability, and accident coverage. Rest easy knowing that life’s uncertainties won’t shake your family’s financial security. Choose DOSH 5500 for coverage you can count on.`,
         link: "/register",
         category: "DOSH 5500",
-        flyer: "Click here to view full flyer"
+        flyer: "View flyer"
     },
     {
         id: "6",
@@ -284,7 +284,7 @@ export const enhanceDetails = [
         details: `For those who go all-in on peace of mind, the DOSH 11000 plan is the perfect match. With up to GHS 286,000 in total coverage, including GHS 40,000 for outpatient care, GHS 115,000 for inpatient care, and GHS 74,000 for death, disability, and accident coverage, this plan ensures you’re prepared for whatever life throws your way. Be ready for anything with DOSH 11000.`,
         link: "/register",
         category: "DOSH 11000",
-        flyer: "Click here to view full flyer"
+        flyer: "View flyer"
     },
 ]
 
@@ -328,7 +328,8 @@ export const personalDetails = [
         img: Personal,
         number: "Individual",
         desc: "Description",
-        details: `At home or at work, managing your finances shouldn't be a hassle. With DOSH, our uniquely designed and tailor-made personal account offers one user five different types of accounts, allowing our clients to effortlessly stay on top of their personal finances. Additionally, we provide the option for extra accounts at a configurable fee, ensuring flexibility and convenience for all your financial needs.`,
+        details: `Take control of your finances effortlessly with DOSH. Whether you’re managing money at home or work, DOSH offers the flexibility you need and a personalised experience tailored to your unique financial goals.
+Enjoy a comprehensive range of financial services, including savings, fixed deposits, shares, and loans up to a maximum of 50,000—everything you need to build and secure your financial future with confidence`,
         link: "/register",
         category: "Individual"
     },
@@ -337,7 +338,7 @@ export const personalDetails = [
         img: Family,
         number: "Family",
         desc: "Description",
-        details: `Family financial management involves effectively meeting your family's everyday expenses, handling unexpected bills and saving for the future. At DOSH, our Family account puts you in control of your money, helping you avoid stress, whilst making you feel more secured. In addition to the 5 different accounts available with the Personal Account package, the Family Account offers 5 additional users with current sub accounts.`,
+        details: `DOSH simplifies financial management for families, offering an account setup that helps you stay organized and in control. With a loan limit of up to 100,000, the ability to add three dependents, and support for five sub-user accounts, DOSH provides a convenient, all-in-one solution for family finances.`,
         link: "/register",
         category: "Family"
     },
@@ -350,7 +351,7 @@ export const businessDetails = [
         img: Soho,
         number: "SOHO",
         desc: "Description",
-        details: `The SOHO Account offers numerous benefits to help your business grow. With this account, you gain access to loan and credit facilities, while keeping your personal assets separate from your business transactions for added protection. This package includes five default accounts, five additional current sub-accounts, and two departmental or cost centers. Each department or cost center can be configured with varying access levels for you and your employees. This setup allows you to control who can create new users, add bank accounts, perform transactions, view and transfer funds, audit accounts, and set limits on sub-accounts, enhancing your financial management.`,
+        details: `Fuel your business growth with the SOHO Package! Enjoy access to loans, credit facilities, and secure separation of personal and business assets. This package includes 5 sub-accounts and 2 customizable departmental accounts, with flexible access levels for your team. Easily manage permissions, bank access, transactions, fund transfers, and audits, all with a GHS200,000 loan cap and five sub-user accounts.`,
         link: "/register",
         category: "SOHO"
     },
@@ -359,7 +360,7 @@ export const businessDetails = [
         img: Smb,
         number: "SMB",
         desc: "Description",
-        details: `This account has advanced benefits and features compared to the SOHO Account. It comes with 5 additional users and a total of 5 departments or cost centers with the convenient option of adding more users as the business grows. In effect, the SMB Account offers subscribers 10 sub-accounts and 5 departments or call centers with different levels of access and control.`,
+        details: `The SMB Packages offers enhanced benefits beyond the SOHO Account, with the flexibility to add more users as your business expands and customizable access levels and control. With a loan cap of GHS300,000, 10 sub-user accounts, and 5 departmental accounts, the SMB Account is designed to support growing businesses.`,
         link: "/register",
         category: "SMB"
     },
@@ -368,7 +369,7 @@ export const businessDetails = [
         img: Enterprise,
         number: "Enterprise",
         desc: "Description",
-        details: `The Enterprise Account is designed to provide financial solutions to large corporations and comes with the same features as the SMB Account with added offerings: 20 additional users 5 additional departments or call centers. The enterprise account therefore offers customers the convenience of 30 users and 10 departments or call centers; in addition to all the default benefits embedded in our SOHO Account.`,
+        details: `The Enterprise Package is built for big ambitions. With 30 sub-user accounts, 10 departments, and loan options over GHS300,000, it’s the ultimate toolkit for powering up growth and keeping your finances on point. Tailored access, smart controls, and flexible management mean your business can scale smoothly without missing a beat.`,
         link: "/register",
         category: "Enterprise"
     },

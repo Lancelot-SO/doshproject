@@ -495,7 +495,7 @@ const Home = () => {
                         <h4>HEALTH INSURANCE SERVICES:</h4>
                         <h3 className="elevate">Elevate your healthcare experience</h3>
                         <p>
-                            Take control of your healthcare the DOSH way. DOSH Health insurance is
+                            Take control of your healthcare the DOSH way. DOSH Health Insurance is
                             an all-inclusive service that provides coverage for medical consultations,
                             surgical care, dental care, optical care, and prescription medication.
                             We have a vast network of accredited service providers that

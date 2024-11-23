@@ -31,7 +31,7 @@ const TableCell = ({ children, isHeader }) => (
 
 export default function Transactions() {
     return (
-        <div className="bg-[#161717] text-gray-300 p-6 rounded-lg w-[817px] h-full">
+        <div className="bg-[#161717] text-gray-300 p-6 rounded-lg w-[820px] h-full">
             <h2 className="text-2xl font-bold mb-4">Transaction Details</h2>
             <div className="overflow-x-auto">
                 <Table>

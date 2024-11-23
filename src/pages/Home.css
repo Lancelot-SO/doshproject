@@ -1422,12 +1422,12 @@
         line-height: 20px;
         letter-spacing: 3px;
         text-align: left;
-        color: #fff;
+        color: black;
         padding-bottom: 10px;
     }
 
     .home__ride-right p {
-        color: #fff;
+        color: black;
         font-family: 'Inter', sans-serif;
         font-size: 14px;
         font-weight: 400;
@@ -1481,12 +1481,12 @@
         line-height: 20px;
         letter-spacing: 3px;
         text-align: left;
-        color: #fff;
+        color: black;
         padding-bottom: 10px;
     }
 
     .home__ride2-right p {
-        color: #fff;
+        color: black;
         font-family: 'Inter', sans-serif;
         font-size: 14px;
         font-weight: 400;
@@ -1519,5 +1519,11 @@
 
     .slide-arrow small {
         padding-right: 30px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .home__ride2-left img {
+        width: 100%;
     }
 }
