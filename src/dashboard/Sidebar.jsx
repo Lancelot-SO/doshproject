@@ -100,7 +100,8 @@ const Sidebar = ({ activeMenu, onSubmenuClick, onProfileClick }) => {
                         <MdAttachMoney className="text-xl" />
                         <span className="text-sm">Dosh Till</span>
                     </div>
-                    <div className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                    <div
+                        className={`flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700 ${activeSubmenu === 'Child Account' ? 'bg-[#A2865F]' : ''}`} onClick={() => handleSubmenuClick('Child Account')}>
                         <MdPerson className="text-xl" />
                         <span className="text-sm">Child Account</span>
                     </div>

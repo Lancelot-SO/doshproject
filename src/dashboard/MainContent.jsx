@@ -13,6 +13,7 @@ import Refer from './finaceportal/accounts/Refer';
 import AuthCode from './finaceportal/accounts/others/AuthCode';
 import StandingOrders from './finaceportal/accounts/others/StandingOrders';
 import SavedTemplate from './finaceportal/accounts/others/SavedTemplate';
+import ChildAccount from './finaceportal/accounts/others/ChildAccount';
 
 
 const MainContent = ({ activeMenu, activeSubmenuItem }) => {
@@ -38,6 +39,8 @@ const MainContent = ({ activeMenu, activeSubmenuItem }) => {
                 return <StandingOrders />;
             case "Saved Template":
                 return <SavedTemplate />;
+            case "Child Account":
+                return <ChildAccount />;
             // Add additional cases as needed
             default:
                 return <FinancePortal />;

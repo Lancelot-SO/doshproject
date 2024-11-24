@@ -65,32 +65,30 @@ export default function SavedTemplate() {
                 <div className="w-[720px] h-[400px] bg-[#000000] bg-opacity-25 rounded-lg">
                     <div className="flex flex-col gap-4 px-4">
                         <div className="w-full border-b">
-                            <ul className="flex justify-around text-sm py-2">
+                            <ul className="flex justify-around text-sm pt-2">
                                 <li
-                                    className={`cursor-pointer text-white ${formType === "loadMoney" ? "text-[#d4a373]" : ""
-                                        }`}
+                                    className={`cursor-pointer text-white border-b-4 ${formType === "loadMoney" ? "border-[#d4a373] text-[#d4a373]" : "border-transparent"}`}
                                     onClick={() => setFormType("loadMoney")}
                                 >
                                     Load Money
                                 </li>
                                 <li
-                                    className={`cursor-pointer text-white ${formType === "transferMoney" ? "text-[#d4a373]" : ""
-                                        }`}
+                                    className={`cursor-pointer text-white border-b-4 ${formType === "transferMoney" ? "border-[#d4a373]" : "border-transparent"}`}
                                     onClick={() => setFormType("transferMoney")}
                                 >
                                     Transfer Money
                                 </li>
                                 <li
-                                    className={`cursor-pointer text-white ${formType === "bulkDisbursements" ? "text-[#d4a373]" : ""
-                                        }`}
+                                    className={`cursor-pointer text-white border-b-4 ${formType === "bulkDisbursements" ? "border-[#d4a373]" : "border-transparent"}`}
                                     onClick={() => setFormType("bulkDisbursements")}
                                 >
                                     Bulk Disbursements
                                 </li>
-                                <li className="cursor-pointer text-white">Utilities</li>
-                                <li className="cursor-pointer text-white">Airtime / Bundles</li>
+                                <li className="cursor-pointer text-white border-b-4 border-transparent">Utilities</li>
+                                <li className="cursor-pointer text-white border-b-4 border-transparent">Airtime / Bundles</li>
                             </ul>
                         </div>
+
 
                         <div className="flex items-center justify-between">
                             <div className="flex flex-col gap-8 px-8 items-start justify-center w-[250px] h-[300px]">
