@@ -56,8 +56,8 @@ const Login = ({ onClose }) => {
             case 0:
                 return (
                     <div className='log__input'>
-                        <label htmlFor='dosh'>Dosh No.</label>
-                        <input type='text' name='doshnum' placeholder='Dosh Number' className='inp' />
+                        <label htmlFor='dosh'>DOSH No.</label>
+                        <input type='text' name='doshnum' placeholder='DOSH Number' className='inp' />
                     </div>
                 );
             case 1:
@@ -85,14 +85,14 @@ const Login = ({ onClose }) => {
             <div className='log'>
                 <div className='left__log'>
                     <div className='log__card'>
-                        <span className='tag'>Login to your </span>
-                        <p className='dosh__account'><b>Dosh</b> Account</p>
+                        <span className='tag'>Welcome to your </span>
+                        <p className='dosh__account'><b>DOSH</b> Account</p>
                         <div className='log__underline'></div>
                         <div className='radio__btn'>
                             <p className='radio__tag'>Login with</p>
                             <div className='radios'>
                                 <div className='radio'>
-                                    {["Dosh No.", "Phone", "Email"].map((option, index) => (
+                                    {["DOSH No.", "Phone", "Email"].map((option, index) => (
                                         <div key={index}>
                                             <input type='radio' className='main__radio' name='loginOption' onChange={() => handleRadioChange(index)} checked={selectedRadio === index} />
                                             <label>{option}</label>

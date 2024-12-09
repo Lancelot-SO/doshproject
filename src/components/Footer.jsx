@@ -27,14 +27,14 @@ const Footer = () => {
                             <Link to="https://maps.app.goo.gl/d7qvqRwCwEeuM5Le6"
                                 target='_blank' rel="noopener noreferrer"
                             >
-                                <p>10 MIREKU WE LP <br className='hidden lg:flex' />GA-504-4280 Dansoman, Accra</p>
+                                <p>10 MIREKU WE <br className='flex' />LP, Dansoman-Accra <br className='flex' />GA-504-4280 </p>
                             </Link>
                         </div>
                         <div className='contacts'>
                             <h3>CONTACTS</h3>
                             <div className='location'>
-                                <p>Phone: 0800-DOSH-ME</p>
-                                <p>Fax: 0800-DOSH-ME</p>
+                                <p>Phone: 0800-DOSH-ME (0800367463)</p>
+                                <p>Fax: 0800-DOSH-ME (0800367463)</p>
                                 <Link to="/contact">Online Support</Link>
                                 <p className='text-white cursor-pointer hover:text-[#987c55]' onClick={togglePrivacyPolicy}>Privacy Policy</p>
                             </div>
@@ -97,7 +97,10 @@ const Footer = () => {
                         <h3 className="text-xl font-semibold mb-2">Data Security</h3>
                         <p className="mb-4">We implement industry-standard measures to protect your data from unauthorized access, alteration, or loss.</p>
                         <h3 className="text-xl font-semibold mb-2">Contact Us</h3>
-                        <p className="mb-4">For questions or concerns regarding your privacy, email us at Phone: 0800-DOSH-ME, Fax: 0800-DOSH-ME</p>
+                        <p className="mb-4">For questions or concerns regarding your privacy, contact us at:</p>
+                        <p>Phone: 0800367463 (0800-DOSH-ME)</p>
+                        <p className='text-[#987c55]'>Email: <a href="mailto:Helpdesk@0800dosh.me">Helpdesk@0800dosh.me</a></p>
+                        <p>Fax: 0800367463</p>
                         <p className="mb-4">By using our website, you consent to the terms of this Privacy Statement. Updates will be posted here as needed.</p>
                     </div>
                 </div>

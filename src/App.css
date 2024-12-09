@@ -400,7 +400,7 @@ footer {
 .location {
   display: flex;
   flex-direction: column;
-  width: 250px;
+  width: 350px;
   color: #987c55;
 }
 
@@ -1002,6 +1002,11 @@ label {
 
 .active {
   border-bottom: 2px solid #000;
+}
+
+.activemobile {
+  background-color: #987c55;
+  padding: 10px 20px;
 }
 
 @media screen and (max-width: 767px) {

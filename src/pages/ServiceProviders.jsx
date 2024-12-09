@@ -13,7 +13,7 @@ import HospitalTable from '../components/HospitalTable';
 const ServiceProviders = () => {
     const [index, setIndex] = useState(0);
     const [showCallModal, setShowCallModal] = useState(false);
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(true);
     const [filteredData, setFilteredData] = useState([]);
     const [searchQuery, setSearchQuery] = useState(''); // State for search input
 
@@ -130,7 +130,7 @@ const ServiceProviders = () => {
 
             <section className='provider-container'>
                 <div className='container service__cards'>
-                    <h4>Find the closest service provider on DOSH</h4>
+                    <h4 className=''>Find the closest service provider on DOSH</h4>
                     <hr className='underline'></hr>
 
                     <section className='filter-section'>
@@ -157,6 +157,7 @@ const ServiceProviders = () => {
                             <HospitalTable data={filteredData} />
                         </div>
                     </section>
+
 
                     <div className='anime-sect'>
                         <div className='empty-container'></div>

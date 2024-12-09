@@ -1,4 +1,5 @@
 import pendingImg from "../../../../images/dashboard/claims/pendingImg.png";
+import QuickActions from "../../quickActions/QuickActions";
 
 export default function StandingOrders() {
 
@@ -37,6 +38,9 @@ export default function StandingOrders() {
                         </p>
                     </div>
                 </div>
+            </div>
+            <div className='fixed lg:top-[100px] top-[190px] right-0 z-50'>
+                <QuickActions />
             </div>
         </div>
     );

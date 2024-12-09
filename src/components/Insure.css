@@ -136,9 +136,9 @@
 }
 
 .link_underline {
-  font-size: 20px;
+  /* font-size: 20px; */
   color: #ffffff;
-  font-weight: bolder;
+  /* font-weight: bolder; */
   background-color: #987c55;
 }
 
@@ -263,20 +263,22 @@
 }
 
 @media (max-width: 768px) {
+
   .top_list,
   .package_list {
-    margin-left: 20px;
+    margin-left: 0;
   }
 
   .top_link,
   .package_link {
     width: auto;
     height: auto;
-    padding: 10px 20px;
+    padding: 10px 15px;
   }
 }
 
 @media (max-width: 480px) {
+
   .package_desc,
   .package_details,
   .flyer-link {

@@ -20,6 +20,7 @@ import {
     Area,
 } from "recharts";
 import TradingChart from '../financeSections/TradingChart';
+import QuickActions from '../quickActions/QuickActions';
 
 const data = [
     { date: "20 Jun", profits: 90, cashBond: 85 },
@@ -258,6 +259,10 @@ export default function Investments() {
 
             <div className='w-[350px] h-[808px]'>
                 <TradingChart />
+            </div>
+
+            <div className='fixed top-[100px] right-0'>
+                <QuickActions />
             </div>
 
         </div>

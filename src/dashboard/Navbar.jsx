@@ -8,7 +8,7 @@ const Navbar = ({ onHomeClick, onBreadcrumbClick, activeSubmenuItem, activeMenu 
         <div className="flex flex-col bg-[#2d2d2d] lg:bg-transparent">
             <div className="w-full text-white lg:h-12 h-[150px] flex items-center justify-between p-4 lg:p-6 lg:overflow-hidden relative">
                 {/* Hamburger Icon for Mobile */}
-                <FaBars size={24} className="lg:hidden block text-white" />
+                <FaBars size={24} className="lg:hidden opacity-0 text-white" />
 
                 {/* Breadcrumb Section */}
                 <div className="hidden lg:flex items-center space-x-2">

@@ -1,22 +1,21 @@
-import React, { useEffect, useRef } from 'react'
-import "./Contact.css"
+import React, { useEffect, useRef, useState } from 'react';
+import './Contact.css';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import contact from '../images/doshContact.png'
-import logo from "../images/dosh_logo.png"
-import contactImage from "../images/contactImage.png"
+import contact from '../images/doshContact.png';
+import logo from '../images/dosh_logo.png';
+import contactImage from '../images/contactImage.png';
 
-import AOS from "aos";
-import "aos/dist/aos.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Contact = () => {
     const form = useRef();
-
+    const [contactData, setContactData] = useState(null);
 
     const sendEmail = (e) => {
         e.preventDefault();
-
 
         emailjs
             .sendForm('service_50j5zce', 'template_us60peo', form.current, {
@@ -27,10 +26,9 @@ const Contact = () => {
                 () => {
                     toast.success('Message sent successfully!');
                 },
-                // eslint-disable-next-line no-unused-vars
                 (error) => {
                     toast.error('Failed to send message. Please try again.');
-                },
+                }
             );
         e.target.reset();
     };
@@ -41,43 +39,66 @@ const Contact = () => {
         });
         AOS.refresh();
     }, []);
+
     return (
-        <div className='cont'>
+        <div className="cont">
             <ToastContainer />
-            <div className='contact__head'>
-                <img data-aos="fade-down" src={contact} alt='about' loading='lazy' />
-                <div className='contact__text'>
-                    <p>
-                        Contact Us
-                    </p>
+            <div className="contact__head">
+                <img data-aos="fade-down" src={contact} alt="about" loading="lazy" />
+                <div className="contact__text">
+                    <p>Contact Us</p>
                 </div>
             </div>
 
-            <div className='dosh-main-container'>
-                <div className='dosh-form-container'>
-                    <form ref={form} onSubmit={sendEmail} className='dosh-form-card'>
-                        <div className='dosh-form'>
-                            <div className='dosh-label-input'>
+            <div className="dosh-main-container">
+                <div className="dosh-form-container">
+                    <form ref={form} onSubmit={sendEmail} className="dosh-form-card">
+                        <div className="dosh-form">
+                            <div className="dosh-label-input">
                                 <label>First Name</label>
-                                <input type='text' name='firstname' className='dosh-first' placeholder='Enter your first name' required />
+                                <input
+                                    type="text"
+                                    name="firstname"
+                                    className="dosh-first"
+                                    placeholder="Enter your first name"
+                                    required
+                                />
                             </div>
-                            <div className='dosh-label-input'>
+                            <div className="dosh-label-input">
                                 <label>Last Name</label>
-                                <input type='text' name='lastname' className='dosh-last' placeholder='Enter your last name' required />
+                                <input
+                                    type="text"
+                                    name="lastname"
+                                    className="dosh-last"
+                                    placeholder="Enter your last name"
+                                    required
+                                />
                             </div>
                         </div>
-                        <div className='dosh-label-input'>
+                        <div className="dosh-label-input">
                             <label>Email</label>
-                            <input type='text' name='email' className='dosh-email' placeholder='Enter your email address' required />
+                            <input
+                                type="text"
+                                name="email"
+                                className="dosh-email"
+                                placeholder="Enter your email address"
+                                required
+                            />
                         </div>
-                        <div className='dosh-label-input'>
+                        <div className="dosh-label-input">
                             <label>Phone Number</label>
-                            <input type='tel' name='telephone' className="dosh-phone" placeholder='223 456 7890' required />
+                            <input
+                                type="tel"
+                                name="telephone"
+                                className="dosh-phone"
+                                placeholder="223 456 7890"
+                                required
+                            />
                         </div>
 
-                        <div className='dosh-label-input'>
+                        <div className="dosh-label-input">
                             <label>Region</label>
-                            <select name='city' className='dosh-select'>
+                            <select name="city" className="dosh-select">
                                 <option>--Select a region--</option>
                                 <option>Ahafo</option>
                                 <option>Ashanti</option>
@@ -98,24 +119,30 @@ const Contact = () => {
                             </select>
                         </div>
 
-                        <div className='dosh-label-input'>
+                        <div className="dosh-label-input">
                             <label>Message</label>
-                            <textarea type='text' name='message' className='dosh-textarea' placeholder='Type your message here' required></textarea>
+                            <textarea
+                                type="text"
+                                name="message"
+                                className="dosh-textarea"
+                                placeholder="Type your message here"
+                                required
+                            ></textarea>
                         </div>
 
-                        <div className='dosh-button'>
-                            <button type='submit'>SEND MESSAGE</button>
+                        <div className="dosh-button">
+                            <button type="submit">SEND MESSAGE</button>
                         </div>
 
-                        <img src={logo} alt='logo' className='dosh-contact-logo' />
+                        <img src={logo} alt="logo" className="dosh-contact-logo" />
                     </form>
-                    <div className='dosh-contact-image'>
-                        <img src={contactImage} alt='dosh' />
+                    <div className="dosh-contact-image">
+                        <img src={contactImage} alt="dosh" />
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Contact
+export default Contact;

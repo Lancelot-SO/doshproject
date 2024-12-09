@@ -4,6 +4,7 @@ import walletcard from "../../../images/dashboard/finance/Cards.png";
 import { FaPlus } from "react-icons/fa";
 import WalletOtp from "./WalletOtp"; // Import the OTP component
 import "./Investment.css";
+import QuickActions from "../quickActions/QuickActions";
 
 const LinkAccount = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -205,6 +206,9 @@ const LinkAccount = () => {
                         </div>
                     </div>
                 )}
+            </div>
+            <div className='fixed top-[100px] right-0'>
+                <QuickActions />
             </div>
         </div>
     );

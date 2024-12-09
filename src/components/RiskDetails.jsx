@@ -64,19 +64,20 @@ const RiskDetails = ({ onClose }) => {
                             </p>
                         </div>
                     </div>
+                    <div className="p-6 bg-gray-100 text-gray-700">
+                        <h3 className="text-xl font-bold mb-4">References</h3>
+                        <ul className="list-decimal list-inside space-y-2">
+                            <li>In their own words: Insured Americans struggle to navigate complex coverage.</li>
+                            <li>Most Americans Say the Health Care System Fails Them | TIME.</li>
+                        </ul>
+                    </div>
                 </div>
                 <div className="p-6 flex-shrink-0 flex gap-4">
                     <button onClick={openPopup} className="w-full bg-[#9E825B] text-white font-bold py-3 px-6 rounded-[50px] focus:outline-none focus:shadow-outline transition duration-300 ease-in-out text-lg">
                         Download form
                     </button>
                 </div>
-                <div className="p-6 bg-gray-100 text-gray-700">
-                    <h3 className="text-xl font-bold mb-4">References</h3>
-                    <ul className="list-decimal list-inside space-y-2">
-                        <li>In their own words: Insured Americans struggle to navigate complex coverage.</li>
-                        <li>Most Americans Say the Health Care System Fails Them | TIME.</li>
-                    </ul>
-                </div>
+
             </div>
             {isPopupOpen && <RiskForm onClose={closePopup} />}
         </div>

@@ -23,8 +23,8 @@ const PrivacyPolicy = ({ onClose }) => {
                         >
                             <FaTimes size={24} />
                         </button>
-                        <h2 className="text-2xl font-bold mb-4">DOSH Services Ghana Limited Privacy Statement</h2>
-                        <p className="mb-4">DOSH Services Ghana Limited values your privacy and is committed to protecting your personal information.
+                        <h2 className="text-2xl font-bold mb-4">DOSH Privacy Statement</h2>
+                        <p className="mb-4">DOSH values your privacy and is committed to protecting your personal information.
                             This Privacy Statement explains how we collect, use, and safeguard your data when you visit our website or use our services.</p>
                         <h3 className="text-xl font-semibold mb-2">Information We Collect</h3>
                         <p className="mb-4">We may collect personal information such as your name, contact details, financial data, and other information you provide directly to us.</p>
@@ -43,7 +43,10 @@ const PrivacyPolicy = ({ onClose }) => {
                         <h3 className="text-xl font-semibold mb-2">Data Security</h3>
                         <p className="mb-4">We implement industry-standard measures to protect your data from unauthorized access, alteration, or loss.</p>
                         <h3 className="text-xl font-semibold mb-2">Contact Us</h3>
-                        <p className="mb-4">For questions or concerns regarding your privacy, email us at Phone: 0800-DOSH-ME, Fax: 0800-DOSH-ME</p>
+                        <p className="mb-4">For questions or concerns regarding your privacy, contact us at:</p>
+                        <p>Phone: 0800367463 (0800-DOSH-ME)</p>
+                        <p className='text-[#987c55]'>Email: <a href="mailto:Helpdesk@0800dosh.me">Helpdesk@0800dosh.me</a></p>
+                        <p>Fax: 0800367463</p>
                         <p className="mb-4">By using our website, you consent to the terms of this Privacy Statement. Updates will be posted here as needed.</p>
                     </div>
                 </div>

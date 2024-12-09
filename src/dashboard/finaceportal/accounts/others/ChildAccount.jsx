@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import pendingImg from "../../../../images/dashboard/claims/pendingImg.png";
+import QuickActions from "../../quickActions/QuickActions";
 
 const ChildAccount = () => {
     const [open, setOpen] = useState(false);
@@ -75,10 +76,10 @@ const ChildAccount = () => {
                                                 id="account-type"
                                                 className="w-full bg-transparent border border-white/20 text-white p-2 rounded focus:outline-none focus:ring focus:ring-[#C6A366]"
                                             >
-                                                <option value="">Select account type</option>
-                                                <option value="savings">Savings</option>
-                                                <option value="checking">Checking</option>
-                                                <option value="investment">Investment</option>
+                                                <option value="" className="text-black">Select account type</option>
+                                                <option value="savings" className="text-black">Savings</option>
+                                                <option value="checking" className="text-black">Checking</option>
+                                                <option value="investment" className="text-black">Investment</option>
                                             </select>
                                         </div>
                                         <div>
@@ -89,9 +90,9 @@ const ChildAccount = () => {
                                                 id="has-dosh"
                                                 className="w-full bg-transparent border border-white/20 text-white p-2 rounded focus:outline-none focus:ring focus:ring-[#C6A366]"
                                             >
-                                                <option value="">Select</option>
-                                                <option value="yes">Yes</option>
-                                                <option value="no">No</option>
+                                                <option value="" className="text-black">Select</option>
+                                                <option value="yes" className="text-black">Yes</option>
+                                                <option value="no" className="text-black">No</option>
                                             </select>
                                         </div>
                                     </>
@@ -119,9 +120,13 @@ const ChildAccount = () => {
                                                 id="payment-mode"
                                                 className="w-full bg-transparent border border-white/20 text-white p-2 rounded focus:outline-none focus:ring focus:ring-[#C6A366]"
                                             >
-                                                <option value="">Select</option>
+                                                <option value="" className="text-black">Select</option>
+                                                <option value="dosh" className="text-black">DOSH</option>
+                                                <option value="mtn" className="text-black">MTN</option>
+                                                <option value="telecel" className="text-black">TELECEL</option>
                                             </select>
                                         </div>
+
                                         <div>
                                             <label htmlFor="payment-method" className="block text-sm font-medium mb-2">
                                                 Username
@@ -130,7 +135,7 @@ const ChildAccount = () => {
                                                 id="username"
                                                 type="text"
                                                 placeholder="Enter your name"
-                                                className="w-full bg-transparent border border-white/20 text-white p-2 rounded focus:outline-none focus:ring focus:ring-[#C6A366]"
+                                                className="w-full bg-transparent border border-white/20 text-black p-2 rounded focus:outline-none focus:ring focus:ring-[#C6A366]"
                                             />
                                         </div>
                                         <div>
@@ -141,7 +146,7 @@ const ChildAccount = () => {
                                                 id="payment-method"
                                                 className="w-full bg-transparent border border-white/20 text-white p-2 rounded focus:outline-none focus:ring focus:ring-[#C6A366]"
                                             >
-                                                <option value="">Select</option>
+                                                <option value="" className="text-black">Select</option>
                                             </select>
                                         </div>
                                     </>
@@ -283,6 +288,9 @@ const ChildAccount = () => {
                         </div>
                     </div>
                 )}
+            </div>
+            <div className='fixed lg:top-[100px] top-[190px] right-0 z-50'>
+                <QuickActions />
             </div>
         </div>
     );

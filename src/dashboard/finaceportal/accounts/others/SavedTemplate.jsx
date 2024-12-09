@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import blurry from "../../../../images/dashboard/finance/blur.png"
 import doshtemp from "../../../../images/dashboard/finance/doshtemp.png"
 import { ChevronDown } from "lucide-react";
+import QuickActions from "../../quickActions/QuickActions";
 
 export default function SavedTemplate() {
     const [showConfirmation, setShowConfirmation] = useState(false); // To manage popup visibility
@@ -470,6 +471,9 @@ export default function SavedTemplate() {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className='fixed lg:top-[100px] top-[190px] right-0 z-50'>
+                <QuickActions />
             </div>
         </div>
 

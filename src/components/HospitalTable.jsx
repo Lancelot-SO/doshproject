@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { BsThreeDots, BsThreeDotsVertical } from "react-icons/bs";
+
 
 const HospitalTable = ({ data }) => {
     const [expandedRow, setExpandedRow] = useState(null);
@@ -23,8 +24,8 @@ const HospitalTable = ({ data }) => {
     };
 
     return (
-        <div className="overflow-x-auto w-full max-w-7xl mx-auto p-4 bg-white">
-            <table className="min-w-full table-auto border-collapse bg-white shadow-md rounded-lg">
+        <div className="table-container overflow-x-auto w-full max-w-7xl mx-auto p-4 bg-white">
+            <table className="hospital-table min-w-full table-auto border-collapse bg-white shadow-md rounded-lg">
                 {/* Table Header */}
                 <thead className="bg-gray-100 border-b-2 border-gray-200">
                     <tr>
@@ -47,7 +48,7 @@ const HospitalTable = ({ data }) => {
                             Google Maps
                         </th>
                         <th className="md:hidden px-4 py-2 text-left text-sm font-medium text-gray-700">
-                            Actions
+                            View More
                         </th>
                     </tr>
                 </thead>
@@ -72,9 +73,9 @@ const HospitalTable = ({ data }) => {
                                             className="text-[#9e825b] hover:text-gray-800 focus:outline-none pl-2"
                                         >
                                             {expandedRow === index ? (
-                                                <FaEyeSlash size={24} className="inline" />
+                                                <BsThreeDots size={24} className="inline" />
                                             ) : (
-                                                <FaEye size={24} className="inline" />
+                                                <BsThreeDotsVertical size={24} className="inline" />
                                             )}
                                         </button>
                                     </td>

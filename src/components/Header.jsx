@@ -100,7 +100,7 @@ const Header = () => {
                                 <li className='mobile-menu-link'>
                                     <Link
                                         to="/"
-                                        className={activeLink === 0 ? 'active' : ''}
+                                        className={activeLink === 0 ? 'activemobile' : ''}
                                         onClick={() => handleLinkClick(0)}
                                     >
                                         Home
@@ -109,7 +109,7 @@ const Header = () => {
                                 <li className='mobile-menu-link'>
                                     <Link
                                         to="/about"
-                                        className={activeLink === 1 ? 'active' : ''}
+                                        className={activeLink === 1 ? 'activemobile' : ''}
                                         onClick={() => handleLinkClick(1)}
                                     >
                                         About us
@@ -118,7 +118,7 @@ const Header = () => {
                                 <li className='mobile-menu-link'>
                                     <Link
                                         to="/productservices"
-                                        className={activeLink === 2 ? 'active' : ''}
+                                        className={activeLink === 2 ? 'activemobile' : ''}
                                         onClick={() => handleLinkClick(2)}
                                     >
                                         Product & Services
@@ -127,7 +127,7 @@ const Header = () => {
                                 <li className='mobile-menu-link'>
                                     <Link
                                         to="/serviceproviders"
-                                        className={activeLink === 3 ? 'active' : ''}
+                                        className={activeLink === 3 ? 'activemobile' : ''}
                                         onClick={() => handleLinkClick(3)}
                                     >
                                         Service Providers
@@ -136,7 +136,7 @@ const Header = () => {
                                 <li className='mobile-menu-link'>
                                     <Link
                                         to="/contact"
-                                        className={activeLink === 4 ? 'active' : ''}
+                                        className={activeLink === 4 ? 'activemobile' : ''}
                                         onClick={() => handleLinkClick(4)}
                                     >
                                         Contact

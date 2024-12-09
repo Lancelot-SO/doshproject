@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import QuickActions from '../quickActions/QuickActions';
 
 const transactions = [
     {
@@ -165,6 +166,9 @@ export default function MainTransactions() {
                 ) : (
                     <div className="p-4 text-gray-500 text-center">No transactions found</div>
                 )}
+            </div>
+            <div className='fixed top-[100px] right-0'>
+                <QuickActions />
             </div>
         </div>
     );

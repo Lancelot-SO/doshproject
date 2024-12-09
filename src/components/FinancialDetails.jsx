@@ -48,16 +48,16 @@ const FinanceDetails = ({ onClose }) => {
                         <h2 className="lg:text-3xl text-[16px] font-bold mb-6 text-gray-800">Why Financial Services Matter</h2>
                         <div className="space-y-4 text-gray-600">
                             <p>
-                                Loans and financial insights aren't just nice-to-haves—they're essential. Whether for starting a business, paying for school, or handling life's surprises, financial services unlock opportunities, improve lives, and provide stability. Yet 1.7 billion people remain unbanked, lacking access to even basic financial tools to build their future.
+                                Loans and financial insights aren’t just nice-to-haves—they’re essential. Whether for starting a business, paying for school, or handling life’s surprises, financial services unlock opportunities, improve lives, and provide stability. Yet 1.7 billion people remain unbanked, lacking access to even basic financial tools to build their future<sup>6</sup>.
                             </p>
                             <p>
-                                Our service bridges this gap with personalized loans and wealth assessments, empowering you to make smarter financial choices.
+                                Our service bridges this gap with personalised loans and wealth assessments, empowering you to make smarter financial choices.
                             </p>
                             <h3 className="lg:text-2xl text-[16px] font-bold mt-6 mb-4 text-gray-800">Challenges Customers Face with Financial Services</h3>
                             <ol className="list-decimal list-inside space-y-2">
-                                <li><strong>High Rates & Hidden Fees:</strong> In places like Ghana, loan rates can hit 22%, often layered with hidden fees, making even small loans a big challenge.</li>
-                                <li><strong>Complex Approvals:</strong> Stringent loan criteria mean 40% of applications get denied, creating obstacles for those with limited credit history.</li>
-                                <li><strong>Limited Financial Literacy:</strong> Only 33% of adults are financially literate, making wealth assessments crucial for informed choices.</li>
+                                <li><strong>High Rates & Hidden Fees:</strong> In places like Ghana, loan rates can average 33%, often layered with hidden fees, making even small loans a big challenge<sup>7</sup>.</li>
+                                <li><strong>Complex Approvals:</strong> Stringent loan criteria mean 40% of applications get denied, creating obstacles for those with limited credit history<sup>8</sup>.</li>
+                                <li><strong>Limited Financial Literacy:</strong> Only 33% of adults are financially literate, making wealth assessments crucial for informed choices<sup>9</sup>.</li>
                                 <li><strong>Slow, Unresponsive Support:</strong> Customers want fast answers, but poor support leaves them feeling stuck.</li>
                                 <li><strong>Few Wealth-Building Options:</strong> Many providers focus solely on loans, missing the broader goal of financial growth.</li>
                             </ol>
@@ -75,6 +75,19 @@ const FinanceDetails = ({ onClose }) => {
                             </p>
                             <p className="font-bold">
                                 Apply now to get started!
+                            </p>
+                            <p className="text-xs mt-4 text-gray-500">
+                                References:
+                                <br />
+                                5. World Bank and WHO: Half the world lacks access to essential health services, 100 million still pushed into extreme poverty because of health expenses.
+                                <br />
+                                6. 1.7 Billion People Don’t Have a Bank Account — But Mobile Banking Could Change Their Lives – BRINK – Conversations and Insights on Global Business.
+                                <br />
+                                7. Average lending rate ends 2023 at 33.75% – BoG.
+                                <br />
+                                8. What Different Denial Rates Can Tell Us About Racial Disparities in the Mortgage Market | Urban Institute.
+                                <br />
+                                9. S&P Global FinLit Survey | Global Financial Literacy Excellence Center (GFLEC).
                             </p>
                         </div>
                     </div>

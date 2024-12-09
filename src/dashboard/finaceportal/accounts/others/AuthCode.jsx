@@ -1,5 +1,6 @@
 import { useState } from "react";
 import pendingImg from "../../../../images/dashboard/claims/pendingImg.png";
+import QuickActions from "../../quickActions/QuickActions";
 
 export default function AuthCode() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -256,6 +257,10 @@ export default function AuthCode() {
                     </div>
                 </div>
             )}
+
+            <div className='fixed lg:top-[100px] top-[190px] right-0 z-50'>
+                <QuickActions />
+            </div>
         </div>
     );
 }

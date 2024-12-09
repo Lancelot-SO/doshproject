@@ -22,11 +22,11 @@ const MenuLinks = ({ onMenuClick }) => {
                 style={{ width: isExpanded ? '760px' : '180px', height: '40px' }}
             >
                 <div className="flex items-center p-2" style={{ width: isExpanded ? '720px' : '140px' }}>
-                    <img src={logo} alt="DOSH Logo" className="w-5 h-5 mr-2" />
+                    <img src={logo} alt="DOSH Logo" className="lg:w-5 w-2 h-2 lg:h-5 mr-2" />
                     <span className="text-white text-[12px] w-[100px]">DOSH Menu</span>
 
                     {isExpanded && (
-                        <div className="flex space-x-4 ml-4 whitespace-nowrap text-[12px]">
+                        <div className="flex space-x-4 ml-4 whitespace-nowrap lg:text-[12px] text-[8px]">
                             <button
                                 onClick={() => handleMenuClick("DOSH Insurance")}
                                 className={`text-white text-[12px] hover:bg-[#A2865F] p-1 rounded ${activeMenu === "DOSH Insurance" ? 'bg-[#A2865F]' : ''

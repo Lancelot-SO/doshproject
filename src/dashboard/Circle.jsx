@@ -9,8 +9,8 @@ const Circle = ({ usedAmount = 500, totalAmount = 1000 }) => {
     const strokeDashoffset = ((100 - progress) / 100) * circumference;
 
     return (
-        <div className="p-4 rounded-3xl w-[230px] h-[230px] flex flex-col items-center justify-between">
-            <div className="relative w-40 h-40">
+        <div className="p-4 rounded-3xl lg:w-[230px] w-[150px] lg:h-[230px] h-[150px] flex flex-col items-center justify-between">
+            <div className="relative lg:w-40 lg: w-32 h-32 lg:h-40">
                 <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                     <circle
                         cx="50"
@@ -34,16 +34,16 @@ const Circle = ({ usedAmount = 500, totalAmount = 1000 }) => {
                     />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                    <span className="text-lg font-semibold">Total Cover</span>
-                    <span className="text-xs text-gray-400">Available Balance</span>
+                    <span className="lg:text-lg text-[12px] font-semibold">Total Cover</span>
+                    <span className="lg:text-xs text-[8px] text-gray-400">Available Balance</span>
                 </div>
             </div>
             <div className="text-center mt-2">
-                <p className="text-green-500 font-semibold text-xs">USED</p>
-                <p className="text-green-500 text-base font-bold">
+                <p className="lg:text-green-500 text-white font-semibold lg:text-[12px] text-[8px]">USED</p>
+                <p className="text-green-500 lg:text-base text-[8px] font-bold">
                     GHS {usedAmount.toFixed(3)}
                 </p>
-                <p className="text-green-500 text-xs">
+                <p className="text-green-500 lg:text-xs text-[8px]">
                     OUT OF GHS {totalAmount.toFixed(3)}
                 </p>
             </div>

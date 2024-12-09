@@ -28,7 +28,7 @@ const ProductServices = () => {
 
     const NextArrow = ({ onClick }) => (
         <button
-            className="absolute bottom-0 lg:bottom-4 left-[60%] md:left-[55%] lg:left-[60%] transform -translate-x-1/2 bg-transparent text-[#9E825B] text-2xl p-4 hover:bg-[#9E825B] hover:text-white transition duration-300 z-10 rounded-full border"
+            className="absolute bottom-2 lg:bottom-4 left-[60%] md:left-[55%] lg:left-[60%] transform -translate-x-1/2 bg-transparent text-[#9E825B] text-2xl p-4 hover:bg-[#9E825B] hover:text-white transition duration-300 z-10 rounded-full border"
             onClick={onClick}
         >
             <FaArrowRightLong />
@@ -37,7 +37,7 @@ const ProductServices = () => {
 
     const PrevArrow = ({ onClick }) => (
         <button
-            className="absolute bottom-0 lg:bottom-4 left-[37%] md:left-[45%] lg:left-[40%] transform -translate-x-1/2 bg-transparent text-[#9E825B] text-2xl p-4 hover:bg-[#9E825B] hover:text-white transition duration-300 z-10 rounded-full border"
+            className="absolute bottom-2 lg:bottom-4 left-[37%] md:left-[45%] lg:left-[40%] transform -translate-x-1/2 bg-transparent text-[#9E825B] text-2xl p-4 hover:bg-[#9E825B] hover:text-white transition duration-300 z-10 rounded-full border"
             onClick={onClick}
         >
             <FaArrowLeftLong />
@@ -192,7 +192,7 @@ const ProductServices = () => {
                     {products.map((product, productIndex) => (
                         <div
                             key={product.id}
-                            className={`w-full h-full flex items-center justify-center lg:px-16 lg:h-full ${!product.comparetext && !product.picker ? 'bg-none' : 'bg-default'}`}
+                            className={`w-full h-full flex items-center justify-center lg:px-16 pr-4 lg:h-full ${!product.comparetext && !product.picker ? 'bg-none' : 'bg-default'}`}
                         >
                             <div className="container mx-auto px-4">
                                 <div className="flex flex-col md:flex-row items-center justify-between gap-8">
@@ -204,7 +204,7 @@ const ProductServices = () => {
                                         <p className="text-sm lg:text-[16px] leading-relaxed text-align-justify">
                                             {product.quote}
                                         </p>
-                                        <div className="flex space-x-4 mt-4">
+                                        <div className="flex lg:space-x-4 space-x-2 mt-4">
                                             <button
                                                 onClick={() => openModal(productIndex)}
                                                 className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
@@ -235,7 +235,7 @@ const ProductServices = () => {
                                         <img
                                             src={product.image}
                                             alt={product.title}
-                                            className="w-full h-40 md:h-80 lg:h-full object-cover rounded-lg shadow-lg"
+                                            className="w-full h-40 lg:h-full object-cover rounded-lg shadow-lg"
                                         />
                                     </div>
                                 </div>

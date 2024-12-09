@@ -14,6 +14,7 @@ import AuthCode from './finaceportal/accounts/others/AuthCode';
 import StandingOrders from './finaceportal/accounts/others/StandingOrders';
 import SavedTemplate from './finaceportal/accounts/others/SavedTemplate';
 import ChildAccount from './finaceportal/accounts/others/ChildAccount';
+import DoshTill from './finaceportal/accounts/others/DoshTill';
 
 
 const MainContent = ({ activeMenu, activeSubmenuItem }) => {
@@ -41,6 +42,8 @@ const MainContent = ({ activeMenu, activeSubmenuItem }) => {
                 return <SavedTemplate />;
             case "Child Account":
                 return <ChildAccount />;
+            case "Dosh Till":
+                return <DoshTill />;
             // Add additional cases as needed
             default:
                 return <FinancePortal />;

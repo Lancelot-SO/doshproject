@@ -1,17 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import dosh from "../images/dosh_logo.png"
-import "./InsuranceTable.css"
+import dosh from "../images/dosh_logo.png";
+import "./InsuranceTable.css";
 
 
 const FinanceTable = ({ closePopup }) => {
+
+
     return (
-        <div className="fixed lg:top-20 top-0 left-0 bg-black  lg:ml-[300px] flex items-center justify-center z-50">
-            <div className="relative rounded-lg shadow-lg lg:w-[1000px] h-[100%] flex flex-col">
-                <div className="p-4 h-full flex flex-col justify-between">
-                    {/* Header section with title and close button */}
+        <div className="fixed top-0 left-0 bg-black bg-opacity-50 flex items-center justify-center z-50 glass-bg">
+            <div className="relative rounded-lg shadow-lg w-full h-[100%] flex flex-col">
+                <div className="lg:p-4 h-full flex flex-col justify-between overflow-scroll">
+                    {/* Header section */}
                     <div className="flex justify-between items-center mb-4">
-                        <h2 className="text-[44px] text-[#A2865F] font-bold">DOSH Finance Packages</h2>
+                        <h2 className="lg:text-[44px] text-[24px] text-[#A2865F] font-bold">DOSH Finance Packages</h2>
+
                         <button
                             type="button"
                             className="bg-[#A2865F] text-white w-[40px] h-[40px] rounded-full"
@@ -21,9 +24,9 @@ const FinanceTable = ({ closePopup }) => {
                         </button>
                     </div>
 
-                    {/* Table section */}
-                    <div className="flex-grow p-4 ">
-                        <div className="glass-table overflow-auto">
+                    {/* Table Section */}
+                    <div className="flex-grow">
+                        <div className="glass-table no-scrollbar">
                             <table className='w-full'>
                                 <tr>
                                     <td className='dosh'>
@@ -102,6 +105,8 @@ const FinanceTable = ({ closePopup }) => {
                                     </td>
                                 </tr>
                             </table>
+                            {/* Toggle Button */}
+
                         </div>
                     </div>
                 </div>

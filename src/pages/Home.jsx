@@ -29,9 +29,9 @@ import slider10mobile from "../images/firstmobile.png"
 
 
 // import banner from '../images/dosh-banner.png'
-import elevate2 from '../images/vector1.png'
-import money from '../images/img1.png';
-import seamless from "../images/seamless.png"
+// import elevate2 from '../images/vector1.png'
+// import money from '../images/img1.png';
+// import seamless from "../images/seamless.png"
 import ride from '../images/ridenew.png'
 import reinvigorate from '../images/erpImg1.png'
 import scale from "../images/e-commerce1.png"
@@ -59,6 +59,8 @@ import RiskDetails from '../components/RiskDetails.jsx';
 const Home = () => {
 
     const [showInsuranceDetailModal, setInsuranceDetailModal] = useState(false);
+
+    const [homeData, sethomeData] = useState(null);
 
     const [activePackage, setActivePackage] = useState('');
 
@@ -135,6 +137,26 @@ const Home = () => {
         });
         AOS.refresh();
     }, []);
+
+
+    //fetch api for homepage data
+    useEffect(() => {
+        const fetchhomeData = async () => {
+            try {
+                const response = await fetch('https://doshcms.interactivedigital.com.gh/api/show-home-sections');
+                const data = await response.json();
+                console.log('home Data:', data);
+                sethomeData(data[0]);
+            } catch (error) {
+                console.error('Error fetching home data:', error);
+            }
+        };
+        fetchhomeData();
+    }, []);
+
+    if (!homeData) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className='main__hero'>
@@ -493,14 +515,8 @@ const Home = () => {
                 <div className='container home__student'>
                     <div className='home__student-left'>
                         <h4>HEALTH INSURANCE SERVICES:</h4>
-                        <h3 className="elevate">Elevate your healthcare experience</h3>
-                        <p>
-                            Take control of your healthcare the DOSH way. DOSH Health Insurance is
-                            an all-inclusive service that provides coverage for medical consultations,
-                            surgical care, dental care, optical care, and prescription medication.
-                            We have a vast network of accredited service providers that
-                            ensure access to medical care, whenever and wherever you need it.
-                        </p>
+                        <h3 className="elevate" dangerouslySetInnerHTML={{ __html: homeData.health_insurance_caption }} />
+                        <p dangerouslySetInnerHTML={{ __html: homeData.health_insurance_body }} />
                         <Link onClick={() => { setInsuranceDetailModal(true) }}>
                             Read more
                             <svg
@@ -519,7 +535,10 @@ const Home = () => {
                         </Link>
                     </div>
                     <div data-aos="zoom-in-left" className='home__student-right'>
-                        <img src={elevate2} alt='student' loading='lazy' />
+                        <img
+                            src={homeData?.health_insurance_image ? `https://doshcms.interactivedigital.com.gh/${homeData.health_insurance_image}` : "assets/elevate.png"}
+                            alt=''
+                            loading='lazy' />
                     </div>
                 </div>
                 {showInsuranceDetailModal && <InsuranceDetails onClose={() => setInsuranceDetailModal(false)} />}
@@ -529,19 +548,15 @@ const Home = () => {
             <section id='money' className='money__section'>
                 <div className='container home__money'>
                     <div data-aos="zoom-in-right" className='home__money-left'>
-                        <img src={money} alt='student' loading='lazy' />
+                        <img
+                            src={homeData?.finance_image ? `https://doshcms.interactivedigital.com.gh/${homeData.finance_image}` : "assets/elevate.png"}
+                            alt='student'
+                            loading='lazy' />
                     </div>
                     <div className='home__money-right'>
                         <h4>FINANCIAL SERVICES:</h4>
-                        <h3>Make your money<br /> work for you</h3>
-                        <p>
-                            DOSH Finance provides access to personalized financial solutions,
-                            including financial advisory, investment guidance, and wealth
-                            management services. We provide you and your business with the tools
-                            and expertise to achieve your financial objectives. Secure long-term
-                            financial stability as you experience unparalleled growth with the unique
-                            DOSH approach.
-                        </p>
+                        <h3 className='' dangerouslySetInnerHTML={{ __html: homeData.finance_caption }} />
+                        <p dangerouslySetInnerHTML={{ __html: homeData.finance_body }} />
                         <Link onClick={() => { setShowFinanceDetailModal(true) }}>Read more
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -566,11 +581,8 @@ const Home = () => {
                 <div className='container home__digital'>
                     <div className='home__digital-left'>
                         <h4>DOSH RISK:</h4>
-                        <h3>An Affordable Way to <br />Protect What Matters</h3>
-                        <p>
-                            DOSH Risk helps you navigate the complexities of insurance options. We are a top-class brokerage service that assists you in finding the perfect policies and insurers for general insurance, life insurance, or health insurance.
-                            With our strong industry relationships and team of experts, we deliver solutions and guarantee satisfaction, all at 5% minimum lower premiums than the market average.
-                        </p>
+                        <h3 dangerouslySetInnerHTML={{ __html: homeData.risk_caption }} />
+                        <p dangerouslySetInnerHTML={{ __html: homeData.risk_body }} />
                         <Link onClick={() => { setShowRiskModal(true) }} className='linkers'>Read More
                             {/*<svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -588,7 +600,10 @@ const Home = () => {
                         </Link>
                     </div>
                     <div data-aos="zoom-in-left" className='home__digital-right'>
-                        <img src={seamless} alt='digital' loading='lazy' />
+                        <img
+                            src={homeData?.risk_image ? `https://doshcms.interactivedigital.com.gh/${homeData.risk_image}` : "assets/elevate.png"}
+                            alt='digital'
+                            loading='lazy' />
                     </div>
                 </div>
                 {showRiskModal && <RiskDetails onClose={() => setShowRiskModal(false)} />}
@@ -598,18 +613,14 @@ const Home = () => {
             <section id='ride' className='ride__section'>
                 <div className='container ride__adventure'>
                     <div data-aos="zoom-in-right" className='home__ride-left'>
-                        <img src={ride} alt='ride' loading='lazy' />
+                        <img
+                            src={homeData?.ride_image ? `https://doshcms.interactivedigital.com.gh/${homeData.ride_image}` : "assets/elevate.png"}
+                            alt='ride' loading='lazy' />
                     </div>
                     <div className='home__ride-right'>
                         <h4>RIDE SERVICES:</h4>
-                        <h3>Where safety<br />
-                            meets adventure</h3>
-                        <p>
-                            In our fast-paced world, DOSH Ride redefines transportation excellence.
-                            With every booking, you enjoy secure travel, professional drivers,
-                            and comfortable vehicles. At DOSH Ride, our goal is to ensure that every
-                            journey is an extraordinary experience!
-                        </p>
+                        <h3 dangerouslySetInnerHTML={{ __html: homeData.ride_caption }} />
+                        <p dangerouslySetInnerHTML={{ __html: homeData.ride_body }} />
                         <Link className='linkers'>Coming Soon
                             {/*<svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -634,16 +645,8 @@ const Home = () => {
                 <div className='container home__digital'>
                     <div className='home__digital-left'>
                         <h4>ERP SERVICES:</h4>
-                        <h3>Reinvigorate your<br />
-                            business</h3>
-                        <p>
-                            Successful business enterprises are built on efficiency, agility, and proper
-                            organization. Our comprehensive software will streamline your business
-                            operations, bolster your supply chain management, optimize your human
-                            resources, and unleash the full potential of your work processes. With
-                            DOSH ERP solutions, your business will ignite growth and propel you to
-                            unprecedented success.
-                        </p>
+                        <h3 dangerouslySetInnerHTML={{ __html: homeData.erp_caption }} />
+                        <p dangerouslySetInnerHTML={{ __html: homeData.erp_body }} />
                         <Link>Coming Soon
                             {/*<svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -661,7 +664,9 @@ const Home = () => {
                         </Link>
                     </div>
                     <div data-aos="zoom-in-left" className='home__digital2-right'>
-                        <img src={reinvigorate} alt='digital' loading='lazy' />
+                        <img
+                            src={homeData?.erp_image ? `https://doshcms.interactivedigital.com.gh/${homeData.erp_image}` : "assets/elevate.png"}
+                            alt='digital' loading='lazy' />
                     </div>
                 </div>
 
@@ -670,20 +675,14 @@ const Home = () => {
             <section id='lastride' className='ride__section'>
                 <div className='container ride__adventure'>
                     <div className='home__ride2-left'>
-                        <img data-aos="zoom-in-right" src={scale} alt='ride' loading='lazy' />
+                        <img data-aos="zoom-in-right"
+                            src={homeData?.commerce_image ? `https://doshcms.interactivedigital.com.gh/${homeData.commerce_image}` : "assets/elevate.png"}
+                            alt='ride' loading='lazy' />
                     </div>
                     <div className='home__ride2-right'>
                         <h4>E-COMMERCE SERVICES:</h4>
-                        <h3>Scale to new heights<br />
-                            reach new markets</h3>
-                        <p>
-                            DOSH e-commerce is your gateway to unrivaled success
-                            in the digital world. Unleash the full potential of
-                            your business in the DOSH e-commerce marketplace.
-                            Leverage our vast customer base, effortless inventory
-                            management systems, optimized returns processes,
-                            and delivery systems.
-                        </p>
+                        <h3 dangerouslySetInnerHTML={{ __html: homeData.commerce_caption }} />
+                        <p dangerouslySetInnerHTML={{ __html: homeData.commerce_body }} />
                         <Link>Coming Soon
                             {/*<svg
                                 xmlns="http://www.w3.org/2000/svg"
