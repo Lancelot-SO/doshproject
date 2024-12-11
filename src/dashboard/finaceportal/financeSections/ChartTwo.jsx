@@ -56,8 +56,8 @@ const ChartTwo = () => {
     };
 
     return (
-        <div className="bg-black p-4 rounded-xl w-[300px] h-[350px] shadow-lg relative">
-            <h3 className="text-white text-lg font-semibold mb-2">My Expense</h3>
+        <div className="bg-black p-4 rounded-xl lg:w-[300px] w-[380px] h-[350px] shadow-lg relative">
+            <h3 className="text-white text-lg font-semibold mb-2">My Expenses</h3>
             <div className="relative bg-gradient-to-br from-gray-700 to-gray-800 p-4 rounded-lg w-full h-[270px]">
                 <Bar data={data} options={options} />
                 <div className="text-white text-sm absolute top-[10%] right-6 transform -translate-y-1/2">

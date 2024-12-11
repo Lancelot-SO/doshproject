@@ -57,7 +57,7 @@ const InsurancePage = () => {
                             <div className='flex lg:gap-[40px] gap-2'>
                                 <div className='lg:w-[297px] w-[200px] h-[80px] flex rounded-[20px] gap-1 items-center justify-center'
                                     style={{ background: 'linear-gradient(126.97deg, rgba(20, 23, 24, 0.74) 28.26%, #141718 91.2%)' }}>
-                                    <div className='lg:w-[200px] w-[120px] h-[70px] mb-4 flex flex-col gap-5'>
+                                    <div className='lg:w-[200px] w-[120px] h-[70px] mb-4 flex flex-col gap-5 py-1'>
                                         <small className='text-[#A0AEC0] w-[63px] h-[12px] font-bold lg:text-sm text-[12px]'>Inpatient</small>
                                         <div className='lg:w-[168px] w-full lg:h-[44px]'>
                                             <div className='flex items-center justify-between'>
@@ -77,7 +77,7 @@ const InsurancePage = () => {
 
                                 <div className='lg:w-[297px] w-[200px] h-[80px] flex rounded-[20px] gap-1 items-center justify-center'
                                     style={{ background: 'linear-gradient(126.97deg, rgba(20, 23, 24, 0.74) 28.26%, #141718 91.2%)' }}>
-                                    <div className='lg:w-[200px] w-[120px] h-[70px] mb-4 flex flex-col gap-5'>
+                                    <div className='lg:w-[200px] w-[120px] h-[70px] mb-4 flex flex-col gap-5 py-1'>
                                         <small className='text-[#A0AEC0] w-[63px] h-[12px] font-bold lg:text-sm text-[12px]'>Medication</small>
                                         <div className='lg:w-[168px] w-full lg:h-[44px]'>
                                             <div className='flex items-center justify-between'>
@@ -98,7 +98,7 @@ const InsurancePage = () => {
                             <div className="flex lg:gap-[40px] gap-2">
                                 <div className='lg:w-[297px] w-[200px] h-[80px] flex rounded-[20px] gap-1 items-center justify-center'
                                     style={{ background: 'linear-gradient(126.97deg, rgba(20, 23, 24, 0.74) 28.26%, #141718 91.2%)' }}>
-                                    <div className='lg:w-[200px] w-[120px] h-[70px] mb-4 flex flex-col gap-5'>
+                                    <div className='lg:w-[200px] w-[120px] h-[70px] mb-4 flex flex-col gap-5 py-1'>
                                         <small className='text-[#A0AEC0] w-[83px] h-[12px] font-bold lg:text-sm text-[12px]'>Out Patient</small>
                                         <div className='lg:w-[168px] w-full lg:h-[44px]'>
                                             <div className='flex items-center justify-between'>
@@ -117,7 +117,7 @@ const InsurancePage = () => {
                                 </div>
                                 <div className='lg:w-[297px] w-[200px] h-[80px] flex rounded-[20px] gap-1 items-center justify-center'
                                     style={{ background: 'linear-gradient(126.97deg, rgba(20, 23, 24, 0.74) 28.26%, #141718 91.2%)' }}>
-                                    <div className='lg:w-[200px] w-[120px] h-[70px] mb-4 flex flex-col gap-5'>
+                                    <div className='lg:w-[200px] w-[120px] h-[70px] mb-4 flex flex-col gap-5 py-1'>
                                         <small className='text-[#A0AEC0] w-[63px] h-[12px] font-bold lg:text-sm text-[12px]'>Test</small>
                                         <div className='lg:w-[168px] w-full lg:h-[44px]'>
                                             <div className='flex items-center justify-between'>

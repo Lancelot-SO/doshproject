@@ -34,7 +34,7 @@ const UserProfile = () => {
     };
 
     return (
-        <div className='overflow-y-scroll h-full no-scrollbar'>
+        <div className='overflow-y-scroll overflow-x-hidden h-full no-scrollbar'>
             <div className="relative">
                 <img src={profilebg} alt='profile' className="w-full h-auto object-cover" loading='lazy' />
                 <div className="absolute inset-0 text-white p-4">
@@ -59,7 +59,7 @@ const UserProfile = () => {
                                         Back
                                     </button>
                                 ) : (
-                                    <div className="flex items-center gap-3">
+                                    <div className="flex lg:flex-row flex-col ml-2 lg:ml-0 items-center gap-3">
                                         <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/10">
                                             <img
                                                 src={profilepic}
@@ -75,7 +75,7 @@ const UserProfile = () => {
                                 )}
 
                                 {/* Right side - Buttons container */}
-                                <div className="bg-white rounded-full p-1 flex items-center gap-1">
+                                <div className="bg-white rounded-full p-1 flex items-center gap-1 mr-4 lg:mr-0">
                                     <button
                                         className={`px-4 py-1.5 rounded-full ${activeTab === 'profile' ? 'bg-[#A2875F] text-white' : 'text-[#1A1A1A]'} text-sm font-medium hover:bg-[#8F765A] transition-colors`}
                                         onClick={() => { setActiveTab('profile'); setIsEditing(false); }} // Set active tab to profile
@@ -105,7 +105,7 @@ const UserProfile = () => {
                                         border: '1px solid rgba(255, 255, 255, 0.15)', // Optional: add a subtle border for depth
                                     }}>
                                     <h2 className="text-lg text-white font-medium mb-6 border-b border-gray-800 pb-2">Edit Profile</h2>
-                                    <div className="flex gap-8">
+                                    <div className="flex lg:flex-row flex-col gap-8">
                                         {/* Profile Picture Section */}
                                         <div className="flex-shrink-0">
                                             <div className="relative">
@@ -117,7 +117,7 @@ const UserProfile = () => {
                                                     />
                                                 </div>
                                                 <button
-                                                    className="absolute bottom-0 right-0 rounded-full w-8 h-8 bg-[#B19470] hover:bg-[#9A815E] text-white flex items-center justify-center"
+                                                    className="absolute bottom-0 lg:right-0 right-52 rounded-full w-8 h-8 bg-[#B19470] hover:bg-[#9A815E] text-white flex items-center justify-center"
                                                 >
                                                     <FaUserEdit size={20} />
                                                 </button>
@@ -218,17 +218,17 @@ const UserProfile = () => {
                             </div>
                         ) : (
                             // Profile Details
-                            <div className="w-[1100px] h-auto ml-[75px] flex">
+                            <div className="lg:w-[1100px] w-full h-full lg:h-auto ml-[75px] flex lg:flex-row flex-col">
                                 {/* Existing profile details code */}
                                 <div className=' w-[290px] pt-8 h-full flex flex-col'>
                                     <strong className="text-white">DOSH Account: 233 209505045</strong>
                                     <span className='text-white opacity-50'>Account Status: Available<br />
                                         DOSH Score: 300</span>
                                 </div>
-                                <div className=' w-[125px] p-8 h-full'>
+                                <div className=' w-[125px] lg:p-8 h-full'>
                                     <button><FaUserEdit className='text-white' /></button>
                                 </div>
-                                <div className=' w-[325px] h-full p-8 text-white'>
+                                <div className=' w-[325px] h-full lg:p-8 text-white'>
                                     <div className="space-y-2">
                                         <div>
                                             <span className="font-bold">Full Name: </span>
@@ -254,7 +254,7 @@ const UserProfile = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className=' w-[360px] p-8 h-full text-white'>
+                                <div className=' w-[360px] lg:p-8 h-full text-white'>
                                     <div className="space-y-2">
                                         <div>
                                             <span className="font-bold">Address Line1: </span>

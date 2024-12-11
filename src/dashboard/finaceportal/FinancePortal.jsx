@@ -8,8 +8,8 @@ import "../Dashboard.css"
 
 const FinancePortal = () => {
     return (
-        <div className="relative flex gap-[80px] w-full h-full bg-[#242424] p-4 overflow-auto no-scrollbar">
-            <div className="w-[817px] h-full flex flex-col gap-4">
+        <div className="relative flex flex-col lg:flex-row lg:gap-[80px] w-full h-full bg-[#242424] p-4 lg:overflow-auto overflow-x-hidden no-scrollbar">
+            <div className="w-[817px] h-auto flex flex-col gap-4">
                 <TopSection />
                 <MiddleSection />
                 <Transactions />
@@ -18,7 +18,7 @@ const FinancePortal = () => {
                 <RightSideSection />
             </div>
 
-            <div className='fixed top-30 right-0'>
+            <div className='fixed top-30 right-0 z-50'>
                 <QuickActions />
             </div>
         </div>

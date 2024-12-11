@@ -77,8 +77,8 @@ const Footer = () => {
                         >
                             <FaTimes size={24} />
                         </button>
-                        <h2 className="text-2xl font-bold mb-4">DOSH Services Ghana Limited Privacy Statement</h2>
-                        <p className="mb-4">DOSH Services Ghana Limited values your privacy and is committed to protecting your personal information.
+                        <h2 className="text-2xl font-bold mb-4">DOSH Privacy Statement</h2>
+                        <p className="mb-4">DOSH values your privacy and is committed to protecting your personal information.
                             This Privacy Statement explains how we collect, use, and safeguard your data when you visit our website or use our services.</p>
                         <h3 className="text-xl font-semibold mb-2">Information We Collect</h3>
                         <p className="mb-4">We may collect personal information such as your name, contact details, financial data, and other information you provide directly to us.</p>

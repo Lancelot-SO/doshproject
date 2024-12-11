@@ -100,7 +100,6 @@ const Sidebar = ({ activeMenu, onSubmenuClick, onProfileClick }) => {
                         <span className="text-sm">Privacy Policy</span>
                     </div>
 
-                    {showPrivacyPopup && <PrivacyPolicy onClose={togglePrivacyPopup} />}
 
                 </div>
 
@@ -108,7 +107,7 @@ const Sidebar = ({ activeMenu, onSubmenuClick, onProfileClick }) => {
         }
         // Default content for other menus
         return (
-            <div className='flex flex-col justify-between lg:h-full h-[90%] px-4 lg:px-0'>
+            <div className='flex flex-col justify-between lg:h-full h-[80%] px-4 lg:px-0'>
                 <div>
                     <h2 className="text-[14px] font-bold mb-2">PAGES</h2>
                     <div
@@ -159,10 +158,9 @@ const Sidebar = ({ activeMenu, onSubmenuClick, onProfileClick }) => {
 
                     <div
                         onClick={togglePrivacyPopup}
-                        className={`flex items-center gap-2 mt-2 p-2 rounded cursor-pointer`}
-                    >
-                        <MdPrivacyTip size={16} />
-                        <span>Privacy Policy</span>
+                        className="flex items-center gap-2 p-2 text-white cursor-pointer rounded-md hover:bg-gray-700">
+                        <MdPrivacyTip className="text-xl" />
+                        <span className="text-sm">Privacy Policy</span>
                     </div>
                 </div>
 
@@ -176,10 +174,9 @@ const Sidebar = ({ activeMenu, onSubmenuClick, onProfileClick }) => {
                         <span>Refer a Friend</span>
                         <span className='text-[11px] w-[138px] h-[32px] leading-4 font-semibold text-left'>Increase your earnings with more referrals</span>
                     </button>
-                </div>
 
-                {showPrivacyPopup && <PrivacyPolicy onClose={togglePrivacyPopup} />}
-                {showReferralPopup && <ReferralPopup onClose={toggleReferralPopup} />}
+
+                </div>
             </div>
         );
     };
@@ -218,6 +215,17 @@ const Sidebar = ({ activeMenu, onSubmenuClick, onProfileClick }) => {
                         <span className="text-[12px] font-semibold">DOSH Dashboard</span>
                     </div>
                 </div>
+                {/* Profile Section */}
+                <div
+                    onClick={() => {
+                        onProfileClick(); // Navigate to profile page
+                        if (isMobileSidebarOpen) toggleMobileSidebar(); // Close the sidebar for mobile
+                    }}
+                    className="flex mb-4 items-center pb-2 border-b border-white cursor-pointer">
+                    <img src={profilepic} alt="User avatar" className="w-8 h-8 rounded-full mr-2" />
+                    <span>Alex Jerry Sam</span>
+                    <ChevronDown className="ml-auto" size={16} />
+                </div>
                 {/* Sidebar Links */}
                 {renderSidebarContent()}
             </div>
@@ -231,6 +239,8 @@ const Sidebar = ({ activeMenu, onSubmenuClick, onProfileClick }) => {
                     <FaBars size={20} />
                 </button>
             )}
+            {showPrivacyPopup && <PrivacyPolicy onClose={togglePrivacyPopup} />}
+            {showReferralPopup && <ReferralPopup onClose={toggleReferralPopup} />}
         </>
     );
 };

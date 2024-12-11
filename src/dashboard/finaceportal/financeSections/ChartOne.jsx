@@ -1,6 +1,15 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -15,7 +24,7 @@ const ChartOne = () => {
                 backgroundColor: 'rgba(162, 134, 95, 0.5)', // Semi-transparent gold fill
                 borderWidth: 2,
                 tension: 0.4,
-                fill: "origin", // Enable the background fill
+                fill: 'origin', // Enable the background fill
             },
             {
                 label: 'White Line',
@@ -62,10 +71,10 @@ const ChartOne = () => {
     };
 
     return (
-        <div className="bg-[#161717] w- p-6 rounded-lg">
-            <div className="flex justify-between items-center mb-4">
-                <h2 className="text-white text-xl font-semibold">Transactions</h2>
-                <div className="flex space-x-2">
+        <div className="bg-[#161717] w-[380px] p-4 rounded-lg lg:w-[521px]">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4">
+                <h2 className="text-white text-lg font-semibold sm:text-xl">Transactions</h2>
+                <div className="flex space-x-2 mt-2 sm:mt-0">
                     <div className="relative">
                         <svg
                             className="w-4 h-4 text-white absolute left-2 top-1/2 transform -translate-y-1/2"
@@ -81,11 +90,11 @@ const ChartOne = () => {
                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                             ></path>
                         </svg>
-                        <select className="bg-gray-800 text-white pl-8 pr-3 py-1 rounded appearance-none">
+                        <select className="bg-gray-800 text-white pl-8 pr-3 py-1 rounded appearance-none text-sm">
                             <option>2022</option>
                         </select>
                     </div>
-                    <button className="bg-[#A2865F] text-white px-3 py-1 rounded flex items-center">
+                    <button className="bg-[#A2865F] text-white px-3 py-1 rounded flex items-center text-sm">
                         <svg
                             className="w-4 h-4 mr-1"
                             fill="none"
@@ -104,7 +113,7 @@ const ChartOne = () => {
                     </button>
                 </div>
             </div>
-            <div className="h-64">
+            <div className="h-56 sm:h-64">
                 <Line data={data} options={options} />
             </div>
         </div>

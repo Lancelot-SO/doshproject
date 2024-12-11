@@ -47,11 +47,12 @@ export default function DoshPay() {
     return (
         <div className="w-[1260px] h-[630px] flex items-center justify-center max-w-full mx-auto bg-black rounded-[36px] relative overflow-hidden overflow-x-hidden">
             <div className="relative flex items-center justify-center w-[999px] h-[546px] bg-[#171616] rounded-[30px]">
-                <div className="absolute bottom-0 right-4">
+                <div className="hidden absolute bottom-0 right-4">
                     <img src={blurry} alt="blur" loading="lazy" />
                 </div>
 
-                <div className="w-[720px] h-[500px] bg-black z-50">
+                <div className="lg:w-[720px] w-[370px] lg:h-[500px] h-[550px] bg-black z-50">
+
                     <div className="flex flex-col gap-4 px-4">
                         <div className="w-full border-b">
                             <ul className="flex justify-around text-sm pt-2">
@@ -87,7 +88,7 @@ export default function DoshPay() {
                         </div>
 
                         <div className="flex items-center justify-between">
-                            <div className="flex flex-col gap-8 px-8 items-start justify-center w-[250px] h-[300px]">
+                            <div className="hidden lg:flex flex-col gap-8 px-8 items-start justify-center w-[250px] h-[300px]">
                                 <div>
                                     <img src={doshtemp} alt="Icon" className="w-20 h-20" />
                                 </div>
@@ -97,8 +98,9 @@ export default function DoshPay() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-[1px] h-[200px] bg-white"></div>
-                            <div className="w-[420px] h-[350px] pl-[50px]">
+
+                            <div className=" hidden lg:flex w-[1px] h-[200px] bg-white"></div>
+                            <div className="lg:w-[420px] w-full h-[350px] pl-4 lg:pl-[50px]">
                                 <div className="flex-1 pl-6 overflow-auto">
                                     {formType === "DOSH Till" && (
                                         <div>

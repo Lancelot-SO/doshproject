@@ -38,7 +38,7 @@ const LinkAccount = () => {
     return (
         <div>
             {/* Link Account Section */}
-            <div className="w-[1260px] h-[630px] max-w-full mx-auto border border-gray-500 bg-gray-900 rounded-[36px] overflow-hidden overflow-x-hidden relative">
+            <div className="lg:w-[1260px] w-[100%] lg:h-[630px] h-[100vh] max-w-full mx-auto border border-gray-500 bg-gray-900 rounded-[36px] overflow-hidden overflow-x-hidden relative">
                 {/* Gradient overlay */}
                 <div
                     className=""
@@ -84,7 +84,7 @@ const LinkAccount = () => {
 
                 {/* Wallet Form Modal */}
                 {isModalOpen && (
-                    <div className="absolute inset-0 flex items-center justify-center z-50">
+                    <div className="absolute inset-0 flex items-center justify-center z-20">
                         {/* Blurry Background */}
                         <div className="absolute bottom-24 right-4 blurry bg-white rounded-full opacity-50"></div>
 
@@ -110,7 +110,7 @@ const LinkAccount = () => {
 
                                     {/* Conditionally render provider options based on OTP verification */}
                                     {otpVerified && (
-                                        <div className="space-y-2">
+                                        <div className="space-y-2 hidden lg:block">
                                             {[
                                                 { name: "MTN", date: "May 24, 2022", icon: "📱" },
                                                 { name: "Vodafone", date: "May 24, 2022", icon: "📞" },
@@ -134,7 +134,7 @@ const LinkAccount = () => {
                                 </div>
 
                                 {/* Form or OTP Section */}
-                                <div className="p-6 bg-white/5 backdrop-blur-lg border-white/10 w-full md:w-1/2 max-w-md rounded-lg">
+                                <div className="p-6 bg-white/5 backdrop-blur-lg border-white/10 lg:h-full h-[400px] lg:overflow-hidden overflow-y-scroll w-full md:w-1/2 max-w-md rounded-lg">
                                     {!showOtp ? (
                                         <div className="space-y-6">
                                             <div className="space-y-2">
@@ -206,6 +206,7 @@ const LinkAccount = () => {
                         </div>
                     </div>
                 )}
+
             </div>
             <div className='fixed top-[100px] right-0'>
                 <QuickActions />

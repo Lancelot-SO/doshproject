@@ -125,7 +125,7 @@ export default function RightSideSection() {
     };
 
     return (
-        <div className="bg-[#161717] text-white p-6 rounded-lg w-[307px] h-auto mx-auto flex flex-col">
+        <div className="bg-[#161717] text-white p-6 rounded-lg lg:w-[307px] h-auto lg:mx-auto flex flex-col">
             {/* Dropdown */}
             <Dropdown
                 title="Select Category"
@@ -144,7 +144,7 @@ export default function RightSideSection() {
                 {financialItems.map((item, index) => (
                     <div
                         key={index}
-                        className="flex items-center w-[261px] rounded-[16px] h-[80px] bg-[#242424] space-x-4 px-2"
+                        className="flex items-center lg:w-[261px] rounded-[16px] h-[80px] bg-[#242424] space-x-4 px-2"
                     >
                         <div
                             className={`w-10 h-10 rounded-md flex items-center justify-center ${item.color}`}

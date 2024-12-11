@@ -35,15 +35,17 @@ const Dependent = () => {
                 ></div>
 
                 {/* Add Dependent button */}
-                <button
-                    onClick={handleAddDependentClick}
-                    className="absolute top-4 right-4 text-white flex items-center gap-2 text-sm font-bold py-2 px-4 rounded-full z-10"
-                    style={{
-                        background: 'linear-gradient(251.21deg, #987C55 0%, #D0B58C 100%)',
-                    }}
-                >
-                    Add Dependent <FaPlus />
-                </button>
+                {!showAddDependent && ( // Only show the button when the modal is not open
+                    <button
+                        onClick={handleAddDependentClick}
+                        className="absolute top-4 right-4 text-white flex items-center gap-2 text-sm font-bold py-2 px-4 rounded-full z-10"
+                        style={{
+                            background: 'linear-gradient(251.21deg, #987C55 0%, #D0B58C 100%)',
+                        }}
+                    >
+                        Add Dependent <FaPlus />
+                    </button>
+                )}
 
                 {/* Cards section */}
                 {formSubmitted && (

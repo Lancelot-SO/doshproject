@@ -4,7 +4,6 @@ import {
     Line,
     AreaChart,
     Area,
-    CartesianGrid,
     XAxis,
     YAxis,
     Tooltip,

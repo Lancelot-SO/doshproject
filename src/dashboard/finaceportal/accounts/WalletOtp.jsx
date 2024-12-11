@@ -93,8 +93,8 @@ export default function WalletOtp({ onOtpVerification }) {
                 </div>
             ) : (
                 // Add Wallet Form
-                <div className="p-6 ">
-                    <div className="space-y-6">
+                <div className="p-6">
+                    <div className="space-y-6 h-[400px]">
                         <div className="space-y-2">
                             <h3 className="text-xl font-medium text-white flex items-center gap-2">
                                 <span className="text-2xl">+</span> Add Wallet

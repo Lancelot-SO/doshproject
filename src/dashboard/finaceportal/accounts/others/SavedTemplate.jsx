@@ -7,6 +7,7 @@ import QuickActions from "../../quickActions/QuickActions";
 export default function SavedTemplate() {
     const [showConfirmation, setShowConfirmation] = useState(false); // To manage popup visibility
     const [pin, setPin] = useState("");
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     const [showPinPopup, setShowPinPopup] = useState(false); // New state for showing PIN popup
 
 
@@ -58,15 +59,16 @@ export default function SavedTemplate() {
             ></div>
 
             {/* Content */}
-            <div className="relative flex items-center justify-center w-[999px] h-[546px] bg-[#171616] rounded-[30px]">
-                <div className="absolute bottom-0 right-4">
+            <div className="relative flex items-center justify-center lg:w-[999px] w-full h-[546px] bg-[#171616] rounded-[30px]">
+                <div className="hidden absolute bottom-0 right-4">
                     <img src={blurry} alt="blur" loading="lazy" />
                 </div>
 
                 <div className="w-[720px] h-[400px] bg-[#000000] bg-opacity-25 rounded-lg">
                     <div className="flex flex-col gap-4 px-4">
                         <div className="w-full border-b">
-                            <ul className="flex justify-around text-sm pt-2">
+                            {/* Large screen tabs */}
+                            <ul className="hidden sm:flex justify-around text-sm pt-2">
                                 <li
                                     className={`cursor-pointer text-white border-b-4 ${formType === "loadMoney" ? "border-[#d4a373] text-[#d4a373]" : "border-transparent"}`}
                                     onClick={() => setFormType("loadMoney")}
@@ -85,14 +87,104 @@ export default function SavedTemplate() {
                                 >
                                     Bulk Disbursements
                                 </li>
-                                <li className="cursor-pointer text-white border-b-4 border-transparent">Utilities</li>
-                                <li className="cursor-pointer text-white border-b-4 border-transparent">Airtime / Bundles</li>
+                                <li className="text-white border-b-4 border-transparent cursor-not-allowed">Utilities</li>
+                                <li className="text-white border-b-4 border-transparent cursor-not-allowed">Airtime / Bundles</li>
                             </ul>
+
+                            {/* Mobile dropdown */}
+                            <div className="block sm:hidden">
+                                <div
+                                    className="flex justify-between items-center text-sm text-[#d4a373] py-2 px-4 bg-gray-800 cursor-pointer border-b border-[#d4a373]"
+                                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                                >
+                                    <span>
+                                        {formType === "loadMoney"
+                                            ? "Load Money"
+                                            : formType === "transferMoney"
+                                                ? "Transfer Money"
+                                                : formType === "bulkDisbursements"
+                                                    ? "Bulk Disbursements"
+                                                    : "Select Option"}
+                                    </span>
+                                    <svg
+                                        className={`w-5 h-5 transform ${dropdownOpen ? "rotate-180" : "rotate-0"}`}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </div>
+                                {dropdownOpen && (
+                                    <ul className="bg-gray-800 text-white absolute z-30 w-full">
+                                        {/* Render items excluding the current formType */}
+                                        {formType !== "loadMoney" && (
+                                            <li
+                                                className="py-2 px-4 hover:bg-gray-700"
+                                                onClick={() => {
+                                                    setFormType("loadMoney");
+                                                    setDropdownOpen(false);
+                                                }}
+                                            >
+                                                Load Money
+                                            </li>
+                                        )}
+                                        {formType !== "transferMoney" && (
+                                            <li
+                                                className="py-2 px-4 hover:bg-gray-700"
+                                                onClick={() => {
+                                                    setFormType("transferMoney");
+                                                    setDropdownOpen(false);
+                                                }}
+                                            >
+                                                Transfer Money
+                                            </li>
+                                        )}
+                                        {formType !== "bulkDisbursements" && (
+                                            <li
+                                                className="py-2 px-4 hover:bg-gray-700"
+                                                onClick={() => {
+                                                    setFormType("bulkDisbursements");
+                                                    setDropdownOpen(false);
+                                                }}
+                                            >
+                                                Bulk Disbursements
+                                            </li>
+                                        )}
+                                        {formType !== "utilities" && (
+                                            <li
+                                                className="py-2 px-4 hover:bg-gray-700 cursor-not-allowed"
+                                                onClick={() => {
+                                                    setFormType("utilities");
+                                                    setDropdownOpen(false);
+                                                }}
+                                            >
+                                                Utilities
+                                            </li>
+                                        )}
+                                        {formType !== "airtimeBundles" && (
+                                            <li
+                                                className="py-2 px-4 hover:bg-gray-700 cursor-not-allowed"
+                                                onClick={() => {
+                                                    setFormType("airtimeBundles");
+                                                    setDropdownOpen(false);
+                                                }}
+                                            >
+                                                Airtime / Bundles
+                                            </li>
+                                        )}
+                                    </ul>
+                                )}
+                            </div>
+
+
                         </div>
 
 
+
                         <div className="flex items-center justify-between">
-                            <div className="flex flex-col gap-8 px-8 items-start justify-center w-[250px] h-[300px]">
+                            <div className="hidden lg:flex flex-col gap-8 px-8 items-start justify-center w-[250px] h-[300px]">
                                 <div className="">
                                     <img
                                         src={doshtemp}
@@ -106,12 +198,12 @@ export default function SavedTemplate() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-[1px] h-[200px] bg-white"></div>
-                            <div className="w-[420px] h-[350px] pl-[50px]">
+                            <div className="w-[1px] h-[200px] bg-white hidden lg:block"></div>
+                            <div className="lg:w-[420px] w-[75%] h-[350px] lg:pl-[50px] pl-0">
                                 <div className="flex-1 pl-6 overflow-auto">
                                     {formType === "loadMoney" && (
                                         <div>
-                                            <form className="w-3/4" onSubmit={handleSubmit}>
+                                            <form className="lg:w-3/4 w-full" onSubmit={handleSubmit}>
                                                 <div>
                                                     <label className="block text-xs mb-1">Destination wallet</label>
                                                     <div className="relative">
@@ -472,7 +564,7 @@ export default function SavedTemplate() {
                     </div>
                 </div>
             </div>
-            <div className='fixed lg:top-[100px] top-[190px] right-0 z-50'>
+            <div className='fixed lg:top-[100px] top-[190px] right-0 z-30'>
                 <QuickActions />
             </div>
         </div>

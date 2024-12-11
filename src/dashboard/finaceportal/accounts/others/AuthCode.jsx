@@ -61,7 +61,7 @@ export default function AuthCode() {
 
             {/* Form Popup */}
             {isPopupOpen && (
-                <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 z-20">
+                <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 z-40">
                     <div className="bg-[#2C2C2C] w-[90%] max-w-sm rounded-lg p-3 shadow-lg relative">
                         {/* Header */}
                         <div className="flex justify-between items-center mb-3">
@@ -161,7 +161,7 @@ export default function AuthCode() {
             {/* Confirmation Popup */}
             {isConfirmationPopupOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                    <div className="bg-white rounded-lg shadow-lg sm:max-w-[425px] w-full p-6 ml-[200px]">
+                    <div className="bg-white rounded-lg shadow-lg sm:max-w-[425px] w-full p-6 lg:ml-[200px]">
                         <div className="flex justify-between items-center border-b pb-4">
                             <h2 className="text-lg font-semibold">Confirmation</h2>
                             <button
@@ -258,7 +258,7 @@ export default function AuthCode() {
                 </div>
             )}
 
-            <div className='fixed lg:top-[100px] top-[190px] right-0 z-50'>
+            <div className='fixed lg:top-[100px] top-[190px] right-0 z-30'>
                 <QuickActions />
             </div>
         </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import pendingImg from "../../../images/dashboard/claims/pendingImg.png";
 import AddRefer from "./AddRefer";
+import QuickActions from "../quickActions/QuickActions";
 
 export default function Refer() {
     const [showAddRefer, setShowAddRefer] = useState(false);
@@ -49,6 +50,9 @@ export default function Refer() {
 
                 {/* Popup */}
                 {showAddRefer && <AddRefer onClose={handleCloseAddRefer} onSubmit={() => console.log("Form submitted")} />}
+            </div>
+            <div className='fixed lg:top-[100px] top-[190px] right-0 z-30'>
+                <QuickActions />
             </div>
         </div>
     );

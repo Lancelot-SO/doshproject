@@ -45,11 +45,11 @@ export default function Investments() {
     const formattedTime = currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // Format: HH:MM
 
     return (
-        <div className="overflow-y-scroll flex gap-4 no-scrollbar ">
+        <div className="overflow-y-scroll overflow-hidden flex lg:flex-row flex-col gap-4 no-scrollbar ">
             <div className='w-[900px]'>
-                <div className="relative flex w-[845px] h-[244px] bg-black rounded-3xl border border-gray-800 mx-4">
+                <div className="relative flex lg:w-[845px] w-[370px] h-[244px] bg-black rounded-3xl border border-gray-800 mx-4">
 
-                    <img src={investbg} alt='invest' className='absolute inset-0 object-cover bg-cover' loading='lazy' />
+                    <img src={investbg} alt='invest' className='absolute inset-0 w-full h-full object-cover bg-cover' loading='lazy' />
                     {/* Header */}
                     <div className='absolute top-2 left-2 flex flex-col'>
                         <div className="space-y-1 mb-4">
@@ -66,8 +66,9 @@ export default function Investments() {
                 <div className='mx-4 my-8'>
                     <h2 className='my-4 text-[20px] leading-5 text-white'>Dashboard</h2>
 
-                    <div className='flex flex-row gap-5'>
-                        <div className="card-container">
+                    <div className='flex flex-col md:flex-row gap-5'>
+                        {/* Card Section (Large Card) */}
+                        <div className="card-container md:w-[300px] md:h-[200px]">
                             {/* Top section with logo and business label */}
                             <div className="card-header">
                                 <div className="logo-section">
@@ -86,9 +87,7 @@ export default function Investments() {
                                     <div className="balance-label">Balance</div>
                                     <div className="balance-amount">GHS5,756</div>
                                 </div>
-
                             </div>
-
 
                             {/* Card number and contactless icon */}
                             <div className="card-number">
@@ -118,83 +117,90 @@ export default function Investments() {
                                 <img src={visaLogo} alt="Visa Logo" className="visa-logo" />
                             </div>
                         </div>
-                        <div className="flex flex-col w-[155px] h-[112px] bg-white rounded-lg shadow-md p-3">
-                            {/* Top Section */}
-                            <div className="flex items-center gap-2 mb-4">
-                                <img src={sendata} alt="graph icon" className="w-[25px] h-[33px]" loading="lazy" />
-                                <div>
-                                    <div className="text-[10px] font-medium text-gray-800">DOSH</div>
-                                    <div className="text-[10px] font-medium text-[#8D6E63]">Fixed Deposit</div>
-                                </div>
-                            </div>
 
-                            {/* Bottom Section */}
-                            <div className="flex items-center justify-between">
-                                <div className="flex flex-col">
-                                    <span className="text-[12px] text-[#8D6E63] font-semibold">GHS445.06</span>
-                                    <span className="text-[8px] text-gray-500">+3.23%(+GHS14.84)</span>
-                                </div>
-                                <div className="w-[30px] h-[30px] rounded-full bg-blue-50 flex items-center justify-center">
-                                    <BsArrowUpRightCircle className='text-[#718EBF]' />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="relative w-[155px] h-[112px]">
-                            {/* Card Content */}
-                            <div className="flex flex-col w-full h-full bg-white rounded-lg shadow-md p-3">
+                        <div className='flex lg:flex flex-row gap-10'>
+                            {/* Small Card 1 */}
+                            <div className="flex flex-col w-[155px] h-[112px] bg-white rounded-lg shadow-md p-3 mt-5 md:mt-0">
                                 {/* Top Section */}
                                 <div className="flex items-center gap-2 mb-4">
                                     <img src={sendata} alt="graph icon" className="w-[25px] h-[33px]" loading="lazy" />
                                     <div>
                                         <div className="text-[10px] font-medium text-gray-800">DOSH</div>
-                                        <div className="text-[10px] font-medium text-[#8D6E63]">Investments</div>
+                                        <div className="text-[10px] font-medium text-[#8D6E63]">Fixed Deposit</div>
                                     </div>
                                 </div>
 
                                 {/* Bottom Section */}
                                 <div className="flex items-center justify-between">
                                     <div className="flex flex-col">
-                                        <span className="text-[12px] text-[#8D6E63] font-semibold">GHS0.00</span>
+                                        <span className="text-[12px] text-[#8D6E63] font-semibold">GHS445.06</span>
                                         <span className="text-[8px] text-gray-500">+3.23%(+GHS14.84)</span>
                                     </div>
                                     <div className="w-[30px] h-[30px] rounded-full bg-blue-50 flex items-center justify-center">
-                                        <BsArrowUpRightCircle className="text-[#718EBF]" />
+                                        <BsArrowUpRightCircle className='text-[#718EBF]' />
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Overlay */}
-                            <div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg"></div>
+                            {/* Small Card 2 */}
+                            <div className="relative w-[155px] h-[112px] mt-5 md:mt-0">
+                                {/* Card Content */}
+                                <div className="flex flex-col w-full h-full bg-white rounded-lg shadow-md p-3">
+                                    {/* Top Section */}
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <img src={sendata} alt="graph icon" className="w-[25px] h-[33px]" loading="lazy" />
+                                        <div>
+                                            <div className="text-[10px] font-medium text-gray-800">DOSH</div>
+                                            <div className="text-[10px] font-medium text-[#8D6E63]">Investments</div>
+                                        </div>
+                                    </div>
+
+                                    {/* Bottom Section */}
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex flex-col">
+                                            <span className="text-[12px] text-[#8D6E63] font-semibold">GHS0.00</span>
+                                            <span className="text-[8px] text-gray-500">+3.23%(+GHS14.84)</span>
+                                        </div>
+                                        <div className="w-[30px] h-[30px] rounded-full bg-blue-50 flex items-center justify-center">
+                                            <BsArrowUpRightCircle className="text-[#718EBF]" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Overlay */}
+                                <div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
+
                 <div>
-                    <div className=" p-6 bg-gray-900 text-white w-[840px] h-[365px] rounded-lg shadow-lg mx-4">
+                    <div className="p-4 sm:p-6 bg-gray-900 text-white w-[370px] lg:w-[840px] h-[300px] sm:h-[365px] rounded-lg shadow-lg mx-4">
                         <div className="flex justify-between items-center mb-4">
                             <div className="flex items-center space-x-4">
                                 <div className="flex items-center space-x-2">
-                                    <div className="w-4 h-4 bg-yellow-500 rounded-full"></div>
-                                    <span>Profits</span>
+                                    <div className="w-3 h-3 sm:w-4 sm:h-4 bg-yellow-500 rounded-full"></div>
+                                    <span className="text-xs sm:text-sm">Profits</span>
                                 </div>
                                 <div className="flex items-center space-x-2">
-                                    <div className="w-4 h-4 bg-gray-500 rounded-full"></div>
-                                    <span>Cash bond</span>
+                                    <div className="w-3 h-3 sm:w-4 sm:h-4 bg-gray-500 rounded-full"></div>
+                                    <span className="text-xs sm:text-sm">Cash bond</span>
                                 </div>
                             </div>
                             <div className="flex items-center space-x-2">
-                                <span>From</span>
+                                <span className="text-xs sm:text-sm">From</span>
                                 <select
-                                    className="bg-gray-800 text-white p-2 rounded border border-gray-600"
+                                    className="bg-gray-800 text-white p-1 sm:p-2 rounded border border-gray-600 text-xs sm:text-sm"
                                     defaultValue="20 June"
                                 >
                                     <option value="20 June">20 June</option>
                                     <option value="21 June">21 June</option>
                                     <option value="22 June">22 June</option>
                                 </select>
-                                <span>To</span>
+                                <span className="text-xs sm:text-sm">To</span>
                                 <select
-                                    className="bg-gray-800 text-white p-2 rounded border border-gray-600"
+                                    className="bg-gray-800 text-white p-1 sm:p-2 rounded border border-gray-600 text-xs sm:text-sm"
                                     defaultValue="20 July"
                                 >
                                     <option value="20 July">20 July</option>
@@ -203,7 +209,7 @@ export default function Investments() {
                                 </select>
                             </div>
                         </div>
-                        <ResponsiveContainer width="100%" height={300}>
+                        <ResponsiveContainer width="100%" height={250}>
                             <LineChart data={data}>
                                 {/* Add the Cartesian grid */}
                                 <CartesianGrid stroke="#444" />
@@ -252,9 +258,10 @@ export default function Investments() {
                                 />
                             </LineChart>
                         </ResponsiveContainer>
-
                     </div>
                 </div>
+
+
             </div>
 
             <div className='w-[350px] h-[808px]'>

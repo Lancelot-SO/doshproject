@@ -79,7 +79,7 @@ export default function QuickActions() {
                     <div className="relative rounded-lg shadow-lg p-4 w-[900px] h-[600px]">
                         <button
                             onClick={closeDoshPay}
-                            className="absolute top-20 right-10 text-white bg-[#d4a373] rounded-full w-6 h-6 flex items-center justify-center z-50"
+                            className="absolute lg:top-20 top-4 lg:right-40 right-72 text-white bg-[#d4a373] rounded-full w-6 h-6 flex items-center justify-center z-50"
                         >
                             ✕
                         </button>
