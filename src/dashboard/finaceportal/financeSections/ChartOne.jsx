@@ -71,7 +71,7 @@ const ChartOne = () => {
     };
 
     return (
-        <div className="bg-[#161717] w-[380px] p-4 rounded-lg lg:w-[521px]">
+        <div className="bg-[#161717] w-[380px] smallS8:w-[320px] p-4 rounded-lg lg:w-[521px]">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4">
                 <h2 className="text-white text-lg font-semibold sm:text-xl">Transactions</h2>
                 <div className="flex space-x-2 mt-2 sm:mt-0">

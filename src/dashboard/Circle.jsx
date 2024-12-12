@@ -9,7 +9,8 @@ const Circle = ({ usedAmount = 500, totalAmount = 1000 }) => {
     const strokeDashoffset = ((100 - progress) / 100) * circumference;
 
     return (
-        <div className="p-4 rounded-3xl lg:w-[230px] w-[150px] lg:h-[230px] h-[150px] flex flex-col items-center justify-between">
+        <div className="p-4 rounded-3xl lg:w-[230px] w-[150px] lg:h-[230px] h-[150px]
+        flex flex-col items-center justify-between">
             <div className="relative lg:w-40 lg: w-32 h-32 lg:h-40">
                 <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                     <circle

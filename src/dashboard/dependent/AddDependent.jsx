@@ -49,8 +49,14 @@ export default function AddDependent({ onClose, onSubmit }) {
     };
 
     return (
-        <div className="absolute z-50 top-2 left-1/2 transform -translate-x-1/2 bg-gray-900 rounded-lg flex items-center justify-center p-2">
-            <div className="bg-gray-800 rounded-lg w-full max-w-xs relative">
+        <div className="absolute z-50 top-2 left-1/2 transform -translate-x-1/2 bg-gray-900 lg:w-[500px] w-full rounded-lg flex items-center justify-center p-2">
+            <div
+                className="bg-gray-800 rounded-lg w-full max-w-full relative"
+                style={{
+                    height: '80vh', // Take 90% of the viewport height
+                    maxHeight: '90vh', // Prevents the container from exceeding the viewport
+                }}
+            >
                 {/* Close button */}
                 <button
                     onClick={onClose}
@@ -76,9 +82,17 @@ export default function AddDependent({ onClose, onSubmit }) {
                             </div>
                         ))}
                     </div>
+                </div>
 
+                {/* Form Content */}
+                <div
+                    className="overflow-y-auto px-4 pb-4"
+                    style={{
+                        maxHeight: 'calc(90vh - 100px)', // Deduct header and padding
+                    }}
+                >
                     {/* Form */}
-                    <div className="bg-white rounded-lg p-4 max-h-[520px] overflow-y-auto">
+                    <div className="bg-white rounded-lg p-4 overflow-y-auto">
                         <div className="space-y-3">
                             {step === 1 && (
                                 <>
@@ -340,33 +354,7 @@ export default function AddDependent({ onClose, onSubmit }) {
                                         />
                                     </div>
 
-                                    <div>
-                                        <label className="block text-gray-700 text-xs font-medium mb-1">
-                                            Password
-                                        </label>
-                                        <input
-                                            type="password"
-                                            name="password"
-                                            value={formData.password}
-                                            onChange={handleInputChange}
-                                            placeholder="*******"
-                                            className="w-full px-2 py-1 border border-gray-300 rounded-md text-xs"
-                                        />
-                                    </div>
 
-                                    <div>
-                                        <label className="block text-gray-700 text-xs font-medium mb-1">
-                                            Confirm Password
-                                        </label>
-                                        <input
-                                            type="password"
-                                            name="confirmPassword"
-                                            value={formData.confirmPassword}
-                                            onChange={handleInputChange}
-                                            placeholder="*******"
-                                            className="w-full px-2 py-1 border border-gray-300 rounded-md text-xs"
-                                        />
-                                    </div>
                                 </div>
                             )}
                         </div>

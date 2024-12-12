@@ -125,7 +125,7 @@ export default function RightSideSection() {
     };
 
     return (
-        <div className="bg-[#161717] text-white p-6 rounded-lg lg:w-[307px] h-auto lg:mx-auto flex flex-col">
+        <div className="bg-[#161717] text-white p-6 rounded-lg lg:w-[307px] smallS8:w-[320px] h-auto lg:mx-auto flex flex-col">
             {/* Dropdown */}
             <Dropdown
                 title="Select Category"

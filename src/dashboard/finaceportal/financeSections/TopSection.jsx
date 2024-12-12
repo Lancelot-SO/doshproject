@@ -13,7 +13,7 @@ export default function TopSection() {
 
     return (
         <div className="">
-            <div className="relative flex lg:w-[845px] w-[380px] h-[244px] bg-black rounded-3xl border border-gray-800 p-4">
+            <div className="relative flex lg:w-[845px] w-[380px] h-[244px] smallS8:w-[320px] bg-black rounded-3xl border border-gray-800 p-4">
                 {/* Header */}
                 <div className='flex flex-col'>
                     <div className="space-y-1 mb-4">
@@ -23,7 +23,7 @@ export default function TopSection() {
                     </div>
 
                     {/* Balance Cards */}
-                    <div className="flex flex-row gap-4 w-[350px] lg:w-full pb-4 overflow-x-auto overflow-y-hidden lg:overflow-hidden no-scrollbar">
+                    <div className="flex flex-row gap-4 w-[350px] smallS8:w-[295px] lg:w-full pb-4 overflow-x-auto overflow-y-hidden lg:overflow-hidden no-scrollbar">
                         {/* Current Wallet */}
                         <div className='relative w-[200px] h-[110px]'>
                             <div className="relative flex w-[190px] h-[100px] bg-[#242424] border border-green-500 rounded-3xl p-4 shadow-lg overflow-hidden hover:border-green-500/40 transition-colors">

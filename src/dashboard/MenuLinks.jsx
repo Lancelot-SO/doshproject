@@ -23,6 +23,9 @@ const MenuLinks = ({ onMenuClick }) => {
     const handleMenuClick = (menu) => {
         setActiveMenu(menu); // Set the clicked menu as active
         onMenuClick(menu); // Call the parent function
+        if (isMobile) {
+            setIsExpanded(false); // Collapse the menu on mobile after selection
+        }
     };
 
     return (

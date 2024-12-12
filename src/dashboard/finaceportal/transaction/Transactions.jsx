@@ -19,7 +19,7 @@ export default function Transactions() {
     const toggleShowAll = () => setShowAll(!showAll);
 
     return (
-        <div className="bg-[#161717] text-gray-300 p-6 rounded-lg mb-10 lg:mb-0 w-[380px] lg:w-full">
+        <div className="bg-[#161717] text-gray-300 p-6 rounded-lg mb-10 lg:mb-0 w-[380px] smallS8:w-[320px] lg:w-full">
             {/* Header */}
             <h2 className="text-2xl font-bold mb-4">Transaction Details</h2>
 
