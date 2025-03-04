@@ -137,3 +137,9 @@ span {
   -webkit-box-shadow: -146px -58px 53px 31px rgba(252, 251, 251, 0.99);
   -moz-box-shadow: -146px -58px 53px 31px rgba(252, 251, 251, 0.99);
 }
+
+@media (max-width: 360px) {
+  .card-container {
+    width: 330px;
+  }
+}

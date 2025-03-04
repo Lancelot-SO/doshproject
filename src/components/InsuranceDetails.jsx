@@ -89,11 +89,11 @@ const InsuranceDetails = ({ onClose }) => {
                     <div className="bg-gray-100 p-4 mt-4">
                         <h3 className="text-xl font-semibold text-gray-800 mb-2">References</h3>
                         <ul className="list-disc list-inside text-gray-600 space-y-1">
-                            <li><sup id="reference1">1</sup> <a href="https://www.weforum.org/press/2020/half-the-world-lacks-access-to-essential-health-services" target="_blank" rel="noopener noreferrer">Half of the world’s population lack access to essential health services – World Economic Forum</a></li>
-                            <li><sup id="reference2">2</sup> <a href="https://www.statista.com/statistics/ghana-healthcare-cost" target="_blank" rel="noopener noreferrer">Ghana: out-of-pocket spending as share of health spending – Statista</a></li>
-                            <li><sup id="reference3">3</sup> <a href="https://www.healthaffairs.org/do/10.1377/hlthaff.2020.00410" target="_blank" rel="noopener noreferrer">Health Insurance Coverage In Low- And Middle-Income Countries – Health Affairs</a></li>
-                            <li><sup id="reference4">4</sup> <a href="https://www.healthleadersmedia.com/most-adults-experience-problems-health-insurance" target="_blank" rel="noopener noreferrer">Most Adults Experience Problems With Their Health Insurance – HealthLeaders Media</a></li>
-                            <li><sup id="reference5">5</sup> <a href="https://www.worldbank.org/en/news/press-release/half-the-world-lacks-access-to-essential-health-services" target="_blank" rel="noopener noreferrer">World Bank and WHO: Half the world lacks access to essential health services</a></li>
+                            <li><sup id="reference1">1</sup> <a href="https://www.weforum.org/" target="_blank" rel="noopener noreferrer" className='text-blue-500'>Half of the world’s population lack access to essential health services – World Economic Forum</a></li>
+                            <li><sup id="reference2">2</sup> <a href="https://www.statista.com/" target="_blank" rel="noopener noreferrer" className='text-blue-500'>Ghana: out-of-pocket spending as share of health spending – Statista</a></li>
+                            <li><sup id="reference3">3</sup> <a href="https://www.healthaffairs.org/do/10.1377/hlthaff.2020.00410" target="_blank" rel="noopener noreferrer" className='text-blue-500'>Health Insurance Coverage In Low- And Middle-Income Countries – Health Affairs</a></li>
+                            <li><sup id="reference4">4</sup> <a href="https://www.healthleadersmedia.com/" target="_blank" rel="noopener noreferrer" className='text-blue-500'>Most Adults Experience Problems With Their Health Insurance – HealthLeaders Media</a></li>
+                            <li><sup id="reference5">5</sup> <a href="https://www.worldbank.org/ext/en/home" target="_blank" rel="noopener noreferrer" className='text-blue-500'>World Bank and WHO: Half the world lacks access to essential health services</a></li>
                         </ul>
                     </div>
                 </div>

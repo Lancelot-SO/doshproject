@@ -60,7 +60,7 @@
 .dosh-last {
     padding: 10px;
     width: 250px;
-    border-radius: 10px;
+    border-radius: 30px;
     border: 1px solid rgb(218, 215, 215);
 }
 
@@ -70,7 +70,7 @@
 .dosh-textarea {
     padding: 10px;
     width: 520px;
-    border-radius: 10px;
+    border-radius: 30px;
     border: 1px solid rgb(218, 215, 215);
 }
 
@@ -79,7 +79,7 @@
     height: 37px;
     background-color: #987C55;
     color: white;
-    border-radius: 10px;
+    border-radius: 30px;
     align-items: center;
     display: flex;
     justify-content: center;

@@ -192,7 +192,7 @@ const ChildAccount = () => {
                 {/* Confirmation Popup Modal */}
                 {showConfirmationPopup && (
                     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                        <div className="bg-white rounded-lg shadow-lg sm:max-w-[425px] w-full p-6 ml-[150px]">
+                        <div className="bg-white rounded-lg shadow-lg sm:max-w-[425px] w-full p-6 lg:ml-[150px]">
                             <div className="flex justify-between items-center border-b pb-4">
                                 <h2 className="text-lg font-semibold">Confirmation</h2>
                                 <button

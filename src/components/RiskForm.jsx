@@ -1,222 +1,326 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import { X } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import image from "../images/imagebg.png"
+import AssetsAllRisk from './forms/AssetsAllRisk';
+import PublicLiability from './forms/PublicLiability';
+import MarineOpenCover from './forms/MarineOpenCover';
+import WorkMen from './forms/WorkMen';
+import TravelInsurance from './forms/TravelInsurance';
+import Transit from './forms/Transit';
+import ProfessionalIndemnity from './forms/ProfessionalIndemnity';
+import HouseholdContent from './forms/HouseholdContent ';
+import VehicleInsurance from './forms/VehicleInsurance';
+import TheftInsurance from './forms/TheftInsurance';
+import GuaranteeClaim from './forms/GuaranteeClaim';
+import Director from './forms/Director';
+import FireInsurance from './forms/FireInsurance';
+import PrivateMotor from './forms/PrivateMotor';
+import HotelInsurance from './forms/HotelInsurance';
+import HomeProtection from './forms/HomeProtection';
 
 const RiskForm = ({ onClose }) => {
+    const form = useRef();
+    const [showAssetsForm, setShowAssetsForm] = useState(false);
+    const [showPublicLiabilityForm, setShowPublicLiabilityForm] = useState(false);
+    const [showMarineOpenCoverForm, setShowMarineOpenCoverForm] = useState(false);
+    const [showWorkMen, setShowWorkMen] = useState(false);
+    const [showTravelInsurance, setShowTravelInsurance] = useState(false);
+    const [showTransit, setShowTransit] = useState(false);
+    const [showProfessional, setShowProfessional] = useState(false);
+    const [showHouseHold, setShowHouseHold] = useState(false);
+    const [showVehicle, setShowVehicle] = useState(false);
+    const [showTheft, setShowTheft] = useState(false);
+    const [showClaim, setShowClaim] = useState(false);
+    const [showDirector, setShowDirector] = useState(false);
+    const [showFire, setShowFire] = useState(false);
+    const [showPrivate, setShowPrivate] = useState(false);
+    const [showHotel, setShowHotel] = useState(false);
+    const [showHomeProtection, setShowHomeProtection] = useState(false);
+
+
+
+
+
+
+
+    const [formData, setFormData] = useState({
+        fullname: '',
+        email: '',
+        phone: '',
+        brokerage: '',
+        formType: '',
+        message: ''
+    });
+
+    const pdfOptions = [
+        'Assets All Risks',
+        'Private Motor',
+        'Commercial Vehicle',
+        'Directors and Officers Liability',
+        'Guarantee Claim',
+        'Fire Insurance',
+        'Home Protection with Content',
+        'Marine Open Cover',
+        'Professional Indemnity',
+        'Theft Insurance',
+        'Goods in Transit',
+        'Hotels and Guest Houses',
+        'Household Content',
+        'Public Liability',
+        'Travel Insurance',
+        'Workman\'s Compensation & Employers Liability'
+    ];
+
+    const firms = [
+        'Enterprise Insurance',
+        'Star Assurance',
+        'Hollard',
+        'Glico',
+        'Vanguard Assurance',
+        'SIC',
+        'Phoenix Insurance',
+        'DONEWELL Insurance',
+        'NSIA Insurance',
+        'OLDMUTUAL',
+        'Serene Insurance',
+        'Coronation Insurance',
+        'Allianz',
+        'Priority Insurance',
+        'SUNU Assurance',
+        'Sanlam',
+        'Provident Insurance',
+        'Bedrock Insurance',
+        'Activa Insurance',
+        'QIC'
+    ];
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+
+        // Show the AssetsAllRisk form when "Assets All Risks" is selected
+        if (name === 'formType') {
+            setShowAssetsForm(value === 'Assets All Risks');
+            setShowPublicLiabilityForm(value === 'Public Liability');
+            setShowMarineOpenCoverForm(value === 'Marine Open Cover');
+            setShowWorkMen(value === 'Workman\'s Compensation & Employers Liability');
+            setShowTravelInsurance(value === 'Travel Insurance');
+            setShowTransit(value === 'Goods in Transit');
+            setShowProfessional(value === 'Professional Indemnity');
+            setShowHouseHold(value === 'Household Content');
+            setShowVehicle(value === 'Commercial Vehicle');
+            setShowTheft(value === 'Theft Insurance');
+            setShowClaim(value === 'Guarantee Claim');
+            setShowDirector(value === 'Directors and Officers Liability');
+            setShowFire(value === 'Fire Insurance');
+            setShowPrivate(value === 'Private Motor');
+            setShowHotel(value === 'Hotels and Guest Houses');
+            setShowHomeProtection(value === 'Home Protection with Content');
+        }
+
+    };
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs
+            .sendForm('service_w146wla', 'template_1dqgkm6', form.current, 'aV-FvEfOZg7fbxTN2')
+            .then(
+                () => {
+                    toast.success('Message sent successfully!');
+                    setFormData({
+                        fullname: '',
+                        email: '',
+                        phone: '',
+                        brokerage: '',
+                        formType: '',
+                        message: ''
+                    });
+                },
+                (error) => {
+                    toast.error('Failed to send message. Please try again.');
+                    console.error('Email error:', error.text);
+                }
+            );
+        e.target.reset();
+    };
+
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
-            <div className="bg-white w-[70%] max-h-[80vh] rounded-lg p-6 relative overflow-y-auto">
-                <button
-                    onClick={onClose}
-                    className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-10 h-10 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 transition duration-300 ease-in-out z-10"
-                    aria-label="Close"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4">
+            <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-lg shadow-lg flex overflow-hidden">
 
-                <h2 className="text-xl font-bold mb-4">DOSH Risk Brokerage</h2>
-                <h2 className="my-6 text-gray-800 text-[20px] font-semibold">
-                    Submit Completed form(s) to the email address provided:
-                    <a
-                        href="mailto:Info@example.com"
-                        className="text-blue-500 hover:underline ml-2"
+                {/* Left Side Image */}
+                <div className="hidden md:flex w-1/2 bg-cover bg-center">
+                    <img src={image} alt="Insurance" className="w-full h-full object-cover" loading="lazy" />
+                </div>
+
+                {/* Right Side Form */}
+                <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
+                    <ToastContainer />
+
+                    {/* Close Button */}
+                    <button
+                        onClick={onClose}
+                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-8 h-8 flex items-center justify-center"
+                        aria-label="Close"
                     >
-                        risk@0800dosh.me
-                    </a>
-                </h2>
+                        <X size={24} />
+                    </button>
 
-                <ul className="space-y-2">
-                    <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>1. Assets All Risks Insurance Claim Form</span>
-                        <a
-                            href="/enterpriseforms/Assets_All_Risks Insurance_Claim_Form.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>2. CAR - Questionnaire_and_proposal</span>
-                        <a
-                            href="/enterpriseforms/CAR_Questionnaire_and_proposal.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>3. DIRECTORS_& OFFICERS LIABILITY Proposal Form</span>
-                        <a
-                            href="/enterpriseforms/DIRECTORS_ &_OFFICERS_LIABILITY_Proposal_Form.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>4. assets all risk proposal form</span>
-                        <a
-                            href="/enterpriseforms/enterprise_assets_all_risk_proposal_form.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>5. commercial vehicle insurance</span>
-                        <a
-                            href="/enterpriseforms/enterprise_commercial_vehicle_insurance.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>6. fidelity quarantee claim form</span>
-                        <a
-                            href="/enterpriseforms/enterprise_fidelity_guarantee_claim_form.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>7. fire insurance proposal form</span>
-                        <a
-                            href="/enterpriseforms/enterprise_fire_insurance_proposal_form.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>8. home protection -with content</span>
-                        <a
-                            href="/enterpriseforms/enterprise_home_protection_with_content.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>9. marine open cover</span>
-                        <a
-                            href="/enterpriseforms/enterprise_marine_open_cover.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>10.motor insurance - endorsement only</span>
-                        <a
-                            href="/enterpriseforms/enterprise_motor_insurance_endorsements_only.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>11. private motor insurance proposal form latest 1</span>
-                        <a
-                            href="/enterpriseforms/enterprise_private_motor_insurance_proposal_form_latest_1.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>12. professional indemnity form</span>
-                        <a
-                            href="/enterpriseforms/enterprise_professtional_indemnity_form.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300  p-2">
-                        <span className='text-black'>13. theft insurance proposal form</span>
-                        <a
-                            href="/enterpriseforms/enterprise_theft_insurance_proposal_form.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>14. goods in transit proposal insurance</span>
-                        <a
-                            href="/enterpriseforms/goods_in_transit_proposal_insurance.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300  p-2">
-                        <span className='text-black'>15. hotels and guest houses insurance proposal form</span>
-                        <a
-                            href="/enterpriseforms/hotels_and_guest_houses_insurance_proposal_form.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300  p-2">
-                        <span className='text-black'>16. house hold content insuranceproposal form</span>
-                        <a
-                            href="/enterpriseforms/house_hold_content_insurance_proposal_form.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>17. public liability form</span>
-                        <a
-                            href="/enterpriseforms/public_liabilty_form.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>18. travel insurance proposal form latest 1</span>
-                        <a
-                            href="/enterpriseforms/travel_insurance_proposal_form_latest_1.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                    <li className="flex justify-between items-center border-b border-gray-300 p-2">
-                        <span className='text-black'>19. workmen's compensation and employers' liability insurance</span>
-                        <a
-                            href="/enterpriseforms/workmen’s_compensation_and_employers’_liability_insurance.pdf"
-                            download
-                            className="text-blue-500 hover:underline"
-                        >
-                            Download
-                        </a>
-                    </li>
-                </ul>
+                    {/* Conditional Rendering of AssetsAllRisk Component */}
+                    {showAssetsForm ? (
+                        <AssetsAllRisk onClose={() => setShowAssetsForm(false)} />
+                    ) : showPublicLiabilityForm ? (
+                        <PublicLiability onClose={() => setShowPublicLiabilityForm(false)} />
+                    ) : showMarineOpenCoverForm ? (
+                        <MarineOpenCover onClose={() => setShowMarineOpenCoverForm(false)} />
+                    ) : showWorkMen ? (
+                        <WorkMen onClose={() => setShowWorkMen(false)} />
+                    ) :
+                        showTravelInsurance ? (
+                            <TravelInsurance onClose={() => setShowTravelInsurance(false)} />
+                        ) :
+                            showTransit ? (
+                                <Transit onClose={() => setShowTransit(false)} />
+                            ) :
+                                showProfessional ? (
+                                    <ProfessionalIndemnity onClose={() => setShowProfessional(false)} />
+                                ) :
+                                    showHouseHold ? (
+                                        <HouseholdContent onClose={() => setShowHouseHold(false)} />
+                                    ) :
+                                        showVehicle ? (
+                                            <VehicleInsurance onClose={() => setShowVehicle(false)} />
+                                        ) :
+                                            showTheft ? (
+                                                <TheftInsurance onClose={() => setShowTheft(false)} />
+                                            ) :
+                                                showClaim ? (
+                                                    <GuaranteeClaim onClose={() => setShowClaim(false)} />
+                                                ) :
+                                                    showDirector ? (
+                                                        <Director onClose={() => setShowDirector(false)} />
+                                                    ) :
+                                                        showFire ? (
+                                                            <FireInsurance onClose={() => setShowFire(false)} />
+                                                        ) :
+                                                            showPrivate ? (
+                                                                <PrivateMotor onClose={() => setShowPrivate(false)} />
+                                                            ) :
+                                                                showHotel ? (
+                                                                    <HotelInsurance onClose={() => setShowHotel(false)} />
+                                                                ) :
+                                                                    showHomeProtection ? (
+                                                                        <HomeProtection onClose={() => setShowHomeProtection(false)} />
+                                                                    ) : (
+                                                                        <form ref={form} onSubmit={sendEmail} className="w-full space-y-4">
+                                                                            <div>
+                                                                                <label htmlFor="fullname" className="block text-sm font-medium">Full Name</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    id="fullname"
+                                                                                    name="fullname"
+                                                                                    value={formData.fullname}
+                                                                                    onChange={handleChange}
+                                                                                    required
+                                                                                    placeholder='Enter name here'
+                                                                                    className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                />
+                                                                            </div>
+
+                                                                            <div>
+                                                                                <label htmlFor="email" className="block text-sm font-medium">Email</label>
+                                                                                <input
+                                                                                    type="email"
+                                                                                    id="email"
+                                                                                    name="email"
+                                                                                    value={formData.email}
+                                                                                    onChange={handleChange}
+                                                                                    required
+                                                                                    placeholder='Enter email here'
+                                                                                    className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                />
+                                                                            </div>
+
+                                                                            <div>
+                                                                                <label htmlFor="phone" className="block text-sm font-medium">Phone Number</label>
+                                                                                <input
+                                                                                    type="tel"
+                                                                                    id="phone"
+                                                                                    name="phone"
+                                                                                    value={formData.phone}
+                                                                                    onChange={handleChange}
+                                                                                    required
+                                                                                    placeholder='Enter number here'
+                                                                                    className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                />
+                                                                            </div>
+
+                                                                            <div>
+                                                                                <label htmlFor="formType" className="block text-sm font-medium">Preferred Category</label>
+                                                                                <select
+                                                                                    id="formType"
+                                                                                    name="formType"
+                                                                                    value={formData.formType}
+                                                                                    onChange={handleChange}
+                                                                                    required
+                                                                                    className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                >
+                                                                                    <option value="">Choose an option</option>
+                                                                                    {pdfOptions.map((option, index) => (
+                                                                                        <option key={index} value={option}>
+                                                                                            {option}
+                                                                                        </option>
+                                                                                    ))}
+                                                                                </select>
+                                                                            </div>
+
+                                                                            <div>
+                                                                                <label htmlFor="brokerage" className="block text-sm font-medium">Preferred Insurer</label>
+                                                                                <select
+                                                                                    id="brokerage"
+                                                                                    name="brokerage"
+                                                                                    value={formData.brokerage}
+                                                                                    onChange={handleChange}
+                                                                                    className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                >
+                                                                                    <option value=""></option>
+                                                                                    {firms.map((firm, index) => (
+                                                                                        <option key={index} value={firm}>
+                                                                                            {firm}
+                                                                                        </option>
+                                                                                    ))}
+                                                                                </select>
+                                                                            </div>
+
+                                                                            <div>
+                                                                                <label htmlFor="message" className="block text-sm font-medium">Message</label>
+                                                                                <textarea
+                                                                                    id="message"
+                                                                                    name="message"
+                                                                                    value={formData.message}
+                                                                                    onChange={handleChange}
+                                                                                    rows="4"
+                                                                                    placeholder='Enter a message'
+                                                                                    className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                                                                                ></textarea>
+                                                                            </div>
+
+                                                                            <button
+                                                                                type="submit"
+                                                                                className="w-full bg-[#b5996e] text-white py-2 rounded-lg hover:bg-[#776449] transition duration-300"
+                                                                            >
+                                                                                Send
+                                                                            </button>
+                                                                        </form>
+                                                                    )}
+                </div>
             </div>
         </div>
     );

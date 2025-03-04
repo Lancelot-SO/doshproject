@@ -62,100 +62,66 @@ export default function AuthCode() {
             {/* Form Popup */}
             {isPopupOpen && (
                 <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 z-40">
-                    <div className="bg-[#2C2C2C] w-[90%] max-w-sm rounded-lg p-3 shadow-lg relative">
+                    <div className="bg-[#2C2C2C] w-[90%] max-w-sm rounded-lg p-3 shadow-lg relative sm:w-[90%] sm:p-3
+                     sm:max-w-sm sm:rounded-lg sm:shadow-lg sm:relative">
                         {/* Header */}
                         <div className="flex justify-between items-center mb-3">
-                            <h2 className="text-lg font-semibold text-white">Generate Auth Code</h2>
+                            <h2 className="text-base font-semibold text-white sm:text-lg">Generate Auth Code</h2>
                             <button
                                 onClick={closePopup}
-                                className="w-8 h-8 flex items-center justify-center bg-[#A2865F] text-white rounded-full focus:outline-none"
+                                className="w-6 h-6 flex items-center justify-center bg-[#A2865F] text-white rounded-full focus:outline-none sm:w-8 sm:h-8"
                             >
                                 ✖
                             </button>
                         </div>
 
                         {/* Form Section */}
-                        <div className="bg-white rounded-md p-3 space-y-3">
+                        <div className="bg-white rounded-md p-2 space-y-3 sm:p-3">
                             {/* Form fields */}
+                            {[
+                                { id: "debitAccount", label: "Debit Account Name", placeholder: "Ale Jerry Sam" },
+                                { id: "currency", label: "Currency", placeholder: "Yearly" },
+                                { id: "amount", label: "Amount", placeholder: "Dosh" },
+                                { id: "chequeNumber", label: "Cheque Number", placeholder: "Dosh" },
+                                { id: "payeeName", label: "Cheque Payee Name", placeholder: "Dosh" },
+                            ].map(({ id, label, placeholder }) => (
+                                <div key={id}>
+                                    <label htmlFor={id} className="block text-sm font-medium text-gray-700 sm:text-sm">
+                                        {label}
+                                    </label>
+                                    <input
+                                        id={id}
+                                        type="text"
+                                        placeholder={placeholder}
+                                        className="w-full bg-[#F5F5F5] border border-gray-300 rounded-md px-2 py-1 focus:ring-2 focus:ring-[#B39B7D] focus:outline-none sm:px-3 sm:py-2"
+                                    />
+                                </div>
+                            ))}
                             <div>
-                                <label htmlFor="debitAccount" className="block text-sm font-medium text-gray-700">
-                                    Debit Account Name
-                                </label>
-                                <input
-                                    id="debitAccount"
-                                    type="text"
-                                    placeholder="Ale Jerry Sam"
-                                    className="w-full bg-[#F5F5F5] border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-[#B39B7D] focus:outline-none"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="currency" className="block text-sm font-medium text-gray-700">
-                                    Currency
-                                </label>
-                                <input
-                                    id="currency"
-                                    type="text"
-                                    placeholder="Yearly"
-                                    className="w-full bg-[#F5F5F5] border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-[#B39B7D] focus:outline-none"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="amount" className="block text-sm font-medium text-gray-700">
-                                    Amount
-                                </label>
-                                <input
-                                    id="amount"
-                                    type="text"
-                                    placeholder="Dosh"
-                                    className="w-full bg-[#F5F5F5] border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-[#B39B7D] focus:outline-none"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="chequeNumber" className="block text-sm font-medium text-gray-700">
-                                    Cheque Number
-                                </label>
-                                <input
-                                    id="chequeNumber"
-                                    type="text"
-                                    placeholder="Dosh"
-                                    className="w-full bg-[#F5F5F5] border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-[#B39B7D] focus:outline-none"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="payeeName" className="block text-sm font-medium text-gray-700">
-                                    Cheque Payee Name
-                                </label>
-                                <input
-                                    id="payeeName"
-                                    type="text"
-                                    placeholder="Dosh"
-                                    className="w-full bg-[#F5F5F5] border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-[#B39B7D] focus:outline-none"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+                                <label htmlFor="description" className="block text-sm font-medium text-gray-700 sm:text-sm">
                                     Description
                                 </label>
                                 <textarea
                                     id="description"
                                     rows="2"
-                                    className="w-full bg-[#F5F5F5] border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-[#B39B7D] focus:outline-none"
+                                    className="w-full bg-[#F5F5F5] border border-gray-300 rounded-md px-2 py-1 focus:ring-2 focus:ring-[#B39B7D] focus:outline-none sm:px-3 sm:py-2"
                                     placeholder="Enter details here..."
                                 ></textarea>
                             </div>
                         </div>
 
                         {/* Submit Button */}
-                        <div className="flex justify-end mt-3">
+                        <div className="flex justify-end mt-2 sm:mt-3">
                             <button
                                 onClick={handleContinue}
-                                className="w-[112px] bg-[#A2865F] hover:bg-[#9A846A] text-white py-2 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#B39B7D]"
+                                className="w-[80px] bg-[#A2865F] hover:bg-[#9A846A] text-white py-1 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#B39B7D] sm:w-[112px] sm:py-2"
                             >
                                 Continue
                             </button>
                         </div>
                     </div>
                 </div>
+
             )}
 
             {/* Confirmation Popup */}

@@ -13,7 +13,7 @@ export default function PaymentDetails({
 }) {
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div className="bg-white rounded-lg min-w-[400px] w-full p-4 mt-[40px]">
+            <div className="bg-white rounded-lg min-w-[350px] smallS8:h-full w-full p-4 mt-[40px]">
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="text-lg font-semibold">Confirmation</h2>
                     <button

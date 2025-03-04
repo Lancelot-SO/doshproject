@@ -219,7 +219,7 @@
   color: #ffffff;
   display: flex;
   align-items: start;
-  justify-content: start;
+  justify-content: flex-start;
   text-decoration: underline;
 }
 

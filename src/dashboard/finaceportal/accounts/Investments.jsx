@@ -47,7 +47,7 @@ export default function Investments() {
     return (
         <div className="overflow-y-scroll overflow-hidden flex lg:flex-row flex-col gap-4 no-scrollbar ">
             <div className='w-[900px]'>
-                <div className="relative flex lg:w-[845px] w-[370px] h-[244px] bg-black rounded-3xl border border-gray-800 mx-4">
+                <div className="relative flex lg:w-[845px] w-[370px] smallS8:w-[330px] h-[244px] bg-black rounded-3xl border border-gray-800 mx-4">
 
                     <img src={investbg} alt='invest' className='absolute inset-0 w-full h-full object-cover bg-cover' loading='lazy' />
                     {/* Header */}
@@ -68,7 +68,7 @@ export default function Investments() {
 
                     <div className='flex flex-col md:flex-row gap-5'>
                         {/* Card Section (Large Card) */}
-                        <div className="card-container md:w-[300px] md:h-[200px]">
+                        <div className="card-container lg:w-[300px] smallS8:w-[300px] lg:h-[200px]">
                             {/* Top section with logo and business label */}
                             <div className="card-header">
                                 <div className="logo-section">
@@ -118,7 +118,7 @@ export default function Investments() {
                             </div>
                         </div>
 
-                        <div className='flex lg:flex flex-row gap-10'>
+                        <div className='flex lg:flex flex-row lg:gap-10 gap-10 smallS8:gap-4'>
                             {/* Small Card 1 */}
                             <div className="flex flex-col w-[155px] h-[112px] bg-white rounded-lg shadow-md p-3 mt-5 md:mt-0">
                                 {/* Top Section */}
@@ -176,8 +176,10 @@ export default function Investments() {
 
 
                 <div>
-                    <div className="p-4 sm:p-6 bg-gray-900 text-white w-[370px] lg:w-[840px] h-[300px] sm:h-[365px] rounded-lg shadow-lg mx-4">
-                        <div className="flex justify-between items-center mb-4">
+                    <div className="p-4 sm:p-6 bg-gray-900 text-white w-[370px] smallS8:w-[330px]
+                     lg:w-[840px] h-[340px] sm:h-[365px] 
+                      rounded-lg shadow-lg mx-4">
+                        <div className="flex lg:justify-between lg:items-center lg:flex-row flex-col mb-4">
                             <div className="flex items-center space-x-4">
                                 <div className="flex items-center space-x-2">
                                     <div className="w-3 h-3 sm:w-4 sm:h-4 bg-yellow-500 rounded-full"></div>
@@ -264,7 +266,7 @@ export default function Investments() {
 
             </div>
 
-            <div className='w-[350px] h-[808px]'>
+            <div className='w-[370px] smallS8:w-[330px] h-[808px] ml-4 lg:ml-0'>
                 <TradingChart />
             </div>
 

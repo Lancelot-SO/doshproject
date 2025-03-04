@@ -51,7 +51,7 @@ const LinkAccount = () => {
                 {/* "No Dependant" section (conditionally rendered) */}
                 {!isModalOpen && (
                     <div className="flex flex-col items-center justify-center h-full">
-                        <div className="flex flex-col items-center justify-center h-full">
+                        <div className="flex flex-col h-[400px] lg:items-center lg:justify-center lg:h-full">
                             <div
                                 className="text-center w-[184px] h-[233px] bg-[#161717] bg-opacity-[20%] 
                               rounded-[29px] p-4 flex flex-col items-center justify-center cursor-pointer"
@@ -68,16 +68,19 @@ const LinkAccount = () => {
                                     </p>
                                 </div>
                             </div>
-                            <button
-                                onClick={openModal} // Open the modal on button click
-                                className="text-white flex items-center justify-center w-[95px] gap-2 text-[11px] mt-2 font-medium rounded-lg"
-                                style={{
-                                    background:
-                                        "linear-gradient(251.21deg, #987C55 0%, #D0B58C 100%)",
-                                }}
-                            >
-                                <FaPlus /> Add Wallet
-                            </button>
+                            <div className="flex items-center justify-center">
+                                <button
+                                    onClick={openModal} // Open the modal on button click
+                                    className="text-white flex items-center justify-center w-[95px] gap-2 text-[11px] mt-2 font-medium rounded-lg"
+                                    style={{
+                                        background:
+                                            "linear-gradient(251.21deg, #987C55 0%, #D0B58C 100%)",
+                                    }}
+                                >
+                                    <FaPlus /> Add Wallet
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 )}

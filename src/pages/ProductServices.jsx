@@ -11,8 +11,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import InsuranceTable from '../components/InsuranceTable.jsx';
 import FinanceTable from '../components/FinanceTable.jsx';
+import RiskForm from '../components/RiskForm.jsx';
 
-// import { useNavigate } from 'react-router-dom';
 import Insure from '../components/Insure.jsx';
 import InsuranceDetails from '../components/InsuranceDetails.jsx';
 import FinancialDetails from '../components/FinancialDetails.jsx';
@@ -22,10 +22,18 @@ import RiskDetails from '../components/RiskDetails.jsx';
 const ProductServices = () => {
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [isInsureOpen, setInsureOpen] = useState(false);  // State for Insure modal
-    const [currentModal, setCurrentModal] = useState(null);  // State to handle which modal is open
-    const [isRiskDetailsOpen, setRiskDetailsOpen] = useState(false);  // State for RiskDetails popup
+    const [currentModal, setCurrentModal] = useState(null);  // Determines which modal to show
 
+    // Added functions for DOSH Risk
+    const openRiskDetails = () => {
+        setCurrentModal('riskDetails');
+    };
 
+    const openRiskForm = () => {
+        setCurrentModal('riskForm');
+    };
+
+    // Existing functions for other modals
     const NextArrow = ({ onClick }) => (
         <button
             className="absolute bottom-2 lg:bottom-4 left-[60%] md:left-[55%] lg:left-[60%] transform -translate-x-1/2 bg-transparent text-[#9E825B] text-2xl p-4 hover:bg-[#9E825B] hover:text-white transition duration-300 z-10 rounded-full border"
@@ -44,9 +52,7 @@ const ProductServices = () => {
         </button>
     );
 
-    // const navigate = useNavigate();
-
-    //popup for the table
+    // Popup for the table
     const openPopup = (productIndex) => {
         const product = products[productIndex];
         if (product.id === 2) {  // Finance Services ID
@@ -61,10 +67,6 @@ const ProductServices = () => {
         setFinanceTableOpen(false);
     };
 
-    // const closePopup = () => {
-    //     setPopupOpen(false);
-    // };
-
     // Open Insure modal when "Pick a Package" is clicked
     const openInsure = () => {
         setInsureOpen(true);
@@ -77,7 +79,6 @@ const ProductServices = () => {
     const [isFinancialPopupOpen, setFinancialPopupOpen] = useState(false);  // State for Financial popup
     const [isFinanceTableOpen, setFinanceTableOpen] = useState(false);  // State for FinanceTable
 
-
     // Open Financial popup when "Pick a Package" for Financial Services is clicked
     const openFinancialPopup = () => {
         setFinancialPopupOpen(true);
@@ -87,17 +88,15 @@ const ProductServices = () => {
         setFinancialPopupOpen(false);
     };
 
-    // Open the appropriate modal based on current slide index
+    // Open the appropriate modal based on product index (for products 1 & 2)
+    // For DOSH Risk (id 3), we now use openRiskDetails and openRiskForm separately.
     const openModal = (index) => {
         if (index === 0) {
             setCurrentModal('insurance');  // Open InsuranceDetails modal
         } else if (index === 1) {
             setCurrentModal('finance');    // Open FinancialDetails modal
-        } else if (index === 2) {  // Assuming the DOSH Risk is the 3rd slide
-            setCurrentModal('risk');      // Open RiskDetails modal
         }
     };
-
 
     const closeModal = () => {
         setCurrentModal(null);
@@ -201,31 +200,66 @@ const ProductServices = () => {
                                         <h4 className="text-[24px] md:text-[32px] lg:text-[44px] font-bold text-[#9E825B] mb-2">
                                             {product.title}
                                         </h4>
+                                        <p className='text-[20px] font-semibold'>{product.subtitle}</p>
                                         <p className="text-sm lg:text-[16px] leading-relaxed text-align-justify">
                                             {product.quote}
                                         </p>
                                         <div className="flex lg:space-x-4 space-x-2 mt-4">
-                                            <button
-                                                onClick={() => openModal(productIndex)}
-                                                className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
-                                            >
-                                                {product.read}
-                                            </button>
-                                            {/* Conditionally render comparetext and picker buttons */}
-                                            {product.comparetext && (
-                                                <button onClick={() => openPopup(productIndex)} className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
-                                                    {product.comparetext}
-                                                </button>
-                                            )}
-                                            {product.picker && product.id === 1 && (
-                                                <button onClick={openInsure} className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
-                                                    {product.picker}
-                                                </button>
-                                            )}
-                                            {product.picker && product.id === 2 && (
-                                                <button onClick={openFinancialPopup} className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
-                                                    {product.picker}
-                                                </button>
+                                            {/*
+                                              For DOSH Risk (id === 3), we now display two buttons:
+                                              - "Read More" opens RiskDetails (via openRiskDetails)
+                                              - "Submit A Request" opens RiskForm (via openRiskForm)
+                                            */}
+                                            {product.id === 3 ? (
+                                                <>
+                                                    <button
+                                                        onClick={openRiskDetails}
+                                                        className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
+                                                    >
+                                                        {product.read}
+                                                    </button>
+                                                    <button
+                                                        onClick={openRiskForm}
+                                                        className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
+                                                    >
+                                                        {product.riskform}
+                                                    </button>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    {/* For other products, render a single "Read More" button */}
+                                                    <button
+                                                        onClick={() => openModal(productIndex)}
+                                                        className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
+                                                    >
+                                                        {product.read}
+                                                    </button>
+                                                    {/* Conditionally render comparetext button */}
+                                                    {product.comparetext && (
+                                                        <button
+                                                            onClick={() => openPopup(productIndex)}
+                                                            className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
+                                                        >
+                                                            {product.comparetext}
+                                                        </button>
+                                                    )}
+                                                    {product.picker && product.id === 1 && (
+                                                        <button
+                                                            onClick={openInsure}
+                                                            className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
+                                                        >
+                                                            {product.picker}
+                                                        </button>
+                                                    )}
+                                                    {product.picker && product.id === 2 && (
+                                                        <button
+                                                            onClick={openFinancialPopup}
+                                                            className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
+                                                        >
+                                                            {product.picker}
+                                                        </button>
+                                                    )}
+                                                </>
                                             )}
                                         </div>
                                     </div>
@@ -255,12 +289,12 @@ const ProductServices = () => {
                 {isInsureOpen && <Insure onClose={closeInsure} />}
                 {isFinancialPopupOpen && <FinanceSideModal onClose={closeFinancialPopup} />}
 
-                {/* Render InsuranceDetails or FinancialDetails modals based on currentModal state */}
+                {/* Render modals based on currentModal state */}
                 {currentModal === 'insurance' && <InsuranceDetails onClose={closeModal} />}
                 {currentModal === 'finance' && <FinancialDetails onClose={closeModal} />}
-                {currentModal === 'risk' && <RiskDetails onClose={closeModal} />}
+                {currentModal === 'riskDetails' && <RiskDetails onClose={closeModal} />}
+                {currentModal === 'riskForm' && <RiskForm onClose={closeModal} />}
             </section>
-
 
             <section id='video' className='video__section'>
                 <div className='container video-main'>
@@ -284,7 +318,6 @@ const ProductServices = () => {
                     </div>
                 </div>
             </section>
-
         </div>
     );
 };

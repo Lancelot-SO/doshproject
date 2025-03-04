@@ -13,13 +13,9 @@ const PrivacyPolicy = ({ onClose }) => {
                     &times;
                 </button>
 
-                {/* Header */}
-                <h2 className="text-3xl font-bold text-center text-black mb-6 mt-4 lg:mt-0">
-                    DOSH Privacy Statement
-                </h2>
-
                 {/* Content */}
                 <div className="text-gray-700 space-y-6">
+                    <h2 className="text-2xl font-bold mb-4">DOSH Privacy Statement</h2>
                     <p>
                         DOSH values your privacy and is committed to protecting your personal information.
                         This Privacy Statement explains how we collect, use, and safeguard your data when you visit our

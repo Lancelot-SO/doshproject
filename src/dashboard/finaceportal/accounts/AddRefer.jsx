@@ -59,7 +59,7 @@ export default function AddRefer({ onClose, onSubmit }) {
     };
 
     return (
-        <div className="absolute top-2 left-1/2 transform -translate-x-1/2 bg-gray-900 rounded-lg flex items-center justify-center p-2">
+        <div className="absolute top-2 left-1/2 transform -translate-x-1/2 lg:w-[500px] w-full smallS8:w-full bg-gray-900 rounded-lg flex items-center justify-center p-2">
             <div className="bg-gray-800 rounded-lg w-full max-w-xl relative">
                 {showPaymentDetails && (
                     <PaymentDetails

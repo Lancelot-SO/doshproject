@@ -3,14 +3,15 @@ import login from "../images/login-image.png";
 import { IoMdRefresh } from "react-icons/io";
 import "./Login.css";
 import { Link } from 'react-router-dom';
-import Otp from '../components/Otp';
+import SignIn from '../components/SignIn';
 
 const Login = ({ onClose }) => {
     const [captcha, setCaptcha] = useState('');
     const [userInput, setUserInput] = useState('');
     const [selectedRadio, setSelectedRadio] = useState(null);
     const [isValidCaptcha, setIsValidCaptcha] = useState(null);
-    const [showOtpModal, setShowOtpModal] = useState(false);
+    const [showSignInModal, setShowSignInModal] = useState(false);
+    const [username, setUsername] = useState(''); // State to store username
 
     useEffect(() => {
         generateCaptcha();
@@ -42,8 +43,10 @@ const Login = ({ onClose }) => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        if (isValidCaptcha) {
-            setShowOtpModal(true);
+        if (username) {
+            setShowSignInModal(true); // Show the SignIn modal if a username is entered
+        } else {
+            alert("Please enter a username.");
         }
     };
 
@@ -119,6 +122,17 @@ const Login = ({ onClose }) => {
                                             <option value="option4">Enterprise</option>
                                         </select>
                                     </div>
+                                    <div className='login__fin'>
+                                        <label htmlFor='username'>Username</label>
+                                        <input
+                                            type='text'
+                                            name='username'
+                                            placeholder='Enter your username'
+                                            className='cap'
+                                            value={username}
+                                            onChange={(e) => setUsername(e.target.value)}
+                                        />
+                                    </div>
                                     {selectedRadio !== null && renderInputs()}
 
                                     <div className='capture'>
@@ -131,7 +145,7 @@ const Login = ({ onClose }) => {
                                         </div>
                                         <label htmlFor='capture'>Enter Captcha text</label>
                                         <input
-                                            className={`cap ${isValidCaptcha === null ? '' : isValidCaptcha ? 'input-valid' : 'input-invalid'}`} // Apply class for border color
+                                            className={`cap ${isValidCaptcha === null ? '' : isValidCaptcha ? 'input-valid' : 'input-invalid'}`}
                                             type='text'
                                             placeholder='Type text here...'
                                             value={userInput}
@@ -142,7 +156,7 @@ const Login = ({ onClose }) => {
                                         <button type='submit' className='log__btn'>Continue</button>
                                         <span>Don't have an account? <Link to='/register' className='linker__signup'>Sign up</Link></span>
                                     </div>
-                                    {showOtpModal && <Otp onClose={() => setShowOtpModal(false)} />}
+                                    {showSignInModal && <SignIn username={username} onClose={() => setShowSignInModal(false)} />}
                                 </form>
                             </div>
                         </div>
