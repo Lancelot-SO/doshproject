@@ -1,18 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import emailjs from '@emailjs/browser';
 import image from "../../images/imagebg.png";
+import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 const VehicleInsurance = ({ onClose }) => {
     const [formData, setFormData] = useState({
         proposerName: "",
         surname: "",
         otherNames: "",
-        dateOfBirth: "",
+        dob: "",
         sex: "",
-        postalAddress: "",
+        address: "",
         email: "",
         mobileNo: "",
+        postalAddress: "",
+        residenceCountry: "",
+        passportNumber: "",
+        destination: "",
+        departureDate: "",
+        returnDate: "",
+        travelPurpose: "",
+        productType: "",
+        premiumPaid: "",
         vehicleMakeModel: "",
         yearOfManufacture: "",
         noOfSeats: "",
@@ -51,7 +62,6 @@ const VehicleInsurance = ({ onClose }) => {
         policyType: "",
         driversDetails: "",
         declarationDate: "",
-        signature: "",
         inexperiencedDriver: "",
         recentLicenseHolder: "",
         under25Driver: "",
@@ -65,34 +75,136 @@ const VehicleInsurance = ({ onClose }) => {
         declinedProposal: "",
         insuredUnder: "",
         date: "",
-        agency: ""
-
+        agency: "",
+        declareSignature: ""
     });
 
-    const handleChange = (e, index) => {
-        const { name, value } = e.target;
-        if (name.startsWith("accidentHistory")) {
-            const updatedAccidentHistory = [...formData.accidentHistory];
-            updatedAccidentHistory[index][name.split(".")[1]] = value;
-            setFormData({ ...formData, accidentHistory: updatedAccidentHistory });
-        } else {
-            setFormData({ ...formData, [name]: value });
-        }
+    // Create a ref for the form
+    const formRef = useRef();
+
+    // Handle input changes
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    // Handle file changes separately (do not set value for file inputs)
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        setFormData({ ...formData, signature: file ? file.name : "" });
+    };
+
+    // Handle form submission via emailjs.sendForm
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
-        alert("Form submitted successfully!");
-    };
 
+        // Replace these with your actual EmailJS credentials
+        const serviceID = "service_c7l5lms";
+        const templateID = "template_kj8pvbv";
+        const publicKey = "aV-FvEfOZg7fbxTN2";
+
+        emailjs.sendForm(serviceID, templateID, formRef.current, publicKey)
+            .then((response) => {
+                console.log("SUCCESS!", response.status, response.text);
+                toast.success("Form submitted successfully!");
+                // Optionally reset state and form here:
+                setFormData({
+                    proposerName: "",
+                    surname: "",
+                    otherNames: "",
+                    dob: "",
+                    sex: "",
+                    address: "",
+                    email: "",
+                    mobileNo: "",
+                    postalAddress: "",
+                    residenceCountry: "",
+                    passportNumber: "",
+                    destination: "",
+                    departureDate: "",
+                    returnDate: "",
+                    travelPurpose: "",
+                    productType: "",
+                    premiumPaid: "",
+                    vehicleMakeModel: "",
+                    yearOfManufacture: "",
+                    noOfSeats: "",
+                    engineNo: "",
+                    cubicCapacity: "",
+                    chassisNo: "",
+                    registrationNo: "",
+                    seatingCapacity: "",
+                    carryingCapacity: "",
+                    driveType: "",
+                    purchaseDate: "",
+                    pricePaid: "",
+                    presentValue: "",
+                    thoroughRepair: "",
+                    altered: "",
+                    carriageFare: "",
+                    carriageOwnGoods: "",
+                    carriageOthersGoods: "",
+                    motorTradeUse: "",
+                    owner: "",
+                    registeredInName: "",
+                    ownerDetails: "",
+                    loanObtained: "",
+                    registeredName: "",
+                    loanProvider: "",
+                    licensed: "",
+                    accidentsPastThreeYears: "",
+                    insuranceHistory: "",
+                    declinedInsurance: "",
+                    firstLossPortion: "",
+                    increasedPremium: "",
+                    refusedRenewal: "",
+                    loanPurchase: "",
+                    loanGained: "",
+                    cancelledPolicy: "",
+                    policyType: "",
+                    driversDetails: "",
+                    declarationDate: "",
+                    signature: "",
+                    inexperiencedDriver: "",
+                    recentLicenseHolder: "",
+                    under25Driver: "",
+                    convictedDriver: "",
+                    physicalInfirmityDriver: "",
+                    accidentHistory: [{ name: "", date: "", vehicleNumber: "", insuranceCompany: "", claimDetails: "" }],
+                    previousInsurance: "",
+                    insuranceCompanyDetails: "",
+                    policyTypeSelection: "",
+                    insuranceProposal: "",
+                    declinedProposal: "",
+                    insuredUnder: "",
+                    date: "",
+                    agency: "",
+                    declareSignature: ""
+                });
+                e.target.reset();
+            })
+            .catch((err) => {
+                console.error("FAILED...", err);
+                toast.error("Failed to submit form. Please try again.");
+            });
+    };
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 text-gray-800">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
 
+
                 {/* Left Side Image */}
-                <div className="hidden md:flex w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-full object-cover" loading="lazy" />
+                <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
+                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
+                    <div className='w-full h-full bg-black p-4'>
+                        <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
+                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                            Secure Your Future with Comprehensive Insurance Coverage
+                        </h2>
+                        <p className='text-[16px] text-white'>
+                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
+                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Right Side Form */}
@@ -106,7 +218,7 @@ const VehicleInsurance = ({ onClose }) => {
                     >
                         <X size={24} />
                     </button>            <h2 className="text-2xl font-bold mb-4">Commercial Vehicle Insurance Proposal Request</h2>
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <label className="block text-gray-700">Name of Proposer (Mr/Ms/Mrs/Dr/Prof)</label>
                             <input type="text" name="proposerName" value={formData.proposerName} onChange={handleChange} className="w-full p-2 border rounded" />
@@ -439,7 +551,7 @@ const VehicleInsurance = ({ onClose }) => {
                         </div>
                         <div>
                             <label className="block text-sm font-medium">Signature</label>
-                            <input type="file" name="declareSignature" value={formData.declareSignature} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                            <input type="file" name="declareSignature" onChange={handleFileChange} className="w-full p-2 border rounded-[20px]" required />
                         </div>
 
                         <button type="submit" className="w-full bg-[#a58b63] text-white p-2 rounded hover:bg-[#77603f]">

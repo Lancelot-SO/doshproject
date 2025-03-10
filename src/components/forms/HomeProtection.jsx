@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import image from "../../images/imagebg.png";
+import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import HomeProtectionTable from './HomeProtectionTable';
 
 const HomeProtection = ({ onClose }) => {
@@ -16,14 +18,14 @@ const HomeProtection = ({ onClose }) => {
         propertyAddress: '',
 
         // General Information
-        homeType: '', // "Flat", "House", "Other"
+        homeType: '',
         otherHomeType: '',
-        houseType: '', // "Detached", "Semi-Detached" (if homeType is House)
+        houseType: '',
         buildingWalls: '',
         buildingRoof: '',
         fenceDetails: '',
-        refusedInsurance: '', // Yes/No
-        propertyLoss: '', // Yes/No
+        refusedInsurance: '',
+        propertyLoss: '',
 
         // Coverage Options
         coverFence: '',
@@ -52,6 +54,36 @@ const HomeProtection = ({ onClose }) => {
         declarationAgency: '',
     });
 
+    // Lift the table data to the parent component
+    const [tableData, setTableData] = useState({
+        section1Building: { insure: false, sumInsured: '', premium: '' },
+        section1Fence: { insure: false, sumInsured: '', premium: '' },
+        section1AlternativeAccommodation: { insure: false, sumInsured: '', premium: '' },
+        section1Liability: { insure: false, sumInsured: '500', premium: 'FREE' },
+        section2Content: { insure: false, sumInsured: '10000', premium: '80.00' },
+        section3PersonalLiability: { insure: false, sumInsured: '500', premium: 'FREE' },
+        section4EmployersLiability: { insure: false, sumInsured: 'Unlimited', premium: '5.00 per head', indoorServants: 0, outdoorServants: 0, drivers: 0 },
+        section4PersonalAccidentDeath: { insure: false },
+        section4PersonalAccidentDisability: { insure: false },
+        section4PersonalAccidentMedical: { insure: false },
+        totalPremium: ''
+    });
+
+    // Helper function to flatten the tableData object
+    const flattenTableData = (data) => {
+        const flattened = {};
+        Object.keys(data).forEach((key) => {
+            if (typeof data[key] === 'object' && data[key] !== null) {
+                Object.keys(data[key]).forEach((subKey) => {
+                    flattened[`${key}_${subKey}`] = data[key][subKey];
+                });
+            } else {
+                flattened[key] = data[key];
+            }
+        });
+        return flattened;
+    };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
@@ -59,18 +91,102 @@ const HomeProtection = ({ onClose }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // You can process or send formData to an API here
-        console.log(formData);
-        alert("Form submitted! (Check console for details.)");
-    };
 
+        // Flatten table data and combine with form data
+        const tableParams = flattenTableData(tableData);
+        const templateParams = {
+            ...formData,
+            ...tableParams,
+        };
+
+        emailjs
+            .send(
+                'service_r9t2vbj',    // Replace with your EmailJS service ID
+                'template_oodevxb',   // Replace with your EmailJS template ID (e.g., "HomeProtectionProposal")
+                templateParams,
+                'aV-FvEfOZg7fbxTN2'    // Replace with your EmailJS public key
+            )
+            .then(
+                (result) => {
+                    toast.success('Proposal submitted successfully via Email!');
+                    // Reset form and table data if needed
+                    setFormData({
+                        proposerName: '',
+                        postalAddress: '',
+                        businessOccupation: '',
+                        telephone: '',
+                        fax: '',
+                        email: '',
+                        propertyAddress: '',
+                        homeType: '',
+                        otherHomeType: '',
+                        houseType: '',
+                        buildingWalls: '',
+                        buildingRoof: '',
+                        fenceDetails: '',
+                        refusedInsurance: '',
+                        propertyLoss: '',
+                        coverFence: '',
+                        coverBuilding: '',
+                        buildingSumInsured: '',
+                        coverContent: '',
+                        contentSumInsured: '',
+                        coverEmployerLiability: '',
+                        numIndoorServants: '',
+                        numOutdoorServants: '',
+                        numDrivers: '',
+                        coverPersonalAccident: '',
+                        personalAccidentDeath: '',
+                        personalAccidentDisability: '',
+                        personalAccidentMedical: '',
+                        coverAlternativeAccommodation: '',
+                        alternativeAccommodationSumInsured: '',
+                        coverLegalLiability: '',
+                        legalLiabilitySumInsured: '',
+                        coverPersonalLiability: '',
+                        personalLiabilitySumInsured: '',
+                        declarationDate: '',
+                        declarationSignature: '',
+                        declarationAgency: '',
+                    });
+                    setTableData({
+                        section1Building: { insure: false, sumInsured: '', premium: '' },
+                        section1Fence: { insure: false, sumInsured: '', premium: '' },
+                        section1AlternativeAccommodation: { insure: false, sumInsured: '', premium: '' },
+                        section1Liability: { insure: false, sumInsured: '500', premium: 'FREE' },
+                        section2Content: { insure: false, sumInsured: '10000', premium: '80.00' },
+                        section3PersonalLiability: { insure: false, sumInsured: '500', premium: 'FREE' },
+                        section4EmployersLiability: { insure: false, sumInsured: 'Unlimited', premium: '5.00 per head', indoorServants: 0, outdoorServants: 0, drivers: 0 },
+                        section4PersonalAccidentDeath: { insure: false },
+                        section4PersonalAccidentDisability: { insure: false },
+                        section4PersonalAccidentMedical: { insure: false },
+                        totalPremium: ''
+                    });
+                    if (onClose) onClose();
+                },
+                (error) => {
+                    toast.error('Failed to submit proposal. Please try again.');
+                }
+            );
+    };
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 text-gray-800">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
 
+
                 {/* Left Side Image */}
-                <div className="hidden md:flex w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-full object-cover" loading="lazy" />
+                <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
+                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
+                    <div className='w-full h-full bg-black p-4'>
+                        <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
+                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                            Secure Your Future with Comprehensive Insurance Coverage
+                        </h2>
+                        <p className='text-[16px] text-white'>
+                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
+                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Right Side Form */}
@@ -711,7 +827,7 @@ const HomeProtection = ({ onClose }) => {
                         </section>
 
                         <section>
-                            <HomeProtectionTable />
+                            <HomeProtectionTable tableData={tableData} setTableData={setTableData} />
                         </section>
 
                         {/* Declaration Section */}
@@ -736,9 +852,8 @@ const HomeProtection = ({ onClose }) => {
                                         Signature
                                     </label>
                                     <input
-                                        type="text"
+                                        type="file"
                                         name="declarationSignature"
-                                        value={formData.declarationSignature}
                                         onChange={handleChange}
                                         className="w-full border rounded p-2"
                                         placeholder="Enter your signature"

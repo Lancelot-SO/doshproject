@@ -1,27 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const HomeProtectionTable = () => {
-    // Store table inputs in React state. Adjust these keys/values as needed.
-    const [tableData, setTableData] = useState({
-        section1Building: { insure: false, sumInsured: '', premium: '' },
-        section1Fence: { insure: false, sumInsured: '', premium: '' },
-        section1AlternativeAccommodation: { insure: false, sumInsured: '', premium: '' },
-        section1Liability: { insure: false, sumInsured: '500', premium: 'FREE' },
-        section2Content: { insure: false, sumInsured: '10000', premium: '80.00' },
-        section3PersonalLiability: { insure: false, sumInsured: '500', premium: 'FREE' },
-        section4EmployersLiability: {
-            insure: false,
-            sumInsured: 'Unlimited',
-            premium: '5.00 per head',
-            indoorServants: 0,
-            outdoorServants: 0,
-            drivers: 0
-        },
-        section4PersonalAccidentDeath: { insure: false },
-        section4PersonalAccidentDisability: { insure: false },
-        section4PersonalAccidentMedical: { insure: false },
-        totalPremium: ''
-    });
+const HomeProtectionTable = ({ tableData, setTableData }) => {
+
 
     // Handler for checkboxes and text inputs
     const handleChange = (e, key, field) => {

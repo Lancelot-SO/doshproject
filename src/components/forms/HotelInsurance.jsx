@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import image from "../../images/imagebg.png";
+import formlogo from "../../images/formlogo.png";
+import emailjs from '@emailjs/browser';
 import { X } from 'lucide-react';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const HotelInsurance = ({ onClose }) => {
+    const formRef = useRef();
+
     const [formData, setFormData] = useState({
         // Basic Information
         proposerFullName: '',
@@ -107,34 +112,179 @@ const HotelInsurance = ({ onClose }) => {
         declarationSignature: '',
         declarationAgency: '',
     });
-
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
-        // Handle premises options (checkboxes)
-        if (name.startsWith("premisesOptions.")) {
-            const key = name.split('.')[1];
-            setFormData({
-                ...formData,
-                premisesOptions: { ...formData.premisesOptions, [key]: checked },
-            });
+
+        if (type === 'checkbox' && name.startsWith("premisesOptions.")) {
+            // Handle checkbox changes specifically for the nested 'premisesOptions' object
+            const key = name.split('.')[1]; // Get the specific key within the premisesOptions object
+            setFormData(prev => ({
+                ...prev,
+                premisesOptions: {
+                    ...prev.premisesOptions,
+                    [key]: checked // Update the specific key within the nested object
+                }
+            }));
         } else {
-            setFormData({ ...formData, [name]: value });
+            // Handle changes for all other inputs normally
+            setFormData(prev => ({
+                ...prev,
+                [name]: type === 'checkbox' ? checked : value // Check for checkbox and use 'checked' or 'value'
+            }));
         }
     };
 
+
+    // Handle file input changes separately (do not set a value on a file input)
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        setFormData((prev) => ({
+            ...prev,
+            declareSignature: file ? file : null, // store the File object if needed
+        }));
+    };
+
+    // Handle form submission using emailjs.sendForm
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
-        alert("Form submitted! (Check console for details.)");
-    };
+
+        // Replace these with your actual EmailJS credentials:
+        const serviceID = "service_a88tnae";
+        const templateID = "template_qy7gdgs";
+        const publicKey = "aV-FvEfOZg7fbxTN2";
+
+        emailjs.sendForm(serviceID, templateID, formRef.current, publicKey)
+            .then((response) => {
+                console.log("SUCCESS!", response.status, response.text);
+                toast.success("Form submitted successfully!");
+                setFormData({
+                    proposerFullName: '',
+                    postalAddress: '',
+                    premisesOptions: {
+                        guestBoardingHouse: "",
+                        hotelNonResidents: "",
+                        hotelResidents: "",
+                        motel: "",
+                        others: "",
+                    },
+                    othersDetails: '',
+                    yearsEstablished: '',
+                    otherPremises: '',
+                    soleOccupation: '', // Yes/No
+                    occupantDetails: '',
+                    offerAccommodation: '', // Yes/No
+                    hotelLaws: '', // a.i.
+                    licenseIssued: '', // a.ii.
+                    licenseIssueDate: '',
+                    longTermResidential: '', // b.i.
+                    longStayStudents: '',   // b.ii.
+                    accommodationDetails: '',
+                    seasonallyOperated: '',
+
+                    // Section 1 – Buildings Cover (Optional)
+                    requireCoverForBuildings: '', // Yes/No
+                    sumInsuredBuildings: '',
+
+                    // Section 2 – Contents
+                    sumInsuredStock: '',
+                    sumInsuredFixtures: '',
+                    sumInsuredTenants: '',
+                    sumInsuredOtherTrade: '',
+                    totalSumInsuredContents: '',
+                    theftCoverForContents: '', // Yes/No
+                    theftCoverDetails: '',
+
+                    // Section 3 – Glass
+                    glassPolicySufficient: '', // Yes/No
+                    requiredGlassLimit: '',
+
+                    // Section 4 – Business Interruption
+                    maxIndemnitySufficient: '', // Yes/No
+                    maxIndemnityRequired: '',   // if No: 18, 24, or 36 months
+                    sumInsuredOnIncome: '',
+
+                    // Section 5 – Money
+                    varyMoneyLimits: '', // Yes/No
+                    lossMoneyLockedSafe: '',
+                    safeDetails: '',
+                    lossMoneyInTransit: '',
+
+                    // Section 6 – Liability to Others
+                    provideRestaurantService: '', // Yes/No
+                    maxSeatingCapacity: '',
+                    provideEntertainment: '',     // Yes/No
+                    entertainmentType: '',
+                    eventsPerMonth: '',
+                    maxAttendance: '',
+                    entertainmentHours: '',
+                    separateChargeEntertainment: '', // Yes/No
+                    entertainmentLocation: '',
+                    workAwayFromPremises: '',    // Yes/No
+                    workAwayDetails: '',
+                    workAwayOccasions: '',
+
+                    // Section 7 – Personal Accident (Optional)
+                    coverPersonalAccident: '', // Yes/No
+                    // For simplicity, one named person (can be extended as needed)
+                    personTitle: '',
+                    personName: '',
+                    personOccupation: '',
+                    personDOB: '',
+                    accidentOrIllnessDetails: '',
+                    physicalDefect: '', // Yes/No
+                    defectDetails: '',
+
+                    // General – To be completed by all proposers
+                    currentlyInsured: '', // Yes/No
+                    insurerName: '',
+                    commencementDate: '',
+                    constructedAndRoofed: '', // Yes/No
+                    occupiedSolely: '', // Yes/No
+                    keysOnPerson: '',  // Yes/No
+                    keysInRoom: '',    // Yes/No
+                    keysRemoved: '',   // Yes/No
+                    booksEntered: '',  // Yes/No
+                    protectionsWorking: '', // Yes/No
+                    protectionDetails: '',
+                    acceptItemsSafekeeping: '', // Yes/No
+                    itemsInLockedSafe: '',      // Yes/No
+                    historyOfFlooding: '',      // Yes/No
+                    lossClaimsLast5Years: '',   // Yes/No
+                    specialTermsDeclined: '',   // Yes/No
+                    bankruptOrConvicted: '',    // Yes/No
+                    additionalDetails: '',
+
+                    // Declaration
+                    declarationDate: '',
+                    declarationSignature: '',
+                    declarationAgency: '',
+                })
+                e.target.reset();
+                if (onClose) onClose();
+            })
+            .catch((err) => {
+                console.error("FAILED...", err);
+                toast.error("Failed to submit form. Please try again.");
+            });
+    }
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 text-gray-800">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
 
                 {/* Left Side Image */}
-                <div className="hidden md:flex w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-full object-cover" loading="lazy" />
+                <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
+                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
+                    <div className='w-full h-full bg-black p-4'>
+                        <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
+                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                            Secure Your Future with Comprehensive Insurance Coverage
+                        </h2>
+                        <p className='text-[16px] text-white'>
+                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
+                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Right Side Form */}
@@ -151,7 +301,7 @@ const HotelInsurance = ({ onClose }) => {
                     <h1 className="text-2xl font-bold mb-6">
                         Hotels And Guest Houses Insurance Proposal Form
                     </h1>
-                    <form onSubmit={handleSubmit} className="space-y-8">
+                    <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
                         {/* Basic Information */}
                         <section>
                             <h2 className="text-2xl font-semibold mb-4">Basic Information</h2>
@@ -1624,10 +1774,9 @@ const HotelInsurance = ({ onClose }) => {
                                 <div>
                                     <label className="block font-medium">Signature(s) of Proposer(s)</label>
                                     <input
-                                        type="text"
+                                        type="file"
                                         name="declarationSignature"
-                                        value={formData.declarationSignature}
-                                        onChange={handleChange}
+                                        onChange={handleFileChange}
                                         className="w-full border rounded p-2"
                                     />
                                 </div>

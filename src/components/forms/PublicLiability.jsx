@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import image from "../../images/imagebg.png";
+import formlogo from "../../images/formlogo.png";
 
 const PublicLiability = ({ onClose }) => {
     const [formData, setFormData] = useState({
@@ -60,66 +62,141 @@ const PublicLiability = ({ onClose }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        toast.success('Form submitted successfully!');
+        // Prepare template parameters for EmailJS (keys should match your EmailJS template placeholders)
+        const templateParams = {
+            proposerName: formData.proposerName,
+            address: formData.address,
+            mobile: formData.mobile,
+            businessTrade: formData.businessTrade,
+            goodsDescription: formData.goodsDescription,
+            SeparatePolicies: formData.SeparatePolicies,
+            thirdPartyCover: formData.thirdPartyCover,
+            inspectedBy: formData.inspectedBy,
+            thoroughfare: formData.thoroughfare,
+            trapdoors: formData.trapdoors,
+            seatingCapacity: formData.seatingCapacity,
+            natureOfClub: formData.natureOfClub,
+            numberofmembers: formData.numberofmembers,
+            theatre: formData.theatre,
+            refreshments: formData.refreshments,
+            schoolDescription: formData.schoolDescription,
+            numberOfPupils: formData.numberOfPupils,
+            management: formData.management,
+            entertainments: formData.entertainments,
+            indemnity: formData.indemnity,
+            foodPoisoning: formData.foodPoisoning,
+            machineryDetails: formData.machineryDetails,
+            explosivesUsage: formData.explosivesUsage,
+            subContractors: formData.subContractors,
+            contractPrices: formData.contractPrices,
+            employment: formData.employment,
+            particulars: formData.particulars,
+            presentInsured: formData.presentInsured,
+            company: formData.company,
+            proposalStatus: formData.proposalStatus,
+            refusedRenewal: formData.refusedRenewal,
+            policyCancelled: formData.policyCancelled,
+            premium: formData.premium,
+            policy: formData.policy,
+            nature: formData.nature,
+            otherWork: formData.otherWork,
+            workDetails: formData.workDetails,
+            annualamount: formData.annualamount,
+            numberofemployees: formData.numberofemployees,
+            principal: formData.principal,
+            numberofpartners: formData.numberofpartners,
+            date: formData.date,
+            agency: formData.agency,
+            codenumber: formData.codenumber,
+            signature: formData.signature,
+        };
 
-        setFormData({
-            proposerName: '',
-            address: '',
-            mobile: '',
-            businessTrade: '',
-            goodsDescription: '',
-            SeparatePolicies: '',
-            thirdPartyCover: '',
-            inspectedBy: '',
-            thoroughfare: '',
-            trapdoors: '',
-            seatingCapacity: '',
-            natureOfClub: '',
-            numberofmembers: '',
-            theatre: '',
-            refreshments: '',
-            schoolDescription: '',
-            numberOfPupils: '',
-            management: '',
-            entertainments: '',
-            indemnity: '',
-            foodPoisoning: '',
-            machineryDetails: '',
-            explosivesUsage: '',
-            subContractors: '',
-            contractPrices: '',
-            employment: '',
-            particulars: '',
-            presentInsured: '',
-            company: '',
-            proposalStatus: '',
-            refusedRenewal: '',
-            policyCancelled: '',
-            premium: '',
-            policy: '',
-            nature: '',
-            otherWork: '',
-            workDetails: '',
-            annualamount: '',
-            numberofemployees: '',
-            principal: '',
-            numberofpartners: '',
-            date: '',
-            agency: '',
-            codenumber: '',
-            signature: '',
-        });
-
-        if (onClose) onClose();
+        emailjs
+            .send(
+                'service_9bstnqc',    // Replace with your EmailJS service ID
+                'template_qtoppo2',   // Replace with your EmailJS template ID (e.g., "PublicLiabilityProposal")
+                templateParams,
+                'aV-FvEfOZg7fbxTN2'     // Replace with your EmailJS public key
+            )
+            .then(
+                (result) => {
+                    console.log('Email successfully sent!', result.text);
+                    toast.success('Form submitted successfully via Email!');
+                    // Reset the form
+                    setFormData({
+                        proposerName: '',
+                        address: '',
+                        mobile: '',
+                        businessTrade: '',
+                        goodsDescription: '',
+                        SeparatePolicies: '',
+                        thirdPartyCover: '',
+                        inspectedBy: '',
+                        thoroughfare: '',
+                        trapdoors: '',
+                        seatingCapacity: '',
+                        natureOfClub: '',
+                        numberofmembers: '',
+                        theatre: '',
+                        refreshments: '',
+                        schoolDescription: '',
+                        numberOfPupils: '',
+                        management: '',
+                        entertainments: '',
+                        indemnity: '',
+                        foodPoisoning: '',
+                        machineryDetails: '',
+                        explosivesUsage: '',
+                        subContractors: '',
+                        contractPrices: '',
+                        employment: '',
+                        particulars: '',
+                        presentInsured: '',
+                        company: '',
+                        proposalStatus: '',
+                        refusedRenewal: '',
+                        policyCancelled: '',
+                        premium: '',
+                        policy: '',
+                        nature: '',
+                        otherWork: '',
+                        workDetails: '',
+                        annualamount: '',
+                        numberofemployees: '',
+                        principal: '',
+                        numberofpartners: '',
+                        date: '',
+                        agency: '',
+                        codenumber: '',
+                        signature: '',
+                    });
+                    if (onClose) onClose();
+                },
+                (error) => {
+                    console.error('Failed to send email:', error.text);
+                    toast.error('Failed to submit form. Please try again.');
+                }
+            );
     };
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-lg shadow-lg flex overflow-hidden">
 
+
                 {/* Left Side Image */}
-                <div className="hidden md:flex w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-full object-cover" loading="lazy" />
+                <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
+                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
+                    <div className='w-full h-full bg-black p-4'>
+                        <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
+                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                            Secure Your Future with Comprehensive Insurance Coverage
+                        </h2>
+                        <p className='text-[16px] text-white'>
+                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
+                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Right Side Form */}
@@ -700,7 +777,6 @@ const PublicLiability = ({ onClose }) => {
                             <input
                                 type="file"
                                 name="signature"
-                                value={formData.signature}
                                 onChange={handleChange}
                                 className="w-full p-2 border rounded-[20px]"
                             />

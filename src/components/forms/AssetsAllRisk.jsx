@@ -3,7 +3,9 @@ import { X } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import image from "../../images/imagebg.png"
+import image from "../../images/imagebg.png";
+import formlogo from "../../images/formlogo.png";
+
 
 const AssetsAllRisk = ({ onClose }) => {
     const form = useRef();
@@ -17,24 +19,60 @@ const AssetsAllRisk = ({ onClose }) => {
         propertyLocation: '',
         lossDate: '',
         lossTime: '',
+        noticeDateOne: '',
+        noticeDateTwo: '',
+        witnesses: '',
+        witnessName: '',
+        damagedItem: '',
+        itemNumber: '',
+        sumInsured: '',
+        manufacturerEquipment: '',
+        yearSerial: '',
+        itemDescription: '',
+        damagedParts: '',
+        damageCause: '',
+        policeStation: '',
+        radioSerialNumber: '',
+        repaircost: '',
+        estimate: '',
+        // Additional fields for damaged items insured with another company
+        insuredCompany: '',
+        scope: '',
+        thirdPartyDamage: '',
+        thirdPartyDetails: '',
+        propertyDamage: '',
+        bodilyInjury: '',
+        existingPropertyDamage: '',
+        propertyDamageDetails: '',
+        claimAmount: '',
+        issuedAt: '',
+        issuedDay: '',
+        issuedMonth: '',
+        issuedYear: '',
     });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
     };
 
     const sendEmail = (e) => {
         e.preventDefault();
 
         emailjs
-            .sendForm('service_w146wla', 'template_1dqgkm6', form.current, 'aV-FvEfOZg7fbxTN2')
+            .sendForm(
+                'service_q21fuxd',     // Replace with your EmailJS service ID
+                'template_yj0pmcx',    // Replace with your EmailJS template ID ("AssetsAllRisksClaim")
+                form.current,
+                'aV-FvEfOZg7fbxTN2'     // Replace with your EmailJS public key
+            )
             .then(
-                () => {
+                (result) => {
                     toast.success('Claim submitted successfully!');
+                    // Optionally reset the state
                     setFormData({
                         insuredName: '',
                         occupation: '',
@@ -44,13 +82,45 @@ const AssetsAllRisk = ({ onClose }) => {
                         propertyLocation: '',
                         lossDate: '',
                         lossTime: '',
+                        noticeDateOne: '',
+                        noticeDateTwo: '',
+                        witnesses: '',
+                        witnessName: '',
+                        damagedItem: '',
+                        itemNumber: '',
+                        sumInsured: '',
+                        manufacturerEquipment: '',
+                        yearSerial: '',
+                        itemDescription: '',
+                        damagedParts: '',
+                        damageCause: '',
+                        policeStation: '',
+                        radioSerialNumber: '',
+                        repaircost: '',
+                        estimate: '',
+                        insuredCompany: '',
+                        scope: '',
+                        thirdPartyDamage: '',
+                        thirdPartyDetails: '',
+                        propertyDamage: '',
+                        bodilyInjury: '',
+                        existingPropertyDamage: '',
+                        propertyDamageDetails: '',
+                        claimAmount: '',
+                        issuedAt: '',
+                        issuedDay: '',
+                        issuedMonth: '',
+                        issuedYear: '',
                     });
+                    if (onClose) onClose();
                 },
                 (error) => {
                     toast.error('Failed to submit claim. Please try again.');
                     console.error('Email error:', error.text);
                 }
             );
+
+        // Optionally reset the form fields in the DOM
         e.target.reset();
     };
 
@@ -59,8 +129,18 @@ const AssetsAllRisk = ({ onClose }) => {
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-lg shadow-lg flex overflow-hidden">
 
                 {/* Left Side Image */}
-                <div className="hidden md:flex w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-full object-cover" loading="lazy" />
+                <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
+                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
+                    <div className='w-full h-full bg-black p-4'>
+                        <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
+                        <h2 className='font-bold text-[22px] mb-2'>
+                            Secure Your Future with Comprehensive Insurance Coverage
+                        </h2>
+                        <p className='text-[16px]'>
+                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
+                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Right Side Form */}
@@ -568,7 +648,7 @@ const AssetsAllRisk = ({ onClose }) => {
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium">20</label>
+                                <label className="block text-sm font-medium">Year</label>
                                 <input
                                     type="text"
                                     name="issuedYear"

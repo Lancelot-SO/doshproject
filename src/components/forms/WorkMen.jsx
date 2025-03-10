@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { ToastContainer } from 'react-toastify';
+import emailjs from '@emailjs/browser';
+import { ToastContainer, toast } from 'react-toastify';
 import image from "../../images/imagebg.png";
+import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
 
 const WorkMen = ({ onClose }) => {
@@ -12,7 +14,7 @@ const WorkMen = ({ onClose }) => {
         telephone: '',
         particularsOfWork: '',
         statutoryLaws: '',
-        // Employee details (example for one row per category)
+        // Employee details (nested objects)
         clericalEmployees: { number: '', wages: '' },
         commercialTravellers: { number: '', wages: '' },
         woodWorkingEmployees: { number: '', wages: '' },
@@ -50,7 +52,6 @@ const WorkMen = ({ onClose }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        // For nested objects (like clericalEmployees), you could enhance this handler
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
@@ -67,8 +68,77 @@ const WorkMen = ({ onClose }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Submitted form:', formData);
-        // Add further processing or API calls here
+
+        // Prepare template parameters for EmailJS.
+        // Flatten nested objects so that they match the placeholders in your email template.
+        const templateParams = {
+            ...formData,
+            clericalNumber: formData.clericalEmployees.number,
+            clericalWages: formData.clericalEmployees.wages,
+            commercialNumber: formData.commercialTravellers.number,
+            commercialWages: formData.commercialTravellers.wages,
+            woodNumber: formData.woodWorkingEmployees.number,
+            woodWages: formData.woodWorkingEmployees.wages,
+            otherDescription: formData.otherEmployees.description,
+            otherNumber: formData.otherEmployees.number,
+            otherWages: formData.otherEmployees.wages,
+        };
+
+        // Send email using EmailJS.
+        emailjs
+            .send(
+                'service_e0q53fo',    // Replace with your EmailJS service ID
+                'template_28274e7',   // Replace with your EmailJS template ID (e.g., "WorkmenProposal")
+                templateParams,
+                'aV-FvEfOZg7fbxTN2'     // Replace with your EmailJS public key
+            )
+            .then(
+                (result) => {
+                    console.log('Email successfully sent!', result.text);
+                    toast.success('Proposal submitted successfully!');
+                    // Optionally reset the form.
+                    setFormData({
+                        proposerName: '',
+                        businessAddress: '',
+                        firmEstablished: '',
+                        tradeOccupation: '',
+                        telephone: '',
+                        particularsOfWork: '',
+                        statutoryLaws: '',
+                        clericalEmployees: { number: '', wages: '' },
+                        commercialTravellers: { number: '', wages: '' },
+                        woodWorkingEmployees: { number: '', wages: '' },
+                        otherEmployees: { description: '', number: '', wages: '' },
+                        contractorName: '',
+                        contractorNature: '',
+                        contractorLabourAndMaterials: '',
+                        contractorLabourOnly: '',
+                        totalWagesPaid: '',
+                        subcontractorInsurance: '',
+                        includeAllPersons: '',
+                        includeSubContractors: '',
+                        premisesRegulation: '',
+                        premisesCompliance: '',
+                        machineryDetails: '',
+                        machinerySafety: '',
+                        boilers: '',
+                        chemicalsUsed: '',
+                        chemicalsDetails: '',
+                        requireMedicalCover: '',
+                        totalPremium: '',
+                        currentInsurer: '',
+                        insuranceDeclined: '',
+                        wagesAndAccidents: '',
+                        declarationDate: '',
+                        signature: '',
+                        agency: '',
+                    });
+                },
+                (error) => {
+                    console.error('Failed to send email. Error:', error.text);
+                    toast.error('Failed to submit proposal. Please try again later.');
+                }
+            );
     };
 
     return (
@@ -76,8 +146,18 @@ const WorkMen = ({ onClose }) => {
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
 
                 {/* Left Side Image */}
-                <div className="hidden md:flex w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-full object-cover" loading="lazy" />
+                <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
+                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
+                    <div className='w-full h-full bg-black p-4'>
+                        <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
+                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                            Secure Your Future with Comprehensive Insurance Coverage
+                        </h2>
+                        <p className='text-[16px] text-white'>
+                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
+                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Right Side Form */}

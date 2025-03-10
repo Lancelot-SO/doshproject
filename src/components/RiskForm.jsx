@@ -4,6 +4,7 @@ import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import image from "../images/imagebg.png"
+import formlogo from "../images/formlogo.png"
 import AssetsAllRisk from './forms/AssetsAllRisk';
 import PublicLiability from './forms/PublicLiability';
 import MarineOpenCover from './forms/MarineOpenCover';
@@ -39,11 +40,6 @@ const RiskForm = ({ onClose }) => {
     const [showPrivate, setShowPrivate] = useState(false);
     const [showHotel, setShowHotel] = useState(false);
     const [showHomeProtection, setShowHomeProtection] = useState(false);
-
-
-
-
-
 
 
     const [formData, setFormData] = useState({
@@ -156,9 +152,20 @@ const RiskForm = ({ onClose }) => {
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-lg shadow-lg flex overflow-hidden">
 
                 {/* Left Side Image */}
-                <div className="hidden md:flex w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-full object-cover" loading="lazy" />
+                <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
+                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
+                    <div className='w-full h-full bg-black p-4'>
+                        <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
+                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                            Secure Your Future with Comprehensive Insurance Coverage
+                        </h2>
+                        <p className='text-[16px] text-white'>
+                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
+                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        </p>
+                    </div>
                 </div>
+
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
@@ -172,6 +179,15 @@ const RiskForm = ({ onClose }) => {
                     >
                         <X size={24} />
                     </button>
+                    <div className='lg:hidden block text-black'>
+                        <h2 className='font-bold text-[22px] mb-2'>
+                            Secure Your Future with Comprehensive Insurance Coverage
+                        </h2>
+                        <p className='text-[16px]'>
+                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
+                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        </p>
+                    </div>
 
                     {/* Conditional Rendering of AssetsAllRisk Component */}
                     {showAssetsForm ? (

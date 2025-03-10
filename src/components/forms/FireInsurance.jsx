@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import image from "../../images/imagebg.png";
+import formlogo from "../../images/formlogo.png"
 import { X } from 'lucide-react';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import emailjs from '@emailjs/browser';
 
 const FireInsurance = ({ onClose }) => {
+    const form = useRef();
+
     const [formData, setFormData] = useState({
-        // Insured’s Details
         proposerTitle: '',
         proposerSurname: '',
         otherNames: '',
@@ -33,7 +37,6 @@ const FireInsurance = ({ onClose }) => {
         manufacturingNature: '',
         oilsDetails: '',
         hazardousItems: [],
-        // Adjoining Buildings
         adjoiningBuildings: '',
         adjoiningConstruction: '',
         adjoiningOccupation: '',
@@ -41,38 +44,31 @@ const FireInsurance = ({ onClose }) => {
         adjoiningSeparationMaterials: '',
         adjoiningOpenings: '',
         adjoiningOpeningsNature: '',
-        // Risk Detached
         riskDetached: '',
         detachedConstruction: '',
         detachedOccupation: '',
         detachedDistance: '',
-        // Annual Procedures & Accounting
         annualStock: '',
         accountingBooks: '',
         fireProofSafe: '',
         removeBooks: '',
-        // Current Insurance
         currentlyInsured: '',
         policyNumber: '',
-        // Insurance Refusal
         insuranceRefused: '',
         refusedDetails: '',
-        // Claims History
         madeClaim: '',
         claimDetails: '',
-        // Extension of Coverage
-        extendEarthquake: false,
-        extendWindstorm: false,
-        extendExplosion: false,
-        extendAircraft: false,
-        extendImpact: false,
-        extendFlood: false,
-        extendBurstPipe: false,
-        extendRiot: false,
-        extendCivilCommotion: false,
-        extendMaliciousDamage: false,
-        extendBushFire: false,
-        // Declaration
+        extendEarthquake: '',
+        extendWindstorm: '',
+        extendExplosion: '',
+        extendAircraft: '',
+        extendImpact: '',
+        extendFlood: '',
+        extendBurstPipe: '',
+        extendRiot: '',
+        extendCivilCommotion: '',
+        extendMaliciousDamage: '',
+        extendBushFire: '',
         declarationDate: '',
         declarationSignature: '',
         declarationAgency: '',
@@ -80,17 +76,16 @@ const FireInsurance = ({ onClose }) => {
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
-        // For hazardous items checkboxes
         if (type === 'checkbox' && name === 'hazardousItems') {
             let newItems = [...formData.hazardousItems];
             if (checked) {
                 newItems.push(value);
             } else {
-                newItems = newItems.filter(item => item !== value);
+                newItems = newItems.filter((item) => item !== value);
             }
             setFormData({ ...formData, hazardousItems: newItems });
         } else if (type === 'checkbox') {
-            setFormData({ ...formData, [name]: checked });
+            setFormData({ ...formData, [name]: checked ? 'Yes' : 'No' });
         } else {
             setFormData({ ...formData, [name]: value });
         }
@@ -98,9 +93,91 @@ const FireInsurance = ({ onClose }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Process your form data here (e.g., send it to an API)
-        console.log(formData);
-        alert('Form submitted! (Check console for details.)');
+
+        emailjs
+            .sendForm(
+                'service_kiwnx04',       // Replace with your EmailJS service ID
+                'template_z2zdfkn',      // Replace with your EmailJS template ID ("FireInsuranceProposal")
+                form.current,
+                'aV-FvEfOZg7fbxTN2'        // Replace with your EmailJS public key
+            )
+            .then(
+                (result) => {
+                    toast.success('Fire Insurance proposal submitted successfully!');
+                    // Reset the form state
+                    setFormData({
+                        proposerTitle: '',
+                        proposerSurname: '',
+                        otherNames: '',
+                        dob: '',
+                        sex: '',
+                        postalAddress: '',
+                        occupation: '',
+                        email: '',
+                        mobile: '',
+                        landline: '',
+                        propertyAddress: '',
+                        premisesDescription: '',
+                        constructionWalls: '',
+                        constructionRoof: '',
+                        sumBuilding: '',
+                        sumFence: '',
+                        sumFurniture: '',
+                        sumWholesale: '',
+                        sumRetail: '',
+                        sumFixtures: '',
+                        storeys: '',
+                        heatingLightingUse: '',
+                        heatingLightingNature: '',
+                        manufacturing: '',
+                        manufacturingNature: '',
+                        oilsDetails: '',
+                        hazardousItems: [],
+                        adjoiningBuildings: '',
+                        adjoiningConstruction: '',
+                        adjoiningOccupation: '',
+                        adjoiningGoods: '',
+                        adjoiningSeparationMaterials: '',
+                        adjoiningOpenings: '',
+                        adjoiningOpeningsNature: '',
+                        riskDetached: '',
+                        detachedConstruction: '',
+                        detachedOccupation: '',
+                        detachedDistance: '',
+                        annualStock: '',
+                        accountingBooks: '',
+                        fireProofSafe: '',
+                        removeBooks: '',
+                        currentlyInsured: '',
+                        policyNumber: '',
+                        insuranceRefused: '',
+                        refusedDetails: '',
+                        madeClaim: '',
+                        claimDetails: '',
+                        extendEarthquake: '',
+                        extendWindstorm: '',
+                        extendExplosion: '',
+                        extendAircraft: '',
+                        extendImpact: '',
+                        extendFlood: '',
+                        extendBurstPipe: '',
+                        extendRiot: '',
+                        extendCivilCommotion: '',
+                        extendMaliciousDamage: '',
+                        extendBushFire: '',
+                        declarationDate: '',
+                        declarationSignature: '',
+                        declarationAgency: '',
+                    });
+                    if (onClose) onClose();
+                },
+                (error) => {
+                    toast.error('Failed to submit proposal. Please try again.');
+                    console.error('EmailJS error:', error.text);
+                }
+            );
+        // Optionally clear the form fields in the DOM
+        e.target.reset();
     };
 
     return (
@@ -108,8 +185,18 @@ const FireInsurance = ({ onClose }) => {
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
 
                 {/* Left Side Image */}
-                <div className="hidden md:flex w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-full object-cover" loading="lazy" />
+                <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
+                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
+                    <div className='w-full h-full bg-black p-4'>
+                        <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
+                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                            Secure Your Future with Comprehensive Insurance Coverage
+                        </h2>
+                        <p className='text-[16px] text-white'>
+                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
+                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Right Side Form */}
@@ -1053,7 +1140,6 @@ const FireInsurance = ({ onClose }) => {
                                     <input
                                         type="text"
                                         name="declarationSignature"
-                                        value={formData.declarationSignature}
                                         onChange={handleChange}
                                         className="w-full border rounded p-2"
                                     />

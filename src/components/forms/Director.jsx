@@ -1,96 +1,178 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from "react";
+import emailjs from '@emailjs/browser';
 import image from "../../images/imagebg.png";
+import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Director = ({ onClose }) => {
     const [formData, setFormData] = useState({
         // Question 1
-        companyName: '',
-        headOfficeAddress: '',
-        holdingCompany: '',
+        companyName: "",
+        headOfficeAddress: "",
+        holdingCompany: "",
         // Question 2
-        companyType: '',
-        natureOfBusiness: '',
-        businessStartDate: '',
-        // Question 3 – using a textarea for multiple directors (could be enhanced later)
-        boardDirectors: '',
-        // Question 4 – Cover required and details (conditional)
-        coverRequired: '',
-        coverCompany: '',
-        coverCountry: '',
-        coverNetProfit: '',
-        coverNetWorth: '',
-        coverIncorporation: '',
+        companyType: "",
+        natureOfBusiness: "",
+        businessStartDate: "",
+        // Question 3
+        boardDirectors: "",
+        // Question 4
+        coverRequired: "",
+        coverCompany: "",
+        coverCountry: "",
+        coverNetProfit: "",
+        coverNetWorth: "",
+        coverIncorporation: "",
         // Question 5
-        shareholdersCount: '',
-        shareholdersDetails: '',
+        shareholdersCount: "",
+        shareholdersDetails: "",
         // Question 6
-        listedStockExchange: '',
-        unlistedSecurities: '',
-        tradedOther: '',
+        listedStockExchange: "",
+        unlistedSecurities: "",
+        tradedOther: "",
         // Question 7
-        usAssets: '',
-        usEmployees: '',
-        canadaEmployees: '',
+        usAssets: "",
+        usEmployees: "",
+        canadaEmployees: "",
         // Question 8
-        subsidiaryName: '',
-        subsidiaryInterest: '',
+        subsidiaryName: "",
+        subsidiaryInterest: "",
         // Question 9
-        stockIssued: '',
-        lastOfferDate: '',
-        securityAct: '',
-        // Question 10 – file upload (20-F filing)
+        stockIssued: "",
+        lastOfferDate: "",
+        securityAct: "",
+        // Question 10 – file upload (e.g., 20-F filing)
         filingUploaded: null,
         // Question 11
-        acquisitions: '',
+        acquisitions: "",
         // Question 12
-        publicOffering: '',
-        shareIssue: '',
-        publicOfferingnext: '',
+        publicOffering: "",
+        publicOfferingnext: "",
+        shareIssue: "",
         // Question 13
-        insurerName: '',
-        policyPeriod: '',
-        indemnityLimit: '',
-        premium: '',
-        insuranceRefusal: '',
+        insurerName: "",
+        policyPeriod: "",
+        indemnityLimit: "",
+        premium: "",
+        insuranceRefusal: "",
         // Question 14
-        claimDetails: '',
-        futureClaimDetails: '',
+        claimDetails: "",
+        futureClaimDetails: "",
         details: "",
-        nextdetails: '',
+        nextdetails: "",
         // Question 15
-        indemnityRequired: '',
+        indemnityRequired: "",
         // Question 16 – Declaration
-        declarationSigned: '',
-        declarationCapacity: '',
-        declarationCompany: '',
-        declarationDate: '',
+        declarationSigned: "",
+        declarationCapacity: "",
+        declarationCompany: "",
+        declarationDate: "",
     });
 
+    // Create a form ref for emailjs.sendForm
+    const formRef = useRef();
+
+    // Handle input changes
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
-        if (type === 'file') {
+        if (type === "file") {
+            // For file inputs, we store the File object (do not set a value for file inputs in React)
             setFormData({ ...formData, [name]: files[0] });
         } else {
             setFormData({ ...formData, [name]: value });
         }
     };
 
+    // Handle form submission via EmailJS
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Here you can handle form submission (e.g., send the data to an API)
-        console.log(formData);
-        alert("Form submitted! (Check console for the form data.)");
+
+        // Replace with your actual EmailJS credentials
+        const serviceID = "service_3skw168";
+        const templateID = "template_kr1zu3s";
+        const publicKey = "aV-FvEfOZg7fbxTN2";
+
+        emailjs.sendForm(serviceID, templateID, formRef.current, publicKey)
+            .then((response) => {
+                console.log("SUCCESS!", response.status, response.text);
+                toast.success("Form submitted successfully!");
+                // Optionally, reset state and the form
+                setFormData({
+                    companyName: "",
+                    headOfficeAddress: "",
+                    holdingCompany: "",
+                    companyType: "",
+                    natureOfBusiness: "",
+                    businessStartDate: "",
+                    boardDirectors: "",
+                    coverRequired: "",
+                    coverCompany: "",
+                    coverCountry: "",
+                    coverNetProfit: "",
+                    coverNetWorth: "",
+                    coverIncorporation: "",
+                    shareholdersCount: "",
+                    shareholdersDetails: "",
+                    listedStockExchange: "",
+                    unlistedSecurities: "",
+                    tradedOther: "",
+                    usAssets: "",
+                    usEmployees: "",
+                    canadaEmployees: "",
+                    subsidiaryName: "",
+                    subsidiaryInterest: "",
+                    stockIssued: "",
+                    lastOfferDate: "",
+                    securityAct: "",
+                    filingUploaded: null,
+                    acquisitions: "",
+                    publicOffering: "",
+                    publicOfferingnext: "",
+                    shareIssue: "",
+                    insurerName: "",
+                    policyPeriod: "",
+                    indemnityLimit: "",
+                    premium: "",
+                    insuranceRefusal: "",
+                    claimDetails: "",
+                    futureClaimDetails: "",
+                    details: "",
+                    nextdetails: "",
+                    indemnityRequired: "",
+                    declarationSigned: "",
+                    declarationCapacity: "",
+                    declarationCompany: "",
+                    declarationDate: "",
+                });
+                e.target.reset();
+                if (onClose) onClose();
+            })
+            .catch((err) => {
+                console.error("FAILED...", err);
+                toast.error("Failed to submit form. Please try again.");
+            });
     };
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 text-gray-800">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
 
+
                 {/* Left Side Image */}
-                <div className="hidden md:flex w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-full object-cover" loading="lazy" />
+                <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
+                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
+                    <div className='w-full h-full bg-black p-4'>
+                        <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
+                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                            Secure Your Future with Comprehensive Insurance Coverage
+                        </h2>
+                        <p className='text-[16px] text-white'>
+                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
+                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Right Side Form */}
@@ -496,7 +578,8 @@ const Director = ({ onClose }) => {
                                         <label className="block font-medium">
                                             Was the offer subject to the United States
                                             Security Act 1933 and/or the Securities (b)
-                                            Exchange of Act of 1934 and/or any amendments thereto?                                        </label>
+                                            Exchange of Act of 1934 and/or any amendments thereto?
+                                        </label>
                                         <input
                                             type="text"
                                             name="securityAct"
@@ -755,7 +838,6 @@ const Director = ({ onClose }) => {
                                     <input
                                         type="file"
                                         name="declarationSigned"
-                                        value={formData.declarationSigned}
                                         onChange={handleChange}
                                         className="w-full border rounded p-2"
                                     />

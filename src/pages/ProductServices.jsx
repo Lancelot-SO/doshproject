@@ -269,7 +269,7 @@ const ProductServices = () => {
                                         <img
                                             src={product.image}
                                             alt={product.title}
-                                            className="w-full h-40 lg:h-full object-cover rounded-lg shadow-lg"
+                                            className="w-full h-full object-cover rounded-lg shadow-lg"
                                         />
                                     </div>
                                 </div>
