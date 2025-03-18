@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
@@ -43,12 +43,24 @@ const RiskForm = ({ onClose }) => {
 
 
     const [formData, setFormData] = useState({
-        fullname: '',
+        firstname: '',
+        surname: '',
+        othernames: '',
         email: '',
         phone: '',
         brokerage: '',
+        insuranceType: '',
         formType: '',
         message: ''
+    });
+
+    // State for pre-filling the modal or secondary form
+    const [modalFormData, setModalFormData] = useState({
+        firstname: "",
+        surname: "",
+        othernames: "",
+        email: "",
+        phone: ""
     });
 
     const pdfOptions = [
@@ -71,27 +83,50 @@ const RiskForm = ({ onClose }) => {
     ];
 
     const firms = [
-        'Enterprise Insurance',
-        'Star Assurance',
-        'Hollard',
-        'Glico',
-        'Vanguard Assurance',
-        'SIC',
-        'Phoenix Insurance',
-        'DONEWELL Insurance',
-        'NSIA Insurance',
-        'OLDMUTUAL',
-        'Serene Insurance',
-        'Coronation Insurance',
-        'Allianz',
-        'Priority Insurance',
-        'SUNU Assurance',
-        'Sanlam',
-        'Provident Insurance',
-        'Bedrock Insurance',
-        'Activa Insurance',
-        'QIC'
+        "SIC Insurance Company Ltd",
+        "Enterprise Insurance",
+        "Star Assurance Company Ltd",
+        "Vanguard Assurance Ltd",
+        "Holland Insurance",
+        "Millennium Insurance",
+        "Sanlam Allianz Insurance Ltd",
+        "Ghana Union Assurance Ltd",
+        "Prime Insurance Ltd",
+        "Glico General Insurance company Ltd",
+        "Activa Insurance company Ltd.",
+        "Loyalty Insurance company Ltd",
+        "Priority Insurance Ltd",
+        "Serene Insurance Company Ltd",
+        "Phoenix Assurance Ltd",
+        "Bedrock Insurance Company Ltd",
+        "Coronation Insurance company Ltd",
+        "Sunu Insurance Limited",
+        "Quality Insurance Company",
+        "Nsiah Insurance Company Ltd",
+        "Imperial General Insurance company Ltd",
+        "Best Assurance Company Ltd.",
+        "Donewell Insurance company Ltd"
     ];
+
+    const lifeInsurance = [
+        "SIC Life Insurance Company Ltd",
+        "Enterprise Life Insurance Ltd.",
+        "Starlife Insurance Company Ltd",
+        "Vanguard Life Insurance company",
+        "Holland Life Insurance",
+        "Milife Insurance",
+        "Sanlam Allianz Life Insurance Ltd",
+        "Ghana life Insurance ltd",
+        "Glico life Insurance company Ltd",
+        "Prudential Life Insurance",
+        "Old Mutual Assurance Ltd",
+        "Metropolitan Life Insurance Ltd",
+        "Quality Life Insurance Company",
+        "Donewell life Insurance company Ltd",
+        "Impact Life Insurance Ltd"
+    ];
+
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -122,6 +157,28 @@ const RiskForm = ({ onClose }) => {
 
     };
 
+
+    // Whenever the user selects a Preferred Category (formType) and personal details are filled,
+    // update modalFormData with the matching fields.
+    useEffect(() => {
+        if (formData.formType) {
+            setModalFormData({
+                firstname: formData.firstname,
+                surname: formData.surname,
+                othernames: formData.othernames,
+                email: formData.email,
+                phone: formData.phone
+            });
+        }
+    }, [
+        formData.formType,
+        formData.firstname,
+        formData.surname,
+        formData.othernames,
+        formData.email,
+        formData.phone
+    ]);
+
     const sendEmail = (e) => {
         e.preventDefault();
 
@@ -131,10 +188,13 @@ const RiskForm = ({ onClose }) => {
                 () => {
                     toast.success('Message sent successfully!');
                     setFormData({
-                        fullname: '',
+                        firstname: '',
+                        surname: '',
+                        othernames: '',
                         email: '',
                         phone: '',
                         brokerage: '',
+                        insuranceType: '',
                         formType: '',
                         message: ''
                     });
@@ -156,12 +216,11 @@ const RiskForm = ({ onClose }) => {
                     <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
                     <div className='w-full h-full bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
-                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                        <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
                         </h2>
-                        <p className='text-[16px] text-white'>
-                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
-                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        <p className='text-[14px] text-white'>
+                            We simplify insurance so you can focus on what truly matters.
                         </p>
                     </div>
                 </div>
@@ -174,84 +233,140 @@ const RiskForm = ({ onClose }) => {
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-8 h-8 flex items-center justify-center"
+                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
-                        <X size={24} />
+                        <X size={16} />
                     </button>
                     <div className='lg:hidden block text-black'>
-                        <h2 className='font-bold text-[22px] mb-2'>
+                        <h2 className='font-bold text-[20px] mb-2'>
                             Secure Your Future with Comprehensive Insurance Coverage
                         </h2>
                         <p className='text-[16px]'>
-                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
-                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                            We simplify insurance so you can focus on what truly matters.
+                        </p>
+                    </div>
+                    <div className=''>
+                        <p className='text-[14px] text-black'>
+                            Fill out this form to submit your request.
                         </p>
                     </div>
 
                     {/* Conditional Rendering of AssetsAllRisk Component */}
                     {showAssetsForm ? (
-                        <AssetsAllRisk onClose={() => setShowAssetsForm(false)} />
+                        <AssetsAllRisk onClose={() => setShowAssetsForm(false)}
+                            userData={modalFormData} />
                     ) : showPublicLiabilityForm ? (
-                        <PublicLiability onClose={() => setShowPublicLiabilityForm(false)} />
+                        <PublicLiability onClose={() => setShowPublicLiabilityForm(false)}
+                            userData={modalFormData} />
                     ) : showMarineOpenCoverForm ? (
-                        <MarineOpenCover onClose={() => setShowMarineOpenCoverForm(false)} />
+                        <MarineOpenCover onClose={() => setShowMarineOpenCoverForm(false)}
+                            userData={modalFormData} />
                     ) : showWorkMen ? (
-                        <WorkMen onClose={() => setShowWorkMen(false)} />
+                        <WorkMen onClose={() => setShowWorkMen(false)}
+                            userData={modalFormData} />
                     ) :
                         showTravelInsurance ? (
-                            <TravelInsurance onClose={() => setShowTravelInsurance(false)} />
+                            <TravelInsurance onClose={() => setShowTravelInsurance(false)}
+                                userData={modalFormData} />
                         ) :
                             showTransit ? (
-                                <Transit onClose={() => setShowTransit(false)} />
+                                <Transit onClose={() => setShowTransit(false)}
+                                    userData={modalFormData} />
                             ) :
                                 showProfessional ? (
-                                    <ProfessionalIndemnity onClose={() => setShowProfessional(false)} />
+                                    <ProfessionalIndemnity onClose={() => setShowProfessional(false)}
+                                        userData={modalFormData} />
                                 ) :
                                     showHouseHold ? (
-                                        <HouseholdContent onClose={() => setShowHouseHold(false)} />
+                                        <HouseholdContent onClose={() => setShowHouseHold(false)}
+                                            userData={modalFormData} />
                                     ) :
                                         showVehicle ? (
-                                            <VehicleInsurance onClose={() => setShowVehicle(false)} />
+                                            <VehicleInsurance onClose={() => setShowVehicle(false)}
+                                                userData={modalFormData} />
                                         ) :
                                             showTheft ? (
-                                                <TheftInsurance onClose={() => setShowTheft(false)} />
+                                                <TheftInsurance onClose={() => setShowTheft(false)}
+                                                    userData={modalFormData} />
                                             ) :
                                                 showClaim ? (
-                                                    <GuaranteeClaim onClose={() => setShowClaim(false)} />
+                                                    <GuaranteeClaim onClose={() => setShowClaim(false)}
+                                                        userData={modalFormData} />
                                                 ) :
                                                     showDirector ? (
-                                                        <Director onClose={() => setShowDirector(false)} />
+                                                        <Director onClose={() => setShowDirector(false)}
+                                                            userData={modalFormData} />
                                                     ) :
                                                         showFire ? (
-                                                            <FireInsurance onClose={() => setShowFire(false)} />
+                                                            <FireInsurance onClose={() => setShowFire(false)}
+                                                                userData={modalFormData} />
                                                         ) :
                                                             showPrivate ? (
-                                                                <PrivateMotor onClose={() => setShowPrivate(false)} />
+                                                                <PrivateMotor onClose={() => setShowPrivate(false)}
+                                                                    userData={modalFormData} />
                                                             ) :
                                                                 showHotel ? (
-                                                                    <HotelInsurance onClose={() => setShowHotel(false)} />
+                                                                    <HotelInsurance onClose={() => setShowHotel(false)}
+                                                                        userData={modalFormData} />
                                                                 ) :
                                                                     showHomeProtection ? (
-                                                                        <HomeProtection onClose={() => setShowHomeProtection(false)} />
+                                                                        <HomeProtection onClose={() => setShowHomeProtection(false)}
+                                                                            userData={modalFormData} />
                                                                     ) : (
                                                                         <form ref={form} onSubmit={sendEmail} className="w-full space-y-4">
-                                                                            <div>
-                                                                                <label htmlFor="fullname" className="block text-sm font-medium">Full Name</label>
-                                                                                <input
-                                                                                    type="text"
-                                                                                    id="fullname"
-                                                                                    name="fullname"
-                                                                                    value={formData.fullname}
-                                                                                    onChange={handleChange}
-                                                                                    required
-                                                                                    placeholder='Enter name here'
-                                                                                    className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                                                />
+                                                                            {/* Personal Details */}
+                                                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                                                                <div>
+                                                                                    <label htmlFor="firstname" className="block text-sm font-medium">
+                                                                                        First Name
+                                                                                    </label>
+                                                                                    <input
+                                                                                        type="text"
+                                                                                        id="firstname"
+                                                                                        name="firstname"
+                                                                                        value={formData.firstname}
+                                                                                        onChange={handleChange}
+                                                                                        required
+                                                                                        placeholder="Enter first name"
+                                                                                        className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                    />
+                                                                                </div>
+                                                                                <div>
+                                                                                    <label htmlFor="surname" className="block text-sm font-medium">
+                                                                                        Surname
+                                                                                    </label>
+                                                                                    <input
+                                                                                        type="text"
+                                                                                        id="surname"
+                                                                                        name="surname"
+                                                                                        value={formData.surname}
+                                                                                        onChange={handleChange}
+                                                                                        required
+                                                                                        placeholder="Enter surname"
+                                                                                        className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                    />
+                                                                                </div>
+                                                                                <div>
+                                                                                    <label htmlFor="othernames" className="block text-sm font-medium">
+                                                                                        Other Names
+                                                                                    </label>
+                                                                                    <input
+                                                                                        type="text"
+                                                                                        id="othernames"
+                                                                                        name="othernames"
+                                                                                        value={formData.othernames}
+                                                                                        onChange={handleChange}
+                                                                                        placeholder="Enter other names"
+                                                                                        className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                    />
+                                                                                </div>
                                                                             </div>
 
                                                                             <div>
-                                                                                <label htmlFor="email" className="block text-sm font-medium">Email</label>
+                                                                                <label htmlFor="email" className="block text-sm font-medium">
+                                                                                    Email
+                                                                                </label>
                                                                                 <input
                                                                                     type="email"
                                                                                     id="email"
@@ -259,13 +374,15 @@ const RiskForm = ({ onClose }) => {
                                                                                     value={formData.email}
                                                                                     onChange={handleChange}
                                                                                     required
-                                                                                    placeholder='Enter email here'
+                                                                                    placeholder="Enter email here"
                                                                                     className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                                                                 />
                                                                             </div>
 
                                                                             <div>
-                                                                                <label htmlFor="phone" className="block text-sm font-medium">Phone Number</label>
+                                                                                <label htmlFor="phone" className="block text-sm font-medium">
+                                                                                    Phone Number
+                                                                                </label>
                                                                                 <input
                                                                                     type="tel"
                                                                                     id="phone"
@@ -273,20 +390,48 @@ const RiskForm = ({ onClose }) => {
                                                                                     value={formData.phone}
                                                                                     onChange={handleChange}
                                                                                     required
-                                                                                    placeholder='Enter number here'
+                                                                                    placeholder="Enter number here"
                                                                                     className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                                                                 />
                                                                             </div>
 
                                                                             <div>
-                                                                                <label htmlFor="formType" className="block text-sm font-medium">Preferred Category</label>
+                                                                                <label htmlFor="insuranceType" className="block text-sm font-medium">
+                                                                                    Insurance Category
+                                                                                </label>
+                                                                                <select
+                                                                                    id="insuranceType"
+                                                                                    name="insuranceType"
+                                                                                    value={formData.insuranceType}
+                                                                                    onChange={handleChange}
+                                                                                    required
+                                                                                    className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                >
+                                                                                    <option value="">Choose an option</option>
+                                                                                    <option value="Life Insurance">Life Insurance</option>
+                                                                                    <option value="General Insurance">General Insurance</option>
+                                                                                    <option value="Other">Other</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div>
+                                                                                <label htmlFor="formType" className="block text-sm font-medium">
+                                                                                    Insurance Product
+                                                                                </label>
                                                                                 <select
                                                                                     id="formType"
                                                                                     name="formType"
                                                                                     value={formData.formType}
                                                                                     onChange={handleChange}
                                                                                     required
-                                                                                    className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                    disabled={
+                                                                                        formData.insuranceType.trim() === "Life Insurance" ||
+                                                                                        formData.insuranceType.trim() === "Other"
+                                                                                    }
+                                                                                    className={`w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${(formData.insuranceType.trim() === "Life Insurance" ||
+                                                                                        formData.insuranceType.trim() === "Other")
+                                                                                        ? "cursor-not-allowed"
+                                                                                        : ""
+                                                                                        }`}
                                                                                 >
                                                                                     <option value="">Choose an option</option>
                                                                                     {pdfOptions.map((option, index) => (
@@ -297,33 +442,67 @@ const RiskForm = ({ onClose }) => {
                                                                                 </select>
                                                                             </div>
 
-                                                                            <div>
-                                                                                <label htmlFor="brokerage" className="block text-sm font-medium">Preferred Insurer</label>
-                                                                                <select
-                                                                                    id="brokerage"
-                                                                                    name="brokerage"
-                                                                                    value={formData.brokerage}
-                                                                                    onChange={handleChange}
-                                                                                    className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                                                >
-                                                                                    <option value=""></option>
-                                                                                    {firms.map((firm, index) => (
-                                                                                        <option key={index} value={firm}>
-                                                                                            {firm}
-                                                                                        </option>
-                                                                                    ))}
-                                                                                </select>
-                                                                            </div>
+
+
+
+
+                                                                            {/* Preferred Insurance Company appears after the Insurance Product select */}
+                                                                            {formData.insuranceType === "Life Insurance" && (
+                                                                                <div>
+                                                                                    <label htmlFor="brokerage" className="block text-sm font-medium">
+                                                                                        Preferred Insurance Company
+                                                                                    </label>
+                                                                                    <select
+                                                                                        id="brokerage"
+                                                                                        name="brokerage"
+                                                                                        value={formData.brokerage}
+                                                                                        onChange={handleChange}
+                                                                                        className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                    >
+                                                                                        <option value="">Choose an option</option>
+                                                                                        {lifeInsurance.map((life, index) => (
+                                                                                            <option key={index} value={life}>
+                                                                                                {life}
+                                                                                            </option>
+                                                                                        ))}
+                                                                                    </select>
+                                                                                </div>
+                                                                            )}
+
+
+                                                                            {formData.insuranceType === "General Insurance" && (
+                                                                                <div>
+                                                                                    <label htmlFor="brokerage" className="block text-sm font-medium">
+                                                                                        Preferred Insurance Company
+                                                                                    </label>
+                                                                                    <select
+                                                                                        id="brokerage"
+                                                                                        name="brokerage"
+                                                                                        value={formData.brokerage}
+                                                                                        onChange={handleChange}
+                                                                                        className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                    >
+                                                                                        <option value="">Choose an option</option>
+                                                                                        {firms.map((firm, index) => (
+                                                                                            <option key={index} value={firm}>
+                                                                                                {firm}
+                                                                                            </option>
+                                                                                        ))}
+                                                                                    </select>
+                                                                                </div>
+                                                                            )}
 
                                                                             <div>
-                                                                                <label htmlFor="message" className="block text-sm font-medium">Message</label>
+                                                                                <label htmlFor="message" className="block text-sm font-medium">
+                                                                                    Message
+                                                                                </label>
                                                                                 <textarea
                                                                                     id="message"
                                                                                     name="message"
                                                                                     value={formData.message}
                                                                                     onChange={handleChange}
                                                                                     rows="4"
-                                                                                    placeholder='Enter a message'
+                                                                                    placeholder="Enter a message"
                                                                                     className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
                                                                                 ></textarea>
                                                                             </div>
@@ -335,6 +514,10 @@ const RiskForm = ({ onClose }) => {
                                                                                 Send
                                                                             </button>
                                                                         </form>
+
+
+
+
                                                                     )}
                 </div>
             </div>

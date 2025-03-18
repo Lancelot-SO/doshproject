@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser';
-import image from "../../images/imagebg.png";
+import image from "../../images/homeprotection.png";
 import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 import HomeProtectionTable from './HomeProtectionTable';
 
-const HomeProtection = ({ onClose }) => {
+const HomeProtection = ({ onClose, userData }) => {
     const [formData, setFormData] = useState({
         // Personal Details
         proposerName: '',
@@ -68,6 +68,18 @@ const HomeProtection = ({ onClose }) => {
         section4PersonalAccidentMedical: { insure: false },
         totalPremium: ''
     });
+
+    // Update formData with values from parent if provided
+    useEffect(() => {
+        if (userData) {
+            setFormData((prevState) => ({
+                ...prevState,
+                proposerName: `${userData.firstname} ${userData.surname} ${userData.othernames}`.trim(),
+                telephone: userData.telephone || '',
+                email: userData.email || '',
+            }));
+        }
+    }, [userData]);
 
     // Helper function to flatten the tableData object
     const flattenTableData = (data) => {
@@ -174,17 +186,17 @@ const HomeProtection = ({ onClose }) => {
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
 
 
+
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
                     <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
                     <div className='w-full h-full bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
-                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                        <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
                         </h2>
-                        <p className='text-[16px] text-white'>
-                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
-                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        <p className='text-[14px] text-white'>
+                            We simplify insurance so you can focus on what truly matters.
                         </p>
                     </div>
                 </div>
@@ -193,13 +205,15 @@ const HomeProtection = ({ onClose }) => {
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
 
+                    {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-8 h-8 flex items-center justify-center"
+                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
-                        <X size={24} />
-                    </button>            <h1 className="text-3xl font-bold mb-6">
+                        <X size={16} />
+                    </button>
+                    <h1 className="text-3xl font-bold mb-6">
                         Home Protection Policy
                     </h1>
 

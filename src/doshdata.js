@@ -46,8 +46,10 @@ const products = [
         image: Finance,
         readmore: '/insuredetails',
         quote: `Experience peace of mind with comprehensive healthcare coverage from DOSH Insurance. Our mission transcends traditional insurance—we're here to ensure that quality healthcare remains within reach when you need it most.
-Just as health knows no boundaries, our network of accredited healthcare providers extends across all regions, offering you seamless access to medical care. Our team of seasoned financial and healthcare experts has crafted versatile coverage options that adapt to your unique needs, whether you're a growing business, a busy professional, or a family seeking protection.
-Think of us as your healthcare concierge, transforming complex insurance into straightforward solutions. With DOSH Insurance, you're not just buying a policy—you're investing in the freedom to live life fully, supported by a partner who understands that good health is your greatest asset.
+Just as health knows no boundaries, our network of accredited healthcare providers extends across all regions, offering you seamless access to medical care.`,
+        secondquote: `Our team of seasoned financial and healthcare experts has crafted versatile coverage options that adapt to your unique needs, whether you're a growing business, a busy professional, or a family seeking protection.
+Think of us as your healthcare concierge, transforming complex insurance into straightforward solutions.`,
+        thirdquote: `With DOSH Insurance, you're not just buying a policy—you're investing in the freedom to live life fully, supported by a partner who understands that good health is your greatest asset.
 Secure your wellbeing with DOSH Insurance. Because when it comes to health, we believe excellence should be accessible to all.`,
         pick: '/insure',
         comparetext: 'Compare',
@@ -60,7 +62,7 @@ Secure your wellbeing with DOSH Insurance. Because when it comes to health, we b
         subtitle: ` Financial Solutions That Match Your Ambitions`,
         image: Money,
         readmore: '/financedetails',
-        quote: `At DOSH, we understand that financial success requires more than just capital—it demands a partner who understands your vision. Our tailored financial solutions adapt to your unique journey, whether you're scaling a business, launching an entrepreneurial venture, or pursuing personal aspirations.
+        quote: `We understand that financial success requires more than just capital—it demands a partner who understands your vision. Our tailored financial solutions adapt to your unique journey, whether you're scaling a business, launching an entrepreneurial venture, or pursuing personal aspirations.
 Experience financing on your terms with our innovative funding options, featuring flexible low- to no-interest repayment plans that put you in control. Our licensed financial experts craft solutions that bridge both immediate needs and long-term goals, ensuring your path to success remains clear and achievable.
 As a trusted global financial partner, we've built our reputation on turning possibilities into realities. Let DOSH be the catalyst that transforms your ambitions into achievements.`,
         pick: '/financemodal',
@@ -77,9 +79,9 @@ As a trusted global financial partner, we've built our reputation on turning pos
         readmore: '/riskdetails',
         riskform: 'Submit A Request',
         read: 'Read More',
-        quote: `Navigating the insurance landscape shouldn't feel like charting unknown waters. At DOSH Risk, we transform complexity into clarity, offering brokerage services that empower you to make confident decisions about protection for your assets and operations.
-Our seasoned team of experts brings deep industry insight to your unique challenges, crafting innovative solutions that go beyond traditional insurance offerings. We've built our reputation on delivering competitive rates while providing the personalized attention you deserve.
-Experience the convenience of comprehensive coverage through our one-stop approach to auto, home, health, and business insurance. With DOSH Risk as your partner, you gain more than just insurance—you secure peace of mind through protection tailored precisely to your needs.`,
+        quote: `Navigating the insurance landscape shouldn't feel like charting unknown waters. At DOSH Risk, we transform complexity into clarity, offering brokerage services that empower you to make confident decisions about protection for your assets and operations.`,
+        secondquote: `Our seasoned team of experts brings deep industry insight to your unique challenges, crafting innovative solutions that go beyond traditional insurance offerings. We've built our reputation on delivering competitive rates while providing the personalized attention you deserve.`,
+        thirdquote: `Experience the convenience of comprehensive coverage through our one-stop approach to auto, home, health, and business insurance. With DOSH Risk as your partner, you gain more than just insurance—you secure peace of mind through protection tailored precisely to your needs.`
     },
 ]
 

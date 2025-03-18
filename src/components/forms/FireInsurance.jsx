@@ -1,12 +1,12 @@
-import React, { useState, useRef } from 'react';
-import image from "../../images/imagebg.png";
+import React, { useState, useRef, useEffect } from 'react';
+import image from "../../images/fire.png";
 import formlogo from "../../images/formlogo.png"
 import { X } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import emailjs from '@emailjs/browser';
 
-const FireInsurance = ({ onClose }) => {
+const FireInsurance = ({ onClose, userData }) => {
     const form = useRef();
 
     const [formData, setFormData] = useState({
@@ -73,6 +73,22 @@ const FireInsurance = ({ onClose }) => {
         declarationSignature: '',
         declarationAgency: '',
     });
+
+    // Pre-populate fields with parent userData when available
+    useEffect(() => {
+        if (userData) {
+            setFormData(prev => ({
+                ...prev,
+                // Map parent's personal details to the relevant FireInsurance fields.
+                // Adjust the mapping if needed.
+                proposerTitle: userData.firstname || '',
+                proposerSurname: userData.surname || '',
+                otherNames: userData.othernames || '',
+                email: userData.email || '',
+                mobile: userData.phone || '',
+            }));
+        }
+    }, [userData]);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -183,18 +199,16 @@ const FireInsurance = ({ onClose }) => {
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 text-gray-800">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
-
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
                     <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
                     <div className='w-full h-full bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
-                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                        <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
                         </h2>
-                        <p className='text-[16px] text-white'>
-                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
-                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        <p className='text-[14px] text-white'>
+                            We simplify insurance so you can focus on what truly matters.
                         </p>
                     </div>
                 </div>
@@ -203,12 +217,13 @@ const FireInsurance = ({ onClose }) => {
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
 
+                    {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-8 h-8 flex items-center justify-center"
+                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
-                        <X size={24} />
+                        <X size={16} />
                     </button>
                     <h1 className="text-xl font-bold mb-4">Fire Insurance Proposal Request</h1>
                     <form onSubmit={handleSubmit} className="space-y-8">

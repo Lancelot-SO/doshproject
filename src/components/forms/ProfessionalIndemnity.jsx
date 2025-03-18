@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { ToastContainer, toast } from 'react-toastify';
-import image from "../../images/imagebg.png";
+import image from "../../images/prof.png";
 import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
 

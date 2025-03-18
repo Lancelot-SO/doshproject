@@ -1,12 +1,12 @@
-import React, { useRef, useState } from 'react';
-import image from "../../images/imagebg.png";
+import React, { useEffect, useRef, useState } from 'react';
+import image from "../../images/hotels.png";
 import formlogo from "../../images/formlogo.png";
 import emailjs from '@emailjs/browser';
 import { X } from 'lucide-react';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const HotelInsurance = ({ onClose }) => {
+const HotelInsurance = ({ onClose, userData }) => {
     const formRef = useRef();
 
     const [formData, setFormData] = useState({
@@ -112,6 +112,18 @@ const HotelInsurance = ({ onClose }) => {
         declarationSignature: '',
         declarationAgency: '',
     });
+
+
+    // Update the local state when userData changes
+    useEffect(() => {
+        if (userData) {
+            setFormData(prev => ({
+                ...prev,
+                proposerFullName: `${userData.firstname} ${userData.surname}` || '',
+
+            }));
+        }
+    }, [userData]);
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
 
@@ -277,12 +289,11 @@ const HotelInsurance = ({ onClose }) => {
                     <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
                     <div className='w-full h-full bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
-                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                        <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
                         </h2>
-                        <p className='text-[16px] text-white'>
-                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
-                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        <p className='text-[14px] text-white'>
+                            We simplify insurance so you can focus on what truly matters.
                         </p>
                     </div>
                 </div>
@@ -291,12 +302,13 @@ const HotelInsurance = ({ onClose }) => {
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
 
+                    {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-8 h-8 flex items-center justify-center"
+                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
-                        <X size={24} />
+                        <X size={16} />
                     </button>
                     <h1 className="text-2xl font-bold mb-6">
                         Hotels And Guest Houses Insurance Proposal Form

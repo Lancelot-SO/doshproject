@@ -35,7 +35,7 @@ const Header = () => {
                             className={activeLink === 1 ? 'active' : ''}
                             onClick={() => handleLinkClick(1)}
                         >
-                            About us
+                            About Us
                         </Link>
                     </li>
                     <li>
@@ -44,7 +44,7 @@ const Header = () => {
                             className={activeLink === 2 ? 'active' : ''}
                             onClick={() => handleLinkClick(2)}
                         >
-                            Product & Services
+                            Products & Services
                         </Link>
                     </li>
                     <li>
@@ -70,7 +70,7 @@ const Header = () => {
                     <Link to='https://dsp.onenet.xyz:50443/login' target="_blank" rel="noopener noreferrer" className='nav__login'>Login</Link>
                     <Link to='https://dsp.onenet.xyz:50443/#/?page=dosh-insurance' target="_blank" rel="noopener noreferrer">
                         <div className='nav__signup'>
-                            Sign up
+                            Sign Up
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -112,7 +112,7 @@ const Header = () => {
                                         className={activeLink === 1 ? 'activemobile' : ''}
                                         onClick={() => handleLinkClick(1)}
                                     >
-                                        About us
+                                        About Us
                                     </Link>
                                 </li>
                                 <li className='mobile-menu-link'>
@@ -121,7 +121,7 @@ const Header = () => {
                                         className={activeLink === 2 ? 'activemobile' : ''}
                                         onClick={() => handleLinkClick(2)}
                                     >
-                                        Product & Services
+                                        Products & Services
                                     </Link>
                                 </li>
                                 <li className='mobile-menu-link'>
@@ -147,7 +147,7 @@ const Header = () => {
                                 <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='nav__login-mobile'>Login</Link>
                                 <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer">
                                     <div className='nav__signup-mobile'>
-                                        Sign up
+                                        Sign Up
                                     </div>
                                 </Link>
                             </div>

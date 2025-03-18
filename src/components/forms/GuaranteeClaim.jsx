@@ -1,11 +1,13 @@
-import React, { useRef, useState } from "react";
-import image from "../../images/imagebg.png"
+import React, { useEffect, useRef, useState } from "react";
+import image from "../../images/guarantee.png"
 import formlogo from "../../images/formlogo.png";
 import emailjs from '@emailjs/browser';
 import { X } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-const GuaranteeClaim = ({ onClose }) => {
+
+
+const GuaranteeClaim = ({ onClose, userData }) => {
     const [formData, setFormData] = useState({
         surname: "",
         otherNames: "",
@@ -27,6 +29,20 @@ const GuaranteeClaim = ({ onClose }) => {
 
     // 2. A ref for the form so EmailJS can capture all fields including the file
     const formRef = useRef();
+
+    // When the component mounts or userData changes, update formData with values from userData
+    useEffect(() => {
+        if (userData) {
+            setFormData((prevState) => ({
+                ...prevState,
+                // Map the fields from userData to the corresponding form fields.
+                // Adjust the property names as needed.
+                surname: userData.surname || "",
+                otherNames: userData.othernames || "", // notice the key names may need to match
+                // You can add more fields here if needed.
+            }));
+        }
+    }, [userData]);
 
     // 3. Handle text changes
     const handleChange = (e) => {
@@ -103,12 +119,11 @@ const GuaranteeClaim = ({ onClose }) => {
                     <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
                     <div className='w-full h-full bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
-                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                        <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
                         </h2>
-                        <p className='text-[16px] text-white'>
-                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
-                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        <p className='text-[14px] text-white'>
+                            We simplify insurance so you can focus on what truly matters.
                         </p>
                     </div>
                 </div>
@@ -117,12 +132,13 @@ const GuaranteeClaim = ({ onClose }) => {
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
 
+                    {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-8 h-8 flex items-center justify-center"
+                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
-                        <X size={24} />
+                        <X size={16} />
                     </button>
                     <h1 className="text-3xl font-bold mb-6">
                         Fidelity Guarantee Insurance Request

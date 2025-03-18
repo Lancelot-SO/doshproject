@@ -201,9 +201,17 @@ const ProductServices = () => {
                                             {product.title}
                                         </h4>
                                         <p className='text-[20px] font-semibold'>{product.subtitle}</p>
-                                        <p className="text-sm lg:text-[16px] leading-relaxed text-align-justify">
-                                            {product.quote}
-                                        </p>
+                                        <div>
+                                            <p className="text-sm lg:text-[16px] leading-snug text-align-justify">
+                                                {product.quote}
+                                            </p>
+                                            <p className="text-sm lg:text-[16px] leading-snug text-align-justify">
+                                                {product.secondquote}
+                                            </p>
+                                            <p className="text-sm lg:text-[16px] leading-snug text-align-justify">
+                                                {product.thirdquote}
+                                            </p>
+                                        </div>
                                         <div className="flex lg:space-x-4 space-x-2 mt-4">
                                             {/*
                                               For DOSH Risk (id === 3), we now display two buttons:
@@ -314,7 +322,7 @@ const ProductServices = () => {
                     <div className='video__right'>
                         <h4>SUCCESS STORIES VIDEO</h4>
                         <h6>Affordable health insurance for you and your loved ones.</h6>
-                        <small>Dial *915# to sign up with as low as GHS 365 and get GHS 9000 worth of cover at any medical facility.<br />Join the DOSH Revolution!.</small>
+                        <small>Dial *915# to sign up with as low as GHS 365 and get GHS 9000 worth of cover at any medical facility.<br />Join the DOSH Revolution!</small>
                     </div>
                 </div>
             </section>

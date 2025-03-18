@@ -1,11 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import emailjs from '@emailjs/browser';
-import image from "../../images/imagebg.png";
+import image from "../../images/travelins.png";
 import formlogo from "../../images/formlogo.png";
 import { X } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
 
-const TravelInsurance = ({ onClose }) => {
+const TravelInsurance = ({ onClose, userData }) => {
     const [formData, setFormData] = useState({
         proposerName: "",
         surname: "",
@@ -35,6 +35,20 @@ const TravelInsurance = ({ onClose }) => {
 
     // Create a ref for the form
     const formRef = useRef();
+
+    // Pre-populate key fields from the parent's userData when available.
+    useEffect(() => {
+        if (userData) {
+            setFormData(prev => ({
+                ...prev,
+                proposerName: userData.firstname || "",
+                surname: userData.surname || "",
+                otherNames: userData.othernames || "",
+                email: userData.email || "",
+                mobile: userData.phone || "",
+            }));
+        }
+    }, [userData]);
 
     // Handle text and select changes
     const handleChange = (e) => {
@@ -106,12 +120,11 @@ const TravelInsurance = ({ onClose }) => {
                     <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
                     <div className='w-full h-full bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
-                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                        <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
                         </h2>
-                        <p className='text-[16px] text-white'>
-                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
-                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        <p className='text-[14px] text-white'>
+                            We simplify insurance so you can focus on what truly matters.
                         </p>
                     </div>
                 </div>
@@ -119,13 +132,13 @@ const TravelInsurance = ({ onClose }) => {
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
-
+                    {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-8 h-8 flex items-center justify-center"
+                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
-                        <X size={24} />
+                        <X size={16} />
                     </button>
                     <h2 className="text-2xl font-bold text-left mb-4">Travel Insurance Proposal Request</h2>
                     <form onSubmit={handleSubmit} className="space-y-4">

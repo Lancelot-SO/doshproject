@@ -1,12 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { X } from 'lucide-react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import image from "../../images/imagebg.png";
+import image from "../../images/marine.png";
 import formlogo from "../../images/formlogo.png";
 
-const MarineOpenCover = ({ onClose }) => {
+const MarineOpenCover = ({ onClose, userData }) => {
     const form = useRef();
 
     // Controlled text inputs
@@ -32,6 +32,20 @@ const MarineOpenCover = ({ onClose }) => {
         // signature won't hold the file contents here; we let <input type="file" /> handle that
         signature: '',
     });
+
+    // Pre-populate the personal details fields when userData is provided
+    useEffect(() => {
+        if (userData) {
+            setFormData((prev) => ({
+                ...prev,
+                proposerName: userData.firstname || '',
+                surname: userData.surname || '',
+                otherNames: userData.othernames || '',
+                email: userData.email || '',
+                telephone: userData.phone || '',
+            }));
+        }
+    }, [userData]);
 
     // For text-based inputs
     const handleChange = (e) => {

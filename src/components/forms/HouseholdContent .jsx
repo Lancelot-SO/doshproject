@@ -1,11 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import emailjs from '@emailjs/browser';
-import image from "../../images/imagebg.png";
+import image from "../../images/household.png";
 import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 
-const HouseholdInsuranceForm = ({ onClose }) => {
+const HouseholdInsuranceForm = ({ onClose, userData }) => {
     // 1. Local state for your form
     const [formData, setFormData] = useState({
         firstName: "",
@@ -42,6 +42,20 @@ const HouseholdInsuranceForm = ({ onClose }) => {
     });
 
     const formRef = useRef();
+
+    // When userData is provided from the parent, update local state to pre-populate fields
+    useEffect(() => {
+        if (userData) {
+            setFormData(prev => ({
+                ...prev,
+                firstName: userData.firstName || "",
+                surname: userData.surname || "",
+                otherNames: userData.otherNames || "",
+                email: userData.email || "",
+                mobileNo: userData.phone || "",
+            }));
+        }
+    }, [userData]);
 
     // 3. Handle changes for text/select/radio
     const handleChange = (e) => {
@@ -124,18 +138,16 @@ const HouseholdInsuranceForm = ({ onClose }) => {
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 text-gray-800">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-[20px]-lg shadow-lg flex overflow-hidden">
-
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
                     <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
                     <div className='w-full h-full bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
-                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                        <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
                         </h2>
-                        <p className='text-[16px] text-white'>
-                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
-                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        <p className='text-[14px] text-white'>
+                            We simplify insurance so you can focus on what truly matters.
                         </p>
                     </div>
                 </div>
@@ -143,13 +155,13 @@ const HouseholdInsuranceForm = ({ onClose }) => {
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
-
+                    {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-8 h-8 flex items-center justify-center"
+                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
-                        <X size={24} />
+                        <X size={16} />
                     </button>
                     <h2 className="text-2xl font-semibold mb-4">Household Content Insurance Proposal Request</h2>
                     <form onSubmit={handleSubmit} className="space-y-4">

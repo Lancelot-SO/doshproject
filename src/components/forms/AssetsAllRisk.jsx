@@ -1,13 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import image from "../../images/imagebg.png";
+import image from "../../images/assets.png";
 import formlogo from "../../images/formlogo.png";
 
 
-const AssetsAllRisk = ({ onClose }) => {
+const AssetsAllRisk = ({ onClose, userData }) => {
     const form = useRef();
 
     const [formData, setFormData] = useState({
@@ -50,6 +50,18 @@ const AssetsAllRisk = ({ onClose }) => {
         issuedMonth: '',
         issuedYear: '',
     });
+
+    // Pre-populate the personal details from the parent if provided
+    useEffect(() => {
+        if (userData) {
+            setFormData((prev) => ({
+                ...prev,
+                insuredName: `${userData.firstname} ${userData.surname} ${userData.othernames}`.trim(),
+                email: userData.email || '',
+                mobile: userData.phone || '',
+            }));
+        }
+    }, [userData]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -133,12 +145,11 @@ const AssetsAllRisk = ({ onClose }) => {
                     <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
                     <div className='w-full h-full bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
-                        <h2 className='font-bold text-[22px] mb-2'>
+                        <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
                         </h2>
-                        <p className='text-[16px]'>
-                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
-                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        <p className='text-[14px] text-white'>
+                            We simplify insurance so you can focus on what truly matters.
                         </p>
                     </div>
                 </div>
@@ -150,10 +161,10 @@ const AssetsAllRisk = ({ onClose }) => {
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-8 h-8 flex items-center justify-center"
+                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
-                        <X size={24} />
+                        <X size={16} />
                     </button>
 
                     <h2 className="text-2xl text-gray-800 font-bold mb-4">Assets All Risks Claim Request</h2>

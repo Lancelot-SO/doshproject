@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import image from "../../images/imagebg.png";
+import image from "../../images/publicliability.png";
 import formlogo from "../../images/formlogo.png";
+import { X } from 'lucide-react';
 
-const PublicLiability = ({ onClose }) => {
+const PublicLiability = ({ onClose, userData }) => {
     const [formData, setFormData] = useState({
         proposerName: '',
         address: '',
@@ -53,6 +54,18 @@ const PublicLiability = ({ onClose }) => {
         codenumber: '',
         signature: '',
     });
+
+    // Update fields from parent's userData when it changes
+    useEffect(() => {
+        if (userData) {
+            setFormData(prev => ({
+                ...prev,
+                // Here, we assume the parent's keys are: firstname, surname, othernames, email, phone
+                proposerName: userData.firstname || "",
+                mobile: userData.phone || "",
+            }));
+        }
+    }, [userData]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -183,18 +196,16 @@ const PublicLiability = ({ onClose }) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-lg shadow-lg flex overflow-hidden">
 
-
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
                     <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
                     <div className='w-full h-full bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
-                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                        <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
                         </h2>
-                        <p className='text-[16px] text-white'>
-                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
-                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        <p className='text-[14px] text-white'>
+                            We simplify insurance so you can focus on what truly matters.
                         </p>
                     </div>
                 </div>
@@ -203,11 +214,13 @@ const PublicLiability = ({ onClose }) => {
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
 
+                    {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-8 h-8 flex items-center justify-center"
+                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-6 h-6 flex items-center justify-center"
+                        aria-label="Close"
                     >
-                        &times;
+                        <X size={16} />
                     </button>
 
                     <h2 className="text-2xl text-gray-800 font-bold mb-4">Public Liability Insurance Proposal Request</h2>
