@@ -19,7 +19,7 @@
     padding: 20px;
     flex-direction: column;
     position: relative;
-    background: url('../images/flyer2.png') no-repeat center center;
+    background: url('../images/flyer2.jpg') no-repeat center center;
     background-size: cover;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     image-rendering: auto;

@@ -109,14 +109,14 @@ const InsuranceTable = ({ closePopup }) => {
                                     <td className='row-center-total'>GHS 30,000</td>
                                     <td className='row-center-total'>GHS 54,000</td>
                                     <td className='row-center-total'>GHS 60,000</td>
-                                    <td className='row-center-total'>GHS 95,000</td>
                                     <td className='row-center-total'>GHS 108,000</td>
+                                    <td className='row-center-total'>GHS 95,000</td>
                                     <td className='row-center-total'>GHS 167,000</td>
                                     <td className='row-center-total'>GHS 190,000</td>
                                     <td className='row-center-total'>GHS 286,000</td>
                                 </tr>
                                 <tr>
-                                    <td className='heading'>Out Patient Limit OP (member)</td>
+                                    <td className='heading'>Out Patient Limit OP (Member)</td>
                                     <td className='row-center'>GHS 1,500</td>
                                     <td className='row-center'>GHS 1,500</td>
                                     <td className='row-center'>GHS 3,000</td>
@@ -131,22 +131,22 @@ const InsuranceTable = ({ closePopup }) => {
                                     <td className='row-center-total'>GHS 40,000</td>
                                 </tr>
                                 <tr>
-                                    <td className='heading'>In Patient Limit IP (member)</td>
+                                    <td className='heading'>In Patient Limit IP (Member)</td>
                                     <td className='row-center'>GHS 6,100</td>
                                     <td className='row-center'>GHS 6,100</td>
                                     <td className='row-center'>GHS 12,600</td>
-                                    <td className='row-center'>GHS 12,500</td>
+                                    <td className='row-center'>GHS 12,600</td>
                                     <td className='row-center'>GHS 21,500</td>
                                     <td className='row-center'>GHS 21,500</td>
                                     <td className='row-center-total'>GHS 41,250</td>
                                     <td className='row-center-total'>GHS 41,250</td>
-                                    <td className='row-center-total'>GHS 57,500</td>
-                                    <td className='row-center-total'>GHS 57,500</td>
+                                    <td className='row-center-total'>GHS 57,000</td>
+                                    <td className='row-center-total'>GHS 57,000</td>
                                     <td className='row-center-total'>GHS 115,000</td>
                                     <td className='row-center-total'>GHS 115,000</td>
                                 </tr>
                                 <tr>
-                                    <td className='heading'>Medication Limit OP/IP (member)</td>
+                                    <td className='heading'>Medication Limit OP/IP (Member)</td>
                                     <td className='row-center'>GHS 500</td>
                                     <td className='row-center'>GHS 500</td>
                                     <td className='row-center'>GHS 900</td>
@@ -161,7 +161,7 @@ const InsuranceTable = ({ closePopup }) => {
                                     <td className='row-center-total'>GHS 15,000</td>
                                 </tr>
                                 <tr >
-                                    <td className='heading'>Lab/Scan Limit OP/IP (member)</td>
+                                    <td className='heading'>Lab/Scan Limit OP/IP (Member)</td>
                                     <td className='row-center'>GHS 900</td>
                                     <td className='row-center'>GHS 900</td>
                                     <td className='row-center'>GHS 1,500</td>
