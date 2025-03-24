@@ -37,8 +37,8 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                 ...prevState,
                 // Map the fields from userData to the corresponding form fields.
                 // Adjust the property names as needed.
-                surname: userData.surname || "",
-                otherNames: userData.othernames || "", // notice the key names may need to match
+                surname: userData.fullname || "",
+                // otherNames: userData.othernames || "", // notice the key names may need to match
                 // You can add more fields here if needed.
             }));
         }
@@ -110,7 +110,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
     }
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 text-gray-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
 
 
@@ -135,10 +135,10 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
-                        <X size={16} />
+                        <X size={20} />
                     </button>
                     <h1 className="text-3xl font-bold mb-6">
                         Fidelity Guarantee Insurance Request

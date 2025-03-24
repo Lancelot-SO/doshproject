@@ -43,9 +43,7 @@ const RiskForm = ({ onClose }) => {
 
 
     const [formData, setFormData] = useState({
-        firstname: '',
-        surname: '',
-        othernames: '',
+        fullname: '',
         email: '',
         phone: '',
         brokerage: '',
@@ -56,9 +54,7 @@ const RiskForm = ({ onClose }) => {
 
     // State for pre-filling the modal or secondary form
     const [modalFormData, setModalFormData] = useState({
-        firstname: "",
-        surname: "",
-        othernames: "",
+        fullname: "",
         email: "",
         phone: ""
     });
@@ -126,6 +122,10 @@ const RiskForm = ({ onClose }) => {
         "Impact Life Insurance Ltd"
     ];
 
+    const handleClose = (setter) => {
+        setter(false);
+        onClose();
+    };
 
 
     const handleChange = (e) => {
@@ -163,18 +163,14 @@ const RiskForm = ({ onClose }) => {
     useEffect(() => {
         if (formData.formType) {
             setModalFormData({
-                firstname: formData.firstname,
-                surname: formData.surname,
-                othernames: formData.othernames,
+                fullname: formData.fullname,
                 email: formData.email,
                 phone: formData.phone
             });
         }
     }, [
         formData.formType,
-        formData.firstname,
-        formData.surname,
-        formData.othernames,
+        formData.fullname,
         formData.email,
         formData.phone
     ]);
@@ -188,9 +184,7 @@ const RiskForm = ({ onClose }) => {
                 () => {
                     toast.success('Message sent successfully!');
                     setFormData({
-                        firstname: '',
-                        surname: '',
-                        othernames: '',
+                        fullname: '',
                         email: '',
                         phone: '',
                         brokerage: '',
@@ -229,138 +223,107 @@ const RiskForm = ({ onClose }) => {
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
-
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
-                        <X size={16} />
+                        <X size={20} />
                     </button>
-                    <div className='lg:hidden block text-black'>
-                        <h2 className='font-bold text-[20px] mb-2'>
-                            Secure Your Future with Comprehensive Insurance Coverage
+                    <div className='block text-black'>
+                        <h2 className='font-bold text-[24px] mb-2 mt-4'>
+                            Choose Your Insurance Plan and Get Started Today!.
                         </h2>
-                        <p className='text-[16px]'>
-                            We simplify insurance so you can focus on what truly matters.
+                        <p className='text-[14px]'>
+                            Select the right coverage for your needs and complete your application in just a few steps.
                         </p>
+                        <p className='text-[14px]'>
+                            To access your insurance application, start by selecting the product that best suits you. Once you’ve made your choice, you’ll be able to fill out the form and send it securely. It’s that simple!.                        </p>
                     </div>
-                    <div className=''>
-                        <p className='text-[14px] text-black'>
-                            Fill out this form to submit your request.
-                        </p>
-                    </div>
+
 
                     {/* Conditional Rendering of AssetsAllRisk Component */}
                     {showAssetsForm ? (
-                        <AssetsAllRisk onClose={() => setShowAssetsForm(false)}
+                        <AssetsAllRisk onClose={() => handleClose(setShowAssetsForm)}
                             userData={modalFormData} />
                     ) : showPublicLiabilityForm ? (
-                        <PublicLiability onClose={() => setShowPublicLiabilityForm(false)}
+                        <PublicLiability onClose={() => handleClose(setShowPublicLiabilityForm)}
                             userData={modalFormData} />
                     ) : showMarineOpenCoverForm ? (
-                        <MarineOpenCover onClose={() => setShowMarineOpenCoverForm(false)}
+                        <MarineOpenCover onClose={() => handleClose(setShowMarineOpenCoverForm)}
                             userData={modalFormData} />
                     ) : showWorkMen ? (
-                        <WorkMen onClose={() => setShowWorkMen(false)}
+                        <WorkMen onClose={() => handleClose(setShowWorkMen)}
                             userData={modalFormData} />
                     ) :
                         showTravelInsurance ? (
-                            <TravelInsurance onClose={() => setShowTravelInsurance(false)}
+                            <TravelInsurance onClose={() => handleClose(setShowTravelInsurance)}
                                 userData={modalFormData} />
                         ) :
                             showTransit ? (
-                                <Transit onClose={() => setShowTransit(false)}
+                                <Transit onClose={() => handleClose(setShowTransit)}
                                     userData={modalFormData} />
                             ) :
                                 showProfessional ? (
-                                    <ProfessionalIndemnity onClose={() => setShowProfessional(false)}
+                                    <ProfessionalIndemnity onClose={() => handleClose(setShowProfessional)}
                                         userData={modalFormData} />
                                 ) :
                                     showHouseHold ? (
-                                        <HouseholdContent onClose={() => setShowHouseHold(false)}
+                                        <HouseholdContent onClose={() => handleClose(setShowHouseHold)}
                                             userData={modalFormData} />
                                     ) :
                                         showVehicle ? (
-                                            <VehicleInsurance onClose={() => setShowVehicle(false)}
+                                            <VehicleInsurance onClose={() => handleClose(setShowVehicle)}
                                                 userData={modalFormData} />
                                         ) :
                                             showTheft ? (
-                                                <TheftInsurance onClose={() => setShowTheft(false)}
+                                                <TheftInsurance onClose={() => handleClose(setShowTheft)}
                                                     userData={modalFormData} />
                                             ) :
                                                 showClaim ? (
-                                                    <GuaranteeClaim onClose={() => setShowClaim(false)}
+                                                    <GuaranteeClaim onClose={() => handleClose(setShowClaim)}
                                                         userData={modalFormData} />
                                                 ) :
                                                     showDirector ? (
-                                                        <Director onClose={() => setShowDirector(false)}
+                                                        <Director onClose={() => handleClose(setShowDirector)}
                                                             userData={modalFormData} />
                                                     ) :
                                                         showFire ? (
-                                                            <FireInsurance onClose={() => setShowFire(false)}
+                                                            <FireInsurance onClose={() => handleClose(setShowFire)}
                                                                 userData={modalFormData} />
                                                         ) :
                                                             showPrivate ? (
-                                                                <PrivateMotor onClose={() => setShowPrivate(false)}
+                                                                <PrivateMotor onClose={() => handleClose(setShowPrivate)}
                                                                     userData={modalFormData} />
                                                             ) :
                                                                 showHotel ? (
-                                                                    <HotelInsurance onClose={() => setShowHotel(false)}
+                                                                    <HotelInsurance onClose={() => handleClose(setShowHotel)}
                                                                         userData={modalFormData} />
                                                                 ) :
                                                                     showHomeProtection ? (
-                                                                        <HomeProtection onClose={() => setShowHomeProtection(false)}
+                                                                        <HomeProtection onClose={() => handleClose(setShowHomeProtection)}
                                                                             userData={modalFormData} />
                                                                     ) : (
                                                                         <form ref={form} onSubmit={sendEmail} className="w-full space-y-4">
                                                                             {/* Personal Details */}
-                                                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                                                            <div className="">
                                                                                 <div>
                                                                                     <label htmlFor="firstname" className="block text-sm font-medium">
-                                                                                        First Name
+                                                                                        Full Name
                                                                                     </label>
                                                                                     <input
                                                                                         type="text"
-                                                                                        id="firstname"
-                                                                                        name="firstname"
-                                                                                        value={formData.firstname}
+                                                                                        id="fullname"
+                                                                                        name="fullname"
+                                                                                        value={formData.fullname}
                                                                                         onChange={handleChange}
                                                                                         required
-                                                                                        placeholder="Enter first name"
+                                                                                        placeholder="Enter full name"
                                                                                         className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                                                                     />
                                                                                 </div>
-                                                                                <div>
-                                                                                    <label htmlFor="surname" className="block text-sm font-medium">
-                                                                                        Surname
-                                                                                    </label>
-                                                                                    <input
-                                                                                        type="text"
-                                                                                        id="surname"
-                                                                                        name="surname"
-                                                                                        value={formData.surname}
-                                                                                        onChange={handleChange}
-                                                                                        required
-                                                                                        placeholder="Enter surname"
-                                                                                        className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                                                    />
-                                                                                </div>
-                                                                                <div>
-                                                                                    <label htmlFor="othernames" className="block text-sm font-medium">
-                                                                                        Other Names
-                                                                                    </label>
-                                                                                    <input
-                                                                                        type="text"
-                                                                                        id="othernames"
-                                                                                        name="othernames"
-                                                                                        value={formData.othernames}
-                                                                                        onChange={handleChange}
-                                                                                        placeholder="Enter other names"
-                                                                                        className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                                                    />
-                                                                                </div>
+
                                                                             </div>
 
                                                                             <div>

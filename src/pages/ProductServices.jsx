@@ -18,6 +18,7 @@ import InsuranceDetails from '../components/InsuranceDetails.jsx';
 import FinancialDetails from '../components/FinancialDetails.jsx';
 import FinanceSideModal from '../components/FinanceSideModal.jsx';
 import RiskDetails from '../components/RiskDetails.jsx';
+import { FaArrowRight } from 'react-icons/fa';
 
 const ProductServices = () => {
     const [isPopupOpen, setPopupOpen] = useState(false);
@@ -36,7 +37,7 @@ const ProductServices = () => {
     // Existing functions for other modals
     const NextArrow = ({ onClick }) => (
         <button
-            className="absolute bottom-2 lg:bottom-4 left-[60%] md:left-[55%] lg:left-[60%] transform -translate-x-1/2 bg-transparent text-[#9E825B] text-2xl p-4 hover:bg-[#9E825B] hover:text-white transition duration-300 z-10 rounded-full border"
+            className="absolute bottom-2 lg:bottom-4 left-[60%] md:left-[55%] lg:left-[42%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-2xl p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
             onClick={onClick}
         >
             <FaArrowRightLong />
@@ -45,7 +46,7 @@ const ProductServices = () => {
 
     const PrevArrow = ({ onClick }) => (
         <button
-            className="absolute bottom-2 lg:bottom-4 left-[37%] md:left-[45%] lg:left-[40%] transform -translate-x-1/2 bg-transparent text-[#9E825B] text-2xl p-4 hover:bg-[#9E825B] hover:text-white transition duration-300 z-10 rounded-full border"
+            className="absolute bottom-2 lg:bottom-4 left-[37%] md:left-[45%] lg:left-[50%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-2xl p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
             onClick={onClick}
         >
             <FaArrowLeftLong />
@@ -200,15 +201,15 @@ const ProductServices = () => {
                                         <h4 className="text-[24px] md:text-[32px] lg:text-[44px] font-bold text-[#9E825B] mb-2">
                                             {product.title}
                                         </h4>
-                                        <p className='text-[20px] font-semibold'>{product.subtitle}</p>
+                                        <p className='text-[16px] font-bold uppercase'>{product.subtitle}</p>
                                         <div>
-                                            <p className="text-sm lg:text-[16px] leading-snug text-align-justify">
+                                            <p className="text-sm lg:text-[14px] leading-[28px] text-align-justify">
                                                 {product.quote}
                                             </p>
-                                            <p className="text-sm lg:text-[16px] leading-snug text-align-justify">
+                                            <p className="text-sm lg:text-[14px] leading-[28px] text-align-justify">
                                                 {product.secondquote}
                                             </p>
-                                            <p className="text-sm lg:text-[16px] leading-snug text-align-justify">
+                                            <p className="text-sm lg:text-[14px] leading-[28px] text-align-justify">
                                                 {product.thirdquote}
                                             </p>
                                         </div>
@@ -222,52 +223,63 @@ const ProductServices = () => {
                                                 <>
                                                     <button
                                                         onClick={openRiskDetails}
-                                                        className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
+                                                        className="flex items-center gap-4 text-white capitalize text-[15px] font-bold"
                                                     >
                                                         {product.read}
+                                                        <FaArrowRight />
                                                     </button>
                                                     <button
                                                         onClick={openRiskForm}
-                                                        className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
+                                                        className="flex items-center gap-4 text-white capitalize text-[15px] font-bold"
                                                     >
                                                         {product.riskform}
+                                                        <FaArrowRight />
                                                     </button>
                                                 </>
                                             ) : (
-                                                <>
+                                                <div className="flex flex-row flex-wrap gap-2 lg:gap-4">
                                                     {/* For other products, render a single "Read More" button */}
                                                     <button
                                                         onClick={() => openModal(productIndex)}
-                                                        className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
+                                                        className="flex items-center gap-2 w-auto text-white capitalize text-[14px] sm:text-[15px] font-bold"
                                                     >
                                                         {product.read}
+                                                        <FaArrowRight />
                                                     </button>
+
                                                     {/* Conditionally render comparetext button */}
                                                     {product.comparetext && (
                                                         <button
                                                             onClick={() => openPopup(productIndex)}
-                                                            className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
+                                                            className="flex items-center gap-2 w-auto text-white capitalize text-[14px] sm:text-[15px] font-bold"
                                                         >
                                                             {product.comparetext}
+                                                            <FaArrowRight />
                                                         </button>
                                                     )}
+
                                                     {product.picker && product.id === 1 && (
                                                         <button
                                                             onClick={openInsure}
-                                                            className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
+                                                            className="flex items-center gap-2 w-auto text-white capitalize text-[14px] sm:text-[15px] font-bold"
                                                         >
                                                             {product.picker}
+                                                            <FaArrowRight />
                                                         </button>
                                                     )}
+
                                                     {product.picker && product.id === 2 && (
                                                         <button
                                                             onClick={openFinancialPopup}
-                                                            className="bg-white text-[#9E825B] py-2 px-4 md:px-6 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
+                                                            className="flex items-center gap-2 w-auto text-white capitalize text-[14px] sm:text-[15px] font-bold"
                                                         >
                                                             {product.picker}
+                                                            <FaArrowRight />
                                                         </button>
                                                     )}
-                                                </>
+                                                </div>
+
+
                                             )}
                                         </div>
                                     </div>
@@ -287,9 +299,9 @@ const ProductServices = () => {
                 </Slider>
 
                 {/* Arrows with text in between */}
-                <div className="absolute lg:bottom-4 bottom-14 left-[50%] transform -translate-x-1/2 text-center text-[#9E825B] text-lg py-4">
+                {/* <div className="absolute lg:bottom-4 bottom-14 left-[50%] transform -translate-x-1/2 text-center text-[#9E825B] text-lg py-4">
                     <p>More Services</p>
-                </div>
+                </div> */}
 
                 {isPopupOpen && <InsuranceTable closePopup={closePopup} />}
                 {isFinanceTableOpen && <FinanceTable closePopup={closePopup} />}

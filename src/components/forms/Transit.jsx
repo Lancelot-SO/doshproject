@@ -44,7 +44,7 @@ const Transit = ({ onClose, userData }) => {
             setFormData(prev => ({
                 ...prev,
                 // Concatenate parent's firstname and surname for the name field
-                name: `${userData.firstname || ""} ${userData.surname || ""}`.trim(),
+                name: `${userData.fullname || ""}`.trim(),
                 contact: userData.phone || "",
                 email: userData.email || ""
             }));
@@ -112,7 +112,7 @@ const Transit = ({ onClose, userData }) => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 text-gray-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
 
 
@@ -133,14 +133,13 @@ const Transit = ({ onClose, userData }) => {
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
-
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
-                        <X size={16} />
+                        <X size={20} />
                     </button>
                     <h2 className="text-xl font-bold mb-4">Goods In Transit Insurance Proposal Request</h2>
                     <form onSubmit={handleSubmit} className="space-y-4">

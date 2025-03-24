@@ -41,9 +41,9 @@ const TravelInsurance = ({ onClose, userData }) => {
         if (userData) {
             setFormData(prev => ({
                 ...prev,
-                proposerName: userData.firstname || "",
-                surname: userData.surname || "",
-                otherNames: userData.othernames || "",
+                proposerName: userData.fullname || "",
+                // surname: userData.surname || "",
+                // otherNames: userData.othernames || "",
                 email: userData.email || "",
                 mobile: userData.phone || "",
             }));
@@ -111,7 +111,7 @@ const TravelInsurance = ({ onClose, userData }) => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 text-gray-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-lg shadow-lg flex overflow-hidden">
 
 
@@ -135,10 +135,10 @@ const TravelInsurance = ({ onClose, userData }) => {
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
-                        <X size={16} />
+                        <X size={20} />
                     </button>
                     <h2 className="text-2xl font-bold text-left mb-4">Travel Insurance Proposal Request</h2>
                     <form onSubmit={handleSubmit} className="space-y-4">

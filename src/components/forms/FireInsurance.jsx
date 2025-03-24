@@ -81,9 +81,9 @@ const FireInsurance = ({ onClose, userData }) => {
                 ...prev,
                 // Map parent's personal details to the relevant FireInsurance fields.
                 // Adjust the mapping if needed.
-                proposerTitle: userData.firstname || '',
-                proposerSurname: userData.surname || '',
-                otherNames: userData.othernames || '',
+                proposerTitle: userData.fullname || '',
+                // proposerSurname: userData.surname || '',
+                // otherNames: userData.othernames || '',
                 email: userData.email || '',
                 mobile: userData.phone || '',
             }));
@@ -197,7 +197,7 @@ const FireInsurance = ({ onClose, userData }) => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 text-gray-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
@@ -220,10 +220,10 @@ const FireInsurance = ({ onClose, userData }) => {
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
-                        <X size={16} />
+                        <X size={20} />
                     </button>
                     <h1 className="text-xl font-bold mb-4">Fire Insurance Proposal Request</h1>
                     <form onSubmit={handleSubmit} className="space-y-8">

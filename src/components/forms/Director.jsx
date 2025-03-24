@@ -80,7 +80,7 @@ const Director = ({ onClose, userData }) => {
             setFormData(prev => ({
                 ...prev,
                 // For example, pre-populate the Board of Directors field with the full name.
-                companyName: `${userData.firstname} ${userData.surname} ${userData.othernames}`.trim(),
+                companyName: `${userData.fullname}`.trim(),
             }));
         }
     }, [userData]);
@@ -167,7 +167,7 @@ const Director = ({ onClose, userData }) => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 text-gray-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
 
                 {/* Left Side Image */}
@@ -191,10 +191,10 @@ const Director = ({ onClose, userData }) => {
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
-                        <X size={16} />
+                        <X size={20} />
                     </button>
                     <h1 className="text-2xl font-bold mb-4">
                         Directors &amp; Officers Liability Insurance Proposal Request

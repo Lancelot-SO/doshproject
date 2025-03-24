@@ -75,10 +75,10 @@ const ProfessionalIndemnity = ({ onClose }) => {
         // (A) Build a single string out of the directors array so it prints “one by one” in the email
         const directorsFormatted = formData.directors.map((director, idx) => {
             return `Director #${idx + 1}:
-Name: ${director.name}
-Qualification: ${director.qualification}
-Date Obtained: ${director.dateObtained}
-Practice Duration: ${director.practiceDuration}`;
+            Name: ${director.name}
+            Qualification: ${director.qualification}
+            Date Obtained: ${director.dateObtained}
+            Practice Duration: ${director.practiceDuration}`;
         }).join('\n\n');
 
         // (B) We can insert that into a hidden field so "sendForm" picks it up
@@ -136,7 +136,7 @@ Practice Duration: ${director.practiceDuration}`;
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 text-gray-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
 
 
@@ -159,12 +159,13 @@ Practice Duration: ${director.practiceDuration}`;
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
 
+                    {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-8 h-8 flex items-center justify-center"
+                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
-                        <X size={24} />
+                        <X size={20} />
                     </button>
 
                     <h2 className="text-xl font-bold mb-4">Enterprise Professional Indemnity Request</h2>
