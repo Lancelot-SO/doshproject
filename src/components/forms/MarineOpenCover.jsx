@@ -158,7 +158,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 value={formData.proposerName}
                                 onChange={handleChange}
                                 required
-                                className="w-full mt-1 p-3 border rounded-[20px] text-black shadow-sm"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             />
                         </div>
 
@@ -170,7 +170,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 value={formData.surname}
                                 onChange={handleChange}
                                 required
-                                className="w-full mt-1 p-3 border rounded-[20px] text-black shadow-sm"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             />
                         </div>
 
@@ -181,7 +181,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 name="otherNames"
                                 value={formData.otherNames}
                                 onChange={handleChange}
-                                className="w-full mt-1 p-3 border rounded-[20px] text-black shadow-sm"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             />
                         </div>
 
@@ -192,7 +192,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 name="dateOfBirth"
                                 value={formData.dateOfBirth}
                                 onChange={handleChange}
-                                className="w-full mt-1 p-3 border rounded-[20px] text-black shadow-sm"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             />
                         </div>
 
@@ -204,7 +204,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 value={formData.telephone}
                                 onChange={handleChange}
                                 required
-                                className="w-full mt-1 p-3 border rounded-[20px] text-black shadow-sm"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             />
                         </div>
 
@@ -215,7 +215,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 name="postalAddress"
                                 value={formData.postalAddress}
                                 onChange={handleChange}
-                                className="w-full mt-1 p-3 border rounded-[20px] text-black shadow-sm"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             />
                         </div>
 
@@ -227,7 +227,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
-                                className="w-full mt-1 p-3 border rounded-[20px] text-black shadow-sm"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             />
                         </div>
 
@@ -238,7 +238,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 name="limit"
                                 value={formData.limit}
                                 onChange={handleChange}
-                                className="w-full mt-1 p-3 border rounded-[20px] text-black shadow-sm"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             />
                         </div>
 
@@ -248,7 +248,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 name="exportMethod"
                                 value={formData.exportMethod}
                                 onChange={handleChange}
-                                className="w-full mt-1 p-3 border rounded-[20px] text-black shadow-sm"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             >
                                 <option value="">Select Export Method</option>
                                 <option value="Air">Air</option>
@@ -264,7 +264,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 name="countriesOfExportation"
                                 value={formData.countriesOfExportation}
                                 onChange={handleChange}
-                                className="w-full mt-1 p-3 border rounded-[20px] text-black shadow-sm"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             />
                         </div>
 
@@ -275,7 +275,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 name="portOfDestination"
                                 value={formData.portOfDestination}
                                 onChange={handleChange}
-                                className="w-full mt-1 p-3 border rounded-[20px] text-black shadow-sm"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             />
                         </div>
 
@@ -287,7 +287,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 value={formData.itemsToBeExported}
                                 onChange={handleChange}
                                 rows="4"
-                                className="w-full mt-1 p-3 border rounded-[20px] text-black shadow-sm resize-none"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm resize-none"
                             ></textarea>
                         </div>
                         <div>
@@ -297,7 +297,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 value={formData.natureOrPacking}
                                 onChange={handleChange}
                                 rows="4"
-                                className="w-full mt-1 p-3 border rounded-[20px] text-black shadow-sm resize-none"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm resize-none"
                             ></textarea>
                         </div>
 
@@ -316,7 +316,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 name="date"
                                 value={formData.date}
                                 onChange={handleChange}
-                                className="w-full mt-1 p-3 border rounded-[20px] text-black shadow-sm"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             />
                         </div>
 
@@ -327,7 +327,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 name="agency"
                                 value={formData.agency}
                                 onChange={handleChange}
-                                className="w-full mt-1 p-3 border rounded-[20px] text-black shadow-sm"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             />
                         </div>
 
@@ -337,13 +337,13 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 type="file"
                                 name="signature"
                                 onChange={handleFileChange}
-                                className="w-full mt-1 p-3 border rounded-[20px] text-black shadow-sm"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             />
                         </div>
 
                         <button
                             type="submit"
-                            className="w-full bg-[#b5996e] text-white py-2 rounded-[20px] hover:bg-[#776449] transition duration-300"
+                            className="w-full bg-[#b5996e] text-white py-2 rounded-[5px] hover:bg-[#776449] transition duration-300"
                         >
                             Submit
                         </button>

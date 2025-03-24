@@ -60,7 +60,7 @@ const TheftInsurance = ({ onClose }) => {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">
-            <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
+            <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[5px]-lg shadow-lg flex overflow-hidden">
 
 
                 {/* Left Side Image */}
@@ -121,7 +121,7 @@ const TheftInsurance = ({ onClose }) => {
                                 name="declarationDate"
                                 value={formData.declarationDate}
                                 onChange={handleChange}
-                                className="mt-1 p-2 border rounded-[20px] w-full"
+                                className="mt-1 p-2 border rounded-[5px] w-full"
                             />
                         </div>
 
@@ -135,7 +135,7 @@ const TheftInsurance = ({ onClose }) => {
                                 id="signature"
                                 name="signature"         // Must match your EmailJS placeholder {{signature}}
                                 onChange={handleFileChange}
-                                className="mt-1 p-2 border rounded-[20px] w-full"
+                                className="mt-1 p-2 border rounded-[5px] w-full"
                             // We do NOT do: value={formData.signature} for file inputs
                             />
                         </div>
@@ -151,13 +151,13 @@ const TheftInsurance = ({ onClose }) => {
                                 name="agency"
                                 value={formData.agency}
                                 onChange={handleChange}
-                                className="mt-1 p-2 border rounded-[20px] w-full"
+                                className="mt-1 p-2 border rounded-[5px] w-full"
                             />
                         </div>
 
                         <button
                             type="submit"
-                            className="bg-[#a58b63] text-white p-2 rounded w-full"
+                            className="bg-[#a58b63] text-white p-2 rounded-[5px] w-full"
                         >
                             Submit
                         </button>

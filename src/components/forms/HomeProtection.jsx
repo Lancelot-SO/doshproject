@@ -231,7 +231,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                         name="proposerName"
                                         value={formData.proposerName}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         placeholder="e.g., Mr John Doe"
                                     />
                                 </div>
@@ -241,7 +241,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                         name="postalAddress"
                                         value={formData.postalAddress}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         rows="2"
                                     ></textarea>
                                 </div>
@@ -254,7 +254,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                         name="businessOccupation"
                                         value={formData.businessOccupation}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div>
@@ -266,7 +266,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                         name="telephone"
                                         value={formData.telephone}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         placeholder="Tel or Fax"
                                     />
                                 </div>
@@ -277,7 +277,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div className="md:col-span-2">
@@ -288,7 +288,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                         name="propertyAddress"
                                         value={formData.propertyAddress}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         rows="3"
                                     ></textarea>
                                 </div>
@@ -307,7 +307,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                         name="homeType"
                                         value={formData.homeType}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     >
                                         <option value="">Select</option>
                                         <option value="Flat">Flat</option>
@@ -325,7 +325,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                             name="otherHomeType"
                                             value={formData.otherHomeType}
                                             onChange={handleChange}
-                                            className="w-full border rounded p-2"
+                                            className="w-full border rounded-[5px] p-2"
                                         />
                                     </div>
                                 )}
@@ -370,7 +370,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                                 name="buildingWalls"
                                                 value={formData.buildingWalls}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 placeholder="e.g., brick, concrete, etc."
                                             />
                                         </div>
@@ -381,7 +381,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                                 name="buildingRoof"
                                                 value={formData.buildingRoof}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 placeholder="e.g., tiles, metal, etc."
                                             />
                                         </div>
@@ -392,7 +392,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                                 name="fenceDetails"
                                                 value={formData.fenceDetails}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 placeholder="Describe your fence"
                                             />
                                         </div>
@@ -524,7 +524,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                                 name="buildingSumInsured"
                                                 value={formData.buildingSumInsured}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                     )}
@@ -566,7 +566,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                                 name="contentSumInsured"
                                                 value={formData.contentSumInsured}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                     )}
@@ -609,7 +609,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                                     name="numIndoorServants"
                                                     value={formData.numIndoorServants}
                                                     onChange={handleChange}
-                                                    className="w-full border rounded p-2"
+                                                    className="w-full border rounded-[5px] p-2"
                                                 />
                                             </div>
                                             <div>
@@ -621,7 +621,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                                     name="numOutdoorServants"
                                                     value={formData.numOutdoorServants}
                                                     onChange={handleChange}
-                                                    className="w-full border rounded p-2"
+                                                    className="w-full border rounded-[5px] p-2"
                                                 />
                                             </div>
                                             <div>
@@ -633,7 +633,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                                     name="numDrivers"
                                                     value={formData.numDrivers}
                                                     onChange={handleChange}
-                                                    className="w-full border rounded p-2"
+                                                    className="w-full border rounded-[5px] p-2"
                                                 />
                                             </div>
                                         </div>
@@ -749,7 +749,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                                 name="alternativeAccommodationSumInsured"
                                                 value={formData.alternativeAccommodationSumInsured}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                     )}
@@ -791,7 +791,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                                 name="legalLiabilitySumInsured"
                                                 value={formData.legalLiabilitySumInsured}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                     )}
@@ -832,7 +832,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                                 name="personalLiabilitySumInsured"
                                                 value={formData.personalLiabilitySumInsured}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                     )}
@@ -858,7 +858,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                         name="declarationDate"
                                         value={formData.declarationDate}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div>
@@ -869,7 +869,7 @@ const HomeProtection = ({ onClose, userData }) => {
                                         type="file"
                                         name="declarationSignature"
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         placeholder="Enter your signature"
                                     />
                                 </div>
@@ -882,14 +882,14 @@ const HomeProtection = ({ onClose, userData }) => {
                                         name="declarationAgency"
                                         value={formData.declarationAgency}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         placeholder="Agency name"
                                     />
                                 </div>
                             </div>
                         </section>
 
-                        <button type="submit" className="bg-[#b5996e] text-white px-6 py-3 rounded">
+                        <button type="submit" className="bg-[#b5996e] text-white px-6 py-3 rounded-[5px]">
                             Submit Proposal
                         </button>
                     </form>

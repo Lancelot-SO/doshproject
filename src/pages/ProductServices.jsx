@@ -37,10 +37,10 @@ const ProductServices = () => {
     // Existing functions for other modals
     const NextArrow = ({ onClick }) => (
         <button
-            className="absolute bottom-2 lg:bottom-4 left-[60%] md:left-[55%] lg:left-[42%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-2xl p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
+            className="absolute bottom-2 lg:bottom-4 left-[60%] md:left-[55%] lg:left-[44%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-2xl p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
             onClick={onClick}
         >
-            <FaArrowRightLong />
+            <FaArrowLeftLong />
         </button>
     );
 
@@ -49,7 +49,7 @@ const ProductServices = () => {
             className="absolute bottom-2 lg:bottom-4 left-[37%] md:left-[45%] lg:left-[50%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-2xl p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
             onClick={onClick}
         >
-            <FaArrowLeftLong />
+            <FaArrowRightLong />
         </button>
     );
 

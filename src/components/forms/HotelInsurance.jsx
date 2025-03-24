@@ -325,7 +325,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         name="proposerFullName"
                                         value={formData.proposerFullName}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div className="md:col-span-2">
@@ -334,7 +334,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         name="postalAddress"
                                         value={formData.postalAddress}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         rows="2"
                                     ></textarea>
                                 </div>
@@ -371,7 +371,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                 name="othersDetails"
                                                 value={formData.othersDetails}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 rows="2"
                                             ></textarea>
                                         </div>
@@ -384,7 +384,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         name="yearsEstablished"
                                         value={formData.yearsEstablished}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div className="md:col-span-2">
@@ -395,7 +395,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         name="otherPremises"
                                         value={formData.otherPremises}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         rows="2"
                                     ></textarea>
                                 </div>
@@ -434,7 +434,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                 name="occupantDetails"
                                                 value={formData.occupantDetails}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 rows="2"
                                             ></textarea>
                                         </div>
@@ -531,7 +531,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                             name="licenseIssueDate"
                                                             value={formData.licenseIssueDate}
                                                             onChange={handleChange}
-                                                            className="w-full border rounded p-2"
+                                                            className="w-full border rounded-[5px] p-2"
                                                         />
                                                     </div>
                                                 )}
@@ -570,7 +570,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                         name="accommodationDetails"
                                                         value={formData.accommodationDetails}
                                                         onChange={handleChange}
-                                                        className="w-full border rounded p-2"
+                                                        className="w-full border rounded-[5px] p-2"
                                                         rows="2"
                                                     ></textarea>
                                                 </div>
@@ -649,7 +649,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                             name="sumInsuredBuildings"
                                             value={formData.sumInsuredBuildings}
                                             onChange={handleChange}
-                                            className="w-full border rounded p-2"
+                                            className="w-full border rounded-[5px] p-2"
                                         />
                                     </div>
                                 )}
@@ -675,7 +675,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         name="sumInsuredStock"
                                         value={formData.sumInsuredStock}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div>
@@ -687,7 +687,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         name="sumInsuredFixtures"
                                         value={formData.sumInsuredFixtures}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div>
@@ -699,7 +699,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         name="sumInsuredTenants"
                                         value={formData.sumInsuredTenants}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div>
@@ -711,7 +711,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         name="sumInsuredOtherTrade"
                                         value={formData.sumInsuredOtherTrade}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div className="md:col-span-2">
@@ -723,7 +723,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         name="totalSumInsuredContents"
                                         value={formData.totalSumInsuredContents}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                             </div>
@@ -762,7 +762,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                             name="theftCoverDetails"
                                             value={formData.theftCoverDetails}
                                             onChange={handleChange}
-                                            className="w-full border rounded p-2"
+                                            className="w-full border rounded-[5px] p-2"
                                             rows="3"
                                         ></textarea>
                                     </div>
@@ -809,7 +809,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                             name="requiredGlassLimit"
                                             value={formData.requiredGlassLimit}
                                             onChange={handleChange}
-                                            className="w-full border rounded p-2"
+                                            className="w-full border rounded-[5px] p-2"
                                         />
                                     </div>
                                 )}
@@ -895,7 +895,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         name="sumInsuredOnIncome"
                                         value={formData.sumInsuredOnIncome}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                             </div>
@@ -941,7 +941,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                 name="lossMoneyLockedSafe"
                                                 value={formData.lossMoneyLockedSafe}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                         <div>
@@ -952,7 +952,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                 name="safeDetails"
                                                 value={formData.safeDetails}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 rows="2"
                                             ></textarea>
                                         </div>
@@ -965,7 +965,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                 name="lossMoneyInTransit"
                                                 value={formData.lossMoneyInTransit}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                     </div>
@@ -1013,7 +1013,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                 name="maxSeatingCapacity"
                                                 value={formData.maxSeatingCapacity}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                     )}
@@ -1055,7 +1055,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                     name="entertainmentType"
                                                     value={formData.entertainmentType}
                                                     onChange={handleChange}
-                                                    className="w-full border rounded p-2"
+                                                    className="w-full border rounded-[5px] p-2"
                                                 />
                                             </div>
                                             <div>
@@ -1067,7 +1067,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                     name="eventsPerMonth"
                                                     value={formData.eventsPerMonth}
                                                     onChange={handleChange}
-                                                    className="w-full border rounded p-2"
+                                                    className="w-full border rounded-[5px] p-2"
                                                 />
                                             </div>
                                             <div>
@@ -1079,7 +1079,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                     name="maxAttendance"
                                                     value={formData.maxAttendance}
                                                     onChange={handleChange}
-                                                    className="w-full border rounded p-2"
+                                                    className="w-full border rounded-[5px] p-2"
                                                 />
                                             </div>
                                             <div>
@@ -1091,7 +1091,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                     name="entertainmentHours"
                                                     value={formData.entertainmentHours}
                                                     onChange={handleChange}
-                                                    className="w-full border rounded p-2"
+                                                    className="w-full border rounded-[5px] p-2"
                                                 />
                                             </div>
                                             <div>
@@ -1130,7 +1130,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                     name="entertainmentLocation"
                                                     value={formData.entertainmentLocation}
                                                     onChange={handleChange}
-                                                    className="w-full border rounded p-2"
+                                                    className="w-full border rounded-[5px] p-2"
                                                 />
                                             </div>
                                         </div>
@@ -1171,7 +1171,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                 name="workAwayDetails"
                                                 value={formData.workAwayDetails}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 rows="2"
                                             ></textarea>
                                             <label className="block font-medium mt-2">
@@ -1182,7 +1182,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                 name="workAwayOccasions"
                                                 value={formData.workAwayOccasions}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                     )}
@@ -1231,7 +1231,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                 placeholder="Title"
                                                 value={formData.personTitle}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2 mb-2"
+                                                className="w-full border rounded-[5px] p-2 mb-2"
                                             />
                                             <input
                                                 type="text"
@@ -1239,7 +1239,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                 placeholder="Initials & Surname"
                                                 value={formData.personName}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2 mb-2"
+                                                className="w-full border rounded-[5px] p-2 mb-2"
                                             />
                                             <input
                                                 type="text"
@@ -1247,14 +1247,14 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                 placeholder="Occupation"
                                                 value={formData.personOccupation}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2 mb-2"
+                                                className="w-full border rounded-[5px] p-2 mb-2"
                                             />
                                             <input
                                                 type="date"
                                                 name="personDOB"
                                                 value={formData.personDOB}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                         <div>
@@ -1265,7 +1265,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                 name="accidentOrIllnessDetails"
                                                 value={formData.accidentOrIllnessDetails}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 rows="3"
                                             ></textarea>
                                         </div>
@@ -1300,7 +1300,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                     name="defectDetails"
                                                     value={formData.defectDetails}
                                                     onChange={handleChange}
-                                                    className="w-full border rounded p-2 mt-2"
+                                                    className="w-full border rounded-[5px] p-2 mt-2"
                                                     rows="3"
                                                     placeholder="Provide names and details"
                                                 ></textarea>
@@ -1351,7 +1351,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                 name="insurerName"
                                                 value={formData.insurerName}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                     )}
@@ -1365,7 +1365,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         name="commencementDate"
                                         value={formData.commencementDate}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div>
@@ -1579,7 +1579,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                 name="protectionDetails"
                                                 value={formData.protectionDetails}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 rows="3"
                                             ></textarea>
                                         </div>
@@ -1757,7 +1757,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                                 name="additionalDetails"
                                                 value={formData.additionalDetails}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 rows="3"
                                             ></textarea>
                                         </div>
@@ -1780,7 +1780,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         name="declarationDate"
                                         value={formData.declarationDate}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div>
@@ -1789,7 +1789,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         type="file"
                                         name="declarationSignature"
                                         onChange={handleFileChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div>
@@ -1799,13 +1799,13 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         name="declarationAgency"
                                         value={formData.declarationAgency}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                             </div>
                         </section>
 
-                        <button type="submit" className="bg-blue-600 text-white px-6 py-3 rounded">
+                        <button type="submit" className="bg-blue-600 text-white px-6 py-3 rounded-[5px]">
                             Submit Proposal
                         </button>
                     </form>

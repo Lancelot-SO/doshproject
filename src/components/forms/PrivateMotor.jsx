@@ -228,7 +228,7 @@ const PrivateMotor = ({ onClose, userData }) => {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">
-            <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
+            <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[5px]-[20px]-lg shadow-lg flex overflow-hidden">
 
 
                 {/* Left Side Image */}
@@ -252,7 +252,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-[5px]-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
                         <X size={20} />
@@ -275,7 +275,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="proposerTitle"
                                         value={formData.proposerTitle}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         placeholder="Mr/Ms/Mrs/Dr/Prof"
                                         required
                                     />
@@ -287,7 +287,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="surname"
                                         value={formData.surname}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         required
                                     />
                                 </div>
@@ -298,7 +298,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="otherNames"
                                         value={formData.otherNames}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         required
                                     />
                                 </div>
@@ -310,7 +310,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="dob"
                                         value={formData.dob}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         required
                                     />
                                 </div>
@@ -351,7 +351,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="businessOccupation"
                                         value={formData.businessOccupation}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         required
                                     />
                                 </div>
@@ -361,7 +361,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="homeAddress"
                                         value={formData.homeAddress}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         rows="2"
                                         required
                                     ></textarea>
@@ -372,7 +372,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="businessAddress"
                                         value={formData.businessAddress}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         rows="2"
                                         required
                                     ></textarea>
@@ -387,7 +387,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         required
                                     />
                                 </div>
@@ -400,7 +400,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="personalMobile"
                                         value={formData.personalMobile}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         required
                                     />
                                 </div>
@@ -413,7 +413,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="businessMobile"
                                         value={formData.businessMobile}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         required
                                     />
                                 </div>
@@ -456,7 +456,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="numberOfDependants"
                                         value={formData.numberOfDependants}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         required
                                     />
                                 </div>
@@ -469,7 +469,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="maritalStatus"
                                         value={formData.maritalStatus}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         required
                                     />
                                 </div>
@@ -548,7 +548,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="vehicleUse"
                                         value={formData.vehicleUse}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         rows="2"
                                         placeholder="If applicable, specify usage details"
                                         required
@@ -709,7 +709,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                 name="ownerDetails"
                                                 value={formData.ownerDetails}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 rows="2"
                                             ></textarea>
                                         </div>
@@ -752,7 +752,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                 name="loanDetails"
                                                 value={formData.loanDetails}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 rows="2"
 
                                             ></textarea>
@@ -772,7 +772,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                 name="vehicleMakeModel"
                                                 value={formData.vehicleMakeModel}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 required
                                             />
                                         </div>
@@ -784,7 +784,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                 value={formData.vehicleBodyType}
                                                 onChange={handleChange}
                                                 required
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                         <div>
@@ -796,7 +796,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                 name="cubicCapacity"
                                                 value={formData.cubicCapacity}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 required
                                             />
                                         </div>
@@ -809,7 +809,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                 name="yearOfManufacture"
                                                 value={formData.yearOfManufacture}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 required
                                             />
                                         </div>
@@ -822,7 +822,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                 name="seatingCapacity"
                                                 value={formData.seatingCapacity}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 required
                                             />
                                         </div>
@@ -833,7 +833,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                 name="registrationNumber"
                                                 value={formData.registrationNumber}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 required
                                             />
                                         </div>
@@ -846,7 +846,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                 name="engineChassisNumber"
                                                 value={formData.engineChassisNumber}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 required
                                             />
                                         </div>
@@ -859,7 +859,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                 name="purchaseDate"
                                                 value={formData.purchaseDate}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 placeholder="e.g., 2023-01-01, $20,000"
                                                 required
                                             />
@@ -873,7 +873,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                 name="estimatedValue"
                                                 value={formData.estimatedValue}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 required
                                             />
                                         </div>
@@ -926,7 +926,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="drivingExperience"
                                         value={formData.drivingExperience}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         placeholder="e.g., 10 years"
                                     />
                                 </div>
@@ -940,7 +940,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="drivingExperience"
                                         value={formData.drivingExperience}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         placeholder="e.g., 10 years"
                                     />
                                 </div>
@@ -954,7 +954,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="drivingName"
                                         value={formData.drivingName}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         placeholder="e.g., 10 years"
                                     />
                                 </div>
@@ -968,7 +968,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="age"
                                         value={formData.age}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         placeholder="e.g., 10 years"
                                     />
                                 </div>
@@ -982,7 +982,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="occupation"
                                         value={formData.occupation}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         placeholder="e.g., 10 years"
                                     />
                                 </div>
@@ -996,7 +996,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="drivingLicense"
                                         value={formData.drivingLicense}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         placeholder="e.g., 10 years"
                                     />
                                 </div>
@@ -1010,7 +1010,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="motoring"
                                         value={formData.motoring}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         placeholder="e.g., 10 years"
                                     />
                                 </div>
@@ -1048,7 +1048,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                             name="accidentDetails"
                                             value={formData.accidentDetails}
                                             onChange={handleChange}
-                                            className="w-full border rounded p-2 mt-2"
+                                            className="w-full border rounded-[5px] p-2 mt-2"
                                             rows="3"
                                             placeholder="Provide details of the accident(s)"
                                         ></textarea>
@@ -1087,7 +1087,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                             name="defectDetails"
                                             value={formData.defectDetails}
                                             onChange={handleChange}
-                                            className="w-full border rounded p-2 mt-2"
+                                            className="w-full border rounded-[5px] p-2 mt-2"
                                             rows="3"
                                             placeholder="Provide details"
                                         ></textarea>
@@ -1135,7 +1135,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                             name="previousPolicyDetails"
                                             value={formData.previousPolicyDetails}
                                             onChange={handleChange}
-                                            className="w-full border rounded p-2 mt-2"
+                                            className="w-full border rounded-[5px] p-2 mt-2"
                                             rows="3"
                                             placeholder="Provide details: name of insurance companies, policy numbers, period of cover"
                                         ></textarea>
@@ -1155,7 +1155,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                 name="declinedProposal"
                                                 value={formData.declinedProposal || ''}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 placeholder="Provide details if any"
                                             />
                                         </div>
@@ -1168,7 +1168,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                 name="firstLoss"
                                                 value={formData.firstLoss || ''}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 placeholder="Provide details if any"
                                             />
                                         </div>
@@ -1181,7 +1181,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                 name="increasedPremium"
                                                 value={formData.increasedPremium || ''}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 placeholder="Provide details if any"
                                             />
                                         </div>
@@ -1194,7 +1194,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                 name="refusedRenewal"
                                                 value={formData.refusedRenewal || ''}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                                 placeholder="Provide details if any"
                                             />
                                         </div>
@@ -1367,7 +1367,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                     name="employedDriverName"
                                                     value={formData.employedDriverName}
                                                     onChange={handleChange}
-                                                    className="w-full border rounded p-2"
+                                                    className="w-full border rounded-[5px] p-2"
                                                 />
                                             </div>
                                             <div>
@@ -1377,7 +1377,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                     name="employedDriverAge"
                                                     value={formData.employedDriverAge}
                                                     onChange={handleChange}
-                                                    className="w-full border rounded p-2"
+                                                    className="w-full border rounded-[5px] p-2"
                                                 />
                                             </div>
                                             <div>
@@ -1387,7 +1387,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                     name="employedDriverOccupation"
                                                     value={formData.employedDriverOccupation}
                                                     onChange={handleChange}
-                                                    className="w-full border rounded p-2"
+                                                    className="w-full border rounded-[5px] p-2"
                                                 />
                                             </div>
                                             <div>
@@ -1399,7 +1399,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                     name="employedDriverYears"
                                                     value={formData.employedDriverYears}
                                                     onChange={handleChange}
-                                                    className="w-full border rounded p-2"
+                                                    className="w-full border rounded-[5px] p-2"
                                                 />
                                             </div>
                                             <div className="md:col-span-2">
@@ -1410,7 +1410,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                                     name="employedDriverConvictions"
                                                     value={formData.employedDriverConvictions}
                                                     onChange={handleChange}
-                                                    className="w-full border rounded p-2"
+                                                    className="w-full border rounded-[5px] p-2"
                                                     rows="3"
                                                 ></textarea>
                                             </div>
@@ -1435,7 +1435,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                     name="revisedThirdPartyLimit"
                                     value={formData.revisedThirdPartyLimit}
                                     onChange={handleChange}
-                                    className="w-full border rounded p-2 mt-2"
+                                    className="w-full border rounded-[5px] p-2 mt-2"
                                     placeholder="Amount of indemnity required"
                                 />
                             </div>
@@ -1455,7 +1455,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="declarationDate"
                                         value={formData.declarationDate}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div>
@@ -1464,7 +1464,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         type="file"
                                         name="declarationSignature"
                                         onChange={handleFileChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div>
@@ -1474,13 +1474,13 @@ const PrivateMotor = ({ onClose, userData }) => {
                                         name="declarationAgency"
                                         value={formData.declarationAgency}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                             </div>
                         </section>
 
-                        <button type="submit" className="bg-[#a58b63] text-white px-6 py-3 rounded">
+                        <button type="submit" className="bg-[#a58b63] text-white px-6 py-3 rounded-[5px]">
                             Submit Proposal
                         </button>
                     </form>

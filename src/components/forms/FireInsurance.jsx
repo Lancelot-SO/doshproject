@@ -239,7 +239,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="proposerTitle"
                                         value={formData.proposerTitle}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         placeholder="Mr/Ms/Mrs/Dr/Prof"
                                     />
                                 </div>
@@ -250,7 +250,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="proposerSurname"
                                         value={formData.proposerSurname}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div className="md:col-span-2">
@@ -260,7 +260,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="otherNames"
                                         value={formData.otherNames}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 {/* 2. Date of Birth */}
@@ -271,7 +271,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="dob"
                                         value={formData.dob}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 {/* 3. Sex */}
@@ -307,7 +307,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="postalAddress"
                                         value={formData.postalAddress}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         rows="2"
                                     ></textarea>
                                 </div>
@@ -319,7 +319,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="occupation"
                                         value={formData.occupation}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 {/* 6. E-mail Address */}
@@ -330,7 +330,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 {/* 7. Mobile and Landline */}
@@ -341,7 +341,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="mobile"
                                         value={formData.mobile}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div>
@@ -351,7 +351,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="landline"
                                         value={formData.landline}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 {/* 8. Property Address */}
@@ -363,7 +363,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="propertyAddress"
                                         value={formData.propertyAddress}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         rows="2"
                                     ></textarea>
                                 </div>
@@ -376,7 +376,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="premisesDescription"
                                         value={formData.premisesDescription}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         rows="3"
                                     ></textarea>
                                 </div>
@@ -390,7 +390,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="constructionWalls"
                                         value={formData.constructionWalls}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         placeholder="Enter details"
                                     />
                                 </div>
@@ -403,7 +403,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="constructionRoof"
                                         value={formData.constructionRoof}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         placeholder="Enter details"
                                     />
                                 </div>
@@ -422,7 +422,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                                 name="sumBuilding"
                                                 value={formData.sumBuilding}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                         <div>
@@ -434,7 +434,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                                 name="sumFence"
                                                 value={formData.sumFence}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                         <div>
@@ -446,7 +446,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                                 name="sumFurniture"
                                                 value={formData.sumFurniture}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                         <div>
@@ -458,7 +458,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                                 name="sumWholesale"
                                                 value={formData.sumWholesale}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                         <div>
@@ -470,7 +470,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                                 name="sumRetail"
                                                 value={formData.sumRetail}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                         <div>
@@ -482,7 +482,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                                 name="sumFixtures"
                                                 value={formData.sumFixtures}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                     </div>
@@ -497,7 +497,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="storeys"
                                         value={formData.storeys}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 {/* 13. Artificial Heating/Lighting */}
@@ -534,7 +534,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                             value={formData.heatingLightingNature}
                                             onChange={handleChange}
                                             placeholder="If yes, of what nature?"
-                                            className="w-full border rounded p-2 mt-2"
+                                            className="w-full border rounded-[5px] p-2 mt-2"
                                         />
                                     )}
                                 </div>
@@ -572,7 +572,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                             value={formData.manufacturingNature}
                                             onChange={handleChange}
                                             placeholder="If yes, of what nature?"
-                                            className="w-full border rounded p-2 mt-2"
+                                            className="w-full border rounded-[5px] p-2 mt-2"
                                         />
                                     )}
                                 </div>
@@ -585,7 +585,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="oilsDetails"
                                         value={formData.oilsDetails}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                         rows="3"
                                     ></textarea>
                                 </div>
@@ -691,7 +691,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                                 name="adjoiningConstruction"
                                                 value={formData.adjoiningConstruction}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                         <div>
@@ -703,7 +703,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                                 name="adjoiningOccupation"
                                                 value={formData.adjoiningOccupation}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                         <div>
@@ -715,7 +715,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                                 name="adjoiningGoods"
                                                 value={formData.adjoiningGoods}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                         <div>
@@ -727,7 +727,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                                 name="adjoiningSeparationMaterials"
                                                 value={formData.adjoiningSeparationMaterials}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                         <div>
@@ -763,7 +763,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                                     value={formData.adjoiningOpeningsNature}
                                                     onChange={handleChange}
                                                     placeholder="If yes, of what nature and how protected?"
-                                                    className="w-full border rounded p-2 mt-2"
+                                                    className="w-full border rounded-[5px] p-2 mt-2"
                                                 />
                                             )}
                                         </div>
@@ -812,7 +812,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                                 name="detachedConstruction"
                                                 value={formData.detachedConstruction}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                         <div>
@@ -824,7 +824,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                                 name="detachedOccupation"
                                                 value={formData.detachedOccupation}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                         <div>
@@ -836,7 +836,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                                 name="detachedDistance"
                                                 value={formData.detachedDistance}
                                                 onChange={handleChange}
-                                                className="w-full border rounded p-2"
+                                                className="w-full border rounded-[5px] p-2"
                                             />
                                         </div>
                                     </>
@@ -998,7 +998,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                             name="policyNumber"
                                             value={formData.policyNumber}
                                             onChange={handleChange}
-                                            className="w-full border rounded p-2"
+                                            className="w-full border rounded-[5px] p-2"
                                         />
                                     </div>
                                 )}
@@ -1043,7 +1043,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                             name="refusedDetails"
                                             value={formData.refusedDetails}
                                             onChange={handleChange}
-                                            className="w-full border rounded p-2"
+                                            className="w-full border rounded-[5px] p-2"
                                             rows="3"
                                         ></textarea>
                                     </div>
@@ -1089,7 +1089,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                             name="claimDetails"
                                             value={formData.claimDetails}
                                             onChange={handleChange}
-                                            className="w-full border rounded p-2"
+                                            className="w-full border rounded-[5px] p-2"
                                             rows="3"
                                         ></textarea>
                                     </div>
@@ -1147,7 +1147,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="declarationDate"
                                         value={formData.declarationDate}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div>
@@ -1156,7 +1156,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         type="text"
                                         name="declarationSignature"
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                                 <div>
@@ -1166,7 +1166,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="declarationAgency"
                                         value={formData.declarationAgency}
                                         onChange={handleChange}
-                                        className="w-full border rounded p-2"
+                                        className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
                             </div>
@@ -1174,7 +1174,7 @@ const FireInsurance = ({ onClose, userData }) => {
 
                         <button
                             type="submit"
-                            className="bg-[#b5996e] text-white px-6 py-3 rounded"
+                            className="bg-[#b5996e] text-white px-6 py-3 rounded-[5px]"
                         >
                             Submit Proposal
                         </button>

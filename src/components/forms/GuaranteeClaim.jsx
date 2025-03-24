@@ -156,7 +156,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                 name="policyNo"
                                 value={formData.policyNo}
                                 onChange={handleChange}
-                                className="border border-gray-300 rounded-[20px] p-2 w-full"
+                                className="border border-gray-300 rounded-[5px] p-2 w-full"
                             />
                         </div>
                         {/* Name of Defaulter */}
@@ -170,7 +170,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                     name="surname"
                                     value={formData.surname}
                                     onChange={handleChange}
-                                    className="border border-gray-300 rounded-[20px] p-2 w-full"
+                                    className="border border-gray-300 rounded-[5px] p-2 w-full"
                                 />
                             </div>
                             <div>
@@ -182,7 +182,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                     name="surname"
                                     value={formData.surname}
                                     onChange={handleChange}
-                                    className="border border-gray-300 rounded-[20px] p-2 w-full"
+                                    className="border border-gray-300 rounded-[5px] p-2 w-full"
                                 />
                             </div>
                             <div>
@@ -194,7 +194,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                     name="otherNames"
                                     value={formData.otherNames}
                                     onChange={handleChange}
-                                    className="border border-gray-300 rounded-[20px] p-2 w-full"
+                                    className="border border-gray-300 rounded-[5px] p-2 w-full"
                                 />
                             </div>
                         </div>
@@ -209,7 +209,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                 value={formData.lastKnownAddress}
                                 onChange={handleChange}
                                 rows="3"
-                                className="border border-gray-300 rounded-[20px] p-2 w-full"
+                                className="border border-gray-300 rounded-[5px] p-2 w-full"
                             ></textarea>
                         </div>
 
@@ -223,7 +223,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                 value={formData.discoveryDetails}
                                 onChange={handleChange}
                                 rows="4"
-                                className="border border-gray-300 rounded-[20px] p-2 w-full"
+                                className="border border-gray-300 rounded-[5px] p-2 w-full"
                             ></textarea>
                         </div>
 
@@ -237,7 +237,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                 value={formData.embezzlementDetails}
                                 onChange={handleChange}
                                 rows="4"
-                                className="border border-gray-300 rounded-[20px] p-2 w-full"
+                                className="border border-gray-300 rounded-[5px] p-2 w-full"
                             ></textarea>
                         </div>
 
@@ -251,7 +251,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                 value={formData.previousIrregularity}
                                 onChange={handleChange}
                                 rows="3"
-                                className="border border-gray-300 rounded-[20px] p-2 w-full"
+                                className="border border-gray-300 rounded-[5px] p-2 w-full"
                             ></textarea>
                         </div>
 
@@ -265,7 +265,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                 value={formData.extentOfLoss}
                                 onChange={handleChange}
                                 rows="3"
-                                className="border border-gray-300 rounded-[20px] p-2 w-full"
+                                className="border border-gray-300 rounded-[5px] p-2 w-full"
                             ></textarea>
                         </div>
 
@@ -279,7 +279,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                 value={formData.otherSecurity}
                                 onChange={handleChange}
                                 rows="2"
-                                className="border border-gray-300 rounded-[20px] p-2 w-full"
+                                className="border border-gray-300 rounded-[5px] p-2 w-full"
                             ></textarea>
                         </div>
 
@@ -293,7 +293,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                 name="remuneration"
                                 value={formData.remuneration}
                                 onChange={handleChange}
-                                className="border border-gray-300 rounded-[20px] p-2 w-full"
+                                className="border border-gray-300 rounded-[5px] p-2 w-full"
                             />
                         </div>
 
@@ -307,7 +307,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                 name="propertyDetails"
                                 value={formData.propertyDetails}
                                 onChange={handleChange}
-                                className="border border-gray-300 rounded-[20px] p-2 w-full"
+                                className="border border-gray-300 rounded-[5px] p-2 w-full"
                             />
                         </div>
 
@@ -321,7 +321,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                 value={formData.downfallCircumstances}
                                 onChange={handleChange}
                                 rows="3"
-                                className="border border-gray-300 rounded-[20px] p-2 w-full"
+                                className="border border-gray-300 rounded-[5px] p-2 w-full"
                             ></textarea>
                         </div>
 
@@ -343,7 +343,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                         name="declarationDate"
                                         value={formData.declarationDate}
                                         onChange={handleChange}
-                                        className="border border-gray-300 rounded-[20px] p-2 w-full"
+                                        className="border border-gray-300 rounded-[5px] p-2 w-full"
                                     />
                                 </div>
                                 <div>
@@ -352,7 +352,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                         type="text"
                                         name="signature"
                                         onChange={handleFileChange}
-                                        className="border border-gray-300 rounded-[20px] p-2 w-full"
+                                        className="border border-gray-300 rounded-[5px] p-2 w-full"
                                     />
                                 </div>
                                 <div>
@@ -362,7 +362,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                         name="agency"
                                         value={formData.agency}
                                         onChange={handleChange}
-                                        className="border border-gray-300 rounded-[20px] p-2 w-full"
+                                        className="border border-gray-300 rounded-[5px] p-2 w-full"
                                     />
                                 </div>
                             </div>
@@ -372,7 +372,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                         <div>
                             <button
                                 type="submit"
-                                className="bg-[#a58b63] hover:bg-[#725c3a] text-white font-semibold py-2 px-4 rounded-[20px]"
+                                className="bg-[#a58b63] hover:bg-[#725c3a] text-white font-semibold py-2 px-4 rounded-[5px]"
                             >
                                 Submit Claim
                             </button>

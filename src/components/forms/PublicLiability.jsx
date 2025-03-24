@@ -239,7 +239,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="proposerName"
                                 value={formData.proposerName}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                                 required
                             />
                         </label>
@@ -250,7 +250,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="address"
                                 value={formData.address}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
                         <label className="block">
@@ -260,7 +260,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="mobile"
                                 value={formData.mobile}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
                         <label className="block">
@@ -270,7 +270,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="businessTrade"
                                 value={formData.businessTrade}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -282,7 +282,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="goodsDescription"
                                 value={formData.goodsDescription}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
                         <label className="block">
@@ -291,7 +291,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="SeparatePolicies"
                                 value={formData.SeparatePolicies}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             >
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
@@ -304,7 +304,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="thirdPartyCover"
                                 value={formData.thirdPartyCover}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             >
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
@@ -318,7 +318,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="inspectedBy"
                                 value={formData.inspectedBy}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -328,7 +328,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="thoroughfare"
                                 value={formData.thoroughfare}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             >
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
@@ -343,7 +343,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name=" trapdoors"
                                 value={formData.trapdoors}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -355,7 +355,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="seatingCapacity"
                                 value={formData.seatingCapacity}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
                         <label className="block">
@@ -365,7 +365,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="natureOfClub"
                                 value={formData.natureOfClub}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -376,7 +376,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="numberofmembers"
                                 value={formData.numberofmembers}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -388,7 +388,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="theatre"
                                 value={formData.theatre}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
                         <label className="block">
@@ -397,7 +397,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="refreshments"
                                 value={formData.refreshments}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             >
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
@@ -411,7 +411,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="management"
                                 value={formData.management}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             >
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
@@ -426,7 +426,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="entertainments"
                                 value={formData.entertainments}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -438,7 +438,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="schoolDescription"
                                 value={formData.schoolDescription}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
                         <label className="block">
@@ -448,7 +448,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="numberOfPupils"
                                 value={formData.numberOfPupils}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -460,7 +460,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="indemnity"
                                 value={formData.indemnity}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -470,7 +470,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="foodPoisoning"
                                 value={formData.foodPoisoning}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             >
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
@@ -484,7 +484,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="machineryDetails"
                                 value={formData.machineryDetails}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -493,7 +493,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="explosivesUsage"
                                 value={formData.explosivesUsage}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             >
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
@@ -507,7 +507,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="subContractors"
                                 value={formData.subContractors}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             >
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
@@ -523,7 +523,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="contractPrices"
                                 value={formData.contractPrices}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -533,7 +533,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="employment"
                                 value={formData.employment}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             >
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
@@ -548,7 +548,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="particulars"
                                 value={formData.particulars}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
                         <label className="block">
@@ -556,7 +556,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="presentInsured"
                                 value={formData.presentInsured}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             >
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
@@ -571,7 +571,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="company"
                                 value={formData.company}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -615,7 +615,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                         name="refusedRenewal"
                                         value={formData.refusedRenewal}
                                         onChange={handleChange}
-                                        className="w-full p-2 border rounded-[20px]"
+                                        className="w-full p-2 border rounded-[5px]"
                                     >
                                         <option value="">Select</option>
                                         <option value="Yes">Yes</option>
@@ -628,7 +628,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                         name="policyCancelled"
                                         value={formData.policyCancelled}
                                         onChange={handleChange}
-                                        className="w-full p-2 border rounded-[20px]"
+                                        className="w-full p-2 border rounded-[5px]"
                                     >
                                         <option value="">Select</option>
                                         <option value="Yes">Yes</option>
@@ -644,7 +644,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="premium"
                                 value={formData.premium}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             >
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
@@ -658,7 +658,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="policy"
                                 value={formData.policy}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             >
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
@@ -673,7 +673,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="nature"
                                 value={formData.nature}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -683,7 +683,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="otherWork"
                                 value={formData.otherWork}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             >
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
@@ -698,7 +698,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="workDetails"
                                 value={formData.workDetails}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -710,7 +710,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="annualamount"
                                 value={formData.annualamount}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -721,7 +721,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="numberofemployees"
                                 value={formData.numberofemployees}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -732,7 +732,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="principal"
                                 value={formData.principal}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -743,7 +743,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="numberofpartners"
                                 value={formData.numberofpartners}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -762,7 +762,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="Date"
                                 value={formData.Date}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
                         <label className="block">
@@ -772,7 +772,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="agency"
                                 value={formData.agency}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
                         <label className="block">
@@ -782,7 +782,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="codenumber"
                                 value={formData.codenumber}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
                         <label className="block">
@@ -791,13 +791,13 @@ const PublicLiability = ({ onClose, userData }) => {
                                 type="file"
                                 name="signature"
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded-[20px]"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
                         <button
                             type="submit"
-                            className="w-full bg-[#b5996e] text-white py-2 rounded-[20px] hover:bg-[#7b6441]"
+                            className="w-full bg-[#b5996e] text-white py-2 rounded-[5px] hover:bg-[#7b6441]"
                         >
                             Submit
                         </button>

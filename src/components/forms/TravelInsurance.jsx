@@ -144,26 +144,26 @@ const TravelInsurance = ({ onClose, userData }) => {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium">Name of Proposer</label>
-                            <input type="text" name="proposerName" value={formData.proposerName} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                            <input type="text" name="proposerName" value={formData.proposerName} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium">Surname</label>
-                                <input type="text" name="surname" value={formData.surname} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                                <input type="text" name="surname" value={formData.surname} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium">Other Names</label>
-                                <input type="text" name="otherNames" value={formData.otherNames} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                                <input type="text" name="otherNames" value={formData.otherNames} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                             </div>
                         </div>
                         <div>
                             <label className="block text-sm font-medium">Date of Birth</label>
-                            <input type="date" name="dob" value={formData.dob} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                            <input type="date" name="dob" value={formData.dob} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium">Sex</label>
-                                <select name="sex" value={formData.sex} onChange={handleChange} className="w-full p-2 border rounded-[20px]">
+                                <select name="sex" value={formData.sex} onChange={handleChange} className="w-full p-2 border rounded-[5px]">
                                     <option value="">Select</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -171,46 +171,46 @@ const TravelInsurance = ({ onClose, userData }) => {
                             </div>
                             <div>
                                 <label className="block text-sm font-medium">Postal Address</label>
-                                <input type="text" name="postalAddress" value={formData.postalAddress} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                                <input type="text" name="postalAddress" value={formData.postalAddress} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium">Email</label>
-                                <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                                <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium">Mobile No</label>
-                                <input type="tel" name="mobile" value={formData.mobile} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                                <input type="tel" name="mobile" value={formData.mobile} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                             </div>
                         </div>
                         <div>
                             <label className="block text-sm font-medium">Country of Residence</label>
-                            <input type="text" name="residenceCountry" value={formData.residenceCountry} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                            <input type="text" name="residenceCountry" value={formData.residenceCountry} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                         </div>
                         <div>
                             <label className="block text-sm font-medium">Passport Number</label>
-                            <input type="text" name="passportNumber" value={formData.passportNumber} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                            <input type="text" name="passportNumber" value={formData.passportNumber} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                         </div>
                         <div>
                             <label className="block text-sm font-medium">Destination</label>
-                            <input type="text" name="destination" value={formData.destination} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                            <input type="text" name="destination" value={formData.destination} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium">Date of Departure</label>
-                                <input type="date" name="departureDate" value={formData.departureDate} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                                <input type="date" name="departureDate" value={formData.departureDate} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium">Date of Return</label>
-                                <input type="date" name="returnDate" value={formData.returnDate} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                                <input type="date" name="returnDate" value={formData.returnDate} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                             </div>
                         </div>
                         <div>
                             <label className="block text-sm font-medium">Purpose of Travel</label>
-                            <input type="text" name="travelPurpose" value={formData.travelPurpose} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                            <input type="text" name="travelPurpose" value={formData.travelPurpose} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                         </div>
                         <div>
                             <label className="block text-sm font-medium">Product Type</label>
-                            <select name="productType" value={formData.productType} onChange={handleChange} className="w-full p-2 border rounded-[20px]">
+                            <select name="productType" value={formData.productType} onChange={handleChange} className="w-full p-2 border rounded-[5px]">
                                 <option value="">Select</option>
                                 <option value="Europe">Europe / Schengen</option>
                                 <option value="Traveller">Traveller</option>
@@ -222,15 +222,15 @@ const TravelInsurance = ({ onClose, userData }) => {
                         </div>
                         <div>
                             <label className="block text-sm font-medium">Premium Paid (GHC)</label>
-                            <input type="number" name="premiumPaid" value={formData.premiumPaid} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                            <input type="number" name="premiumPaid" value={formData.premiumPaid} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                         </div>
                         <div>
                             <label className="block text-sm font-medium">Date</label>
-                            <input type="date" name="declarationDate" value={formData.declarationDate} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                            <input type="date" name="declarationDate" value={formData.declarationDate} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                         </div>
                         <div>
                             <label className="block text-sm font-medium">Signature</label>
-                            <input type="text" name="signature" value={formData.signature} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                            <input type="text" name="signature" value={formData.signature} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                         </div>
 
                         <p className=" font-bold mb-4">
@@ -238,15 +238,15 @@ const TravelInsurance = ({ onClose, userData }) => {
                         </p>
                         <div>
                             <label className="block text-sm font-medium">Validator</label>
-                            <input type="text" name="Validator" value={formData.Validator} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                            <input type="text" name="Validator" value={formData.Validator} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                         </div>
                         <div>
                             <label className="block text-sm font-medium">Signature of Validating Of Officer</label>
-                            <input type="text" name="officer" value={formData.officer} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                            <input type="text" name="officer" value={formData.officer} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                         </div>
                         <div>
                             <label className="block text-sm font-medium">Date</label>
-                            <input type="date" name="date" value={formData.date} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                            <input type="date" name="date" value={formData.date} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                         </div>
 
                         <h3 className="font-bold text-gray-800">DECLARATION</h3>
@@ -259,17 +259,17 @@ const TravelInsurance = ({ onClose, userData }) => {
 
                         <div>
                             <label className="block text-sm font-medium">Date</label>
-                            <input type="date" name="declareDate" value={formData.declareDate} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                            <input type="date" name="declareDate" value={formData.declareDate} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                         </div>
                         <div>
                             <label className="block text-sm font-medium">Agency</label>
-                            <input type="text" name="agency" value={formData.agency} onChange={handleChange} className="w-full p-2 border rounded-[20px]" required />
+                            <input type="text" name="agency" value={formData.agency} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                         </div>
                         <div>
                             <label className="block text-sm font-medium">Signature</label>
-                            <input type="file" name="declareSignature" onChange={handleFileChange} className="w-full p-2 border rounded-[20px]" required />
+                            <input type="file" name="declareSignature" onChange={handleFileChange} className="w-full p-2 border rounded-[5px]" required />
                         </div>
-                        <button type="submit" className="w-full bg-[#b5996e] text-white p-2 rounded-[20px] hover:bg-[#816842]">Submit</button>
+                        <button type="submit" className="w-full bg-[#b5996e] text-white p-2 rounded-[5px] hover:bg-[#816842]">Submit</button>
                     </form>
                 </div>
             </div>

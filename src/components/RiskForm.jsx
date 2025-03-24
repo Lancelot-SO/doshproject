@@ -44,18 +44,18 @@ const RiskForm = ({ onClose }) => {
 
     const [formData, setFormData] = useState({
         fullname: '',
-        email: '',
+        // email: '',
         phone: '',
         brokerage: '',
         insuranceType: '',
         formType: '',
-        message: ''
+        // message: ''
     });
 
     // State for pre-filling the modal or secondary form
     const [modalFormData, setModalFormData] = useState({
         fullname: "",
-        email: "",
+        // email: "",
         phone: ""
     });
 
@@ -185,12 +185,12 @@ const RiskForm = ({ onClose }) => {
                     toast.success('Message sent successfully!');
                     setFormData({
                         fullname: '',
-                        email: '',
+                        // email: '',
                         phone: '',
                         brokerage: '',
                         insuranceType: '',
                         formType: '',
-                        message: ''
+                        // message: ''
                     });
                 },
                 (error) => {
@@ -203,7 +203,7 @@ const RiskForm = ({ onClose }) => {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4">
-            <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-lg shadow-lg flex overflow-hidden">
+            <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[5px] shadow-lg flex overflow-hidden">
 
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
@@ -320,13 +320,13 @@ const RiskForm = ({ onClose }) => {
                                                                                         onChange={handleChange}
                                                                                         required
                                                                                         placeholder="Enter full name"
-                                                                                        className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                                                                     />
                                                                                 </div>
 
                                                                             </div>
 
-                                                                            <div>
+                                                                            {/* <div>
                                                                                 <label htmlFor="email" className="block text-sm font-medium">
                                                                                     Email
                                                                                 </label>
@@ -338,9 +338,9 @@ const RiskForm = ({ onClose }) => {
                                                                                     onChange={handleChange}
                                                                                     required
                                                                                     placeholder="Enter email here"
-                                                                                    className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                                                                 />
-                                                                            </div>
+                                                                            </div> */}
 
                                                                             <div>
                                                                                 <label htmlFor="phone" className="block text-sm font-medium">
@@ -354,7 +354,7 @@ const RiskForm = ({ onClose }) => {
                                                                                     onChange={handleChange}
                                                                                     required
                                                                                     placeholder="Enter number here"
-                                                                                    className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                                                                 />
                                                                             </div>
 
@@ -368,7 +368,7 @@ const RiskForm = ({ onClose }) => {
                                                                                     value={formData.insuranceType}
                                                                                     onChange={handleChange}
                                                                                     required
-                                                                                    className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                                                                 >
                                                                                     <option value="">Choose an option</option>
                                                                                     <option value="Life Insurance">Life Insurance</option>
@@ -390,7 +390,7 @@ const RiskForm = ({ onClose }) => {
                                                                                         formData.insuranceType.trim() === "Life Insurance" ||
                                                                                         formData.insuranceType.trim() === "Other"
                                                                                     }
-                                                                                    className={`w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${(formData.insuranceType.trim() === "Life Insurance" ||
+                                                                                    className={`w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${(formData.insuranceType.trim() === "Life Insurance" ||
                                                                                         formData.insuranceType.trim() === "Other")
                                                                                         ? "cursor-not-allowed"
                                                                                         : ""
@@ -420,7 +420,7 @@ const RiskForm = ({ onClose }) => {
                                                                                         name="brokerage"
                                                                                         value={formData.brokerage}
                                                                                         onChange={handleChange}
-                                                                                        className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                                                                     >
                                                                                         <option value="">Choose an option</option>
                                                                                         {lifeInsurance.map((life, index) => (
@@ -443,7 +443,7 @@ const RiskForm = ({ onClose }) => {
                                                                                         name="brokerage"
                                                                                         value={formData.brokerage}
                                                                                         onChange={handleChange}
-                                                                                        className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                                                                     >
                                                                                         <option value="">Choose an option</option>
                                                                                         {firms.map((firm, index) => (
@@ -455,7 +455,7 @@ const RiskForm = ({ onClose }) => {
                                                                                 </div>
                                                                             )}
 
-                                                                            <div>
+                                                                            {/* <div>
                                                                                 <label htmlFor="message" className="block text-sm font-medium">
                                                                                     Message
                                                                                 </label>
@@ -466,13 +466,13 @@ const RiskForm = ({ onClose }) => {
                                                                                     onChange={handleChange}
                                                                                     rows="4"
                                                                                     placeholder="Enter a message"
-                                                                                    className="w-full mt-1 p-3 border rounded-lg text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                                                                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
                                                                                 ></textarea>
-                                                                            </div>
+                                                                            </div> */}
 
                                                                             <button
                                                                                 type="submit"
-                                                                                className="w-full bg-[#b5996e] text-white py-2 rounded-lg hover:bg-[#776449] transition duration-300"
+                                                                                className="w-full bg-[#b5996e] text-white py-2 rounded-[5px] hover:bg-[#776449] transition duration-300"
                                                                             >
                                                                                 Send
                                                                             </button>

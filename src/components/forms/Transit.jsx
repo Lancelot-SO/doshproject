@@ -145,47 +145,47 @@ const Transit = ({ onClose, userData }) => {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <label className="block text-sm font-semibold">Name of Proposer (Mr/Ms/Mrs/Dr/Prof).</label>
-                            <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full border p-2 rounded-[20px]" required />
+                            <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full border p-2 rounded-[5px]" required />
                         </div>
 
                         <div>
                             <label className="block text-sm font-semibold">Postal Address</label>
-                            <input type="text" name="address" value={formData.address} onChange={handleChange} className="w-full border p-2 rounded-[20px]" required />
+                            <input type="text" name="address" value={formData.address} onChange={handleChange} className="w-full border p-2 rounded-[5px]" required />
                         </div>
 
                         <div>
                             <label className="block text-sm font-semibold">Business/Occupation</label>
-                            <input type="text" name="business" value={formData.business} onChange={handleChange} className="w-full border p-2 rounded-[20px]" required />
+                            <input type="text" name="business" value={formData.business} onChange={handleChange} className="w-full border p-2 rounded-[5px]" required />
                         </div>
 
                         <div>
                             <label className="block text-sm font-semibold">Telephone/Fax</label>
-                            <input type="text" name="contact" value={formData.contact} onChange={handleChange} className="w-full border p-2 rounded-[20px]" />
+                            <input type="text" name="contact" value={formData.contact} onChange={handleChange} className="w-full border p-2 rounded-[5px]" />
                         </div>
 
                         <div>
                             <label className="block text-sm font-semibold">Email</label>
-                            <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full border p-2 rounded-[20px]" required />
+                            <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full border p-2 rounded-[5px]" required />
                         </div>
 
                         <div>
                             <label className="block text-sm font-semibold">Period of Cover Required</label>
-                            <input type="text" name="period" value={formData.period} onChange={handleChange} className="w-full border p-2 rounded-[20px]" required />
+                            <input type="text" name="period" value={formData.period} onChange={handleChange} className="w-full border p-2 rounded-[5px]" required />
                         </div>
 
                         <div>
                             <label className="block text-sm font-semibold">Description of Merchandise</label>
-                            <textarea name="description" value={formData.description} onChange={handleChange} className="w-full border p-2 rounded-[20px]" required></textarea>
+                            <textarea name="description" value={formData.description} onChange={handleChange} className="w-full border p-2 rounded-[5px]" required></textarea>
                         </div>
 
                         <div>
                             <label className="block text-sm font-semibold">How are they packaged?</label>
-                            <input type="text" name="packaging" value={formData.packaging} onChange={handleChange} className="w-full border p-2 rounded-[20px]" required />
+                            <input type="text" name="packaging" value={formData.packaging} onChange={handleChange} className="w-full border p-2 rounded-[5px]" required />
                         </div>
 
                         <div>
                             <label className="block text-sm font-semibold">If in Containers, do you wish to insure the Container(s)?</label>
-                            <select name="containerInsured" value={formData.containerInsured} onChange={handleChange} className="w-full border p-2 rounded-[20px]">
+                            <select name="containerInsured" value={formData.containerInsured} onChange={handleChange} className="w-full border p-2 rounded-[5px]">
                                 <option value="No">No</option>
                                 <option value="Yes">Yes</option>
                             </select>
@@ -194,55 +194,55 @@ const Transit = ({ onClose, userData }) => {
                         {formData.containerInsured === "Yes" && (
                             <div>
                                 <label className="block text-sm font-semibold">If so, what is the Value of the Container(s)</label>
-                                <input type="number" name="containerValue" value={formData.containerValue} onChange={handleChange} className="w-full border p-2 rounded-[20px]" required />
+                                <input type="number" name="containerValue" value={formData.containerValue} onChange={handleChange} className="w-full border p-2 rounded-[5px]" required />
                             </div>
                         )}
 
                         <div>
                             <label className="block text-sm font-semibold">Are the goods your own property? or otherwise?</label>
-                            <input type="text" name="propertyOwnership" value={formData.propertyOwnership} onChange={handleChange} className="w-full border p-2 rounded-[20px]" required />
+                            <input type="text" name="propertyOwnership" value={formData.propertyOwnership} onChange={handleChange} className="w-full border p-2 rounded-[5px]" required />
                         </div>
 
                         <p className="font-bold">Details of journey involved:</p>
 
                         <div>
                             <label className="block text-sm font-semibold">Itinerary</label>
-                            <input type="text" name="itinerary" value={formData.itinerary} onChange={handleChange} className="w-full border p-2 rounded-[20px]" required />
+                            <input type="text" name="itinerary" value={formData.itinerary} onChange={handleChange} className="w-full border p-2 rounded-[5px]" required />
                         </div>
 
                         <div>
                             <label className="block text-sm font-semibold">Mode of conveyance (by Road, Sea or Land)</label>
-                            <input type="text" name="mode" value={formData.mode} onChange={handleChange} className="w-full border p-2 rounded-[20px]" required />
+                            <input type="text" name="mode" value={formData.mode} onChange={handleChange} className="w-full border p-2 rounded-[5px]" required />
                         </div>
 
                         <div>
                             <label className="block text-sm font-semibold">Means of conveyance (Owned/Hired)</label>
-                            <input type="text" name="conveyanceType" value={formData.conveyanceType} onChange={handleChange} className="w-full border p-2 rounded-[20px]" required />
+                            <input type="text" name="conveyanceType" value={formData.conveyanceType} onChange={handleChange} className="w-full border p-2 rounded-[5px]" required />
                         </div>
 
                         <p className="text-red-500"> (Please note that this cover excludes carriage by fare paying passenger vehicles)</p>
 
                         <div>
                             <label className="block text-sm font-semibold">Estimated Annual carrying during the period of insurance.</label>
-                            <input type="text" name="estimate" value={formData.estimate} onChange={handleChange} className="w-full border p-2 rounded-[20px]" />
+                            <input type="text" name="estimate" value={formData.estimate} onChange={handleChange} className="w-full border p-2 rounded-[5px]" />
                         </div>
                         <div>
                             <label className="block text-sm font-semibold">Limit any one conveyance</label>
-                            <input type="text" name="conveyance" value={formData.conveyance} onChange={handleChange} className="w-full border p-2 rounded-[20px]" />
+                            <input type="text" name="conveyance" value={formData.conveyance} onChange={handleChange} className="w-full border p-2 rounded-[5px]" />
                         </div>
                         <div>
                             <label className="block text-sm font-semibold">Do you keep proper accounts of carryings made?</label>
-                            <input type="text" name="accountCarrying" value={formData.accountCarrying} onChange={handleChange} className="w-full border p-2 rounded-[20px]" />
+                            <input type="text" name="accountCarrying" value={formData.accountCarrying} onChange={handleChange} className="w-full border p-2 rounded-[5px]" />
                         </div>
 
                         <div>
                             <label className="block text-sm font-semibold">Any previous losses?</label>
-                            <input type="text" name="previousLosses" value={formData.previousLosses} onChange={handleChange} className="w-full border p-2 rounded-[20px]" />
+                            <input type="text" name="previousLosses" value={formData.previousLosses} onChange={handleChange} className="w-full border p-2 rounded-[5px]" />
                         </div>
 
                         <div>
                             <label className="block text-sm font-semibold">Date & Place of Loss, Cause and Nature</label>
-                            <textarea name="lossDetails" value={formData.lossDetails} onChange={handleChange} className="w-full border p-2 rounded-[20px]"></textarea>
+                            <textarea name="lossDetails" value={formData.lossDetails} onChange={handleChange} className="w-full border p-2 rounded-[5px]"></textarea>
                         </div>
 
 
@@ -256,20 +256,20 @@ const Transit = ({ onClose, userData }) => {
 
                         <div>
                             <label className="block text-sm font-semibold">Date</label>
-                            <input type="date" name="date" value={formData.date} onChange={handleChange} className="w-full border p-2 rounded-[20px]" required />
+                            <input type="date" name="date" value={formData.date} onChange={handleChange} className="w-full border p-2 rounded-[5px]" required />
                         </div>
 
                         <div>
                             <label className="block text-sm font-semibold">Agency</label>
-                            <input type="text" name="agency" value={formData.agency} onChange={handleChange} className="w-full border p-2 rounded-[20px]" required />
+                            <input type="text" name="agency" value={formData.agency} onChange={handleChange} className="w-full border p-2 rounded-[5px]" required />
                         </div>
 
                         <div>
                             <label className="block text-sm font-semibold">Signature</label>
-                            <input type="text" name="signature" onChange={handleFileChange} className="w-full border p-2 rounded-[20px]" required />
+                            <input type="text" name="signature" onChange={handleFileChange} className="w-full border p-2 rounded-[5px]" required />
                         </div>
 
-                        <button type="submit" className="w-full bg-[#b5996e] text-white p-2 rounded-[20px] hover:bg-[#7d6642]">Submit</button>
+                        <button type="submit" className="w-full bg-[#b5996e] text-white p-2 rounded-[5px] hover:bg-[#7d6642]">Submit</button>
                     </form>
                 </div>
             </div></div>

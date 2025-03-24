@@ -193,7 +193,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 value={formData.firmName}
                                 onChange={handleChange}
                                 required
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -204,7 +204,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 value={formData.address}
                                 onChange={handleChange}
                                 required
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             ></textarea>
                         </label>
 
@@ -216,7 +216,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 value={formData.establishmentYear}
                                 onChange={handleChange}
                                 required
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -228,7 +228,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 value={formData.profession}
                                 onChange={handleChange}
                                 required
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -252,7 +252,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                                     type="text"
                                                     value={director.name}
                                                     onChange={(e) => handleDirectorChange(index, 'name', e.target.value)}
-                                                    className="w-full p-2 border rounded"
+                                                    className="w-full p-2 border rounded-[5px]"
 
                                                 />
                                             </td>
@@ -261,7 +261,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                                     type="text"
                                                     value={director.qualification}
                                                     onChange={(e) => handleDirectorChange(index, 'qualification', e.target.value)}
-                                                    className="w-full p-2 border rounded"
+                                                    className="w-full p-2 border rounded-[5px]"
 
                                                 />
                                             </td>
@@ -270,7 +270,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                                     type="date"
                                                     value={director.dateObtained}
                                                     onChange={(e) => handleDirectorChange(index, 'dateObtained', e.target.value)}
-                                                    className="w-full p-2 border rounded"
+                                                    className="w-full p-2 border rounded-[5px]"
                                                 />
                                             </td>
                                             <td className="border p-2">
@@ -278,7 +278,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                                     type="text"
                                                     value={director.practiceDuration}
                                                     onChange={(e) => handleDirectorChange(index, 'practiceDuration', e.target.value)}
-                                                    className="w-full p-2 border rounded"
+                                                    className="w-full p-2 border rounded-[5px]"
                                                 />
                                             </td>
                                         </tr>
@@ -288,7 +288,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                             <button
                                 type="button"
                                 onClick={addDirector}
-                                className="mt-2 bg-[#b5996e] text-white p-2 rounded hover:bg-[#77603d]"
+                                className="mt-2 bg-[#b5996e] text-white p-2 rounded-[5px] hover:bg-[#77603d]"
                             >
                                 Add Another Director
                             </button>
@@ -301,7 +301,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 name="staffCount"
                                 value={formData.staffCount}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -312,7 +312,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 name="professionally"
                                 value={formData.professionally}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -323,7 +323,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 name="others"
                                 value={formData.others}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -334,7 +334,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 name="typist"
                                 value={formData.typist}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -345,7 +345,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 name="indemnityRequired"
                                 value={formData.indemnityRequired}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -356,7 +356,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 name="libelSlander"
                                 value={formData.libelSlander}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             >
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
@@ -370,7 +370,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 name="lossOfDocument"
                                 value={formData.lossOfDocument}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             >
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
@@ -384,7 +384,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 name="previousInsuranceIssues"
                                 value={formData.previousInsuranceIssues}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             ></textarea>
                         </label>
 
@@ -394,7 +394,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 name="previousClaims"
                                 value={formData.previousClaims}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             ></textarea>
                         </label>
 
@@ -404,7 +404,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 name="awareOfClaim"
                                 value={formData.awareOfClaim}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             >
                                 <option value="">Select</option>
                                 <option value="Yes">Yes</option>
@@ -419,7 +419,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                     name="awareOfClaimDetails"
                                     value={formData.awareOfClaimDetails}
                                     onChange={handleChange}
-                                    className="w-full p-2 border rounded"
+                                    className="w-full p-2 border rounded-[5px]"
                                 ></textarea>
                             </label>
                         )}
@@ -436,7 +436,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 name="date"
                                 value={formData.date}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -447,7 +447,7 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 name="agency"
                                 value={formData.agency}
                                 onChange={handleChange}
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
@@ -457,13 +457,13 @@ const ProfessionalIndemnity = ({ onClose }) => {
                                 type="file"
                                 name="signature"
                                 onChange={handleFileChange}    // separate handler for files
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded-[5px]"
                             />
                         </label>
 
                         <button
                             type="submit"
-                            className="w-full bg-[#b5996e] text-white p-2 rounded hover:bg-[#766140]"
+                            className="w-full bg-[#b5996e] text-white p-2 rounded-[5px] hover:bg-[#766140]"
                         >
                             Submit
                         </button>

@@ -154,7 +154,7 @@ const WorkMen = ({ onClose, userData }) => {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">
-            <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
+            <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px] shadow-lg flex overflow-hidden">
 
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
@@ -201,7 +201,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="proposerName"
                                         value={formData.proposerName}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                     />
                                 </div>
                                 <div>
@@ -214,7 +214,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="businessAddress"
                                         value={formData.businessAddress}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                     />
                                 </div>
                                 <div>
@@ -227,7 +227,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="firmEstablished"
                                         value={formData.firmEstablished}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                         placeholder="YYYY or date"
                                     />
                                 </div>
@@ -241,7 +241,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="tradeOccupation"
                                         value={formData.tradeOccupation}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                     />
                                 </div>
                                 <div>
@@ -254,7 +254,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="telephone"
                                         value={formData.telephone}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                     />
                                 </div>
                                 <div className="md:col-span-2">
@@ -266,7 +266,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="particularsOfWork"
                                         value={formData.particularsOfWork}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                         rows="3"
                                     ></textarea>
                                 </div>
@@ -279,7 +279,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="statutoryLaws"
                                         value={formData.statutoryLaws}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                         rows="2"
                                     ></textarea>
                                 </div>
@@ -287,7 +287,7 @@ const WorkMen = ({ onClose, userData }) => {
                         </section>
 
                         {/* Section 2: Employee Details */}
-                        <section className="border p-4 rounded-[20px] shadow">
+                        <section className="border p-4 rounded-[5px] shadow">
                             <h2 className="text-xl font-semibold mb-4">Employee Details</h2>
                             <p className="mb-2">For each category, please provide the estimated number of employees and annual wages.</p>
                             <div className="space-y-4">
@@ -303,7 +303,7 @@ const WorkMen = ({ onClose, userData }) => {
                                             name="number"
                                             value={formData.clericalEmployees.number}
                                             onChange={(e) => handleNestedChange(e, 'clericalEmployees')}
-                                            className="mt-1 p-2 border rounded-[20px] w-full"
+                                            className="mt-1 p-2 border rounded-[5px] w-full"
                                         />
                                     </div>
                                     <div>
@@ -316,7 +316,7 @@ const WorkMen = ({ onClose, userData }) => {
                                             name="wages"
                                             value={formData.clericalEmployees.wages}
                                             onChange={(e) => handleNestedChange(e, 'clericalEmployees')}
-                                            className="mt-1 p-2 border rounded-[20px] w-full"
+                                            className="mt-1 p-2 border rounded-[5px] w-full"
                                         />
                                     </div>
                                 </div>
@@ -332,7 +332,7 @@ const WorkMen = ({ onClose, userData }) => {
                                             name="number"
                                             value={formData.commercialTravellers.number}
                                             onChange={(e) => handleNestedChange(e, 'commercialTravellers')}
-                                            className="mt-1 p-2 border rounded-[20px] w-full"
+                                            className="mt-1 p-2 border rounded-[5px] w-full"
                                         />
                                     </div>
                                     <div>
@@ -345,7 +345,7 @@ const WorkMen = ({ onClose, userData }) => {
                                             name="wages"
                                             value={formData.commercialTravellers.wages}
                                             onChange={(e) => handleNestedChange(e, 'commercialTravellers')}
-                                            className="mt-1 p-2 border rounded-[20px] w-full"
+                                            className="mt-1 p-2 border rounded-[5px] w-full"
                                         />
                                     </div>
                                 </div>
@@ -361,7 +361,7 @@ const WorkMen = ({ onClose, userData }) => {
                                             name="number"
                                             value={formData.woodWorkingEmployees.number}
                                             onChange={(e) => handleNestedChange(e, 'woodWorkingEmployees')}
-                                            className="mt-1 p-2 border rounded-[20px] w-full"
+                                            className="mt-1 p-2 border rounded-[5px] w-full"
                                         />
                                     </div>
                                     <div>
@@ -374,7 +374,7 @@ const WorkMen = ({ onClose, userData }) => {
                                             name="wages"
                                             value={formData.woodWorkingEmployees.wages}
                                             onChange={(e) => handleNestedChange(e, 'woodWorkingEmployees')}
-                                            className="mt-1 p-2 border rounded-[20px] w-full"
+                                            className="mt-1 p-2 border rounded-[5px] w-full"
                                         />
                                     </div>
                                 </div>
@@ -389,7 +389,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="description"
                                         value={formData.otherEmployees.description}
                                         onChange={(e) => handleNestedChange(e, 'otherEmployees')}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                     />
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                                         <div>
@@ -402,7 +402,7 @@ const WorkMen = ({ onClose, userData }) => {
                                                 name="number"
                                                 value={formData.otherEmployees.number}
                                                 onChange={(e) => handleNestedChange(e, 'otherEmployees')}
-                                                className="mt-1 p-2 border rounded-[20px] w-full"
+                                                className="mt-1 p-2 border rounded-[5px] w-full"
                                             />
                                         </div>
                                         <div>
@@ -415,7 +415,7 @@ const WorkMen = ({ onClose, userData }) => {
                                                 name="wages"
                                                 value={formData.otherEmployees.wages}
                                                 onChange={(e) => handleNestedChange(e, 'otherEmployees')}
-                                                className="mt-1 p-2 border rounded-[20px] w-full"
+                                                className="mt-1 p-2 border rounded-[5px] w-full"
                                             />
                                         </div>
                                     </div>
@@ -424,7 +424,7 @@ const WorkMen = ({ onClose, userData }) => {
                         </section>
 
                         {/* Section 3: Contractor Details */}
-                        <section className="border p-4 rounded-[20px] shadow">
+                        <section className="border p-4 rounded-[5px] shadow">
                             <h2 className="text-xl font-semibold mb-4">Contractor Details</h2>
                             <div className="space-y-4">
                                 <div>
@@ -437,7 +437,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="contractorName"
                                         value={formData.contractorName}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                     />
                                 </div>
                                 <div>
@@ -450,7 +450,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="contractorNature"
                                         value={formData.contractorNature}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                     />
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -464,7 +464,7 @@ const WorkMen = ({ onClose, userData }) => {
                                             name="contractorLabourAndMaterials"
                                             value={formData.contractorLabourAndMaterials}
                                             onChange={handleChange}
-                                            className="mt-1 p-2 border rounded-[20px] w-full"
+                                            className="mt-1 p-2 border rounded-[5px] w-full"
                                         />
                                     </div>
                                     <div>
@@ -477,7 +477,7 @@ const WorkMen = ({ onClose, userData }) => {
                                             name="contractorLabourOnly"
                                             value={formData.contractorLabourOnly}
                                             onChange={handleChange}
-                                            className="mt-1 p-2 border rounded-[20px] w-full"
+                                            className="mt-1 p-2 border rounded-[5px] w-full"
                                         />
                                     </div>
                                 </div>
@@ -485,7 +485,7 @@ const WorkMen = ({ onClose, userData }) => {
                         </section>
 
                         {/* Section 4: Additional Information */}
-                        <section className="border p-4 rounded-[20px] shadow">
+                        <section className="border p-4 rounded-[5px] shadow">
                             <h2 className="text-xl font-semibold mb-4">Additional Information</h2>
                             <div className="space-y-4">
                                 <div>
@@ -498,7 +498,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="totalWagesPaid"
                                         value={formData.totalWagesPaid}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                     />
                                 </div>
                                 <div>
@@ -511,7 +511,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="subcontractorInsurance"
                                         value={formData.subcontractorInsurance}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                     />
                                 </div>
                                 {/* Additional Yes/No and text fields for further questions */}
@@ -526,7 +526,7 @@ const WorkMen = ({ onClose, userData }) => {
                                             name="includeAllPersons"
                                             value={formData.includeAllPersons}
                                             onChange={handleChange}
-                                            className="mt-1 p-2 border rounded-[20px] w-full"
+                                            className="mt-1 p-2 border rounded-[5px] w-full"
                                             placeholder="Yes/No"
                                         />
                                     </div>
@@ -540,7 +540,7 @@ const WorkMen = ({ onClose, userData }) => {
                                             name="includeSubContractors"
                                             value={formData.includeSubContractors}
                                             onChange={handleChange}
-                                            className="mt-1 p-2 border rounded-[20px] w-full"
+                                            className="mt-1 p-2 border rounded-[5px] w-full"
                                             placeholder="Yes/No"
                                         />
                                     </div>
@@ -556,7 +556,7 @@ const WorkMen = ({ onClose, userData }) => {
                                             name="premisesRegulation"
                                             value={formData.premisesRegulation}
                                             onChange={handleChange}
-                                            className="mt-1 p-2 border rounded-[20px] w-full"
+                                            className="mt-1 p-2 border rounded-[5px] w-full"
                                         />
                                     </div>
                                     <div>
@@ -569,7 +569,7 @@ const WorkMen = ({ onClose, userData }) => {
                                             name="premisesCompliance"
                                             value={formData.premisesCompliance}
                                             onChange={handleChange}
-                                            className="mt-1 p-2 border rounded-[20px] w-full"
+                                            className="mt-1 p-2 border rounded-[5px] w-full"
                                             placeholder="Yes/No or Details"
                                         />
                                     </div>
@@ -583,7 +583,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="machineryDetails"
                                         value={formData.machineryDetails}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                         rows="2"
                                     ></textarea>
                                 </div>
@@ -597,7 +597,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="machinerySafety"
                                         value={formData.machinerySafety}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                         placeholder="Yes/No or Details"
                                     />
                                 </div>
@@ -611,7 +611,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="boilers"
                                         value={formData.boilers}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                     />
                                 </div>
                                 <div>
@@ -623,7 +623,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="chemicalsUsed"
                                         value={formData.chemicalsUsed}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                         rows="2"
                                     ></textarea>
                                     <label className="block font-medium mt-2" htmlFor="chemicalsDetails">
@@ -634,7 +634,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="chemicalsDetails"
                                         value={formData.chemicalsDetails}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                         rows="2"
                                     ></textarea>
                                 </div>
@@ -648,7 +648,7 @@ const WorkMen = ({ onClose, userData }) => {
                                             name="requireMedicalCover"
                                             value={formData.requireMedicalCover}
                                             onChange={handleChange}
-                                            className="mt-1 p-2 border rounded-[20px] w-full"
+                                            className="mt-1 p-2 border rounded-[5px] w-full"
                                         >
                                             <option value="Yes">Yes</option>
                                             <option value="No">No</option>
@@ -664,7 +664,7 @@ const WorkMen = ({ onClose, userData }) => {
                                             name="totalPremium"
                                             value={formData.totalPremium}
                                             onChange={handleChange}
-                                            className="mt-1 p-2 border rounded-[20px] w-full"
+                                            className="mt-1 p-2 border rounded-[5px] w-full"
                                         />
                                     </div>
                                 </div>
@@ -679,7 +679,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="currentInsurer"
                                         value={formData.currentInsurer}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                     />
                                 </div>
                                 <div>
@@ -692,7 +692,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="insuranceDeclined"
                                         value={formData.insuranceDeclined}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                         placeholder="Yes/No with details"
                                     />
                                 </div>
@@ -705,7 +705,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="wagesAndAccidents"
                                         value={formData.wagesAndAccidents}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                         rows="3"
                                     ></textarea>
                                 </div>
@@ -713,7 +713,7 @@ const WorkMen = ({ onClose, userData }) => {
                         </section>
 
                         {/* Section 5: Declaration */}
-                        <section className="border p-4 rounded-[20px] shadow">
+                        <section className="border p-4 rounded-[5px] shadow">
                             <h2 className="text-xl font-semibold mb-4">Declaration</h2>
                             <p className="mb-4">
                                 I warrant that the above statements and particulars are true and agree that this declaration shall be held to be promissory and form the basis of the contract.
@@ -729,7 +729,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="declarationDate"
                                         value={formData.declarationDate}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                     />
                                 </div>
                                 <div>
@@ -742,7 +742,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="signature"
                                         value={formData.signature}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                         placeholder="Your full name"
                                     />
                                 </div>
@@ -756,7 +756,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="agency"
                                         value={formData.agency}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[20px] w-full"
+                                        className="mt-1 p-2 border rounded-[5px] w-full"
                                     />
                                 </div>
                             </div>
@@ -766,7 +766,7 @@ const WorkMen = ({ onClose, userData }) => {
                         <div className="text-center">
                             <button
                                 type="submit"
-                                className="px-6 py-2 bg-[#b5996e] text-white font-semibold rounded-[20px] hover:bg-[#886f49]"
+                                className="px-6 py-2 bg-[#b5996e] text-white font-semibold rounded-[5px] hover:bg-[#886f49]"
                             >
                                 Submit Proposal
                             </button>
