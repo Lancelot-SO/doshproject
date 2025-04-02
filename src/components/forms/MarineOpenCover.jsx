@@ -9,7 +9,6 @@ import formlogo from "../../images/formlogo.png";
 const MarineOpenCover = ({ onClose, userData }) => {
     const form = useRef();
 
-    // Controlled text inputs
     const [formData, setFormData] = useState({
         proposerName: '',
         surname: '',
@@ -29,56 +28,90 @@ const MarineOpenCover = ({ onClose, userData }) => {
         volumeOfBusiness: '',
         date: '',
         agency: '',
-        // signature won't hold the file contents here; we let <input type="file" /> handle that
         signature: '',
     });
 
-    // Pre-populate the personal details fields when userData is provided
+    // States for validation error messages
+    const [emailError, setEmailError] = useState("");
+    const [phoneError, setPhoneError] = useState("");
+
+    // Pre-populate user details when userData is provided
     useEffect(() => {
         if (userData) {
             setFormData((prev) => ({
                 ...prev,
                 proposerName: userData.fullname || '',
-                // surname: userData.surname || '',
-                // otherNames: userData.othernames || '',
                 email: userData.email || '',
                 telephone: userData.phone || '',
             }));
         }
     }, [userData]);
 
-    // For text-based inputs
+    // Helper function to validate email format
+    const validateEmail = (email) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    };
+
+    // Helper function to validate telephone number format
+    const validatePhone = (phone) => {
+        // Accepts an optional '+' followed by 7 to 15 digits
+        const regex = /^\+?[0-9]{7,15}$/;
+        return regex.test(phone);
+    };
+
+    // Handle changes for text inputs
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
             ...prev,
-            [name]: value
+            [name]: value,
         }));
+
+        // Validate email on change
+        if (name === 'email') {
+            if (!validateEmail(value)) {
+                setEmailError("Please enter a valid email address.");
+            } else {
+                setEmailError("");
+            }
+        }
+
+        // Validate telephone on change
+        if (name === 'telephone') {
+            if (!validatePhone(value)) {
+                setPhoneError("Please enter a valid telephone number.");
+            } else {
+                setPhoneError("");
+            }
+        }
     };
 
     const handleFileChange = (e) => {
-        // e.target.files is a FileList object
         const file = e.target.files[0];
         if (file) {
-            // You could store the file or its name if needed
             setFormData((prev) => ({
                 ...prev,
-                signature: file, // or file.name if you only need the filename
+                signature: file, // store the file or its name as needed
             }));
         }
     };
 
-    // The form submit
+    // Form submit
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Replace with your actual EmailJS keys:
+        // Prevent submission if there are validation errors
+        if (emailError || phoneError) {
+            toast.error("Please fix the errors in the form before submitting.");
+            return;
+        }
+
         const serviceId = 'service_yywea7l';
         const templateId = 'template_12wr1kw';
         const publicKey = 'aV-FvEfOZg7fbxTN2';
 
-        emailjs
-            .sendForm(serviceId, templateId, form.current, publicKey)
+        emailjs.sendForm(serviceId, templateId, form.current, publicKey)
             .then((result) => {
                 console.log('SUCCESS!', result.text);
                 toast.success('Marine Open Cover form submitted successfully!');
@@ -106,8 +139,9 @@ const MarineOpenCover = ({ onClose, userData }) => {
                     signature: '',
                 });
 
-                // Reset the actual form fields
+                // Reset the actual form fields in the DOM
                 e.target.reset();
+                setTimeout(() => onClose(), 5000);
             })
             .catch((error) => {
                 console.error('FAILED...', error);
@@ -121,15 +155,14 @@ const MarineOpenCover = ({ onClose, userData }) => {
 
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
-                    <div className='w-full h-full bg-black p-4'>
+                    <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
+                    <div className='w-full h-full extralarge:h-1/4 bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
-                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                        <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
                         </h2>
-                        <p className='text-[16px] text-white'>
-                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
-                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        <p className='text-[14px] text-white'>
+                            We simplify insurance so you can focus on what truly matters.
                         </p>
                     </div>
                 </div>
@@ -149,6 +182,8 @@ const MarineOpenCover = ({ onClose, userData }) => {
                     </button>
 
                     <h2 className="text-2xl text-gray-800 font-bold mb-4">Marine Open Insurance Cover Request</h2>
+                    <p>Please kindly fill out the form fields below.</p>
+
                     <form ref={form} onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium">Name of Proposer (Mr/Ms/Mrs/Dr/Prof)</label>
@@ -206,6 +241,8 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 required
                                 className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             />
+                            {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
+
                         </div>
 
                         <div>
@@ -229,6 +266,8 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 required
                                 className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             />
+                            {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
+
                         </div>
 
                         <div>

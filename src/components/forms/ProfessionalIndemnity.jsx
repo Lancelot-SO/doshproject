@@ -128,6 +128,8 @@ const ProfessionalIndemnity = ({ onClose }) => {
 
                 // Also reset the DOM form fields
                 e.target.reset();
+                setTimeout(() => onClose(), 5000);
+
             })
             .catch((err) => {
                 console.error('FAILED...', err);
@@ -139,18 +141,16 @@ const ProfessionalIndemnity = ({ onClose }) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
 
-
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
-                    <div className='w-full h-full bg-black p-4'>
+                    <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
+                    <div className='w-full h-full extralarge:h-1/4 bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
-                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                        <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
                         </h2>
-                        <p className='text-[16px] text-white'>
-                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
-                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        <p className='text-[14px] text-white'>
+                            We simplify insurance so you can focus on what truly matters.
                         </p>
                     </div>
                 </div>
@@ -169,6 +169,8 @@ const ProfessionalIndemnity = ({ onClose }) => {
                     </button>
 
                     <h2 className="text-xl font-bold mb-4">Enterprise Professional Indemnity Request</h2>
+                    <p>Please kindly fill out the form fields below.</p>
+
 
                     {/* 4. Use formRef, encType for file uploads */}
                     <form

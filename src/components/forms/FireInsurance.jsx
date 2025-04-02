@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import image from "../../images/fire.png";
-import formlogo from "../../images/formlogo.png"
+import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -74,24 +74,38 @@ const FireInsurance = ({ onClose, userData }) => {
         declarationAgency: '',
     });
 
+    // Error state for email and mobile validation
+    const [emailError, setEmailError] = useState("");
+    const [phoneError, setPhoneError] = useState("");
+
     // Pre-populate fields with parent userData when available
     useEffect(() => {
         if (userData) {
             setFormData(prev => ({
                 ...prev,
-                // Map parent's personal details to the relevant FireInsurance fields.
-                // Adjust the mapping if needed.
                 proposerTitle: userData.fullname || '',
-                // proposerSurname: userData.surname || '',
-                // otherNames: userData.othernames || '',
                 email: userData.email || '',
                 mobile: userData.phone || '',
             }));
         }
     }, [userData]);
 
+    // Helper function to validate email
+    const validateEmail = (email) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    };
+
+    // Helper function to validate mobile number
+    const validatePhone = (phone) => {
+        // Accepts an optional '+' followed by 7 to 15 digits
+        const regex = /^\+?[0-9]{7,15}$/;
+        return regex.test(phone);
+    };
+
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
+        // Update formData state
         if (type === 'checkbox' && name === 'hazardousItems') {
             let newItems = [...formData.hazardousItems];
             if (checked) {
@@ -105,17 +119,41 @@ const FireInsurance = ({ onClose, userData }) => {
         } else {
             setFormData({ ...formData, [name]: value });
         }
+
+        // Validate email field
+        if (name === 'email') {
+            if (!validateEmail(value)) {
+                setEmailError("Please enter a valid email address.");
+            } else {
+                setEmailError("");
+            }
+        }
+
+        // Validate mobile field
+        if (name === 'mobile') {
+            if (!validatePhone(value)) {
+                setPhoneError("Please enter a valid mobile number.");
+            } else {
+                setPhoneError("");
+            }
+        }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        // Prevent submission if there are validation errors
+        if (emailError || phoneError) {
+            toast.error("Please fix the errors in the form before submitting.");
+            return;
+        }
+
         emailjs
             .sendForm(
                 'service_kiwnx04',       // Replace with your EmailJS service ID
-                'template_z2zdfkn',      // Replace with your EmailJS template ID ("FireInsuranceProposal")
+                'template_z2zdfkn',       // Replace with your EmailJS template ID ("FireInsuranceProposal")
                 form.current,
-                'aV-FvEfOZg7fbxTN2'        // Replace with your EmailJS public key
+                'aV-FvEfOZg7fbxTN2'       // Replace with your EmailJS public key
             )
             .then(
                 (result) => {
@@ -186,6 +224,7 @@ const FireInsurance = ({ onClose, userData }) => {
                         declarationAgency: '',
                     });
                     if (onClose) onClose();
+                    setTimeout(() => onClose(), 5000);
                 },
                 (error) => {
                     toast.error('Failed to submit proposal. Please try again.');
@@ -201,8 +240,8 @@ const FireInsurance = ({ onClose, userData }) => {
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
-                    <div className='w-full h-full bg-black p-4'>
+                    <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
+                    <div className='w-full h-full extralarge:h-1/4 bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
                         <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
@@ -226,6 +265,8 @@ const FireInsurance = ({ onClose, userData }) => {
                         <X size={20} />
                     </button>
                     <h1 className="text-xl font-bold mb-4">Fire Insurance Proposal Request</h1>
+                    <p>Please kindly fill out the form fields below.</p>
+
                     <form onSubmit={handleSubmit} className="space-y-8">
                         {/* Insured’s Details */}
                         <section>
@@ -330,8 +371,10 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
+                                        required
                                         className="w-full border rounded-[5px] p-2"
                                     />
+                                    {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
                                 </div>
                                 {/* 7. Mobile and Landline */}
                                 <div>
@@ -341,8 +384,11 @@ const FireInsurance = ({ onClose, userData }) => {
                                         name="mobile"
                                         value={formData.mobile}
                                         onChange={handleChange}
+                                        required
                                         className="w-full border rounded-[5px] p-2"
                                     />
+                                    {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
+
                                 </div>
                                 <div>
                                     <label className="block font-medium">Landline</label>

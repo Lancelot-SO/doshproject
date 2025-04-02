@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const GuaranteeClaim = ({ onClose, userData }) => {
     const [formData, setFormData] = useState({
         surname: "",
+        defaulterName: "",
         otherNames: "",
         lastKnownAddress: "",
         discoveryDetails: "",
@@ -37,7 +38,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                 ...prevState,
                 // Map the fields from userData to the corresponding form fields.
                 // Adjust the property names as needed.
-                surname: userData.fullname || "",
+                defaulterName: userData.fullname || "",
                 // otherNames: userData.othernames || "", // notice the key names may need to match
                 // You can add more fields here if needed.
             }));
@@ -84,6 +85,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                 // Reset the React state
                 setFormData({
                     surname: "",
+                    defaulterName: "",
                     otherNames: "",
                     lastKnownAddress: "",
                     discoveryDetails: "",
@@ -102,6 +104,8 @@ const GuaranteeClaim = ({ onClose, userData }) => {
 
                 // Reset the actual form fields
                 e.target.reset();
+                setTimeout(() => onClose(), 5000);
+
             })
             .catch((err) => {
                 console.error('FAILED...', err);
@@ -116,8 +120,8 @@ const GuaranteeClaim = ({ onClose, userData }) => {
 
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
-                    <div className='w-full h-full bg-black p-4'>
+                    <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
+                    <div className='w-full h-full extralarge:h-1/4 bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
                         <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
@@ -143,6 +147,8 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                     <h1 className="text-3xl font-bold mb-6">
                         Fidelity Guarantee Insurance Request
                     </h1>
+                    <p>Please kindly fill out the form fields below.</p>
+
                     <form ref={formRef}
                         onSubmit={handleSubmit} className="space-y-6">
 
@@ -167,8 +173,8 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                 </label>
                                 <input
                                     type="text"
-                                    name="surname"
-                                    value={formData.surname}
+                                    name="defaulterName"
+                                    value={formData.defaulterName}
                                     onChange={handleChange}
                                     className="border border-gray-300 rounded-[5px] p-2 w-full"
                                 />
@@ -209,6 +215,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                 value={formData.lastKnownAddress}
                                 onChange={handleChange}
                                 rows="3"
+                                required
                                 className="border border-gray-300 rounded-[5px] p-2 w-full"
                             ></textarea>
                         </div>

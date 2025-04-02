@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import image from "../../images/assets.png";
 import formlogo from "../../images/formlogo.png";
 
-
 const AssetsAllRisk = ({ onClose, userData }) => {
     const form = useRef();
 
@@ -51,17 +50,34 @@ const AssetsAllRisk = ({ onClose, userData }) => {
         issuedYear: '',
     });
 
+    // State for email and mobile (phone) error messages
+    const [emailError, setEmailError] = useState("");
+    const [phoneError, setPhoneError] = useState("");
+
     // Pre-populate the personal details from the parent if provided
     useEffect(() => {
         if (userData) {
             setFormData((prev) => ({
                 ...prev,
-                insuredName: `${userData.fullname}`.trim(),
+                insuredName: userData.fullname ? userData.fullname.trim() : '',
                 email: userData.email || '',
                 mobile: userData.phone || '',
             }));
         }
     }, [userData]);
+
+    // Helper function to validate email using a regex
+    const validateEmail = (email) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    };
+
+    // Helper function to validate mobile/phone number
+    const validatePhone = (phone) => {
+        // Accepts an optional '+' followed by 7 to 15 digits
+        const regex = /^\+?[0-9]{7,15}$/;
+        return regex.test(phone);
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -69,22 +85,46 @@ const AssetsAllRisk = ({ onClose, userData }) => {
             ...prev,
             [name]: value,
         }));
+
+        // Validate email field and update error state accordingly
+        if (name === 'email') {
+            if (!validateEmail(value)) {
+                setEmailError("Please enter a valid email address.");
+            } else {
+                setEmailError("");
+            }
+        }
+
+        // Validate mobile field and update error state accordingly
+        if (name === 'mobile') {
+            if (!validatePhone(value)) {
+                setPhoneError("Please enter a valid mobile number.");
+            } else {
+                setPhoneError("");
+            }
+        }
     };
 
     const sendEmail = (e) => {
         e.preventDefault();
 
+        // Prevent form submission if there are validation errors
+        if (emailError || phoneError) {
+            toast.error("Please fix the errors before submitting the claim.");
+            return;
+        }
+
         emailjs
             .sendForm(
                 'service_q21fuxd',     // Replace with your EmailJS service ID
-                'template_yj0pmcx',    // Replace with your EmailJS template ID ("AssetsAllRisksClaim")
+                'template_yj0pmcx',    // Replace with your EmailJS template ID
                 form.current,
                 'aV-FvEfOZg7fbxTN2'     // Replace with your EmailJS public key
             )
             .then(
                 (result) => {
                     toast.success('Claim submitted successfully!');
-                    // Optionally reset the state
+                    // Optionally reset the form state
                     setFormData({
                         insuredName: '',
                         occupation: '',
@@ -124,7 +164,9 @@ const AssetsAllRisk = ({ onClose, userData }) => {
                         issuedMonth: '',
                         issuedYear: '',
                     });
+                    // Close the form
                     if (onClose) onClose();
+                    setTimeout(() => onClose(), 5000);
                 },
                 (error) => {
                     toast.error('Failed to submit claim. Please try again.');
@@ -142,8 +184,8 @@ const AssetsAllRisk = ({ onClose, userData }) => {
 
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
-                    <div className='w-full h-full bg-black p-4'>
+                    <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
+                    <div className='w-full h-full extralarge:h-1/4 bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
                         <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
@@ -167,7 +209,8 @@ const AssetsAllRisk = ({ onClose, userData }) => {
                         <X size={20} />
                     </button>
 
-                    <h2 className="text-2xl text-gray-800 font-bold mb-4">Assets All Risks Claim Request</h2>
+                    <h2 className="text-2xl text-gray-800 font-bold mb-3">Assets All Risks Claim Request</h2>
+                    <p>Please kindly fill out the form fields below.</p>
 
                     <form ref={form} onSubmit={sendEmail} className="space-y-4">
                         <div>
@@ -204,6 +247,8 @@ const AssetsAllRisk = ({ onClose, userData }) => {
                                 required
                                 className="w-full mt-1 p-3 border rounded-[30px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
+                            {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
+
                         </div>
 
                         <div>
@@ -216,6 +261,8 @@ const AssetsAllRisk = ({ onClose, userData }) => {
                                 required
                                 className="w-full mt-1 p-3 border rounded-[30px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
+                            {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
+
                         </div>
 
                         <div>

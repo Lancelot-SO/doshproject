@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './Contact.css';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
@@ -12,7 +12,7 @@ import 'aos/dist/aos.css';
 
 const Contact = () => {
     const form = useRef();
-    const [contactData, setContactData] = useState(null);
+    // const [contactData, setContactData] = useState(null);
 
     const sendEmail = (e) => {
         e.preventDefault();

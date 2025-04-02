@@ -51,6 +51,8 @@ const TheftInsurance = ({ onClose }) => {
                 });
 
                 e.target.reset();
+                setTimeout(() => onClose(), 5000);
+
             })
             .catch((err) => {
                 console.error('FAILED...', err);
@@ -65,15 +67,14 @@ const TheftInsurance = ({ onClose }) => {
 
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
-                    <div className='w-full h-full bg-black p-4'>
+                    <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
+                    <div className='w-full h-full extralarge:h-1/4 bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
-                        <h2 className='font-bold text-white text-[22px] mb-2'>
+                        <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
                         </h2>
-                        <p className='text-[16px] text-white'>
-                            At DOSH Risk, we simplify insurance so you can focus on what truly matters.
-                            Fill out the form to request personalized insurance solutions tailored to your unique needs.
+                        <p className='text-[14px] text-white'>
+                            We simplify insurance so you can focus on what truly matters.
                         </p>
                     </div>
                 </div>
@@ -94,6 +95,8 @@ const TheftInsurance = ({ onClose }) => {
                     <h2 className="text-2xl font-semibold mb-4">
                         Household Content Insurance Proposal Request
                     </h2>
+                    <p>Please kindly fill out the form fields below.</p>
+
 
                     {/* 6. Attach formRef, onSubmit, and use encType for file upload */}
                     <form
@@ -121,6 +124,7 @@ const TheftInsurance = ({ onClose }) => {
                                 name="declarationDate"
                                 value={formData.declarationDate}
                                 onChange={handleChange}
+                                required
                                 className="mt-1 p-2 border rounded-[5px] w-full"
                             />
                         </div>
@@ -151,6 +155,7 @@ const TheftInsurance = ({ onClose }) => {
                                 name="agency"
                                 value={formData.agency}
                                 onChange={handleChange}
+                                required
                                 className="mt-1 p-2 border rounded-[5px] w-full"
                             />
                         </div>

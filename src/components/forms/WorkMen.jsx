@@ -144,6 +144,8 @@ const WorkMen = ({ onClose, userData }) => {
                         signature: '',
                         agency: '',
                     });
+                    setTimeout(() => onClose(), 5000);
+
                 },
                 (error) => {
                     console.error('Failed to send email. Error:', error.text);
@@ -158,8 +160,8 @@ const WorkMen = ({ onClose, userData }) => {
 
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
-                    <div className='w-full h-full bg-black p-4'>
+                    <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
+                    <div className='w-full h-full extralarge:h-1/4 bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
                         <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
@@ -186,10 +188,12 @@ const WorkMen = ({ onClose, userData }) => {
                     <h1 className="text-2xl font-bold mb-4 text-gray-800">
                         Workmen’s Compensation and Employers’ Liability Insurance
                     </h1>
+                    <p>Please kindly fill out the form fields below.</p>
+
                     <form onSubmit={handleSubmit} className="space-y-8">
                         {/* Section 1: Proposer Details */}
                         <section className="border p-4 rounded-[20px] shadow">
-                            <h2 className="text-xl font-semibold mb-4">Proposer Details</h2>
+                            <h2 className="text-[14px] font-semibold mb-4">Proposer Details</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label className="block font-medium" htmlFor="proposerName">
@@ -254,6 +258,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         name="telephone"
                                         value={formData.telephone}
                                         onChange={handleChange}
+                                        required
                                         className="mt-1 p-2 border rounded-[5px] w-full"
                                     />
                                 </div>
@@ -288,7 +293,7 @@ const WorkMen = ({ onClose, userData }) => {
 
                         {/* Section 2: Employee Details */}
                         <section className="border p-4 rounded-[5px] shadow">
-                            <h2 className="text-xl font-semibold mb-4">Employee Details</h2>
+                            <h2 className="text-[14px] font-semibold mb-4">Employee Details</h2>
                             <p className="mb-2">For each category, please provide the estimated number of employees and annual wages.</p>
                             <div className="space-y-4">
                                 {/* Clerical Staff */}
@@ -425,7 +430,7 @@ const WorkMen = ({ onClose, userData }) => {
 
                         {/* Section 3: Contractor Details */}
                         <section className="border p-4 rounded-[5px] shadow">
-                            <h2 className="text-xl font-semibold mb-4">Contractor Details</h2>
+                            <h2 className="text-[14px] font-semibold mb-4">Contractor Details</h2>
                             <div className="space-y-4">
                                 <div>
                                     <label className="block font-medium" htmlFor="contractorName">
@@ -486,7 +491,7 @@ const WorkMen = ({ onClose, userData }) => {
 
                         {/* Section 4: Additional Information */}
                         <section className="border p-4 rounded-[5px] shadow">
-                            <h2 className="text-xl font-semibold mb-4">Additional Information</h2>
+                            <h2 className="text-[14px] font-semibold mb-4">Additional Information</h2>
                             <div className="space-y-4">
                                 <div>
                                     <label className="block font-medium" htmlFor="totalWagesPaid">
@@ -714,7 +719,7 @@ const WorkMen = ({ onClose, userData }) => {
 
                         {/* Section 5: Declaration */}
                         <section className="border p-4 rounded-[5px] shadow">
-                            <h2 className="text-xl font-semibold mb-4">Declaration</h2>
+                            <h2 className="text-[14px] font-semibold mb-4">Declaration</h2>
                             <p className="mb-4">
                                 I warrant that the above statements and particulars are true and agree that this declaration shall be held to be promissory and form the basis of the contract.
                             </p>

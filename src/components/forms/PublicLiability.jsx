@@ -183,6 +183,8 @@ const PublicLiability = ({ onClose, userData }) => {
                         codenumber: '',
                         signature: '',
                     });
+                    setTimeout(() => onClose(), 5000);
+
                     if (onClose) onClose();
                 },
                 (error) => {
@@ -198,8 +200,8 @@ const PublicLiability = ({ onClose, userData }) => {
 
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
-                    <div className='w-full h-full bg-black p-4'>
+                    <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
+                    <div className='w-full h-full extralarge:h-1/4 bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
                         <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
@@ -225,6 +227,7 @@ const PublicLiability = ({ onClose, userData }) => {
 
                     <h2 className="text-2xl text-gray-800 font-bold mb-4">Public Liability Insurance Proposal Request</h2>
 
+                    <p>Please kindly fill out the form fields below.</p>
 
                     <p className="text-gray-800 mb-4"> Unless specially mentioned, policies do not cover injury or damage caused by hoists, cranes. Separate policies must be
                         effected if it is desired to cover liability in respect to cycles by the proposers, horse-drawn or mechanically propelled
@@ -260,6 +263,7 @@ const PublicLiability = ({ onClose, userData }) => {
                                 name="mobile"
                                 value={formData.mobile}
                                 onChange={handleChange}
+                                required
                                 className="w-full p-2 border rounded-[5px]"
                             />
                         </label>

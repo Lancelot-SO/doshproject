@@ -6,7 +6,6 @@ import { X } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 
 const HouseholdInsuranceForm = ({ onClose, userData }) => {
-    // 1. Local state for your form
     const [formData, setFormData] = useState({
         firstName: "",
         surname: "",
@@ -41,6 +40,10 @@ const HouseholdInsuranceForm = ({ onClose, userData }) => {
         signature: "",
     });
 
+    // Error states for email and mobile validation
+    const [emailError, setEmailError] = useState("");
+    const [phoneError, setPhoneError] = useState("");
+
     const formRef = useRef();
 
     // When userData is provided from the parent, update local state to pre-populate fields
@@ -57,16 +60,47 @@ const HouseholdInsuranceForm = ({ onClose, userData }) => {
         }
     }, [userData]);
 
+    // Helper function to validate email
+    const validateEmail = (email) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    };
+
+    // Helper function to validate mobile number (phone)
+    const validatePhone = (phone) => {
+        // Accepts an optional '+' followed by 7 to 15 digits
+        const regex = /^\+?[0-9]{7,15}$/;
+        return regex.test(phone);
+    };
+
     // 3. Handle changes for text/select/radio
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
+
+        // Validate email field
+        if (name === "email") {
+            if (!validateEmail(value)) {
+                setEmailError("Please enter a valid email address.");
+            } else {
+                setEmailError("");
+            }
+        }
+
+        // Validate mobile number field
+        if (name === "mobileNo") {
+            if (!validatePhone(value)) {
+                setPhoneError("Please enter a valid mobile number.");
+            } else {
+                setPhoneError("");
+            }
+        }
     };
 
     // 4. Handle file input separately
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-        // We only store the filename in state (optional). The actual file is read by the DOM form.
+        // We only store the filename in state (optional)
         setFormData((prev) => ({
             ...prev,
             signature: file ? file.name : "",
@@ -77,7 +111,12 @@ const HouseholdInsuranceForm = ({ onClose, userData }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Replace these with your actual EmailJS service/template IDs and Public Key
+        // Prevent submission if validation errors exist
+        if (emailError || phoneError) {
+            toast.error("Please fix the errors in the form before submitting.");
+            return;
+        }
+
         const serviceID = 'service_qu9ui2s';
         const templateID = 'template_9k6j6xe';
         const publicKey = 'aV-FvEfOZg7fbxTN2';
@@ -129,6 +168,7 @@ const HouseholdInsuranceForm = ({ onClose, userData }) => {
 
                 // Also reset the actual DOM form fields
                 e.target.reset();
+                setTimeout(() => onClose(), 5000);
             })
             .catch((err) => {
                 console.error('FAILED...', err);
@@ -140,8 +180,8 @@ const HouseholdInsuranceForm = ({ onClose, userData }) => {
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-[20px]-lg shadow-lg flex overflow-hidden">
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
-                    <div className='w-full h-full bg-black p-4'>
+                    <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
+                    <div className='w-full h-full extralarge:h-1/4 bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
                         <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
@@ -164,6 +204,8 @@ const HouseholdInsuranceForm = ({ onClose, userData }) => {
                         <X size={20} />
                     </button>
                     <h2 className="text-2xl font-semibold mb-4">Household Content Insurance Proposal Request</h2>
+                    <p>Please kindly fill out the form fields below.</p>
+
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="grid grid-cols-2 gap-4">
                             <label>First Name<input type="text" name="firstName" value={formData.firstName} onChange={handleChange} className="border p-2 rounded-[5px] w-full" required /></label>
@@ -176,8 +218,15 @@ const HouseholdInsuranceForm = ({ onClose, userData }) => {
                             <label><input type="radio" name="sex" value="Female" onChange={handleChange} required /> Female</label>
                         </div>
                         <label>Postal Address<input type="text" name="postalAddress" value={formData.postalAddress} onChange={handleChange} className="border p-2 rounded-[5px] w-full" /></label>
-                        <label>Email<input type="email" name="email" value={formData.email} onChange={handleChange} className="border p-2 rounded-[5px] w-full" required /></label>
-                        <label>Mobile No<input type="tel" name="mobileNo" value={formData.mobileNo} onChange={handleChange} className="border p-2 rounded-[5px] w-full" required /></label>
+                        <label>
+                            Email
+                            <input type="email" name="email" value={formData.email} onChange={handleChange} className="border p-2 rounded-[5px] w-full" required />
+                            {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
+
+                        </label>
+                        <label>Mobile No<input type="tel" name="mobileNo" value={formData.mobileNo} onChange={handleChange} className="border p-2 rounded-[5px] w-full" required />
+                            {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
+                        </label>
 
                         <h3 className="text-lg font-medium mt-4">Property Details</h3>
                         <label>Property Address<input type="text" name="propertyAddress" value={formData.propertyAddress} onChange={handleChange} className="border p-2 rounded-[5px] w-full" /></label>

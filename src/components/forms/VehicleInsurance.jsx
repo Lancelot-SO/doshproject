@@ -195,6 +195,8 @@ const VehicleInsurance = ({ onClose, userData }) => {
                     declareSignature: ""
                 });
                 e.target.reset();
+                setTimeout(() => onClose(), 5000);
+
             })
             .catch((err) => {
                 console.error("FAILED...", err);
@@ -208,8 +210,8 @@ const VehicleInsurance = ({ onClose, userData }) => {
 
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
-                    <div className='w-full h-full bg-black p-4'>
+                    <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
+                    <div className='w-full h-full extralarge:h-1/4 bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
                         <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
@@ -230,7 +232,10 @@ const VehicleInsurance = ({ onClose, userData }) => {
                         aria-label="Close"
                     >
                         <X size={20} />
-                    </button>           <h2 className="text-2xl font-bold mb-4">Commercial Vehicle Insurance Proposal Request</h2>
+                    </button>
+                    <h2 className="text-2xl font-bold mb-4">Commercial Vehicle Insurance Proposal Request</h2>
+                    <p>Please kindly fill out the form fields below.</p>
+
                     <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <label className="block text-gray-700">Name of Proposer (Mr/Ms/Mrs/Dr/Prof)</label>
@@ -268,12 +273,12 @@ const VehicleInsurance = ({ onClose, userData }) => {
 
                         <div>
                             <label className="block text-gray-700">Email Address</label>
-                            <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full p-2 border rounded-[5px]" />
+                            <input type="email" name="email" value={formData.email} onChange={handleChange} required className="w-full p-2 border rounded-[5px]" />
                         </div>
 
                         <div>
                             <label className="block text-gray-700">Mobile Number</label>
-                            <input type="tel" name="mobileNo" value={formData.mobileNo} onChange={handleChange} className="w-full p-2 border rounded-[5px]" />
+                            <input type="tel" name="mobileNo" value={formData.mobileNo} onChange={handleChange} required className="w-full p-2 border rounded-[5px]" />
                         </div>
 
                         <div>

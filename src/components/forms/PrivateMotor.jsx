@@ -219,6 +219,8 @@ const PrivateMotor = ({ onClose, userData }) => {
 
                 // Reset the actual form fields
                 e.target.reset();
+                setTimeout(() => onClose(), 5000);
+
             })
             .catch((error) => {
                 console.error('FAILED...', error);
@@ -233,8 +235,8 @@ const PrivateMotor = ({ onClose, userData }) => {
 
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
-                    <div className='w-full h-full bg-black p-4'>
+                    <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
+                    <div className='w-full h-full extralarge:h-1/4 bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
                         <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
@@ -260,10 +262,12 @@ const PrivateMotor = ({ onClose, userData }) => {
                     <h1 className="text-2xl font-bold mb-4">
                         Private Motor Insurance Proposal Form
                     </h1>
+                    <p>Please kindly fill out the form fields below.</p>
+
                     <form ref={form} onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-8">
                         {/* Insured’s Details */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-4">Insured’s Details</h2>
+                            <h2 className="text-[14px] font-semibold mb-4">Insured’s Details</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {/* Proposer Name */}
                                 <div>
@@ -478,7 +482,7 @@ const PrivateMotor = ({ onClose, userData }) => {
 
                         {/* Vehicle Details */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-4">
+                            <h2 className="text-[14px] font-semibold mb-4">
                                 Details of Vehicle(s) to be Insured
                             </h2>
                             <div className="space-y-4">
@@ -761,7 +765,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                                 </div>
                                 {/* Vehicle Basic Details */}
                                 <div className="mt-4">
-                                    <h3 className="text-xl font-semibold mb-2">Vehicle Details</h3>
+                                    <h3 className="text-[14px] font-semibold mb-2">Vehicle Details</h3>
                                     <div className="grid grid-cols-1 gap-4">
                                         <div>
                                             <label className="block font-medium">
@@ -884,7 +888,7 @@ const PrivateMotor = ({ onClose, userData }) => {
 
                         {/* Driver Details & Accident History */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-4">
+                            <h2 className="text-[14px] font-semibold mb-4">
                                 Driver Details &amp; Accident History
                             </h2>
                             <div className="space-y-4">
@@ -1098,7 +1102,7 @@ const PrivateMotor = ({ onClose, userData }) => {
 
                         {/* Previous Policies & Insurance Refusals */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-4">
+                            <h2 className="text-[14px] font-semibold mb-4">
                                 Previous Policies &amp; Insurance Refusals
                             </h2>
                             <div className="space-y-4">
@@ -1205,7 +1209,7 @@ const PrivateMotor = ({ onClose, userData }) => {
 
                         {/* Insurance Options */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-4">Insurance Options</h2>
+                            <h2 className="text-[14px] font-semibold mb-4">Insurance Options</h2>
                             <div className="space-y-4">
                                 <div>
                                     <label className="block font-medium">
@@ -1422,7 +1426,7 @@ const PrivateMotor = ({ onClose, userData }) => {
 
                         {/* Revision of Third Party Limit */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-4">
+                            <h2 className="text-[14px] font-semibold mb-4">
                                 Revision of Third Party Property Damage Limit
                             </h2>
                             <div>

@@ -273,6 +273,8 @@ const HotelInsurance = ({ onClose, userData }) => {
                 })
                 e.target.reset();
                 if (onClose) onClose();
+                setTimeout(() => onClose(), 5000);
+
             })
             .catch((err) => {
                 console.error("FAILED...", err);
@@ -286,8 +288,8 @@ const HotelInsurance = ({ onClose, userData }) => {
 
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
-                    <div className='w-full h-full bg-black p-4'>
+                    <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
+                    <div className='w-full h-full extralarge:h-1/4 bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
                         <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
@@ -313,6 +315,8 @@ const HotelInsurance = ({ onClose, userData }) => {
                     <h1 className="text-2xl font-bold mb-6">
                         Hotels And Guest Houses Insurance Proposal Form
                     </h1>
+                    <p>Please kindly fill out the form fields below.</p>
+
                     <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
                         {/* Basic Information */}
                         <section>
@@ -325,6 +329,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         name="proposerFullName"
                                         value={formData.proposerFullName}
                                         onChange={handleChange}
+                                        required
                                         className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
@@ -334,6 +339,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         name="postalAddress"
                                         value={formData.postalAddress}
                                         onChange={handleChange}
+                                        required
                                         className="w-full border rounded-[5px] p-2"
                                         rows="2"
                                     ></textarea>

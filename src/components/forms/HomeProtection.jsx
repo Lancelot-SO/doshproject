@@ -5,6 +5,7 @@ import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 import HomeProtectionTable from './HomeProtectionTable';
+import 'react-toastify/dist/ReactToastify.css';
 
 const HomeProtection = ({ onClose, userData }) => {
     const [formData, setFormData] = useState({
@@ -54,7 +55,7 @@ const HomeProtection = ({ onClose, userData }) => {
         declarationAgency: '',
     });
 
-    // Lift the table data to the parent component
+    // Table data state (lifted from child table component)
     const [tableData, setTableData] = useState({
         section1Building: { insure: false, sumInsured: '', premium: '' },
         section1Fence: { insure: false, sumInsured: '', premium: '' },
@@ -69,12 +70,16 @@ const HomeProtection = ({ onClose, userData }) => {
         totalPremium: ''
     });
 
-    // Update formData with values from parent if provided
+    // Error states for email and telephone validation
+    const [emailError, setEmailError] = useState("");
+    const [phoneError, setPhoneError] = useState("");
+
+    // Update formData with parent userData when available
     useEffect(() => {
         if (userData) {
-            setFormData((prevState) => ({
+            setFormData(prevState => ({
                 ...prevState,
-                proposerName: `${userData.fullname}`.trim(),
+                proposerName: userData.fullname ? userData.fullname.trim() : '',
                 telephone: userData.telephone || '',
                 email: userData.email || '',
             }));
@@ -96,20 +101,54 @@ const HomeProtection = ({ onClose, userData }) => {
         return flattened;
     };
 
+    // Validation helper for email
+    const validateEmail = (email) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    };
+
+    // Validation helper for telephone (phone)
+    const validatePhone = (phone) => {
+        // Accepts an optional '+' followed by 7 to 15 digits
+        const regex = /^\+?[0-9]{7,15}$/;
+        return regex.test(phone);
+    };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        setFormData(prev => ({ ...prev, [name]: value }));
+
+        // Validate email if the field is updated
+        if (name === 'email') {
+            if (!validateEmail(value)) {
+                setEmailError("Please enter a valid email address.");
+            } else {
+                setEmailError("");
+            }
+        }
+
+        // Validate telephone if the field is updated
+        if (name === 'telephone') {
+            if (!validatePhone(value)) {
+                setPhoneError("Please enter a valid telephone number.");
+            } else {
+                setPhoneError("");
+            }
+        }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Flatten table data and combine with form data
+        // Block submission if there are validation errors
+        if (emailError || phoneError) {
+            toast.error("Please fix the errors in the form before submitting.");
+            return;
+        }
+
+        // Flatten table data and combine with formData
         const tableParams = flattenTableData(tableData);
-        const templateParams = {
-            ...formData,
-            ...tableParams,
-        };
+        const templateParams = { ...formData, ...tableParams };
 
         emailjs
             .send(
@@ -175,6 +214,7 @@ const HomeProtection = ({ onClose, userData }) => {
                         totalPremium: ''
                     });
                     if (onClose) onClose();
+                    setTimeout(() => onClose(), 5000);
                 },
                 (error) => {
                     toast.error('Failed to submit proposal. Please try again.');
@@ -189,8 +229,8 @@ const HomeProtection = ({ onClose, userData }) => {
 
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-[400px] object-cover" loading="lazy" />
-                    <div className='w-full h-full bg-black p-4'>
+                    <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
+                    <div className='w-full h-full extralarge:h-1/4 bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
                         <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
                             Secure Your Future with Comprehensive Insurance Coverage
@@ -217,10 +257,13 @@ const HomeProtection = ({ onClose, userData }) => {
                         Home Protection Policy
                     </h1>
 
+                    <p>Please kindly fill out the form fields below.</p>
+
+
                     <form onSubmit={handleSubmit} className="space-y-8">
                         {/* Personal Details Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-4">Personal Details</h2>
+                            <h2 className="text-[14px] font-semibold mb-4">Personal Details</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label className="block font-medium">
@@ -259,16 +302,19 @@ const HomeProtection = ({ onClose, userData }) => {
                                 </div>
                                 <div>
                                     <label className="block font-medium">
-                                        4. Tel./ Fax
+                                        4. Telephone / Fax
                                     </label>
                                     <input
                                         type="text"
                                         name="telephone"
                                         value={formData.telephone}
                                         onChange={handleChange}
+                                        required
                                         className="w-full border rounded-[5px] p-2"
                                         placeholder="Tel or Fax"
                                     />
+                                    {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
+
                                 </div>
                                 <div>
                                     <label className="block font-medium">Email</label>
@@ -277,8 +323,11 @@ const HomeProtection = ({ onClose, userData }) => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
+                                        required
                                         className="w-full border rounded-[5px] p-2"
                                     />
+                                    {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
+
                                 </div>
                                 <div className="md:col-span-2">
                                     <label className="block font-medium">
@@ -297,7 +346,7 @@ const HomeProtection = ({ onClose, userData }) => {
 
                         {/* General Information Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-4">General Information</h2>
+                            <h2 className="text-[14px] font-semibold mb-4">General Information</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label className="block font-medium">
@@ -457,7 +506,7 @@ const HomeProtection = ({ onClose, userData }) => {
 
                         {/* Coverage Options Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-4">Coverage Options</h2>
+                            <h2 className="text-[14px] font-semibold mb-4">Coverage Options</h2>
                             <div className="space-y-6">
                                 {/* Fence Cover */}
                                 <div>
@@ -846,7 +895,7 @@ const HomeProtection = ({ onClose, userData }) => {
 
                         {/* Declaration Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-4">Declaration</h2>
+                            <h2 className="text-[14px] font-semibold mb-4">Declaration</h2>
                             <p className="mb-4">
                                 I warrant that the above statements and particulars are true and I hereby agree that this Declaration shall be held to be promissory and of continuing effect and shall form the basis of, and be deemed to be incorporated in, the Contract between me and DOSH Risk. I am willing to accept a policy subject to the Terms prescribed by the Company herein and to pay the Premium thereon.
                             </p>
