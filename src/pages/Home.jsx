@@ -32,9 +32,9 @@ import slider10mobile from "../images/firstmobile.png"
 // import elevate2 from '../images/vector1.png'
 // import money from '../images/img1.png';
 // import seamless from "../images/seamless.png"
-import ride from '../images/ridenew.png'
-import reinvigorate from '../images/erpImg1.png'
-import scale from "../images/e-commerce1.png"
+// import ride from '../images/ridenew.png'
+// import reinvigorate from '../images/erpImg1.png'
+// import scale from "../images/e-commerce1.png"
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -50,7 +50,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 
 
 // import Insure from '../components/InsuranceDetails.jsx';
-import FinanceSideModal from '../components/FinanceSideModal.jsx';
+// import FinanceSideModal from '../components/FinanceSideModal.jsx';
 import InsuranceDetails from '../components/InsuranceDetails.jsx';
 import FinanceDetails from '../components/FinancialDetails.jsx';
 import RiskDetails from '../components/RiskDetails.jsx';

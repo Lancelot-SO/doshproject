@@ -252,10 +252,10 @@ const ChildLifelineForm = ({ onClose, userData }) => {
 
         emailjs
             .sendForm(
-                'YOUR_SERVICE_ID',    // Replace with your EmailJS service ID
-                'YOUR_TEMPLATE_ID',   // Replace with your EmailJS template ID
+                'service_tm5mw5f',    // Replace with your EmailJS service ID
+                'template_2qrpdrn ',   // Replace with your EmailJS template ID
                 form.current,
-                'YOUR_PUBLIC_KEY'     // Replace with your EmailJS public key
+                'aV-FvEfOZg7fbxTN2'     // Replace with your EmailJS public key
             )
             .then(
                 (result) => {

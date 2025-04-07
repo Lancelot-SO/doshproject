@@ -22,6 +22,8 @@ import PrivateMotor from './forms/PrivateMotor';
 import HotelInsurance from './forms/HotelInsurance';
 import HomeProtection from './forms/HomeProtection';
 import ChildLifelineForm from './forms/life/ChildLifelineForm';
+import StarLifeSupremeForm from './forms/life/StarLifeSupreme';
+import WealthMasterForm from './forms/life/WealthMasterForm';
 
 const RiskForm = ({ onClose }) => {
     const form = useRef();
@@ -45,6 +47,10 @@ const RiskForm = ({ onClose }) => {
     //for the life insurance
 
     const [showChild, setShowChild] = useState(false);
+    const [showSupreme, setShowSupreme] = useState(false);
+    const [showWealth, setShowWealth] = useState(false);
+
+
 
 
     const [formData, setFormData] = useState({
@@ -229,7 +235,11 @@ const RiskForm = ({ onClose }) => {
             setShowHotel(value === 'Hotels and Guest Houses');
             setShowHomeProtection(value === 'Home Protection with Content');
             //for the life insurance
-            setShowChild(value === '⁠Child Lifeline Plus Application Form (EducationPolicy)')
+            setShowChild(value === '⁠Child Lifeline Plus Application Form (EducationPolicy)');
+            setShowSupreme(value === 'StarLife Supreme Homecall Plan');
+            setShowWealth(value === 'WealthMaster Plus Applicable Form (Investment Policy)');
+
+
         }
     };
 
@@ -373,187 +383,195 @@ const RiskForm = ({ onClose }) => {
                     ) : showChild ? (
                         <ChildLifelineForm onClose={() => handleClose(setShowChild)}
                             userData={modalFormData} />
-                    ) : (
-                        <form ref={form} onSubmit={sendEmail} className="w-full space-y-4">
-                            <div>
-                                <label htmlFor="insuranceType" className="block text-sm font-medium">
-                                    Select your request type:
-                                </label>
-                                <select
-                                    id="requestType"
-                                    name="requestType"
-                                    value={formData.requestType}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                >
-                                    <option value="">Choose an option</option>
-                                    <option value="Insurance Quote">Get new insurace quote</option>
-                                    <option value="Existing Policy">File a claim for existing policy</option>
-                                    <option value="Policy changes">Request policy changes</option>
-                                    <option value="Assistance">Other Assistance</option>
-                                </select>
-                            </div>
-                            {/* Personal Details */}
-                            <div>
-                                <label htmlFor="fullname" className="block text-sm font-medium">
-                                    Full Name
-                                </label>
-                                <input
-                                    type="text"
-                                    id="fullname"
-                                    name="fullname"
-                                    value={formData.fullname}
-                                    onChange={handleChange}
-                                    required
-                                    placeholder="Enter full name"
-                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="email" className="block text-sm font-medium">
-                                    Email
-                                </label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    required
-                                    placeholder="Enter email here"
-                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                />
-                                {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
-                            </div>
-                            <div>
-                                <label htmlFor="phone" className="block text-sm font-medium">
-                                    Phone Number
-                                </label>
-                                <input
-                                    type="tel"
-                                    id="phone"
-                                    name="phone"
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                    required
-                                    placeholder="Enter number here"
-                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                />
-                                {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
-                            </div>
-                            <div>
-                                <label htmlFor="insuranceType" className="block text-sm font-medium">
-                                    Insurance Category
-                                </label>
-                                <select
-                                    id="insuranceType"
-                                    name="insuranceType"
-                                    value={formData.insuranceType}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                >
-                                    <option value="">Choose an option</option>
-                                    <option value="Life Insurance">Life Insurance</option>
-                                    <option value="General Insurance">General Insurance</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label htmlFor="formType" className="block text-sm font-medium">
-                                    Insurance Product
-                                </label>
-                                <select
-                                    id="formType"
-                                    name="formType"
-                                    value={formData.formType}
-                                    onChange={handleChange}
-                                    required
-                                    disabled={formData.insuranceType.trim() === "Other"}
-                                    className={`w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${formData.insuranceType.trim() === "Other" ? "cursor-not-allowed" : ""
-                                        }`}
-                                >
-                                    <option value="">Choose an option</option>
-                                    {formData.insuranceType === "Life Insurance"
-                                        ? lifeForms.map((option, index) => (
-                                            <option key={index} value={option}>
-                                                {option}
-                                            </option>
-                                        ))
-                                        : filteredPdfOptions().map((option, index) => (
-                                            <option key={index} value={option}>
-                                                {option}
-                                            </option>
-                                        ))}
-                                </select>
-                            </div>
+                    ) :
+                        showSupreme ? (
+                            <StarLifeSupremeForm onClose={() => handleClose(setShowSupreme)}
+                                userData={modalFormData} />
+                        ) :
+                            showWealth ? (
+                                <WealthMasterForm onClose={() => handleClose(setShowWealth)}
+                                    userData={modalFormData} />
+                            ) : (
+                                <form ref={form} onSubmit={sendEmail} className="w-full space-y-4">
+                                    <div>
+                                        <label htmlFor="insuranceType" className="block text-sm font-medium">
+                                            Select your request type:
+                                        </label>
+                                        <select
+                                            id="requestType"
+                                            name="requestType"
+                                            value={formData.requestType}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        >
+                                            <option value="">Choose an option</option>
+                                            <option value="Insurance Quote">Get new insurace quote</option>
+                                            <option value="Existing Policy">File a claim for existing policy</option>
+                                            <option value="Policy changes">Request policy changes</option>
+                                            <option value="Assistance">Other Assistance</option>
+                                        </select>
+                                    </div>
+                                    {/* Personal Details */}
+                                    <div>
+                                        <label htmlFor="fullname" className="block text-sm font-medium">
+                                            Full Name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="fullname"
+                                            name="fullname"
+                                            value={formData.fullname}
+                                            onChange={handleChange}
+                                            required
+                                            placeholder="Enter full name"
+                                            className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="email" className="block text-sm font-medium">
+                                            Email
+                                        </label>
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            required
+                                            placeholder="Enter email here"
+                                            className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        />
+                                        {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
+                                    </div>
+                                    <div>
+                                        <label htmlFor="phone" className="block text-sm font-medium">
+                                            Phone Number
+                                        </label>
+                                        <input
+                                            type="tel"
+                                            id="phone"
+                                            name="phone"
+                                            value={formData.phone}
+                                            onChange={handleChange}
+                                            required
+                                            placeholder="Enter number here"
+                                            className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        />
+                                        {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
+                                    </div>
+                                    <div>
+                                        <label htmlFor="insuranceType" className="block text-sm font-medium">
+                                            Insurance Category
+                                        </label>
+                                        <select
+                                            id="insuranceType"
+                                            name="insuranceType"
+                                            value={formData.insuranceType}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        >
+                                            <option value="">Choose an option</option>
+                                            <option value="Life Insurance">Life Insurance</option>
+                                            <option value="General Insurance">General Insurance</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="formType" className="block text-sm font-medium">
+                                            Insurance Product
+                                        </label>
+                                        <select
+                                            id="formType"
+                                            name="formType"
+                                            value={formData.formType}
+                                            onChange={handleChange}
+                                            required
+                                            disabled={formData.insuranceType.trim() === "Other"}
+                                            className={`w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${formData.insuranceType.trim() === "Other" ? "cursor-not-allowed" : ""
+                                                }`}
+                                        >
+                                            <option value="">Choose an option</option>
+                                            {formData.insuranceType === "Life Insurance"
+                                                ? lifeForms.map((option, index) => (
+                                                    <option key={index} value={option}>
+                                                        {option}
+                                                    </option>
+                                                ))
+                                                : filteredPdfOptions().map((option, index) => (
+                                                    <option key={index} value={option}>
+                                                        {option}
+                                                    </option>
+                                                ))}
+                                        </select>
+                                    </div>
 
-                            {/* Preferred Insurance Company for Life or General Insurance */}
-                            {formData.insuranceType === "Life Insurance" && (
-                                <div>
-                                    <label htmlFor="brokerage" className="block text-sm font-medium">
-                                        Preferred Insurance Company
-                                    </label>
-                                    <select
-                                        id="brokerage"
-                                        name="brokerage"
-                                        value={formData.brokerage}
-                                        onChange={handleChange}
-                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    {/* Preferred Insurance Company for Life or General Insurance */}
+                                    {formData.insuranceType === "Life Insurance" && (
+                                        <div>
+                                            <label htmlFor="brokerage" className="block text-sm font-medium">
+                                                Preferred Insurance Company
+                                            </label>
+                                            <select
+                                                id="brokerage"
+                                                name="brokerage"
+                                                value={formData.brokerage}
+                                                onChange={handleChange}
+                                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            >
+                                                <option value="">Choose an option</option>
+                                                {lifeInsurance.map((life, index) => (
+                                                    <option key={index} value={life}>
+                                                        {life}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                    )}
+                                    {formData.insuranceType === "General Insurance" && (
+                                        <div>
+                                            <label htmlFor="brokerage" className="block text-sm font-medium">
+                                                Preferred Insurance Company
+                                            </label>
+                                            <select
+                                                id="brokerage"
+                                                name="brokerage"
+                                                value={formData.brokerage}
+                                                onChange={handleChange}
+                                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            >
+                                                <option value="">Choose an option</option>
+                                                {firms.map((firm, index) => (
+                                                    <option key={index} value={firm}>
+                                                        {firm}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                    )}
+                                    <div>
+                                        <label htmlFor="message" className="block text-sm font-medium">
+                                            Message
+                                        </label>
+                                        <textarea
+                                            id="message"
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                            rows="4"
+                                            placeholder="Enter a message"
+                                            className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                                        ></textarea>
+                                    </div>
+                                    <button
+                                        type="submit"
+                                        className="w-full bg-[#b5996e] text-white py-2 rounded-[5px] hover:bg-[#776449] transition duration-300"
                                     >
-                                        <option value="">Choose an option</option>
-                                        {lifeInsurance.map((life, index) => (
-                                            <option key={index} value={life}>
-                                                {life}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
+                                        Send
+                                    </button>
+                                </form>
                             )}
-                            {formData.insuranceType === "General Insurance" && (
-                                <div>
-                                    <label htmlFor="brokerage" className="block text-sm font-medium">
-                                        Preferred Insurance Company
-                                    </label>
-                                    <select
-                                        id="brokerage"
-                                        name="brokerage"
-                                        value={formData.brokerage}
-                                        onChange={handleChange}
-                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    >
-                                        <option value="">Choose an option</option>
-                                        {firms.map((firm, index) => (
-                                            <option key={index} value={firm}>
-                                                {firm}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
-                            )}
-                            <div>
-                                <label htmlFor="message" className="block text-sm font-medium">
-                                    Message
-                                </label>
-                                <textarea
-                                    id="message"
-                                    name="message"
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                    rows="4"
-                                    placeholder="Enter a message"
-                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-                                ></textarea>
-                            </div>
-                            <button
-                                type="submit"
-                                className="w-full bg-[#b5996e] text-white py-2 rounded-[5px] hover:bg-[#776449] transition duration-300"
-                            >
-                                Send
-                            </button>
-                        </form>
-                    )}
                 </div>
             </div>
         </div>

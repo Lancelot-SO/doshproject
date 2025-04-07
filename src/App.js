@@ -28,6 +28,7 @@ import RiskDetails from './components/RiskDetails';
 import FinancialDetails from './components/FinancialDetails';
 import InsuranceDetails from './components/InsuranceDetails';
 import FinanceSideModal from './components/FinanceSideModal';
+import VideoParent from './components/VideoParent';
 
 const Layout = () => {
   const location = useLocation();  // Get the current route location
@@ -41,6 +42,7 @@ const Layout = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/errorpage' element={<ErrorPage />} />
+        <Route path='/video' element={<VideoParent />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/about' element={<About />} />

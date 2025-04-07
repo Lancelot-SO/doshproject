@@ -1,29 +1,33 @@
-// VideoPopup.jsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import doshvideo from '../images/dosh.mp4';
 import './VideoPopup.css';
-// import { FaTimes } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 
-const VideoPopup = () => {
+const VideoPopup = ({ onClose }) => {
+    const navigate = useNavigate();
 
-    // const handleClose = () => {
-    //     // Remove the query parameter from the URL
-    //     window.history.replaceState({}, document.title, window.location.pathname);
-    // };
+    const handleClose = () => {
+        // Call the onClose prop to update state in the parent
+        onClose();
+        // Navigate to the homepage ("/")
+        navigate('/');
+    };
+
     return (
-        <div className='video-modal'>
-            <div className='video__modal-content'>
+        <div className="video-modal" onClick={handleClose}>
+            <div className="video__modal-content" onClick={(e) => e.stopPropagation()}>
                 <video
-                    className='popupvid'
+                    className="popupvid"
                     src={doshvideo}
-                    autoPlay={true}
+                    autoPlay
                     loop
                     muted
                     controls
-                    loading='lazy'
+                    loading="lazy"
                 />
-                {/*<FaTimes size={30} className='closetimes' onClick={handleClose} />*/}
             </div>
+            <FaTimes size={30} className="closetimes" onClick={handleClose} />
         </div>
     );
 };
