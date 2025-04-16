@@ -27,7 +27,8 @@ const InsuranceTable = ({ closePopup }) => {
 
                     {/* Table Section */}
                     <div className="flex-grow">
-                        <div className="glass-table no-scrollbar">
+                        <div className="glass-table ">{/* a class called no-scrollbar was here */}
+
                             <table className={`w-full`}>
                                 {/* Row content here */}
                                 <tr>

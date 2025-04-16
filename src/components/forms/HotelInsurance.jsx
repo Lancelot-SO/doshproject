@@ -109,8 +109,8 @@ const HotelInsurance = ({ onClose, userData }) => {
 
         // Declaration
         declarationDate: '',
-        declarationSignature: '',
         declarationAgency: '',
+        message: '',
     });
 
 
@@ -268,13 +268,14 @@ const HotelInsurance = ({ onClose, userData }) => {
 
                     // Declaration
                     declarationDate: '',
-                    declarationSignature: '',
                     declarationAgency: '',
+                    message: '',
                 })
                 e.target.reset();
-                if (onClose) onClose();
-                setTimeout(() => onClose(), 5000);
-
+                // Delay unmounting the component to give time for the toast to display
+                setTimeout(() => {
+                    if (onClose) onClose();
+                }, 6000);
             })
             .catch((err) => {
                 console.error("FAILED...", err);
@@ -304,10 +305,11 @@ const HotelInsurance = ({ onClose, userData }) => {
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
 
+
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute lg:top-4 top-6 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
                         <X size={20} />
@@ -1798,18 +1800,25 @@ const HotelInsurance = ({ onClose, userData }) => {
                                         className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
-                                <div>
-                                    <label className="block font-medium">Agency Signature(s) of Proposer(s)</label>
-                                    <input
-                                        type="text"
-                                        name="declarationAgency"
-                                        value={formData.declarationAgency}
-                                        onChange={handleChange}
-                                        className="w-full border rounded-[5px] p-2"
-                                    />
-                                </div>
+
                             </div>
                         </section>
+                        <div>
+                            <label htmlFor="message" className="block text-sm font-medium">
+                                Request Details
+                            </label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                rows="4"
+                                minLength={15}
+                                required
+                                placeholder="Enter a message"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                            ></textarea>
+                        </div>
 
                         <button type="submit" className="bg-blue-600 text-white px-6 py-3 rounded-[5px]">
                             Submit Proposal

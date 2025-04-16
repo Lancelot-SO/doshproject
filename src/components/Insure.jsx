@@ -3,9 +3,8 @@ import './Insure.css';
 import { Link } from 'react-router-dom';
 import { packagelist, enhancelist, insuranceDetails, enhanceDetails } from '../doshdata';
 import Flyer from './Flyer';
-
+import Terms from './Terms';
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
-
 
 import standard from "../images/ph1.png";
 import enhanced from "../images/mainenhanced.jpg";
@@ -16,6 +15,7 @@ const Insure = ({ onClose }) => {
     const [currentDetailList, setCurrentDetailList] = useState([]);
     const [activeLabel, setActiveLabel] = useState('Standard'); // Default to Standard
     const [showFlyerModal, setShowFlyerModal] = useState(false);
+    const [showTermsModal, setShowTermsModal] = useState(false);
 
     useEffect(() => {
         // Default to 'Standard' label with standard details
@@ -45,12 +45,14 @@ const Insure = ({ onClose }) => {
             ? {
                 img: standard,
                 number: "Standard Packages",
-                details: "For health insurance that covers life basics, DOSH’s Standard Packages are a no-brainer! Cover essentials like eyecare, mental health, and more, with plans that make healthcare affordable, accessible and available, and get back to living your best life—worry-free! "
+                details: "For health insurance that covers life basics, DOSH’s Standard Packages are a no-brainer! Cover essentials like eyecare, mental health, and more, with plans that make healthcare affordable, accessible and available, and get back to living your best life—worry-free!",
+
             }
             : {
                 img: enhanced,
                 number: "Enhanced Packages",
-                details: "It pays to be prepared, no matter what life throws your way. And with DOSH’s Enhanced Packages, you get policies that cover you from every angle and guarantee your peace of mind. Built on the foundation of our Standard Packages, these policies go the extra mile in providing comprehensive coverage in cases of partial and permanent disability, critical illness, and even death."
+                details: "It pays to be prepared, no matter what life throws your way. And with DOSH’s Enhanced Packages, you get policies that cover you from every angle and guarantee your peace of mind. Built on the foundation of our Standard Packages, these policies go the extra mile in providing comprehensive coverage in cases of partial and permanent disability, critical illness, and even death.",
+
             };
 
     // Functions to navigate between packages
@@ -111,12 +113,18 @@ const Insure = ({ onClose }) => {
                     <div className='package_right no-scrollbar'>
                         {activeDetail.number && <h2 className='package_number'>{activeDetail.number}</h2>}
                         <p className='package_details w-[600px]'>{activeDetail.details}</p>
-                        <Link
-                            onClick={() => setShowFlyerModal(true)}
-                            className='flyer-link-insure'
-                        >
-                            {activeDetail.flyer}
-                        </Link>
+                        <div className="flex lg:flex-row flex-col gap-3 lg:w-[590px] lg:justify-between">
+                            <Link onClick={() => setShowFlyerModal(true)} className='flyer-link-insure'>
+                                {activeDetail.flyer}
+                            </Link>
+                            <button
+                                className='terms-link-insure'
+                                onClick={() => setShowTermsModal(true)}
+                            >
+                                Terms, Conditions and Exclusions
+                            </button>
+                        </div>
+
                         {activeDetail.link && (
                             <Link to={activeDetail.link} target="_blank" rel="noopener noreferrer">
                                 <small>
@@ -143,20 +151,22 @@ const Insure = ({ onClose }) => {
                             <div className="flex gap-6 h-[40px] items-center justify-center">
                                 <div className='flex items-center gap-2'>
                                     <p className='text-white'>Previous product</p>
-                                    <div onClick={goToPreviousPackage} className='cursor-pointer w-8 h-8 flex items-center justify-center rounded-full
-                                 bg-transparent hover:bg-[#987C55] border text-white'><FaArrowLeft className='texte-white' /></div>
+                                    <div onClick={goToPreviousPackage} className='cursor-pointer w-8 h-8 flex items-center justify-center rounded-full bg-transparent hover:bg-[#987C55] border text-white'>
+                                        <FaArrowLeft className='texte-white' />
+                                    </div>
                                 </div>
 
                                 <div className='flex items-center gap-2'>
-                                    <div onClick={goToNextPackage} className="cursor-pointer w-8 h-8 flex items-center justify-center rounded-full
-                                 bg-transparent hover:bg-[#987C55] border text-white"><FaArrowRight className='texte-white' /></div>
+                                    <div onClick={goToNextPackage} className="cursor-pointer w-8 h-8 flex items-center justify-center rounded-full bg-transparent hover:bg-[#987C55] border text-white">
+                                        <FaArrowRight className='texte-white' />
+                                    </div>
                                     <p className='text-white'>Next product</p>
                                 </div>
-
                             </div>
                         )}
 
                         {showFlyerModal && <Flyer onClose={() => setShowFlyerModal(false)} />}
+                        {showTermsModal && <Terms onClose={() => setShowTermsModal(false)} />}
                     </div>
                 </div>
             </div>

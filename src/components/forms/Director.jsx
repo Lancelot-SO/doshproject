@@ -65,10 +65,10 @@ const Director = ({ onClose, userData }) => {
         // Question 15
         indemnityRequired: "",
         // Question 16 – Declaration
-        declarationSigned: "",
         declarationCapacity: "",
         declarationCompany: "",
         declarationDate: "",
+        message: '',
     });
 
     // Create a form ref for emailjs.sendForm
@@ -158,8 +158,10 @@ const Director = ({ onClose, userData }) => {
                     declarationDate: "",
                 });
                 e.target.reset();
-                if (onClose) onClose();
-                setTimeout(() => onClose(), 5000);
+                // Delay unmounting the component to give time for the toast to display
+                setTimeout(() => {
+                    if (onClose) onClose();
+                }, 6000);
 
             })
             .catch((err) => {
@@ -190,10 +192,11 @@ const Director = ({ onClose, userData }) => {
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
 
+
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute lg:top-4 top-6 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
                         <X size={20} />
@@ -895,6 +898,23 @@ const Director = ({ onClose, userData }) => {
                                 please contact your broker since non-disclosure may affect an Assured’s right of recovery
                                 under the policy or lead to voidance
                             </p>
+
+                            <div>
+                                <label htmlFor="message" className="block text-sm font-medium">
+                                    Request Details
+                                </label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    rows="4"
+                                    minLength={15}
+                                    required
+                                    placeholder="Enter a message"
+                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                                ></textarea>
+                            </div>
 
                             <button
                                 type="submit"

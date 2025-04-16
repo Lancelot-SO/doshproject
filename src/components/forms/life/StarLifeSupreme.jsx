@@ -214,8 +214,10 @@ function StarLifeSupremeForm({ onClose, userData }) {
                 (result) => {
                     toast.success('Application submitted successfully!');
                     setFormData(initialState);
-                    if (onClose) onClose();
-                    setTimeout(() => onClose(), 5000);
+                    // Delay unmounting the component to give time for the toast to display
+                    setTimeout(() => {
+                        if (onClose) onClose();
+                    }, 6000);
                 },
                 (error) => {
                     toast.error('Failed to submit the application. Please try again.');
@@ -256,7 +258,7 @@ function StarLifeSupremeForm({ onClose, userData }) {
                     </button>
 
                     <h2 className="text-xl text-gray-800 font-bold mb-3">
-                        StarLife Supreme Homecall Plan
+                        Supreme Homecall Plan
                     </h2>
                     <p>Please kindly fill out the form fields below.</p>
 

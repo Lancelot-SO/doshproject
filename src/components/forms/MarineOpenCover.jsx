@@ -28,7 +28,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
         volumeOfBusiness: '',
         date: '',
         agency: '',
-        signature: '',
+        message: '',
     });
 
     // States for validation error messages
@@ -136,12 +136,15 @@ const MarineOpenCover = ({ onClose, userData }) => {
                     volumeOfBusiness: '',
                     date: '',
                     agency: '',
-                    signature: '',
+                    message: '',
                 });
 
                 // Reset the actual form fields in the DOM
                 e.target.reset();
-                setTimeout(() => onClose(), 5000);
+                // Delay unmounting the component to give time for the toast to display
+                setTimeout(() => {
+                    if (onClose) onClose();
+                }, 6000);
             })
             .catch((error) => {
                 console.error('FAILED...', error);
@@ -171,11 +174,10 @@ const MarineOpenCover = ({ onClose, userData }) => {
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
 
-
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute lg:top-4 top-6 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
                         <X size={20} />
@@ -369,15 +371,21 @@ const MarineOpenCover = ({ onClose, userData }) => {
                                 className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
                             />
                         </div>
-
                         <div>
-                            <label className="block text-sm font-medium">Nature or Packing</label>
-                            <input
-                                type="file"
-                                name="signature"
-                                onChange={handleFileChange}
-                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
-                            />
+                            <label htmlFor="message" className="block text-sm font-medium">
+                                Request Details
+                            </label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                rows="4"
+                                minLength={15}
+                                required
+                                placeholder="Enter a message"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                            ></textarea>
                         </div>
 
                         <button

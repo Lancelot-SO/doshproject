@@ -24,8 +24,8 @@ const GuaranteeClaim = ({ onClose, userData }) => {
         policyNo: "",
         declarationDate: "",
         // We'll track the filename in state if you want to show it or do something with it
-        signature: "",
         agency: "",
+        message: "",
     });
 
     // 2. A ref for the form so EmailJS can capture all fields including the file
@@ -98,13 +98,16 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                     downfallCircumstances: "",
                     policyNo: "",
                     declarationDate: "",
-                    signature: "",
                     agency: "",
+                    message: "",
                 });
 
                 // Reset the actual form fields
                 e.target.reset();
-                setTimeout(() => onClose(), 5000);
+                // Delay unmounting the component to give time for the toast to display
+                setTimeout(() => {
+                    if (onClose) onClose();
+                }, 6000);
 
             })
             .catch((err) => {
@@ -136,10 +139,11 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
 
+
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute lg:top-4 top-6 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
                         <X size={20} />
@@ -353,15 +357,7 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                         className="border border-gray-300 rounded-[5px] p-2 w-full"
                                     />
                                 </div>
-                                <div>
-                                    <label className="block text-lg font-medium mb-2">Signature</label>
-                                    <input
-                                        type="text"
-                                        name="signature"
-                                        onChange={handleFileChange}
-                                        className="border border-gray-300 rounded-[5px] p-2 w-full"
-                                    />
-                                </div>
+
                                 <div>
                                     <label className="block text-lg font-medium mb-2">Agency</label>
                                     <input
@@ -373,6 +369,23 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                     />
                                 </div>
                             </div>
+                        </div>
+
+                        <div>
+                            <label htmlFor="message" className="block text-sm font-medium">
+                                Request Details
+                            </label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                rows="4"
+                                minLength={15}
+                                required
+                                placeholder="Enter a message"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                            ></textarea>
                         </div>
 
                         {/* Submit Button */}

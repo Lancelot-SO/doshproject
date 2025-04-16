@@ -27,11 +27,11 @@
 }
 
 .signin__left {
-    flex: 1;
+    flex: 2;
 }
 
 .signin__left img {
-    width: 400px;
+    width: 600px;
     height: 658px;
 }
 

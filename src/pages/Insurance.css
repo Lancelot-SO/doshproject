@@ -125,13 +125,13 @@
 }
 
 .insurance__left img {
-  width: 440.34px;
+  width: 540.34px;
   height: 767px;
 }
 
 .insurance__right {
   background: url("../images/masterCard.png") no-repeat;
-  width: 836px;
+  width: 736px;
   height: 767px;
   display: flex;
   justify-content: center;
@@ -213,11 +213,9 @@
 }
 
 .insurance__form {
-  background: linear-gradient(
-    86.16deg,
-    rgba(0, 0, 0, 0.8) 11.14%,
-    rgba(28, 26, 26, 0.08) 113.29%
-  );
+  background: linear-gradient(86.16deg,
+      rgba(0, 0, 0, 0.8) 11.14%,
+      rgba(28, 26, 26, 0.08) 113.29%);
   background-blend-mode: overlay;
   width: 350px;
   height: 650px;
@@ -492,11 +490,9 @@
   }
 
   .insurance__form {
-    background: linear-gradient(
-      86.16deg,
-      rgba(0, 0, 0, 0.8) 11.14%,
-      rgba(28, 26, 26, 0.08) 113.29%
-    );
+    background: linear-gradient(86.16deg,
+        rgba(0, 0, 0, 0.8) 11.14%,
+        rgba(28, 26, 26, 0.08) 113.29%);
     background-blend-mode: overlay;
     width: 100%;
     /* Full width */

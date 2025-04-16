@@ -261,8 +261,10 @@ const ChildLifelineForm = ({ onClose, userData }) => {
                 (result) => {
                     toast.success('Application submitted successfully!');
                     setFormData(initialState);
-                    if (onClose) onClose();
-                    setTimeout(() => onClose(), 5000);
+                    // Delay unmounting the component to give time for the toast to display
+                    setTimeout(() => {
+                        if (onClose) onClose();
+                    }, 6000);
                 },
                 (error) => {
                     toast.error('Failed to submit claim. Please try again.');

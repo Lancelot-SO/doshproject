@@ -29,7 +29,7 @@ const TravelInsurance = ({ onClose, userData }) => {
         officer: "",
         date: "",
         agency: "",
-        declareSignature: "",
+        message: "",
         declareDate: ""
     });
 
@@ -99,11 +99,14 @@ const TravelInsurance = ({ onClose, userData }) => {
                     officer: "",
                     date: "",
                     agency: "",
-                    declareSignature: "",
+                    message: "",
                     declareDate: ""
                 });
                 e.target.reset();
-                setTimeout(() => onClose(), 5000);
+                // Delay unmounting the component to give time for the toast to display
+                setTimeout(() => {
+                    if (onClose) onClose();
+                }, 6000);
 
             })
             .catch((err) => {
@@ -134,10 +137,11 @@ const TravelInsurance = ({ onClose, userData }) => {
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
+
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute lg:top-4 top-6 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
                         <X size={20} />
@@ -270,8 +274,20 @@ const TravelInsurance = ({ onClose, userData }) => {
                             <input type="text" name="agency" value={formData.agency} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium">Signature</label>
-                            <input type="file" name="declareSignature" onChange={handleFileChange} className="w-full p-2 border rounded-[5px]" required />
+                            <label htmlFor="message" className="block text-sm font-medium">
+                                Request Details
+                            </label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                rows="4"
+                                minLength={15}
+                                required
+                                placeholder="Enter a message"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                            ></textarea>
                         </div>
                         <button type="submit" className="w-full bg-[#b5996e] text-white p-2 rounded-[5px] hover:bg-[#816842]">Submit</button>
                     </form>

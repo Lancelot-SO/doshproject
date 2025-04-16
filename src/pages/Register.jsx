@@ -45,7 +45,7 @@ const Register = () => {
                     <div className='left__log'>
                         <div className='log__card'>
                             <span className='tag'>Welcome to </span>
-                            <p className='dosh__account'><b>Dosh</b> Account</p>
+                            <p className='dosh__account'><b>DOSH</b> Account</p>
                             <div className='log__underline'></div>
                             <div className='radio__btn'>
                                 <p className='radio__tag'>How do you want to register your account?</p>

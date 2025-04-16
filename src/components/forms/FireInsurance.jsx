@@ -70,8 +70,8 @@ const FireInsurance = ({ onClose, userData }) => {
         extendMaliciousDamage: '',
         extendBushFire: '',
         declarationDate: '',
-        declarationSignature: '',
         declarationAgency: '',
+        message: '',
     });
 
     // Error state for email and mobile validation
@@ -220,11 +220,13 @@ const FireInsurance = ({ onClose, userData }) => {
                         extendMaliciousDamage: '',
                         extendBushFire: '',
                         declarationDate: '',
-                        declarationSignature: '',
                         declarationAgency: '',
+                        message: '',
                     });
-                    if (onClose) onClose();
-                    setTimeout(() => onClose(), 5000);
+                    // Delay unmounting the component to give time for the toast to display
+                    setTimeout(() => {
+                        if (onClose) onClose();
+                    }, 6000);
                 },
                 (error) => {
                     toast.error('Failed to submit proposal. Please try again.');
@@ -256,14 +258,16 @@ const FireInsurance = ({ onClose, userData }) => {
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
 
+
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute lg:top-4 top-6 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
                         <X size={20} />
                     </button>
+
                     <h1 className="text-xl font-bold mb-4">Fire Insurance Proposal Request</h1>
                     <p>Please kindly fill out the form fields below.</p>
 
@@ -1196,15 +1200,7 @@ const FireInsurance = ({ onClose, userData }) => {
                                         className="w-full border rounded-[5px] p-2"
                                     />
                                 </div>
-                                <div>
-                                    <label className="block font-medium">Signature</label>
-                                    <input
-                                        type="text"
-                                        name="declarationSignature"
-                                        onChange={handleChange}
-                                        className="w-full border rounded-[5px] p-2"
-                                    />
-                                </div>
+
                                 <div>
                                     <label className="block font-medium">Agency</label>
                                     <input
@@ -1217,6 +1213,22 @@ const FireInsurance = ({ onClose, userData }) => {
                                 </div>
                             </div>
                         </section>
+                        <div>
+                            <label htmlFor="message" className="block text-sm font-medium">
+                                Request Details
+                            </label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                rows="4"
+                                minLength={15}
+                                required
+                                placeholder="Enter a message"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                            ></textarea>
+                        </div>
 
                         <button
                             type="submit"

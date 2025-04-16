@@ -1,10 +1,10 @@
-import Finance from "./images/dosh-financial.jpg"
+// import Finance from "./images/DOSH-financial.png"
 import Lady from "./images/prettylady.jpg"
 import Personal from "./images/personalnew.png"
 import Insurance from "./images/elevate2.png"
 import Family from "./images/familynew.png"
-import Risk from "./images/seamless.png"
-import Money from "./images/Financial_img.png"
+// import Risk from "./images/seamless.png"
+// import Money from "./images/Financial_img.png"
 // import Money from "./images/money.png"
 import Ride from "./images/ride.png"
 import Ecommerce from "./images/Vector334.png"
@@ -28,64 +28,57 @@ import Phone from "./images/dosh500.jpg"
 import Phone1 from "./images/dosh900.jpg"
 import Phone2 from "./images/dosh1200.jpg"
 import Phone3 from "./images/dosh2800.jpg"
-import Phone4 from "./images/dosh5500.jpg"
+import Phone4 from "./images/dosh5500.png"
 import Phone5 from "./images/dosh11000.jpg"
 
 
 
+// const products = [
+//     {
+//         id: 1,
+//         title: 'Health Insurance',
+//         subtitle: `Protecting Your Health, Empowering Your Life`,
+//         image: Finance,
+//         readmore: '/insuredetails',
+//         quote: `Experience peace of mind with comprehensive healthcare coverage from DOSH Insurance. Our mission transcends traditional insurance—we're here to ensure that quality healthcare remains within reach when you need it most.
+// Just as health knows no boundaries, our network of accredited healthcare providers extends across all regions, offering you seamless access to medical care.`,
+//         secondquote: `Our team of seasoned financial and healthcare experts has crafted versatile coverage options that adapt to your unique needs, whether you're a growing business, a busy professional, or a family seeking protection.
+// Think of us as your healthcare concierge, transforming complex insurance into straightforward solutions.`,
+//         thirdquote: `With DOSH Insurance, you're not just buying a policy—you're investing in the freedom to live life fully, supported by a partner who understands that good health is your greatest asset.
+// Secure your wellbeing with DOSH Insurance. Because when it comes to health, we believe excellence should be accessible to all.`,
+//         pick: '/insure',
+//         comparetext: 'COMPARE',
+//         picker: 'PICK A PACKAGE',
+//         read: 'READ MORE',
+//     },
+//     {
+//         id: 2,
+//         title: 'Financial Services',
+//         subtitle: `Financial Solutions That Match Your Ambitions`,
+//         image: Money,
+//         readmore: '/financedetails',
+//         quote: `We understand that financial success requires more than just capital—it demands a partner who understands your vision. Our tailored financial solutions adapt to your unique journey, whether you're scaling a business, launching an entrepreneurial venture, or pursuing personal aspirations. Experience financing on your terms with our innovative funding options, featuring flexible low- to no-interest repayment plans that put you in control. Our licensed financial experts craft solutions that bridge both immediate needs and long-term goals, ensuring your path to success remains clear and achievable. As a trusted global financial partner, we've built our reputation on turning possibilities into realities. Let DOSH be the catalyst that transforms your ambitions into achievements.`,
+//         pick: '/financemodal',
+//         picker: 'PICK A PACKAGE',
+//         read: 'READ MORE',
+//         comparetext: 'COMPARE',
 
+//     },
+//     {
+//         id: 3,
+//         title: 'DOSH Risk',
+//         subtitle: `Your Guide Through Insurance Complexity`,
+//         image: Risk,
+//         readmore: '/riskdetails',
+//         riskform: 'SUBMIT A REQUEST',
+//         read: 'READ MORE',
+//         quote: `Navigating the insurance landscape shouldn't feel like charting unknown waters. At DOSH Risk, we transform complexity into clarity, offering brokerage services that empower you to make confident decisions about protection for your assets and operations.`,
+//         secondquote: `Our seasoned team of experts brings deep industry insight to your unique challenges, crafting innovative solutions that go beyond traditional insurance offerings. We've built our reputation on delivering competitive rates while providing the personalized attention you deserve.`,
+//         thirdquote: `Experience the convenience of comprehensive coverage through our one-stop approach to auto, home, health, and business insurance. With DOSH Risk as your partner, you gain more than just insurance—you secure peace of mind through protection tailored precisely to your needs.`
+//     },
+// ]
 
-
-
-
-const products = [
-    {
-        id: 1,
-        title: 'Health Insurance',
-        subtitle: `Protecting Your Health, Empowering Your Life`,
-        image: Finance,
-        readmore: '/insuredetails',
-        quote: `Experience peace of mind with comprehensive healthcare coverage from DOSH Insurance. Our mission transcends traditional insurance—we're here to ensure that quality healthcare remains within reach when you need it most.
-Just as health knows no boundaries, our network of accredited healthcare providers extends across all regions, offering you seamless access to medical care.`,
-        secondquote: `Our team of seasoned financial and healthcare experts has crafted versatile coverage options that adapt to your unique needs, whether you're a growing business, a busy professional, or a family seeking protection.
-Think of us as your healthcare concierge, transforming complex insurance into straightforward solutions.`,
-        thirdquote: `With DOSH Insurance, you're not just buying a policy—you're investing in the freedom to live life fully, supported by a partner who understands that good health is your greatest asset.
-Secure your wellbeing with DOSH Insurance. Because when it comes to health, we believe excellence should be accessible to all.`,
-        pick: '/insure',
-        comparetext: 'COMPARE',
-        picker: 'PICK A PACKAGE',
-        read: 'READ MORE',
-    },
-    {
-        id: 2,
-        title: 'Financial Services',
-        subtitle: ` Financial Solutions That Match Your Ambitions`,
-        image: Money,
-        readmore: '/financedetails',
-        quote: `We understand that financial success requires more than just capital—it demands a partner who understands your vision. Our tailored financial solutions adapt to your unique journey, whether you're scaling a business, launching an entrepreneurial venture, or pursuing personal aspirations.
-Experience financing on your terms with our innovative funding options, featuring flexible low- to no-interest repayment plans that put you in control. Our licensed financial experts craft solutions that bridge both immediate needs and long-term goals, ensuring your path to success remains clear and achievable.
-As a trusted global financial partner, we've built our reputation on turning possibilities into realities. Let DOSH be the catalyst that transforms your ambitions into achievements.`,
-        pick: '/financemodal',
-        picker: 'PICK A PACKAGE',
-        read: 'READ MORE',
-        comparetext: 'COMPARE',
-
-    },
-    {
-        id: 3,
-        title: 'DOSH Risk',
-        subtitle: `Your Guide Through Insurance Complexity`,
-        image: Risk,
-        readmore: '/riskdetails',
-        riskform: 'SUBMIT A REQUEST',
-        read: 'READ MORE',
-        quote: `Navigating the insurance landscape shouldn't feel like charting unknown waters. At DOSH Risk, we transform complexity into clarity, offering brokerage services that empower you to make confident decisions about protection for your assets and operations.`,
-        secondquote: `Our seasoned team of experts brings deep industry insight to your unique challenges, crafting innovative solutions that go beyond traditional insurance offerings. We've built our reputation on delivering competitive rates while providing the personalized attention you deserve.`,
-        thirdquote: `Experience the convenience of comprehensive coverage through our one-stop approach to auto, home, health, and business insurance. With DOSH Risk as your partner, you gain more than just insurance—you secure peace of mind through protection tailored precisely to your needs.`
-    },
-]
-
-export default products;
+// export default products;
 
 export const projectLinks = [
     {
@@ -173,7 +166,8 @@ export const insuranceDetails = [
         details: `DOSH is redefining health insurance with the DOSH 365 package for just GHS 1 a day for GHS 9,000 in annual coverage. For GHS 365 a year, you get GHS 6,100 for in-patient and GHS 1,500 for out-patient services, all designed to keep you covered when the unexpected hits.`,
         link: "/register",
         category: "DOSH 365",
-        flyer: "View flyer"
+        flyer: "View flyer",
+        terms: "/terms"
     },
     {
         id: "2",
@@ -184,7 +178,9 @@ export const insuranceDetails = [
         details: `With a GHS 750 annual premium, DOSH offers up to GHS 18,000 in coverage, perfect for young adults and new employees. Providing GHS 12,600 for in-patient and GHS 3,000 for out-patient service this package is affordable, comprehensive, and ready to support your health journey!`,
         link: "/register",
         category: "DOSH 750",
-        flyer: "View flyer"
+        flyer: "View flyer",
+        terms: "/terms"
+
     },
     {
         id: "3",
@@ -195,7 +191,9 @@ export const insuranceDetails = [
         details: `The DOSH 1000 package provides peace of mind with up to GHS 30,000 in coverage for just a GHS 1,000 annual premium, covering GHS 21,500 for in-patient and GHS 5,000 for out-patient care. A solid investment in your health!`,
         link: "/register",
         category: "DOSH 1000",
-        flyer: "View flyer"
+        flyer: "View flyer",
+        terms: "/terms"
+
     },
     {
         id: "4",
@@ -206,7 +204,8 @@ export const insuranceDetails = [
         details: `The DOSH 2500 plan is perfect for those seeking affordable health coverage, offering up to GHS 60,000 annually for GHS 41,250 for in-patient and GHS 10,000 for out-patient care, all for a GHS 2,500 premium. Smart coverage for tough times!`,
         link: "/register",
         category: "DOSH 2500",
-        flyer: "View flyer"
+        flyer: "View flyer",
+        terms: "/terms"
     },
     {
         id: "5",
@@ -217,7 +216,8 @@ export const insuranceDetails = [
         details: `Tailored for high-value clients, this premium plan offers up to GHS 95,000 in annual coverage GHS 57,500 for in-patient and GHS 20,000 for out-patient care. Ideal for those with elevated healthcare needs.`,
         link: "/register",
         category: "DOSH 5000",
-        flyer: "View flyer"
+        flyer: "View flyer",
+        terms: "/terms"
     },
     {
         id: "6",
@@ -228,7 +228,8 @@ export const insuranceDetails = [
         details: `This plan offers up to GHS 190,000 in health coverage, perfect for those seeking comprehensive healthcare and peace of mind. With this plan, you get GHS 150,000 for in-patient care and GHS 40,000 for out-patient care, all for an annual premium of GHS 10,000. The services offered by this plan are accessible to all significant healthcare providers around the country.`,
         link: "/register",
         category: "DOSH 10000",
-        flyer: "View flyer"
+        flyer: "View flyer",
+        terms: "/terms"
     },
 ]
 
@@ -242,7 +243,8 @@ export const enhanceDetails = [
         details: `The DOSH 500 offers up to GHS 21,000 in coverage, providing affordable, solid protection with GHS 6,100 for in-patient care, GHS 1,500 for out-patient, and GHS 8,750 for death, disability, and accident coverage. Stay covered while living life on your terms!`,
         link: "/register",
         category: "DOSH 500",
-        flyer: "View flyer"
+        flyer: "View flyer",
+        terms: "/terms"
     },
     {
         id: "2",
@@ -253,7 +255,8 @@ export const enhanceDetails = [
         details: `DOSH knows you deserve better than the basics; and with GHS 42,000 in total coverage, the DOSH 900 package delivers! Providing GHS 12,600 for inpatient care, GHS 3,000 for outpatient care, and GHS 18,500 for death, disability, and accidents, the DOSH 900 gets you more of what matters, so you can keep living your best life!`,
         link: "/register",
         category: "DOSH 900",
-        flyer: "View flyer"
+        flyer: "View flyer",
+        terms: "/terms"
     },
     {
         id: "3",
@@ -264,7 +267,8 @@ export const enhanceDetails = [
         details: `The DOSH 1200 has you covered with up to GHS 54,000 in total protection: GHS 5,000 for outpatient care, GHS 21,500 for inpatient care, and GHS 18,500 for death, disability, and accident coverage. Choose DOSH 1200 today and face life's surprises with confidence.`,
         link: "/register",
         category: "DOSH 1200",
-        flyer: "View flyer"
+        flyer: "View flyer",
+        terms: "/terms"
     },
     {
         id: "4",
@@ -275,7 +279,8 @@ export const enhanceDetails = [
         details: `At DOSH, our plans are built to keep you covered. With up to GHS 95,000 in total coverage, the DOSH 2800 provides GHS 10,000 for outpatient care, GHS 41,250 for inpatient care, and GHS 37,000 for death, disability, and accident coverage. Stay prepared and secure your peace of mind with policies that offer the comprehensive protection you and your family deserve.`,
         link: "/register",
         category: "DOSH 2800",
-        flyer: "View flyer"
+        flyer: "View flyer",
+        terms: "/terms"
     },
     {
         id: "5",
@@ -286,7 +291,8 @@ export const enhanceDetails = [
         details: `The DOSH 5500 provides solid, no-nonsense protection with GHS 167,000 in total coverage, including GHS 20,000 for outpatient care, GHS 57,500 for inpatient care, and GHS 55,500 for death, disability, and accident coverage. Rest easy knowing that life’s uncertainties won’t shake your financial security. Choose DOSH 5500 for coverage you can count on.`,
         link: "/register",
         category: "DOSH 5500",
-        flyer: "View flyer"
+        flyer: "View flyer",
+        terms: "/terms"
     },
     {
         id: "6",
@@ -297,7 +303,8 @@ export const enhanceDetails = [
         details: `For those who go all-in on peace of mind, the DOSH 11000 plan is the perfect match. With up to GHS 286,000 in total coverage, including GHS 40,000 for outpatient care, GHS 115,000 for inpatient care, and GHS 74,000 for death, disability, and accident coverage, this plan ensures you’re prepared for whatever life throws your way. Be ready for anything with DOSH 11000.`,
         link: "/register",
         category: "DOSH 11000",
-        flyer: "View flyer"
+        flyer: "View flyer",
+        terms: "/terms"
     },
 ]
 

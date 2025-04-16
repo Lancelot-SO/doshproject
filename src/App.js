@@ -29,9 +29,14 @@ import FinancialDetails from './components/FinancialDetails';
 import InsuranceDetails from './components/InsuranceDetails';
 import FinanceSideModal from './components/FinanceSideModal';
 import VideoParent from './components/VideoParent';
+//the terms component is the modal
+import Terms from './components/Terms';
 
 const Layout = () => {
   const location = useLocation();  // Get the current route location
+  // if a link set state.background, use that to render the “page” behind the modal
+  const background = location.state && location.state.background;
+
   const isDashboard = location.pathname === '/dashboard';  // Check if the route is '/dashboard'
 
   return (
@@ -42,7 +47,7 @@ const Layout = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/errorpage' element={<ErrorPage />} />
-        <Route path='/video' element={<VideoParent />} />
+        <Route path='/popup' element={<VideoParent />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/about' element={<About />} />
@@ -51,6 +56,7 @@ const Layout = () => {
         <Route path='/productservices' element={<ProductServices />} />
         <Route path='/financial' element={<Financial />} />
         <Route path='/insure' element={<Insure />} />
+        <Route path="/terms" element={<Terms onClose={() => window.history.back()} />} />
         <Route path='/financemodal' element={<FinanceSideModal />} />
         <Route path='/insuredetails' element={<InsuranceDetails />} />
         <Route path='/financedetails' element={<FinancialDetails />} />
@@ -68,6 +74,18 @@ const Layout = () => {
         <Route path='/dashboard' element={<MainDashboard />} />
         <Route path='*' element={<Navigate to='/errorpage' />} />
       </Routes>
+
+      {/* modal route */}
+      {background && (
+        <Routes>
+          <Route
+            path="/terms"
+            element={
+              <Terms onClose={() => window.history.back()} />
+            }
+          />
+        </Routes>
+      )}
 
       {/* Conditionally render Footer */}
       {!isDashboard && <Footer />}

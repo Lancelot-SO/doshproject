@@ -70,8 +70,10 @@ const Home = () => {
 
 
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+    const [showButton, setShowButton] = useState(false);
 
     const sections = ['home', 'money', 'ride', 'digital', 'lastride']; // Add more section IDs here if needed
+
 
     const scrollToNextSection = (event) => {
         event.preventDefault();
@@ -92,6 +94,41 @@ const Home = () => {
             }
         }
     };
+
+    useEffect(() => {
+        // Check if the device is mobile
+        const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            let inactivityTimer;
+
+            const handleScroll = () => {
+                // Show button immediately when scrolling
+                setShowButton(true);
+                // Clear any previously set timer
+                if (inactivityTimer) {
+                    clearTimeout(inactivityTimer);
+                }
+                // Set timer to hide the button after 3 seconds of inactivity
+                inactivityTimer = setTimeout(() => {
+                    setShowButton(false);
+                }, 3000);
+            };
+
+            window.addEventListener('scroll', handleScroll);
+
+            return () => {
+                window.removeEventListener('scroll', handleScroll);
+                if (inactivityTimer) {
+                    clearTimeout(inactivityTimer);
+                }
+            };
+        } else {
+            // For non-mobile devices, keep the button visible (or adjust as needed)
+            setShowButton(true);
+        }
+    }, []);
+
 
     const [showFinanceDetailModal, setShowFinanceDetailModal] = useState(false);
     const [showRiskModal, setShowRiskModal] = useState(false);
@@ -159,7 +196,7 @@ const Home = () => {
     }
 
     return (
-        <div className='main__hero'>
+        <div id="text-content" className='main__hero '>
             <div className='hero'>
                 <div className='slider'>
                     <div className='slides' onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
@@ -187,8 +224,8 @@ const Home = () => {
                             <div className='slide-text'>
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
-                                    <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
+                                    <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
+                                        <small>Join the Revolution</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="28"
@@ -220,7 +257,7 @@ const Home = () => {
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
                                     <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
+                                        <small>Join the Revolution</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="28"
@@ -258,7 +295,7 @@ const Home = () => {
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
                                     <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
+                                        <small>Join the Revolution</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="28"
@@ -289,7 +326,7 @@ const Home = () => {
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
                                     <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
+                                        <small>Join the Revolution</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="28"
@@ -320,7 +357,7 @@ const Home = () => {
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
                                     <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
+                                        <small>Join the Revolution</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="28"
@@ -360,7 +397,7 @@ const Home = () => {
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
                                     <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
+                                        <small>Join the Revolution</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="28"
@@ -391,7 +428,7 @@ const Home = () => {
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
                                     <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
+                                        <small>Join the Revolution</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="28"
@@ -424,7 +461,7 @@ const Home = () => {
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
                                     <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
+                                        <small>Join the Revolution</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="28"
@@ -450,7 +487,7 @@ const Home = () => {
                                 <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
                                     <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
-                                        <small>Join DOSH</small>
+                                        <small>Join the Revolution</small>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="28"
@@ -500,16 +537,17 @@ const Home = () => {
             </div>
 
             <div className='cream__hero'></div>
-
-            <button className="scroll-button" onClick={scrollToNextSection}>
-                <IoIosArrowDown size={30} />
-            </button>
+            {showButton && (
+                <button className="scroll-button" onClick={scrollToNextSection}>
+                    <IoIosArrowDown className='lg:text-[30px] text-[28px]' />
+                </button>
+            )}
 
             {/*<section className='about__section'>
                 <div className='about__banner'>
                     <Link to='https://dsp.onenet.xyz:50443/#/'><img src={banner} alt='banner' /></Link>
                 </div>
-    </section>*/}
+            </section>*/}
 
             <section id='home' className='home__section'>
                 <div className='container home__student'>
@@ -580,7 +618,7 @@ const Home = () => {
             <section className='digital__section'>
                 <div className='container home__digital'>
                     <div className='home__digital-left'>
-                        <h4>DOSH RISK:</h4>
+                        <h4>INSURANCE BROKERAGE:</h4>
                         <h3 dangerouslySetInnerHTML={{ __html: homeData.risk_caption }} />
                         <p dangerouslySetInnerHTML={{ __html: homeData.risk_body }} />
                         <Link onClick={() => { setShowRiskModal(true) }} className='linkers'>Read More

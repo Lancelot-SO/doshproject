@@ -50,14 +50,22 @@ const RiskDetails = ({ onClose }) => {
                     <div className="flex-shrink-0">
                         <img
                             className="w-full h-[400px] object-cover"
-                            src={riskModal?.image ? `https://doshcms.interactivedigital.com.gh/${riskModal.image}` : "assets/elevate.png"}
+                            src={riskModal?.image ? `https://doshcms.interactivedigital.com.gh/${riskModal.image}` : ""}
                             alt="Risk Management"
                         />
                     </div>
                     <div className="p-6">
-                        <h2 className="lg:text-3xl text-[16px] font-bold mb-6 text-gray-800">Navigating Life's Uncertainties: A Guide to Comprehensive Protection</h2>
+                        {/* <h2 className="lg:text-3xl text-[16px] font-bold mb-6 text-gray-800">Navigating Life's Uncertainties: A Guide to Comprehensive Protection</h2> */}
                         <div className="space-y-2 text-gray-600"
                             dangerouslySetInnerHTML={{ __html: riskModal.description }}
+                        />
+                    </div>
+
+                    {/* References Section */}
+                    <div className="bg-gray-100 p-4 mt-4">
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">References</h3>
+                        <ul className="list-disc list-inside text-blue-600 space-y-1"
+                            dangerouslySetInnerHTML={{ __html: riskModal.references }}
                         />
                     </div>
                 </div>

@@ -14,6 +14,7 @@ import { IoIosArrowDown } from 'react-icons/io'
 const About = () => {
 
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+    const [showButton, setShowButton] = useState(false)
     const [aboutData, setAboutDta] = useState(null);
 
     const sections = ['handshake', 'mission', 'values', 'expertise', 'banner']; // Add more section IDs here if needed
@@ -37,6 +38,40 @@ const About = () => {
             }
         }
     };
+
+    useEffect(() => {
+        // Check if the device is mobile
+        const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            let inactivityTimer;
+
+            const handleScroll = () => {
+                // Show button immediately when scrolling
+                setShowButton(true);
+                // Clear any previously set timer
+                if (inactivityTimer) {
+                    clearTimeout(inactivityTimer);
+                }
+                // Set timer to hide the button after 3 seconds of inactivity
+                inactivityTimer = setTimeout(() => {
+                    setShowButton(false);
+                }, 3000);
+            };
+
+            window.addEventListener('scroll', handleScroll);
+
+            return () => {
+                window.removeEventListener('scroll', handleScroll);
+                if (inactivityTimer) {
+                    clearTimeout(inactivityTimer);
+                }
+            };
+        } else {
+            // For non-mobile devices, keep the button visible (or adjust as needed)
+            setShowButton(true);
+        }
+    }, []);
 
     useEffect(() => {
         AOS.init({
@@ -70,9 +105,11 @@ const About = () => {
                     src={aboutData?.aboutus_header_image ? `https://doshcms.interactivedigital.com.gh/${aboutData.aboutus_header_image}` : "assets/elevate.png"}
                     alt='about' className='object-cover' loading='lazy' />
             </section>
-            <button className="scroll-button" onClick={scrollToNextSection}>
-                <IoIosArrowDown size={30} />
-            </button>
+            {showButton && (
+                <button className="scroll-button" onClick={scrollToNextSection}>
+                    <IoIosArrowDown size={30} />
+                </button>
+            )}
             <section id='handshake' className='about__section'>
                 <div className='container about__hand-shake'>
                     <div className='about_left'>
@@ -90,8 +127,10 @@ const About = () => {
                 <div data-aos="zoom-in" className='container next-about__hand-shake'>
                     <div className='next-about_left'>
                         <img
-                            src={board}
-                            className='about__image object-cover' alt='handshake' loading='lazy' />
+                            src={aboutData?.mission_image ? `https://doshcms.interactivedigital.com.gh/${aboutData.mission_image}` : "assets/elevate.png"}
+                            className='about__image object-cover'
+                            alt='handshake'
+                            loading='lazy' />
                     </div>
                     <div className='next-about__right'>
                         <h3 dangerouslySetInnerHTML={{ __html: aboutData.mission_caption }} />

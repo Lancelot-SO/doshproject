@@ -264,13 +264,14 @@
   left: 0;
   width: 100%;
   height: 30%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    /* Transparent at the top */ rgba(0, 0, 0, 0.1),
-    /* Darker in the middle */ rgba(0, 0, 0, 0) 100%
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      /* Transparent at the top */
+      rgba(0, 0, 0, 0.1),
+      /* Darker in the middle */
+      rgba(0, 0, 0, 0) 100%
       /* Transparent at the bottom */
-  );
+    );
   z-index: 1;
 }
 
@@ -280,13 +281,14 @@
   left: 0;
   width: 100%;
   height: 30%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    /* Transparent at the top */ rgba(0, 0, 0, 0.5),
-    /* Darker in the middle */ rgba(0, 0, 0, 0) 100%
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      /* Transparent at the top */
+      rgba(0, 0, 0, 0.5),
+      /* Darker in the middle */
+      rgba(0, 0, 0, 0) 100%
       /* Transparent at the bottom */
-  );
+    );
   z-index: 1;
 }
 
@@ -422,39 +424,39 @@
   background: #987c55;
 }
 
-#radio1:checked ~ .first {
+#radio1:checked~.first {
   margin-left: 0;
 }
 
-#radio2:checked ~ .first {
+#radio2:checked~.first {
   margin-left: -20%;
 }
 
-#radio3:checked ~ .first {
+#radio3:checked~.first {
   margin-left: -40%;
 }
 
-#radio4:checked ~ .first {
+#radio4:checked~.first {
   margin-left: -60%;
 }
 
-#radio5:checked ~ .first {
+#radio5:checked~.first {
   margin-left: -80%;
 }
 
-#radio6:checked ~ .first {
+#radio6:checked~.first {
   margin-left: -100%;
 }
 
-#radio7:checked ~ .first {
+#radio7:checked~.first {
   margin-left: -120%;
 }
 
-#radio8:checked ~ .first {
+#radio8:checked~.first {
   margin-left: -140%;
 }
 
-#radio9:checked ~ .first {
+#radio9:checked~.first {
   margin-left: -160%;
 }
 
@@ -477,39 +479,39 @@
   margin-right: 10px;
 }
 
-#radio1:checked ~ .navigate_auto .auto-btn1 {
+#radio1:checked~.navigate_auto .auto-btn1 {
   background-color: #987c55;
 }
 
-#radio2:checked ~ .navigate_auto .auto-btn2 {
+#radio2:checked~.navigate_auto .auto-btn2 {
   background-color: #987c55;
 }
 
-#radio3:checked ~ .navigate_auto .auto-btn3 {
+#radio3:checked~.navigate_auto .auto-btn3 {
   background-color: #987c55;
 }
 
-#radio4:checked ~ .navigate_auto .auto-btn4 {
+#radio4:checked~.navigate_auto .auto-btn4 {
   background-color: #987c55;
 }
 
-#radio5:checked ~ .navigate_auto .auto-btn5 {
+#radio5:checked~.navigate_auto .auto-btn5 {
   background-color: #987c55;
 }
 
-#radio6:checked ~ .navigate_auto .auto-btn6 {
+#radio6:checked~.navigate_auto .auto-btn6 {
   background-color: #987c55;
 }
 
-#radio7:checked ~ .navigate_auto .auto-btn7 {
+#radio7:checked~.navigate_auto .auto-btn7 {
   background-color: #987c55;
 }
 
-#radio8:checked ~ .navigate_auto .auto-btn8 {
+#radio8:checked~.navigate_auto .auto-btn8 {
   background-color: #987c55;
 }
 
-#radio9:checked ~ .navigate_auto .auto-btn9 {
+#radio9:checked~.navigate_auto .auto-btn9 {
   background-color: #987c55;
 }
 
@@ -911,6 +913,7 @@
 /* all mobile images for slider */
 
 @media (max-width: 767px) {
+
   .slide-one-laptop,
   .slide-two-laptop,
   .slide-three-laptop,
@@ -1183,7 +1186,7 @@
 
   .home__student-left {
     flex: 1;
-    margin-left: 10px;
+    margin-left: 5px;
   }
 
   .home__student h4 {
@@ -1263,7 +1266,7 @@
 
   .home__money-right {
     flex: 1;
-    margin-left: 30px;
+    margin-left: 15px;
   }
 
   .home__money-right h3 {
@@ -1338,7 +1341,7 @@
     line-height: 22px;
     letter-spacing: 0em;
     text-align: justify;
-    padding-right: 30px;
+    padding-right: 10px;
   }
 
   .home__digital-left a {
@@ -1399,7 +1402,7 @@
   .home__ride-right {
     flex: 1;
     margin-top: 20px;
-    padding-left: 30px;
+    padding-left: 15px;
   }
 
   .home__ride-right h3 {
@@ -1423,7 +1426,7 @@
     height: 132px;
     letter-spacing: 0em;
     text-align: justify;
-    padding-right: 50px;
+    padding-right: 40px;
   }
 
   .home__ride-right a {
@@ -1458,7 +1461,7 @@
   .home__ride2-right {
     flex: 1;
     margin-top: 20px;
-    padding-left: 30px;
+    padding-left: 15px;
   }
 
   .home__ride2-right h3 {

@@ -227,6 +227,16 @@
   color: #987c55;
 }
 
+.terms-link-insure {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: underline;
+}
+
 .package_right small {
   width: 153px;
   height: 35px;

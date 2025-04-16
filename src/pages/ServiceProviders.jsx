@@ -22,7 +22,7 @@ const ServiceProviders = () => {
     };
 
     const handleFilter = (filters) => {
-        const { country, region, district } = filters;
+        const { country, region, } = filters;
         let filtered = [];
 
         if (country === 'Ghana') {

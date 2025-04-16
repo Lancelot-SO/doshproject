@@ -15,7 +15,7 @@ const Footer = () => {
 
     return (
         <div className='main__footer'>
-            <img src={bg} alt='footerbg' />
+            <img src={bg} alt='footerbg' className='bg_image' />
 
             <footer>
                 <div className='container footer__container'>

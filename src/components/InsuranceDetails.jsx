@@ -60,7 +60,7 @@ const InsuranceDetails = ({ onClose }) => {
 
                 <div className="flex-grow overflow-y-auto">
                     <img
-                        className="w-full h-[400px] object-center"
+                        className="w-full h-[400px] object-cover"
                         src={InsureModal?.image ? `https://doshcms.interactivedigital.com.gh/${InsureModal.image}` : "assets/elevate.png"}
                         alt="Family enjoying financial security"
                         loading='lazy'

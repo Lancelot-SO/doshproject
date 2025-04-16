@@ -46,7 +46,7 @@ const WorkMen = ({ onClose, userData }) => {
         wagesAndAccidents: '',
         // Declaration
         declarationDate: '',
-        signature: '',
+        message: "",
         agency: '',
     });
 
@@ -141,10 +141,13 @@ const WorkMen = ({ onClose, userData }) => {
                         insuranceDeclined: '',
                         wagesAndAccidents: '',
                         declarationDate: '',
-                        signature: '',
+                        message: "",
                         agency: '',
                     });
-                    setTimeout(() => onClose(), 5000);
+                    // Delay unmounting the component to give time for the toast to display
+                    setTimeout(() => {
+                        if (onClose) onClose();
+                    }, 6000);
 
                 },
                 (error) => {
@@ -176,10 +179,11 @@ const WorkMen = ({ onClose, userData }) => {
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
                     <ToastContainer />
 
+
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute lg:top-4 top-6 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
                         <X size={20} />
@@ -737,20 +741,7 @@ const WorkMen = ({ onClose, userData }) => {
                                         className="mt-1 p-2 border rounded-[5px] w-full"
                                     />
                                 </div>
-                                <div>
-                                    <label className="block font-medium" htmlFor="signature">
-                                        Signature
-                                    </label>
-                                    <input
-                                        type="file"
-                                        id="signature"
-                                        name="signature"
-                                        value={formData.signature}
-                                        onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[5px] w-full"
-                                        placeholder="Your full name"
-                                    />
-                                </div>
+
                                 <div>
                                     <label className="block font-medium" htmlFor="agency">
                                         Agency
@@ -766,6 +757,23 @@ const WorkMen = ({ onClose, userData }) => {
                                 </div>
                             </div>
                         </section>
+
+                        <div>
+                            <label htmlFor="message" className="block text-sm font-medium">
+                                Request Details
+                            </label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                rows="4"
+                                minLength={15}
+                                required
+                                placeholder="Enter a message"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                            ></textarea>
+                        </div>
 
                         {/* Submit Button */}
                         <div className="text-center">
