@@ -583,15 +583,10 @@ const Home = () => {
 
 
             </section>
-            <section id='money' className='money__section'>
-                <div className='container home__money'>
-                    <div data-aos="zoom-in-right" className='home__money-left'>
-                        <img
-                            src={homeData?.finance_image ? `https://doshcms.interactivedigital.com.gh/${homeData.finance_image}` : "assets/elevate.png"}
-                            alt='student'
-                            loading='lazy' />
-                    </div>
-                    <div className='home__money-right'>
+
+            <section id='home' className='home__section-next'>
+                <div className='container home__student'>
+                    <div className='home__student-left'>
                         <h4>FINANCIAL SERVICES:</h4>
                         <h3 className='' dangerouslySetInnerHTML={{ __html: homeData.finance_caption }} />
                         <p dangerouslySetInnerHTML={{ __html: homeData.finance_body }} />
@@ -611,15 +606,22 @@ const Home = () => {
                             </svg>
                         </Link>
                     </div>
+                    <div data-aos="zoom-in-left" className='home__student-right'>
+                        <img
+                            src={homeData?.finance_image ? `https://doshcms.interactivedigital.com.gh/${homeData.finance_image}` : "assets/elevate.png"}
+                            alt='student'
+                            loading='lazy'
+                            className='pl-2 lg:pl-0' />
+                    </div>
                 </div>
                 {showFinanceDetailModal && <FinanceDetails onClose={() => setShowFinanceDetailModal(false)} />}
             </section>
 
-            <section className='digital__section'>
-                <div className='container home__digital'>
-                    <div className='home__digital-left'>
+            <section id='home' className='home__section'>
+                <div className='container home__student'>
+                    <div className='home__student-left'>
                         <h4>INSURANCE BROKERAGE:</h4>
-                        <h3 dangerouslySetInnerHTML={{ __html: homeData.risk_caption }} />
+                        <h3 className="elevate" dangerouslySetInnerHTML={{ __html: homeData.risk_caption }} />
                         <p dangerouslySetInnerHTML={{ __html: homeData.risk_body }} />
                         <Link onClick={() => { setShowRiskModal(true) }} className='linkers'>Read More
                             {/*<svg
@@ -637,25 +639,22 @@ const Home = () => {
                             </svg>*/}
                         </Link>
                     </div>
-                    <div data-aos="zoom-in-left" className='home__digital-right'>
+                    <div data-aos="zoom-in-left" className='home__student-right'>
                         <img
                             src={homeData?.risk_image ? `https://doshcms.interactivedigital.com.gh/${homeData.risk_image}` : "assets/elevate.png"}
                             alt='digital'
-                            loading='lazy' />
+                            loading='lazy'
+                            className='pl-2 lg:pl-0' />
                     </div>
                 </div>
                 {showRiskModal && <RiskDetails onClose={() => setShowRiskModal(false)} />}
 
+
             </section>
 
-            <section id='ride' className='ride__section'>
-                <div className='container ride__adventure'>
-                    <div data-aos="zoom-in-right" className='home__ride-left'>
-                        <img
-                            src={homeData?.ride_image ? `https://doshcms.interactivedigital.com.gh/${homeData.ride_image}` : "assets/elevate.png"}
-                            alt='ride' loading='lazy' />
-                    </div>
-                    <div className='home__ride-right'>
+            <section id='home' className='home__section-next'>
+                <div className='container home__student'>
+                    <div className='home__student-left'>
                         <h4>RIDE SERVICES:</h4>
                         <h3 dangerouslySetInnerHTML={{ __html: homeData.ride_caption }} />
                         <p dangerouslySetInnerHTML={{ __html: homeData.ride_body }} />
@@ -675,13 +674,20 @@ const Home = () => {
                             </svg>*/}
                         </Link>
                     </div>
+                    <div data-aos="zoom-in-left" className='home__student-right'>
+                        <img
+                            src={homeData?.ride_image ? `https://doshcms.interactivedigital.com.gh/${homeData.ride_image}` : "assets/elevate.png"}
+                            alt='ride' loading='lazy' />
+                    </div>
                 </div>
+                {showInsuranceDetailModal && <InsuranceDetails onClose={() => setInsuranceDetailModal(false)} />}
+
 
             </section>
 
-            <section id='digital' className='digital__section'>
-                <div className='container home__digital'>
-                    <div className='home__digital-left'>
+            <section id='home' className='home__section'>
+                <div className='container home__student'>
+                    <div className='home__student-left'>
                         <h4>ERP SERVICES:</h4>
                         <h3 dangerouslySetInnerHTML={{ __html: homeData.erp_caption }} />
                         <p dangerouslySetInnerHTML={{ __html: homeData.erp_body }} />
@@ -701,23 +707,21 @@ const Home = () => {
                             </svg>*/}
                         </Link>
                     </div>
-                    <div data-aos="zoom-in-left" className='home__digital2-right'>
+                    <div data-aos="zoom-in-left" className='home__student-right'>
                         <img
                             src={homeData?.erp_image ? `https://doshcms.interactivedigital.com.gh/${homeData.erp_image}` : "assets/elevate.png"}
-                            alt='digital' loading='lazy' />
+                            alt='digital'
+                            loading='lazy'
+                            className='pl-2 lg:pl-0' />
                     </div>
                 </div>
 
+
             </section>
 
-            <section id='lastride' className='ride__section'>
-                <div className='container ride__adventure'>
-                    <div className='home__ride2-left'>
-                        <img data-aos="zoom-in-right"
-                            src={homeData?.commerce_image ? `https://doshcms.interactivedigital.com.gh/${homeData.commerce_image}` : "assets/elevate.png"}
-                            alt='ride' loading='lazy' />
-                    </div>
-                    <div className='home__ride2-right'>
+            <section id='home' className='home__section-next'>
+                <div className='container home__student'>
+                    <div className='home__student-left'>
                         <h4>E-COMMERCE SERVICES:</h4>
                         <h3 dangerouslySetInnerHTML={{ __html: homeData.commerce_caption }} />
                         <p dangerouslySetInnerHTML={{ __html: homeData.commerce_body }} />
@@ -737,13 +741,20 @@ const Home = () => {
                             </svg>*/}
                         </Link>
                     </div>
+                    <div data-aos="zoom-in-left" className='home__student-right'>
+                        <img data-aos="zoom-in-right"
+                            src={homeData?.commerce_image ? `https://doshcms.interactivedigital.com.gh/${homeData.commerce_image}` : "assets/elevate.png"}
+                            alt='ride'
+                            loading='lazy'
+                            className='pl-2 lg:pl-0' />
+                    </div>
                 </div>
+
 
             </section>
 
             <div className='ps__page'>
                 {/* Your existing content */}
-
                 {showVideoPopup && <VideoPopup />}
             </div>
 

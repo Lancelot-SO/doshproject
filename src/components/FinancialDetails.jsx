@@ -66,7 +66,7 @@ const FinanceDetails = ({ onClose }) => {
                         alt="financial security"
                     />
                     {/* Scrollable text content */}
-                    <div className="p-6">
+                    <div className="p-10">
                         {/* <h2 className="lg:text-3xl text-[16px] font-bold mb-6 text-gray-800">Why Financial Services Matter</h2> */}
                         <div className="space-y-4 text-gray-600"
                             dangerouslySetInnerHTML={{ __html: financeModal.description }}

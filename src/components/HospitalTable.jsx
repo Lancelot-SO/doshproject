@@ -24,7 +24,7 @@ const HospitalTable = ({ data }) => {
     };
 
     return (
-        <div className="table-container overflow-x-auto w-full max-w-7xl mx-auto p-4 bg-white">
+        <div className="table-container overflow-x-auto w-full lg:w-[1130px] p-4 md:p-0 bg-white">
             <table className="hospital-table min-w-full table-auto border-collapse bg-white shadow-md rounded-lg">
                 {/* Table Header */}
                 <thead className="bg-gray-100 border-b-2 border-gray-200">

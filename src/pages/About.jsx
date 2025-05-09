@@ -2,20 +2,23 @@ import React, { useEffect, useState } from 'react'
 import './About.css'
 // import about from '../images/business.png'
 // import handshake from "../images/about-handshake.png"
-import board from "../images/about-board.png"
+// import board from "../images/about-board.png"
 import settings from "../images/about-settings.png"
 // import banner from '../images/dosh-banner.png'
-import { Link } from 'react-router-dom'
 
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { IoIosArrowDown } from 'react-icons/io'
+import InsuranceDetails from '../components/InsuranceDetails';
+import { Link } from 'react-router-dom';
 
 const About = () => {
 
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
     const [showButton, setShowButton] = useState(false)
     const [aboutData, setAboutDta] = useState(null);
+
+    const [readMore, setReadMore] = useState(false);
 
     const sections = ['handshake', 'mission', 'values', 'expertise', 'banner']; // Add more section IDs here if needed
 
@@ -99,7 +102,7 @@ const About = () => {
         return <div>Loading...</div>;
     }
     return (
-        <div className='sect'>
+        <div className='sect extralarge:px-[200px]'>
             <section data-aos="fade-down" className='about__header'>
                 <img
                     src={aboutData?.aboutus_header_image ? `https://doshcms.interactivedigital.com.gh/${aboutData.aboutus_header_image}` : "assets/elevate.png"}
@@ -113,8 +116,8 @@ const About = () => {
             <section id='handshake' className='about__section'>
                 <div className='container about__hand-shake'>
                     <div className='about_left'>
-                        <h3>Who we are </h3>
-                        <p className='text-justify' dangerouslySetInnerHTML={{ __html: aboutData.who_we_are_body }} />
+                        <h3>Who We Are </h3>
+                        <p className='text-left' dangerouslySetInnerHTML={{ __html: aboutData.who_we_are_body }} />
                     </div>
                     <div data-aos="zoom-in" className='about__right'>
                         <img
@@ -150,7 +153,7 @@ const About = () => {
                 </div>
             </section>
 
-            <section id='expertise' className='about__section'>
+            <section id='expertise' className='about__section extralarge:pl-['>
                 <div data-aos="flip-left" className='container about__cards'>
                     <div className='about__cards-left'>
                         <h3 dangerouslySetInnerHTML={{ __html: aboutData.expertise_caption }} />
@@ -164,15 +167,18 @@ const About = () => {
                 </div>
             </section>
 
-            <section className='about__section'>
+            <section className='about__section flex-col'>
                 <div className='about__banner'>
-                    <Link to=''>
+
+                    <Link className='flex flex-col cursor-pointer w-full' onClick={() => { setReadMore(true) }}>
                         <img
                             src={aboutData?.banner_image ? `https://doshcms.interactivedigital.com.gh/${aboutData.banner_image}` : "assets/elevate.png"}
                             alt='banner'
                             loading='lazy' />
                     </Link>
+
                 </div>
+                {readMore && <InsuranceDetails onClose={() => setReadMore(false)} />}
             </section>
         </div>
     )

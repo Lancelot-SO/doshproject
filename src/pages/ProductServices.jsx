@@ -39,6 +39,9 @@ const ProductServices = () => {
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
     const [showButton, setShowButton] = useState(false);
 
+    //video state
+    const [videoData, setVideoData] = useState(false);
+
     const sections = ['service', 'slider', 'video', 'insurance'];
     const scrollToNextSection = (event) => {
         event.preventDefault();
@@ -136,35 +139,55 @@ const ProductServices = () => {
             .catch(error => console.error("Error fetching slider data:", error));
     }, []);
 
+    //fetch api for video data
+    useEffect(() => {
+        const fetchVideoData = async () => {
+            try {
+                const response = await fetch('https://doshcms.interactivedigital.com.gh/api/fetch-pns-video-sec');
+                const data = await response.json();
+                console.log('video Data:', data);
+                setVideoData(data);
+            } catch (error) {
+                console.error('Error fetching video data:', error);
+            }
+        };
+        fetchVideoData();
+    }, []);
+
     // Slider arrow components and settings
     const NextArrow = ({ onClick }) => (
         <button
-            className="absolute bottom-2 lg:bottom-4 left-[60%] md:left-[55%] lg:left-[44%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-2xl p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
-            onClick={onClick}
-        >
-            <FaArrowLeftLong />
-        </button>
-    );
-
-    const PrevArrow = ({ onClick }) => (
-        <button
-            className="absolute bottom-2 lg:bottom-4 left-[37%] md:left-[45%] lg:left-[50%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-2xl p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
+            className="absolute bottom-5 lg:bottom-4 left-[60%] md:left-[55%] lg:left-[44%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-2xl p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
             onClick={onClick}
         >
             <FaArrowRightLong />
         </button>
     );
 
+    const PrevArrow = ({ onClick }) => (
+        <button
+            className="absolute bottom-5 lg:bottom-4 left-[37%] md:left-[45%] lg:left-[50%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-2xl p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
+            onClick={onClick}
+        >
+            <FaArrowLeftLong />
+        </button>
+    );
     const settings = {
         dots: true,
         infinite: true,
         speed: 1000,
         slidesToShow: 1,
         slidesToScroll: 1,
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />,
+        nextArrow: <PrevArrow />,
+        prevArrow: < NextArrow />,
         beforeChange: (oldIndex, newIndex) => setIndex(newIndex),
+
+        // desktop: let clicks and text-selection work
+        draggable: false,
+        swipe: false,
+        touchMove: false,
     };
+
 
     // Unified modal function to handle all products
     const openModal = (index) => {
@@ -228,7 +251,7 @@ const ProductServices = () => {
             <div className='main__product'>
                 <img
                     data-aos="fade-down"
-                    src={require('../images/ppp.jpg')}
+                    src={require('../images/pnsheader.png')}
                     alt='product & services'
                     className='object-cover'
                     loading='lazy'
@@ -245,24 +268,24 @@ const ProductServices = () => {
                 </button>
             )}
 
-            <section id="slider" className="psl relative">
+            <section id="slider" className="psl relative extralarge:px-[160px]">
                 <Slider {...settings}>
                     {products.length > 0 ? (
                         products.map((product, productIndex) => (
                             <div
                                 key={product.id}
-                                className={`w-full h-full flex items-center justify-center lg:px-16 pr-4 lg:h-full ${(!product.comparetext && !product.picker) ? 'bg-none' : 'bg-default'}`}
+                                className={`w-full h-full flex items-center justify-center lg:px-16 pr-4 lg:h-auto ${(!product.comparetext && !product.picker) ? 'bg-none' : 'bg-default'}`}
                             >
                                 <div className="container mx-auto px-4">
                                     <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                                         {/* Text Section */}
-                                        <div className="flex-1 text-white space-y-4">
+                                        <div className="flex-1 text-white space-y-4 user-select">
                                             <h4 className="text-[24px] md:text-[32px] lg:text-[44px] font-bold text-[#9E825B] mb-2">
                                                 {product.title}
                                             </h4>
                                             <p className='text-[16px] font-bold uppercase' dangerouslySetInnerHTML={{ __html: product.caption }} />
                                             <div>
-                                                <div className="text-sm lg:text-[14px] leading-[28px] text-align-justify" dangerouslySetInnerHTML={{ __html: product.quote }} />
+                                                <div className="text-sm lg:text-[14px] leading-[28px] text-align-left pr-4" dangerouslySetInnerHTML={{ __html: product.quote }} />
                                             </div>
                                             <p className="cursor-pointer text-[#9E825B]">
                                                 <Link
@@ -333,7 +356,7 @@ const ProductServices = () => {
                                             </div>
                                         </div>
                                         {/* Image Section */}
-                                        <div className="flex-1 w-full">
+                                        <div className="flex-1 w-full pr-4 pl-1 lg:pr-6">
                                             <img
                                                 src={product?.image ? `https://doshcms.interactivedigital.com.gh/${product.image}` : ""}
                                                 alt={product.title}
@@ -368,7 +391,7 @@ const ProductServices = () => {
                             className='video__left'
                             onMouseEnter={handleMouseEnter}
                             onMouseLeave={handleMouseLeave}
-                            src={doshvideo}
+                            src={videoData?.video_url ? `https://doshcms.interactivedigital.com.gh/${videoData.video_url}` : "video section"}
                             autoPlay={false}
                             loop
                             muted
@@ -377,13 +400,11 @@ const ProductServices = () => {
                         />
                     </div>
                     <div className='video__right'>
-                        <h4>SUCCESS STORIES VIDEO</h4>
-                        <h6>Affordable health insurance for you and your loved ones.</h6>
-                        <small>
-                            Dial *915# to sign up with as low as GHS 365 and get GHS 9000 worth of cover at any medical facility.
-                            <br />
-                            Join the DOSH Revolution!
-                        </small>
+                        <h4 dangerouslySetInnerHTML={{ __html: videoData.video_title }} />
+                        <h6 dangerouslySetInnerHTML={{ __html: videoData.video_subtitle }} />
+                        <small dangerouslySetInnerHTML={{
+                            __html: videoData.video_description
+                        }} />
                     </div>
                 </div>
             </section>

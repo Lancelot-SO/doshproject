@@ -65,7 +65,7 @@ const InsuranceDetails = ({ onClose }) => {
                         alt="Family enjoying financial security"
                         loading='lazy'
                     />
-                    <div className="p-6">
+                    <div className="p-10">
                         {/* <h2 className="lg:text-3xl text-[16px] font-bold mb-6 text-gray-800">What's the Deal with Health Insurance?</h2> */}
                         <div className="space-y-4 text-gray-600"
                             dangerouslySetInnerHTML={{ __html: InsureModal.description }}
@@ -76,7 +76,7 @@ const InsuranceDetails = ({ onClose }) => {
                     {/* References Section */}
                     <div className="bg-gray-100 p-4 mt-4">
                         <h3 className="text-xl font-semibold text-gray-800 mb-2">References</h3>
-                        <ul className="list-disc list-inside text-gray-600 space-y-1"
+                        <ul className="list-disc list-inside text-gray-600 space-y-1 "
                             dangerouslySetInnerHTML={{ __html: InsureModal.references }}
                         />
                     </div>

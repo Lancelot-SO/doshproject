@@ -221,7 +221,7 @@ const PublicLiability = ({ onClose, userData }) => {
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute lg:top-4 top-6 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute lg:top-3 top-6 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
                         <X size={20} />

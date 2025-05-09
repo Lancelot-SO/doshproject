@@ -3,11 +3,11 @@ import React from 'react';
 const Terms = ({ onClose }) => {
     return (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="relative w-full max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8 overflow-y-auto h-[90vh] mt-12">
+            <div className="relative w-full max-w-4xl mx-auto bg-white rounded-lg shadow-lg px-8 py-14 overflow-y-auto h-[90vh] lg:mt-12 mt-32">
                 {/* Close Button */}
                 <button
                     onClick={onClose}
-                    className="absolute lg:top-4 top-0 right-4 text-gray-500 hover:text-gray-800 text-4xl focus:outline-none"
+                    className="absolute lg:top-4 top-4 right-4 text-gray-500 hover:text-gray-800 text-4xl focus:outline-none"
                     aria-label="Close terms and conditions"
                 >
                     &times;
@@ -15,7 +15,7 @@ const Terms = ({ onClose }) => {
 
                 {/* Content */}
                 <div className="text-gray-700 space-y-6">
-                    <h2 className="text-2xl font-bold mb-4 flex items-center justify-center">TERMS AND CONDITIONS</h2>
+                    <h2 className="lg:text-2xl text-xl font-bold mb-4 flex items-center justify-center">TERMS AND CONDITIONS</h2>
                     <hr className="my-10 border-gray-200" />
 
                     {/* Eligibility Section */}
@@ -81,18 +81,18 @@ const Terms = ({ onClose }) => {
                                 Incidents attributable to blood alcohol content exceeding eighty milligrams per one hundred millilitres, or incidents attributable to alcoholism.                            </li>
                             <li>
                                 Participation in:
-                                <ul className="list-decimal pl-5">
+                                <ul className="list-none pl-5">
                                     <li>
-                                        Active military duty, police duty, reservist duty, civil commotion, labor disturbances, riots, strikes, or activities of locked-out workers.                                     </li>
+                                        a.  Active military duty, police duty, reservist duty, civil commotion, labor disturbances, riots, strikes, or activities of locked-out workers.                                     </li>
                                     <li>
-                                        Aviation activities, except as a passenger or crew member on scheduled commercial flights.                                     </li>
+                                        b.  Aviation activities, except as a passenger or crew member on scheduled commercial flights.                                     </li>
                                     <li>
-                                        Any race or speed contest (excluding on foot or involving non-mechanically propelled vehicles).                                     </li>
+                                        c.  Any race or speed contest (excluding on foot or involving non-mechanically propelled vehicles).                                     </li>
                                     <li>
-                                        High-risk activities including, but not limited to, paragliding, hiking, canoeing, water rafting, water skiing, boxing, wrestling, polo, etc. e. Professional sports.                                     </li>
+                                        d.  High-risk activities including, but not limited to, paragliding, hiking, canoeing, water rafting, water skiing, boxing, wrestling, polo, etc. e. Professional sports.                                     </li>
                                     <li>Professional Sports;</li>
                                     <li>
-                                        Activities where the Beneficiary deliberately exposes themselves to danger.                                    </li>
+                                        e.  Activities where the Beneficiary deliberately exposes themselves to danger.                                    </li>
                                 </ul>
                             </li>
                             <li>
@@ -104,27 +104,28 @@ const Terms = ({ onClose }) => {
                                 Services rendered by individuals not registered as medical personnel with relevant medical authorities in the country of treatment, except when specifically covered as a Policy benefit.                            </li>
                             <li>
                                 The purchase of:
-                                <ul className="list-decimal pl-5">
+                                <ul className="list-none pl-5">
                                     <li>
-                                        Medications not prescribed by a registered qualified medical practitioner.
-                                        <li>
-                                            bandages, aids, syringes and instruments other than for in-hospital use or during an evacuation;
-                                        </li>
-                                        <li>
-                                            Bandages, aids, syringes, and instruments other than for in-hospital use or during evacuation.
-                                        </li>
-                                        <li>
-                                            Patent foods such as baby foods, tonics, slimming preparations, appetite suppressants, and smoking cessation aids.
-                                        </li>
-                                        <li>
-                                            Domestic and herbal remedies, homeopathic remedies, except when specifically covered as a Policy benefit.
-                                        </li>
-                                        <li>
-                                            Vitamins, tonics, and mineral supplements, except when specifically covered as a Policy benefit.
-                                        </li>
-                                        <li>
-                                            Contraceptives and sexual enhancers.
-                                        </li>
+                                        a.  Medications not prescribed by a registered qualified medical practitioner.
+                                    </li>
+
+                                    <li>
+                                        b.  bandages, aids, syringes and instruments other than for in-hospital use or during an evacuation;
+                                    </li>
+                                    <li>
+                                        c.  Bandages, aids, syringes, and instruments other than for in-hospital use or during evacuation.
+                                    </li>
+                                    <li>
+                                        d.  Patent foods such as baby foods, tonics, slimming preparations, appetite suppressants, and smoking cessation aids.
+                                    </li>
+                                    <li>
+                                        e.  Domestic and herbal remedies, homeopathic remedies, except when specifically covered as a Policy benefit.
+                                    </li>
+                                    <li>
+                                        f.  Vitamins, tonics, and mineral supplements, except when specifically covered as a Policy benefit.
+                                    </li>
+                                    <li>
+                                        g.  Contraceptives and sexual enhancers.
                                     </li>
                                 </ul>
                             </li>
@@ -138,11 +139,11 @@ const Terms = ({ onClose }) => {
                                 Events occurring under martial law, state of siege, or any circumstances determining the proclamation and enforcement of martial law or state of siege.                            </li>
                             <li>
                                 Dental and ear treatments including but not limited to:
-                                <ul className="list-decimal pl-5">
+                                <ul className="list-none pl-5">
                                     <li>
-                                        Provision of false teeth, dentures, orthodontics, advanced and specialized dentistry except when specifically covered as a Policy benefit.      </li>
+                                        a.  Provision of false teeth, dentures, orthodontics, advanced and specialized dentistry except when specifically covered as a Policy benefit.      </li>
                                     <li>
-                                        Provision of hearing aids, except when specifically covered as a Policy benefit.                                        </li>
+                                        b.  Provision of hearing aids, except when specifically covered as a Policy benefit.                                        </li>
                                 </ul>
                             </li>
                             <li>

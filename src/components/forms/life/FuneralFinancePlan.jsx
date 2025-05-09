@@ -3,7 +3,7 @@ import { X } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import image from "../../../images/assets.png";
+import image from "../../../images/funeral3.png";
 import formlogo from "../../../images/formlogo.png";
 
 const FuneralFinancePlan = ({ onClose, userData }) => {
@@ -196,10 +196,10 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6">
-            <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-lg shadow-lg flex overflow-hidden">
+            <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[5px] shadow-lg flex overflow-hidden">
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
+                    <img src={image} alt="Insurance" className="w-full h-[700px] md:h-[500px] extralarge:h-3/4 object-cover" loading="lazy" />
                     <div className="w-full h-full extralarge:h-1/4 bg-black p-4">
                         <img src={formlogo} alt="formlogo" className="w-[112px] h-[53px]" loading="lazy" />
                         <h2 className="font-bold text-white text-[20px] mb-4 mt-4">
@@ -218,7 +218,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute top-4 md:top-4 lg:top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
                         <X size={20} />

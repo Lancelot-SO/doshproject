@@ -101,7 +101,7 @@ const Transit = ({ onClose, userData }) => {
                     lossDetails: "",
                     date: "",
                     agency: "",
-                    signature: ""
+                    message: ''
                 });
                 e.target.reset();
                 // Delay unmounting the component to give time for the toast to display

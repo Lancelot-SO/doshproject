@@ -50,7 +50,7 @@
 
 .slide img {
   width: 1100px;
-  height: auto;
+  height: 350px;
 }
 
 .slidersmobile {
@@ -391,6 +391,8 @@
 .slide-arrow {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  width: 300px;
 }
 
 .slide__link {
@@ -526,6 +528,10 @@
   color: var(--color-white);
 }
 
+.home__section-next {
+  background: #fbf4e8;
+}
+
 .home__student {
   display: flex;
   padding-top: 150px;
@@ -548,11 +554,12 @@
   line-height: 1;
   font-size: 30px;
   margin-bottom: 15px;
+  text-transform: capitalize;
 }
 
 .home__student-left p {
   margin-bottom: 30px;
-  text-align: justify;
+  text-align: left;
 }
 
 .home__student-left a {
@@ -588,8 +595,8 @@
 
 .home__money {
   display: flex;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 150px;
+  padding-bottom: 150px;
 }
 
 .home__money-left {
@@ -949,6 +956,7 @@
 
   .hero {
     width: 100%;
+    height: 300px;
   }
 
   .navigate_auto,
@@ -958,7 +966,7 @@
 
   .cream__hero {
     width: 100%;
-    height: 230px;
+    height: 330px;
     background-color: #fbf4e8;
   }
 
@@ -968,7 +976,7 @@
 
   .slide img {
     width: 415px;
-    height: auto;
+    height: 410px;
   }
 
   .first_slider {
@@ -990,7 +998,7 @@
     flex-direction: row;
     color: white;
     background-color: #987c55;
-    width: 354px;
+    width: 454px;
     margin-left: 60px;
     padding: 10px;
     justify-content: space-between;
@@ -1002,13 +1010,19 @@
     font-weight: 400;
   }
 
+  .slide__link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
   .slide__link small {
     font-weight: bold;
     font-size: 16px;
   }
 
   .slide-text a svg {
-    display: none;
+    display: block;
   }
 
   .first_slider b {
@@ -1206,15 +1220,14 @@
   }
 
   .home__student-left p {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     width: 361px;
-    height: 154px;
     font-family: "Inter", sans-serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
     letter-spacing: 0em;
-    text-align: justify;
+    text-align: left;
     padding-right: 30px;
     padding-left: 10px;
   }
@@ -1234,12 +1247,12 @@
     margin-bottom: 20px;
     align-items: center;
     justify-content: center;
-    margin-left: 30px;
+    margin-left: 20px;
   }
 
   .home__student-right {
     flex: 1;
-    padding-left: 30px;
+    padding-left: 20px;
   }
 
   .home__student-right img {
@@ -1320,8 +1333,7 @@
 
   .home__digital-left {
     flex: 1;
-    margin-left: 30px;
-    padding-top: 40px;
+    margin-left: 15px;
   }
 
   .home__digital-left h3 {
@@ -1338,10 +1350,12 @@
     font-family: "Inter", sans-serif;
     font-size: 14px;
     font-weight: 400;
+    width: 361px;
+    height: 181px;
     line-height: 22px;
     letter-spacing: 0em;
-    text-align: justify;
-    padding-right: 10px;
+    text-align: left;
+    padding-right: 40px;
   }
 
   .home__digital-left a {
@@ -1364,7 +1378,7 @@
 
   .home__digital-right {
     flex: 1;
-    padding-left: 30px;
+    padding-left: 15px;
   }
 
   .home__digital-right img {
@@ -1374,7 +1388,7 @@
 
   .home__digital2-right {
     flex: 1;
-    padding-left: 20px;
+    padding-left: 15px;
   }
 
   .home__digital2-right img {
@@ -1391,11 +1405,11 @@
 
   .home__ride-left {
     flex: 1;
-    margin-left: 30px;
+    margin-left: 10px;
   }
 
   .home__ride-left img {
-    width: 304.94px;
+    width: 320px;
     height: 213.37px;
   }
 
@@ -1507,8 +1521,11 @@
     /* margin-left: 30px; */
   }
 
-  .slide-arrow small {
-    padding-right: 30px;
+  .slide-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 500px;
   }
 }
 

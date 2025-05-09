@@ -149,7 +149,7 @@ const RiskForm = ({ onClose }) => {
     const lifeForms = [
         "Funeral Finance Plan (Whole Life Policy)",
         "Supreme Homecall Plan",
-        "WealthMaster Plus Applicable Form (Investment Policy)",
+        "WealthMaster Plus Application Form (Investment Policy)",
         "⁠Child Lifeline Plus Application Form (EducationPolicy)",
         "Executive/Living Plus Plan (Comprehensive Individual Life Policy)",
         "Lifetime Needs (Annuity Policy/Investment Policy)"
@@ -239,7 +239,7 @@ const RiskForm = ({ onClose }) => {
             // For life insurance
             setShowChild(value === '⁠Child Lifeline Plus Application Form (EducationPolicy)');
             setShowSupreme(value === 'Supreme Homecall Plan');
-            setShowWealth(value === 'WealthMaster Plus Applicable Form (Investment Policy)');
+            setShowWealth(value === 'WealthMaster Plus Application Form (Investment Policy)');
             setShowFuneral(value === 'Funeral Finance Plan (Whole Life Policy)');
             setShowExecutive(value === 'Executive/Living Plus Plan (Comprehensive Individual Life Policy)');
             setShowLifetime(value === 'Lifetime Needs (Annuity Policy/Investment Policy)');
@@ -321,13 +321,13 @@ const RiskForm = ({ onClose }) => {
                     <ToastContainer position="bottom-center" />
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute lg:top-4 top-6 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
                         <X size={20} />
                     </button>
                     <div className="flex flex-col text-black">
-                        <h2 className="font-extrabold uppercase text-[20px] mb-2 mt-4">
+                        <h2 className="font-extrabold uppercase text-[20px] mb-2">
                             Risk Brokerage Service Portal
                         </h2>
                         <p className="text-[14px]">
@@ -422,7 +422,7 @@ const RiskForm = ({ onClose }) => {
                                     >
                                         <option value="">Choose an option</option>
                                         <option value="Insurance Quote">Get new insurance quote</option>
-                                        <option value="File Claim">File a claim for existing policy</option>
+                                        <option value="File Claim">File a claim on an existing policy</option>
                                         <option value="Assistance">Other Assistance</option>
                                     </select>
                                 </div>
@@ -475,27 +475,31 @@ const RiskForm = ({ onClose }) => {
                                     {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
                                 </div>
 
-                                <div>
-                                    <label htmlFor="insuranceType" className="block text-sm font-medium">
-                                        Insurance Category
-                                    </label>
-                                    <select
-                                        id="insuranceType"
-                                        name="insuranceType"
-                                        value={formData.insuranceType}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    >
-                                        <option value="">Choose an option</option>
-                                        <option value="Life Insurance">Life Insurance</option>
-                                        <option value="General Insurance">General Insurance</option>
-                                        <option value="Health Insurance">Health Insurance</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
+                                {formData.requestType !== "Assistance" && (
+                                    <div>
+                                        <label htmlFor="insuranceType" className="block text-sm font-medium">
+                                            Insurance Category
+                                        </label>
+                                        <select
+                                            id="insuranceType"
+                                            name="insuranceType"
+                                            value={formData.insuranceType}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        >
+                                            <option value="">Choose an option</option>
+                                            <option value="Life Insurance">Life Insurance</option>
+                                            <option value="General Insurance">General Insurance</option>
+                                            <option value="Health Insurance">Health Insurance</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                )}
 
-                                {formData.insuranceType === "Life Insurance" && (
+
+                                {/* Life Insurance: Preferred Company */}
+                                {formData.requestType !== "Assistance" && formData.insuranceType === "Life Insurance" && (
                                     <div>
                                         <label htmlFor="brokerage" className="block text-sm font-medium">
                                             Preferred Insurance Company
@@ -507,44 +511,37 @@ const RiskForm = ({ onClose }) => {
                                             onChange={handleChange}
                                             className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         >
-                                            {/* <option value="">Choose an option</option> */}
-                                            {lifeInsurance.map((life, index) => (
-                                                <option key={index} value={life}>
-                                                    {life}
-                                                </option>
+                                            {lifeInsurance.map((life, idx) => (
+                                                <option key={idx} value={life}>{life}</option>
                                             ))}
                                         </select>
                                     </div>
                                 )}
-                                <div>
-                                    <label htmlFor="formType" className="block text-sm font-medium">
-                                        Insurance Product
-                                    </label>
-                                    <select
-                                        id="formType"
-                                        name="formType"
-                                        value={formData.formType}
-                                        onChange={handleChange}
-                                        required
-                                        disabled={formData.insuranceType.trim() === "Other"}
-                                        className={`w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${formData.insuranceType.trim() === "Other" ? "cursor-not-allowed" : ""}`}
-                                    >
-                                        <option value="">Choose an option</option>
-                                        {formData.insuranceType === "Life Insurance"
-                                            ? lifeForms.map((option, index) => (
-                                                <option key={index} value={option}>
-                                                    {option}
-                                                </option>
-                                            ))
-                                            : filteredPdfOptions().map((option, index) => (
-                                                <option key={index} value={option}>
-                                                    {option}
-                                                </option>
-                                            ))}
-                                    </select>
-                                </div>
+                                {formData.requestType !== "Assistance" && (
+                                    <div>
+                                        <label htmlFor="formType" className="block text-sm font-medium">
+                                            Insurance Product
+                                        </label>
+                                        <select
+                                            id="formType"
+                                            name="formType"
+                                            value={formData.formType}
+                                            onChange={handleChange}
+                                            required
+                                            disabled={formData.insuranceType.trim() === "Other"}
+                                            className={`w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${formData.insuranceType.trim() === "Other" ? "cursor-not-allowed" : ""}`}
+                                        >
+                                            <option value="">Choose a poilcy</option>
+                                            {formData.insuranceType === "Life Insurance"
+                                                ? lifeForms.map((opt, idx) => <option key={idx} value={opt}>{opt}</option>)
+                                                : filteredPdfOptions().map((opt, idx) => <option key={idx} value={opt}>{opt}</option>)
+                                            }
+                                        </select>
+                                    </div>
+                                )}
 
-                                {formData.insuranceType === "General Insurance" && (
+                                {/* General Insurance: Preferred Company */}
+                                {formData.requestType !== "Assistance" && formData.insuranceType === "General Insurance" && (
                                     <div>
                                         <label htmlFor="brokerage" className="block text-sm font-medium">
                                             Preferred Insurance Company
@@ -557,10 +554,8 @@ const RiskForm = ({ onClose }) => {
                                             className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         >
                                             <option value="">Choose an option</option>
-                                            {firms.map((firm, index) => (
-                                                <option key={index} value={firm}>
-                                                    {firm}
-                                                </option>
+                                            {firms.map((firm, idx) => (
+                                                <option key={idx} value={firm}>{firm}</option>
                                             ))}
                                         </select>
                                     </div>

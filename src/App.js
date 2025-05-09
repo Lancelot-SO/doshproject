@@ -31,6 +31,7 @@ import FinanceSideModal from './components/FinanceSideModal';
 import VideoParent from './components/VideoParent';
 //the terms component is the modal
 import Terms from './components/Terms';
+import TrackPageVisit from './components/TrackPageVisit';
 
 const Layout = () => {
   const location = useLocation();  // Get the current route location
@@ -92,6 +93,8 @@ const Layout = () => {
 
       {/* BackToTop should still render even on the dashboard */}
       <BackToTop />
+      <TrackPageVisit pageUrl={window.location.href} />
+
     </>
   );
 };

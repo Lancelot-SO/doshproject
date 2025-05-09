@@ -156,6 +156,7 @@ const Director = ({ onClose, userData }) => {
                     declarationCapacity: "",
                     declarationCompany: "",
                     declarationDate: "",
+                    message: ''
                 });
                 e.target.reset();
                 // Delay unmounting the component to give time for the toast to display

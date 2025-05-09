@@ -84,13 +84,14 @@ const BackToTopBtn = () => {
             )}
             {(!isDashboard && showWhatsapp) && (
                 <a
-                    href="https://wa.me/+12032939850"
+                    href="https://wa.me/12032939850?text=help"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="whatsapp_float"
                 >
-                    <img src={whatsapp} alt='WhatsApp' className='cursor-pointer' />
+                    <img src={whatsapp} alt="WhatsApp" className="cursor-pointer" />
                 </a>
+
             )}
         </>
     );

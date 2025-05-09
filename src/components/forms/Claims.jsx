@@ -3,13 +3,12 @@ import { X } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import image from "../../images/assets.png";
+import image from "../../images/claim.png";
 import formlogo from "../../images/formlogo.png";
 
 const Claims = ({ onClose, userData }) => {
     const form = useRef();
 
-    // Initialize formData with additional fields for insurer type and specific insurer
     const [formData, setFormData] = useState({
         message: '',
         preferredInsurer: '',
@@ -20,7 +19,6 @@ const Claims = ({ onClose, userData }) => {
 
     // Arrays for the select options
     const firms = [
-        "DOSH recommended Insurer",
         "SIC Insurance Company Ltd",
         "Enterprise Insurance",
         "Star Assurance Company Ltd",
@@ -47,7 +45,6 @@ const Claims = ({ onClose, userData }) => {
     ];
 
     const lifeInsurance = [
-        "DOSH recommended Insurer",
         "SIC Life Insurance Company Ltd",
         "Enterprise Life Insurance Ltd.",
         "Starlife Insurance Company Ltd",
@@ -65,53 +62,48 @@ const Claims = ({ onClose, userData }) => {
         "Impact Life Insurance Ltd"
     ];
 
-    // State for capturing the insurer category selection
+    const dosh = [
+        "DOSH"
+    ]
+
     const [selectedInsurerType, setSelectedInsurerType] = useState('');
 
-    // Populate user details when available (if provided from parent)
+    // Pre-fill user data if provided
     useEffect(() => {
         if (userData) {
             setFormData(prev => ({
                 ...prev,
-                insuredName: userData.fullname ? userData.fullname.trim() : '',
+                insuredName: userData.fullname?.trim() || '',
                 email: userData.email || '',
                 mobile: userData.phone || '',
             }));
         }
     }, [userData]);
 
-    // For generic input changes
-    const handleChange = (e) => {
+    const handleChange = e => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    // Separate change handler for insurer type selection
-    const handlePreferredInsurerChange = (e) => {
+    const handlePreferredInsurerChange = e => {
         const category = e.target.value;
+        setSelectedInsurerType(category);
         setFormData(prev => ({
             ...prev,
             preferredInsurer: category,
-            specificInsurer: '', // Reset specific insurer when type changes
+            specificInsurer: '',
+            // clear policyNumber if switching to "Other"
+            policyNumber: category === 'Other' ? '' : prev.policyNumber,
         }));
-        setSelectedInsurerType(category);
     };
 
-    const sendEmail = (e) => {
+    const sendEmail = e => {
         e.preventDefault();
-
         emailjs
-            .sendForm(
-                'service_lhp5a0r',     // Replace with your EmailJS service ID
-                'template_olpbd9c',    // Replace with your EmailJS template ID
-                form.current,
-                'aV-FvEfOZg7fbxTN2'     // Replace with your EmailJS public key
-            )
+            .sendForm('service_lhp5a0r', 'template_olpbd9c', form.current, 'aV-FvEfOZg7fbxTN2')
             .then(
-                (result) => {
-                    // Show a success toast; the autoClose is set to 5000 ms (5 seconds)
+                () => {
                     toast.success('Claim submitted successfully!', { autoClose: 5000 });
-                    // Reset the formData
                     setFormData({
                         message: '',
                         preferredInsurer: '',
@@ -119,24 +111,16 @@ const Claims = ({ onClose, userData }) => {
                         customerDetails: '',
                         policyNumber: '',
                     });
-                    // Delay unmounting the component to give time for the toast to display
-                    setTimeout(() => {
-                        if (onClose) onClose();
-                    }, 6000);
+                    setTimeout(onClose, 6000);
                 },
-                (error) => {
-                    toast.error('Failed to submit claim. Please try again.', { autoClose: 5000 });
-                    console.error('Email error:', error.text);
-                }
+                () => toast.error('Failed to submit claim. Please try again.', { autoClose: 5000 })
             );
-
-        // Optionally reset the form fields in the DOM
         e.target.reset();
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6">
-            <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-lg shadow-lg flex overflow-hidden">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4">
+            <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[5px] shadow-lg flex overflow-hidden">
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
                     <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
@@ -153,23 +137,24 @@ const Claims = ({ onClose, userData }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    {/* ToastContainer is here to display toast messages; autoClose is set to 5000ms */}
-                    <ToastContainer autoClose={5000} />
-
-
-                    {/* Close Button */}
+                    <ToastContainer position="bottom-center" />
                     <button
                         onClick={onClose}
-                        className="absolute lg:top-4 top-6 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute lg:top-3 top-6 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
                         <X size={20} />
                     </button>
-
-                    <h2 className="text-2xl text-gray-800 font-bold mb-3">Claim Request Form</h2>
-                    <p>Please kindly fill out the form fields below.</p>
-
+                    <div className="flex flex-col text-black">
+                        <h2 className="font-extrabold uppercase text-[20px] mb-2 mt-4">
+                            Risk Brokerage Service Portal
+                        </h2>
+                        <p className="text-[14px]">
+                            Tell us how we can help you today.
+                        </p>
+                    </div>
                     <form ref={form} onSubmit={sendEmail} className="space-y-4">
+                        {/* Customer Details */}
                         <div>
                             <label htmlFor="customerDetails" className="block text-sm font-medium">
                                 Customer Details (Name)
@@ -181,13 +166,14 @@ const Claims = ({ onClose, userData }) => {
                                 onChange={handleChange}
                                 required
                                 placeholder="Enter your details"
-                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full mt-1 p-3 border rounded shadow-sm focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
 
+                        {/* Category */}
                         <div>
                             <label htmlFor="preferredInsurer" className="block text-sm font-medium">
-                                Preferred Insurer
+                                Category
                             </label>
                             <select
                                 id="preferredInsurer"
@@ -195,43 +181,21 @@ const Claims = ({ onClose, userData }) => {
                                 value={formData.preferredInsurer}
                                 onChange={handlePreferredInsurerChange}
                                 required
-                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full mt-1 p-3 border rounded shadow-sm focus:ring-2 focus:ring-blue-500"
                             >
                                 <option value="">Choose an option</option>
-                                <option value="Life Insurance">Life Insurer</option>
-                                <option value="General Insurance">General Insurer</option>
+                                <option value="General Insurance">General Insurance</option>
+                                <option value="Life Insurance">Life Insurance</option>
                                 <option value="Health Insurance">Health Insurance</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>
 
-                        {/* Conditionally render the second dropdown based on the selected insurer type */}
-                        {selectedInsurerType === "Life Insurance" && (
-                            <div>
-                                <label htmlFor="specificInsurer" className="block text-sm font-medium">
-                                    Life Insurer
-                                </label>
-                                <select
-                                    id="specificInsurer"
-                                    name="specificInsurer"
-                                    value={formData.specificInsurer}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                >
-                                    {lifeInsurance.map((insurer, idx) => (
-                                        <option key={idx} value={insurer}>
-                                            {insurer}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                        )}
-
+                        {/* Specific Insurer: General */}
                         {selectedInsurerType === "General Insurance" && (
                             <div>
                                 <label htmlFor="specificInsurer" className="block text-sm font-medium">
-                                    General Insurer
+                                    Insurer
                                 </label>
                                 <select
                                     id="specificInsurer"
@@ -239,8 +203,9 @@ const Claims = ({ onClose, userData }) => {
                                     value={formData.specificInsurer}
                                     onChange={handleChange}
                                     required
-                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full mt-1 p-3 border rounded shadow-sm focus:ring-2 focus:ring-blue-500"
                                 >
+                                    <option value="">Select your insurer</option>
                                     {firms.map((insurer, idx) => (
                                         <option key={idx} value={insurer}>
                                             {insurer}
@@ -250,22 +215,72 @@ const Claims = ({ onClose, userData }) => {
                             </div>
                         )}
 
-                        <div>
-                            <label htmlFor="policyNumber" className="block text-sm font-medium">
-                                Insurance Policy Number
-                            </label>
-                            <input
-                                type="text"
-                                id="policyNumber"
-                                name="policyNumber"
-                                value={formData.policyNumber}
-                                onChange={handleChange}
-                                required
-                                placeholder="Enter policy number"
-                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            />
-                        </div>
+                        {/* Specific Insurer: Life */}
+                        {selectedInsurerType === "Life Insurance" && (
+                            <div>
+                                <label htmlFor="specificInsurer" className="block text-sm font-medium">
+                                    Insurer
+                                </label>
+                                <select
+                                    id="specificInsurer"
+                                    name="specificInsurer"
+                                    value={formData.specificInsurer}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full mt-1 p-3 border rounded shadow-sm focus:ring-2 focus:ring-blue-500"
+                                >
+                                    <option value="">Select your insurer</option>
+                                    {lifeInsurance.map((insurer, idx) => (
+                                        <option key={idx} value={insurer}>
+                                            {insurer}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        )}
 
+                        {/* Specific Insurer: Health */}
+                        {selectedInsurerType === "Health Insurance" && (
+                            <div>
+                                <label htmlFor="specificInsurer" className="block text-sm font-medium">
+                                    Insurer
+                                </label>
+                                <select
+                                    id="specificInsurer"
+                                    name="specificInsurer"
+                                    value={formData.specificInsurer}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full mt-1 p-3 border rounded shadow-sm focus:ring-2 focus:ring-blue-500"
+                                >
+                                    <option value="">Select your insurer</option>
+                                    {dosh.map((insurer, idx) => (
+                                        <option key={idx} value={insurer}>
+                                            {insurer}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        )}
+
+                        {selectedInsurerType !== "Other" && (
+                            <div>
+                                <label htmlFor="policyNumber" className="block text-sm font-medium">
+                                    Insurance Policy Number
+                                </label>
+                                <input
+                                    id="policyNumber"
+                                    name="policyNumber"
+                                    value={formData.policyNumber}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Enter policy number"
+                                    className="w-full mt-1 p-3 border rounded shadow-sm focus:ring-2 focus:ring-blue-500"
+                                />
+                            </div>
+                        )}
+
+                        {/* Message */}
                         <div>
                             <label htmlFor="message" className="block text-sm font-medium">
                                 Request Details
@@ -279,8 +294,8 @@ const Claims = ({ onClose, userData }) => {
                                 minLength={15}
                                 required
                                 placeholder="Enter a message"
-                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-                            ></textarea>
+                                className="w-full mt-1 p-3 border rounded shadow-sm focus:ring-2 focus:ring-blue-500 resize-none"
+                            />
                         </div>
 
                         <button
@@ -293,6 +308,7 @@ const Claims = ({ onClose, userData }) => {
                 </div>
             </div>
         </div>
+
     );
 };
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import { X } from 'lucide-react';
-import image from "../../../images/assets.png";
+import image from "../../../images/childlife.png";
 import formlogo from "../../../images/formlogo.png"
 
 const initialState = {
@@ -194,6 +194,7 @@ const initialState = {
     unitManagerName: '',
     unitManagerSignature: '',
     unitManagerDate: '',
+    message: ''
 };
 
 const ChildLifelineForm = ({ onClose, userData }) => {
@@ -276,17 +277,17 @@ const ChildLifelineForm = ({ onClose, userData }) => {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6">
-            <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-lg shadow-lg flex overflow-hidden">
+            <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[5px] shadow-lg flex overflow-hidden">
 
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
-                    <div className='w-full h-full extralarge:h-1/4 bg-black p-4'>
-                        <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
-                        <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
+                    <img src={image} alt="Insurance" className="w-full h-[700px] md:h-[500px] extralarge:h-3/4 object-cover" loading="lazy" />
+                    <div className="w-full h-full extralarge:h-1/4 bg-black p-4">
+                        <img src={formlogo} alt="formlogo" className="w-[112px] h-[53px]" loading="lazy" />
+                        <h2 className="font-bold text-white text-[20px] mb-4 mt-4">
                             Secure Your Future with Comprehensive Insurance Coverage
                         </h2>
-                        <p className='text-[14px] text-white'>
+                        <p className="text-[14px] text-white">
                             We simplify insurance so you can focus on what truly matters.
                         </p>
                     </div>
@@ -299,7 +300,7 @@ const ChildLifelineForm = ({ onClose, userData }) => {
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute top-4 md:top-3 lg:top-3 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
                         <X size={20} />
@@ -338,7 +339,7 @@ const ChildLifelineForm = ({ onClose, userData }) => {
                                 </div>
                             </div>
                             <h1 className="text-left text-[14px] font-bold mt-4">
-                                StarLife CHILD LIFELINE PLUS POLICY APPLICATION FORM
+                                CHILD LIFELINE PLUS POLICY APPLICATION FORM
                             </h1>
                             <p className="text-left text-sm mt-1 text-red-500">
                                 NB. EVERY QUESTION MUST BE ANSWERED. PLEASE COMPLETE THIS FORM IN BLOCK LETTERS
@@ -2131,10 +2132,27 @@ const ChildLifelineForm = ({ onClose, userData }) => {
                                     className="border rounded p-1 w-full mt-1"
                                 />
                             </div>
+
+                            <div>
+                                <label htmlFor="message" className="block text-sm font-medium">
+                                    Request Details
+                                </label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    rows="4"
+                                    minLength={15}
+                                    required
+                                    placeholder="Enter a message"
+                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                                ></textarea>
+                            </div>
                         </section>
 
                         <div className="mt-8 text-center">
-                            <button type="submit" className="bg-blue-600 text-white rounded py-2 px-4">
+                            <button type="submit" className="bg-[#b5996e] text-white rounded py-2 px-4">
                                 Submit Application
                             </button>
                         </div>

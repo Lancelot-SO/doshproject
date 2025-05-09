@@ -3,7 +3,7 @@ import { X } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import image from "../../../images/assets.png";
+import image from "../../../images/supreme.png";
 import formlogo from "../../../images/formlogo.png";
 
 const initialState = {
@@ -124,7 +124,8 @@ const initialState = {
     issueDate: '',
     officialSignature: '',
     issueAge: '',
-    officialDate: ''
+    officialDate: '',
+    message: ""
 };
 
 function StarLifeSupremeForm({ onClose, userData }) {
@@ -232,7 +233,7 @@ function StarLifeSupremeForm({ onClose, userData }) {
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-lg shadow-lg flex overflow-hidden">
                 {/* Left Side Image */}
                 <div className="hidden md:flex flex-col w-1/2 bg-cover bg-center">
-                    <img src={image} alt="Insurance" className="w-full h-[700px] extralarge:h-3/4 object-cover" loading="lazy" />
+                    <img src={image} alt="Insurance" className="w-full h-[700px] md:h-[500px] extralarge:h-3/4 object-cover" loading="lazy" />
                     <div className='w-full h-full extralarge:h-1/4 bg-black p-4'>
                         <img src={formlogo} alt='formlogo' className='w-[112px] h-[53px]' loading='lazy' />
                         <h2 className='font-bold text-white text-[20px] mb-4 mt-4'>
@@ -251,7 +252,7 @@ function StarLifeSupremeForm({ onClose, userData }) {
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
+                        className="absolute top-4 md:top-3 lg:top-3 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
                         aria-label="Close"
                     >
                         <X size={20} />
@@ -1811,6 +1812,23 @@ function StarLifeSupremeForm({ onClose, userData }) {
                                         className="border p-1 w-full"
                                     />
                                 </div>
+                            </div>
+
+                            <div>
+                                <label htmlFor="message" className="block text-sm font-medium">
+                                    Request Details
+                                </label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    rows="4"
+                                    minLength={15}
+                                    required
+                                    placeholder="Enter a message"
+                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                                ></textarea>
                             </div>
                         </div>
 

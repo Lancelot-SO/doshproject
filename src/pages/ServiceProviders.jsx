@@ -136,7 +136,7 @@ const ServiceProviders = () => {
                     <section className='filter-section'>
                         <h1 className='hsp__text'>Click on filter to search for HSP</h1>
 
-                        <div className='container filter__search'>
+                        <div className='filter__search'>
                             <button className="filter-button" onClick={toggleModal}><FaFilter /> Filter</button>
                             <div className="search-container">
                                 <IoIosSearch className='search-icon' />

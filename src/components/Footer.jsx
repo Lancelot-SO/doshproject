@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from "../images/dosh-footer-logo.png"
 import { FaFacebook, FaYoutube, FaInstagram, FaLinkedin, FaTiktok, FaTimes } from "react-icons/fa"
 import { FaXTwitter } from "react-icons/fa6"
@@ -6,8 +6,50 @@ import { Link } from 'react-router-dom'
 import bg from "../images/footer-bg.png"
 import "../App.css"
 
+// 2-letter country codes as returned by ipapi.co (GB → UK)
+const ADDRESS_MAP = {
+    US: {
+        text: `2 Park Place<br/>Hartford CT 06106<br/>USA`,
+        mapUrl: 'https://maps.app.goo.gl/WAL6SMGMBJWJHhBu7'
+    },
+    GH: {
+        text: `10 MIREKU WE LP<br/>Dansoman-Accra<br/>GA-504-4280`,
+        mapUrl: 'https://maps.app.goo.gl/d7qvqRwCwEeuM5Le6'
+    },
+    IE: {
+        text: `Ground Floor,<br/>71 Baggot Street Lower,<br/>Dublin 2,<br/>D02 P593,<br/>Ireland`,
+        mapUrl: 'https://maps.app.goo.gl/qkCh5ZRjgQoc1hCbA'
+    },
+    UK: {
+        text: `5th Floor,<br/>167-169 Great Portland Street<br/>London<br/>W1W 5PF<br/>United Kingdom`,
+        mapUrl: 'https://maps.app.goo.gl/7RfBeVto112Uxcaj6'
+    },
+    DEFAULT: {
+        text: `10 MIREKU WE LP<br/>Dansoman-Accra<br/>GA-504-4280`,
+        mapUrl: 'https://maps.app.goo.gl/d7qvqRwCwEeuM5Le6'
+    }
+}
+
+
 const Footer = () => {
     const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false)
+    const [countryKey, setCountryKey] = useState('DEFAULT')
+
+    useEffect(() => {
+        fetch('https://ipapi.co/json/')
+            .then(res => res.json())
+            .then(data => {
+                let code = data.country  // e.g. "US", "GB", "IE", "GH"
+                if (code === 'GB') code = 'UK'    // our map uses UK
+                setCountryKey(ADDRESS_MAP[code] ? code : 'DEFAULT')
+            })
+            .catch(() => {
+                // on error, stick with DEFAULT
+            })
+    }, [])
+
+    const { text, mapUrl } = ADDRESS_MAP[countryKey]
+
 
     const togglePrivacyPolicy = () => {
         setShowPrivacyPolicy(!showPrivacyPolicy)
@@ -23,11 +65,10 @@ const Footer = () => {
                         <div className='footer__logo'>
                             <img src={logo} alt='dosh-logo' />
                         </div>
-                        <div className='footer__text'>
-                            <Link to="https://maps.app.goo.gl/d7qvqRwCwEeuM5Le6"
-                                target='_blank' rel="noopener noreferrer"
-                            >
-                                <p>10 MIREKU WE <br className='flex' />LP, Dansoman-Accra <br className='flex' />GA-504-4280 </p>
+                        <div className="footer__text">
+                            <Link to={mapUrl} target="_blank" rel="noopener noreferrer">
+                                {/* dangerouslySetInnerHTML lets us keep <br/> */}
+                                <p dangerouslySetInnerHTML={{ __html: text }} />
                             </Link>
                         </div>
                         <div className='contacts'>
@@ -39,26 +80,26 @@ const Footer = () => {
                                 <p className='text-white cursor-pointer hover:text-[#987c55]' onClick={togglePrivacyPolicy}>Privacy Policy</p>
                             </div>
                         </div>
-                    </div>
-                    <div className='socials'>
-                        <Link to='https://x.com/dosh_revolution?s=21&t=-BrXbfatLtONPkJKS4q8HQ' target="_blank" rel="noopener noreferrer">
-                            <FaXTwitter size={24} />
-                        </Link>
-                        <Link to='https://www.facebook.com/DOSH.Revolution?mibextid=LQQJ4d' target="_blank" rel="noopener noreferrer">
-                            <FaFacebook size={24} />
-                        </Link>
-                        <Link to='https://www.linkedin.com/company/dosh-revolution/' target="_blank" rel="noopener noreferrer">
-                            <FaLinkedin size={24} />
-                        </Link>
-                        <Link to='https://www.instagram.com/dosh_revolution?igsh=MXQ3Z2d6aTMxMHA3ZA%3D%3D&utm_source=qr' target="_blank" rel="noopener noreferrer">
-                            <FaInstagram size={24} />
-                        </Link>
-                        <Link to='https://youtube.com/@DOSHRevolution?si=H6MOS8Wj6Se8eegI' target="_blank" rel="noopener noreferrer">
-                            <FaYoutube size={24} />
-                        </Link>
-                        <Link to='https://www.tiktok.com/@dosh.revolution?_t=8kJif6YpYMX&_r=1' target="_blank" rel="noopener noreferrer">
-                            <FaTiktok size={24} />
-                        </Link>
+                        <div className='socials'>
+                            <Link to='https://x.com/dosh_revolution?s=21&t=-BrXbfatLtONPkJKS4q8HQ' target="_blank" rel="noopener noreferrer">
+                                <FaXTwitter size={24} />
+                            </Link>
+                            <Link to='https://www.facebook.com/DOSH.Revolution?mibextid=LQQJ4d' target="_blank" rel="noopener noreferrer">
+                                <FaFacebook size={24} />
+                            </Link>
+                            <Link to='https://www.linkedin.com/company/dosh-revolution/' target="_blank" rel="noopener noreferrer">
+                                <FaLinkedin size={24} />
+                            </Link>
+                            <Link to='https://www.instagram.com/dosh_revolution?igsh=MXQ3Z2d6aTMxMHA3ZA%3D%3D&utm_source=qr' target="_blank" rel="noopener noreferrer">
+                                <FaInstagram size={24} />
+                            </Link>
+                            <Link to='https://youtube.com/@DOSHRevolution?si=H6MOS8Wj6Se8eegI' target="_blank" rel="noopener noreferrer">
+                                <FaYoutube size={24} />
+                            </Link>
+                            <Link to='https://www.tiktok.com/@dosh.revolution?_t=8kJif6YpYMX&_r=1' target="_blank" rel="noopener noreferrer">
+                                <FaTiktok size={24} />
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </footer>

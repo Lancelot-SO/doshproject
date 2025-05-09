@@ -1,18 +1,20 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Contact.css';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import contact from '../images/doshContact.png';
+// import contact from '../images/doshContact.png';
 import logo from '../images/dosh_logo.png';
-import contactImage from '../images/contactImage.png';
+// import contactImage from '../images/contactImage.png';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const Contact = () => {
     const form = useRef();
-    // const [contactData, setContactData] = useState(null);
+    const [ContactData, setContactData] = useState(null);
+
+
 
     const sendEmail = (e) => {
         e.preventDefault();
@@ -40,13 +42,37 @@ const Contact = () => {
         AOS.refresh();
     }, []);
 
+    //fetch api for contact data
+    useEffect(() => {
+        const fetchContactData = async () => {
+            try {
+                const response = await fetch('https://doshcms.interactivedigital.com.gh/api/fetch-contact-data');
+                const data = await response.json();
+                console.log('contact Data:', data);
+                setContactData(data);
+            } catch (error) {
+                console.error('Error fetching contact data:', error);
+            }
+        };
+        fetchContactData();
+    }, []);
+
+    if (!ContactData) {
+        return <div className='flex flex-col text-white'>
+            <h6>Loading...</h6>
+        </div>;
+    }
+
     return (
         <div className="cont">
             <ToastContainer />
             <div className="contact__head">
-                <img data-aos="fade-down" src={contact} alt="about" loading="lazy" />
+                <img data-aos="fade-down"
+                    src={ContactData?.header_image ? `https://doshcms.interactivedigital.com.gh/${ContactData.header_image}` : "contact image"}
+                    alt="about"
+                    loading="lazy" />
                 <div className="contact__text">
-                    <p>Contact Us</p>
+                    <p dangerouslySetInnerHTML={{ __html: ContactData.header_caption }} />
                 </div>
             </div>
 
@@ -137,7 +163,10 @@ const Contact = () => {
                         <img src={logo} alt="logo" className="dosh-contact-logo" />
                     </form>
                     <div className="dosh-contact-image">
-                        <img src={contactImage} alt="dosh" />
+                        <img
+                            src={ContactData?.section_image ? `https://doshcms.interactivedigital.com.gh/${ContactData.section_image}` : "assets/elevate.png"}
+                            alt="dosh"
+                            loading='lazy' />
                     </div>
                 </div>
             </div>
