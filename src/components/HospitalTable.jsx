@@ -1,32 +1,23 @@
 import React, { useState } from "react";
 import { BsThreeDots, BsThreeDotsVertical } from "react-icons/bs";
 
-
 const HospitalTable = ({ data }) => {
     const [expandedRow, setExpandedRow] = useState(null);
 
-    // Function to get Google Maps link based on latitude and longitude
-    const getGoogleMapsLink = (latitude, longitude) => {
-        if (!latitude || !longitude) return "N/A";
-        const lat = encodeURIComponent(latitude);
-        const long = encodeURIComponent(longitude);
-        return `https://www.google.com/maps?q=${lat},${long}`;
-    };
+    const getGoogleMapsLink = (lat, long) =>
+        lat && long
+            ? `https://www.google.com/maps?q=${encodeURIComponent(lat)},${encodeURIComponent(long)}`
+            : "N/A";
 
-    // Function to generate a mailto link for email addresses
-    const getMailToLink = (email) => {
-        if (!email) return "N/A";
-        return `mailto:${email}`;
-    };
+    const getMailToLink = (email) =>
+        email ? `mailto:${email}` : "N/A";
 
-    const toggleRow = (index) => {
-        setExpandedRow(expandedRow === index ? null : index);
-    };
+    const toggleRow = (i) =>
+        setExpandedRow(expandedRow === i ? null : i);
 
     return (
         <div className="table-container overflow-x-auto w-full lg:w-[1130px] p-4 md:p-0 bg-white">
             <table className="hospital-table min-w-full table-auto border-collapse bg-white shadow-md rounded-lg">
-                {/* Table Header */}
                 <thead className="bg-gray-100 border-b-2 border-gray-200">
                     <tr>
                         <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
@@ -52,125 +43,70 @@ const HospitalTable = ({ data }) => {
                         </th>
                     </tr>
                 </thead>
-
-                {/* Table Body */}
                 <tbody>
-                    {data.length > 0 ? (
-                        data.map((hospital, index) => (
-                            <React.Fragment key={index}>
-                                <tr
-                                    className={`border-b transition-colors duration-200 ${expandedRow === index ? "bg-gray-100" : "hover:bg-gray-50"
-                                        }`}
-                                >
-                                    {/* Hospital Name */}
-                                    <td className="px-4 py-2 bg-white">{hospital.name}</td>
-                                    {/* Region Name */}
-                                    <td className="px-4 py-2 bg-white">{hospital.region}</td>
-                                    {/* Expand/Collapse button for smaller screens */}
-                                    <td className="md:hidden px-4 py-2 bg-white">
-                                        <button
-                                            onClick={() => toggleRow(index)}
-                                            className="text-[#9e825b] hover:text-gray-800 focus:outline-none pl-2"
+                    {data.length > 0 ? data.map((h, i) => (
+                        <React.Fragment key={i}>
+                            <tr
+                                className={`border-b transition-colors duration-200 ${expandedRow === i ? "bg-gray-100" : "hover:bg-gray-50"
+                                    }`}
+                            >
+                                <td className="px-4 py-2 bg-white">{h.hospital_name}</td>
+                                <td className="px-4 py-2 bg-white">{h.region_name}</td>
+                                <td className="md:hidden px-4 py-2 bg-white">
+                                    <button
+                                        onClick={() => toggleRow(i)}
+                                        className="text-[#9e825b] hover:text-gray-800 focus:outline-none pl-2"
+                                    >
+                                        {expandedRow === i
+                                            ? <BsThreeDots size={24} />
+                                            : <BsThreeDotsVertical size={24} />}
+                                    </button>
+                                </td>
+                                <td className="hidden md:table-cell px-4 py-2 bg-white">{h.district}</td>
+                                <td className="hidden md:table-cell px-4 py-2 bg-white">
+                                    {h.phone_number1}{h.phone_number2 ? ` / ${h.phone_number2}` : ''}
+                                </td>
+                                <td className="hidden md:table-cell px-4 py-2 bg-white">
+                                    {h.email
+                                        ? <a href={getMailToLink(h.email)} className="text-[#9e825b] hover:underline">
+                                            {h.email}
+                                        </a>
+                                        : "N/A"
+                                    }
+                                </td>
+                                <td className="hidden md:table-cell px-4 py-2 bg-white">
+                                    {h.latitude && h.longitude ? (
+                                        <a
+                                            href={getGoogleMapsLink(h.latitude, h.longitude)}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-[#9e825b] hover:underline"
                                         >
-                                            {expandedRow === index ? (
-                                                <BsThreeDots size={24} className="inline" />
-                                            ) : (
-                                                <BsThreeDotsVertical size={24} className="inline" />
-                                            )}
-                                        </button>
-                                    </td>
-                                    {/* Additional fields (hidden on smaller screens) */}
-                                    <td className="hidden md:table-cell px-4 py-2 bg-white">
-                                        {hospital.district}
-                                    </td>
-                                    <td className="hidden md:table-cell px-4 py-2 bg-white">
-                                        {hospital.contact}
-                                    </td>
-                                    <td className="hidden md:table-cell px-4 py-2 bg-white">
-                                        {hospital.email ? (
-                                            <a
-                                                href={getMailToLink(hospital.email)}
-                                                className="text-[#9e825b] hover:underline"
-                                            >
-                                                {hospital.email}
-                                            </a>
-                                        ) : (
-                                            "N/A"
-                                        )}
-                                    </td>
-                                    <td className="hidden md:table-cell px-4 py-2 bg-white">
-                                        {hospital.latitude && hospital.longitude ? (
-                                            <a
-                                                href={getGoogleMapsLink(
-                                                    hospital.latitude,
-                                                    hospital.longitude
-                                                )}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-[#9e825b] hover:underline"
-                                            >
-                                                View on Map
-                                            </a>
-                                        ) : (
-                                            "N/A"
-                                        )}
+                                            View on Map
+                                        </a>
+                                    ) : "N/A"}
+                                </td>
+                            </tr>
+                            {expandedRow === i && (
+                                <tr className="md:hidden bg-gray-100">
+                                    <td colSpan="3" className="px-4 py-2 text-sm text-gray-600 space-y-2">
+                                        <p><strong>District:</strong> {h.district}</p>
+                                        <p><strong>Contact:</strong> {h.phone_number1}{h.phone_number2 ? ` / ${h.phone_number2}` : ''}</p>
+                                        <p><strong>Email:</strong> {h.email
+                                            ? <a href={getMailToLink(h.email)} className="text-[#9e825b] hover:underline">{h.email}</a>
+                                            : "N/A"
+                                        }</p>
+                                        <p><strong>Google Maps:</strong> {h.latitude && h.longitude
+                                            ? <a href={getGoogleMapsLink(h.latitude, h.longitude)} target="_blank" rel="noopener noreferrer" className="text-[#9e825b] hover:underline">View on Map</a>
+                                            : "N/A"
+                                        }</p>
                                     </td>
                                 </tr>
-                                {/* Expanded content for smaller screens */}
-                                {expandedRow === index && (
-                                    <tr className="md:hidden bg-gray-100">
-                                        <td
-                                            colSpan="3"
-                                            className="px-4 py-2 text-sm text-gray-600 space-y-2"
-                                        >
-                                            <p>
-                                                <strong>District:</strong> {hospital.district}
-                                            </p>
-                                            <p>
-                                                <strong>Contact:</strong> {hospital.contact}
-                                            </p>
-                                            <p>
-                                                <strong>Email:</strong>{" "}
-                                                {hospital.email ? (
-                                                    <a
-                                                        href={getMailToLink(hospital.email)}
-                                                        className="text-[#9e825b] hover:underline"
-                                                    >
-                                                        {hospital.email}
-                                                    </a>
-                                                ) : (
-                                                    "N/A"
-                                                )}
-                                            </p>
-                                            <p>
-                                                <strong>Google Maps:</strong>{" "}
-                                                {hospital.latitude && hospital.longitude ? (
-                                                    <a
-                                                        href={getGoogleMapsLink(
-                                                            hospital.latitude,
-                                                            hospital.longitude
-                                                        )}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="text-[#9e825b] hover:underline"
-                                                    >
-                                                        View on Map
-                                                    </a>
-                                                ) : (
-                                                    "N/A"
-                                                )}
-                                            </p>
-                                        </td>
-                                    </tr>
-                                )}
-                            </React.Fragment>
-                        ))
-                    ) : (
+                            )}
+                        </React.Fragment>
+                    )) : (
                         <tr>
-                            <td
-                                colSpan="6"
-                                className="px-4 py-4 text-center text-gray-500 font-medium bg-white"
-                            >
+                            <td colSpan="6" className="px-4 py-4 text-center text-gray-500 font-medium bg-white">
                                 No hospitals found
                             </td>
                         </tr>

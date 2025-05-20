@@ -107,6 +107,7 @@ const About = () => {
                 <img
                     src={aboutData?.aboutus_header_image ? `https://doshcms.interactivedigital.com.gh/${aboutData.aboutus_header_image}` : "assets/elevate.png"}
                     alt='about' className='object-cover' loading='lazy' />
+                <h5 className='absolute bottom-20 left-3 lg:left-[190px] text-white text-[40px] lg:text-[52px] font-extrabold'>Who We Are </h5>
             </section>
             {showButton && (
                 <button className="scroll-button" onClick={scrollToNextSection}>
@@ -115,8 +116,8 @@ const About = () => {
             )}
             <section id='handshake' className='about__section'>
                 <div className='container about__hand-shake'>
-                    <div className='about_left'>
-                        <h3>Who We Are </h3>
+                    <div className='about_left '>
+                        {/* <h3>Who We Are </h3> */}
                         <p className='text-left' dangerouslySetInnerHTML={{ __html: aboutData.who_we_are_body }} />
                     </div>
                     <div data-aos="zoom-in" className='about__right'>

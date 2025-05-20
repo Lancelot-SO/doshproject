@@ -376,7 +376,7 @@
   flex-direction: row;
   color: white;
   background-color: #987c55;
-  width: 1000px;
+  width: 100vw;
   float: right;
   /* margin-left: 100px; */
   padding: 10px;
@@ -392,7 +392,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  width: 300px;
+  /* width: 300px; */
 }
 
 .slide__link {
@@ -998,7 +998,7 @@
     flex-direction: row;
     color: white;
     background-color: #987c55;
-    width: 454px;
+    /* width: 454px; */
     margin-left: 60px;
     padding: 10px;
     justify-content: space-between;
@@ -1524,8 +1524,7 @@
   .slide-arrow {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    width: 500px;
+    width: 100vw;
   }
 }
 

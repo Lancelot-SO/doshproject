@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './ProductServices.css';
 import Slider from "react-slick";
-import doshvideo from '../images/dosh.mp4';
+// import doshvideo from '../images/dosh.mp4';
 import { FaArrowLeftLong, FaArrowRightLong, FaArrowRight } from "react-icons/fa6";
 import { IoIosArrowDown } from 'react-icons/io';
 import AOS from "aos";
@@ -157,7 +157,7 @@ const ProductServices = () => {
     // Slider arrow components and settings
     const NextArrow = ({ onClick }) => (
         <button
-            className="absolute bottom-5 lg:bottom-4 left-[60%] md:left-[55%] lg:left-[44%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-2xl p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
+            className="absolute top-3 lg:top-[90%] left-[80%] md:left-[55%] lg:left-[44%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-2xl p-2 lg:p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
             onClick={onClick}
         >
             <FaArrowRightLong />
@@ -166,7 +166,7 @@ const ProductServices = () => {
 
     const PrevArrow = ({ onClick }) => (
         <button
-            className="absolute bottom-5 lg:bottom-4 left-[37%] md:left-[45%] lg:left-[50%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-2xl p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
+            className="hidden md:flex absolute top-5 lg:top-[90%] left-[37%] md:left-[45%] lg:left-[50%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-2xl p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
             onClick={onClick}
         >
             <FaArrowLeftLong />
@@ -283,7 +283,7 @@ const ProductServices = () => {
                                             <h4 className="text-[24px] md:text-[32px] lg:text-[44px] font-bold text-[#9E825B] mb-2">
                                                 {product.title}
                                             </h4>
-                                            <p className='text-[16px] font-bold uppercase' dangerouslySetInnerHTML={{ __html: product.caption }} />
+                                            <p className='text-[16px] font-bold uppercase pt-2 lg:pt-0' dangerouslySetInnerHTML={{ __html: product.caption }} />
                                             <div>
                                                 <div className="text-sm lg:text-[14px] leading-[28px] text-align-left pr-4" dangerouslySetInnerHTML={{ __html: product.quote }} />
                                             </div>

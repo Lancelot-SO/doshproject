@@ -3,25 +3,9 @@ import '../App.css';
 
 // Move countryRegions and regionDistricts outside the component
 const countryRegions = {
-    'Ghana': ['Greater Accra', 'Western Region', 'Ashanti Region', 'Western North', 'Central', 'Eastern', 'Volta', 'Oti', 'Bono East', 'Bono', 'Ahafo', 'Northern', 'Savannah', 'North East', 'Upper East', 'Upper West'],
+    'Ghana': ['Greater Accra', 'Western', 'Ashanti', 'Western North', 'Central', 'Eastern', 'Volta', 'Oti', 'Bono East', 'Bono', 'Ahafo', 'Northern', 'Savannah', 'North East', 'Upper East', 'Upper West'],
     'Nigeria': ['Lagos', 'Kano', 'Kaduna', 'Rivers', 'Oyo'],
     'South Africa': ['Gauteng', 'KwaZulu-Natal', 'Western Cape', 'Eastern Cape', 'Free State'],
-    'Kenya': [],
-    'Uganda': [],
-    'Tanzania': [],
-    'Rwanda': [],
-    'Egypt': [],
-    'Morocco': [],
-    'Algeria': [],
-    'United States': [],
-    'United Kingdom': [],
-    'India': [],
-    'China': [],
-    'Brazil': [],
-    'Australia': [],
-    'Canada': [],
-    'Germany': [],
-    'France': [],
 };
 
 const regionDistricts = {
@@ -77,7 +61,7 @@ const FilterModal = ({ showModal, onClose, onFilter }) => {
             <div ref={modalRef} onClick={closeModal} className="modal">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title">In this view show records</h5>
+                        <h5 className="modal-title">Records to be shown</h5>
                     </div>
                     <div className="modal-body">
                         <form className='hsp__form'>

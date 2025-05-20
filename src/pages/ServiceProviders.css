@@ -25,7 +25,8 @@
 }
 
 .service__text b {
-  color: #9e825b;
+  /* color: #9e825b; */
+  color: white;
   font-weight: 900;
 }
 
@@ -71,6 +72,7 @@
 
   .service__text b {
     color: #9e825b;
+    /* color: white; */
     font-weight: 900;
   }
 
@@ -245,6 +247,10 @@
     /* Display cards in a row */
     padding: 10px;
   }
+
+  .filter__search {
+    padding-left: 30px;
+  }
 }
 
 .anime-sect {
@@ -334,7 +340,7 @@
   }
 
   .service__cards {
-    padding-left: 10px;
+    padding-left: 0;
   }
 
   .service__cards h4 {
@@ -346,11 +352,17 @@
     width: 391px;
     height: 110px;
     padding-top: 40px;
+    padding-left: 30px;
+  }
+
+  .underline {
+    margin-left: 30px;
   }
 
   .hsp__text {
     font-size: 20px;
     font-weight: 700;
+    padding-left: 30px;
   }
 }
 

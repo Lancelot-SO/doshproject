@@ -13,7 +13,7 @@ const ADDRESS_MAP = {
         mapUrl: 'https://maps.app.goo.gl/WAL6SMGMBJWJHhBu7'
     },
     GH: {
-        text: `10 MIREKU WE LP<br/>Dansoman-Accra<br/>GA-504-4280`,
+        text: `10 MIREKU WE LP<br/>Dansoman-Accra<br/>GA-504-4280 <br/>Ghana`,
         mapUrl: 'https://maps.app.goo.gl/d7qvqRwCwEeuM5Le6'
     },
     IE: {
@@ -30,11 +30,30 @@ const ADDRESS_MAP = {
     }
 }
 
-
 const Footer = () => {
     const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false)
+    const [privacyStatement, setPrivacyStatement] = useState(null)
     const [countryKey, setCountryKey] = useState('DEFAULT')
 
+    // 1️⃣ Fetch privacy-statement from CMS
+    useEffect(() => {
+        const fetchPrivacyData = async () => {
+            try {
+                // remove stray trailing space
+                const response = await fetch('https://doshcms.interactivedigital.com.gh/api/privacy-statement')
+                const data = await response.json()
+                console.log('privacy Data:', data)
+                // pull the actual field from the returned JSON
+                setPrivacyStatement(data.privacy_statement)
+            } catch (error) {
+                console.error('Error fetching privacy data:', error)
+                setPrivacyStatement('<p>Unable to load privacy policy at this time.</p>')
+            }
+        }
+        fetchPrivacyData()
+    }, [])
+
+    // 2️⃣ Fetch geo-IP for address
     useEffect(() => {
         fetch('https://ipapi.co/json/')
             .then(res => res.json())
@@ -48,12 +67,16 @@ const Footer = () => {
             })
     }, [])
 
-    const { text, mapUrl } = ADDRESS_MAP[countryKey]
-
+    // show a loading state until we have the privacyStatement
+    if (privacyStatement === null) {
+        return <div>Loading...</div>
+    }
 
     const togglePrivacyPolicy = () => {
-        setShowPrivacyPolicy(!showPrivacyPolicy)
+        setShowPrivacyPolicy(prev => !prev)
     }
+
+    const { text, mapUrl } = ADDRESS_MAP[countryKey]
 
     return (
         <div className='main__footer'>
@@ -67,7 +90,6 @@ const Footer = () => {
                         </div>
                         <div className="footer__text">
                             <Link to={mapUrl} target="_blank" rel="noopener noreferrer">
-                                {/* dangerouslySetInnerHTML lets us keep <br/> */}
                                 <p dangerouslySetInnerHTML={{ __html: text }} />
                             </Link>
                         </div>
@@ -77,7 +99,12 @@ const Footer = () => {
                                 <p>Phone: 0800-DOSH-ME (0800367463)</p>
                                 <p>Fax: 0800-DOSH-ME (0800367463)</p>
                                 <Link to="/contact">Online Support</Link>
-                                <p className='text-white cursor-pointer hover:text-[#987c55]' onClick={togglePrivacyPolicy}>Privacy Policy</p>
+                                <p
+                                    className='text-white cursor-pointer hover:text-[#987c55]'
+                                    onClick={togglePrivacyPolicy}
+                                >
+                                    Privacy Policy
+                                </p>
                             </div>
                         </div>
                         <div className='socials'>
@@ -118,31 +145,7 @@ const Footer = () => {
                         >
                             <FaTimes size={24} />
                         </button>
-                        <h2 className="text-2xl font-bold mb-4">DOSH Privacy Statement</h2>
-                        <p className="mb-4">DOSH values your privacy and is committed to protecting your personal information.
-                            This Privacy Statement explains how we collect, use, and safeguard your data when you visit our website or use our services.</p>
-                        <h3 className="text-xl font-semibold mb-2">Information We Collect</h3>
-                        <p className="mb-4">We may collect personal information such as your name, contact details, financial data, and other information you provide directly to us.</p>
-                        <h3 className="text-xl font-semibold mb-2">How We Use Your Information</h3>
-                        <p className="mb-4">We use your information to:</p>
-                        <ul className="list-disc pl-5 mb-4">
-                            <li>Provide and improve our services</li>
-                            <li>Personalize your experience</li>
-                            <li>Process transactions securely</li>
-                            <li>Communicate important updates</li>
-                        </ul>
-                        <h3 className="text-xl font-semibold mb-2">Data Sharing</h3>
-                        <p className="mb-4">We do not sell your personal information. We may share data with trusted partners for operational purposes, always ensuring robust confidentiality agreements.</p>
-                        <h3 className="text-xl font-semibold mb-2">Your Rights</h3>
-                        <p className="mb-4">You have the right to access, correct, or delete your personal data. You may also opt out of certain data processing activities by contacting us.</p>
-                        <h3 className="text-xl font-semibold mb-2">Data Security</h3>
-                        <p className="mb-4">We implement industry-standard measures to protect your data from unauthorized access, alteration, or loss.</p>
-                        <h3 className="text-xl font-semibold mb-2">Contact Us</h3>
-                        <p className="mb-4">For questions or concerns regarding your privacy, contact us at:</p>
-                        <p>Phone: 0800367463 (0800-DOSH-ME)</p>
-                        <p className='text-[#987c55]'>Email: <a href="mailto:Helpdesk@0800dosh.me">Helpdesk@0800dosh.me</a></p>
-                        <p>Fax: 0800367463</p>
-                        <p className="mb-4">By using our website, you consent to the terms of this Privacy Statement. Updates will be posted here as needed.</p>
+                        <div dangerouslySetInnerHTML={{ __html: privacyStatement }} />
                     </div>
                 </div>
             )}
