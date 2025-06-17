@@ -1,44 +1,59 @@
-import React, { useRef } from 'react'
-import caller from "../images/caller.png"
+import React, { useRef } from 'react';
+import caller from "../images/caller.png";
 import { BsPerson } from "react-icons/bs";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
-import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-
 const CallModal = ({ onClose }) => {
     const modalRef = useRef();
-    const form = useRef();
+    const formRef = useRef();
 
 
-    const sendEmail = (e) => {
+    const sendEmail = async (e) => {
         e.preventDefault();
 
+        const formData = {
+            name: e.target.fullName.value,
+            phone: e.target.phoneNumber.value,
+            time: e.target.hour.value,
+        };
 
-        emailjs
-            .sendForm('service_rgob7xk', 'template_pwa1tyi', form.current, {
-                publicKey: '6aG8jxTKE39zz493J',
-                from_name: 'DOSH',
-            })
-            .then(
-                () => {
-                    toast.success('Message sent successfully!');
+        console.log('📤 Sending form data:', formData);
+
+        try {
+            const response = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
                 },
-                // eslint-disable-next-line no-unused-vars
-                (error) => {
-                    toast.error('Failed to send message. Please try again.');
-                },
-            );
-        e.target.reset();
+                body: JSON.stringify(formData),
+            });
+
+            const result = await response.json(); // parse the PHP JSON response
+
+            if (result.status === 'success') {
+                console.log('✅ Response:', result);
+                toast.success(result.message || 'Message sent successfully!');
+                e.target.reset();
+            } else {
+                console.error('❌ Failed:', result);
+                toast.error(result.message || 'Failed to send message.');
+            }
+        } catch (error) {
+            console.error('⚠️ Error:', error);
+            toast.error('An error occurred. Please try again.');
+        }
     };
+
+
 
     const closeModal = (e) => {
         if (modalRef.current === e.target) {
             onClose();
         }
-    }
+    };
+
     return (
         <div>
             <ToastContainer />
@@ -55,9 +70,9 @@ const CallModal = ({ onClose }) => {
                         <div className="callmodal">
                             <p className='call-head'>Request a call back</p>
                             <span>Please provide your details for assistance.</span>
-                            <form ref={form} onSubmit={sendEmail}>
+                            <form ref={formRef} onSubmit={sendEmail}>
                                 <div className="form-group">
-                                    <label for="fullName">Enter Full Name</label>
+                                    <label htmlFor="fullName">Enter Full Name</label>
                                     <div className="input-group">
                                         <div className="input-icon">
                                             <BsPerson className='call-icon' />
@@ -67,7 +82,7 @@ const CallModal = ({ onClose }) => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label for="phoneNumber">Phone Number</label>
+                                    <label htmlFor="phoneNumber">Phone Number</label>
                                     <div className="input-group">
                                         <div className="input-icon">
                                             <HiOutlineDevicePhoneMobile className='call-icon' />
@@ -77,11 +92,11 @@ const CallModal = ({ onClose }) => {
                                 </div>
 
                                 <div className="time-group">
-                                    <label for="hour">Preferred Time</label>
+                                    <label htmlFor="hour">Preferred Time</label>
                                     <input type="time" id="hour" name="hour" className="time-control" required />
                                 </div>
 
-                                <div className="">
+                                <div>
                                     <button type="submit" className="request">Send Request</button>
                                 </div>
                             </form>
@@ -90,7 +105,7 @@ const CallModal = ({ onClose }) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default CallModal
+export default CallModal;

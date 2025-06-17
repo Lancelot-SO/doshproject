@@ -23,6 +23,7 @@
 }
 
 .slider {
+  position: relative;
   width: 1000px;
   height: 550px;
   overflow: hidden;
@@ -376,7 +377,7 @@
   flex-direction: row;
   color: white;
   background-color: #987c55;
-  width: 100vw;
+  width: 1000px;
   float: right;
   /* margin-left: 100px; */
   padding: 10px;

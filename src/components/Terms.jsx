@@ -43,6 +43,7 @@ const Terms = ({ onClose }) => {
                             <li>
                                 The Scheme reserves the right to reassess Coverage terms and conditions should a Beneficiary experience changes in employment status, marital status, or significant life events that may influence the underwriting assessment.                            </li>
                         </ul>
+                        <br />
                         <p>
                             The Scheme assumes no responsibility toward any Beneficiary or prospective Beneficiary regarding acts or omissions of a duly appointed Agent, except those performed in accordance with specific contractual obligations between the Agent and the Scheme.                        </p>
                     </div>

@@ -769,6 +769,7 @@ form p {
 .call-right {
   flex: 1;
   padding: 10px;
+  position: relative;
 }
 
 .call-close {
@@ -779,9 +780,9 @@ form p {
   background-color: #987c55;
   color: #fff;
   cursor: pointer;
-  position: fixed;
-  top: 110px;
-  right: 380px;
+  position: absolute;
+  top: 5%;
+  right: 4%;
 }
 
 .callmodal {

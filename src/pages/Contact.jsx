@@ -1,12 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Contact.css';
-import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import contact from '../images/doshContact.png';
 import logo from '../images/dosh_logo.png';
-// import contactImage from '../images/contactImage.png';
-
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -14,35 +10,51 @@ const Contact = () => {
     const form = useRef();
     const [ContactData, setContactData] = useState(null);
 
-
-
-    const sendEmail = (e) => {
+    const sendEmail = async (e) => {
         e.preventDefault();
 
-        emailjs
-            .sendForm('service_50j5zce', 'template_us60peo', form.current, {
-                publicKey: 'od2vIhbdFel9_otjO',
-                from_name: 'DOSH',
-            })
-            .then(
-                () => {
-                    toast.success('Message sent successfully!');
+        const formData = {
+            firstname: e.target.firstname.value,
+            lastname: e.target.lastname.value,
+            email: e.target.email.value,
+            telephone: e.target.telephone.value,
+            city: e.target.city.value,
+            message: e.target.message.value,
+            emailType: 'Contact Form',
+        };
+
+        console.log('📤 Sending form data:', formData);
+
+        try {
+            const response = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
                 },
-                (error) => {
-                    toast.error('Failed to send message. Please try again.');
-                }
-            );
-        e.target.reset();
+                body: JSON.stringify(formData),
+            });
+
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                console.log('✅ Response:', result);
+                toast.success(result.message || 'Message sent successfully!');
+                e.target.reset();
+            } else {
+                console.error('❌ Failed:', result);
+                toast.error(result.message || 'Failed to send message.');
+            }
+        } catch (error) {
+            console.error('⚠️ Error:', error);
+            toast.error('An error occurred. Please try again.');
+        }
     };
 
     useEffect(() => {
-        AOS.init({
-            duration: 2000,
-        });
+        AOS.init({ duration: 2000 });
         AOS.refresh();
     }, []);
 
-    //fetch api for contact data
     useEffect(() => {
         const fetchContactData = async () => {
             try {
@@ -58,19 +70,23 @@ const Contact = () => {
     }, []);
 
     if (!ContactData) {
-        return <div className='flex flex-col text-white'>
-            <h6>Loading...</h6>
-        </div>;
+        return (
+            <div className='flex flex-col text-white'>
+                <h6>Loading...</h6>
+            </div>
+        );
     }
 
     return (
         <div className="cont">
             <ToastContainer />
             <div className="contact__head">
-                <img data-aos="fade-down"
+                <img
+                    data-aos="fade-down"
                     src={ContactData?.header_image ? `https://doshcms.interactivedigital.com.gh/${ContactData.header_image}` : "contact image"}
                     alt="about"
-                    loading="lazy" />
+                    loading="lazy"
+                />
                 <div className="contact__text">
                     <p dangerouslySetInnerHTML={{ __html: ContactData.header_caption }} />
                 </div>
@@ -166,7 +182,8 @@ const Contact = () => {
                         <img
                             src={ContactData?.section_image ? `https://doshcms.interactivedigital.com.gh/${ContactData.section_image}` : "assets/elevate.png"}
                             alt="dosh"
-                            loading='lazy' />
+                            loading='lazy'
+                        />
                     </div>
                 </div>
             </div>

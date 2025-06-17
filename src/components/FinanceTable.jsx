@@ -53,7 +53,7 @@ const FinanceTable = ({ closePopup }) => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td className='heading'>Main Accoun</td>
+                                    <td className='finance__heading'>Main Account</td>
                                     <td className='row-center'>1</td>
                                     <td className='row-center'>1</td>
                                     <td className='row-center'>1</td>
@@ -62,7 +62,7 @@ const FinanceTable = ({ closePopup }) => {
 
                                 </tr>
                                 <tr>
-                                    <td className='heading-total'>Sub-User Accounts</td>
+                                    <td className='heading-totals'>Sub-User Accounts</td>
                                     <td className='row-center-total'>-</td>
                                     <td className='row-center-total'>5</td>
                                     <td className='row-center-total'>5</td>
@@ -70,7 +70,7 @@ const FinanceTable = ({ closePopup }) => {
                                     <td className='row-center-total'>30</td>
                                 </tr>
                                 <tr>
-                                    <td className='heading'>Departmental Accounts</td>
+                                    <td className='finance__heading'>Departmental Accounts</td>
                                     <td className='row-center'>-</td>
                                     <td className='row-center'>-</td>
                                     <td className='row-center'>2</td>
@@ -78,7 +78,7 @@ const FinanceTable = ({ closePopup }) => {
                                     <td className='row-center'>10</td>
                                 </tr>
                                 <tr>
-                                    <td className='heading'>Loan Limit</td>
+                                    <td className='finance__heading'>Loan Limit</td>
                                     <td className='row-center'>GHS 50,000</td>
                                     <td className='row-center'>GHS 100,000</td>
                                     <td className='row-center'>GHS 200,000</td>

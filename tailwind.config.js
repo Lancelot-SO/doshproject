@@ -8,7 +8,8 @@ module.exports = {
       screens: {
         'xl': '1280px',
         'xxl': '1032px',
-        'extralarge': '1920px',
+        '3xl': '1440px',
+        'extralarge': '1912px',
         'smallS8': { 'raw': '(max-width: 360px)' }, // Specific to devices with <=360px width
       },
     },

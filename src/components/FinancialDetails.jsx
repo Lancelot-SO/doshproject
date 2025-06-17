@@ -75,7 +75,7 @@ const FinanceDetails = ({ onClose }) => {
                     {/* References Section */}
                     <div className="bg-gray-100 p-4 mt-4">
                         <h3 className="text-xl font-semibold text-gray-800 mb-2">References</h3>
-                        <ul className="list-disc list-inside text-gray-600 space-y-1"
+                        <ul className="list-disc list-inside text-blue-600 space-y-1"
                             dangerouslySetInnerHTML={{ __html: financeModal.references }}
                         />
                     </div>

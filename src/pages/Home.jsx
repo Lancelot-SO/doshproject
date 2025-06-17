@@ -416,7 +416,10 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='slide'>
-                            <img src={slider6} alt='hero' loading='lazy' className='slide-six-laptop' />
+                            <div className='relative'>
+                                <img src={slider6} alt='hero' loading='lazy' className='slide-six-laptop' />
+                                <div className='absolute inset-0 bg-black/15'></div>
+                            </div>
                             <img src={slider6mobile} alt='hero' loading='lazy' className='slide-six-mobile' />
 
                             <div className='hero__text'>
