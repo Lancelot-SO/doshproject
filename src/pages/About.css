@@ -129,7 +129,7 @@
   height: 340px;
   border-radius: 5px;
   background-color: var(--color-white);
-  padding-top: 30px;
+  /* padding-top: 30px; */
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 10px;

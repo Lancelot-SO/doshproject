@@ -147,7 +147,7 @@ const About = () => {
                     <div className='next-about-settings_left'>
                         <img src={settings} className='about__image' alt='handshake' loading='lazy' />
                     </div>
-                    <div className='next-about-settings__right'>
+                    <div className='next-about-settings__right 3xl:pt-4'>
                         <h3 dangerouslySetInnerHTML={{ __html: aboutData.values_caption }} />
                         <p dangerouslySetInnerHTML={{ __html: aboutData.values_body }} />
                     </div>

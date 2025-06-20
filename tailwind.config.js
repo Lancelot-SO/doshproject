@@ -10,7 +10,7 @@ module.exports = {
         'xxl': '1032px',
         '3xl': '1440px',
         'extralarge': '1912px',
-        'smallS8': { 'raw': '(max-width: 360px)' }, // Specific to devices with <=360px width
+        'smallS8': { 'raw': '(max-width: 360px)' },
       },
     },
   },
