@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import emailjs from '@emailjs/browser';
 import image from "../../images/travelins.png";
 import formlogo from "../../images/formlogo.png";
 import { X } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
 
 const TravelInsurance = ({ onClose, userData }) => {
+    const formRef = useRef();
     const [formData, setFormData] = useState({
         proposerName: "",
         surname: "",
@@ -25,57 +25,53 @@ const TravelInsurance = ({ onClose, userData }) => {
         productType: "",
         premiumPaid: "",
         declarationDate: "",
-        validator: "",
+        signature: "",
+        Validator: "",
         officer: "",
         date: "",
         agency: "",
+        declareDate: "",
         message: "",
-        declareDate: ""
     });
 
-    // Create a ref for the form
-    const formRef = useRef();
-
-    // Pre-populate key fields from the parent's userData when available.
+    // Pre-fill from userData
     useEffect(() => {
         if (userData) {
-            setFormData(prev => ({
-                ...prev,
-                proposerName: userData.fullname || "",
-                // surname: userData.surname || "",
-                // otherNames: userData.othernames || "",
-                email: userData.email || "",
-                mobile: userData.phone || "",
+            setFormData(fd => ({
+                ...fd,
+                proposerName: userData.fullname || fd.proposerName,
+                email: userData.email || fd.email,
+                mobile: userData.phone || fd.mobile,
             }));
         }
     }, [userData]);
 
-    // Handle text and select changes
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setFormData(fd => ({ ...fd, [name]: value }));
     };
 
-    // Handle file change separately. Note: do not set a value on the file input.
-    const handleFileChange = (e) => {
+    const handleFileChange = e => {
         const file = e.target.files[0];
-        // Optionally store the filename in state for reference
-        setFormData({ ...formData, declareSignature: file ? file.name : "" });
+        setFormData(fd => ({ ...fd, signature: file ? file.name : "" }));
     };
 
-    // Handle form submission using emailjs.sendForm
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
 
-        // Replace these placeholders with your actual EmailJS credentials:
-        const serviceID = "service_1jcgpuj";
-        const templateID = "template_mr8dt37";
-        const publicKey = 'aV-FvEfOZg7fbxTN2';
-
-        emailjs
-            .sendForm(serviceID, templateID, formRef.current, publicKey)
-            .then((response) => {
-                console.log("SUCCESS!", response.status, response.text);
-                toast.success("Form submitted successfully!");
+        try {
+            const res = await fetch("/send-email.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    emailType: "travel",
+                    ...formData
+                })
+            });
+            const json = await res.json();
+            if (json.status === "success") {
+                toast.success(json.message || "Submitted successfully!");
+                // reset
                 setFormData({
                     proposerName: "",
                     surname: "",
@@ -95,24 +91,23 @@ const TravelInsurance = ({ onClose, userData }) => {
                     productType: "",
                     premiumPaid: "",
                     declarationDate: "",
-                    validator: "",
+                    signature: "",
+                    Validator: "",
                     officer: "",
                     date: "",
                     agency: "",
+                    declareDate: "",
                     message: "",
-                    declareDate: ""
                 });
-                e.target.reset();
-                // Delay unmounting the component to give time for the toast to display
-                setTimeout(() => {
-                    if (onClose) onClose();
-                }, 6000);
-
-            })
-            .catch((err) => {
-                console.error("FAILED...", err);
-                toast.error("Failed to submit form. Please try again.");
-            });
+                formRef.current.reset();
+                setTimeout(onClose, 6000);
+            } else {
+                toast.error(json.message || "Submission failed");
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error("An error occurred. Please try again.");
+        }
     };
 
     return (

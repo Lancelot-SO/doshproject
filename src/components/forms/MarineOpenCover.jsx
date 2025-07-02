@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,8 +6,6 @@ import image from "../../images/marine.png";
 import formlogo from "../../images/formlogo.png";
 
 const MarineOpenCover = ({ onClose, userData }) => {
-    const form = useRef();
-
     const [formData, setFormData] = useState({
         proposerName: '',
         surname: '',
@@ -31,15 +28,13 @@ const MarineOpenCover = ({ onClose, userData }) => {
         message: '',
     });
 
-    // States for validation error messages
     const [emailError, setEmailError] = useState("");
     const [phoneError, setPhoneError] = useState("");
 
-    // Pre-populate user details when userData is provided
     useEffect(() => {
         if (userData) {
-            setFormData((prev) => ({
-                ...prev,
+            setFormData(f => ({
+                ...f,
                 proposerName: userData.fullname || '',
                 email: userData.email || '',
                 telephone: userData.phone || '',
@@ -47,76 +42,45 @@ const MarineOpenCover = ({ onClose, userData }) => {
         }
     }, [userData]);
 
-    // Helper function to validate email format
-    const validateEmail = (email) => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    };
+    const validateEmail = email =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    // Helper function to validate telephone number format
-    const validatePhone = (phone) => {
-        // Accepts an optional '+' followed by 7 to 15 digits
-        const regex = /^\+?[0-9]{7,15}$/;
-        return regex.test(phone);
-    };
+    const validatePhone = phone =>
+        /^\+?[0-9]{7,15}$/.test(phone);
 
-    // Handle changes for text inputs
-    const handleChange = (e) => {
+    const handleChange = e => {
         const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
+        setFormData(f => ({ ...f, [name]: value }));
 
-        // Validate email on change
         if (name === 'email') {
-            if (!validateEmail(value)) {
-                setEmailError("Please enter a valid email address.");
-            } else {
-                setEmailError("");
-            }
+            setEmailError(validateEmail(value) ? "" : "Please enter a valid email address.");
         }
-
-        // Validate telephone on change
         if (name === 'telephone') {
-            if (!validatePhone(value)) {
-                setPhoneError("Please enter a valid telephone number.");
-            } else {
-                setPhoneError("");
-            }
+            setPhoneError(validatePhone(value) ? "" : "Please enter a valid telephone number.");
         }
     };
 
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setFormData((prev) => ({
-                ...prev,
-                signature: file, // store the file or its name as needed
-            }));
-        }
-    };
-
-    // Form submit
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
-
-        // Prevent submission if there are validation errors
         if (emailError || phoneError) {
             toast.error("Please fix the errors in the form before submitting.");
             return;
         }
 
-        const serviceId = 'service_yywea7l';
-        const templateId = 'template_12wr1kw';
-        const publicKey = 'aV-FvEfOZg7fbxTN2';
+        const payload = {
+            emailType: "marineOpenCover",
+            ...formData
+        };
 
-        emailjs.sendForm(serviceId, templateId, form.current, publicKey)
-            .then((result) => {
-                console.log('SUCCESS!', result.text);
-                toast.success('Marine Open Cover form submitted successfully!');
-
-                // Reset local form state
+        try {
+            const res = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const json = await res.json();
+            if (json.status === 'success') {
+                toast.success(json.message || 'Form submitted successfully!');
                 setFormData({
                     proposerName: '',
                     surname: '',
@@ -138,20 +102,16 @@ const MarineOpenCover = ({ onClose, userData }) => {
                     agency: '',
                     message: '',
                 });
-
-                // Reset the actual form fields in the DOM
                 e.target.reset();
-                // Delay unmounting the component to give time for the toast to display
-                setTimeout(() => {
-                    if (onClose) onClose();
-                }, 6000);
-            })
-            .catch((error) => {
-                console.error('FAILED...', error);
-                toast.error('Failed to send form data. Please try again.');
-            });
+                setTimeout(onClose, 6000);
+            } else {
+                toast.error(json.message || 'Submission failed.');
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error('An error occurred. Please try again.');
+        }
     };
-
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-lg shadow-lg flex overflow-hidden">
@@ -186,7 +146,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                     <h2 className="text-2xl text-gray-800 font-bold mb-4">Marine Open Insurance Cover Request</h2>
                     <p>Please kindly fill out the form fields below.</p>
 
-                    <form ref={form} onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
+                    <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium">Name of Proposer (Mr/Ms/Mrs/Dr/Prof)</label>
                             <input

@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import emailjs from '@emailjs/browser';
 import { ToastContainer, toast } from 'react-toastify';
 import image from "../../images/prof.png";
 import formlogo from "../../images/formlogo.png";
@@ -29,79 +28,60 @@ const ProfessionalIndemnity = ({ onClose }) => {
         directors: [
             { name: '', qualification: '', dateObtained: '', practiceDuration: '' }
         ],
-        message: "",
+        message: '',
     });
 
-
-    // Handle text/radio/select changes for simple fields
-    const handleChange = (e) => {
-        setFormData((prevData) => ({
-            ...prevData,
-            [e.target.name]: e.target.value
-        }));
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setFormData(fd => ({ ...fd, [name]: value }));
     };
 
-    // Handle changes in the directors array
-    const handleDirectorChange = (index, field, value) => {
-        const updatedDirectors = [...formData.directors];
-        updatedDirectors[index][field] = value;
-        setFormData((prev) => ({ ...prev, directors: updatedDirectors }));
+    const handleDirectorChange = (idx, field, value) => {
+        setFormData(fd => {
+            const d = [...fd.directors];
+            d[idx][field] = value;
+            return { ...fd, directors: d };
+        });
     };
 
     const addDirector = () => {
-        setFormData((prev) => ({
-            ...prev,
+        setFormData(fd => ({
+            ...fd,
             directors: [
-                ...prev.directors,
+                ...fd.directors,
                 { name: '', qualification: '', dateObtained: '', practiceDuration: '' }
             ]
         }));
     };
 
-    // A separate handler for file input (signature)
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        // We'll store the file name in state if we want to display it or keep track
-        setFormData((prev) => ({
-            ...prev,
-            signature: file ? file.name : ''
-        }));
-    };
-
-    // 3. On submit, send via EmailJS
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
 
-        // (A) Build a single string out of the directors array so it prints “one by one” in the email
-        const directorsFormatted = formData.directors.map((director, idx) => {
-            return `Director #${idx + 1}:
-            Name: ${director.name}
-            Qualification: ${director.qualification}
-            Date Obtained: ${director.dateObtained}
-            Practice Duration: ${director.practiceDuration}`;
-        }).join('\n\n');
+        // Build directors text
+        const directorsText = formData.directors
+            .map((d, i) => `Director #${i + 1}:
+    Name: ${d.name}
+    Qualification: ${d.qualification}
+    Date Obtained: ${d.dateObtained}
+    Practice Duration: ${d.practiceDuration}`)
+            .join('\n\n');
 
-        // (B) We can insert that into a hidden field so "sendForm" picks it up
-        const directorsInput = document.getElementById('directorsData');
-        directorsInput.value = directorsFormatted;
+        // Prepare payload
+        const payload = {
+            emailType: "professionalIndemnityRequest",
+            ...formData,
+            directors: directorsText
+        };
 
-        // (C) Call emailjs.sendForm
-        // Replace with your actual EmailJS values
-        const serviceID = 'service_fpajktb';
-        const templateID = 'template_kqj714r';
-        const publicKey = 'aV-FvEfOZg7fbxTN2';
-
-        emailjs.sendForm(
-            serviceID,
-            templateID,
-            formRef.current,  // the form DOM node
-            publicKey
-        )
-            .then((response) => {
-                console.log('SUCCESS!', response.status, response.text);
-                toast.success('Form submitted successfully!');
-
-                // Reset local state
+        try {
+            const res = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const json = await res.json();
+            if (json.status === 'success') {
+                toast.success(json.message || 'Form submitted successfully!');
                 setFormData({
                     firmName: '',
                     address: '',
@@ -123,21 +103,17 @@ const ProfessionalIndemnity = ({ onClose }) => {
                     directors: [
                         { name: '', qualification: '', dateObtained: '', practiceDuration: '' }
                     ],
-                    message: "",
+                    message: '',
                 });
-
-                // Also reset the DOM form fields
-                e.target.reset();
-                // Delay unmounting the component to give time for the toast to display
-                setTimeout(() => {
-                    if (onClose) onClose();
-                }, 6000);
-
-            })
-            .catch((err) => {
-                console.error('FAILED...', err);
-                toast.error('Failed to submit form. Please try again.');
-            });
+                formRef.current.reset();
+                setTimeout(onClose, 6000);
+            } else {
+                toast.error(json.message || 'Submission failed.');
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error('An error occurred. Please try again.');
+        }
     };
 
     return (

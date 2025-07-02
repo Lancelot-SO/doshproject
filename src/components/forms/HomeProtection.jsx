@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import emailjs from '@emailjs/browser';
 import image from "../../images/homeprotection.png";
 import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
@@ -9,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const HomeProtection = ({ onClose, userData }) => {
     const [formData, setFormData] = useState({
-        // Personal Details
         proposerName: '',
         postalAddress: '',
         businessOccupation: '',
@@ -17,8 +15,6 @@ const HomeProtection = ({ onClose, userData }) => {
         fax: '',
         email: '',
         propertyAddress: '',
-
-        // General Information
         homeType: '',
         otherHomeType: '',
         houseType: '',
@@ -27,8 +23,6 @@ const HomeProtection = ({ onClose, userData }) => {
         fenceDetails: '',
         refusedInsurance: '',
         propertyLoss: '',
-
-        // Coverage Options
         coverFence: '',
         coverBuilding: '',
         buildingSumInsured: '',
@@ -48,14 +42,11 @@ const HomeProtection = ({ onClose, userData }) => {
         legalLiabilitySumInsured: '',
         coverPersonalLiability: '',
         personalLiabilitySumInsured: '',
-
-        // Declaration
         declarationDate: '',
         declarationAgency: '',
         message: '',
     });
 
-    // Table data state (lifted from child table component)
     const [tableData, setTableData] = useState({
         section1Building: { insure: false, sumInsured: '', premium: '' },
         section1Fence: { insure: false, sumInsured: '', premium: '' },
@@ -70,158 +61,136 @@ const HomeProtection = ({ onClose, userData }) => {
         totalPremium: ''
     });
 
-    // Error states for email and telephone validation
     const [emailError, setEmailError] = useState("");
     const [phoneError, setPhoneError] = useState("");
 
-    // Update formData with parent userData when available
     useEffect(() => {
         if (userData) {
-            setFormData(prevState => ({
-                ...prevState,
-                proposerName: userData.fullname ? userData.fullname.trim() : '',
+            setFormData(f => ({
+                ...f,
+                proposerName: userData.fullname?.trim() || '',
                 telephone: userData.telephone || '',
                 email: userData.email || '',
             }));
         }
     }, [userData]);
 
-    // Helper function to flatten the tableData object
-    const flattenTableData = (data) => {
-        const flattened = {};
-        Object.keys(data).forEach((key) => {
-            if (typeof data[key] === 'object' && data[key] !== null) {
-                Object.keys(data[key]).forEach((subKey) => {
-                    flattened[`${key}_${subKey}`] = data[key][subKey];
+    const flattenTableData = data => {
+        const flat = {};
+        Object.entries(data).forEach(([k, v]) => {
+            if (v && typeof v === 'object') {
+                Object.entries(v).forEach(([sk, sv]) => {
+                    flat[`${k}_${sk}`] = sv;
                 });
             } else {
-                flattened[key] = data[key];
+                flat[k] = v;
             }
         });
-        return flattened;
+        return flat;
     };
 
-    // Validation helper for email
-    const validateEmail = (email) => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    };
+    const validateEmail = email =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    // Validation helper for telephone (phone)
-    const validatePhone = (phone) => {
-        // Accepts an optional '+' followed by 7 to 15 digits
-        const regex = /^\+?[0-9]{7,15}$/;
-        return regex.test(phone);
-    };
+    const validatePhone = phone =>
+        /^\+?[0-9]{7,15}$/.test(phone);
 
-    const handleChange = (e) => {
+    const handleChange = e => {
         const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        setFormData(f => ({ ...f, [name]: value }));
 
-        // Validate email if the field is updated
         if (name === 'email') {
-            if (!validateEmail(value)) {
-                setEmailError("Please enter a valid email address.");
-            } else {
-                setEmailError("");
-            }
+            setEmailError(validateEmail(value) ? "" : "Please enter a valid email address.");
         }
-
-        // Validate telephone if the field is updated
         if (name === 'telephone') {
-            if (!validatePhone(value)) {
-                setPhoneError("Please enter a valid telephone number.");
-            } else {
-                setPhoneError("");
-            }
+            setPhoneError(validatePhone(value) ? "" : "Please enter a valid telephone number.");
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
-
-        // Block submission if there are validation errors
         if (emailError || phoneError) {
             toast.error("Please fix the errors in the form before submitting.");
             return;
         }
 
-        // Flatten table data and combine with formData
-        const tableParams = flattenTableData(tableData);
-        const templateParams = { ...formData, ...tableParams };
+        // combine
+        const payload = {
+            emailType: "homeProtection",
+            ...formData,
+            ...flattenTableData(tableData)
+        };
 
-        emailjs
-            .send(
-                'service_r9t2vbj',    // Replace with your EmailJS service ID
-                'template_oodevxb',   // Replace with your EmailJS template ID (e.g., "HomeProtectionProposal")
-                templateParams,
-                'aV-FvEfOZg7fbxTN2'    // Replace with your EmailJS public key
-            )
-            .then(
-                (result) => {
-                    toast.success('Proposal submitted successfully via Email!');
-                    // Reset form and table data if needed
-                    setFormData({
-                        proposerName: '',
-                        postalAddress: '',
-                        businessOccupation: '',
-                        telephone: '',
-                        fax: '',
-                        email: '',
-                        propertyAddress: '',
-                        homeType: '',
-                        otherHomeType: '',
-                        houseType: '',
-                        buildingWalls: '',
-                        buildingRoof: '',
-                        fenceDetails: '',
-                        refusedInsurance: '',
-                        propertyLoss: '',
-                        coverFence: '',
-                        coverBuilding: '',
-                        buildingSumInsured: '',
-                        coverContent: '',
-                        contentSumInsured: '',
-                        coverEmployerLiability: '',
-                        numIndoorServants: '',
-                        numOutdoorServants: '',
-                        numDrivers: '',
-                        coverPersonalAccident: '',
-                        personalAccidentDeath: '',
-                        personalAccidentDisability: '',
-                        personalAccidentMedical: '',
-                        coverAlternativeAccommodation: '',
-                        alternativeAccommodationSumInsured: '',
-                        coverLegalLiability: '',
-                        legalLiabilitySumInsured: '',
-                        coverPersonalLiability: '',
-                        personalLiabilitySumInsured: '',
-                        declarationDate: '',
-                        declarationAgency: '',
-                        message: '',
-                    });
-                    setTableData({
-                        section1Building: { insure: false, sumInsured: '', premium: '' },
-                        section1Fence: { insure: false, sumInsured: '', premium: '' },
-                        section1AlternativeAccommodation: { insure: false, sumInsured: '', premium: '' },
-                        section1Liability: { insure: false, sumInsured: '500', premium: 'FREE' },
-                        section2Content: { insure: false, sumInsured: '10000', premium: '80.00' },
-                        section3PersonalLiability: { insure: false, sumInsured: '500', premium: 'FREE' },
-                        section4EmployersLiability: { insure: false, sumInsured: 'Unlimited', premium: '5.00 per head', indoorServants: 0, outdoorServants: 0, drivers: 0 },
-                        section4PersonalAccidentDeath: { insure: false },
-                        section4PersonalAccidentDisability: { insure: false },
-                        section4PersonalAccidentMedical: { insure: false },
-                        totalPremium: ''
-                    });
-                    // Delay unmounting the component to give time for the toast to display
-                    setTimeout(() => {
-                        if (onClose) onClose();
-                    }, 6000);
-                },
-                (error) => {
-                    toast.error('Failed to submit proposal. Please try again.');
-                }
-            );
+        try {
+            const res = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const json = await res.json();
+            if (json.status === 'success') {
+                toast.success(json.message || 'Proposal submitted successfully!');
+                // reset
+                setFormData({
+                    proposerName: '',
+                    postalAddress: '',
+                    businessOccupation: '',
+                    telephone: '',
+                    fax: '',
+                    email: '',
+                    propertyAddress: '',
+                    homeType: '',
+                    otherHomeType: '',
+                    houseType: '',
+                    buildingWalls: '',
+                    buildingRoof: '',
+                    fenceDetails: '',
+                    refusedInsurance: '',
+                    propertyLoss: '',
+                    coverFence: '',
+                    coverBuilding: '',
+                    buildingSumInsured: '',
+                    coverContent: '',
+                    contentSumInsured: '',
+                    coverEmployerLiability: '',
+                    numIndoorServants: '',
+                    numOutdoorServants: '',
+                    numDrivers: '',
+                    coverPersonalAccident: '',
+                    personalAccidentDeath: '',
+                    personalAccidentDisability: '',
+                    personalAccidentMedical: '',
+                    coverAlternativeAccommodation: '',
+                    alternativeAccommodationSumInsured: '',
+                    coverLegalLiability: '',
+                    legalLiabilitySumInsured: '',
+                    coverPersonalLiability: '',
+                    personalLiabilitySumInsured: '',
+                    declarationDate: '',
+                    declarationAgency: '',
+                    message: '',
+                });
+                setTableData({
+                    section1Building: { insure: false, sumInsured: '', premium: '' },
+                    section1Fence: { insure: false, sumInsured: '', premium: '' },
+                    section1AlternativeAccommodation: { insure: false, sumInsured: '', premium: '' },
+                    section1Liability: { insure: false, sumInsured: '500', premium: 'FREE' },
+                    section2Content: { insure: false, sumInsured: '10000', premium: '80.00' },
+                    section3PersonalLiability: { insure: false, sumInsured: '500', premium: 'FREE' },
+                    section4EmployersLiability: { insure: false, sumInsured: 'Unlimited', premium: '5.00 per head', indoorServants: 0, outdoorServants: 0, drivers: 0 },
+                    section4PersonalAccidentDeath: { insure: false },
+                    section4PersonalAccidentDisability: { insure: false },
+                    section4PersonalAccidentMedical: { insure: false },
+                    totalPremium: ''
+                });
+                setTimeout(onClose, 6000);
+            } else {
+                toast.error(json.message || 'Submission failed.');
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error('An error occurred. Please try again.');
+        }
     };
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">

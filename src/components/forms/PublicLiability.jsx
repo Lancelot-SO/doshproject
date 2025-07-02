@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useEffect, useRef, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import image from "../../images/publicliability.png";
@@ -7,6 +6,7 @@ import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
 
 const PublicLiability = ({ onClose, userData }) => {
+    const formRef = useRef();
     const [formData, setFormData] = useState({
         proposerName: '',
         address: '',
@@ -55,146 +55,96 @@ const PublicLiability = ({ onClose, userData }) => {
         message: '',
     });
 
-    // Update fields from parent's userData when it changes
+    // prefill name/phone
     useEffect(() => {
         if (userData) {
-            setFormData(prev => ({
-                ...prev,
-                // Here, we assume the parent's keys are: firstname, surname, othernames, email, phone
-                proposerName: userData.fullname || "",
-                mobile: userData.phone || "",
+            setFormData(fd => ({
+                ...fd,
+                proposerName: userData.fullname || '',
+                mobile: userData.phone || '',
             }));
         }
     }, [userData]);
 
-    const handleChange = (e) => {
+    const handleChange = e => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData(fd => ({ ...fd, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
 
-        // Prepare template parameters for EmailJS (keys should match your EmailJS template placeholders)
-        const templateParams = {
-            proposerName: formData.proposerName,
-            address: formData.address,
-            mobile: formData.mobile,
-            businessTrade: formData.businessTrade,
-            goodsDescription: formData.goodsDescription,
-            SeparatePolicies: formData.SeparatePolicies,
-            thirdPartyCover: formData.thirdPartyCover,
-            inspectedBy: formData.inspectedBy,
-            thoroughfare: formData.thoroughfare,
-            trapdoors: formData.trapdoors,
-            seatingCapacity: formData.seatingCapacity,
-            natureOfClub: formData.natureOfClub,
-            numberofmembers: formData.numberofmembers,
-            theatre: formData.theatre,
-            refreshments: formData.refreshments,
-            schoolDescription: formData.schoolDescription,
-            numberOfPupils: formData.numberOfPupils,
-            management: formData.management,
-            entertainments: formData.entertainments,
-            indemnity: formData.indemnity,
-            foodPoisoning: formData.foodPoisoning,
-            machineryDetails: formData.machineryDetails,
-            explosivesUsage: formData.explosivesUsage,
-            subContractors: formData.subContractors,
-            contractPrices: formData.contractPrices,
-            employment: formData.employment,
-            particulars: formData.particulars,
-            presentInsured: formData.presentInsured,
-            company: formData.company,
-            proposalStatus: formData.proposalStatus,
-            refusedRenewal: formData.refusedRenewal,
-            policyCancelled: formData.policyCancelled,
-            premium: formData.premium,
-            policy: formData.policy,
-            nature: formData.nature,
-            otherWork: formData.otherWork,
-            workDetails: formData.workDetails,
-            annualamount: formData.annualamount,
-            numberofemployees: formData.numberofemployees,
-            principal: formData.principal,
-            numberofpartners: formData.numberofpartners,
-            date: formData.date,
-            agency: formData.agency,
-            codenumber: formData.codenumber,
-            signature: formData.signature,
+        const payload = {
+            emailType: "publicLiabilityRequest",
+            ...formData
         };
 
-        emailjs
-            .send(
-                'service_9bstnqc',    // Replace with your EmailJS service ID
-                'template_qtoppo2',   // Replace with your EmailJS template ID (e.g., "PublicLiabilityProposal")
-                templateParams,
-                'aV-FvEfOZg7fbxTN2'     // Replace with your EmailJS public key
-            )
-            .then(
-                (result) => {
-                    console.log('Email successfully sent!', result.text);
-                    toast.success('Form submitted successfully via Email!');
-                    // Reset the form
-                    setFormData({
-                        proposerName: '',
-                        address: '',
-                        mobile: '',
-                        businessTrade: '',
-                        goodsDescription: '',
-                        SeparatePolicies: '',
-                        thirdPartyCover: '',
-                        inspectedBy: '',
-                        thoroughfare: '',
-                        trapdoors: '',
-                        seatingCapacity: '',
-                        natureOfClub: '',
-                        numberofmembers: '',
-                        theatre: '',
-                        refreshments: '',
-                        schoolDescription: '',
-                        numberOfPupils: '',
-                        management: '',
-                        entertainments: '',
-                        indemnity: '',
-                        foodPoisoning: '',
-                        machineryDetails: '',
-                        explosivesUsage: '',
-                        subContractors: '',
-                        contractPrices: '',
-                        employment: '',
-                        particulars: '',
-                        presentInsured: '',
-                        company: '',
-                        proposalStatus: '',
-                        refusedRenewal: '',
-                        policyCancelled: '',
-                        premium: '',
-                        policy: '',
-                        nature: '',
-                        otherWork: '',
-                        workDetails: '',
-                        annualamount: '',
-                        numberofemployees: '',
-                        principal: '',
-                        numberofpartners: '',
-                        date: '',
-                        agency: '',
-                        codenumber: '',
-                        message: '',
-                    });
-                    // Delay unmounting the component to give time for the toast to display
-                    setTimeout(() => {
-                        if (onClose) onClose();
-                    }, 6000);
-                },
-                (error) => {
-                    console.error('Failed to send email:', error.text);
-                    toast.error('Failed to submit form. Please try again.');
-                }
-            );
+        try {
+            const res = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            const json = await res.json();
+            if (json.status === 'success') {
+                toast.success(json.message || 'Form submitted successfully!');
+                setFormData({
+                    proposerName: '',
+                    address: '',
+                    mobile: '',
+                    businessTrade: '',
+                    goodsDescription: '',
+                    SeparatePolicies: '',
+                    thirdPartyCover: '',
+                    inspectedBy: '',
+                    thoroughfare: '',
+                    trapdoors: '',
+                    seatingCapacity: '',
+                    natureOfClub: '',
+                    numberofmembers: '',
+                    theatre: '',
+                    refreshments: '',
+                    schoolDescription: '',
+                    numberOfPupils: '',
+                    management: '',
+                    entertainments: '',
+                    indemnity: '',
+                    foodPoisoning: '',
+                    machineryDetails: '',
+                    explosivesUsage: '',
+                    subContractors: '',
+                    contractPrices: '',
+                    employment: '',
+                    particulars: '',
+                    presentInsured: '',
+                    company: '',
+                    proposalStatus: '',
+                    refusedRenewal: '',
+                    policyCancelled: '',
+                    premium: '',
+                    policy: '',
+                    nature: '',
+                    otherWork: '',
+                    workDetails: '',
+                    annualamount: '',
+                    numberofemployees: '',
+                    principal: '',
+                    numberofpartners: '',
+                    date: '',
+                    agency: '',
+                    codenumber: '',
+                    message: '',
+                });
+                formRef.current.reset();
+                setTimeout(onClose, 6000);
+            } else {
+                toast.error(json.message || 'Submission failed.');
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error('An error occurred. Please try again.');
+        }
     };
-
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-lg shadow-lg flex overflow-hidden">

@@ -1,14 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import image from "../../images/hotels.png";
 import formlogo from "../../images/formlogo.png";
-import emailjs from '@emailjs/browser';
 import { X } from 'lucide-react';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const HotelInsurance = ({ onClose, userData }) => {
-    const formRef = useRef();
-
     const [formData, setFormData] = useState({
         // Basic Information
         proposerFullName: '',
@@ -113,62 +110,70 @@ const HotelInsurance = ({ onClose, userData }) => {
         message: '',
     });
 
-
-    // Update the local state when userData changes
     useEffect(() => {
         if (userData) {
-            setFormData(prev => ({
-                ...prev,
-                proposerFullName: `${userData.fullname}` || '',
-
+            setFormData(f => ({
+                ...f,
+                proposerFullName: userData.fullname?.trim() || '',
             }));
         }
     }, [userData]);
-    const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
 
-        if (type === 'checkbox' && name.startsWith("premisesOptions.")) {
-            // Handle checkbox changes specifically for the nested 'premisesOptions' object
-            const key = name.split('.')[1]; // Get the specific key within the premisesOptions object
-            setFormData(prev => ({
-                ...prev,
+    // flatten nested premisesOptions into top-level keys
+    const flatten = data => ({
+        ...data,
+        ...Object.entries(data.premisesOptions).reduce((acc, [k, v]) => ({
+            ...acc,
+            [`premisesOptions_${k}`]: v
+        }), {}),
+        premisesOptions: undefined
+    });
+
+    const handleChange = e => {
+        const { name, value, type, checked } = e.target;
+        if (name.startsWith("premisesOptions.")) {
+            const key = name.split('.')[1];
+            setFormData(f => ({
+                ...f,
                 premisesOptions: {
-                    ...prev.premisesOptions,
-                    [key]: checked // Update the specific key within the nested object
+                    ...f.premisesOptions,
+                    [key]: checked
                 }
             }));
         } else {
-            // Handle changes for all other inputs normally
-            setFormData(prev => ({
-                ...prev,
-                [name]: type === 'checkbox' ? checked : value // Check for checkbox and use 'checked' or 'value'
+            setFormData(f => ({
+                ...f,
+                [name]: type === 'checkbox' ? checked : value
             }));
         }
     };
 
-
-    // Handle file input changes separately (do not set a value on a file input)
-    const handleFileChange = (e) => {
+    const handleFileChange = e => {
         const file = e.target.files[0];
-        setFormData((prev) => ({
-            ...prev,
-            declareSignature: file ? file : null, // store the File object if needed
+        setFormData(f => ({
+            ...f,
+            declarationSignature: file || null
         }));
     };
 
-    // Handle form submission using emailjs.sendForm
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
+        // merge and send
+        const payload = {
+            emailType: "hotelInsurance",
+            ...flatten(formData)
+        };
 
-        // Replace these with your actual EmailJS credentials:
-        const serviceID = "service_a88tnae";
-        const templateID = "template_qy7gdgs";
-        const publicKey = "aV-FvEfOZg7fbxTN2";
-
-        emailjs.sendForm(serviceID, templateID, formRef.current, publicKey)
-            .then((response) => {
-                console.log("SUCCESS!", response.status, response.text);
-                toast.success("Form submitted successfully!");
+        try {
+            const res = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const json = await res.json();
+            if (json.status === 'success') {
+                toast.success(json.message || 'Proposal submitted successfully!');
+                // clear state
                 setFormData({
                     proposerFullName: '',
                     postalAddress: '',
@@ -271,17 +276,15 @@ const HotelInsurance = ({ onClose, userData }) => {
                     declarationAgency: '',
                     message: '',
                 })
-                e.target.reset();
-                // Delay unmounting the component to give time for the toast to display
-                setTimeout(() => {
-                    if (onClose) onClose();
-                }, 6000);
-            })
-            .catch((err) => {
-                console.error("FAILED...", err);
-                toast.error("Failed to submit form. Please try again.");
-            });
-    }
+                setTimeout(onClose, 6000);
+            } else {
+                toast.error(json.message || 'Submission failed.');
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error('An error occurred. Please try again.');
+        }
+    };
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">
@@ -319,7 +322,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                     </h1>
                     <p>Please kindly fill out the form fields below.</p>
 
-                    <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
+                    <form onSubmit={handleSubmit} className="space-y-8">
                         {/* Basic Information */}
                         <section>
                             <h2 className="text-2xl font-semibold mb-4">Basic Information</h2>

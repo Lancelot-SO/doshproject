@@ -1,16 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import image from "../../images/privatemotor.png";
 import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const PrivateMotor = ({ onClose, userData }) => {
-    const form = useRef();
-
     const [formData, setFormData] = useState({
-        // Insured’s Details
         proposerTitle: '',
         surname: '',
         otherNames: '',
@@ -25,7 +21,6 @@ const PrivateMotor = ({ onClose, userData }) => {
         otherPolicies: '',
         numberOfDependants: '',
         maritalStatus: '',
-        // Vehicle Details
         vehicleInRepair: '',
         vehicleAltered: '',
         vehicleUse: '',
@@ -37,7 +32,6 @@ const PrivateMotor = ({ onClose, userData }) => {
         ownerDetails: '',
         obtainedLoan: '',
         loanDetails: '',
-        // Single vehicle details (for demonstration)
         vehicleMakeModel: '',
         vehicleBodyType: '',
         cubicCapacity: '',
@@ -48,99 +42,94 @@ const PrivateMotor = ({ onClose, userData }) => {
         purchaseDate: '',
         purchasePrice: '',
         estimatedValue: '',
-        // Driver and Accident History
         allowOtherDrivers: '',
         drivingExperience: '',
+        drivingName: '',
+        occupation: '',
+        age: '',
+        motoring: '',
+        drivingLicense: '',
         accidentHistory: '',
         accidentDetails: '',
         physicalDefects: '',
         defectDetails: '',
-        // Previous Policies & Refusals
         previousPolicies: '',
         previousPolicyDetails: '',
         declinedProposal: '',
         firstLoss: '',
         increasedPremium: '',
         refusedRenewal: '',
-        // Insurance Options
         insureComprehensive: '',
         insureThirdParty: '',
         insureMotorAct: '',
         legalLiabilityPassengers: '',
         coverEmployedDriver: '',
-        // Employed driver details (if applicable)
         employedDriverName: '',
         employedDriverAge: '',
         employedDriverOccupation: '',
         employedDriverYears: '',
         employedDriverConvictions: '',
-        // Third Party Limit Revision
         revisedThirdPartyLimit: '',
-        // Declaration
         declarationDate: '',
         declarationAgency: '',
-        drivingLicense: '',
-        motoring: "",
-        age: "",
-        drivingName: "",
-        occupation: "",
-        message: "",
+        message: '',
     });
 
-    // Update fields from parent's userData when it changes
+    const [emailError, setEmailError] = useState("");
+    const [phoneError, setPhoneError] = useState("");
+
     useEffect(() => {
         if (userData) {
-            setFormData(prev => ({
-                ...prev,
-                // Here, we assume the parent's keys are: firstname, surname, othernames, email, phone
-                proposerTitle: userData.fullname || "",
-                // surname: userData.surname || "",
-                // otherNames: userData.othernames || "",
-                email: userData.email || "",
-                personalMobile: userData.phone || "",
+            setFormData(f => ({
+                ...f,
+                proposerTitle: userData.fullname || '',
+                email: userData.email || '',
+                personalMobile: userData.phone || '',
             }));
         }
     }, [userData]);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value
-        }));
-    };
+    const validateEmail = email =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const validatePhone = phone =>
+        /^\+?[0-9]{7,15}$/.test(phone);
 
-    const handleFileChange = (e) => {
-        // e.target.files is a FileList object
-        const file = e.target.files[0];
-        if (file) {
-            // You could store the file or its name if needed
-            setFormData((prev) => ({
-                ...prev,
-                declarationSignature: file, // or file.name if you only need the filename
-            }));
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setFormData(f => ({ ...f, [name]: value }));
+
+        if (name === 'email') {
+            setEmailError(validateEmail(value)
+                ? "" : "Please enter a valid email address.");
+        }
+        if (name === 'personalMobile') {
+            setPhoneError(validatePhone(value)
+                ? "" : "Please enter a valid telephone number.");
         }
     };
 
-
-    // The form submit
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
+        if (emailError || phoneError) {
+            toast.error("Please fix the errors before submitting.");
+            return;
+        }
 
-        // Replace with your actual EmailJS keys:
-        const serviceId = 'service_y1w3b4o';
-        const templateId = 'template_9c49bzq';
-        const publicKey = 'aV-FvEfOZg7fbxTN2';
+        const payload = {
+            emailType: "privateMotorProposal",
+            ...formData
+        };
 
-        emailjs
-            .sendForm(serviceId, templateId, form.current, publicKey)
-            .then((result) => {
-                console.log('SUCCESS!', result.text);
-                toast.success('Marine Open Cover form submitted successfully!');
-
-                // Reset local form state
+        try {
+            const res = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const json = await res.json();
+            if (json.status === 'success') {
+                toast.success(json.message || 'Proposal submitted successfully!');
                 setFormData({
-                    // Insured’s Details
                     proposerTitle: '',
                     surname: '',
                     otherNames: '',
@@ -155,7 +144,6 @@ const PrivateMotor = ({ onClose, userData }) => {
                     otherPolicies: '',
                     numberOfDependants: '',
                     maritalStatus: '',
-                    // Vehicle Details
                     vehicleInRepair: '',
                     vehicleAltered: '',
                     vehicleUse: '',
@@ -167,7 +155,6 @@ const PrivateMotor = ({ onClose, userData }) => {
                     ownerDetails: '',
                     obtainedLoan: '',
                     loanDetails: '',
-                    // Single vehicle details (for demonstration)
                     vehicleMakeModel: '',
                     vehicleBodyType: '',
                     cubicCapacity: '',
@@ -178,57 +165,47 @@ const PrivateMotor = ({ onClose, userData }) => {
                     purchaseDate: '',
                     purchasePrice: '',
                     estimatedValue: '',
-                    // Driver and Accident History
                     allowOtherDrivers: '',
                     drivingExperience: '',
+                    drivingName: '',
+                    occupation: '',
+                    age: '',
+                    motoring: '',
+                    drivingLicense: '',
                     accidentHistory: '',
                     accidentDetails: '',
                     physicalDefects: '',
                     defectDetails: '',
-                    // Previous Policies & Refusals
                     previousPolicies: '',
                     previousPolicyDetails: '',
                     declinedProposal: '',
                     firstLoss: '',
                     increasedPremium: '',
                     refusedRenewal: '',
-                    // Insurance Options
                     insureComprehensive: '',
                     insureThirdParty: '',
                     insureMotorAct: '',
                     legalLiabilityPassengers: '',
                     coverEmployedDriver: '',
-                    // Employed driver details (if applicable)
                     employedDriverName: '',
                     employedDriverAge: '',
                     employedDriverOccupation: '',
                     employedDriverYears: '',
                     employedDriverConvictions: '',
-                    // Third Party Limit Revision
                     revisedThirdPartyLimit: '',
-                    // Declaration
                     declarationDate: '',
                     declarationAgency: '',
-                    drivingLicense: '',
-                    motoring: "",
-                    age: "",
-                    drivingName: "",
-                    occupation: "",
-                    message: "",
+                    message: '',
                 });
-
-                // Reset the actual form fields
                 e.target.reset();
-                // Delay unmounting the component to give time for the toast to display
-                setTimeout(() => {
-                    if (onClose) onClose();
-                }, 6000);
-
-            })
-            .catch((error) => {
-                console.error('FAILED...', error);
-                toast.error('Failed to send form data. Please try again.');
-            });
+                setTimeout(onClose, 6000);
+            } else {
+                toast.error(json.message || 'Submission failed.');
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error('An error occurred. Please try again.');
+        }
     };
 
     return (
@@ -267,7 +244,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                     </h1>
                     <p>Please kindly fill out the form fields below.</p>
 
-                    <form ref={form} onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-8">
+                    <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-8">
                         {/* Insured’s Details */}
                         <section>
                             <h2 className="text-[14px] font-semibold mb-4">Insured’s Details</h2>

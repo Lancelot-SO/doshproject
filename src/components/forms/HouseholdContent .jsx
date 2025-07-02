@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
-import emailjs from '@emailjs/browser';
+import React, { useState, useEffect } from "react";
 import image from "../../images/household.png";
 import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
@@ -35,103 +34,66 @@ const HouseholdInsuranceForm = ({ onClose, userData }) => {
         ownsBuilding: "",
         insureBuilding: "",
         buildingStay: "",
-        date: "",
+        declarationDate: "",
         agency: "",
         message: "",
     });
 
-    // Error states for email and mobile validation
     const [emailError, setEmailError] = useState("");
     const [phoneError, setPhoneError] = useState("");
 
-    const formRef = useRef();
-
-    // When userData is provided from the parent, update local state to pre-populate fields
+    // Pre-fill from userData
     useEffect(() => {
         if (userData) {
-            setFormData(prev => ({
-                ...prev,
+            setFormData(f => ({
+                ...f,
                 firstName: userData.fullname || "",
-                // surname: userData.surname || "",
-                // otherNames: userData.otherNames || "",
                 email: userData.email || "",
-                mobileNo: userData.phone || "",
+                mobileNo: userData.phone || ""
             }));
         }
     }, [userData]);
 
-    // Helper function to validate email
-    const validateEmail = (email) => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    };
+    const validateEmail = email =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    // Helper function to validate mobile number (phone)
-    const validatePhone = (phone) => {
-        // Accepts an optional '+' followed by 7 to 15 digits
-        const regex = /^\+?[0-9]{7,15}$/;
-        return regex.test(phone);
-    };
+    const validatePhone = phone =>
+        /^\+?[0-9]{7,15}$/.test(phone);
 
-    // 3. Handle changes for text/select/radio
-    const handleChange = (e) => {
+    const handleChange = e => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        setFormData(f => ({ ...f, [name]: value }));
 
-        // Validate email field
         if (name === "email") {
-            if (!validateEmail(value)) {
-                setEmailError("Please enter a valid email address.");
-            } else {
-                setEmailError("");
-            }
+            setEmailError(validateEmail(value) ? "" : "Please enter a valid email address.");
         }
-
-        // Validate mobile number field
         if (name === "mobileNo") {
-            if (!validatePhone(value)) {
-                setPhoneError("Please enter a valid mobile number.");
-            } else {
-                setPhoneError("");
-            }
+            setPhoneError(validatePhone(value) ? "" : "Please enter a valid mobile number.");
         }
     };
 
-    // 4. Handle file input separately
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        // We only store the filename in state (optional)
-        setFormData((prev) => ({
-            ...prev,
-            signature: file ? file.name : "",
-        }));
-    };
-
-    // 5. On form submission, call emailjs.sendForm
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
-
-        // Prevent submission if validation errors exist
         if (emailError || phoneError) {
             toast.error("Please fix the errors in the form before submitting.");
             return;
         }
 
-        const serviceID = 'service_qu9ui2s';
-        const templateID = 'template_9k6j6xe';
-        const publicKey = 'aV-FvEfOZg7fbxTN2';
+        const payload = {
+            emailType: "householdInsurance",
+            ...formData
+        };
 
-        emailjs.sendForm(
-            serviceID,
-            templateID,
-            formRef.current, // pass the form ref
-            publicKey
-        )
-            .then((response) => {
-                console.log('SUCCESS!', response.status, response.text);
-                toast.success('Form submitted successfully!');
-
-                // Reset local state
+        try {
+            const res = await fetch("/send-email.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+            const json = await res.json();
+            if (json.status === "success") {
+                toast.success(json.message || "Proposal submitted successfully!");
+                // reset state
                 setFormData({
                     firstName: "",
                     surname: "",
@@ -161,22 +123,19 @@ const HouseholdInsuranceForm = ({ onClose, userData }) => {
                     ownsBuilding: "",
                     insureBuilding: "",
                     buildingStay: "",
-                    date: "",
+                    declarationDate: "",
                     agency: "",
-                    message: '',
+                    message: "",
                 });
-
-                // Also reset the actual DOM form fields
                 e.target.reset();
-                // Delay unmounting the component to give time for the toast to display
-                setTimeout(() => {
-                    if (onClose) onClose();
-                }, 6000);
-            })
-            .catch((err) => {
-                console.error('FAILED...', err);
-                toast.error('Failed to submit form. Please try again.');
-            });
+                setTimeout(onClose, 6000);
+            } else {
+                toast.error(json.message || "Submission failed.");
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error("An error occurred. Please try again.");
+        }
     };
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">

@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import emailjs from '@emailjs/browser';
 import { ToastContainer, toast } from "react-toastify";
 import image from "../../images/transit.png";
 import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
 
 const Transit = ({ onClose, userData }) => {
+    const formRef = useRef();
     const [formData, setFormData] = useState({
         name: "",
         address: "",
@@ -15,67 +15,55 @@ const Transit = ({ onClose, userData }) => {
         period: "",
         description: "",
         packaging: "",
-        containerInsured: "",
+        containerInsured: "No",
         containerValue: "",
         propertyOwnership: "",
         itinerary: "",
         mode: "",
         conveyanceType: "",
-        estimatedAnnual: "",
-        limitPerConveyance: "",
-        properAccounts: "",
-        previousLosses: "",
-        accountCarrying: "",
-        conveyance: "",
         estimate: "",
+        conveyance: "",
+        accountCarrying: "",
+        previousLosses: "",
         lossDetails: "",
         date: "",
         agency: "",
-        message: "",
+        message: ""
     });
 
-    const formRef = useRef();
-
-
-
-    // Pre-populate selected fields with parent's userData
+    // Prefill name/contact/email if provided
     useEffect(() => {
         if (userData) {
-            setFormData(prev => ({
-                ...prev,
-                // Concatenate parent's firstname and surname for the name field
-                name: `${userData.fullname || ""}`.trim(),
-                contact: userData.phone || "",
-                email: userData.email || ""
+            setFormData(fd => ({
+                ...fd,
+                name: userData.fullname || fd.name,
+                contact: userData.phone || fd.contact,
+                email: userData.email || fd.email
             }));
         }
     }, [userData]);
 
-    // Handle standard text, select, and textarea changes
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setFormData(fd => ({ ...fd, [name]: value }));
     };
 
-    // Handle file change separately – do NOT set a value on a file input!
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        setFormData({ ...formData, signature: file ? file.name : "" });
-    };
-
-    // Submit form via EmailJS using sendForm (which collects all fields, including files)
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
 
-        // Replace these with your actual EmailJS keys
-        const serviceID = "service_ar7mlq5";
-        const templateID = "template_9hhsxdh";
-        const publicKey = "aV-FvEfOZg7fbxTN2";
-
-        emailjs.sendForm(serviceID, templateID, formRef.current, publicKey)
-            .then((response) => {
-                console.log("SUCCESS!", response.status, response.text);
-                toast.success("Form submitted successfully!");
-                // Reset the form data in state (optional) and clear the DOM form
+        try {
+            const res = await fetch("/send-email.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    emailType: "transit",
+                    ...formData
+                })
+            });
+            const json = await res.json();
+            if (json.status === "success") {
+                toast.success(json.message || "Form submitted successfully!");
+                // reset
                 setFormData({
                     name: "",
                     address: "",
@@ -85,35 +73,30 @@ const Transit = ({ onClose, userData }) => {
                     period: "",
                     description: "",
                     packaging: "",
-                    containerInsured: "",
+                    containerInsured: "No",
                     containerValue: "",
                     propertyOwnership: "",
                     itinerary: "",
                     mode: "",
                     conveyanceType: "",
-                    estimatedAnnual: "",
-                    limitPerConveyance: "",
-                    properAccounts: "",
-                    previousLosses: "",
-                    accountCarrying: "",
-                    conveyance: "",
                     estimate: "",
+                    conveyance: "",
+                    accountCarrying: "",
+                    previousLosses: "",
                     lossDetails: "",
                     date: "",
                     agency: "",
-                    message: ''
+                    message: ""
                 });
-                e.target.reset();
-                // Delay unmounting the component to give time for the toast to display
-                setTimeout(() => {
-                    if (onClose) onClose();
-                }, 6000);
-
-            })
-            .catch((err) => {
-                console.error("FAILED...", err);
-                toast.error("Failed to submit form. Please try again.");
-            });
+                formRef.current.reset();
+                setTimeout(onClose, 6000);
+            } else {
+                toast.error(json.message || "Submission failed.");
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error("An error occurred. Please try again.");
+        }
     };
 
     return (
