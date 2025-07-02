@@ -4,10 +4,10 @@ import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import emailjs from '@emailjs/browser';
 
 const FireInsurance = ({ onClose, userData }) => {
-    const form = useRef();
+    const formRef = useRef();
+
 
     const [formData, setFormData] = useState({
         proposerTitle: '',
@@ -58,31 +58,29 @@ const FireInsurance = ({ onClose, userData }) => {
         refusedDetails: '',
         madeClaim: '',
         claimDetails: '',
-        extendEarthquake: '',
-        extendWindstorm: '',
-        extendExplosion: '',
-        extendAircraft: '',
-        extendImpact: '',
-        extendFlood: '',
-        extendBurstPipe: '',
-        extendRiot: '',
-        extendCivilCommotion: '',
-        extendMaliciousDamage: '',
-        extendBushFire: '',
+        extendEarthquake: false,
+        extendWindstorm: false,
+        extendExplosion: false,
+        extendAircraft: false,
+        extendImpact: false,
+        extendFlood: false,
+        extendBurstPipe: false,
+        extendRiot: false,
+        extendCivilCommotion: false,
+        extendMaliciousDamage: false,
+        extendBushFire: false,
         declarationDate: '',
         declarationAgency: '',
         message: '',
     });
 
-    // Error state for email and mobile validation
     const [emailError, setEmailError] = useState("");
     const [phoneError, setPhoneError] = useState("");
 
-    // Pre-populate fields with parent userData when available
     useEffect(() => {
         if (userData) {
-            setFormData(prev => ({
-                ...prev,
+            setFormData(f => ({
+                ...f,
                 proposerTitle: userData.fullname || '',
                 email: userData.email || '',
                 mobile: userData.phone || '',
@@ -90,151 +88,121 @@ const FireInsurance = ({ onClose, userData }) => {
         }
     }, [userData]);
 
-    // Helper function to validate email
-    const validateEmail = (email) => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    };
+    const validateEmail = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const validatePhone = phone => /^\+?[0-9]{7,15}$/.test(phone);
 
-    // Helper function to validate mobile number
-    const validatePhone = (phone) => {
-        // Accepts an optional '+' followed by 7 to 15 digits
-        const regex = /^\+?[0-9]{7,15}$/;
-        return regex.test(phone);
-    };
-
-    const handleChange = (e) => {
+    const handleChange = e => {
         const { name, value, type, checked } = e.target;
-        // Update formData state
         if (type === 'checkbox' && name === 'hazardousItems') {
-            let newItems = [...formData.hazardousItems];
-            if (checked) {
-                newItems.push(value);
-            } else {
-                newItems = newItems.filter((item) => item !== value);
-            }
-            setFormData({ ...formData, hazardousItems: newItems });
+            let items = [...formData.hazardousItems];
+            checked ? items.push(value) : items = items.filter(i => i !== value);
+            setFormData(f => ({ ...f, hazardousItems: items }));
         } else if (type === 'checkbox') {
-            setFormData({ ...formData, [name]: checked ? 'Yes' : 'No' });
+            setFormData(f => ({ ...f, [name]: checked }));
         } else {
-            setFormData({ ...formData, [name]: value });
+            setFormData(f => ({ ...f, [name]: value }));
         }
 
-        // Validate email field
         if (name === 'email') {
-            if (!validateEmail(value)) {
-                setEmailError("Please enter a valid email address.");
-            } else {
-                setEmailError("");
-            }
+            setEmailError(!validateEmail(value) ? 'Please enter a valid email.' : '');
         }
-
-        // Validate mobile field
         if (name === 'mobile') {
-            if (!validatePhone(value)) {
-                setPhoneError("Please enter a valid mobile number.");
-            } else {
-                setPhoneError("");
-            }
+            setPhoneError(!validatePhone(value) ? 'Please enter a valid mobile no.' : '');
         }
     };
 
-    const handleSubmit = (e) => {
+    const sendEmail = async e => {
         e.preventDefault();
-
-        // Prevent submission if there are validation errors
         if (emailError || phoneError) {
-            toast.error("Please fix the errors in the form before submitting.");
+            toast.error("Please fix the errors before submitting.");
             return;
         }
 
-        emailjs
-            .sendForm(
-                'service_kiwnx04',       // Replace with your EmailJS service ID
-                'template_z2zdfkn',       // Replace with your EmailJS template ID ("FireInsuranceProposal")
-                form.current,
-                'aV-FvEfOZg7fbxTN2'       // Replace with your EmailJS public key
-            )
-            .then(
-                (result) => {
-                    toast.success('Fire Insurance proposal submitted successfully!');
-                    // Reset the form state
-                    setFormData({
-                        proposerTitle: '',
-                        proposerSurname: '',
-                        otherNames: '',
-                        dob: '',
-                        sex: '',
-                        postalAddress: '',
-                        occupation: '',
-                        email: '',
-                        mobile: '',
-                        landline: '',
-                        propertyAddress: '',
-                        premisesDescription: '',
-                        constructionWalls: '',
-                        constructionRoof: '',
-                        sumBuilding: '',
-                        sumFence: '',
-                        sumFurniture: '',
-                        sumWholesale: '',
-                        sumRetail: '',
-                        sumFixtures: '',
-                        storeys: '',
-                        heatingLightingUse: '',
-                        heatingLightingNature: '',
-                        manufacturing: '',
-                        manufacturingNature: '',
-                        oilsDetails: '',
-                        hazardousItems: [],
-                        adjoiningBuildings: '',
-                        adjoiningConstruction: '',
-                        adjoiningOccupation: '',
-                        adjoiningGoods: '',
-                        adjoiningSeparationMaterials: '',
-                        adjoiningOpenings: '',
-                        adjoiningOpeningsNature: '',
-                        riskDetached: '',
-                        detachedConstruction: '',
-                        detachedOccupation: '',
-                        detachedDistance: '',
-                        annualStock: '',
-                        accountingBooks: '',
-                        fireProofSafe: '',
-                        removeBooks: '',
-                        currentlyInsured: '',
-                        policyNumber: '',
-                        insuranceRefused: '',
-                        refusedDetails: '',
-                        madeClaim: '',
-                        claimDetails: '',
-                        extendEarthquake: '',
-                        extendWindstorm: '',
-                        extendExplosion: '',
-                        extendAircraft: '',
-                        extendImpact: '',
-                        extendFlood: '',
-                        extendBurstPipe: '',
-                        extendRiot: '',
-                        extendCivilCommotion: '',
-                        extendMaliciousDamage: '',
-                        extendBushFire: '',
-                        declarationDate: '',
-                        declarationAgency: '',
-                        message: '',
-                    });
-                    // Delay unmounting the component to give time for the toast to display
-                    setTimeout(() => {
-                        if (onClose) onClose();
-                    }, 6000);
-                },
-                (error) => {
-                    toast.error('Failed to submit proposal. Please try again.');
-                    console.error('EmailJS error:', error.text);
-                }
-            );
-        // Optionally clear the form fields in the DOM
-        e.target.reset();
+        // build full JSON payload including emailType
+        const payload = { ...formData, emailType: 'fireInsuranceProposal' };
+
+        try {
+            const res = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            const result = await res.json();
+            if (result.status === 'success') {
+                toast.success(result.message || 'Proposal submitted successfully!');
+                formRef.current.reset();
+                setFormData(f => ({
+                    proposerTitle: '',
+                    proposerSurname: '',
+                    otherNames: '',
+                    dob: '',
+                    sex: '',
+                    postalAddress: '',
+                    occupation: '',
+                    email: '',
+                    mobile: '',
+                    landline: '',
+                    propertyAddress: '',
+                    premisesDescription: '',
+                    constructionWalls: '',
+                    constructionRoof: '',
+                    sumBuilding: '',
+                    sumFence: '',
+                    sumFurniture: '',
+                    sumWholesale: '',
+                    sumRetail: '',
+                    sumFixtures: '',
+                    storeys: '',
+                    heatingLightingUse: '',
+                    heatingLightingNature: '',
+                    manufacturing: '',
+                    manufacturingNature: '',
+                    oilsDetails: '',
+                    hazardousItems: [],
+                    adjoiningBuildings: '',
+                    adjoiningConstruction: '',
+                    adjoiningOccupation: '',
+                    adjoiningGoods: '',
+                    adjoiningSeparationMaterials: '',
+                    adjoiningOpenings: '',
+                    adjoiningOpeningsNature: '',
+                    riskDetached: '',
+                    detachedConstruction: '',
+                    detachedOccupation: '',
+                    detachedDistance: '',
+                    annualStock: '',
+                    accountingBooks: '',
+                    fireProofSafe: '',
+                    removeBooks: '',
+                    currentlyInsured: '',
+                    policyNumber: '',
+                    insuranceRefused: '',
+                    refusedDetails: '',
+                    madeClaim: '',
+                    claimDetails: '',
+                    extendEarthquake: false,
+                    extendWindstorm: false,
+                    extendExplosion: false,
+                    extendAircraft: false,
+                    extendImpact: false,
+                    extendFlood: false,
+                    extendBurstPipe: false,
+                    extendRiot: false,
+                    extendCivilCommotion: false,
+                    extendMaliciousDamage: false,
+                    extendBushFire: false,
+                    declarationDate: '',
+                    declarationAgency: '',
+                    message: '',
+                }));
+                setTimeout(onClose, 6000);
+            } else {
+                toast.error(result.message || 'Submission failed.');
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error('An error occurred. Please try again.');
+        }
     };
 
     return (
@@ -271,7 +239,7 @@ const FireInsurance = ({ onClose, userData }) => {
                     <h1 className="text-xl font-bold mb-4">Fire Insurance Proposal Request</h1>
                     <p>Please kindly fill out the form fields below.</p>
 
-                    <form onSubmit={handleSubmit} className="space-y-8">
+                    <form ref={formRef} onSubmit={sendEmail} className="space-y-8">
                         {/* Insured’s Details */}
                         <section>
                             <h2 className="text-2xl font-semibold mb-4">Insured’s Details</h2>

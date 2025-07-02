@@ -1,185 +1,121 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import image from "../../images/assets.png";
 import formlogo from "../../images/formlogo.png";
 
+
+
+const initialState = {
+    insuredName: '',
+    occupation: '',
+    email: '',
+    mobile: '',
+    tin: '',
+    propertyLocation: '',
+    lossDate: '',
+    lossTime: '',
+    noticeDateOne: '',
+    noticeDateTwo: '',
+    witnesses: '',
+    witnessName: '',
+    damagedItem: '',
+    itemNumber: '',
+    sumInsured: '',
+    manufacturerEquipment: '',
+    yearSerial: '',
+    itemDescription: '',
+    damagedParts: '',
+    damageCause: '',
+    policeStation: '',
+    radioSerialNumber: '',
+    repaircost: '',
+    estimate: '',
+    insuredCompany: '',
+    scope: '',
+    thirdPartyDamage: '',
+    thirdPartyDetails: '',
+    propertyDamage: '',
+    bodilyInjury: '',
+    existingPropertyDamage: '',
+    propertyDamageDetails: '',
+    claimAmount: '',
+    issuedAt: '',
+    issuedDay: '',
+    issuedMonth: '',
+    issuedYear: '',
+    message: '',
+};
+
+
 const AssetsAllRisk = ({ onClose, userData }) => {
-    const form = useRef();
+    const formRef = useRef();
 
-    const [formData, setFormData] = useState({
-        insuredName: '',
-        occupation: '',
-        email: '',
-        mobile: '',
-        tin: '',
-        propertyLocation: '',
-        lossDate: '',
-        lossTime: '',
-        noticeDateOne: '',
-        noticeDateTwo: '',
-        witnesses: '',
-        witnessName: '',
-        damagedItem: '',
-        itemNumber: '',
-        sumInsured: '',
-        manufacturerEquipment: '',
-        yearSerial: '',
-        itemDescription: '',
-        damagedParts: '',
-        damageCause: '',
-        policeStation: '',
-        radioSerialNumber: '',
-        repaircost: '',
-        estimate: '',
-        // Additional fields for damaged items insured with another company
-        insuredCompany: '',
-        scope: '',
-        thirdPartyDamage: '',
-        thirdPartyDetails: '',
-        propertyDamage: '',
-        bodilyInjury: '',
-        existingPropertyDamage: '',
-        propertyDamageDetails: '',
-        claimAmount: '',
-        issuedAt: '',
-        issuedDay: '',
-        issuedMonth: '',
-        issuedYear: '',
-        message: '',
-    });
-
-    // State for email and mobile (phone) error messages
+    const [formData, setFormData] = useState(initialState);
     const [emailError, setEmailError] = useState("");
     const [phoneError, setPhoneError] = useState("");
 
-    // Pre-populate the personal details from the parent if provided
     useEffect(() => {
         if (userData) {
-            setFormData((prev) => ({
+            setFormData(prev => ({
                 ...prev,
-                insuredName: userData.fullname ? userData.fullname.trim() : '',
-                email: userData.email || '',
-                mobile: userData.phone || '',
+                insuredName: userData.fullname?.trim() || "",
+                email: userData.email || "",
+                mobile: userData.phone || "",
             }));
         }
     }, [userData]);
 
-    // Helper function to validate email using a regex
-    const validateEmail = (email) => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    };
+    const validateEmail = email =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    // Helper function to validate mobile/phone number
-    const validatePhone = (phone) => {
-        // Accepts an optional '+' followed by 7 to 15 digits
-        const regex = /^\+?[0-9]{7,15}$/;
-        return regex.test(phone);
-    };
+    const validatePhone = phone =>
+        /^\+?[0-9]{7,15}$/.test(phone);
 
-    const handleChange = (e) => {
+    const handleChange = e => {
         const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
+        setFormData(prev => ({ ...prev, [name]: value }));
 
-        // Validate email field and update error state accordingly
-        if (name === 'email') {
-            if (!validateEmail(value)) {
-                setEmailError("Please enter a valid email address.");
-            } else {
-                setEmailError("");
-            }
+        if (name === "email") {
+            setEmailError(validateEmail(value) ? "" : "Please enter a valid email address.");
         }
-
-        // Validate mobile field and update error state accordingly
-        if (name === 'mobile') {
-            if (!validatePhone(value)) {
-                setPhoneError("Please enter a valid mobile number.");
-            } else {
-                setPhoneError("");
-            }
+        if (name === "mobile") {
+            setPhoneError(validatePhone(value) ? "" : "Please enter a valid mobile number.");
         }
     };
 
-    const sendEmail = (e) => {
+    const sendEmail = async e => {
         e.preventDefault();
-
-        // Prevent form submission if there are validation errors
         if (emailError || phoneError) {
             toast.error("Please fix the errors before submitting the claim.");
             return;
         }
 
-        emailjs
-            .sendForm(
-                'service_q21fuxd',     // Replace with your EmailJS service ID
-                'template_yj0pmcx',    // Replace with your EmailJS template ID
-                form.current,
-                'aV-FvEfOZg7fbxTN2'     // Replace with your EmailJS public key
-            )
-            .then(
-                (result) => {
-                    toast.success('Claim submitted successfully!');
-                    // Optionally reset the form state
-                    setFormData({
-                        insuredName: '',
-                        occupation: '',
-                        email: '',
-                        mobile: '',
-                        tin: '',
-                        propertyLocation: '',
-                        lossDate: '',
-                        lossTime: '',
-                        noticeDateOne: '',
-                        noticeDateTwo: '',
-                        witnesses: '',
-                        witnessName: '',
-                        damagedItem: '',
-                        itemNumber: '',
-                        sumInsured: '',
-                        manufacturerEquipment: '',
-                        yearSerial: '',
-                        itemDescription: '',
-                        damagedParts: '',
-                        damageCause: '',
-                        policeStation: '',
-                        radioSerialNumber: '',
-                        repaircost: '',
-                        estimate: '',
-                        insuredCompany: '',
-                        scope: '',
-                        thirdPartyDamage: '',
-                        thirdPartyDetails: '',
-                        propertyDamage: '',
-                        bodilyInjury: '',
-                        existingPropertyDamage: '',
-                        propertyDamageDetails: '',
-                        claimAmount: '',
-                        issuedAt: '',
-                        issuedDay: '',
-                        issuedMonth: '',
-                        issuedYear: '',
-                        message: '',
-                    });
-                    // Close the form
-                    // Delay unmounting the component to give time for the toast to display
-                    setTimeout(() => {
-                        if (onClose) onClose();
-                    }, 6000);
-                },
-                (error) => {
-                    toast.error('Failed to submit claim. Please try again.');
-                    console.error('Email error:', error.text);
-                }
-            );
+        const payload = {
+            ...formData,
+            emailType: "assetsAllRiskForm"
+        };
 
-        // Optionally reset the form fields in the DOM
-        e.target.reset();
+        try {
+            const res = await fetch("/send-email.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
+            const result = await res.json();
+
+            if (result.status === "success") {
+                toast.success(result.message || "Claim submitted successfully!");
+                setFormData(initialState);
+                setTimeout(() => onClose?.(), 6000);
+            } else {
+                toast.error(result.message || "Failed to submit claim. Please try again.");
+            }
+        } catch (err) {
+            console.error("Submission error:", err);
+            toast.error("An error occurred. Please try again.");
+        }
     };
 
     return (
@@ -216,7 +152,7 @@ const AssetsAllRisk = ({ onClose, userData }) => {
                     <h2 className="text-2xl text-gray-800 font-bold mb-3">Assets All Risks Claim Request</h2>
                     <p>Please kindly fill out the form fields below.</p>
 
-                    <form ref={form} onSubmit={sendEmail} className="space-y-4">
+                    <form ref={formRef} onSubmit={sendEmail} className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium">Insured Name</label>
                             <input

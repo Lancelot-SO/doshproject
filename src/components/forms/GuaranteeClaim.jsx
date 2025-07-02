@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import image from "../../images/guarantee.png"
 import formlogo from "../../images/formlogo.png";
-import emailjs from '@emailjs/browser';
 import { X } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -31,58 +30,39 @@ const GuaranteeClaim = ({ onClose, userData }) => {
     // 2. A ref for the form so EmailJS can capture all fields including the file
     const formRef = useRef();
 
-    // When the component mounts or userData changes, update formData with values from userData
     useEffect(() => {
         if (userData) {
-            setFormData((prevState) => ({
-                ...prevState,
-                // Map the fields from userData to the corresponding form fields.
-                // Adjust the property names as needed.
-                defaulterName: userData.fullname || "",
-                // otherNames: userData.othernames || "", // notice the key names may need to match
-                // You can add more fields here if needed.
+            setFormData(f => ({
+                ...f,
+                defaulterName: userData.fullname || ""
             }));
         }
     }, [userData]);
 
-    // 3. Handle text changes
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setFormData(f => ({ ...f, [name]: value }));
     };
 
-    // 4. Handle file input changes if you want to store the filename in state
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        // We can store just the file name in state (optional)
-        setFormData((prev) => ({
-            ...prev,
-            signature: file ? file.name : "",
-        }));
-    };
-
-    // 5. Submit the form via EmailJS
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
+        // build payload
+        const payload = {
+            ...formData,
+            emailType: "guaranteeClaim"
+        };
 
-        // Replace with your actual EmailJS configuration
-        const serviceID = 'service_hjlg8jr';
-        const templateID = 'template_7h49ra5';
-        const publicKey = 'aV-FvEfOZg7fbxTN2';
-
-        emailjs.sendForm(
-            serviceID,
-            templateID,
-            formRef.current, // the form element
-            publicKey
-        )
-            .then((response) => {
-                console.log('SUCCESS!', response.status, response.text);
-                toast.success('Form submitted successfully!');
-
-                // Reset the React state
+        // send JSON (your PHP endpoint should parse JSON and handle $_FILES separately)
+        try {
+            const res = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const result = await res.json();
+            if (result.status === 'success') {
+                toast.success(result.message || 'Claim submitted successfully!');
+                formRef.current.reset();
                 setFormData({
                     surname: "",
                     defaulterName: "",
@@ -101,20 +81,16 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                     agency: "",
                     message: "",
                 });
+                setTimeout(onClose, 6000);
+            } else {
+                toast.error(result.message || 'Submission failed.');
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error('An error occurred. Please try again.');
+        }
+    };
 
-                // Reset the actual form fields
-                e.target.reset();
-                // Delay unmounting the component to give time for the toast to display
-                setTimeout(() => {
-                    if (onClose) onClose();
-                }, 6000);
-
-            })
-            .catch((err) => {
-                console.error('FAILED...', err);
-                toast.error('Failed to submit form. Please try again.');
-            });
-    }
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">

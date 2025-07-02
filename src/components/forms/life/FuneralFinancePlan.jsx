@@ -1,197 +1,142 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import image from "../../../images/funeral3.png";
 import formlogo from "../../../images/formlogo.png";
 
 const FuneralFinancePlan = ({ onClose, userData }) => {
-    const form = useRef();
+    const formRef = useRef();
+    const [emailError, setEmailError] = useState('');
+    const [phoneError, setPhoneError] = useState('');
 
-    // States for email and phone errors
-    const [emailError, setEmailError] = useState("");
-    const [phoneError, setPhoneError] = useState("");
-
-    // Helper functions for validation
-    const validateEmail = (email) => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    };
-
-    const validatePhone = (phone) => {
-        // Accepts an optional '+' followed by 7 to 15 digits
-        const regex = /^\+?[0-9]{10,15}$/;
-        return regex.test(phone);
-    };
+    const validateEmail = email =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const validatePhone = phone =>
+        /^\+?[0-9]{10,15}$/.test(phone);
 
     const [formData, setFormData] = useState({
         // I. Applicant & Personal Information
-        fullName: "",
-        dateOfBirth: "",
-        gender: "",
-        ssn: "",
-        maritalStatus: "",
-        streetAddress: "",
-        city: "",
-        state: "",
-        zipCode: "",
-        primaryPhone: "",
-        secondaryPhone: "",
-        email: "",
+        fullName: '',
+        dateOfBirth: '',
+        gender: '',
+        ssn: '',
+        maritalStatus: '',
+        streetAddress: '',
+        city: '',
+        state: '',
+        zipCode: '',
+        primaryPhone: '',
+        secondaryPhone: '',
+        email: '',
         // II. Policy & Coverage Details
-        policyNumber: "",
-        applicationDate: "",
-        planType: "",
-        coverageAmount: "",
-        paymentFrequency: "",
-        paymentMode: "",
-        termOfCoverage: "",
+        policyNumber: '',
+        applicationDate: '',
+        planType: '',
+        coverageAmount: '',
+        paymentFrequency: '',
+        paymentMode: '',
+        termOfCoverage: '',
         // III. Beneficiary/Claimant Information
-        beneficiaryName: "",
-        beneficiaryRelationship: "",
-        beneficiaryAddress: "",
-        beneficiaryPhone: "",
-        secondaryBeneficiary: "",
+        beneficiaryName: '',
+        beneficiaryRelationship: '',
+        beneficiaryAddress: '',
+        beneficiaryPhone: '',
+        secondaryBeneficiary: '',
         // IV. Funeral Service & Arrangement Preferences
-        funeralHome: "",
-        serviceType: "",
-        serviceDate: "",
-        specialInstructions: "",
+        funeralHome: '',
+        serviceType: '',
+        serviceDate: '',
+        specialInstructions: '',
         // V. Medical and Underwriting Information
-        preExistingConditions: "",
-        previousInsurance: "",
-        doctorName: "",
-        underwritingQuestions: "",
+        preExistingConditions: '',
+        previousInsurance: '',
+        doctorName: '',
+        underwritingQuestions: '',
         // VI. Declarations, Authorizations & Signatures
-        applicantSignature: "",
-        signatureDate: "",
-        witnessSignature: "",
-        witnessSignatureDate: "",
+        applicantSignature: '',
+        signatureDate: '',
+        witnessSignature: '',
+        witnessSignatureDate: '',
         // VII. Administrative & Internal Use Fields
-        agentName: "",
-        agentContact: "",
-        processingDate: "",
-        policyEffectiveDate: "",
-        underwriterComments: "",
-        // VIII. Additional Information & Communication Preferences
-        communicationMethod: "",
-        languagePreference: "",
-        additionalComments: "",
-        message: "",
+        agentName: '',
+        agentContact: '',
+        processingDate: '',
+        policyEffectiveDate: '',
+        underwriterComments: '',
+        // VIII. Additional Info & Communication Preferences
+        communicationMethod: '',
+        languagePreference: '',
+        additionalComments: '',
+        message: '',
     });
 
-    // Pre-populate personal details from userData if provided
     useEffect(() => {
         if (userData) {
-            setFormData((prev) => ({
+            setFormData(prev => ({
                 ...prev,
-                fullName: userData.fullname ? userData.fullname.trim() : '',
+                fullName: userData.fullname?.trim() || '',
                 email: userData.email || '',
-                primaryPhone: userData.phone || ''
+                primaryPhone: userData.phone || '',
             }));
         }
     }, [userData]);
 
-    const handleChange = (e) => {
+    const handleChange = e => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        setFormData(prev => ({ ...prev, [name]: value }));
 
-        // Validate email if it changes
-        if (name === "email") {
-            if (!validateEmail(value)) {
-                setEmailError("Please enter a valid email address.");
-            } else {
-                setEmailError("");
-            }
+        if (name === 'email') {
+            setEmailError(validateEmail(value) ? '' : 'Please enter a valid email address.');
         }
-        // Validate primaryPhone if it changes
-        if (name === "primaryPhone") {
-            if (!validatePhone(value)) {
-                setPhoneError("Please enter a valid phone number.");
-            } else {
-                setPhoneError("");
-            }
+        if (name === 'primaryPhone') {
+            setPhoneError(validatePhone(value) ? '' : 'Please enter a valid phone number.');
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
-
-        // Prevent submission if there are validation errors
         if (emailError || phoneError) {
-            toast.error("Please fix the errors before submitting the claim.");
+            toast.error('Please fix the errors before submitting.');
             return;
         }
 
-        console.log("Submitted Data:", formData);
-        emailjs
-            .sendForm(
-                'service_9eki6v4', // Replace with your EmailJS service ID
-                'template_ugxcswl', // Replace with your EmailJS template ID
-                form.current,
-                'aV-FvEfOZg7fbxTN2' // Replace with your EmailJS public key
-            )
-            .then(
-                (result) => {
-                    toast.success('Claim submitted successfully!');
-                    setFormData({
-                        fullName: "",
-                        dateOfBirth: "",
-                        gender: "",
-                        ssn: "",
-                        maritalStatus: "",
-                        streetAddress: "",
-                        city: "",
-                        state: "",
-                        zipCode: "",
-                        primaryPhone: "",
-                        secondaryPhone: "",
-                        email: "",
-                        policyNumber: "",
-                        applicationDate: "",
-                        planType: "",
-                        coverageAmount: "",
-                        paymentFrequency: "",
-                        paymentMode: "",
-                        termOfCoverage: "",
-                        beneficiaryName: "",
-                        beneficiaryRelationship: "",
-                        beneficiaryAddress: "",
-                        beneficiaryPhone: "",
-                        secondaryBeneficiary: "",
-                        funeralHome: "",
-                        serviceType: "",
-                        serviceDate: "",
-                        specialInstructions: "",
-                        preExistingConditions: "",
-                        previousInsurance: "",
-                        doctorName: "",
-                        underwritingQuestions: "",
-                        applicantSignature: "",
-                        signatureDate: "",
-                        witnessSignature: "",
-                        witnessSignatureDate: "",
-                        agentName: "",
-                        agentContact: "",
-                        processingDate: "",
-                        policyEffectiveDate: "",
-                        underwriterComments: "",
-                        communicationMethod: "",
-                        languagePreference: "",
-                        additionalComments: "",
-                        message: ""
-                    });
-                    // Delay unmounting the component to give time for the toast to display
-                    setTimeout(() => {
-                        if (onClose) onClose();
-                    }, 6000);
-                },
-                (error) => {
-                    toast.error('Failed to submit claim. Please try again.');
-                    console.error('Email error:', error.text);
-                }
-            );
+        const payload = { ...formData, emailType: 'funeralfinanceplan' };
+
+        try {
+            const res = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            const result = await res.json();
+
+            if (result.status === 'success') {
+                toast.success(result.message || 'Claim submitted successfully!');
+                setFormData({
+                    fullName: '', dateOfBirth: '', gender: '', ssn: '', maritalStatus: '',
+                    streetAddress: '', city: '', state: '', zipCode: '',
+                    primaryPhone: '', secondaryPhone: '', email: '',
+                    policyNumber: '', applicationDate: '', planType: '',
+                    coverageAmount: '', paymentFrequency: '', paymentMode: '',
+                    termOfCoverage: '', beneficiaryName: '', beneficiaryRelationship: '',
+                    beneficiaryAddress: '', beneficiaryPhone: '', secondaryBeneficiary: '',
+                    funeralHome: '', serviceType: '', serviceDate: '', specialInstructions: '',
+                    preExistingConditions: '', previousInsurance: '', doctorName: '',
+                    underwritingQuestions: '', applicantSignature: '', signatureDate: '',
+                    witnessSignature: '', witnessSignatureDate: '', agentName: '',
+                    agentContact: '', processingDate: '', policyEffectiveDate: '',
+                    underwriterComments: '', communicationMethod: '',
+                    languagePreference: '', additionalComments: '', message: '',
+                });
+                setTimeout(() => onClose?.(), 6000);
+            } else {
+                toast.error(result.message || 'Failed to submit claim.');
+            }
+        } catch (err) {
+            console.error('Error submitting form:', err);
+            toast.error('An error occurred. Please try again.');
+        }
     };
 
     return (
@@ -227,7 +172,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                     <h2 className="text-xl text-gray-800 font-bold mb-3">Funeral Finance Plan (Whole Life Policy)</h2>
                     <p className='text-black'>Please kindly fill out the form fields below.</p>
 
-                    <form ref={form} onSubmit={handleSubmit} className="max-w-5xl mx-auto p-6 rounded shadow-md">
+                    <form ref={formRef} onSubmit={handleSubmit} className="max-w-5xl mx-auto p-6 rounded shadow-md">
                         {/* I. Applicant & Personal Information */}
                         <section className="mb-8">
                             <h2 className="text-[14px] font-semibold text-black border-b pb-2 mb-4">

@@ -1,13 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import image from "../../images/claim.png";
 import formlogo from "../../images/formlogo.png";
 
 const Claims = ({ onClose, userData }) => {
-    const form = useRef();
 
     const [formData, setFormData] = useState({
         message: '',
@@ -68,54 +66,65 @@ const Claims = ({ onClose, userData }) => {
 
     const [selectedInsurerType, setSelectedInsurerType] = useState('');
 
-    // Pre-fill user data if provided
     useEffect(() => {
         if (userData) {
-            setFormData(prev => ({
-                ...prev,
-                insuredName: userData.fullname?.trim() || '',
-                email: userData.email || '',
-                mobile: userData.phone || '',
+            setFormData(f => ({
+                ...f,
+                customerDetails: userData.fullname?.trim() || '',
+                // if you have user email/mobile fields you can add them here
             }));
         }
     }, [userData]);
 
     const handleChange = e => {
         const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        setFormData(f => ({ ...f, [name]: value }));
     };
 
     const handlePreferredInsurerChange = e => {
-        const category = e.target.value;
-        setSelectedInsurerType(category);
-        setFormData(prev => ({
-            ...prev,
-            preferredInsurer: category,
+        const pref = e.target.value;
+        setSelectedInsurerType(pref);
+        setFormData(f => ({
+            ...f,
+            preferredInsurer: pref,
             specificInsurer: '',
-            // clear policyNumber if switching to "Other"
-            policyNumber: category === 'Other' ? '' : prev.policyNumber,
+            policyNumber: pref === 'Other' ? '' : f.policyNumber,
         }));
     };
 
-    const sendEmail = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        emailjs
-            .sendForm('service_lhp5a0r', 'template_olpbd9c', form.current, 'aV-FvEfOZg7fbxTN2')
-            .then(
-                () => {
-                    toast.success('Claim submitted successfully!', { autoClose: 5000 });
-                    setFormData({
-                        message: '',
-                        preferredInsurer: '',
-                        specificInsurer: '',
-                        customerDetails: '',
-                        policyNumber: '',
-                    });
-                    setTimeout(onClose, 6000);
-                },
-                () => toast.error('Failed to submit claim. Please try again.', { autoClose: 5000 })
-            );
-        e.target.reset();
+
+        const payload = {
+            ...formData,
+            emailType: "claimForm"
+        };
+
+        try {
+            const resp = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const result = await resp.json();
+            if (result.status === 'success') {
+                toast.success(result.message || 'Claim submitted successfully!', { autoClose: 5000 });
+                setFormData({
+                    message: '',
+                    preferredInsurer: '',
+                    specificInsurer: '',
+                    customerDetails: '',
+                    policyNumber: '',
+                });
+                setSelectedInsurerType('');
+                setTimeout(onClose, 6000);
+            } else {
+                throw new Error(result.message || 'Submission failed');
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error(err.message || 'Failed to submit claim. Please try again.', { autoClose: 5000 });
+        }
     };
 
     return (
@@ -153,7 +162,7 @@ const Claims = ({ onClose, userData }) => {
                             Tell us how we can help you today.
                         </p>
                     </div>
-                    <form ref={form} onSubmit={sendEmail} className="space-y-4">
+                    <form onSubmit={handleSubmit} className="space-y-4">
                         {/* Customer Details */}
                         <div>
                             <label htmlFor="customerDetails" className="block text-sm font-medium">

@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
-import emailjs from '@emailjs/browser';
+import React, { useState, useEffect } from "react";
 import image from "../../images/director.png";
 import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
@@ -8,108 +7,91 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Director = ({ onClose, userData }) => {
     const [formData, setFormData] = useState({
-        // Question 1
         companyName: "",
         headOfficeAddress: "",
         holdingCompany: "",
-        // Question 2
         companyType: "",
         natureOfBusiness: "",
         businessStartDate: "",
-        // Question 3
         boardDirectors: "",
-        // Question 4
         coverRequired: "",
         coverCompany: "",
         coverCountry: "",
         coverNetProfit: "",
         coverNetWorth: "",
         coverIncorporation: "",
-        // Question 5
         shareholdersCount: "",
         shareholdersDetails: "",
-        // Question 6
         listedStockExchange: "",
         unlistedSecurities: "",
         tradedOther: "",
-        // Question 7
         usAssets: "",
         usEmployees: "",
         canadaEmployees: "",
-        // Question 8
         subsidiaryName: "",
         subsidiaryInterest: "",
-        // Question 9
         stockIssued: "",
         lastOfferDate: "",
         securityAct: "",
-        // Question 10 – file upload (e.g., 20-F filing)
         filingUploaded: null,
-        // Question 11
         acquisitions: "",
-        // Question 12
         publicOffering: "",
         publicOfferingnext: "",
         shareIssue: "",
-        // Question 13
         insurerName: "",
         policyPeriod: "",
         indemnityLimit: "",
         premium: "",
         insuranceRefusal: "",
-        // Question 14
         claimDetails: "",
         futureClaimDetails: "",
         details: "",
         nextdetails: "",
-        // Question 15
         indemnityRequired: "",
-        // Question 16 – Declaration
+        declarationSigned: null,
         declarationCapacity: "",
         declarationCompany: "",
         declarationDate: "",
-        message: '',
+        message: "",
     });
 
-    // Create a form ref for emailjs.sendForm
-    const formRef = useRef();
-
-    // Use effect to pre-populate fields using userData passed from RiskForm.
+    // Pre-populate from userData
     useEffect(() => {
         if (userData) {
             setFormData(prev => ({
                 ...prev,
-                // For example, pre-populate the Board of Directors field with the full name.
-                companyName: `${userData.fullname}`.trim(),
+                companyName: userData.fullname?.trim() || "",
             }));
         }
     }, [userData]);
 
-    // Handle input changes
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
         if (type === "file") {
-            // For file inputs, we store the File object (do not set a value for file inputs in React)
-            setFormData({ ...formData, [name]: files[0] });
+            setFormData(f => ({ ...f, [name]: files[0] }));
         } else {
-            setFormData({ ...formData, [name]: value });
+            setFormData(f => ({ ...f, [name]: value }));
         }
     };
 
-    // Handle form submission via EmailJS
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Replace with your actual EmailJS credentials
-        const serviceID = "service_3skw168";
-        const templateID = "template_kr1zu3s";
-        const publicKey = "aV-FvEfOZg7fbxTN2";
-
-        emailjs.sendForm(serviceID, templateID, formRef.current, publicKey)
-            .then((response) => {
-                console.log("SUCCESS!", response.status, response.text);
-                toast.success("Form submitted successfully!");
-                // Optionally, reset state and the form
+        // Build a FormData payload if you need to include files
+        const payload = new FormData();
+        Object.entries(formData).forEach(([key, val]) => {
+            if (val !== null && val !== undefined) {
+                payload.append(key, val);
+            }
+        });
+        try {
+            const res = await fetch("/send-email.php", {
+                method: "POST",
+                body: payload,
+            });
+            const result = await res.json();
+            if (result.status === "success") {
+                toast.success(result.message || "Form submitted successfully!");
+                // reset state
                 setFormData({
                     companyName: "",
                     headOfficeAddress: "",
@@ -152,23 +134,21 @@ const Director = ({ onClose, userData }) => {
                     details: "",
                     nextdetails: "",
                     indemnityRequired: "",
-                    declarationSigned: "",
+                    declarationSigned: null,
                     declarationCapacity: "",
                     declarationCompany: "",
                     declarationDate: "",
-                    message: ''
+                    message: "",
                 });
                 e.target.reset();
-                // Delay unmounting the component to give time for the toast to display
-                setTimeout(() => {
-                    if (onClose) onClose();
-                }, 6000);
-
-            })
-            .catch((err) => {
-                console.error("FAILED...", err);
-                toast.error("Failed to submit form. Please try again.");
-            });
+                setTimeout(onClose, 6000);
+            } else {
+                toast.error(result.message || "Submission failed. Please try again.");
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error("An error occurred. Please try again.");
+        }
     };
 
     return (

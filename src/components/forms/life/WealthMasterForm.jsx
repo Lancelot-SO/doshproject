@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import image from "../../../images/wealth.png";
@@ -129,95 +128,88 @@ const initialState = {
 };
 
 function WealthMasterForm({ onClose, userData }) {
-    const form = useRef();
+    const formRef = useRef();
     const [formData, setFormData] = useState(initialState);
     const [emailError, setEmailError] = useState('');
     const [phoneError, setPhoneError] = useState('');
 
-    // Pre-populate personal details if provided
+    // Pre-populate from userData
     useEffect(() => {
         if (userData) {
             setFormData(prev => ({
                 ...prev,
-                surname: userData.fullname ? userData.fullname.trim() : '',
+                surname: userData.fullname?.trim() || '',
                 email: userData.email || '',
                 mobile: userData.phone || ''
             }));
         }
     }, [userData]);
 
-    const validateEmail = (email) => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    };
+    const validateEmail = email =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const validatePhone = phone =>
+        /^\+?[0-9]{7,15}$/.test(phone);
 
-    const validatePhone = (phone) => {
-        const regex = /^\+?[0-9]{7,15}$/;
-        return regex.test(phone);
-    };
-
-    const handleChange = (e) => {
+    const handleChange = e => {
         const { name, value, type, checked } = e.target;
-        const fieldValue = type === 'checkbox' ? checked : value;
-        setFormData(prev => ({ ...prev, [name]: fieldValue }));
+        const val = type === 'checkbox' ? checked : value;
+        setFormData(prev => ({ ...prev, [name]: val }));
 
         if (name === 'email') {
-            setEmailError(!validateEmail(value) ? 'Please enter a valid email address.' : '');
+            setEmailError(validateEmail(value) ? '' : 'Please enter a valid email address.');
         }
         if (name === 'mobile') {
-            setPhoneError(!validatePhone(value) ? 'Please enter a valid mobile number.' : '');
+            setPhoneError(validatePhone(value) ? '' : 'Please enter a valid mobile number.');
         }
     };
 
-    // For nested fields in arrays (Beneficiaries)
     const handleBeneficiaryChange = (idx, field, value) => {
-        const newBeneficiaries = [...formData.beneficiaries];
-        newBeneficiaries[idx] = { ...newBeneficiaries[idx], [field]: value };
-        setFormData({ ...formData, beneficiaries: newBeneficiaries });
+        const b = [...formData.beneficiaries];
+        b[idx][field] = value;
+        setFormData(prev => ({ ...prev, beneficiaries: b }));
     };
 
-    // For knowStarLife checkboxes
-    const handleKnowStarLifeChange = (e) => {
+    const handleKnowStarLifeChange = e => {
         const { value, checked } = e.target;
-        setFormData(prev => {
-            if (checked) {
-                return { ...prev, knowStarLife: [...prev.knowStarLife, value] };
-            } else {
-                return { ...prev, knowStarLife: prev.knowStarLife.filter(v => v !== value) };
-            }
-        });
+        setFormData(prev => ({
+            ...prev,
+            knowStarLife: checked
+                ? [...prev.knowStarLife, value]
+                : prev.knowStarLife.filter(v => v !== value),
+        }));
     };
 
-    const sendEmail = (e) => {
+    const sendEmail = async e => {
         e.preventDefault();
-
         if (emailError || phoneError) {
             toast.error('Please fix the errors before submitting the form.');
             return;
         }
 
-        emailjs
-            .sendForm(
-                'service_nxndxca',    // Your EmailJS service ID
-                'template_260ycvt',   // Your EmailJS template ID
-                form.current,
-                'aV-FvEfOZg7fbxTN2'   // Your EmailJS public key
-            )
-            .then(
-                (result) => {
-                    toast.success('Application submitted successfully!');
-                    setFormData(initialState);
-                    // Delay unmounting the component to give time for the toast to display
-                    setTimeout(() => {
-                        if (onClose) onClose();
-                    }, 6000);
-                },
-                (error) => {
-                    toast.error('Failed to submit the application. Please try again.');
-                    console.error('Email error:', error.text);
-                }
-            );
-        e.target.reset();
+        const payload = {
+            ...formData,
+            emailType: 'wealthMasterForm'
+        };
+
+        try {
+            const res = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const result = await res.json();
+
+            if (result.status === 'success') {
+                toast.success(result.message || 'Application submitted successfully!');
+                setFormData(initialState);
+                setTimeout(() => onClose?.(), 6000);
+            } else {
+                toast.error(result.message || 'Failed to submit the application. Please try again.');
+            }
+        } catch (err) {
+            console.error('Error submitting form:', err);
+            toast.error('An error occurred. Please try again.');
+        }
     };
 
     return (
@@ -255,7 +247,7 @@ function WealthMasterForm({ onClose, userData }) {
                     </h2>
                     <p>Please kindly fill out the form fields below.</p>
 
-                    <form ref={form} onSubmit={sendEmail} className="max-w-6xl mx-auto p-4">
+                    <form ref={formRef} onSubmit={sendEmail} className="max-w-6xl mx-auto p-4">
                         {/* Header */}
                         <div className="flex flex-col gap-4 mb-4">
                             <div className="flex-1">

@@ -17,6 +17,7 @@ const CallModal = ({ onClose }) => {
             name: e.target.fullName.value,
             phone: e.target.phoneNumber.value,
             time: e.target.hour.value,
+            emailType: "requestCallForm",
         };
 
         console.log('📤 Sending form data:', formData);

@@ -1,84 +1,71 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import image from "../../../images/lifetime.png";
 import formlogo from "../../../images/formlogo.png";
 
 function LifetimeNeeds({ onClose, userData }) {
-    const form = useRef();
-    // Updated step state: now 1 to 7
+    const formRef = useRef();
     const [step, setStep] = useState(1);
+    const [emailError, setEmailError] = useState('');
+    const [phoneError, setPhoneError] = useState('');
 
-    // States for email and phone errors
-    const [emailError, setEmailError] = useState("");
-    const [phoneError, setPhoneError] = useState("");
+    const validateEmail = email =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const validatePhone = phone =>
+        /^\+?[0-9]{10,15}$/.test(phone);
 
-    // Helper functions for validation
-    const validateEmail = (email) => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    };
-
-    const validatePhone = (phone) => {
-        // Accepts an optional '+' followed by 7 to 15 digits
-        const regex = /^\+?[0-9]{10,15}$/;
-        return regex.test(phone);
-    };
-
-    // Updated form state with fields for all 7 steps
     const [formData, setFormData] = useState({
-        // Step 1: Personal Details
-        title: "",
-        firstName: "",
-        middleName: "",
-        lastName: "",
-        dateOfBirth: "",
-        gender: "",
-        maritalStatus: "",
-        nationality: "",
-        // Step 2: Contact Information
-        email: "",
-        phone: "",
-        streetAddress: "",
-        city: "",
-        stateProvince: "",
-        zipPostal: "",
-        country: "",
-        // Step 3: Employment / Financial Details
-        employerOrganisation: "",
-        employeeNumber: "",
-        basicEarnings: "",
-        occupation: "",
-        // Step 4: Plan Information
-        policyCommencementDate: "",
-        coverageAmount: "",
-        // Step 5: Beneficiary Details
-        beneficiaryName: "",
-        beneficiaryRelationship: "",
-        beneficiaryDOB: "",
-        beneficiaryEmail: "",
-        beneficiaryPhone: "",
-        // Step 6: Additional Payment Details
-        paymentFrequency: "",
-        paymentMethod: "",
-        bankName: "",
-        bankAccountNumber: "",
-        additionalRemarks: "",
-        // Step 7: Declaration & Consent
+        // Step 1
+        title: '',
+        firstName: '',
+        middleName: '',
+        lastName: '',
+        dateOfBirth: '',
+        gender: '',
+        maritalStatus: '',
+        nationality: '',
+        // Step 2
+        email: '',
+        phone: '',
+        streetAddress: '',
+        city: '',
+        stateProvince: '',
+        zipPostal: '',
+        country: '',
+        // Step 3
+        employerOrganisation: '',
+        employeeNumber: '',
+        basicEarnings: '',
+        occupation: '',
+        // Step 4
+        policyCommencementDate: '',
+        coverageAmount: '',
+        // Step 5
+        beneficiaryName: '',
+        beneficiaryRelationship: '',
+        beneficiaryDOB: '',
+        beneficiaryEmail: '',
+        beneficiaryPhone: '',
+        // Step 6
+        paymentFrequency: '',
+        paymentMethod: '',
+        bankName: '',
+        bankAccountNumber: '',
+        additionalRemarks: '',
+        // Step 7
         agreeToTerms: false,
-        declarationDate: "",
-        // Additional / Optional Fields
-        comments: "",
+        declarationDate: '',
+        // Extras
+        comments: '',
         subscribe: false,
-        message: ""
+        message: ''
     });
 
-    // Pre-populate some fields if userData is provided
     useEffect(() => {
         if (userData) {
-            setFormData((prev) => ({
+            setFormData(prev => ({
                 ...prev,
                 firstName: userData.firstName || '',
                 lastName: userData.lastName || '',
@@ -88,99 +75,89 @@ function LifetimeNeeds({ onClose, userData }) {
         }
     }, [userData]);
 
-    const handleChange = (e) => {
+    const handleChange = e => {
         const { name, value, type, checked } = e.target;
-        setFormData((prev) => ({
+        setFormData(prev => ({
             ...prev,
-            [name]: type === "checkbox" ? checked : value,
+            [name]: type === 'checkbox' ? checked : value
         }));
 
-        // Validate email when changed
-        if (name === "email") {
-            if (!validateEmail(value)) {
-                setEmailError("Please enter a valid email address.");
-            } else {
-                setEmailError("");
-            }
+        if (name === 'email') {
+            setEmailError(validateEmail(value) ? '' : 'Please enter a valid email address.');
         }
-        // Validate phone when changed
-        if (name === "phone") {
-            if (!validatePhone(value)) {
-                setPhoneError("Please enter a valid phone number.");
-            } else {
-                setPhoneError("");
-            }
+        if (name === 'phone') {
+            setPhoneError(validatePhone(value) ? '' : 'Please enter a valid phone number.');
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
-
         if (emailError || phoneError) {
-            toast.error("Please fix the errors before submitting the claim.");
+            toast.error('Please fix the errors before submitting.');
             return;
         }
 
-        console.log("Submitted Data:", formData);
-        emailjs
-            .sendForm(
-                'service_g9bb7vv',      // Replace with your EmailJS service ID
-                'template_kcjuhmf',     // Replace with your EmailJS template ID
-                form.current,
-                'aV-FvEfOZg7fbxTN2'     // Replace with your EmailJS public key
-            )
-            .then(
-                (result) => {
-                    toast.success('Claim submitted successfully!');
-                    // Reset form to its initial state, including new fields
-                    setFormData({
-                        title: "",
-                        firstName: "",
-                        middleName: "",
-                        lastName: "",
-                        dateOfBirth: "",
-                        gender: "",
-                        maritalStatus: "",
-                        nationality: "",
-                        email: "",
-                        phone: "",
-                        streetAddress: "",
-                        city: "",
-                        stateProvince: "",
-                        zipPostal: "",
-                        country: "",
-                        employerOrganisation: "",
-                        employeeNumber: "",
-                        basicEarnings: "",
-                        occupation: "",
-                        policyCommencementDate: "",
-                        coverageAmount: "",
-                        beneficiaryName: "",
-                        beneficiaryRelationship: "",
-                        beneficiaryDOB: "",
-                        beneficiaryEmail: "",
-                        beneficiaryPhone: "",
-                        paymentFrequency: "",
-                        paymentMethod: "",
-                        bankName: "",
-                        bankAccountNumber: "",
-                        additionalRemarks: "",
-                        agreeToTerms: false,
-                        declarationDate: "",
-                        comments: "",
-                        subscribe: false,
-                        message: ""
-                    });
-                    // Delay unmounting the component to give time for the toast to display
-                    setTimeout(() => {
-                        if (onClose) onClose();
-                    }, 6000);
-                },
-                (error) => {
-                    toast.error('Failed to submit claim. Please try again.');
-                    console.error('Email error:', error.text);
-                }
-            );
+        const payload = {
+            ...formData,
+            emailType: 'lifetimeNeedsForm'
+        };
+
+        try {
+            const res = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const result = await res.json();
+
+            if (result.status === 'success') {
+                toast.success(result.message || 'Claim submitted successfully!');
+                setFormData({
+                    title: '',
+                    firstName: '',
+                    middleName: '',
+                    lastName: '',
+                    dateOfBirth: '',
+                    gender: '',
+                    maritalStatus: '',
+                    nationality: '',
+                    email: '',
+                    phone: '',
+                    streetAddress: '',
+                    city: '',
+                    stateProvince: '',
+                    zipPostal: '',
+                    country: '',
+                    employerOrganisation: '',
+                    employeeNumber: '',
+                    basicEarnings: '',
+                    occupation: '',
+                    policyCommencementDate: '',
+                    coverageAmount: '',
+                    beneficiaryName: '',
+                    beneficiaryRelationship: '',
+                    beneficiaryDOB: '',
+                    beneficiaryEmail: '',
+                    beneficiaryPhone: '',
+                    paymentFrequency: '',
+                    paymentMethod: '',
+                    bankName: '',
+                    bankAccountNumber: '',
+                    additionalRemarks: '',
+                    agreeToTerms: false,
+                    declarationDate: '',
+                    comments: '',
+                    subscribe: false,
+                    message: ''
+                });
+                setTimeout(() => onClose?.(), 6000);
+            } else {
+                toast.error(result.message || 'Failed to submit claim.');
+            }
+        } catch (err) {
+            console.error('Error submitting form:', err);
+            toast.error('An error occurred. Please try again.');
+        }
     };
 
     return (
@@ -229,7 +206,7 @@ function LifetimeNeeds({ onClose, userData }) {
                     <p>Please kindly fill out the form fields below.</p>
 
                     <form
-                        ref={form}
+                        ref={formRef}
                         onSubmit={handleSubmit}
                         className="bg-white p-8 rounded-md shadow-md w-full max-w-2xl"
                     >

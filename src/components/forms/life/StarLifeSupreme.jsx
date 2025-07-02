@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import image from "../../../images/supreme.png";
@@ -10,7 +9,6 @@ const initialState = {
     // Header
     mandateNo: '',
     salesActivationCode: '',
-
     // [A] Personal Details
     surname: '',
     middleName: '',
@@ -129,103 +127,94 @@ const initialState = {
 };
 
 function StarLifeSupremeForm({ onClose, userData }) {
-    const form = useRef();
+    const formRef = useRef();
     const [formData, setFormData] = useState(initialState);
     const [emailError, setEmailError] = useState('');
     const [phoneError, setPhoneError] = useState('');
 
-    // Pre-populate personal details if provided
     useEffect(() => {
         if (userData) {
             setFormData(prev => ({
                 ...prev,
-                surname: userData.fullname ? userData.fullname.trim() : '',
+                surname: userData.fullname?.trim() || '',
                 email: userData.email || '',
-                mobile: userData.phone || '',
+                mobile: userData.phone || ''
             }));
         }
     }, [userData]);
 
-    const validateEmail = (email) => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    };
+    const validateEmail = email =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const validatePhone = phone =>
+        /^\+?[0-9]{7,15}$/.test(phone);
 
-    const validatePhone = (phone) => {
-        const regex = /^\+?[0-9]{7,15}$/;
-        return regex.test(phone);
-    };
-
-    const handleChange = (e) => {
+    const handleChange = e => {
         const { name, value, type, checked } = e.target;
         const fieldValue = type === 'checkbox' ? checked : value;
         setFormData(prev => ({ ...prev, [name]: fieldValue }));
 
         if (name === 'email') {
-            setEmailError(!validateEmail(value) ? 'Please enter a valid email address.' : '');
+            setEmailError(validateEmail(value) ? '' : 'Please enter a valid email address.');
         }
         if (name === 'mobile') {
-            setPhoneError(!validatePhone(value) ? 'Please enter a valid mobile number.' : '');
+            setPhoneError(validatePhone(value) ? '' : 'Please enter a valid mobile number.');
         }
     };
 
-    // For nested fields in arrays (Assureds)
     const handleAssuredChange = (idx, field, value) => {
-        const newAssureds = [...formData.assureds];
-        newAssureds[idx] = { ...newAssureds[idx], [field]: value };
-        setFormData({ ...formData, assureds: newAssureds });
+        const a = [...formData.assureds];
+        a[idx][field] = value;
+        setFormData(prev => ({ ...prev, assureds: a }));
     };
 
-    // For nested fields in arrays (Beneficiaries)
     const handleBeneficiaryChange = (idx, field, value) => {
-        const newBeneficiaries = [...formData.beneficiaries];
-        newBeneficiaries[idx] = { ...newBeneficiaries[idx], [field]: value };
-        setFormData({ ...formData, beneficiaries: newBeneficiaries });
+        const b = [...formData.beneficiaries];
+        b[idx][field] = value;
+        setFormData(prev => ({ ...prev, beneficiaries: b }));
     };
 
-    // For nested fields in arrays (KnowStarLife)
-    const handleKnowStarLifeChange = (e) => {
+    const handleKnowStarLifeChange = e => {
         const { value, checked } = e.target;
-        setFormData(prev => {
-            if (checked) {
-                return { ...prev, knowStarLife: [...prev.knowStarLife, value] };
-            } else {
-                return { ...prev, knowStarLife: prev.knowStarLife.filter(v => v !== value) };
-            }
-        });
+        setFormData(prev => ({
+            ...prev,
+            knowStarLife: checked
+                ? [...prev.knowStarLife, value]
+                : prev.knowStarLife.filter(v => v !== value),
+        }));
     };
 
-
-    const sendEmail = (e) => {
+    const sendEmail = async e => {
         e.preventDefault();
-
         if (emailError || phoneError) {
             toast.error('Please fix the errors before submitting the form.');
             return;
         }
 
-        emailjs
-            .sendForm(
-                'service_nxndxca',    // Your EmailJS service ID
-                'template_260ycvt',   // Your EmailJS template ID
-                form.current,
-                'aV-FvEfOZg7fbxTN2'   // Your EmailJS public key
-            )
-            .then(
-                (result) => {
-                    toast.success('Application submitted successfully!');
-                    setFormData(initialState);
-                    // Delay unmounting the component to give time for the toast to display
-                    setTimeout(() => {
-                        if (onClose) onClose();
-                    }, 6000);
-                },
-                (error) => {
-                    toast.error('Failed to submit the application. Please try again.');
-                    console.error('Email error:', error.text);
-                }
-            );
-        e.target.reset();
+        // build the payload
+        const payload = {
+            ...formData,
+            emailType: 'starLifeSupremeForm'
+        };
+
+        try {
+            const res = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const result = await res.json();
+
+            if (result.status === 'success') {
+                toast.success(result.message || 'Application submitted successfully!');
+                setFormData(initialState);
+                setTimeout(() => onClose?.(), 6000);
+            } else {
+                toast.error(result.message || 'Failed to submit the application. Please try again.');
+            }
+        } catch (err) {
+            console.error('⚠️ Error:', err);
+            toast.error('An error occurred. Please try again.');
+        }
     };
 
     return (
@@ -263,7 +252,7 @@ function StarLifeSupremeForm({ onClose, userData }) {
                     </h2>
                     <p>Please kindly fill out the form fields below.</p>
 
-                    <form ref={form} onSubmit={sendEmail} className="space-y-4">
+                    <form ref={formRef} onSubmit={sendEmail} className="space-y-4">
                         {/* Header: Mandate No. and Sales Activation Code */}
                         <div className="mb-6">
                             <div className="flex flex-col gap-4">
