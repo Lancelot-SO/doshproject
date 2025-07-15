@@ -106,11 +106,11 @@ const AssetsAllRisk = ({ onClose, userData }) => {
             const result = await res.json();
 
             if (result.status === "success") {
-                toast.success(result.message || "Claim submitted successfully!");
+                toast.success(result.message || "Message sent successfully!");
                 setFormData(initialState);
                 setTimeout(() => onClose?.(), 6000);
             } else {
-                toast.error(result.message || "Failed to submit claim. Please try again.");
+                toast.error(result.message || "Failed to send message.");
             }
         } catch (err) {
             console.error("Submission error:", err);

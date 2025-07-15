@@ -108,7 +108,7 @@ const Claims = ({ onClose, userData }) => {
             });
             const result = await resp.json();
             if (result.status === 'success') {
-                toast.success(result.message || 'Claim submitted successfully!', { autoClose: 5000 });
+                toast.success(result.message || 'Message sent successfully!', { autoClose: 5000 });
                 setFormData({
                     message: '',
                     preferredInsurer: '',
@@ -119,7 +119,7 @@ const Claims = ({ onClose, userData }) => {
                 setSelectedInsurerType('');
                 setTimeout(onClose, 6000);
             } else {
-                throw new Error(result.message || 'Submission failed');
+                throw new Error(result.message || 'Failed to send message.');
             }
         } catch (err) {
             console.error(err);

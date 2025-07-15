@@ -13,33 +13,35 @@ const ServiceProviders = () => {
     const [index, setIndex] = useState(0);
     const [showCallModal, setShowCallModal] = useState(false);
     const [showModal, setShowModal] = useState(true);
-    const [filteredData, setFilteredData] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [serviceData, setServiceData] = useState(null);
     const [titleData, setTitleData] = useState(null);
 
-    const toggleModal = () => {
-        setShowModal(!showModal);
-    };
+    const [allHospitals, setAllHospitals] = useState([]);
+    const [baseData, setBaseData] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
 
-    const handleFilter = async (filters) => {
-        const { region } = filters;
+    const toggleModal = () => setShowModal(!showModal);
 
+    const handleFilter = async ({ region }) => {
         if (region) {
             try {
                 const resp = await fetch(
                     `https://doshcms.interactivedigital.com.gh/api/fetch-hsp-data/${encodeURIComponent(region)}`
                 );
                 if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-                const data = await resp.json();
-                console.log('hsp Data:', data);
-                setFilteredData(data);
+                const regionData = await resp.json();
+
+                setBaseData(regionData);
+                runSearch(searchQuery, regionData);
             } catch (err) {
                 console.error('Error fetching hospitals for region:', err);
+                setBaseData([]);
                 setFilteredData([]);
             }
         } else {
-            setFilteredData([]);
+            setBaseData(allHospitals);
+            runSearch(searchQuery, allHospitals);
         }
 
         toggleModal();
@@ -48,15 +50,22 @@ const ServiceProviders = () => {
     const handleSearch = (e) => {
         const q = e.target.value.toLowerCase();
         setSearchQuery(q);
+        runSearch(q, baseData);
+    };
 
-        const filtered = filteredData.filter(h =>
-            h.hospital_name?.toLowerCase().includes(q) ||
-            h.district?.toLowerCase().includes(q) ||
-            h.phone_number1?.toLowerCase().includes(q) ||
-            h.phone_number2?.toLowerCase().includes(q) ||
-            h.latitude?.toLowerCase().includes(q) ||
-            h.longitude?.toLowerCase().includes(q) ||
-            h.email?.toLowerCase().includes(q)
+    const runSearch = (query, list) => {
+        if (!query) {
+            setFilteredData(list); // Show all if query is empty
+            return;
+        }
+
+        const filtered = list.filter(h =>
+            (h.hospital_name || '').toLowerCase().includes(query) ||
+            (h.district || '').toLowerCase().includes(query) ||
+            (h.region_name || '').toLowerCase().includes(query) ||
+            (h.phone_number1 || '').toLowerCase().includes(query) ||
+            (h.phone_number2 || '').toLowerCase().includes(query) ||
+            (h.email || '').toLowerCase().includes(query)
         );
 
         setFilteredData(filtered);
@@ -81,13 +90,21 @@ const ServiceProviders = () => {
     useEffect(() => {
         (async () => {
             try {
-                const [hdrRes, titleRes] = await Promise.all([
+                const [hdrRes, titleRes, allHspRes] = await Promise.all([
                     fetch('https://doshcms.interactivedigital.com.gh/api/fetch-hsp-header'),
                     fetch('https://doshcms.interactivedigital.com.gh/api/fetch-hsp-page-titles'),
+                    fetch('https://doshcms.interactivedigital.com.gh/api/fetch-hsp-data-all'),
                 ]);
-                const [hdrJson, titleJson] = await Promise.all([hdrRes.json(), titleRes.json()]);
+
+                const [hdrJson, titleJson, allHspJson] = await Promise.all([
+                    hdrRes.json(), titleRes.json(), allHspRes.json()
+                ]);
+
                 setServiceData(hdrJson[0]);
                 setTitleData(titleJson[0]);
+
+                setAllHospitals(allHspJson);
+                setBaseData(allHspJson);
             } catch (err) {
                 console.error(err);
             }

@@ -111,7 +111,7 @@ function LifetimeNeeds({ onClose, userData }) {
             const result = await res.json();
 
             if (result.status === 'success') {
-                toast.success(result.message || 'Claim submitted successfully!');
+                toast.success(result.message || 'Message sent successfully!');
                 setFormData({
                     title: '',
                     firstName: '',
@@ -152,7 +152,7 @@ function LifetimeNeeds({ onClose, userData }) {
                 });
                 setTimeout(() => onClose?.(), 6000);
             } else {
-                toast.error(result.message || 'Failed to submit claim.');
+                toast.error(result.message || 'Failed to ssend message.');
             }
         } catch (err) {
             console.error('Error submitting form:', err);

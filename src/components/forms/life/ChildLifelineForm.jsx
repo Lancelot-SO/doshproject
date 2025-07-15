@@ -252,11 +252,11 @@ const ChildLifelineForm = ({ onClose, userData }) => {
             const result = await res.json();
 
             if (result.status === 'success') {
-                toast.success(result.message || 'Application submitted successfully!');
+                toast.success(result.message || 'Message sent successfully!');
                 setFormData(initialState);
                 setTimeout(() => onClose?.(), 6000);
             } else {
-                toast.error(result.message || 'Failed to submit application.');
+                toast.error(result.message || 'Failed to send message.');
             }
         } catch (err) {
             console.error('Error submitting form:', err);

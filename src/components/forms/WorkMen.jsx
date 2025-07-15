@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import emailjs from '@emailjs/browser';
 import { ToastContainer, toast } from 'react-toastify';
 import image from "../../images/workmen.png";
 import formlogo from "../../images/formlogo.png";
@@ -14,21 +13,16 @@ const WorkMen = ({ onClose, userData }) => {
         telephone: '',
         particularsOfWork: '',
         statutoryLaws: '',
-        // Employee details (nested objects)
         clericalEmployees: { number: '', wages: '' },
         commercialTravellers: { number: '', wages: '' },
         woodWorkingEmployees: { number: '', wages: '' },
         otherEmployees: { description: '', number: '', wages: '' },
-        // Contractor details
         contractorName: '',
         contractorNature: '',
         contractorLabourAndMaterials: '',
         contractorLabourOnly: '',
-        // Total wages paid in last 12 months
         totalWagesPaid: '',
-        // Subcontractor insurance option
         subcontractorInsurance: '',
-        // Additional questions
         includeAllPersons: '',
         includeSubContractors: '',
         premisesRegulation: '',
@@ -40,49 +34,43 @@ const WorkMen = ({ onClose, userData }) => {
         chemicalsDetails: '',
         requireMedicalCover: 'No',
         totalPremium: '',
-        // Accident and insurance history
         currentInsurer: '',
         insuranceDeclined: '',
         wagesAndAccidents: '',
-        // Declaration
         declarationDate: '',
-        message: "",
         agency: '',
+        message: '',
     });
 
-    // Pre-populate key fields from the parent's userData when available.
     useEffect(() => {
         if (userData) {
-            setFormData(prev => ({
-                ...prev,
-                proposerName: `${userData.fullname || ""}`.trim(),
-                telephone: userData.phone || "",
+            setFormData(fd => ({
+                ...fd,
+                proposerName: userData.fullname || fd.proposerName,
+                telephone: userData.phone || fd.telephone,
             }));
         }
     }, [userData]);
 
-    const handleChange = (e) => {
+    const handleChange = e => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        setFormData(fd => ({ ...fd, [name]: value }));
     };
 
     const handleNestedChange = (e, section) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [section]: {
-                ...prev[section],
-                [name]: value,
-            },
+        setFormData(fd => ({
+            ...fd,
+            [section]: { ...fd[section], [name]: value }
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
 
-        // Prepare template parameters for EmailJS.
-        // Flatten nested objects so that they match the placeholders in your email template.
-        const templateParams = {
+        // flatten nested
+        const payload = {
+            emailType: 'workmen',
             ...formData,
             clericalNumber: formData.clericalEmployees.number,
             clericalWages: formData.clericalEmployees.wages,
@@ -95,66 +83,60 @@ const WorkMen = ({ onClose, userData }) => {
             otherWages: formData.otherEmployees.wages,
         };
 
-        // Send email using EmailJS.
-        emailjs
-            .send(
-                'service_e0q53fo',    // Replace with your EmailJS service ID
-                'template_28274e7',   // Replace with your EmailJS template ID (e.g., "WorkmenProposal")
-                templateParams,
-                'aV-FvEfOZg7fbxTN2'     // Replace with your EmailJS public key
-            )
-            .then(
-                (result) => {
-                    console.log('Email successfully sent!', result.text);
-                    toast.success('Proposal submitted successfully!');
-                    // Optionally reset the form.
-                    setFormData({
-                        proposerName: '',
-                        businessAddress: '',
-                        firmEstablished: '',
-                        tradeOccupation: '',
-                        telephone: '',
-                        particularsOfWork: '',
-                        statutoryLaws: '',
-                        clericalEmployees: { number: '', wages: '' },
-                        commercialTravellers: { number: '', wages: '' },
-                        woodWorkingEmployees: { number: '', wages: '' },
-                        otherEmployees: { description: '', number: '', wages: '' },
-                        contractorName: '',
-                        contractorNature: '',
-                        contractorLabourAndMaterials: '',
-                        contractorLabourOnly: '',
-                        totalWagesPaid: '',
-                        subcontractorInsurance: '',
-                        includeAllPersons: '',
-                        includeSubContractors: '',
-                        premisesRegulation: '',
-                        premisesCompliance: '',
-                        machineryDetails: '',
-                        machinerySafety: '',
-                        boilers: '',
-                        chemicalsUsed: '',
-                        chemicalsDetails: '',
-                        requireMedicalCover: '',
-                        totalPremium: '',
-                        currentInsurer: '',
-                        insuranceDeclined: '',
-                        wagesAndAccidents: '',
-                        declarationDate: '',
-                        message: "",
-                        agency: '',
-                    });
-                    // Delay unmounting the component to give time for the toast to display
-                    setTimeout(() => {
-                        if (onClose) onClose();
-                    }, 6000);
-
-                },
-                (error) => {
-                    console.error('Failed to send email. Error:', error.text);
-                    toast.error('Failed to submit proposal. Please try again later.');
-                }
-            );
+        try {
+            const res = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            const json = await res.json();
+            if (json.status === 'success') {
+                toast.success(json.message || 'Message sent successfully!');
+                // reset
+                setFormData({
+                    proposerName: '',
+                    businessAddress: '',
+                    firmEstablished: '',
+                    tradeOccupation: '',
+                    telephone: '',
+                    particularsOfWork: '',
+                    statutoryLaws: '',
+                    clericalEmployees: { number: '', wages: '' },
+                    commercialTravellers: { number: '', wages: '' },
+                    woodWorkingEmployees: { number: '', wages: '' },
+                    otherEmployees: { description: '', number: '', wages: '' },
+                    contractorName: '',
+                    contractorNature: '',
+                    contractorLabourAndMaterials: '',
+                    contractorLabourOnly: '',
+                    totalWagesPaid: '',
+                    subcontractorInsurance: '',
+                    includeAllPersons: '',
+                    includeSubContractors: '',
+                    premisesRegulation: '',
+                    premisesCompliance: '',
+                    machineryDetails: '',
+                    machinerySafety: '',
+                    boilers: '',
+                    chemicalsUsed: '',
+                    chemicalsDetails: '',
+                    requireMedicalCover: 'No',
+                    totalPremium: '',
+                    currentInsurer: '',
+                    insuranceDeclined: '',
+                    wagesAndAccidents: '',
+                    declarationDate: '',
+                    agency: '',
+                    message: '',
+                });
+                setTimeout(onClose, 6000);
+            } else {
+                toast.error(json.message || 'Submission failed.Failed to send message.');
+            }
+        } catch (err) {
+            console.error('⚠️ Error:', err);
+            toast.error('An error occurred. Please try again.');
+        }
     };
 
     return (

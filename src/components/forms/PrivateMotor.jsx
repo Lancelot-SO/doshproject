@@ -128,7 +128,7 @@ const PrivateMotor = ({ onClose, userData }) => {
             });
             const json = await res.json();
             if (json.status === 'success') {
-                toast.success(json.message || 'Proposal submitted successfully!');
+                toast.success(json.message || 'Message sent successfully!');
                 setFormData({
                     proposerTitle: '',
                     surname: '',
@@ -200,7 +200,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                 e.target.reset();
                 setTimeout(onClose, 6000);
             } else {
-                toast.error(json.message || 'Submission failed.');
+                toast.error(json.message || 'Failed to send message.');
             }
         } catch (err) {
             console.error(err);

@@ -90,7 +90,7 @@ const Director = ({ onClose, userData }) => {
             });
             const result = await res.json();
             if (result.status === "success") {
-                toast.success(result.message || "Form submitted successfully!");
+                toast.success(result.message || "Message sent successfully!");
                 // reset state
                 setFormData({
                     companyName: "",
@@ -143,7 +143,7 @@ const Director = ({ onClose, userData }) => {
                 e.target.reset();
                 setTimeout(onClose, 6000);
             } else {
-                toast.error(result.message || "Submission failed. Please try again.");
+                toast.error(result.message || "Failed to send message.");
             }
         } catch (err) {
             console.error(err);

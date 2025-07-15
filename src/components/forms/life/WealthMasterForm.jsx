@@ -200,11 +200,11 @@ function WealthMasterForm({ onClose, userData }) {
             const result = await res.json();
 
             if (result.status === 'success') {
-                toast.success(result.message || 'Application submitted successfully!');
+                toast.success(result.message || 'Message sent successfully!');
                 setFormData(initialState);
                 setTimeout(() => onClose?.(), 6000);
             } else {
-                toast.error(result.message || 'Failed to submit the application. Please try again.');
+                toast.error(result.message || 'Failed to send message.');
             }
         } catch (err) {
             console.error('Error submitting form:', err);

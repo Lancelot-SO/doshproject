@@ -108,7 +108,7 @@ function ExecutiveLivePlan({ onClose, userData }) {
             const result = await res.json();
 
             if (result.status === 'success') {
-                toast.success(result.message || 'Claim submitted successfully!');
+                toast.success(result.message || 'Message sent successfully!');
                 // reset to initial state
                 setFormData({
                     employerOrganisation: '',
@@ -149,7 +149,7 @@ function ExecutiveLivePlan({ onClose, userData }) {
                 });
                 setTimeout(() => onClose?.(), 6000);
             } else {
-                toast.error(result.message || 'Failed to submit claim.');
+                toast.error(result.message || 'Failed to send message.');
             }
         } catch (err) {
             console.error('Error submitting form:', err);

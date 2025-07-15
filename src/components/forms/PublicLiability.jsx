@@ -87,7 +87,7 @@ const PublicLiability = ({ onClose, userData }) => {
             });
             const json = await res.json();
             if (json.status === 'success') {
-                toast.success(json.message || 'Form submitted successfully!');
+                toast.success(json.message || 'Message sent successfully!');
                 setFormData({
                     proposerName: '',
                     address: '',
@@ -138,7 +138,7 @@ const PublicLiability = ({ onClose, userData }) => {
                 formRef.current.reset();
                 setTimeout(onClose, 6000);
             } else {
-                toast.error(json.message || 'Submission failed.');
+                toast.error(json.message || 'Failed to send message.');
             }
         } catch (err) {
             console.error(err);

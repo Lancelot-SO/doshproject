@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import image from "../images/imagebg.png";
@@ -263,40 +262,68 @@ const RiskForm = ({ onClose }) => {
         formData.phone
     ]);
 
-    const sendEmail = (e) => {
+    const sendEmail = async (e) => {
         e.preventDefault();
 
+        // 1) validation
         if (emailError || phoneError) {
             toast.error("Please fix the errors in the form before submitting.");
             return;
         }
 
-        emailjs
-            .sendForm('service_w146wla', 'template_1dqgkm6', form.current, 'aV-FvEfOZg7fbxTN2')
-            .then(
-                () => {
-                    toast.success('Message sent successfully!');
-                    setFormData({
-                        requestType: '',
-                        fullname: '',
-                        email: '',
-                        phone: '',
-                        brokerage: '',
-                        insuranceType: '',
-                        formType: '',
-                        message: ''
-                    });
-                    // Delay unmounting the component to give time for the toast to display
-                    setTimeout(() => {
-                        if (onClose) onClose();
-                    }, 6000);
-                },
-                (error) => {
-                    toast.error('Failed to send message. Please try again.');
-                    console.error('Email error:', error.text);
-                }
-            );
-        e.target.reset();
+        // 2) build payload
+        const payload = {
+            requestType: formData.requestType,
+            fullname: formData.fullname,
+            email: formData.email,
+            phone: formData.phone,
+            brokerage: formData.brokerage,
+            insuranceType: formData.insuranceType,
+            formType: formData.formType,
+            message: formData.message,
+        };
+
+        try {
+            // 3) POST to your SMTP‐backed API
+            const res = await fetch("/send-email.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
+
+
+            // parse response JSON (or text) and log it
+            const data = await res.json();
+            console.log("API response data:", data);
+
+            if (!res.ok) {
+                const err = await res.text();
+                throw new Error(err || "Server error");
+            }
+
+            // 4) on success
+            toast.success("Message sent successfully!");
+            setFormData({
+                requestType: '',
+                fullname: '',
+                email: '',
+                phone: '',
+                brokerage: '',
+                insuranceType: '',
+                formType: '',
+                message: ''
+            });
+            e.target.reset();
+
+            // 5) (optional) close after a delay
+            setTimeout(() => {
+                onClose?.();
+            }, 6000);
+
+        } catch (err) {
+            console.error("Send error:", err);
+            toast.error("Failed to send message. Please try again.");
+        }
     };
 
     return (
@@ -519,6 +546,7 @@ const RiskForm = ({ onClose }) => {
                                 )}
                                 {formData.requestType !== "Assistance" && (
                                     <div>
+                                        {/* <p className='text-red-500 mb-2'>Ignore the (Insurance Product) section if unsure of the policy you want</p> */}
                                         <label htmlFor="formType" className="block text-sm font-medium">
                                             Insurance Product
                                         </label>
@@ -527,7 +555,6 @@ const RiskForm = ({ onClose }) => {
                                             name="formType"
                                             value={formData.formType}
                                             onChange={handleChange}
-                                            required
                                             disabled={formData.insuranceType.trim() === "Other"}
                                             className={`w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${formData.insuranceType.trim() === "Other" ? "cursor-not-allowed" : ""}`}
                                         >

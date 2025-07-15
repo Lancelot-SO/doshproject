@@ -129,7 +129,7 @@ const FireInsurance = ({ onClose, userData }) => {
             });
             const result = await res.json();
             if (result.status === 'success') {
-                toast.success(result.message || 'Proposal submitted successfully!');
+                toast.success(result.message || 'Message sent successfully!');
                 formRef.current.reset();
                 setFormData(f => ({
                     proposerTitle: '',
@@ -197,7 +197,7 @@ const FireInsurance = ({ onClose, userData }) => {
                 }));
                 setTimeout(onClose, 6000);
             } else {
-                toast.error(result.message || 'Submission failed.');
+                toast.error(result.message || 'Failed to send message.');
             }
         } catch (err) {
             console.error(err);
