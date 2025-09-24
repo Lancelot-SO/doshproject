@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './ServiceProviders.css';
 import services from '../images/clinic3.png';
+import servicesmobile from "../images/clinicmobile.png";
 import { FaFilter } from 'react-icons/fa';
 import { IoIosSearch } from 'react-icons/io';
 import FilterModal from '../components/FilterModal';
@@ -47,6 +48,13 @@ const ServiceProviders = () => {
         toggleModal();
     };
 
+    // add this:
+    const handleClearAll = () => {
+        setSearchQuery('');            // clears the search input
+        setBaseData(allHospitals);     // reset list
+        setFilteredData(allHospitals); // show all
+    };
+
     const handleSearch = (e) => {
         const q = e.target.value.toLowerCase();
         setSearchQuery(q);
@@ -55,7 +63,7 @@ const ServiceProviders = () => {
 
     const runSearch = (query, list) => {
         if (!query) {
-            setFilteredData(list); // Show all if query is empty
+            setFilteredData(list);
             return;
         }
 
@@ -105,6 +113,7 @@ const ServiceProviders = () => {
 
                 setAllHospitals(allHspJson);
                 setBaseData(allHspJson);
+                setFilteredData(allHspJson); // show all initially
             } catch (err) {
                 console.error(err);
             }
@@ -118,12 +127,20 @@ const ServiceProviders = () => {
             <div className='main__services'>
                 <img
                     data-aos="fade-down"
-                    src={serviceData?.image
-                        ? `https://doshcms.interactivedigital.com.gh/${serviceData.image}`
-                        : services}
-                    alt='service providers'
-                    loading='lazy'
+                    src={serviceData?.image ? `https://doshcms.interactivedigital.com.gh/${serviceData.image}` : services}
+                    alt="service providers"
+                    loading="lazy"
+                    className="desktop__img"
                 />
+
+                <img
+                    data-aos="fade-down"
+                    src={servicesmobile}
+                    alt="service providers"
+                    loading="lazy"
+                    className="mobile__img"
+                />
+
                 <div className='service__text'>
                     <h1>Everything is seamless on <b>DOSH</b></h1>
                     <span>
@@ -158,6 +175,8 @@ const ServiceProviders = () => {
                             showModal={showModal}
                             onClose={toggleModal}
                             onFilter={handleFilter}
+                            onClearAll={handleClearAll}   // <-- pass it down
+
                         />
                     </section>
 

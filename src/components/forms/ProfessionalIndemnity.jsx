@@ -1,13 +1,16 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import image from "../../images/prof.png";
 import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
 
-const ProfessionalIndemnity = ({ onClose }) => {
+const ProfessionalIndemnity = ({ onClose, userData }) => {
     const formRef = useRef();
 
     const [formData, setFormData] = useState({
+        firstname: '',
+        middlename: '',
+        lastname: '',
         firmName: '',
         address: '',
         establishmentYear: '',
@@ -30,6 +33,18 @@ const ProfessionalIndemnity = ({ onClose }) => {
         ],
         message: '',
     });
+
+    // Pre-populate the companyName field if userData.fullname is provided
+    useEffect(() => {
+        if (userData) {
+            setFormData(fd => ({
+                ...fd,
+                firstname: userData.firstname.trim(),
+                middlename: userData.middlename.trim(),
+                lastname: userData.lastname.trim(),
+            }));
+        }
+    }, [userData]);
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -57,32 +72,28 @@ const ProfessionalIndemnity = ({ onClose }) => {
     const handleSubmit = async e => {
         e.preventDefault();
 
-        // Build directors text
-        const directorsText = formData.directors
-            .map((d, i) => `Director #${i + 1}:
-    Name: ${d.name}
-    Qualification: ${d.qualification}
-    Date Obtained: ${d.dateObtained}
-    Practice Duration: ${d.practiceDuration}`)
-            .join('\n\n');
-
-        // Prepare payload
         const payload = {
-            emailType: "professionalIndemnityRequest",
             ...formData,
-            directors: directorsText
+            emailType: "professionalIndemnityRequest"
         };
 
         try {
-            const res = await fetch('/send-email.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+            const res = await fetch("/send-email.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 body: JSON.stringify(payload)
             });
-            const json = await res.json();
-            if (json.status === 'success') {
-                toast.success(json.message || 'Message sent successfully!');
+
+            const result = await res.json();
+            if (result.status === "success") {
+                toast.success(result.message);
+                formRef.current.reset();
                 setFormData({
+                    firstname: '',
+                    middlename: '',
+                    lastname: '',
                     firmName: '',
                     address: '',
                     establishmentYear: '',
@@ -105,16 +116,15 @@ const ProfessionalIndemnity = ({ onClose }) => {
                     ],
                     message: '',
                 });
-                formRef.current.reset();
-                setTimeout(onClose, 6000);
             } else {
-                toast.error(json.message || 'Failed to send message.');
+                toast.error(result.message);
             }
-        } catch (err) {
-            console.error(err);
-            toast.error('An error occurred. Please try again.');
+        } catch (error) {
+            console.error(error);
+            toast.error(error.message);
         }
     };
+
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">
@@ -136,7 +146,14 @@ const ProfessionalIndemnity = ({ onClose }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
                     {/* Close Button */}
                     <button
@@ -147,15 +164,15 @@ const ProfessionalIndemnity = ({ onClose }) => {
                         <X size={20} />
                     </button>
 
-                    <h2 className="text-xl font-bold mb-4">Enterprise Professional Indemnity Request</h2>
-                    <p>Please kindly fill out the form fields below.</p>
+                    <h2 className="text-xl font-bold mb-4 text-black">Professional Indemnity Request</h2>
+                    <p className='text-black'>Please kindly fill out the form fields below.</p>
 
 
                     {/* 4. Use formRef, encType for file uploads */}
                     <form
                         ref={formRef}
                         onSubmit={handleSubmit}
-                        className="space-y-4"
+                        className="space-y-4 text-black"
                         encType="multipart/form-data"
                     >
                         {/* Hidden input to store directors one-by-one string */}
@@ -164,6 +181,53 @@ const ProfessionalIndemnity = ({ onClose }) => {
                             name="directors"       // must match {{directors}} in template
                             id="directorsData"
                         />
+
+                        {/* Personal Details */}
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                First Name
+                            </label>
+                            <input
+                                type="text"
+                                id="firstname"
+                                name="firstname"
+                                value={formData.firstname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter first name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Middle Name
+                            </label>
+                            <input
+                                type="text"
+                                id="middlename"
+                                name="middlename"
+                                value={formData.middlename}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter middle name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Last Name
+                            </label>
+                            <input
+                                type="text"
+                                id="lastname"
+                                name="lastname"
+                                value={formData.lastname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter last name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
 
                         {/* Name Of Firm */}
                         <label className="block">

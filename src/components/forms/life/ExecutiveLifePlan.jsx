@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import image from "../../../images/executivelive.png";
 import formlogo from "../../../images/formlogo.png";
 
-function ExecutiveLivePlan({ onClose, userData }) {
+function ExecutiveLifePlan({ onClose, userData }) {
     const formRef = useRef();
     const [step, setStep] = useState(1);
     const [emailError, setEmailError] = useState('');
@@ -35,9 +35,9 @@ function ExecutiveLivePlan({ onClose, userData }) {
         issuingAuthority: '',
         // Step 4: Personal Details
         title: '',
-        firstName: '',
-        middleName: '',
-        lastName: '',
+        firstname: '',
+        middlename: '',
+        lastname: '',
         dateOfBirth: '',
         gender: '',
         maritalStatus: '',
@@ -64,8 +64,9 @@ function ExecutiveLivePlan({ onClose, userData }) {
         if (userData) {
             setFormData(prev => ({
                 ...prev,
-                firstName: userData.firstName || '',
-                lastName: userData.lastName || '',
+                firstname: userData.firstname.trim(),
+                middlename: userData.middlename.trim(),
+                lastname: userData.lastname.trim(),
                 workEmail: userData.email || '',
                 beneficiaryEmail: userData.email || ''
             }));
@@ -108,7 +109,7 @@ function ExecutiveLivePlan({ onClose, userData }) {
             const result = await res.json();
 
             if (result.status === 'success') {
-                toast.success(result.message || 'Message sent successfully!');
+                toast.success(result.message);
                 // reset to initial state
                 setFormData({
                     employerOrganisation: '',
@@ -125,9 +126,9 @@ function ExecutiveLivePlan({ onClose, userData }) {
                     idExpiryDate: '',
                     issuingAuthority: '',
                     title: '',
-                    firstName: '',
-                    middleName: '',
-                    lastName: '',
+                    firstname: '',
+                    middlename: '',
+                    lastname: '',
                     dateOfBirth: '',
                     gender: '',
                     maritalStatus: '',
@@ -149,7 +150,7 @@ function ExecutiveLivePlan({ onClose, userData }) {
                 });
                 setTimeout(() => onClose?.(), 6000);
             } else {
-                toast.error(result.message || 'Failed to send message.');
+                toast.error(result.message);
             }
         } catch (err) {
             console.error('Error submitting form:', err);
@@ -186,7 +187,14 @@ function ExecutiveLivePlan({ onClose, userData }) {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
                     {/* Close Button */}
                     <button
@@ -200,12 +208,12 @@ function ExecutiveLivePlan({ onClose, userData }) {
                     <h2 className="text-xl text-gray-800 font-bold mb-3">
                         Executive/Living Plus Plan
                     </h2>
-                    <p>Please kindly fill out the form fields below.</p>
+                    <p className='text-black'>Please kindly fill out the form fields below.</p>
 
                     <form
                         ref={formRef}
                         onSubmit={handleSubmit}
-                        className="bg-white p-8 rounded-md shadow-md w-full max-w-2xl"
+                        className="bg-white text-black p-8 rounded-md shadow-md w-full max-w-2xl"
                     >
                         {/* Step 1: Employment Details */}
                         {step === 1 && (
@@ -221,19 +229,16 @@ function ExecutiveLivePlan({ onClose, userData }) {
                                     >
                                         Employer Organisation
                                     </label>
-                                    <select
+                                    <input
+                                        type="text"
                                         id="employerOrganisation"
                                         name="employerOrganisation"
                                         value={formData.employerOrganisation}
                                         onChange={handleChange}
+                                        placeholder="Enter your employer organization"
                                         className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                         required
-                                    >
-                                        <option value="">Select an organisation</option>
-                                        <option value="organisation1">Organisation 1</option>
-                                        <option value="organisation2">Organisation 2</option>
-                                        <option value="other">Other</option>
-                                    </select>
+                                    />
                                 </div>
                                 {/* Employee Number */}
                                 <div className="mb-4">
@@ -520,60 +525,50 @@ function ExecutiveLivePlan({ onClose, userData }) {
                                         <option value="Dr">Dr</option>
                                     </select>
                                 </div>
-                                {/* First Name */}
-                                <div className="mb-4">
-                                    <label
-                                        htmlFor="firstName"
-                                        className="block mb-1 text-gray-600 font-medium"
-                                    >
+                                {/* Personal Details */}
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
                                         First Name
                                     </label>
                                     <input
                                         type="text"
-                                        id="firstName"
-                                        name="firstName"
-                                        value={formData.firstName}
+                                        id="firstname"
+                                        name="firstname"
+                                        value={formData.firstname}
                                         onChange={handleChange}
-                                        placeholder="Enter your first name"
-                                        className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                         required
+                                        placeholder="Enter first name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
-                                {/* Middle Name */}
-                                <div className="mb-4">
-                                    <label
-                                        htmlFor="middleName"
-                                        className="block mb-1 text-gray-600 font-medium"
-                                    >
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
                                         Middle Name
                                     </label>
                                     <input
                                         type="text"
-                                        id="middleName"
-                                        name="middleName"
-                                        value={formData.middleName}
+                                        id="middlename"
+                                        name="middlename"
+                                        value={formData.middlename}
                                         onChange={handleChange}
-                                        placeholder="Enter your middle name"
-                                        className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        required
+                                        placeholder="Enter middle name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
-                                {/* Last Name */}
-                                <div className="mb-4">
-                                    <label
-                                        htmlFor="lastName"
-                                        className="block mb-1 text-gray-600 font-medium"
-                                    >
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
                                         Last Name
                                     </label>
                                     <input
                                         type="text"
-                                        id="lastName"
-                                        name="lastName"
-                                        value={formData.lastName}
+                                        id="lastname"
+                                        name="lastname"
+                                        value={formData.lastname}
                                         onChange={handleChange}
-                                        placeholder="Enter your last name"
-                                        className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                         required
+                                        placeholder="Enter last name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
                                 {/* Date of Birth */}
@@ -762,7 +757,25 @@ function ExecutiveLivePlan({ onClose, userData }) {
                                         value={formData.beneficiaryPhone}
                                         onChange={handleChange}
                                         placeholder="Enter beneficiary's phone number"
-                                        className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-green-500 text-black"
+                                    />
+                                </div>
+
+                                <div className="mb-4">
+                                    <label
+                                        htmlFor="streetAddress"
+                                        className="block mb-1 text-gray-600 font-medium"
+                                    >
+                                        Street Address
+                                    </label>
+                                    <input
+                                        type="tel"
+                                        id="streetAddress"
+                                        name="streetAddress"
+                                        value={formData.streetAddress}
+                                        onChange={handleChange}
+                                        placeholder="Enter Street Address"
+                                        className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-green-500 text-black"
                                     />
                                 </div>
                                 <div>
@@ -820,4 +833,4 @@ function ExecutiveLivePlan({ onClose, userData }) {
     );
 }
 
-export default ExecutiveLivePlan;
+export default ExecutiveLifePlan;

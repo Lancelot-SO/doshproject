@@ -19,9 +19,9 @@ function LifetimeNeeds({ onClose, userData }) {
     const [formData, setFormData] = useState({
         // Step 1
         title: '',
-        firstName: '',
-        middleName: '',
-        lastName: '',
+        firstname: '',
+        middlename: '',
+        lastname: '',
         dateOfBirth: '',
         gender: '',
         maritalStatus: '',
@@ -54,6 +54,7 @@ function LifetimeNeeds({ onClose, userData }) {
         bankName: '',
         bankAccountNumber: '',
         additionalRemarks: '',
+        mobileMoneyNumber: '',
         // Step 7
         agreeToTerms: false,
         declarationDate: '',
@@ -67,8 +68,9 @@ function LifetimeNeeds({ onClose, userData }) {
         if (userData) {
             setFormData(prev => ({
                 ...prev,
-                firstName: userData.firstName || '',
-                lastName: userData.lastName || '',
+                firstname: userData.firstname.trim(),
+                middlename: userData.middlename.trim(),
+                lastname: userData.lastname.trim(),
                 email: userData.email || '',
                 phone: userData.phone || ''
             }));
@@ -111,12 +113,12 @@ function LifetimeNeeds({ onClose, userData }) {
             const result = await res.json();
 
             if (result.status === 'success') {
-                toast.success(result.message || 'Message sent successfully!');
+                toast.success(result.message);
                 setFormData({
                     title: '',
-                    firstName: '',
-                    middleName: '',
-                    lastName: '',
+                    firstname: '',
+                    middlename: '',
+                    lastname: '',
                     dateOfBirth: '',
                     gender: '',
                     maritalStatus: '',
@@ -148,11 +150,12 @@ function LifetimeNeeds({ onClose, userData }) {
                     declarationDate: '',
                     comments: '',
                     subscribe: false,
+                    mobileMoneyNumber: '',
                     message: ''
                 });
                 setTimeout(() => onClose?.(), 6000);
             } else {
-                toast.error(result.message || 'Failed to ssend message.');
+                toast.error(result.message);
             }
         } catch (err) {
             console.error('Error submitting form:', err);
@@ -203,7 +206,7 @@ function LifetimeNeeds({ onClose, userData }) {
                     <h2 className="text-xl text-gray-800 font-bold mb-3">
                         ⁠Lifetime Needs (Annuity Policy/Investment Policy)
                     </h2>
-                    <p>Please kindly fill out the form fields below.</p>
+                    <p className='text-black'>Please kindly fill out the form fields below.</p>
 
                     <form
                         ref={formRef}
@@ -212,7 +215,7 @@ function LifetimeNeeds({ onClose, userData }) {
                     >
                         {/* Step 1: Personal Details */}
                         {step === 1 && (
-                            <div>
+                            <div className='text-black'>
                                 <h1 className="text-xl font-semibold text-gray-700 mb-4">Personal Details</h1>
                                 <div className="mb-4">
                                     <label htmlFor="title" className="block mb-1 text-gray-600 font-medium">Title</label>
@@ -231,42 +234,50 @@ function LifetimeNeeds({ onClose, userData }) {
                                         <option value="Dr">Dr</option>
                                     </select>
                                 </div>
-                                <div className="mb-4">
-                                    <label htmlFor="firstName" className="block mb-1 text-gray-600 font-medium">First Name</label>
+                                {/* Personal Details */}
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        First Name
+                                    </label>
                                     <input
                                         type="text"
-                                        id="firstName"
-                                        name="firstName"
-                                        value={formData.firstName}
+                                        id="firstname"
+                                        name="firstname"
+                                        value={formData.firstname}
                                         onChange={handleChange}
-                                        placeholder="Enter your first name"
-                                        className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                         required
+                                        placeholder="Enter first name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
-                                <div className="mb-4">
-                                    <label htmlFor="middleName" className="block mb-1 text-gray-600 font-medium">Middle Name</label>
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Middle Name
+                                    </label>
                                     <input
                                         type="text"
-                                        id="middleName"
-                                        name="middleName"
-                                        value={formData.middleName}
+                                        id="middlename"
+                                        name="middlename"
+                                        value={formData.middlename}
                                         onChange={handleChange}
-                                        placeholder="Enter your middle name"
-                                        className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        required
+                                        placeholder="Enter middle name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
-                                <div className="mb-4">
-                                    <label htmlFor="lastName" className="block mb-1 text-gray-600 font-medium">Last Name</label>
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Last Name
+                                    </label>
                                     <input
                                         type="text"
-                                        id="lastName"
-                                        name="lastName"
-                                        value={formData.lastName}
+                                        id="lastname"
+                                        name="lastname"
+                                        value={formData.lastname}
                                         onChange={handleChange}
-                                        placeholder="Enter your last name"
-                                        className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                         required
+                                        placeholder="Enter last name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
                                 <div className="mb-4">
@@ -332,7 +343,7 @@ function LifetimeNeeds({ onClose, userData }) {
 
                         {/* Step 2: Contact Information */}
                         {step === 2 && (
-                            <div>
+                            <div className='text-black'>
                                 <h1 className="text-xl font-semibold text-gray-700 mb-4">Contact Information</h1>
                                 <div className="mb-4">
                                     <label htmlFor="email" className="block mb-1 text-gray-600 font-medium">Email</label>
@@ -431,9 +442,9 @@ function LifetimeNeeds({ onClose, userData }) {
 
                         {/* Step 3: Employment / Financial Details */}
                         {step === 3 && (
-                            <div>
+                            <div className="text-black">
                                 <h1 className="text-xl font-semibold text-gray-700 mb-4">Employment / Financial Details</h1>
-                                <div className="mb-4">
+                                {/* <div className="mb-4">
                                     <label htmlFor="employerOrganisation" className="block mb-1 text-gray-600 font-medium">Employer Organisation</label>
                                     <select
                                         id="employerOrganisation"
@@ -448,6 +459,20 @@ function LifetimeNeeds({ onClose, userData }) {
                                         <option value="organisation2">Organisation 2</option>
                                         <option value="other">Other</option>
                                     </select>
+                                </div> */}
+
+                                <div className="mb-4">
+                                    <label htmlFor="employerOrganisation" className="block mb-1 text-gray-600 font-medium">Employer Organisation</label>
+                                    <input
+                                        type="text"
+                                        id="employerOrganisation"
+                                        name="employerOrganisation"
+                                        value={formData.employerOrganisation}
+                                        onChange={handleChange}
+                                        placeholder="Enter your employer organisation"
+                                        className="w-full border text-black border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        required
+                                    />
                                 </div>
                                 <div className="mb-4">
                                     <label htmlFor="employeeNumber" className="block mb-1 text-gray-600 font-medium">Employee Number</label>
@@ -493,7 +518,7 @@ function LifetimeNeeds({ onClose, userData }) {
 
                         {/* Step 4: Plan Information */}
                         {step === 4 && (
-                            <div>
+                            <div className='text-black'>
                                 <h1 className="text-xl font-semibold text-gray-700 mb-4">Plan Information</h1>
                                 <div className="mb-4">
                                     <label htmlFor="policyCommencementDate" className="block mb-1 text-gray-600 font-medium">Policy Commencement Date</label>
@@ -525,7 +550,7 @@ function LifetimeNeeds({ onClose, userData }) {
 
                         {/* Step 5: Beneficiary Details */}
                         {step === 5 && (
-                            <div>
+                            <div className='text-black'>
                                 <h1 className="text-xl font-semibold text-gray-700 mb-4">Beneficiary Details</h1>
                                 <div className="mb-4">
                                     <label htmlFor="beneficiaryName" className="block mb-1 text-gray-600 font-medium">Beneficiary Name</label>
@@ -599,7 +624,7 @@ function LifetimeNeeds({ onClose, userData }) {
 
                         {/* Step 6: Additional Payment Details */}
                         {step === 6 && (
-                            <div>
+                            <div className='text-black'>
                                 <h1 className="text-xl font-semibold text-gray-700 mb-4">Additional Payment Details</h1>
                                 <div className="mb-4">
                                     <label htmlFor="paymentFrequency" className="block mb-1 text-gray-600 font-medium">Payment Frequency</label>
@@ -633,6 +658,18 @@ function LifetimeNeeds({ onClose, userData }) {
                                         <option value="credit-card">Credit Card</option>
                                         <option value="mobile-money">Mobile Money</option>
                                     </select>
+                                </div>
+
+                                <div className="mt-2">
+                                    <label className="block">Mobile Money Number (e.g., 024 528 7497):</label>
+                                    <input
+                                        type="text"
+                                        name="mobileMoneyNumber"
+                                        value={formData.mobileMoneyNumber}
+                                        onChange={handleChange}
+                                        placeholder='233 556 789 01'
+                                        className="border rounded p-1 w-full mt-1 text-black"
+                                    />
                                 </div>
                                 <div className="mb-4">
                                     <label htmlFor="bankName" className="block mb-1 text-gray-600 font-medium">Bank Name</label>
@@ -676,7 +713,7 @@ function LifetimeNeeds({ onClose, userData }) {
 
                         {/* Step 7: Declaration & Consent */}
                         {step === 7 && (
-                            <div>
+                            <div className='text-black'>
                                 <h1 className="text-xl font-semibold text-gray-700 mb-4">Declaration & Consent</h1>
                                 <div className="mb-4">
                                     <p className="mb-2 text-gray-600">

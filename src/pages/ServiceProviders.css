@@ -3,10 +3,17 @@
   color: white;
 }
 
-.main__services img {
+.main__services .desktop__img {
   width: 100%;
   height: auto;
   display: block;
+  object-fit: cover;
+}
+
+.main__services .mobile__img {
+  width: 100%;
+  height: auto;
+  display: none;
   object-fit: cover;
 }
 
@@ -42,7 +49,7 @@
   font-family: "Inter", sans-serif;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .main__package {
     overflow: hidden;
   }
@@ -52,7 +59,14 @@
     color: white;
   }
 
-  .main__services img {
+  .main__services .desktop__img {
+    width: 394;
+    height: 666px;
+    display: none;
+    object-fit: cover;
+  }
+
+  .main__services .mobile__img {
     width: 394;
     height: 666px;
     display: block;

@@ -157,19 +157,19 @@ const ProductServices = () => {
     // Slider arrow components and settings
     const NextArrow = ({ onClick }) => (
         <button
-            className="absolute top-3 lg:top-[90%] left-[80%] md:left-[55%] lg:left-[44%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-2xl p-2 lg:p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
+            className="block absolute top-6 lg:top-[90%] left-[82%] md:left-[70%] md:top-[2.5%] lg:left-[44%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-[14px] p-1 md:p-4 lg:p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
             onClick={onClick}
         >
-            <FaArrowRightLong />
+            < FaArrowLeftLong />
         </button>
     );
 
     const PrevArrow = ({ onClick }) => (
         <button
-            className="hidden md:flex absolute top-5 lg:top-[90%] left-[37%] md:left-[45%] lg:left-[50%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-2xl p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
+            className=" absolute top-6 lg:top-[90%] left-[92%] md:left-[55%] lg:left-[50%] transform -translate-x-1/2 bg-transparent text-[#C8AD84] text-[14px] p-1 md:p-4 transition duration-300 z-10 rounded-full border-2 border-[#C8AD84]"
             onClick={onClick}
         >
-            <FaArrowLeftLong />
+            < FaArrowRightLong />
         </button>
     );
     const settings = {

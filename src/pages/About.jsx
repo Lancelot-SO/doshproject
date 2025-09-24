@@ -108,6 +108,7 @@ const About = () => {
                     src={aboutData?.aboutus_header_image ? `https://doshcms.interactivedigital.com.gh/${aboutData.aboutus_header_image}` : "assets/elevate.png"}
                     alt='about' className='object-cover' loading='lazy' />
                 <h5 className='absolute bottom-20 left-3 lg:left-[190px] text-white text-[40px] lg:text-[52px] font-extrabold'>Who We Are </h5>
+
             </section>
             {showButton && (
                 <button className="scroll-button" onClick={scrollToNextSection}>
@@ -115,17 +116,39 @@ const About = () => {
                 </button>
             )}
             <section id='handshake' className='about__section'>
-                <div className='container about__hand-shake'>
-                    <div className='about_left '>
-                        {/* <h3>Who We Are </h3> */}
-                        <p className='text-left' dangerouslySetInnerHTML={{ __html: aboutData.who_we_are_body }} />
+                {/* <div className='container about__hand-shake'>
+                    <div className='top_about_left bg-red-500'>
+                        <p className='w-full' dangerouslySetInnerHTML={{ __html: aboutData.who_we_are_body }} />
                     </div>
-                    <div data-aos="zoom-in" className='about__right'>
+                    <div data-aos="zoom-in" className='top_about_right'>
                         <img
                             src={aboutData?.who_we_are_image ? `https://doshcms.interactivedigital.com.gh/${aboutData.who_we_are_image}` : "assets/elevate.png"}
                             className='about__image' alt='handshake' loading='lazy' />
                     </div>
+                </div> */}
+
+                <div className="w-full lg:h-[500px] flex flex-col lg:flex-row">
+                    <div className="edit flex-1 flex flex-col gap-8 text-left lg:items-start lg:justify-center lg:pl-48 pl-0 w-full">
+                        <p className='font-normal text-[16px]' dangerouslySetInnerHTML={{ __html: aboutData.who_we_are_header }} />
+                        <p
+                            className=""
+                            dangerouslySetInnerHTML={{ __html: aboutData.who_we_are_body }}
+                        />
+                    </div>
+                    <div className="flex-1 lg:pl-[50px] pl-0 lg:pt-10 pt-0">
+                        <img
+                            src={
+                                aboutData?.who_we_are_image
+                                    ? `https://doshcms.interactivedigital.com.gh/${aboutData.who_we_are_image}`
+                                    : "assets/elevate.png"
+                            }
+                            className="lg:w-[500px] h-[400px] lg:rounded-[30px]"
+                            alt="handshake"
+                            loading="lazy"
+                        />
+                    </div>
                 </div>
+
             </section>
             <section id='mission' className='about__section'>
                 <div data-aos="zoom-in" className='container next-about__hand-shake'>

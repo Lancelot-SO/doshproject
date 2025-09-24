@@ -38,11 +38,11 @@ const Contact = () => {
 
             if (result.status === 'success') {
                 console.log('✅ Response:', result);
-                toast.success(result.message || 'Message sent successfully!');
+                toast.success(result.message);
                 e.target.reset();
             } else {
                 console.error('❌ Failed:', result);
-                toast.error(result.message || 'Failed to send message.');
+                toast.error(result.message);
             }
         } catch (error) {
             console.error('⚠️ Error:', error);

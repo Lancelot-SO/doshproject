@@ -222,7 +222,7 @@ const Home = () => {
                                 </p>
                             </div>
                             <div className='slide-text'>
-                                <h3>.</h3>
+                                <h3>People are signing  with us</h3>
                                 <div className="slide-arrow">
                                     <Link to='/register' target="_blank" rel="noopener noreferrer" className='slide__link'>
                                         <small>Join the Revolution</small>

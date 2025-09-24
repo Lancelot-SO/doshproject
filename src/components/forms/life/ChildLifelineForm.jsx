@@ -5,9 +5,7 @@ import image from "../../../images/childlife.png";
 import formlogo from "../../../images/formlogo.png"
 
 const initialState = {
-    // Header
-    mandateNo: '',
-    salesActivationCode: '',
+
 
     // [D] COVER DETAILS
     policyTerm: '',
@@ -109,9 +107,9 @@ const initialState = {
     // [A] PERSONAL DETAILS
     customerClassification: '', // "individual" or "corporate"
     occupation: '',
-    surname: '',
-    middleNames: '',
-    firstName: '',
+    lastname: '',
+    middlename: '',
+    firstname: '',
     dob: '',
     nationality: '',
     gender: '', // "male" or "female"
@@ -206,7 +204,9 @@ const ChildLifelineForm = ({ onClose, userData }) => {
         if (userData) {
             setFormData(prev => ({
                 ...prev,
-                surname: userData.fullname?.trim() || '',
+                firstname: userData.firstname.trim(),
+                middlename: userData.middlename.trim(),
+                lastname: userData.lastname.trim(),
                 email: userData.email || '',
                 mobile: userData.phone || '',
             }));
@@ -252,11 +252,11 @@ const ChildLifelineForm = ({ onClose, userData }) => {
             const result = await res.json();
 
             if (result.status === 'success') {
-                toast.success(result.message || 'Message sent successfully!');
+                toast.success(result.message);
                 setFormData(initialState);
                 setTimeout(() => onClose?.(), 6000);
             } else {
-                toast.error(result.message || 'Failed to send message.');
+                toast.error(result.message);
             }
         } catch (err) {
             console.error('Error submitting form:', err);
@@ -284,7 +284,14 @@ const ChildLifelineForm = ({ onClose, userData }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
                     {/* Close Button */}
                     <button
@@ -296,40 +303,10 @@ const ChildLifelineForm = ({ onClose, userData }) => {
                     </button>
 
                     <h2 className="text-xl text-gray-800 font-bold mb-3">Child Lifeline Plus Application Form (EducationPolicy)</h2>
-                    <p>Please kindly fill out the form fields below.</p>
-                    <form ref={formRef} onSubmit={sendEmail} className="max-w-6xl mx-auto p-4">
+                    <p className='text-black'>Please kindly fill out the form fields below.</p>
+                    <form ref={formRef} onSubmit={sendEmail} className="max-w-6xl mx-auto p-4 text-black">
                         {/* HEADER */}
-                        <header className="mb-6">
-                            <div className="flex flex-wrap justify-between">
-                                <div className="w-full md:w-1/2 mb-2 md:mb-0">
-                                    <label className="block font-bold text-sm">
-                                        MANDATE NO.:
-                                        <input
-                                            type="text"
-                                            name="mandateNo"
-                                            value={formData.mandateNo}
-                                            onChange={handleChange}
-                                            className="ml-2 border-b border-dashed"
-                                        />
-                                        <span className="ml-2 text-xs">( CAGD only)</span>
-                                    </label>
-                                </div>
-                                <div className="w-full md:w-1/2">
-                                    <label className="block font-bold text-sm">
-                                        SALES ACTIVATION CODE:
-                                        <input
-                                            type="text"
-                                            name="salesActivationCode"
-                                            value={formData.salesActivationCode}
-                                            onChange={handleChange}
-                                            className="ml-2 border-b border-dashed"
-                                        />
-                                    </label>
-                                </div>
-                            </div>
-                            <h1 className="text-left text-[14px] font-bold mt-4">
-                                CHILD LIFELINE PLUS POLICY APPLICATION FORM
-                            </h1>
+                        <header className="">
                             <p className="text-left text-sm mt-1 text-red-500">
                                 NB. EVERY QUESTION MUST BE ANSWERED. PLEASE COMPLETE THIS FORM IN BLOCK LETTERS
                             </p>
@@ -367,34 +344,50 @@ const ChildLifelineForm = ({ onClose, userData }) => {
                                 </div>
 
                                 <div className="mt-4 grid grid-cols-3 gap-4">
+                                    {/* Personal Details */}
                                     <div>
-                                        <label className="block font-bold">Surname:</label>
+                                        <label htmlFor="fullname" className="block text-sm font-medium">
+                                            First Name
+                                        </label>
                                         <input
                                             type="text"
-                                            name="surname"
-                                            value={formData.surname}
+                                            id="firstname"
+                                            name="firstname"
+                                            value={formData.firstname}
                                             onChange={handleChange}
-                                            className="border rounded p-1 w-full mt-1"
+                                            required
+                                            placeholder="Enter first name"
+                                            className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block font-bold">Middle Name(s):</label>
+                                        <label htmlFor="fullname" className="block text-sm font-medium">
+                                            Middle Name
+                                        </label>
                                         <input
                                             type="text"
-                                            name="middleNames"
-                                            value={formData.middleNames}
+                                            id="middlename"
+                                            name="middlename"
+                                            value={formData.middlename}
                                             onChange={handleChange}
-                                            className="border rounded p-1 w-full mt-1"
+                                            required
+                                            placeholder="Enter middle name"
+                                            className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block font-bold">First Name:</label>
+                                        <label htmlFor="fullname" className="block text-sm font-medium">
+                                            Last Name
+                                        </label>
                                         <input
                                             type="text"
-                                            name="firstName"
-                                            value={formData.firstName}
+                                            id="lastname"
+                                            name="lastname"
+                                            value={formData.lastname}
                                             onChange={handleChange}
-                                            className="border rounded p-1 w-full mt-1"
+                                            required
+                                            placeholder="Enter last name"
+                                            className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         />
                                     </div>
                                 </div>
@@ -561,7 +554,7 @@ const ChildLifelineForm = ({ onClose, userData }) => {
                                     />
                                 </div>
                                 <div className="mt-4">
-                                    <label className="block font-bold">Facsimile:</label>
+                                    <label className="block font-bold">Fax:</label>
                                     <input
                                         type="text"
                                         name="employerFacsimile"
@@ -585,8 +578,8 @@ const ChildLifelineForm = ({ onClose, userData }) => {
 
                         {/* [C] PAYMENT DETAILS */}
                         <section className="border-t pt-4 mt-6">
-                            <h2 className="text-[14px] font-bold">[C] PAYMENT DETAILS</h2>
-                            <div className="mt-4 grid grid-cols-2 gap-4">
+                            <h2 className="text-[14px] font-bold text-gray-500">[C] PAYMENT DETAILS</h2>
+                            <div className="mt-4 gap-4 flex flex-col">
                                 <div>
                                     <label className="block font-bold">PEP STATUS:</label>
                                     <div className="flex space-x-4 mt-1">
@@ -673,9 +666,9 @@ const ChildLifelineForm = ({ onClose, userData }) => {
                                     </label>
                                 </div>
                             </div>
-                            <div className="mt-4">
+                            <div className="mt-4 flex flex-col">
                                 <label className="block font-bold">Payment Mode:</label>
-                                <div className="flex space-x-4 mt-1">
+                                <div className="flex flex-col  mt-1">
                                     <label>
                                         <input
                                             type="radio"
@@ -714,7 +707,7 @@ const ChildLifelineForm = ({ onClose, userData }) => {
                                         name="mobileMoneyNumber"
                                         value={formData.mobileMoneyNumber}
                                         onChange={handleChange}
-                                        className="border rounded p-1 w-full mt-1"
+                                        className="border rounded p-1 w-full mt-1 text-black"
                                     />
                                 </div>
                             </div>

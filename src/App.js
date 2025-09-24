@@ -32,6 +32,7 @@ import VideoParent from './components/VideoParent';
 //the terms component is the modal
 import Terms from './components/Terms';
 import TrackPageVisit from './components/TrackPageVisit';
+import Privacy from './components/Privacy';
 
 const Layout = () => {
   const location = useLocation();  // Get the current route location
@@ -58,6 +59,7 @@ const Layout = () => {
         <Route path='/financial' element={<Financial />} />
         <Route path='/insure' element={<Insure />} />
         <Route path="/terms" element={<Terms onClose={() => window.history.back()} />} />
+        <Route path="/privacy" element={<Privacy onClose={() => window.history.back()} />} />
         <Route path='/financemodal' element={<FinanceSideModal />} />
         <Route path='/insuredetails' element={<InsuranceDetails />} />
         <Route path='/financedetails' element={<FinancialDetails />} />
@@ -73,6 +75,7 @@ const Layout = () => {
         <Route path='/home_test' element={<HomeTest />} />
         <Route path='/home_preview' element={<HomePreview />} />
         <Route path='/dashboard' element={<MainDashboard />} />
+        <Route path='/video' element={<VideoParent />} />
         <Route path='*' element={<Navigate to='/errorpage' />} />
       </Routes>
 
@@ -88,6 +91,16 @@ const Layout = () => {
         </Routes>
       )}
 
+      {background && (
+        <Routes>
+          <Route
+            path="/privacy"
+            element={
+              <Privacy onClose={() => window.history.back()} />
+            }
+          />
+        </Routes>
+      )}
       {/* Conditionally render Footer */}
       {!isDashboard && <Footer />}
 

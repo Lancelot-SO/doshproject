@@ -31,6 +31,7 @@ const initialState = {
     // [C] Payment Details
     paymentMode: '',
     paymentOption: '',
+    mobileMoneyNumber: '',
     staffID: '',
     permanentAddress: '',
     residentialAddress: '',
@@ -69,9 +70,9 @@ const initialState = {
 
     // Beneficiaries (9 rows as per PDF)
     beneficiaries: Array.from({ length: 9 }, () => ({
-        surname: '',
-        firstName: '',
-        otherNames: '',
+        firstname: '',
+        middlename: '',
+        lastname: '',
         dateOfBirth: '',
         relationship: '',
         percentage: '',
@@ -138,7 +139,9 @@ function WealthMasterForm({ onClose, userData }) {
         if (userData) {
             setFormData(prev => ({
                 ...prev,
-                surname: userData.fullname?.trim() || '',
+                firstname: userData.firstname.trim(),
+                middlename: userData.middlename.trim(),
+                lastname: userData.lastname.trim(),
                 email: userData.email || '',
                 mobile: userData.phone || ''
             }));
@@ -200,11 +203,11 @@ function WealthMasterForm({ onClose, userData }) {
             const result = await res.json();
 
             if (result.status === 'success') {
-                toast.success(result.message || 'Message sent successfully!');
+                toast.success(result.message);
                 setFormData(initialState);
                 setTimeout(() => onClose?.(), 6000);
             } else {
-                toast.error(result.message || 'Failed to send message.');
+                toast.error(result.message);
             }
         } catch (err) {
             console.error('Error submitting form:', err);
@@ -231,7 +234,14 @@ function WealthMasterForm({ onClose, userData }) {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
                     {/* Close Button */}
                     <button
@@ -245,39 +255,14 @@ function WealthMasterForm({ onClose, userData }) {
                     <h2 className="text-xl text-gray-800 font-bold mb-3">
                         WealthMaster Plus Application Form (Investment Policy)
                     </h2>
-                    <p>Please kindly fill out the form fields below.</p>
+                    <p className='text-black'>Please kindly fill out the form fields below.</p>
 
-                    <form ref={formRef} onSubmit={sendEmail} className="max-w-6xl mx-auto p-4">
-                        {/* Header */}
-                        <div className="flex flex-col gap-4 mb-4">
-                            <div className="flex-1">
-                                <label className="block font-bold">MANDATE NO.:</label>
-                                <input
-                                    type="text"
-                                    name="mandateNo"
-                                    value={formData.mandateNo}
-                                    onChange={handleChange}
-                                    className="border p-1 w-full"
-                                    placeholder="_________________________"
-                                />
-                                <span className="text-sm"> ( CAGD only)</span>
-                            </div>
-                            <div className="flex-1">
-                                <label className="block font-bold">SALES ACTIVATION CODE:</label>
-                                <input
-                                    type="text"
-                                    name="salesActivationCode"
-                                    value={formData.salesActivationCode}
-                                    onChange={handleChange}
-                                    className="border p-1 w-full"
-                                    placeholder="_____________________"
-                                />
-                            </div>
-                        </div>
+                    <form ref={formRef} onSubmit={sendEmail} className="max-w-6xl mx-auto p-4 text-black">
+
 
                         {/* Title and Instructions */}
                         <div className="text-left mb-6">
-                            <h1 className="text-[20px] font-bold">StarLife WEALTH MASTER PLUS POLICY</h1>
+                            <h1 className="text-[20px] font-bold text-black">WEALTH MASTER PLUS POLICY</h1>
                             <h2 className="text-[20px] font-bold">APPLICATION FORM</h2>
                             <p className="text-[14px] text-red-500 italic">
                                 NB. EVERY QUESTION MUST BE ANSWERED. PLEASE COMPLETE THIS FORM IN BLOCK LETTERS
@@ -300,17 +285,51 @@ function WealthMasterForm({ onClose, userData }) {
                                         </label>
                                     </div>
                                 </div>
-                                <div className="mb-2">
-                                    <label className="font-bold">Surname:</label>
-                                    <input type="text" name="surname" value={formData.surname} onChange={handleChange} className="border p-1 w-full" />
+                                {/* Personal Details */}
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        First Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="firstname"
+                                        name="firstname"
+                                        value={formData.firstname}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="Enter first name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
                                 </div>
-                                <div className="mb-2">
-                                    <label className="font-bold">Middle Name(s):</label>
-                                    <input type="text" name="middleName" value={formData.middleName} onChange={handleChange} className="border p-1 w-full" />
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Middle Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="middlename"
+                                        name="middlename"
+                                        value={formData.middlename}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="Enter middle name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
                                 </div>
-                                <div className="mb-2">
-                                    <label className="font-bold">First Name:</label>
-                                    <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} className="border p-1 w-full" />
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Last Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="lastname"
+                                        name="lastname"
+                                        value={formData.lastname}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="Enter last name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
                                 </div>
                                 <div className="mb-2">
                                     <label className="font-bold">Date of Birth:</label>
@@ -422,6 +441,16 @@ function WealthMasterForm({ onClose, userData }) {
                                     <label>
                                         <input type="radio" name="paymentMethod" value="MobileMoney" onChange={handleChange} className="mr-1" /> Mobile Money
                                     </label>
+                                </div>
+                                <div className="mt-2">
+                                    <label className="block">Mobile Money Number (e.g., 024 528 7497):</label>
+                                    <input
+                                        type="text"
+                                        name="mobileMoneyNumber"
+                                        value={formData.mobileMoneyNumber}
+                                        onChange={handleChange}
+                                        className="border rounded p-1 w-full mt-1"
+                                    />
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 gap-4 mb-2">
@@ -1048,7 +1077,7 @@ function WealthMasterForm({ onClose, userData }) {
                             </div>
                         </div>
 
-                        {/* Footer */}
+                        {/* Footer
                         <div className="text-left mt-6">
                             <p className="text-sm">
                                 Website: <a href="http://www.starlife.com.gh" className="text-blue-500">www.starlife.com.gh</a>
@@ -1058,7 +1087,7 @@ function WealthMasterForm({ onClose, userData }) {
                             <p className="text-sm">
                                 Tel: +233 302-258943-6 | Fax: +233 302-258947 | Email: info@starlife.com.gh
                             </p>
-                        </div>
+                        </div> */}
 
                         {/* Submit Button */}
                         <div className="mb-12 text-center">

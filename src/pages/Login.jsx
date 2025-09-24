@@ -60,21 +60,21 @@ const Login = ({ onClose }) => {
                 return (
                     <div className='log__input'>
                         <label htmlFor='dosh'>DOSH No.</label>
-                        <input type='text' name='doshnum' placeholder='DOSH Number' className='inp' />
+                        <input type='text' name='doshnum' placeholder='DOSH Number' className='inp text-black' />
                     </div>
                 );
             case 1:
                 return (
                     <div className='log__input'>
                         <label htmlFor='phone'>Phone Number</label>
-                        <input type='tel' name='phone' placeholder='Phone Number' className='inp' />
+                        <input type='tel' name='phone' placeholder='Phone Number' className='inp text-black' />
                     </div>
                 );
             case 2:
                 return (
                     <div className='log__input'>
                         <label htmlFor='email'>Email Address</label>
-                        <input type='email' name='email' placeholder='Enter your email' className='inp' />
+                        <input type='email' name='email' placeholder='Enter your email' className='inp text-black' />
                     </div>
                 );
             default:
@@ -156,8 +156,8 @@ const Login = ({ onClose }) => {
                                         <button type='submit' className='log__btn'>Continue</button>
                                         <span>Don't have an account? <Link to='/register' className='linker__signup'>Sign up</Link></span>
                                     </div>
-                                    {showSignInModal && <SignIn username={username} onClose={() => setShowSignInModal(false)} />}
                                 </form>
+                                {showSignInModal && <SignIn username={username} onClose={() => setShowSignInModal(false)} />}
                             </div>
                         </div>
                     </div>

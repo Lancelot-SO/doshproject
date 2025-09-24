@@ -6,13 +6,11 @@ import image from "../../../images/supreme.png";
 import formlogo from "../../../images/formlogo.png";
 
 const initialState = {
-    // Header
-    mandateNo: '',
-    salesActivationCode: '',
+
     // [A] Personal Details
-    surname: '',
-    middleName: '',
-    firstName: '',
+    firstname: '',
+    middlename: '',
+    lastname: '',
     dateOfBirth: '',
     nationality: '',
     gender: '',
@@ -30,6 +28,7 @@ const initialState = {
     // [C] Payment Details
     paymentMode: '',
     paymentOption: '',
+    mobileMoneyNumber: '',
     staffID: '',
     permanentAddress: '',
     residentialAddress: '',
@@ -136,7 +135,9 @@ function StarLifeSupremeForm({ onClose, userData }) {
         if (userData) {
             setFormData(prev => ({
                 ...prev,
-                surname: userData.fullname?.trim() || '',
+                firstname: userData.firstname.trim(),
+                middlename: userData.middlename.trim(),
+                lastname: userData.lastname.trim(),
                 email: userData.email || '',
                 mobile: userData.phone || ''
             }));
@@ -149,10 +150,22 @@ function StarLifeSupremeForm({ onClose, userData }) {
         /^\+?[0-9]{7,15}$/.test(phone);
 
     const handleChange = e => {
-        const { name, value, type, checked } = e.target;
-        const fieldValue = type === 'checkbox' ? checked : value;
-        setFormData(prev => ({ ...prev, [name]: fieldValue }));
+        const { name, type, checked, value } = e.target;
 
+        // Special‑case ONLY the two endTerm radios by name:
+        if (name === 'endTermRefund' || name === 'endTermFreeCover') {
+            setFormData(prev => ({
+                ...prev,
+                endTermRefund: name === 'endTermRefund' ? checked : false,
+                endTermFreeCover: name === 'endTermFreeCover' ? checked : false,
+            }));
+        } else {
+            // Generic: checkboxes use checked, everything else (text, date, radio, select) use value
+            const fieldValue = type === 'checkbox' ? checked : value;
+            setFormData(prev => ({ ...prev, [name]: fieldValue }));
+        }
+
+        // Inline validation:
         if (name === 'email') {
             setEmailError(validateEmail(value) ? '' : 'Please enter a valid email address.');
         }
@@ -190,7 +203,6 @@ function StarLifeSupremeForm({ onClose, userData }) {
             return;
         }
 
-        // build the payload
         const payload = {
             ...formData,
             emailType: 'starLifeSupremeForm'
@@ -205,11 +217,11 @@ function StarLifeSupremeForm({ onClose, userData }) {
             const result = await res.json();
 
             if (result.status === 'success') {
-                toast.success(result.message || 'Message sent successfully!');
+                toast.success(result.message);
                 setFormData(initialState);
                 setTimeout(() => onClose?.(), 6000);
             } else {
-                toast.error(result.message || 'Failed to send message.');
+                toast.error(result.message);
             }
         } catch (err) {
             console.error('⚠️ Error:', err);
@@ -236,7 +248,14 @@ function StarLifeSupremeForm({ onClose, userData }) {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
                     {/* Close Button */}
                     <button
@@ -250,42 +269,15 @@ function StarLifeSupremeForm({ onClose, userData }) {
                     <h2 className="text-xl text-gray-800 font-bold mb-3">
                         Supreme Homecall Plan
                     </h2>
-                    <p>Please kindly fill out the form fields below.</p>
+                    <p className='text-black'>Please kindly fill out the form fields below.</p>
 
-                    <form ref={formRef} onSubmit={sendEmail} className="space-y-4">
-                        {/* Header: Mandate No. and Sales Activation Code */}
-                        <div className="mb-6">
-                            <div className="flex flex-col gap-4">
-                                <div className="flex-1">
-                                    <label className="block font-bold">MANDATE NO.:</label>
-                                    <input
-                                        type="text"
-                                        name="mandateNo"
-                                        value={formData.mandateNo}
-                                        onChange={handleChange}
-                                        className="border p-1 w-full"
-                                        placeholder="___________________________"
-                                    />
-                                    <span className="text-sm"> ( CAGD only)</span>
-                                </div>
-                                <div className="flex-1">
-                                    <label className="block font-bold">SALES ACTIVATION CODE:</label>
-                                    <input
-                                        type="text"
-                                        name="salesActivationCode"
-                                        value={formData.salesActivationCode}
-                                        onChange={handleChange}
-                                        className="border p-1 w-full"
-                                        placeholder="_____________________"
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                    <form ref={formRef} onSubmit={sendEmail} className="space-y-4 text-black">
+
 
                         {/* Title and Instructions */}
                         <div className="text-left mb-6">
-                            <h1 className="text-[20px] font-bold">StarLife SUPREME HOMECALL PLAN</h1>
-                            <h2 className="text-[20px] font-bold">APPLICATION FORM</h2>
+                            <h1 className="text-[20px] font-bold text-black">SUPREME HOMECALL PLAN</h1>
+                            {/* <h2 className="text-[20px] font-bold text-black">APPLICATION FORM</h2> */}
                             <p className="text-[12px] italic text-red-500">
                                 NB. EVERY QUESTION MUST BE ANSWERED. PLEASE COMPLETE THIS FORM IN BLOCK LETTERS
                                 (ALL NAMES SHOULD BE IN FULL. INITIALS ARE NOT ACCEPTABLE)
@@ -295,36 +287,52 @@ function StarLifeSupremeForm({ onClose, userData }) {
                         {/* [A] PERSONAL DETAILS and [B] EMPLOYER DETAILS */}
                         <div className="grid grid-cols-1 gap-6">
                             {/* PERSONAL DETAILS */}
-                            <div className="border p-4">
+                            <div className="border p-4 space-y-2">
                                 <h3 className="font-bold mb-2">[A] PERSONAL DETAILS</h3>
-                                <div className="mb-4">
-                                    <label className="block font-bold">Surname:</label>
+                                {/* Personal Details */}
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        First Name
+                                    </label>
                                     <input
                                         type="text"
-                                        name="surname"
-                                        value={formData.surname}
+                                        id="firstname"
+                                        name="firstname"
+                                        value={formData.firstname}
                                         onChange={handleChange}
-                                        className="border p-1 w-full"
+                                        required
+                                        placeholder="Enter first name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
-                                <div className="mb-4">
-                                    <label className="block font-bold">Middle Name(s):</label>
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Middle Name
+                                    </label>
                                     <input
                                         type="text"
-                                        name="middleName"
-                                        value={formData.middleName}
+                                        id="middlename"
+                                        name="middlename"
+                                        value={formData.middlename}
                                         onChange={handleChange}
-                                        className="border p-1 w-full"
+                                        required
+                                        placeholder="Enter middle name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
-                                <div className="mb-4">
-                                    <label className="block font-bold">First Name:</label>
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Last Name
+                                    </label>
                                     <input
                                         type="text"
-                                        name="firstName"
-                                        value={formData.firstName}
+                                        id="lastname"
+                                        name="lastname"
+                                        value={formData.lastname}
                                         onChange={handleChange}
-                                        className="border p-1 w-full"
+                                        required
+                                        placeholder="Enter last name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
                                 <div className="mb-4">
@@ -561,6 +569,16 @@ function StarLifeSupremeForm({ onClose, userData }) {
                                         placeholder="Staff ID No."
                                     />
                                 </div>
+                                <div className="mt-2">
+                                    <label className="block">Mobile Money Number (e.g., 024 528 7497):</label>
+                                    <input
+                                        type="text"
+                                        name="mobileMoneyNumber"
+                                        value={formData.mobileMoneyNumber}
+                                        onChange={handleChange}
+                                        className="border rounded p-1 w-full mt-1"
+                                    />
+                                </div>
                             </div>
                             <div className="grid grid-cols-1 gap-4">
                                 <div>
@@ -681,25 +699,26 @@ function StarLifeSupremeForm({ onClose, userData }) {
                                     className="border p-1 w-full"
                                 />
                             </div>
+                            {/* Sum Assured */}
                             <div className="mb-4">
                                 <label className="block font-bold">
                                     Sum Assured GH₵ (Benefits Category):
                                 </label>
                                 <div className="grid grid-cols-2 gap-4">
                                     {[
-                                        { value: "2500", label: "Option 1 - GH₵ 2,500" },
-                                        { value: "5000", label: "Option 2 - GH₵ 5,000" },
-                                        { value: "7500", label: "Option 3 - GH₵ 7,500" },
-                                        { value: "10000", label: "Option 4 - GH₵ 10,000" },
-                                        { value: "15000", label: "Option 5 - GH₵ 15,000" },
-                                        { value: "20000", label: "Option 6 - GH₵ 20,000" },
-                                        { value: "25000", label: "Option 7 - GH₵ 25,000" },
-                                        { value: "30000", label: "Option 8 - GH₵ 30,000" },
-                                        { value: "40000", label: "Option 9 - GH₵ 40,000" },
-                                        { value: "50000", label: "Option 10 - GH₵ 50,000" }
+                                        { value: "2500", label: "Option 1 - GH₵ 2,500" },
+                                        { value: "5000", label: "Option 2 - GH₵ 5,000" },
+                                        { value: "7500", label: "Option 3 - GH₵ 7,500" },
+                                        { value: "10000", label: "Option 4 - GH₵ 10,000" },
+                                        { value: "15000", label: "Option 5 - GH₵ 15,000" },
+                                        { value: "20000", label: "Option 6 - GH₵ 20,000" },
+                                        { value: "25000", label: "Option 7 - GH₵ 25,000" },
+                                        { value: "30000", label: "Option 8 - GH₵ 30,000" },
+                                        { value: "40000", label: "Option 9 - GH₵ 40,000" },
+                                        { value: "50000", label: "Option 10 - GH₵ 50,000" }
                                     ].map((option, idx) => (
                                         <div key={idx}>
-                                            <label>
+                                            <label className="flex items-center">
                                                 <input
                                                     type="radio"
                                                     name="sumAssured"
@@ -721,7 +740,7 @@ function StarLifeSupremeForm({ onClose, userData }) {
                                 <div className="flex items-center gap-4">
                                     <label>
                                         <input
-                                            type="checkbox"
+                                            type="radio"
                                             name="endTermRefund"
                                             checked={formData.endTermRefund}
                                             onChange={handleChange}
@@ -731,7 +750,7 @@ function StarLifeSupremeForm({ onClose, userData }) {
                                     </label>
                                     <label>
                                         <input
-                                            type="checkbox"
+                                            type="radio"
                                             name="endTermFreeCover"
                                             checked={formData.endTermFreeCover}
                                             onChange={handleChange}

@@ -14,12 +14,12 @@
 
 .flyer-content {
     display: flex;
-    width: 892px;
+    width: 992px;
     height: 658px;
     padding: 20px;
     flex-direction: column;
     position: relative;
-    background: url('../images/flyer2.jpg') no-repeat center center;
+    background: url('../images/flyer4.jpg') no-repeat center center;
     background-size: cover;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     image-rendering: auto;
@@ -47,7 +47,7 @@
 }
 
 .flyer_link_mobile {
-    display: none;
+    display: flex;
 }
 
 .flyer_close {

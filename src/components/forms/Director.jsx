@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import image from "../../images/director.png";
 import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
@@ -6,7 +6,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Director = ({ onClose, userData }) => {
+
     const [formData, setFormData] = useState({
+        firstname: '',
+        middlename: '',
+        lastname: '',
         companyName: "",
         headOfficeAddress: "",
         holdingCompany: "",
@@ -55,44 +59,54 @@ const Director = ({ onClose, userData }) => {
         message: "",
     });
 
-    // Pre-populate from userData
+    // 2. A ref for the form so EmailJS can capture all fields including the file
+    const formRef = useRef();
+
+    // Pre-populate the companyName field if userData.fullname is provided
     useEffect(() => {
         if (userData) {
-            setFormData(prev => ({
-                ...prev,
-                companyName: userData.fullname?.trim() || "",
+            setFormData(fd => ({
+                ...fd,
+                firstname: userData.firstname.trim(),
+                middlename: userData.middlename.trim(),
+                lastname: userData.lastname.trim(),
             }));
         }
     }, [userData]);
 
-    const handleChange = (e) => {
-        const { name, value, type, files } = e.target;
+    // Generic change handler for text/date/radio inputs and file inputs
+    const handleChange = e => {
+        const { name, type, value, files } = e.target;
         if (type === "file") {
-            setFormData(f => ({ ...f, [name]: files[0] }));
+            setFormData(fd => ({ ...fd, [name]: files[0] }));
         } else {
-            setFormData(f => ({ ...f, [name]: value }));
+            setFormData(fd => ({ ...fd, [name]: value }));
         }
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        // Build a FormData payload if you need to include files
-        const payload = new FormData();
-        Object.entries(formData).forEach(([key, val]) => {
-            if (val !== null && val !== undefined) {
-                payload.append(key, val);
-            }
-        });
+        // build payload
+        const payload = {
+            ...formData,
+            emailType: "DirectorForm"
+        };
+
+        // send JSON (your PHP endpoint should parse JSON and handle $_FILES separately)
         try {
-            const res = await fetch("/send-email.php", {
-                method: "POST",
-                body: payload,
+            const res = await fetch('/send-email.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
             });
             const result = await res.json();
-            if (result.status === "success") {
-                toast.success(result.message || "Message sent successfully!");
-                // reset state
+            if (result.status === 'success') {
+                toast.success(result.message);
+                formRef.current.reset();
                 setFormData({
+                    firstname: '',
+                    middlename: '',
+                    lastname: '',
                     companyName: "",
                     headOfficeAddress: "",
                     holdingCompany: "",
@@ -140,17 +154,15 @@ const Director = ({ onClose, userData }) => {
                     declarationDate: "",
                     message: "",
                 });
-                e.target.reset();
-                setTimeout(onClose, 6000);
+                setTimeout(6000);
             } else {
-                toast.error(result.message || "Failed to send message.");
+                toast.error(result.message);
             }
         } catch (err) {
             console.error(err);
-            toast.error("An error occurred. Please try again.");
+            toast.error(err.message);
         }
     };
-
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">
             <div className="bg-white w-full mt-16 sm:w-[80%] md:w-[70%] lg:w-[60%] max-h-[90vh] rounded-[20px]-lg shadow-lg flex overflow-hidden">
@@ -171,7 +183,14 @@ const Director = ({ onClose, userData }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
 
                     {/* Close Button */}
@@ -190,7 +209,53 @@ const Director = ({ onClose, userData }) => {
                         completion and signature of this proposal form does not bind the Proposers
                         or the Underwriters to complete a contract of insurances.
                     </p>
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 text-black">
+                        {/* Personal Details */}
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                First Name
+                            </label>
+                            <input
+                                type="text"
+                                id="firstname"
+                                name="firstname"
+                                value={formData.firstname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter first name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Middle Name
+                            </label>
+                            <input
+                                type="text"
+                                id="middlename"
+                                name="middlename"
+                                value={formData.middlename}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter middle name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Last Name
+                            </label>
+                            <input
+                                type="text"
+                                id="lastname"
+                                name="lastname"
+                                value={formData.lastname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter last name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
                         {/* Question 1: Company Details */}
                         <div>
                             <div className="mb-4">

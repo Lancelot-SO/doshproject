@@ -7,9 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const PrivateMotor = ({ onClose, userData }) => {
     const [formData, setFormData] = useState({
-        proposerTitle: '',
-        surname: '',
-        otherNames: '',
+        firstname: '',
+        lastname: '',
+        middlename: '',
         dob: '',
         sex: '',
         businessOccupation: '',
@@ -82,7 +82,9 @@ const PrivateMotor = ({ onClose, userData }) => {
         if (userData) {
             setFormData(f => ({
                 ...f,
-                proposerTitle: userData.fullname || '',
+                firstname: userData.firstname || '',
+                lastname: userData.lastname || '',
+                middlename: userData.middlename || '',
                 email: userData.email || '',
                 personalMobile: userData.phone || '',
             }));
@@ -128,11 +130,11 @@ const PrivateMotor = ({ onClose, userData }) => {
             });
             const json = await res.json();
             if (json.status === 'success') {
-                toast.success(json.message || 'Message sent successfully!');
+                toast.success(json.message);
                 setFormData({
-                    proposerTitle: '',
-                    surname: '',
-                    otherNames: '',
+                    firstname: '',
+                    lastname: '',
+                    middlename: '',
                     dob: '',
                     sex: '',
                     businessOccupation: '',
@@ -200,7 +202,7 @@ const PrivateMotor = ({ onClose, userData }) => {
                 e.target.reset();
                 setTimeout(onClose, 6000);
             } else {
-                toast.error(json.message || 'Failed to send message.');
+                toast.error(json.message);
             }
         } catch (err) {
             console.error(err);
@@ -229,7 +231,14 @@ const PrivateMotor = ({ onClose, userData }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
                     {/* Close Button */}
                     <button
@@ -239,51 +248,60 @@ const PrivateMotor = ({ onClose, userData }) => {
                     >
                         <X size={20} />
                     </button>
-                    <h1 className="text-2xl font-bold mb-4">
+                    <h1 className="text-2xl font-bold mb-4 text-black">
                         Private Motor Insurance Proposal Form
                     </h1>
-                    <p>Please kindly fill out the form fields below.</p>
+                    <p className='text-black'>Please kindly fill out the form fields below.</p>
 
-                    <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-8">
+                    <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-8 text-black">
                         {/* Insured’s Details */}
                         <section>
                             <h2 className="text-[14px] font-semibold mb-4">Insured’s Details</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {/* Proposer Name */}
+                                {/* Personal Details */}
                                 <div>
-                                    <label className="block font-medium">
-                                        1. Name of Proposer
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        First Name
                                     </label>
                                     <input
                                         type="text"
-                                        name="proposerTitle"
-                                        value={formData.proposerTitle}
+                                        id="firstname"
+                                        name="firstname"
+                                        value={formData.firstname}
                                         onChange={handleChange}
-                                        className="w-full border rounded-[5px] p-2"
-                                        placeholder="Mr/Ms/Mrs/Dr/Prof"
                                         required
+                                        placeholder="Enter first name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block font-medium">Surname</label>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Middle Name
+                                    </label>
                                     <input
                                         type="text"
-                                        name="surname"
-                                        value={formData.surname}
+                                        id="middlename"
+                                        name="middlename"
+                                        value={formData.middlename}
                                         onChange={handleChange}
-                                        className="w-full border rounded-[5px] p-2"
                                         required
+                                        placeholder="Enter middle name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
-                                <div className="md:col-span-2">
-                                    <label className="block font-medium">Other Names</label>
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Last Name
+                                    </label>
                                     <input
                                         type="text"
-                                        name="otherNames"
-                                        value={formData.otherNames}
+                                        id="lastname"
+                                        name="lastname"
+                                        value={formData.lastname}
                                         onChange={handleChange}
-                                        className="w-full border rounded-[5px] p-2"
                                         required
+                                        placeholder="Enter last name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
                                 {/* Date of Birth & Sex */}
@@ -917,21 +935,7 @@ const PrivateMotor = ({ onClose, userData }) => {
 
                                 <div>
                                     <label className="block font-medium">
-                                        15. (b) Proposer’s Driving Experience
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="drivingExperience"
-                                        value={formData.drivingExperience}
-                                        onChange={handleChange}
-                                        className="w-full border rounded-[5px] p-2"
-                                        placeholder="e.g., 10 years"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label className="block font-medium">
-                                        15. Name
+                                        15. (c) Name
                                     </label>
                                     <input
                                         type="text"
@@ -945,7 +949,7 @@ const PrivateMotor = ({ onClose, userData }) => {
 
                                 <div>
                                     <label className="block font-medium">
-                                        15. Age
+                                        15. (d) Age
                                     </label>
                                     <input
                                         type="text"
@@ -959,7 +963,7 @@ const PrivateMotor = ({ onClose, userData }) => {
 
                                 <div>
                                     <label className="block font-medium">
-                                        15. Occupation
+                                        15. (e) Occupation
                                     </label>
                                     <input
                                         type="text"
@@ -973,7 +977,7 @@ const PrivateMotor = ({ onClose, userData }) => {
 
                                 <div>
                                     <label className="block font-medium">
-                                        15. No. of Years a Full Driving Licensed held
+                                        15. (f) No. of Years a Full Driving Licensed held
                                     </label>
                                     <input
                                         type="text"
@@ -987,7 +991,7 @@ const PrivateMotor = ({ onClose, userData }) => {
 
                                 <div>
                                     <label className="block font-medium">
-                                        15.  Details of any conviction of motoring offence during the past ve years
+                                        15.  (g) Details of any conviction of motoring offence during the past ve years
                                     </label>
                                     <input
                                         type="text"

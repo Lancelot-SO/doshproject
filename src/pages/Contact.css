@@ -125,14 +125,12 @@
 
     .dosh-form-container {
         flex-direction: column;
-        width: 100%;
         height: auto;
     }
 
     .dosh-contact-image {
         display: none;
     }
-
 
     .dosh-form-card {
         width: 100%;
@@ -142,19 +140,16 @@
         flex-direction: column;
     }
 
+    /* make all form controls full width */
     .dosh-first,
     .dosh-last,
     .dosh-email,
     .dosh-phone,
-    .dosh-button {
-        width: 100%;
-    }
-
+    .dosh-button,
     .dosh-select,
     .dosh-textarea {
-        width: 230px;
+        width: 300px;
     }
-
 
     .dosh-contact-logo {
         align-self: center;

@@ -11,7 +11,10 @@ const TheftInsurance = ({ onClose, userData }) => {
         declarationDate: "",
         agency: "",
         message: "",
-        signature: ""
+        signature: "",
+        firstname: '',
+        middlename: '',
+        lastname: '',
     });
 
     // (Optional) prefill user data
@@ -19,7 +22,9 @@ const TheftInsurance = ({ onClose, userData }) => {
         if (userData) {
             setFormData(fd => ({
                 ...fd,
-                agency: userData.agency || fd.agency
+                firstname: userData.firstname || '',
+                middlename: userData.middlename || '',
+                lastname: userData.lastname || '',
             }));
         }
     }, [userData]);
@@ -54,17 +59,20 @@ const TheftInsurance = ({ onClose, userData }) => {
             });
             const json = await res.json();
             if (json.status === 'success') {
-                toast.success(json.message || 'Message sent successfully!');
+                toast.success(json.message);
                 setFormData({
                     declarationDate: "",
                     agency: "",
                     message: "",
-                    signature: ""
+                    signature: "",
+                    firstname: '',
+                    middlename: '',
+                    lastname: '',
                 });
                 formRef.current.reset();
                 setTimeout(onClose, 6000);
             } else {
-                toast.error(json.message || 'Failed to send message');
+                toast.error(json.message);
             }
         } catch (err) {
             console.error(err);
@@ -74,7 +82,14 @@ const TheftInsurance = ({ onClose, userData }) => {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4">
-            <ToastContainer position="bottom-center" />
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnHover
+            />
             <div className="bg-white w-full sm:w-4/5 md:w-3/4 lg:w-2/3 max-h-[90vh] rounded-lg shadow-lg flex overflow-hidden">
                 {/* Left Side */}
                 <div className="hidden md:flex w-1/2 flex-col">
@@ -95,10 +110,56 @@ const TheftInsurance = ({ onClose, userData }) => {
                     >
                         <X size={20} />
                     </button>
-                    <h2 className="text-2xl font-semibold mb-4">Theft Insurance Request</h2>
-                    <p className="mb-4">Please fill out the declaration below.</p>
+                    <h2 className="text-2xl font-semibold mb-4 text-black">Theft Insurance Request</h2>
+                    <p className="mb-4 text-black">Please fill out the declaration below.</p>
 
-                    <form ref={formRef} onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
+                    <form ref={formRef} onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4 text-black">
+                        {/* Personal Details */}
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                First Name
+                            </label>
+                            <input
+                                type="text"
+                                id="firstname"
+                                name="firstname"
+                                value={formData.firstname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter first name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Middle Name
+                            </label>
+                            <input
+                                type="text"
+                                id="middlename"
+                                name="middlename"
+                                value={formData.middlename}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter middle name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Last Name
+                            </label>
+                            <input
+                                type="text"
+                                id="lastname"
+                                name="lastname"
+                                value={formData.lastname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter last name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
                         <label className="block">
                             Declaration Date
                             <input
@@ -149,7 +210,7 @@ const TheftInsurance = ({ onClose, userData }) => {
 
                         <button
                             type="submit"
-                            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+                            className="w-full bg-[#b5996e] text-white py-2 rounded hover:bg-[#a28253]"
                         >
                             Submit
                         </button>

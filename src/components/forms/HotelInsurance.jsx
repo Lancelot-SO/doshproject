@@ -8,7 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 const HotelInsurance = ({ onClose, userData }) => {
     const [formData, setFormData] = useState({
         // Basic Information
-        proposerFullName: '',
+        firstname: '',
+        lastname: '',
+        middlename: '',
         postalAddress: '',
         premisesOptions: {
             guestBoardingHouse: false,
@@ -114,7 +116,10 @@ const HotelInsurance = ({ onClose, userData }) => {
         if (userData) {
             setFormData(f => ({
                 ...f,
-                proposerFullName: userData.fullname?.trim() || '',
+                firstname: userData.firstname || '',
+                lastname: userData.lastname || '',
+                middlename: userData.middlename || '',
+
             }));
         }
     }, [userData]);
@@ -172,10 +177,12 @@ const HotelInsurance = ({ onClose, userData }) => {
             });
             const json = await res.json();
             if (json.status === 'success') {
-                toast.success(json.message || 'Message sent successfully!');
+                toast.success(json.message);
                 // clear state
                 setFormData({
-                    proposerFullName: '',
+                    firstname: '',
+                    lastname: '',
+                    middlename: '',
                     postalAddress: '',
                     premisesOptions: {
                         guestBoardingHouse: "",
@@ -278,7 +285,7 @@ const HotelInsurance = ({ onClose, userData }) => {
                 })
                 setTimeout(onClose, 6000);
             } else {
-                toast.error(json.message || 'Failed to send message.');
+                toast.error(json.message);
             }
         } catch (err) {
             console.error(err);
@@ -306,7 +313,14 @@ const HotelInsurance = ({ onClose, userData }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
 
                     {/* Close Button */}
@@ -317,25 +331,60 @@ const HotelInsurance = ({ onClose, userData }) => {
                     >
                         <X size={20} />
                     </button>
-                    <h1 className="text-2xl font-bold mb-6">
+                    <h1 className="text-2xl font-bold mb-6v text-black">
                         Hotels And Guest Houses Insurance Proposal Form
                     </h1>
-                    <p>Please kindly fill out the form fields below.</p>
+                    <p className='text-black'>Please kindly fill out the form fields below.</p>
 
-                    <form onSubmit={handleSubmit} className="space-y-8">
+                    <form onSubmit={handleSubmit} className="space-y-8 text-black">
                         {/* Basic Information */}
                         <section>
                             <h2 className="text-2xl font-semibold mb-4">Basic Information</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {/* Personal Details */}
                                 <div>
-                                    <label className="block font-medium">1. Proposer’s Full Name</label>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        First Name
+                                    </label>
                                     <input
                                         type="text"
-                                        name="proposerFullName"
-                                        value={formData.proposerFullName}
+                                        id="firstname"
+                                        name="firstname"
+                                        value={formData.firstname}
                                         onChange={handleChange}
                                         required
-                                        className="w-full border rounded-[5px] p-2"
+                                        placeholder="Enter first name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Middle Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="middlename"
+                                        name="middlename"
+                                        value={formData.middlename}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="Enter middle name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Last Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="lastname"
+                                        name="lastname"
+                                        value={formData.lastname}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="Enter last name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
                                 <div className="md:col-span-2">
@@ -1781,7 +1830,10 @@ const HotelInsurance = ({ onClose, userData }) => {
                         <section>
                             <h2 className="text-2xl font-semibold mb-4">Declaration</h2>
                             <p className="mb-4">
-                                I warrant that the above statements and particulars are true and I hereby agree that this Declaration shall be held to be promissory and of continuing effect and shall form the basis of and be deemed to be incorporated in the Contract between me and ENTERPRISE INSURANCE, and that I am willing to accept a policy subject to the Terms prescribed by the Company herein, and to pay the Premium thereon.
+                                I warrant that the above statements and particulars are true and I hereby agree that this Declaration shall be held to be promissory
+                                and of continuing effect and shall form the basis of and be deemed to be incorporated in the Contract between me and
+                                DOSH Risk and I am willing to accept a policy subject to the Terms prescribed by the Company herein, and to pay the
+                                Premium thereon.
                             </p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div>

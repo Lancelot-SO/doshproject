@@ -6,7 +6,9 @@ import { X } from 'lucide-react';
 
 const WorkMen = ({ onClose, userData }) => {
     const [formData, setFormData] = useState({
-        proposerName: '',
+        firstname: '',
+        middlename: '',
+        lastname: '',
         businessAddress: '',
         firmEstablished: '',
         tradeOccupation: '',
@@ -46,7 +48,9 @@ const WorkMen = ({ onClose, userData }) => {
         if (userData) {
             setFormData(fd => ({
                 ...fd,
-                proposerName: userData.fullname || fd.proposerName,
+                firstname: userData.firstname.trim(),
+                middlename: userData.middlename.trim(),
+                lastname: userData.lastname.trim(),
                 telephone: userData.phone || fd.telephone,
             }));
         }
@@ -91,10 +95,12 @@ const WorkMen = ({ onClose, userData }) => {
             });
             const json = await res.json();
             if (json.status === 'success') {
-                toast.success(json.message || 'Message sent successfully!');
+                toast.success(json.message);
                 // reset
                 setFormData({
-                    proposerName: '',
+                    firstname: '',
+                    middlename: '',
+                    lastname: '',
                     businessAddress: '',
                     firmEstablished: '',
                     tradeOccupation: '',
@@ -131,7 +137,7 @@ const WorkMen = ({ onClose, userData }) => {
                 });
                 setTimeout(onClose, 6000);
             } else {
-                toast.error(json.message || 'Submission failed.Failed to send message.');
+                toast.error(json.message);
             }
         } catch (err) {
             console.error('⚠️ Error:', err);
@@ -174,24 +180,57 @@ const WorkMen = ({ onClose, userData }) => {
                     <h1 className="text-2xl font-bold mb-4 text-gray-800">
                         Workmen’s Compensation and Employers’ Liability Insurance
                     </h1>
-                    <p>Please kindly fill out the form fields below.</p>
+                    <p className='text-black'>Please kindly fill out the form fields below.</p>
 
-                    <form onSubmit={handleSubmit} className="space-y-8">
+                    <form onSubmit={handleSubmit} className="space-y-8 text-black">
                         {/* Section 1: Proposer Details */}
                         <section className="border p-4 rounded-[20px] shadow">
                             <h2 className="text-[14px] font-semibold mb-4">Proposer Details</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {/* Personal Details */}
                                 <div>
-                                    <label className="block font-medium" htmlFor="proposerName">
-                                        1. Proposer’s Name in Full
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        First Name
                                     </label>
                                     <input
                                         type="text"
-                                        id="proposerName"
-                                        name="proposerName"
-                                        value={formData.proposerName}
+                                        id="firstname"
+                                        name="firstname"
+                                        value={formData.firstname}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded-[5px] w-full"
+                                        required
+                                        placeholder="Enter first name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Middle Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="middlename"
+                                        name="middlename"
+                                        value={formData.middlename}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="Enter middle name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Last Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="lastname"
+                                        name="lastname"
+                                        value={formData.lastname}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="Enter last name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
                                 <div>

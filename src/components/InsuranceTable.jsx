@@ -141,8 +141,8 @@ const InsuranceTable = ({ closePopup }) => {
                                     <td className='row-center'>GHS 21,500</td>
                                     <td className='row-center-total'>GHS 41,250</td>
                                     <td className='row-center-total'>GHS 41,250</td>
-                                    <td className='row-center-total'>GHS 57,000</td>
-                                    <td className='row-center-total'>GHS 57,000</td>
+                                    <td className='row-center-total'>GHS 57,500</td>
+                                    <td className='row-center-total'>GHS 57,500</td>
                                     <td className='row-center-total'>GHS 115,000</td>
                                     <td className='row-center-total'>GHS 115,000</td>
                                 </tr>
@@ -153,7 +153,7 @@ const InsuranceTable = ({ closePopup }) => {
                                     <td className='row-center'>GHS 900</td>
                                     <td className='row-center'>GHS 900</td>
                                     <td className='row-center'>GHS 1,500</td>
-                                    <td className='row-center'>GHS 1,000</td>
+                                    <td className='row-center'>GHS 1,500</td>
                                     <td className='row-center-total'>GHS 3,750</td>
                                     <td className='row-center-total'>GHS 3,750</td>
                                     <td className='row-center-total'>GHS 7,500</td>

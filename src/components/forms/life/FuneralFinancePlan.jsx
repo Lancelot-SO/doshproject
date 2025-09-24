@@ -17,7 +17,9 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
 
     const [formData, setFormData] = useState({
         // I. Applicant & Personal Information
-        fullName: '',
+        firstname: '',
+        middlename: '',
+        lastname: '',
         dateOfBirth: '',
         gender: '',
         ssn: '',
@@ -75,7 +77,9 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
         if (userData) {
             setFormData(prev => ({
                 ...prev,
-                fullName: userData.fullname?.trim() || '',
+                firstname: userData.firstname.trim(),
+                middlename: userData.middlename.trim(),
+                lastname: userData.lastname.trim(),
                 email: userData.email || '',
                 primaryPhone: userData.phone || '',
             }));
@@ -112,9 +116,11 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
             const result = await res.json();
 
             if (result.status === 'success') {
-                toast.success(result.message || 'Message sent successfully!');
+                toast.success(result.message);
                 setFormData({
-                    fullName: '', dateOfBirth: '', gender: '', ssn: '', maritalStatus: '',
+                    firstname: '',
+                    middlename: '',
+                    lastname: '', dateOfBirth: '', gender: '', ssn: '', maritalStatus: '',
                     streetAddress: '', city: '', state: '', zipCode: '',
                     primaryPhone: '', secondaryPhone: '', email: '',
                     policyNumber: '', applicationDate: '', planType: '',
@@ -131,7 +137,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                 });
                 setTimeout(() => onClose?.(), 6000);
             } else {
-                toast.error(result.message || 'Failed to send message.');
+                toast.error(result.message);
             }
         } catch (err) {
             console.error('Error submitting form:', err);
@@ -158,7 +164,14 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
                     {/* Close Button */}
                     <button
@@ -179,15 +192,50 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                 I. Applicant & Personal Information
                             </h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {/* Personal Details */}
                                 <div>
-                                    <label htmlFor="fullName" className="font-medium">Full Legal Name</label>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        First Name
+                                    </label>
                                     <input
-                                        id="fullName"
-                                        name="fullName"
                                         type="text"
-                                        value={formData.fullName}
+                                        id="firstname"
+                                        name="firstname"
+                                        value={formData.firstname}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        required
+                                        placeholder="Enter first name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Middle Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="middlename"
+                                        name="middlename"
+                                        value={formData.middlename}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="Enter middle name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Last Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="lastname"
+                                        name="lastname"
+                                        value={formData.lastname}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="Enter last name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
                                 <div>
@@ -198,7 +246,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="date"
                                         value={formData.dateOfBirth}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div>
@@ -211,7 +259,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                                 value="Male"
                                                 checked={formData.gender === "Male"}
                                                 onChange={handleChange}
-                                                className="mr-1"
+                                                className="mr-1 text-black"
                                             />
                                             Male
                                         </label>
@@ -222,7 +270,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                                 value="Female"
                                                 checked={formData.gender === "Female"}
                                                 onChange={handleChange}
-                                                className="mr-1"
+                                                className="mr-1 text-black"
                                             />
                                             Female
                                         </label>
@@ -233,7 +281,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                                 value="Other"
                                                 checked={formData.gender === "Other"}
                                                 onChange={handleChange}
-                                                className="mr-1"
+                                                className="mr-1 text-black"
                                             />
                                             Other
                                         </label>
@@ -247,7 +295,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.ssn}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div>
@@ -257,7 +305,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         name="maritalStatus"
                                         value={formData.maritalStatus}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     >
                                         <option value="">Select</option>
                                         <option value="Single">Single</option>
@@ -274,7 +322,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.streetAddress}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div>
@@ -285,7 +333,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.city}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div>
@@ -296,7 +344,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.state}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div>
@@ -307,7 +355,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.zipCode}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div>
@@ -318,7 +366,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.primaryPhone}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                     {phoneError && <p className="text-red-500 text-sm">{phoneError}</p>}
                                 </div>
@@ -341,7 +389,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                     {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
                                 </div>
@@ -362,7 +410,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.policyNumber}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div>
@@ -373,7 +421,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="date"
                                         value={formData.applicationDate}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div>
@@ -383,7 +431,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         name="planType"
                                         value={formData.planType}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     >
                                         <option value="">Select</option>
                                         <option value="Basic">Basic</option>
@@ -400,14 +448,14 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         name="coverageAmount"
                                         value={formData.coverageAmount}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     >
                                         <option value="">Select an amount</option>
                                         <option value="5000">5000</option>
                                         <option value="7500">7500</option>
                                         <option value="10000">10000</option>
-                                        <option value="15000">$15000</option>
-                                        <option value="20000">$20000</option>
+                                        <option value="15000">15000</option>
+                                        <option value="20000">20000</option>
                                         <option value="25000">25000</option>
                                         <option value="30000">30000</option>
                                         <option value="40000">40000</option>
@@ -426,7 +474,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         name="paymentFrequency"
                                         value={formData.paymentFrequency}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     >
                                         <option value="">Select</option>
                                         <option value="Monthly">Monthly</option>
@@ -441,7 +489,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         name="paymentMode"
                                         value={formData.paymentMode}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     >
                                         <option value="">Select</option>
                                         <option value="ACH">ACH</option>
@@ -457,7 +505,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.termOfCoverage}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                         placeholder="e.g., 20 years"
                                     />
                                 </div>
@@ -478,7 +526,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.beneficiaryName}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div>
@@ -500,7 +548,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.beneficiaryAddress}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div>
@@ -511,7 +559,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.beneficiaryPhone}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div className="md:col-span-2">
@@ -522,7 +570,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.secondaryBeneficiary}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                             </div>
@@ -542,7 +590,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.funeralHome}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div>
@@ -552,7 +600,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         name="serviceType"
                                         value={formData.serviceType}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     >
                                         <option value="">Select</option>
                                         <option value="Burial">Burial</option>
@@ -603,7 +651,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                                 value="Yes"
                                                 checked={formData.preExistingConditions === "Yes"}
                                                 onChange={handleChange}
-                                                className="mr-1"
+                                                className="mr-1 text-black"
                                             />
                                             Yes
                                         </label>
@@ -614,7 +662,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                                 value="No"
                                                 checked={formData.preExistingConditions === "No"}
                                                 onChange={handleChange}
-                                                className="mr-1"
+                                                className="mr-1 text-black"
                                             />
                                             No
                                         </label>
@@ -630,7 +678,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.previousInsurance}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                         placeholder="e.g., Company Name - Policy Number"
                                     />
                                 </div>
@@ -642,7 +690,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.doctorName}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div className="md:col-span-2">
@@ -654,7 +702,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         name="underwritingQuestions"
                                         value={formData.underwritingQuestions}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                         rows="3"
                                     ></textarea>
                                 </div>
@@ -680,7 +728,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.applicantSignature}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                         placeholder="Type your name as signature"
                                     />
                                 </div>
@@ -692,7 +740,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="date"
                                         value={formData.signatureDate}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div>
@@ -715,7 +763,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="date"
                                         value={formData.witnessSignatureDate}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                             </div>
@@ -735,7 +783,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.agentName}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div>
@@ -746,7 +794,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.agentContact}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div>
@@ -757,7 +805,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="date"
                                         value={formData.processingDate}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div>
@@ -780,7 +828,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         name="underwriterComments"
                                         value={formData.underwriterComments}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                         rows="3"
                                     ></textarea>
                                 </div>
@@ -800,7 +848,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         name="communicationMethod"
                                         value={formData.communicationMethod}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     >
                                         <option value="">Select</option>
                                         <option value="Phone">Phone</option>
@@ -816,7 +864,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         type="text"
                                         value={formData.languagePreference}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                     />
                                 </div>
                                 <div className="md:col-span-2">
@@ -826,7 +874,7 @@ const FuneralFinancePlan = ({ onClose, userData }) => {
                                         name="additionalComments"
                                         value={formData.additionalComments}
                                         onChange={handleChange}
-                                        className="mt-1 p-2 border rounded w-full"
+                                        className="mt-1 p-2 border rounded w-full text-black"
                                         rows="4"
                                     ></textarea>
                                 </div>

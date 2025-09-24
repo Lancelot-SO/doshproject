@@ -8,9 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const GuaranteeClaim = ({ onClose, userData }) => {
     const [formData, setFormData] = useState({
-        surname: "",
-        defaulterName: "",
-        otherNames: "",
+        firstname: "",
+        middlename: "",
+        lastname: "",
         lastKnownAddress: "",
         discoveryDetails: "",
         embezzlementDetails: "",
@@ -34,7 +34,9 @@ const GuaranteeClaim = ({ onClose, userData }) => {
         if (userData) {
             setFormData(f => ({
                 ...f,
-                defaulterName: userData.fullname || ""
+                firstname: userData.firstname || '',
+                middlename: userData.middlename || '',
+                lastname: userData.lastname || '',
             }));
         }
     }, [userData]);
@@ -61,12 +63,9 @@ const GuaranteeClaim = ({ onClose, userData }) => {
             });
             const result = await res.json();
             if (result.status === 'success') {
-                toast.success(result.message || 'Message sent successfully!');
+                toast.success(result.message);
                 formRef.current.reset();
                 setFormData({
-                    surname: "",
-                    defaulterName: "",
-                    otherNames: "",
                     lastKnownAddress: "",
                     discoveryDetails: "",
                     embezzlementDetails: "",
@@ -80,10 +79,13 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                     declarationDate: "",
                     agency: "",
                     message: "",
+                    firstname: "",
+                    middlename: "",
+                    lastname: "",
                 });
                 setTimeout(onClose, 6000);
             } else {
-                toast.error(result.message || 'Failed to send message.');
+                toast.error(result.message);
             }
         } catch (err) {
             console.error(err);
@@ -113,7 +115,14 @@ const GuaranteeClaim = ({ onClose, userData }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
 
                     {/* Close Button */}
@@ -124,13 +133,13 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                     >
                         <X size={20} />
                     </button>
-                    <h1 className="text-3xl font-bold mb-6">
+                    <h1 className="text-3xl font-bold mb-6 text-black">
                         Fidelity Guarantee Insurance Request
                     </h1>
-                    <p>Please kindly fill out the form fields below.</p>
+                    <p className="text-black">Please kindly fill out the form fields below.</p>
 
                     <form ref={formRef}
-                        onSubmit={handleSubmit} className="space-y-6">
+                        onSubmit={handleSubmit} className="space-y-6 text-black">
 
                         {/* Policy No */}
                         <div>
@@ -145,44 +154,51 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                                 className="border border-gray-300 rounded-[5px] p-2 w-full"
                             />
                         </div>
-                        {/* Name of Defaulter */}
+                        {/* Personal Details */}
                         <div>
-                            <div>
-                                <label className="block text-lg font-medium mb-2">
-                                    Name of Defaulter (Mr/Ms/Mrs/Dr/Prof)
-                                </label>
-                                <input
-                                    type="text"
-                                    name="defaulterName"
-                                    value={formData.defaulterName}
-                                    onChange={handleChange}
-                                    className="border border-gray-300 rounded-[5px] p-2 w-full"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-lg font-medium mb-2">
-                                    Surname
-                                </label>
-                                <input
-                                    type="text"
-                                    name="surname"
-                                    value={formData.surname}
-                                    onChange={handleChange}
-                                    className="border border-gray-300 rounded-[5px] p-2 w-full"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-lg font-medium mb-2">
-                                    Other Names
-                                </label>
-                                <input
-                                    type="text"
-                                    name="otherNames"
-                                    value={formData.otherNames}
-                                    onChange={handleChange}
-                                    className="border border-gray-300 rounded-[5px] p-2 w-full"
-                                />
-                            </div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                First Name
+                            </label>
+                            <input
+                                type="text"
+                                id="firstname"
+                                name="firstname"
+                                value={formData.firstname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter first name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Middle Name
+                            </label>
+                            <input
+                                type="text"
+                                id="middlename"
+                                name="middlename"
+                                value={formData.middlename}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter middle name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Last Name
+                            </label>
+                            <input
+                                type="text"
+                                id="lastname"
+                                name="lastname"
+                                value={formData.lastname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter last name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
                         </div>
 
                         {/* Last Known Address */}

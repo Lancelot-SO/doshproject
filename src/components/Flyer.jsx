@@ -13,7 +13,7 @@ const Flyer = ({ onClose }) => {
                         <option value="option2">Insurance</option>
                         <option value="option3">Loan</option>
                     </select>
-                    <a href="/dosh_insurance.pdf" download="dosh_insurance.pdf" className='flyer_link'>
+                    <a href="/dosh_insurance.pdf" download="dosh_insurance.pdf" className='flyer_link flyer_link_mobile '>
                         <FaDownload />
                     </a>
                     <button onClick={onClose} className='flyer_close'>X</button>

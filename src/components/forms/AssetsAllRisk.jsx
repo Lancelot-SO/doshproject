@@ -8,7 +8,9 @@ import formlogo from "../../images/formlogo.png";
 
 
 const initialState = {
-    insuredName: '',
+    firstname: '',
+    middlename: '',
+    lastname: '',
     occupation: '',
     email: '',
     mobile: '',
@@ -60,7 +62,9 @@ const AssetsAllRisk = ({ onClose, userData }) => {
         if (userData) {
             setFormData(prev => ({
                 ...prev,
-                insuredName: userData.fullname?.trim() || "",
+                firstname: userData.firstname || "",
+                middlename: userData.middlename || "",
+                lastname: userData.lastname || "",
                 email: userData.email || "",
                 mobile: userData.phone || "",
             }));
@@ -106,11 +110,11 @@ const AssetsAllRisk = ({ onClose, userData }) => {
             const result = await res.json();
 
             if (result.status === "success") {
-                toast.success(result.message || "Message sent successfully!");
+                toast.success(result.message);
                 setFormData(initialState);
                 setTimeout(() => onClose?.(), 6000);
             } else {
-                toast.error(result.message || "Failed to send message.");
+                toast.error(result.message);
             }
         } catch (err) {
             console.error("Submission error:", err);
@@ -138,7 +142,14 @@ const AssetsAllRisk = ({ onClose, userData }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
                     {/* Close Button */}
                     <button
@@ -150,18 +161,52 @@ const AssetsAllRisk = ({ onClose, userData }) => {
                     </button>
 
                     <h2 className="text-2xl text-gray-800 font-bold mb-3">Assets All Risks Claim Request</h2>
-                    <p>Please kindly fill out the form fields below.</p>
+                    <p className='text-black'>Please kindly fill out the form fields below.</p>
 
-                    <form ref={formRef} onSubmit={sendEmail} className="space-y-4">
+                    <form ref={formRef} onSubmit={sendEmail} className="space-y-4 text-black">
                         <div>
-                            <label className="block text-sm font-medium">Insured Name</label>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                First Name
+                            </label>
                             <input
                                 type="text"
-                                name="insuredName"
-                                value={formData.insuredName}
+                                id="firstname"
+                                name="firstname"
+                                value={formData.firstname}
                                 onChange={handleChange}
                                 required
-                                className="w-full mt-1 p-3 border rounded-[30px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="Enter first name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Middle Name
+                            </label>
+                            <input
+                                type="text"
+                                id="middlename"
+                                name="middlename"
+                                value={formData.middlename}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter middle name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Last Name
+                            </label>
+                            <input
+                                type="text"
+                                id="lastname"
+                                name="lastname"
+                                value={formData.lastname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter last name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
 

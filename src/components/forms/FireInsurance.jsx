@@ -5,74 +5,76 @@ import { X } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const initialFormData = {
+    firstname: '',
+    middlename: '',
+    lastname: '',
+    dob: '',
+    sex: '',
+    postalAddress: '',
+    occupation: '',
+    email: '',
+    mobile: '',
+    landline: '',
+    propertyAddress: '',
+    premisesDescription: '',
+    constructionWalls: '',
+    constructionRoof: '',
+    sumBuilding: '',
+    sumFence: '',
+    sumFurniture: '',
+    sumWholesale: '',
+    sumRetail: '',
+    sumFixtures: '',
+    storeys: '',
+    heatingLightingUse: '',
+    heatingLightingNature: '',
+    manufacturing: '',
+    manufacturingNature: '',
+    oilsDetails: '',
+    hazardousItems: [],
+    adjoiningBuildings: '',
+    adjoiningConstruction: '',
+    adjoiningOccupation: '',
+    adjoiningGoods: '',
+    adjoiningSeparationMaterials: '',
+    adjoiningOpenings: '',
+    adjoiningOpeningsNature: '',
+    riskDetached: '',
+    detachedConstruction: '',
+    detachedOccupation: '',
+    detachedDistance: '',
+    annualStock: '',
+    accountingBooks: '',
+    fireProofSafe: '',
+    removeBooks: '',
+    currentlyInsured: '',
+    policyNumber: '',
+    insuranceRefused: '',
+    refusedDetails: '',
+    madeClaim: '',
+    claimDetails: '',
+    extendEarthquake: false,
+    extendWindstorm: false,
+    extendExplosion: false,
+    extendAircraft: false,
+    extendImpact: false,
+    extendFlood: false,
+    extendBurstPipe: false,
+    extendRiot: false,
+    extendCivilCommotion: false,
+    extendMaliciousDamage: false,
+    extendBushFire: false,
+    declarationDate: '',
+    declarationAgency: '',
+    message: '',
+};
+
 const FireInsurance = ({ onClose, userData }) => {
     const formRef = useRef();
 
 
-    const [formData, setFormData] = useState({
-        proposerTitle: '',
-        proposerSurname: '',
-        otherNames: '',
-        dob: '',
-        sex: '',
-        postalAddress: '',
-        occupation: '',
-        email: '',
-        mobile: '',
-        landline: '',
-        propertyAddress: '',
-        premisesDescription: '',
-        constructionWalls: '',
-        constructionRoof: '',
-        sumBuilding: '',
-        sumFence: '',
-        sumFurniture: '',
-        sumWholesale: '',
-        sumRetail: '',
-        sumFixtures: '',
-        storeys: '',
-        heatingLightingUse: '',
-        heatingLightingNature: '',
-        manufacturing: '',
-        manufacturingNature: '',
-        oilsDetails: '',
-        hazardousItems: [],
-        adjoiningBuildings: '',
-        adjoiningConstruction: '',
-        adjoiningOccupation: '',
-        adjoiningGoods: '',
-        adjoiningSeparationMaterials: '',
-        adjoiningOpenings: '',
-        adjoiningOpeningsNature: '',
-        riskDetached: '',
-        detachedConstruction: '',
-        detachedOccupation: '',
-        detachedDistance: '',
-        annualStock: '',
-        accountingBooks: '',
-        fireProofSafe: '',
-        removeBooks: '',
-        currentlyInsured: '',
-        policyNumber: '',
-        insuranceRefused: '',
-        refusedDetails: '',
-        madeClaim: '',
-        claimDetails: '',
-        extendEarthquake: false,
-        extendWindstorm: false,
-        extendExplosion: false,
-        extendAircraft: false,
-        extendImpact: false,
-        extendFlood: false,
-        extendBurstPipe: false,
-        extendRiot: false,
-        extendCivilCommotion: false,
-        extendMaliciousDamage: false,
-        extendBushFire: false,
-        declarationDate: '',
-        declarationAgency: '',
-        message: '',
-    });
+    const [formData, setFormData] = useState(initialFormData);
 
     const [emailError, setEmailError] = useState("");
     const [phoneError, setPhoneError] = useState("");
@@ -81,7 +83,9 @@ const FireInsurance = ({ onClose, userData }) => {
         if (userData) {
             setFormData(f => ({
                 ...f,
-                proposerTitle: userData.fullname || '',
+                firstname: userData.firstname || '',
+                lastname: userData.lastname || '',
+                middlename: userData.middlename || '',
                 email: userData.email || '',
                 mobile: userData.phone || '',
             }));
@@ -111,99 +115,41 @@ const FireInsurance = ({ onClose, userData }) => {
         }
     };
 
-    const sendEmail = async e => {
+    const sendEmail = async (e) => {
         e.preventDefault();
         if (emailError || phoneError) {
-            toast.error("Please fix the errors before submitting.");
-            return;
+            return toast.error("Please fix the errors in the form before submitting.");
         }
 
-        // build full JSON payload including emailType
-        const payload = { ...formData, emailType: 'fireInsuranceProposal' };
+        const payload = {
+            ...formData,
+            emailType: "fireInsuranceRequest"
+        };
 
         try {
-            const res = await fetch('/send-email.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
+            const res = await fetch("/send-email.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
             });
+
             const result = await res.json();
-            if (result.status === 'success') {
-                toast.success(result.message || 'Message sent successfully!');
-                formRef.current.reset();
-                setFormData(f => ({
-                    proposerTitle: '',
-                    proposerSurname: '',
-                    otherNames: '',
-                    dob: '',
-                    sex: '',
-                    postalAddress: '',
-                    occupation: '',
-                    email: '',
-                    mobile: '',
-                    landline: '',
-                    propertyAddress: '',
-                    premisesDescription: '',
-                    constructionWalls: '',
-                    constructionRoof: '',
-                    sumBuilding: '',
-                    sumFence: '',
-                    sumFurniture: '',
-                    sumWholesale: '',
-                    sumRetail: '',
-                    sumFixtures: '',
-                    storeys: '',
-                    heatingLightingUse: '',
-                    heatingLightingNature: '',
-                    manufacturing: '',
-                    manufacturingNature: '',
-                    oilsDetails: '',
-                    hazardousItems: [],
-                    adjoiningBuildings: '',
-                    adjoiningConstruction: '',
-                    adjoiningOccupation: '',
-                    adjoiningGoods: '',
-                    adjoiningSeparationMaterials: '',
-                    adjoiningOpenings: '',
-                    adjoiningOpeningsNature: '',
-                    riskDetached: '',
-                    detachedConstruction: '',
-                    detachedOccupation: '',
-                    detachedDistance: '',
-                    annualStock: '',
-                    accountingBooks: '',
-                    fireProofSafe: '',
-                    removeBooks: '',
-                    currentlyInsured: '',
-                    policyNumber: '',
-                    insuranceRefused: '',
-                    refusedDetails: '',
-                    madeClaim: '',
-                    claimDetails: '',
-                    extendEarthquake: false,
-                    extendWindstorm: false,
-                    extendExplosion: false,
-                    extendAircraft: false,
-                    extendImpact: false,
-                    extendFlood: false,
-                    extendBurstPipe: false,
-                    extendRiot: false,
-                    extendCivilCommotion: false,
-                    extendMaliciousDamage: false,
-                    extendBushFire: false,
-                    declarationDate: '',
-                    declarationAgency: '',
-                    message: '',
-                }));
-                setTimeout(onClose, 6000);
+            if (result.status === "success") {
+                toast.success(result.message);
+                formRef.current.reset(); // reset the native form
+                setFormData(initialFormData); // reset state
             } else {
-                toast.error(result.message || 'Failed to send message.');
+                toast.error(result.message);
             }
-        } catch (err) {
-            console.error(err);
-            toast.error('An error occurred. Please try again.');
+        } catch (error) {
+            console.error(error);
+            toast.error(error.message);
         }
     };
+
+
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 lg:mt-0 mt-6 text-gray-800">
@@ -224,7 +170,14 @@ const FireInsurance = ({ onClose, userData }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
 
                     {/* Close Button */}
@@ -239,41 +192,55 @@ const FireInsurance = ({ onClose, userData }) => {
                     <h1 className="text-xl font-bold mb-4">Fire Insurance Proposal Request</h1>
                     <p>Please kindly fill out the form fields below.</p>
 
-                    <form ref={formRef} onSubmit={sendEmail} className="space-y-8">
+                    <form ref={formRef} onSubmit={sendEmail} className="space-y-8 text-black">
                         {/* Insured’s Details */}
                         <section>
                             <h2 className="text-2xl font-semibold mb-4">Insured’s Details</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {/* 1. Proposer Name */}
+                                {/* Personal Details */}
                                 <div>
-                                    <label className="block font-medium">1. Name of Proposer</label>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        First Name
+                                    </label>
                                     <input
                                         type="text"
-                                        name="proposerTitle"
-                                        value={formData.proposerTitle}
+                                        id="firstname"
+                                        name="firstname"
+                                        value={formData.firstname}
                                         onChange={handleChange}
-                                        className="w-full border rounded-[5px] p-2"
-                                        placeholder="Mr/Ms/Mrs/Dr/Prof"
+                                        required
+                                        placeholder="Enter first name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block font-medium">Surname</label>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Middle Name
+                                    </label>
                                     <input
                                         type="text"
-                                        name="proposerSurname"
-                                        value={formData.proposerSurname}
+                                        id="middlename"
+                                        name="middlename"
+                                        value={formData.middlename}
                                         onChange={handleChange}
-                                        className="w-full border rounded-[5px] p-2"
+                                        required
+                                        placeholder="Enter middle name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
-                                <div className="md:col-span-2">
-                                    <label className="block font-medium">Other Names</label>
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Last Name
+                                    </label>
                                     <input
                                         type="text"
-                                        name="otherNames"
-                                        value={formData.otherNames}
+                                        id="lastname"
+                                        name="lastname"
+                                        value={formData.lastname}
                                         onChange={handleChange}
-                                        className="w-full border rounded-[5px] p-2"
+                                        required
+                                        placeholder="Enter last name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
                                 {/* 2. Date of Birth */}

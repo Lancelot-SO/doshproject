@@ -4,42 +4,46 @@ import formlogo from "../../images/formlogo.png";
 import { X } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
 
+const initialFormData = {
+    firstname: '',
+    middlename: '',
+    lastname: '',
+    dob: "",
+    sex: "",
+    address: "",
+    email: "",
+    mobile: "",
+    postalAddress: "",
+    residenceCountry: "",
+    passportNumber: "",
+    destination: "",
+    departureDate: "",
+    returnDate: "",
+    travelPurpose: "",
+    productType: "",
+    premiumPaid: "",
+    declarationDate: "",
+    signature: "",
+    Validator: "",
+    officer: "",
+    date: "",
+    agency: "",
+    declareDate: "",
+    message: "",
+};
+
+
 const TravelInsurance = ({ onClose, userData }) => {
     const formRef = useRef();
-    const [formData, setFormData] = useState({
-        proposerName: "",
-        surname: "",
-        otherNames: "",
-        dob: "",
-        sex: "",
-        address: "",
-        email: "",
-        mobile: "",
-        postalAddress: "",
-        residenceCountry: "",
-        passportNumber: "",
-        destination: "",
-        departureDate: "",
-        returnDate: "",
-        travelPurpose: "",
-        productType: "",
-        premiumPaid: "",
-        declarationDate: "",
-        signature: "",
-        Validator: "",
-        officer: "",
-        date: "",
-        agency: "",
-        declareDate: "",
-        message: "",
-    });
+    const [formData, setFormData] = useState(initialFormData);
 
-    // Pre-fill from userData
     useEffect(() => {
         if (userData) {
             setFormData(fd => ({
                 ...fd,
-                proposerName: userData.fullname || fd.proposerName,
+                firstname: userData.firstname.trim(),
+                middlename: userData.middlename.trim(),
+                lastname: userData.lastname.trim(),
                 email: userData.email || fd.email,
                 mobile: userData.phone || fd.mobile,
             }));
@@ -49,11 +53,6 @@ const TravelInsurance = ({ onClose, userData }) => {
     const handleChange = e => {
         const { name, value } = e.target;
         setFormData(fd => ({ ...fd, [name]: value }));
-    };
-
-    const handleFileChange = e => {
-        const file = e.target.files[0];
-        setFormData(fd => ({ ...fd, signature: file ? file.name : "" }));
     };
 
     const handleSubmit = async e => {
@@ -68,45 +67,25 @@ const TravelInsurance = ({ onClose, userData }) => {
                     ...formData
                 })
             });
+
+            if (!res.ok) {
+                const errorText = await res.text();
+                throw new Error(`Server error: ${res.status} - ${errorText}`);
+            }
+
             const json = await res.json();
+
             if (json.status === "success") {
-                toast.success(json.message || "Message sent successfully!");
-                // reset
-                setFormData({
-                    proposerName: "",
-                    surname: "",
-                    otherNames: "",
-                    dob: "",
-                    sex: "",
-                    address: "",
-                    email: "",
-                    mobile: "",
-                    postalAddress: "",
-                    residenceCountry: "",
-                    passportNumber: "",
-                    destination: "",
-                    departureDate: "",
-                    returnDate: "",
-                    travelPurpose: "",
-                    productType: "",
-                    premiumPaid: "",
-                    declarationDate: "",
-                    signature: "",
-                    Validator: "",
-                    officer: "",
-                    date: "",
-                    agency: "",
-                    declareDate: "",
-                    message: "",
-                });
+                toast.success(json.message || "Form submitted successfully!");
+                setFormData(initialFormData);
                 formRef.current.reset();
                 setTimeout(onClose, 6000);
             } else {
-                toast.error(json.message || "Failed to send message.");
+                toast.error(json.message || "Submission failed.");
             }
         } catch (err) {
             console.error(err);
-            toast.error("An error occurred. Please try again.");
+            toast.error("Something went wrong. Please try again.");
         }
     };
 
@@ -131,7 +110,14 @@ const TravelInsurance = ({ onClose, userData }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
                     {/* Close Button */}
                     <button
@@ -141,23 +127,55 @@ const TravelInsurance = ({ onClose, userData }) => {
                     >
                         <X size={20} />
                     </button>
-                    <h2 className="text-2xl font-bold text-left mb-4">Travel Insurance Proposal Request</h2>
-                    <p>Please kindly fill out the form fields below.</p>
+                    <h2 className="text-2xl font-bold text-left mb-4 text-black">Travel Insurance Proposal Request</h2>
+                    <p className="text-black">Please kindly fill out the form fields below.</p>
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 text-black">
+                        {/* Personal Details */}
                         <div>
-                            <label className="block text-sm font-medium">Name of Proposer</label>
-                            <input type="text" name="proposerName" value={formData.proposerName} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                First Name
+                            </label>
+                            <input
+                                type="text"
+                                id="firstname"
+                                name="firstname"
+                                value={formData.firstname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter first name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-sm font-medium">Surname</label>
-                                <input type="text" name="surname" value={formData.surname} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium">Other Names</label>
-                                <input type="text" name="otherNames" value={formData.otherNames} onChange={handleChange} className="w-full p-2 border rounded-[5px]" required />
-                            </div>
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Middle Name
+                            </label>
+                            <input
+                                type="text"
+                                id="middlename"
+                                name="middlename"
+                                value={formData.middlename}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter middle name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Last Name
+                            </label>
+                            <input
+                                type="text"
+                                id="lastname"
+                                name="lastname"
+                                value={formData.lastname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter last name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
                         </div>
                         <div>
                             <label className="block text-sm font-medium">Date of Birth</label>

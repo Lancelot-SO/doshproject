@@ -7,9 +7,9 @@ import { ToastContainer, toast } from "react-toastify";
 const VehicleInsurance = ({ onClose, userData }) => {
     const formRef = useRef();
     const [formData, setFormData] = useState({
-        proposerName: "",
-        surname: "",
-        otherNames: "",
+        firstname: '',
+        middlename: '',
+        lastname: '',
         dob: "",
         sex: "",
         postalAddress: "",
@@ -50,6 +50,9 @@ const VehicleInsurance = ({ onClose, userData }) => {
         convictedDriver: "",
         physicalInfirmityDriver: "",
         accidentsPastThreeYears: "",
+        accidentHistory: [
+            { name: "", date: "", vehicleNumber: "", insuranceCompany: "", claimDetails: "" }
+        ],
         insuranceHistory: "",
         declinedProposal: "",
         firstLossPortion: "",
@@ -69,7 +72,9 @@ const VehicleInsurance = ({ onClose, userData }) => {
         if (userData) {
             setFormData(fd => ({
                 ...fd,
-                proposerName: userData.fullname || fd.proposerName,
+                firstname: userData.firstname.trim(),
+                middlename: userData.middlename.trim(),
+                lastname: userData.lastname.trim(),
                 email: userData.email || fd.email,
                 mobileNo: userData.phone || fd.mobileNo,
             }));
@@ -81,10 +86,14 @@ const VehicleInsurance = ({ onClose, userData }) => {
         setFormData(fd => ({ ...fd, [name]: value }));
     };
 
-    const handleFileChange = e => {
-        const file = e.target.files[0];
-        setFormData(fd => ({ ...fd, signature: file ? file.name : "" }));
+    const handleAccidentChange = (idx, field, value) => {
+        setFormData(fd => {
+            const history = [...fd.accidentHistory];
+            history[idx] = { ...history[idx], [field]: value };
+            return { ...fd, accidentHistory: history };
+        });
     };
+
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -96,12 +105,12 @@ const VehicleInsurance = ({ onClose, userData }) => {
             });
             const json = await res.json();
             if (json.status === "success") {
-                toast.success(json.message || "Message sent successfully!");
+                toast.success(json.message);
                 // reset
                 setFormData({
-                    proposerName: "",
-                    surname: "",
-                    otherNames: "",
+                    firstname: '',
+                    middlename: '',
+                    lastname: '',
                     dob: "",
                     sex: "",
                     postalAddress: "",
@@ -142,6 +151,9 @@ const VehicleInsurance = ({ onClose, userData }) => {
                     convictedDriver: "",
                     physicalInfirmityDriver: "",
                     accidentsPastThreeYears: "",
+                    accidentHistory: [
+                        { name: "", date: "", vehicleNumber: "", insuranceCompany: "", claimDetails: "" }
+                    ],
                     insuranceHistory: "",
                     declinedProposal: "",
                     firstLossPortion: "",
@@ -158,7 +170,7 @@ const VehicleInsurance = ({ onClose, userData }) => {
                 formRef.current.reset();
                 setTimeout(onClose, 6000);
             } else {
-                toast.error(json.message || "Failed to send message.");
+                toast.error(json.message);
             }
         } catch (err) {
             console.error(err);
@@ -186,7 +198,14 @@ const VehicleInsurance = ({ onClose, userData }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
                     {/* Close Button */}
                     <button
@@ -196,23 +215,55 @@ const VehicleInsurance = ({ onClose, userData }) => {
                     >
                         <X size={20} />
                     </button>
-                    <h2 className="text-2xl font-bold mb-4">Commercial Vehicle Insurance Proposal Request</h2>
-                    <p>Please kindly fill out the form fields below.</p>
+                    <h2 className="text-2xl font-bold mb-4 text-black">Commercial Vehicle Insurance Proposal Request</h2>
+                    <p className="text-black">Please kindly fill out the form fields below.</p>
 
-                    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+                    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 text-black">
+                        {/* Personal Details */}
                         <div>
-                            <label className="block text-gray-700">Name of Proposer (Mr/Ms/Mrs/Dr/Prof)</label>
-                            <input type="text" name="proposerName" value={formData.proposerName} onChange={handleChange} className="w-full p-2 border rounded-[5px]" />
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                First Name
+                            </label>
+                            <input
+                                type="text"
+                                id="firstname"
+                                name="firstname"
+                                value={formData.firstname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter first name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
                         </div>
-
                         <div>
-                            <label className="block text-gray-700">Surname</label>
-                            <input type="text" name="surname" value={formData.surname} onChange={handleChange} className="w-full p-2 border rounded-[5px]" />
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Middle Name
+                            </label>
+                            <input
+                                type="text"
+                                id="middlename"
+                                name="middlename"
+                                value={formData.middlename}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter middle name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
                         </div>
-
                         <div>
-                            <label className="block text-gray-700">Other Names</label>
-                            <input type="text" name="otherNames" value={formData.otherNames} onChange={handleChange} className="w-full p-2 border rounded-[5px]" />
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Last Name
+                            </label>
+                            <input
+                                type="text"
+                                id="lastname"
+                                name="lastname"
+                                value={formData.lastname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter last name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
                         </div>
 
                         <div>
@@ -448,17 +499,48 @@ const VehicleInsurance = ({ onClose, userData }) => {
                         </div>
 
                         <div>
-                            <h3 className="">If so please give details:</h3>
-                            {formData.accidentHistory.map((accident, index) => (
-                                <div key={index} className="grid grid-cols-5 gap-2">
-                                    <input type="text" name={`accidentHistory.name`} placeholder="Name of Driver" value={accident.name} onChange={(e) => handleChange(e, index)} className="p-2 border rounded-[5px]" />
-                                    <input type="date" name={`accidentHistory.date`} placeholder="Date of Accident" value={accident.date} onChange={(e) => handleChange(e, index)} className="p-2 border rounded-[5px]" />
-                                    <input type="text" name={`accidentHistory.vehicleNumber`} placeholder="Vehicle Number" value={accident.vehicleNumber} onChange={(e) => handleChange(e, index)} className="p-2 border rounded-[5px]" />
-                                    <input type="text" name={`accidentHistory.insuranceCompany`} placeholder="Name of Insurance Company" value={accident.insuranceCompany} onChange={(e) => handleChange(e, index)} className="p-2 border rounded-[5px]" />
-                                    <input type="text" name={`accidentHistory.claimDetails`} placeholder="Detail of any Claim Payment" value={accident.claimDetails} onChange={(e) => handleChange(e, index)} className="p-2 border rounded-[5px]" />
+                            <h3>If so please give details:</h3>
+                            {formData.accidentHistory.map((acc, idx) => (
+                                <div key={idx} className="grid grid-cols-5 gap-2">
+                                    <input
+                                        type="text"
+                                        placeholder="Name of Driver"
+                                        value={acc.name}
+                                        onChange={e => handleAccidentChange(idx, "name", e.target.value)}
+                                        className="p-2 border rounded-[5px]"
+                                    />
+                                    <input
+                                        type="date"
+                                        placeholder="Date of Accident"
+                                        value={acc.date}
+                                        onChange={e => handleAccidentChange(idx, "date", e.target.value)}
+                                        className="p-2 border rounded-[5px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder="Vehicle Number"
+                                        value={acc.vehicleNumber}
+                                        onChange={e => handleAccidentChange(idx, "vehicleNumber", e.target.value)}
+                                        className="p-2 border rounded-[5px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder="Insurance Company"
+                                        value={acc.insuranceCompany}
+                                        onChange={e => handleAccidentChange(idx, "insuranceCompany", e.target.value)}
+                                        className="p-2 border rounded-[5px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder="Claim Details"
+                                        value={acc.claimDetails}
+                                        onChange={e => handleAccidentChange(idx, "claimDetails", e.target.value)}
+                                        className="p-2 border rounded-[5px]"
+                                    />
                                 </div>
                             ))}
                         </div>
+
 
                         <div>
                             <label className="block text-gray-700">Have you ever held a motor insurance policy or ever proposed to an insurance company for motor insurance?</label>

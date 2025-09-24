@@ -11,7 +11,7 @@ import WorkMen from './forms/WorkMen';
 import TravelInsurance from './forms/TravelInsurance';
 import Transit from './forms/Transit';
 import ProfessionalIndemnity from './forms/ProfessionalIndemnity';
-import HouseholdContent from './forms/HouseholdContent ';
+import HouseholdContent from './forms/HouseholdContent';
 import VehicleInsurance from './forms/VehicleInsurance';
 import TheftInsurance from './forms/TheftInsurance';
 import GuaranteeClaim from './forms/GuaranteeClaim';
@@ -24,9 +24,11 @@ import ChildLifelineForm from './forms/life/ChildLifelineForm';
 import StarLifeSupremeForm from './forms/life/StarLifeSupreme';
 import WealthMasterForm from './forms/life/WealthMasterForm';
 import FuneralFinancePlan from './forms/life/FuneralFinancePlan';
-import ExecutiveLivePlan from './forms/life/ExecutiveLifePlan';
+import ExecutiveLifePlan from './forms/life/ExecutiveLifePlan';
 import LifetimeNeeds from './forms/life/LifetimeNeeds';
 import Claims from './forms/Claims';
+import HealthInsurance from './forms/HealthInsurance';
+import CorporateInsurance from './forms/CorporateInsurance';
 
 const RiskForm = ({ onClose }) => {
     const form = useRef();
@@ -46,6 +48,9 @@ const RiskForm = ({ onClose }) => {
     const [showPrivate, setShowPrivate] = useState(false);
     const [showHotel, setShowHotel] = useState(false);
     const [showHomeProtection, setShowHomeProtection] = useState(false);
+    const [showHealthInsurance, setShowHealthInsurance] = useState(false);
+    const [showCorporate, setShowCorporate] = useState(false);
+
 
     // For life insurance forms
     const [showChild, setShowChild] = useState(false);
@@ -60,7 +65,9 @@ const RiskForm = ({ onClose }) => {
 
     const [formData, setFormData] = useState({
         requestType: '',
-        fullname: '',
+        firstname: '',
+        middlename: '',
+        lastname: '',
         email: '',
         phone: '',
         brokerage: '',
@@ -70,12 +77,15 @@ const RiskForm = ({ onClose }) => {
     });
 
     // Error state for email and phone validations
+    const [formErrors, setFormErrors] = useState({});
     const [emailError, setEmailError] = useState("");
     const [phoneError, setPhoneError] = useState("");
 
     // State for pre-filling the modal or secondary form
     const [modalFormData, setModalFormData] = useState({
-        fullname: "",
+        firstname: '',
+        middlename: '',
+        lastname: '',
         email: "",
         phone: ""
     });
@@ -98,6 +108,11 @@ const RiskForm = ({ onClose }) => {
         'Travel Insurance',
         'Workman\'s Compensation & Employers Liability'
     ];
+
+    const health = [
+        "Health Insurance(Individual)",
+        "Health Insurance(Corporate)",
+    ]
 
     const firms = [
         "DOSH recommended Insurer",
@@ -157,15 +172,6 @@ const RiskForm = ({ onClose }) => {
     // New state to track if the user wants to file a claim
     const [fileClaimSelected, setFileClaimSelected] = useState(false);
 
-    // Filtered options for Insurance Product (formType)
-    // For General Insurance, return all options including Assets All Risks and Guarantee Claim.
-    const filteredPdfOptions = () => {
-        if (formData.insuranceType === "General Insurance") {
-            return pdfOptions;
-        }
-        return pdfOptions;
-    };
-
     const validateEmail = (email) => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(email);
@@ -176,6 +182,15 @@ const RiskForm = ({ onClose }) => {
         return regex.test(phone);
     };
 
+    // Required-field validation
+    const validateFields = () => {
+        const errs = {};
+        if (!formData.firstname.trim()) errs.firstname = 'First name is required';
+        if (!formData.middlename.trim()) errs.middlename = 'Middle name is required';
+        if (!formData.lastname.trim()) errs.lastname = 'Last name is required';
+        return errs;
+    };
+
     const handleClose = (setter) => {
         setter(false);
         onClose();
@@ -183,11 +198,9 @@ const RiskForm = ({ onClose }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        setFormData(fd => ({ ...fd, [name]: value }));
+        setFormErrors(errs => ({ ...errs, [name]: '' }));
 
-        setFormData({
-            ...formData,
-            [name]: value
-        });
 
         if (name === 'email') {
             if (!validateEmail(value)) {
@@ -243,6 +256,10 @@ const RiskForm = ({ onClose }) => {
             setShowExecutive(value === 'Executive/Living Plus Plan (Comprehensive Individual Life Policy)');
             setShowLifetime(value === 'Lifetime Needs (Annuity Policy/Investment Policy)');
 
+            // For health insurance
+            setShowHealthInsurance(value === "Health Insurance(Individual)")
+            setShowCorporate(value === "Health Insurance(Corporate)")
+
 
         }
     };
@@ -250,14 +267,18 @@ const RiskForm = ({ onClose }) => {
     useEffect(() => {
         if (formData.formType) {
             setModalFormData({
-                fullname: formData.fullname,
+                firstname: formData.firstname,
+                middlename: formData.middlename,
+                lastname: formData.lastname,
                 email: formData.email,
                 phone: formData.phone
             });
         }
     }, [
         formData.formType,
-        formData.fullname,
+        formData.firstname,
+        formData.lastname,
+        formData.middlename,
         formData.email,
         formData.phone
     ]);
@@ -265,66 +286,56 @@ const RiskForm = ({ onClose }) => {
     const sendEmail = async (e) => {
         e.preventDefault();
 
-        // 1) validation
-        if (emailError || phoneError) {
-            toast.error("Please fix the errors in the form before submitting.");
-            return;
+        // 1) Required fields
+        const errs = validateFields();
+        if (Object.keys(errs).length) {
+            setFormErrors(errs);
+            return toast.error(Object.values(errs)[0]);
         }
 
-        // 2) build payload
+        if (emailError || phoneError) {
+            return toast.error("Please fix the errors in the form before submitting.");
+        }
+
+        // build payload
         const payload = {
             requestType: formData.requestType,
-            fullname: formData.fullname,
+            firstname: formData.firstname,
+            middlename: formData.middlename,
+            lastname: formData.lastname,
             email: formData.email,
             phone: formData.phone,
             brokerage: formData.brokerage,
             insuranceType: formData.insuranceType,
             formType: formData.formType,
             message: formData.message,
+            emailType: 'RiskForm',
         };
 
         try {
-            // 3) POST to your SMTP‐backed API
             const res = await fetch("/send-email.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),
             });
 
-
-            // parse response JSON (or text) and log it
-            const data = await res.json();
-            console.log("API response data:", data);
-
             if (!res.ok) {
-                const err = await res.text();
-                throw new Error(err || "Server error");
+                const errText = await res.text();
+                throw new Error(errText || "Server error");
             }
 
-            // 4) on success
-            toast.success("Message sent successfully!");
-            setFormData({
-                requestType: '',
-                fullname: '',
-                email: '',
-                phone: '',
-                brokerage: '',
-                insuranceType: '',
-                formType: '',
-                message: ''
-            });
-            e.target.reset();
-
-            // 5) (optional) close after a delay
-            setTimeout(() => {
-                onClose?.();
-            }, 6000);
-
+            const data = await res.json();
+            if (data.status === "success") {
+                toast.success(data.message);
+                form.current.reset();            // <-- use your `form` ref here
+                setTimeout(() => onClose?.(), 5000);
+            }
         } catch (err) {
             console.error("Send error:", err);
-            toast.error("Failed to send message. Please try again.");
+            toast.error(err.message);
         }
     };
+
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4">
@@ -345,7 +356,7 @@ const RiskForm = ({ onClose }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer position="bottom-center" />
+                    <ToastContainer position="bottom-right" />
                     <button
                         onClick={onClose}
                         className="absolute lg:top-4 top-6 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
@@ -424,7 +435,7 @@ const RiskForm = ({ onClose }) => {
                         <FuneralFinancePlan onClose={() => handleClose(setShowFuneral)}
                             userData={modalFormData} />
                     ) : showExecutive ? (
-                        <ExecutiveLivePlan onClose={() => handleClose(setShowExecutive)}
+                        <ExecutiveLifePlan onClose={() => handleClose(setShowExecutive)}
                             userData={modalFormData} />
                     ) : showLifetime ? (
                         <LifetimeNeeds onClose={() => handleClose(setShowLifetime)}
@@ -433,184 +444,250 @@ const RiskForm = ({ onClose }) => {
                         fileClaimSelected ? (
                             <Claims onClose={() => handleClose(setFileClaimSelected)}
                                 userData={modalFormData} />
-                        ) : (
-                            <form ref={form} onSubmit={sendEmail} className="w-full space-y-4">
-                                <div>
-                                    <label htmlFor="requestType" className="block text-sm font-medium">
-                                        Select your request type:
-                                    </label>
-                                    <select
-                                        id="requestType"
-                                        name="requestType"
-                                        value={formData.requestType}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    >
-                                        <option value="">Choose an option</option>
-                                        <option value="Insurance Quote">Get new insurance quote</option>
-                                        <option value="File Claim">File a claim on an existing policy</option>
-                                        <option value="Assistance">Other Assistance</option>
-                                    </select>
-                                </div>
-                                {/* Personal Details */}
-                                <div>
-                                    <label htmlFor="fullname" className="block text-sm font-medium">
-                                        Full Name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="fullname"
-                                        name="fullname"
-                                        value={formData.fullname}
-                                        onChange={handleChange}
-                                        required
-                                        placeholder="Enter full name"
-                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        ) :
+                            showHealthInsurance ? (
+                                <HealthInsurance
+                                    onClose={() => handleClose(setShowHealthInsurance)}
+                                    userData={modalFormData}
+                                />
+                            ) :
+                                showCorporate ? (
+                                    <CorporateInsurance
+                                        onClose={() => handleClose(setShowCorporate)}
+                                        userData={modalFormData}
                                     />
-                                </div>
-                                <div>
-                                    <label htmlFor="email" className="block text-sm font-medium">
-                                        Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        required
-                                        placeholder="Enter email here"
-                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    />
-                                    {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
-                                </div>
-                                <div>
-                                    <label htmlFor="phone" className="block text-sm font-medium">
-                                        Phone Number
-                                    </label>
-                                    <input
-                                        type="tel"
-                                        id="phone"
-                                        name="phone"
-                                        value={formData.phone}
-                                        onChange={handleChange}
-                                        required
-                                        placeholder="Enter number here"
-                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    />
-                                    {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
-                                </div>
+                                ) : (
+                                    <form ref={form} onSubmit={sendEmail} className="w-full space-y-4">
+                                        <div>
+                                            <label htmlFor="requestType" className="block text-sm font-medium">
+                                                Select your request type:
+                                            </label>
+                                            <select
+                                                id="requestType"
+                                                name="requestType"
+                                                value={formData.requestType}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            >
+                                                <option value="">Choose an option</option>
+                                                <option value="Insurance Quote">Get new insurance quote</option>
+                                                <option value="File Claim">File a claim on an existing policy</option>
+                                                <option value="Assistance">Other Assistance</option>
+                                            </select>
+                                        </div>
+                                        {/* Personal Details */}
+                                        <div>
+                                            <label htmlFor="firstname" className="block text-sm font-medium">
+                                                First Name
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="firstname"
+                                                name="firstname"
+                                                value={formData.firstname}
+                                                onChange={handleChange}
+                                                placeholder="Enter first name"
+                                                className={`w-full mt-1 p-3 border rounded text-black focus:outline-none focus:ring-2 ${formErrors.firstname ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                                                    }`}
+                                            />
+                                            {formErrors.firstname && (
+                                                <p className="mt-1 text-red-600 text-sm">{formErrors.firstname}</p>
+                                            )}
+                                        </div>
 
-                                {formData.requestType !== "Assistance" && (
-                                    <div>
-                                        <label htmlFor="insuranceType" className="block text-sm font-medium">
-                                            Insurance Category
-                                        </label>
-                                        <select
-                                            id="insuranceType"
-                                            name="insuranceType"
-                                            value={formData.insuranceType}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        >
-                                            <option value="">Choose an option</option>
-                                            <option value="Life Insurance">Life Insurance</option>
-                                            <option value="General Insurance">General Insurance</option>
-                                            <option value="Health Insurance">Health Insurance</option>
-                                            <option value="Other">Other</option>
-                                        </select>
-                                    </div>
-                                )}
+                                        <div className="mt-4">
+                                            <label htmlFor="middlename" className="block text-sm font-medium">
+                                                Middle Name
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="middlename"
+                                                name="middlename"
+                                                value={formData.middlename}
+                                                onChange={handleChange}
+                                                placeholder="Enter middle name"
+                                                className={`w-full mt-1 p-3 border rounded text-black focus:outline-none focus:ring-2 ${formErrors.middlename ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                                                    }`}
+                                            />
+                                            {formErrors.middlename && (
+                                                <p className="mt-1 text-red-600 text-sm">{formErrors.middlename}</p>
+                                            )}
+                                        </div>
+
+                                        <div className="mt-4">
+                                            <label htmlFor="lastname" className="block text-sm font-medium">
+                                                Last Name
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="lastname"
+                                                name="lastname"
+                                                value={formData.lastname}
+                                                onChange={handleChange}
+                                                placeholder="Enter last name"
+                                                className={`w-full mt-1 p-3 border rounded text-black focus:outline-none focus:ring-2 ${formErrors.lastname ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                                                    }`}
+                                            />
+                                            {formErrors.lastname && (
+                                                <p className="mt-1 text-red-600 text-sm">{formErrors.lastname}</p>
+                                            )}
+                                        </div>
+                                        <div>
+                                            <label htmlFor="email" className="block text-sm font-medium">
+                                                Email
+                                            </label>
+                                            <input
+                                                type="email"
+                                                id="email"
+                                                name="email"
+                                                value={formData.email}
+                                                onChange={handleChange}
+                                                required
+                                                placeholder="Enter email here"
+                                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            />
+                                            {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
+                                        </div>
+                                        <div>
+                                            <label htmlFor="phone" className="block text-sm font-medium">
+                                                Phone Number
+                                            </label>
+                                            <input
+                                                type="tel"
+                                                id="phone"
+                                                name="phone"
+                                                value={formData.phone}
+                                                onChange={handleChange}
+                                                required
+                                                placeholder="Enter number here"
+                                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            />
+                                            {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
+                                        </div>
+
+                                        {formData.requestType !== "Assistance" && (
+                                            <div>
+                                                <label htmlFor="insuranceType" className="block text-sm font-medium">
+                                                    Insurance Category
+                                                </label>
+                                                <select
+                                                    id="insuranceType"
+                                                    name="insuranceType"
+                                                    value={formData.insuranceType}
+                                                    onChange={handleChange}
+                                                    required
+                                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                >
+                                                    <option value="">Choose an option</option>
+                                                    <option value="Life Insurance">Life Insurance</option>
+                                                    <option value="General Insurance">General Insurance</option>
+                                                    <option value="Health Insurance">Health Insurance</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                        )}
 
 
-                                {/* Life Insurance: Preferred Company */}
-                                {formData.requestType !== "Assistance" && formData.insuranceType === "Life Insurance" && (
-                                    <div>
-                                        <label htmlFor="brokerage" className="block text-sm font-medium">
-                                            Preferred Insurance Company
-                                        </label>
-                                        <select
-                                            id="brokerage"
-                                            name="brokerage"
-                                            value={formData.brokerage}
-                                            onChange={handleChange}
-                                            className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        >
-                                            {lifeInsurance.map((life, idx) => (
-                                                <option key={idx} value={life}>{life}</option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                )}
-                                {formData.requestType !== "Assistance" && (
-                                    <div>
-                                        {/* <p className='text-red-500 mb-2'>Ignore the (Insurance Product) section if unsure of the policy you want</p> */}
-                                        <label htmlFor="formType" className="block text-sm font-medium">
-                                            Insurance Product
-                                        </label>
-                                        <select
-                                            id="formType"
-                                            name="formType"
-                                            value={formData.formType}
-                                            onChange={handleChange}
-                                            disabled={formData.insuranceType.trim() === "Other"}
-                                            className={`w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${formData.insuranceType.trim() === "Other" ? "cursor-not-allowed" : ""}`}
-                                        >
-                                            <option value="">Choose a poilcy</option>
-                                            {formData.insuranceType === "Life Insurance"
-                                                ? lifeForms.map((opt, idx) => <option key={idx} value={opt}>{opt}</option>)
-                                                : filteredPdfOptions().map((opt, idx) => <option key={idx} value={opt}>{opt}</option>)
-                                            }
-                                        </select>
-                                    </div>
-                                )}
+                                        {/* Life Insurance: Preferred Company */}
+                                        {formData.requestType !== "Assistance" && formData.insuranceType === "Life Insurance" && (
+                                            <div>
+                                                <label htmlFor="brokerage" className="block text-sm font-medium">
+                                                    Preferred Insurance Company
+                                                </label>
+                                                <select
+                                                    id="brokerage"
+                                                    name="brokerage"
+                                                    value={formData.brokerage}
+                                                    onChange={handleChange}
+                                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                >
+                                                    {lifeInsurance.map((life, idx) => (
+                                                        <option key={idx} value={life}>{life}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
+                                        )}
+                                        {/* Insurance Product */}
+                                        {formData.requestType !== "Assistance" && (
+                                            <div>
+                                                <label htmlFor="formType" className="block text-sm font-medium">
+                                                    Insurance Product
+                                                </label>
+                                                <select
+                                                    id="formType"
+                                                    name="formType"
+                                                    value={formData.formType}
+                                                    onChange={handleChange}
+                                                    disabled={formData.insuranceType === "Other"}
+                                                    className="w-full mt-1 p-3 border rounded text-black focus:ring-2 focus:ring-blue-500"
+                                                    required
+                                                >
+                                                    <option value="">Choose a policy</option>
 
-                                {/* General Insurance: Preferred Company */}
-                                {formData.requestType !== "Assistance" && formData.insuranceType === "General Insurance" && (
-                                    <div>
-                                        <label htmlFor="brokerage" className="block text-sm font-medium">
-                                            Preferred Insurance Company
-                                        </label>
-                                        <select
-                                            id="brokerage"
-                                            name="brokerage"
-                                            value={formData.brokerage}
-                                            onChange={handleChange}
-                                            className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                    {formData.insuranceType === "Life Insurance" &&
+                                                        lifeForms.map((opt, i) => (
+                                                            <option key={i} value={opt}>{opt}</option>
+                                                        ))}
+
+                                                    {formData.insuranceType === "Health Insurance" &&
+                                                        health.map((plan, i) => (
+                                                            <option key={i} value={plan}>{plan}</option>
+                                                        ))}
+
+                                                    {formData.insuranceType === "General Insurance" &&
+                                                        pdfOptions.map((opt, i) => (
+                                                            <option key={i} value={opt}>{opt}</option>
+                                                        ))}
+                                                </select>
+                                            </div>
+                                        )}
+
+
+                                        {/* General Insurance: Preferred Company */}
+                                        {formData.requestType !== "Assistance" && formData.insuranceType === "General Insurance" && (
+                                            <div>
+                                                <label htmlFor="brokerage" className="block text-sm font-medium">
+                                                    Preferred Insurance Company
+                                                </label>
+                                                <select
+                                                    id="brokerage"
+                                                    name="brokerage"
+                                                    value={formData.brokerage}
+                                                    onChange={handleChange}
+                                                    className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                >
+                                                    <option value="">Choose an option</option>
+                                                    {firms.map((firm, idx) => (
+                                                        <option key={idx} value={firm}>{firm}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
+                                        )}
+                                        <div>
+                                            <label htmlFor="message" className="block text-sm font-medium">
+                                                Request Details
+                                            </label>
+                                            <textarea
+                                                id="message"
+                                                name="message"
+                                                value={formData.message}
+                                                onChange={handleChange}
+                                                rows="4"
+                                                minLength={15}
+                                                required
+                                                placeholder="Enter a message"
+                                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                                            ></textarea>
+                                        </div>
+                                        <button
+                                            type="submit"
+                                            className="w-full bg-[#b5996e] text-white py-2 rounded-[5px] hover:bg-[#776449] transition duration-300"
                                         >
-                                            <option value="">Choose an option</option>
-                                            {firms.map((firm, idx) => (
-                                                <option key={idx} value={firm}>{firm}</option>
-                                            ))}
-                                        </select>
-                                    </div>
+                                            Send
+                                        </button>
+                                    </form>
                                 )}
-                                <div>
-                                    <label htmlFor="message" className="block text-sm font-medium">
-                                        Request Details
-                                    </label>
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        rows="4"
-                                        minLength={15}
-                                        required
-                                        placeholder="Enter a message"
-                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-                                    ></textarea>
-                                </div>
-                                <button
-                                    type="submit"
-                                    className="w-full bg-[#b5996e] text-white py-2 rounded-[5px] hover:bg-[#776449] transition duration-300"
-                                >
-                                    Send
-                                </button>
-                            </form>
-                        )}
                 </div>
             </div>
         </div>

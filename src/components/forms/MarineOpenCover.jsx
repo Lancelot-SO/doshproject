@@ -7,9 +7,9 @@ import formlogo from "../../images/formlogo.png";
 
 const MarineOpenCover = ({ onClose, userData }) => {
     const [formData, setFormData] = useState({
-        proposerName: '',
-        surname: '',
-        otherNames: '',
+        firstname: '',
+        lastname: '',
+        middlename: '',
         dateOfBirth: '',
         telephone: '',
         postalAddress: '',
@@ -35,7 +35,9 @@ const MarineOpenCover = ({ onClose, userData }) => {
         if (userData) {
             setFormData(f => ({
                 ...f,
-                proposerName: userData.fullname || '',
+                firstname: userData.firstname || '',
+                lastname: userData.lastname || '',
+                middlename: userData.middlename || '',
                 email: userData.email || '',
                 telephone: userData.phone || '',
             }));
@@ -80,11 +82,11 @@ const MarineOpenCover = ({ onClose, userData }) => {
             });
             const json = await res.json();
             if (json.status === 'success') {
-                toast.success(json.message || 'Message sent successfully!');
+                toast.success(json.message);
                 setFormData({
-                    proposerName: '',
-                    surname: '',
-                    otherNames: '',
+                    firstname: '',
+                    lastname: '',
+                    middlename: '',
                     dateOfBirth: '',
                     telephone: '',
                     postalAddress: '',
@@ -105,7 +107,7 @@ const MarineOpenCover = ({ onClose, userData }) => {
                 e.target.reset();
                 setTimeout(onClose, 6000);
             } else {
-                toast.error(json.message || 'Failed to send message.');
+                toast.error(json.message);
             }
         } catch (err) {
             console.error(err);
@@ -132,7 +134,14 @@ const MarineOpenCover = ({ onClose, userData }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
                     {/* Close Button */}
                     <button
@@ -144,41 +153,53 @@ const MarineOpenCover = ({ onClose, userData }) => {
                     </button>
 
                     <h2 className="text-2xl text-gray-800 font-bold mb-4">Marine Open Insurance Cover Request</h2>
-                    <p>Please kindly fill out the form fields below.</p>
+                    <p className='text-black'>Please kindly fill out the form fields below.</p>
 
-                    <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
+                    <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4 text-black">
+                        {/* Personal Details */}
                         <div>
-                            <label className="block text-sm font-medium">Name of Proposer (Mr/Ms/Mrs/Dr/Prof)</label>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                First Name
+                            </label>
                             <input
                                 type="text"
-                                name="proposerName"
-                                value={formData.proposerName}
+                                id="firstname"
+                                name="firstname"
+                                value={formData.firstname}
                                 onChange={handleChange}
                                 required
-                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
+                                placeholder="Enter first name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
-
                         <div>
-                            <label className="block text-sm font-medium">Surname</label>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Middle Name
+                            </label>
                             <input
                                 type="text"
-                                name="surname"
-                                value={formData.surname}
+                                id="middlename"
+                                name="middlename"
+                                value={formData.middlename}
                                 onChange={handleChange}
                                 required
-                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
+                                placeholder="Enter middle name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
-
                         <div>
-                            <label className="block text-sm font-medium">Other Names</label>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Last Name
+                            </label>
                             <input
                                 type="text"
-                                name="otherNames"
-                                value={formData.otherNames}
+                                id="lastname"
+                                name="lastname"
+                                value={formData.lastname}
                                 onChange={handleChange}
-                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm"
+                                required
+                                placeholder="Enter last name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
 

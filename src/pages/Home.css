@@ -950,7 +950,7 @@
 }
 
 /* For screens smaller than or equal to 767px */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .main__hero {
     overflow: hidden;
   }
@@ -999,7 +999,7 @@
     flex-direction: row;
     color: white;
     background-color: #987c55;
-    /* width: 454px; */
+    width: 374px;
     margin-left: 60px;
     padding: 10px;
     justify-content: space-between;

@@ -15,12 +15,22 @@ const HomeProtectionTable = ({ tableData, setTableData }) => {
         }));
     };
 
+
     // Example function if you want to calculate total premium dynamically
     const calculateTotalPremium = () => {
-        // Add up numeric premiums or do any logic needed
-        // For demonstration, we'll just return an empty string or a static sum
-        return '';
+        // 1. get all the premiums except the totalPremium field
+        return Object.entries(tableData)
+            .filter(([key]) => key !== 'totalPremium')
+            .reduce((sum, [, item]) => {
+                // 2. try parsing the premium; ignore if not a number
+                const p = parseFloat(item.premium);
+                return sum + (isNaN(p) ? 0 : p);
+            }, 0)
+            // 3. format to two decimals
+            .toFixed(2);
     };
+
+
 
     return (
         <div className="overflow-x-auto">
@@ -405,11 +415,10 @@ const HomeProtectionTable = ({ tableData, setTableData }) => {
                             Total Premium
                         </td>
                         <td className="border border-gray-300 px-4 py-2 text-center" colSpan={2}>
-                            {/* If you want to calculate automatically, do so here. */}
                             <button
                                 type="button"
                                 onClick={() =>
-                                    setTableData((prev) => ({
+                                    setTableData(prev => ({
                                         ...prev,
                                         totalPremium: calculateTotalPremium()
                                     }))
@@ -424,12 +433,7 @@ const HomeProtectionTable = ({ tableData, setTableData }) => {
                                 type="text"
                                 className="w-20 border rounded p-1 text-center"
                                 value={tableData.totalPremium}
-                                onChange={(e) =>
-                                    setTableData((prev) => ({
-                                        ...prev,
-                                        totalPremium: e.target.value
-                                    }))
-                                }
+                                readOnly
                             />
                         </td>
                     </tr>

@@ -68,7 +68,9 @@ const HomeProtection = ({ onClose, userData }) => {
         if (userData) {
             setFormData(f => ({
                 ...f,
-                proposerName: userData.fullname?.trim() || '',
+                firstname: userData.firstname || '',
+                middlename: userData.middlename || '',
+                lastname: userData.lastname || '',
                 telephone: userData.telephone || '',
                 email: userData.email || '',
             }));
@@ -113,26 +115,43 @@ const HomeProtection = ({ onClose, userData }) => {
             toast.error("Please fix the errors in the form before submitting.");
             return;
         }
+        // 1) Build FormData
+        const data = new FormData();
+        data.append('emailType', 'homeProtection');
 
-        // combine
+        // Append all formData fields
+        Object.entries(formData).forEach(([key, val]) => {
+            data.append(key, val);
+        });
+
+        // Flatten and append tableData fields
+        const flatTable = flattenTableData(tableData);
+        Object.entries(flatTable).forEach(([key, val]) => {
+            data.append(key, val);
+        });
+
         const payload = {
-            emailType: "homeProtection",
             ...formData,
-            ...flattenTableData(tableData)
+            ...flattenTableData(tableData), // merge table values
+            emailType: "homeProtectionRequest"
         };
 
         try {
-            const res = await fetch('/send-email.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+            const res = await fetch("/send-email.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 body: JSON.stringify(payload)
             });
-            const json = await res.json();
-            if (json.status === 'success') {
-                toast.success(json.message || 'Message sent successfully!');
+            const result = await res.json();
+            if (result.status === 'success') {
+                toast.success(result.message);
                 // reset
                 setFormData({
-                    proposerName: '',
+                    firstname: '',
+                    lastname: '',
+                    middlename: '',
                     postalAddress: '',
                     businessOccupation: '',
                     telephone: '',
@@ -183,13 +202,13 @@ const HomeProtection = ({ onClose, userData }) => {
                     section4PersonalAccidentMedical: { insure: false },
                     totalPremium: ''
                 });
-                setTimeout(onClose, 6000);
+                setTimeout(6000);
             } else {
-                toast.error(json.message || 'Failed to send message.');
+                toast.error(result.message);
             }
         } catch (err) {
             console.error(err);
-            toast.error('An error occurred. Please try again.');
+            toast.error(err.message);
         }
     };
     return (
@@ -214,7 +233,14 @@ const HomeProtection = ({ onClose, userData }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
 
                     {/* Close Button */}
@@ -232,22 +258,55 @@ const HomeProtection = ({ onClose, userData }) => {
                     <p>Please kindly fill out the form fields below.</p>
 
 
-                    <form onSubmit={handleSubmit} className="space-y-8">
+                    <form onSubmit={handleSubmit} className="space-y-8 text-black">
                         {/* Personal Details Section */}
                         <section>
                             <h2 className="text-[14px] font-semibold mb-4">Personal Details</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {/* Personal Details */}
                                 <div>
-                                    <label className="block font-medium">
-                                        1. Name of Proposer (Mr/Ms/Mrs/Dr/Prof)
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        First Name
                                     </label>
                                     <input
                                         type="text"
-                                        name="proposerName"
-                                        value={formData.proposerName}
+                                        id="firstname"
+                                        name="firstname"
+                                        value={formData.firstname}
                                         onChange={handleChange}
-                                        className="w-full border rounded-[5px] p-2"
-                                        placeholder="e.g., Mr John Doe"
+                                        required
+                                        placeholder="Enter first name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Middle Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="middlename"
+                                        name="middlename"
+                                        value={formData.middlename}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="Enter middle name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="fullname" className="block text-sm font-medium">
+                                        Last Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="lastname"
+                                        name="lastname"
+                                        value={formData.lastname}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="Enter last name"
+                                        className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
                                 <div className="md:col-span-2">

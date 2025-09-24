@@ -11,7 +11,9 @@ const Claims = ({ onClose, userData }) => {
         message: '',
         preferredInsurer: '',
         specificInsurer: '',
-        customerDetails: '',
+        firstname: '',
+        middlename: '',
+        lastname: '',
         policyNumber: '',
     });
 
@@ -70,7 +72,9 @@ const Claims = ({ onClose, userData }) => {
         if (userData) {
             setFormData(f => ({
                 ...f,
-                customerDetails: userData.fullname?.trim() || '',
+                firstname: userData.firstname || '',
+                lastname: userData.lastname || '',
+                middlename: userData.middlename || '',
                 // if you have user email/mobile fields you can add them here
             }));
         }
@@ -108,7 +112,7 @@ const Claims = ({ onClose, userData }) => {
             });
             const result = await resp.json();
             if (result.status === 'success') {
-                toast.success(result.message || 'Message sent successfully!', { autoClose: 5000 });
+                toast.success(result.message, { autoClose: 5000 });
                 setFormData({
                     message: '',
                     preferredInsurer: '',
@@ -119,7 +123,7 @@ const Claims = ({ onClose, userData }) => {
                 setSelectedInsurerType('');
                 setTimeout(onClose, 6000);
             } else {
-                throw new Error(result.message || 'Failed to send message.');
+                throw new Error(result.message);
             }
         } catch (err) {
             console.error(err);
@@ -146,7 +150,14 @@ const Claims = ({ onClose, userData }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer position="bottom-center" />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
                     <button
                         onClick={onClose}
                         className="absolute lg:top-3 top-6 right-2 text-[#687588] font-bold rounded-full w-6 h-6 flex items-center justify-center"
@@ -162,20 +173,51 @@ const Claims = ({ onClose, userData }) => {
                             Tell us how we can help you today.
                         </p>
                     </div>
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                        {/* Customer Details */}
+                    <form onSubmit={handleSubmit} className="space-y-4 text-black">
+                        {/* Personal Details */}
                         <div>
-                            <label htmlFor="customerDetails" className="block text-sm font-medium">
-                                Customer Details (Name)
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                First Name
                             </label>
                             <input
-                                id="customerDetails"
-                                name="customerDetails"
-                                value={formData.customerDetails}
+                                type="text"
+                                id="firstname"
+                                name="firstname"
+                                value={formData.firstname}
                                 onChange={handleChange}
                                 required
-                                placeholder="Enter your details"
-                                className="w-full mt-1 p-3 border rounded shadow-sm focus:ring-2 focus:ring-blue-500"
+                                placeholder="Enter first name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Middle Name
+                            </label>
+                            <input
+                                type="text"
+                                id="middlename"
+                                name="middlename"
+                                value={formData.middlename}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter middle name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Last Name
+                            </label>
+                            <input
+                                type="text"
+                                id="lastname"
+                                name="lastname"
+                                value={formData.lastname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter last name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
 

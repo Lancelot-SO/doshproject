@@ -7,7 +7,9 @@ import { X } from 'lucide-react';
 const Transit = ({ onClose, userData }) => {
     const formRef = useRef();
     const [formData, setFormData] = useState({
-        name: "",
+        firstname: '',
+        middlename: '',
+        lastname: '',
         address: "",
         business: "",
         contact: "",
@@ -31,14 +33,16 @@ const Transit = ({ onClose, userData }) => {
         message: ""
     });
 
-    // Prefill name/contact/email if provided
+    // Pre-populate the companyName field if userData.fullname is provided
     useEffect(() => {
         if (userData) {
             setFormData(fd => ({
                 ...fd,
-                name: userData.fullname || fd.name,
-                contact: userData.phone || fd.contact,
-                email: userData.email || fd.email
+                firstname: userData.firstname.trim(),
+                middlename: userData.middlename.trim(),
+                lastname: userData.lastname.trim(),
+                contact: userData.phone.trim(),
+                email: userData.email.trim(),
             }));
         }
     }, [userData]);
@@ -62,10 +66,12 @@ const Transit = ({ onClose, userData }) => {
             });
             const json = await res.json();
             if (json.status === "success") {
-                toast.success(json.message || "Message sent successfully!");
+                toast.success(json.message);
                 // reset
                 setFormData({
-                    name: "",
+                    firstname: '',
+                    middlename: '',
+                    lastname: '',
                     address: "",
                     business: "",
                     contact: "",
@@ -88,10 +94,13 @@ const Transit = ({ onClose, userData }) => {
                     agency: "",
                     message: ""
                 });
-                formRef.current.reset();
+                if (formRef.current) {
+                    formRef.current.reset();
+                }
+
                 setTimeout(onClose, 6000);
             } else {
-                toast.error(json.message || "Failed to send message.");
+                toast.error(json.message);
             }
         } catch (err) {
             console.error(err);
@@ -120,7 +129,14 @@ const Transit = ({ onClose, userData }) => {
 
                 {/* Right Side Form */}
                 <div className="w-full md:w-1/2 p-6 relative overflow-y-auto">
-                    <ToastContainer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
 
                     {/* Close Button */}
                     <button
@@ -130,13 +146,55 @@ const Transit = ({ onClose, userData }) => {
                     >
                         <X size={20} />
                     </button>
-                    <h2 className="text-xl font-bold mb-4">Goods In Transit Insurance Proposal Request</h2>
-                    <p>Please kindly fill out the form fields below.</p>
+                    <h2 className="text-xl font-bold mb-4 text-black">Goods In Transit Insurance Proposal Request</h2>
+                    <p className="text-black">Please kindly fill out the form fields below.</p>
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 text-black">
+                        {/* Personal Details */}
                         <div>
-                            <label className="block text-sm font-semibold">Name of Proposer (Mr/Ms/Mrs/Dr/Prof).</label>
-                            <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full border p-2 rounded-[5px]" required />
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                First Name
+                            </label>
+                            <input
+                                type="text"
+                                id="firstname"
+                                name="firstname"
+                                value={formData.firstname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter first name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Middle Name
+                            </label>
+                            <input
+                                type="text"
+                                id="middlename"
+                                name="middlename"
+                                value={formData.middlename}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter middle name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="fullname" className="block text-sm font-medium">
+                                Last Name
+                            </label>
+                            <input
+                                type="text"
+                                id="lastname"
+                                name="lastname"
+                                value={formData.lastname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter last name"
+                                className="w-full mt-1 p-3 border rounded-[5px] text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
                         </div>
 
                         <div>

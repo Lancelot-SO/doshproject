@@ -1,166 +1,209 @@
 import React, { useState, useEffect } from 'react';
 import './Insure.css';
 import { Link } from 'react-router-dom';
-import { packagelist, enhancelist, insuranceDetails, enhanceDetails } from '../doshdata';
 import Flyer from './Flyer';
 import Terms from './Terms';
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
-import standard from "../images/ph1.png";
-import enhanced from "../images/mainenhanced.jpg";
+import {
+    insuranceDetails as staticInsuranceDetails,
+    enhanceDetails as staticEnhanceDetails,
+    packagelist,
+    enhancelist
+} from '../doshdata';
+
+import standard from '../images/ph1.png';
+import enhanced from '../images/mainenhanced.jpg';
+
+const BASE_URL = 'https://doshcms.interactivedigital.com.gh/';
 
 const Insure = ({ onClose }) => {
-    const [activePackage, setActivePackage] = useState(null); // Start with no specific package
-    const [currentPackageList, setCurrentPackageList] = useState([]);
-    const [currentDetailList, setCurrentDetailList] = useState([]);
-    const [activeLabel, setActiveLabel] = useState('Standard'); // Default to Standard
+    // UI state
+    const [activeLabel, setActiveLabel] = useState('Standard');
+    const [currentPackageList, setCurrentPackageList] = useState(packagelist);
+    const [currentDetailList, setCurrentDetailList] = useState(staticInsuranceDetails);
+    const [activePackage, setActivePackage] = useState(null);
     const [showFlyerModal, setShowFlyerModal] = useState(false);
     const [showTermsModal, setShowTermsModal] = useState(false);
 
+    // merged data from CMS
+    const [mergedInsuranceDetails, setMergedInsuranceDetails] = useState(staticInsuranceDetails);
+    const [mergedEnhanceDetails, setMergedEnhanceDetails] = useState(staticEnhanceDetails);
+
+    // 1️⃣ On mount: fetch both Standard & Enhanced from separate endpoints
     useEffect(() => {
-        // Default to 'Standard' label with standard details
-        setCurrentPackageList(packagelist);
-        setCurrentDetailList(insuranceDetails);
-        setActiveLabel('Standard');
-        setActivePackage(null); // No specific package selected by default
+        async function fetchPackages() {
+            try {
+                const [stdRes, enhRes] = await Promise.all([
+                    fetch(`${BASE_URL}api/fetch-insurance-packages`),
+                    fetch(`${BASE_URL}api/fetch-insurance-packages-enhanced`)
+                ]);
+                const [stdData, enhData] = await Promise.all([
+                    stdRes.json(),
+                    enhRes.json()
+                ]);
+
+                // merge Standard
+                const updatedStandard = staticInsuranceDetails.map(item => {
+                    const cms = stdData.find(d => d.id === Number(item.id));
+                    return cms
+                        ? { ...item, img: `${BASE_URL}${cms.image}`, details: cms.details }
+                        : item;
+                });
+
+                // merge Enhanced
+                const updatedEnhanced = staticEnhanceDetails.map(item => {
+                    const cms = enhData.find(d => d.id === Number(item.id));
+                    return cms
+                        ? { ...item, img: `${BASE_URL}${cms.image}`, details: cms.details }
+                        : item;
+                });
+
+                setMergedInsuranceDetails(updatedStandard);
+                setMergedEnhanceDetails(updatedEnhanced);
+            } catch (err) {
+                console.error('Error fetching insurance packages:', err);
+            }
+        }
+
+        fetchPackages();
     }, []);
 
-    const handleLabelChange = (label) => {
-        setActiveLabel(label);
-        if (label === 'Standard') {
+    // 2️⃣ Swap lists whenever label or merged data changes
+    useEffect(() => {
+        if (activeLabel === 'Standard') {
             setCurrentPackageList(packagelist);
-            setCurrentDetailList(insuranceDetails);
-            setActivePackage(null); // No active package, show default
+            setCurrentDetailList(mergedInsuranceDetails);
         } else {
             setCurrentPackageList(enhancelist);
-            setCurrentDetailList(enhanceDetails);
-            setActivePackage(null); // No active package, show default
+            setCurrentDetailList(mergedEnhanceDetails);
         }
-    };
+        setActivePackage(null);
+    }, [activeLabel, mergedInsuranceDetails, mergedEnhanceDetails]);
 
-    // Determine details to display based on active package and label
+    // 3️⃣ Determine which detail to render
     const activeDetail = activePackage
-        ? currentDetailList.find(detail => detail.category === activePackage)
-        : activeLabel === 'Standard'
-            ? {
-                img: standard,
-                number: "Standard Packages",
-                details: "For health insurance that covers life basics, DOSH’s Standard Packages are a no-brainer! Cover essentials like eyecare, mental health, and more, with plans that make healthcare affordable, accessible and available, and get back to living your best life—worry-free!",
+        ? currentDetailList.find(d => d.category === activePackage)
+        : null;
 
-            }
-            : {
-                img: enhanced,
-                number: "Enhanced Packages",
-                details: "It pays to be prepared, no matter what life throws your way. And with DOSH’s Enhanced Packages, you get policies that cover you from every angle and guarantee your peace of mind. Built on the foundation of our Standard Packages, these policies go the extra mile in providing comprehensive coverage in cases of partial and permanent disability, critical illness, and even death.",
+    // 4️⃣ Static “intro” cards remain untouched
+    const introDetail = activeLabel === 'Standard'
+        ? {
+            img: standard,
+            number: 'Standard Packages',
+            details: `For health insurance that covers life basics, DOSH’s Standard Packages are a no-brainer! Cover essentials like eyecare, mental health, and more, with plans that make healthcare affordable, accessible and available, and get back to living your best life—worry-free!`,
+            flyer: 'View Flyer'
+        }
+        : {
+            img: enhanced,
+            number: 'Enhanced Packages',
+            details: `It pays to be prepared, no matter what life throws your way. And with DOSH’s Enhanced Packages, you get policies that cover you from every angle and guarantee your peace of mind. Built on the foundation of our Standard Packages, these policies go the extra mile in providing comprehensive coverage in cases of partial and permanent disability, critical illness, and even death.`,
+            flyer: 'View Flyer'
+        };
 
-            };
+    const detailToShow = activeDetail || introDetail;
 
-    // Functions to navigate between packages
+    // 5️⃣ Navigation helpers
     const goToNextPackage = () => {
-        const currentIndex = currentPackageList.findIndex(item => item.name === activePackage);
-        const nextIndex = (currentIndex + 1) % currentPackageList.length;
-        setActivePackage(currentPackageList[nextIndex].name);
+        const idx = currentPackageList.findIndex(i => i.name === activePackage);
+        const next = currentPackageList[(idx + 1) % currentPackageList.length].name;
+        setActivePackage(next);
     };
-
     const goToPreviousPackage = () => {
-        const currentIndex = currentPackageList.findIndex(item => item.name === activePackage);
-        const previousIndex = (currentIndex - 1 + currentPackageList.length) % currentPackageList.length;
-        setActivePackage(currentPackageList[previousIndex].name);
+        const idx = currentPackageList.findIndex(i => i.name === activePackage);
+        const prev = currentPackageList[(idx - 1 + currentPackageList.length) % currentPackageList.length].name;
+        setActivePackage(prev);
     };
 
     return (
         <div className="insure-modal">
             <div className="insure-content">
-                <div className='top__section'>
-                    <h2 className='text-[32px] text-[#A2865F]'>DOSH Health Insurance</h2>
-                    <button onClick={onClose} className='top__section-close'>X</button>
+                <div className="top__section">
+                    <h2 className="text-[32px] text-[#A2865F]">DOSH Health Insurance</h2>
+                    <button onClick={onClose} className="top__section-close">X</button>
                 </div>
 
-                <div className='package_list'>
-                    <ul className='package_lists'>
-                        <li
-                            className={`package_link ${activeLabel === 'Standard' ? 'link_underline' : ''}`}
-                            onClick={() => handleLabelChange('Standard')}
-                        >
-                            Standard
-                        </li>
-                        <li
-                            className={`package_link ${activeLabel === 'Enhanced' ? 'link_underline' : ''}`}
-                            onClick={() => handleLabelChange('Enhanced')}
-                        >
-                            Enhanced
-                        </li>
+                {/* Label tabs */}
+                <div className="package_list">
+                    <ul className="package_lists">
+                        {['Standard', 'Enhanced'].map(label => (
+                            <li
+                                key={label}
+                                className={`package_link ${activeLabel === label ? 'link_underline' : ''}`}
+                                onClick={() => setActiveLabel(label)}
+                            >
+                                {label}
+                            </li>
+                        ))}
                     </ul>
                 </div>
 
-                <ul className='package_lists'>
-                    {currentPackageList.map((packageItem, index) => (
-                        <li key={index}>
+                {/* Package names */}
+                <ul className="package_lists">
+                    {currentPackageList.map((pkg, i) => (
+                        <li key={i}>
                             <Link
-                                className={`package_link ${packageItem.name === activePackage ? 'link_underline' : ''}`}
-                                onClick={() => setActivePackage(packageItem.name)}
+                                className={`package_link ${activePackage === pkg.name ? 'link_underline' : ''}`}
+                                onClick={() => setActivePackage(pkg.name)}
                             >
-                                {packageItem.name}
+                                {pkg.name}
                             </Link>
                         </li>
                     ))}
                 </ul>
 
-                <div className='main_package no-scrollbar'>
-                    <div className='package_left'>
-                        <img src={activeDetail.img} alt={activeDetail.title} loading='lazy' />
+                {/* Detail pane */}
+                <div className="main_package no-scrollbar">
+                    <div className="package_left">
+                        <img src={detailToShow.img} alt={detailToShow.number} loading="lazy" />
                     </div>
-                    <div className='package_right no-scrollbar'>
-                        {activeDetail.number && <h2 className='package_number'>{activeDetail.number}</h2>}
-                        <p className='package_details w-[600px]'>{activeDetail.details}</p>
+                    <div className="package_right no-scrollbar">
+                        <h2 className="package_number">{detailToShow.number}</h2>
+                        <p
+                            className="package_details w-[600px]"
+                            dangerouslySetInnerHTML={{ __html: detailToShow.details }}
+                        />
+
                         <div className="flex lg:flex-row flex-col gap-3 lg:w-[590px] lg:justify-between">
-                            <Link onClick={() => setShowFlyerModal(true)} className='flyer-link-insure'>
-                                {activeDetail.flyer}
+                            <Link onClick={() => setShowFlyerModal(true)} className="flyer-link-insure">
+                                {detailToShow.flyer}
                             </Link>
                             <button
-                                className='terms-link-insure'
+                                className="terms-link-insure"
                                 onClick={() => setShowTermsModal(true)}
                             >
                                 Terms, Conditions and Exclusions
                             </button>
                         </div>
 
-                        {activeDetail.link && (
-                            <Link to={activeDetail.link} target="_blank" rel="noopener noreferrer">
+                        {detailToShow.link && (
+                            <Link to={detailToShow.link} target="_blank" rel="noopener noreferrer">
                                 <small>
-                                    <h6 className='text-white'>Sign up</h6>
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="20"
-                                        height="20"
-                                        fill="#fff"
-                                        className="bi bi-arrow-right"
-                                        viewBox="0 0 16 16"
-                                    >
-                                        <path
-                                            fillRule="evenodd"
-                                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-                                        />
-                                    </svg>
+                                    <h6 className="text-white">Sign up</h6>
+                                    <FaArrowRight color="#fff" />
                                 </small>
                             </Link>
                         )}
 
-                        {/* Navigation arrows - show only if a specific package is selected */}
                         {activePackage && (
                             <div className="flex gap-6 h-[40px] items-center justify-center">
-                                <div className='flex items-center gap-2'>
-                                    <p className='text-white'>Previous product</p>
-                                    <div onClick={goToPreviousPackage} className='cursor-pointer w-8 h-8 flex items-center justify-center rounded-full bg-transparent hover:bg-[#987C55] border text-white'>
-                                        <FaArrowLeft className='texte-white' />
+                                <div className="flex items-center gap-2">
+                                    <p className="text-white">Previous product</p>
+                                    <div
+                                        onClick={goToPreviousPackage}
+                                        className="cursor-pointer w-8 h-8 flex items-center justify-center rounded-full bg-transparent hover:bg-[#987C55] border text-white"
+                                    >
+                                        <FaArrowLeft />
                                     </div>
                                 </div>
-
-                                <div className='flex items-center gap-2'>
-                                    <div onClick={goToNextPackage} className="cursor-pointer w-8 h-8 flex items-center justify-center rounded-full bg-transparent hover:bg-[#987C55] border text-white">
-                                        <FaArrowRight className='texte-white' />
+                                <div className="flex items-center gap-2">
+                                    <div
+                                        onClick={goToNextPackage}
+                                        className="cursor-pointer w-8 h-8 flex items-center justify-center rounded-full bg-transparent hover:bg-[#987C55] border text-white"
+                                    >
+                                        <FaArrowRight />
                                     </div>
-                                    <p className='text-white'>Next product</p>
+                                    <p className="text-white">Next product</p>
                                 </div>
                             </div>
                         )}
