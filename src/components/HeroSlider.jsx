@@ -25,12 +25,33 @@ import slider7m from "../images/secondmobile.png";
 import slider8m from "../images/eightmobile.png";
 import slider9m from "../images/firstmobile.png";
 
+// Desktop
 const DEFAULT_IMAGES_DESKTOP = [
-    slider1, slider2, slider3, slider4, slider5, slider6, slider7, slider8, slider9,
+    slider3,
+    slider7,
+    slider4,
+    slider5,
+    slider1,
+    slider2,
+    slider9,
+    slider8,
+    slider6,
 ];
+
+// Mobile (matching order)
 const DEFAULT_IMAGES_MOBILE = [
-    slider1m, slider2m, slider3m, slider4m, slider5m, slider6m, slider7m, slider8m, slider9m,
+    slider3m,
+    slider7m,
+    slider4m,
+    slider5m,
+    slider1m,
+    slider2m,
+    slider9m,
+    slider8m,
+    slider6m,
 ];
+
+
 
 export default function HeroSliderEmbla({
     images = DEFAULT_IMAGES_DESKTOP,
