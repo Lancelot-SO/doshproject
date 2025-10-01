@@ -14,7 +14,6 @@ import Financial from './components/Financial';
 import BackToTop from './components/BackToTop';
 import RegModal from './components/RegModal';
 import Insurance from './pages/Insurance';
-import HomeTest from './pages/HomeTest';
 import Insure from './components/Insure';
 import Ride from './components/Ride';
 import Ecommerce from './components/Ecommerce';
@@ -72,7 +71,6 @@ const Layout = () => {
         <Route path='/erp' element={<Erp />} />
         <Route path='/regmodal' element={<RegModal />} />
         <Route path='/insurance' element={<Insurance />} />
-        <Route path='/home_test' element={<HomeTest />} />
         <Route path='/home_preview' element={<HomePreview />} />
         <Route path='/dashboard' element={<MainDashboard />} />
         <Route path='/video' element={<VideoParent />} />
