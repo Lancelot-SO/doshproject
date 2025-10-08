@@ -11,7 +11,7 @@ import slider5 from "../images/sixthhero.png";
 import slider6 from "../images/seventhhero.png";
 import slider7 from "../images/secondhero.png";
 import slider2 from "../images/thirdhero.png";
-import slider8 from "../images/eighthero.png";
+import slider8 from "../images/eigthhero.png";
 import slider9 from "../images/firsthero.png";
 
 // Mobile images (match order above)
