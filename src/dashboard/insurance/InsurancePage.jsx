@@ -7,7 +7,7 @@ import mobileglasscard from "../../images/dashboard/mobileglassbg.png"
 import { FaAmbulance, FaWallet } from "react-icons/fa";
 import { RiArrowRightDownLine, RiArrowRightUpLine } from "react-icons/ri";
 import { BsCurrencyDollar } from "react-icons/bs";
-import { ChevronRight } from 'lucide-react';
+import { Ambulance, ChevronRight, Glasses, Stethoscope } from 'lucide-react';
 
 import profile from "../../images/dashboard/profilepic.png"
 import Circle from '../Circle';
@@ -331,7 +331,7 @@ const InsurancePage = () => {
                                                 <div
                                                     className="w-[30px] sm:w-[40px] smallS8:w-[24px] h-[30px] sm:h-[40px] smallS8:h-[24px] 
                    rounded-full bg-[#343839] bg-opacity-70 flex items-center justify-center">
-                                                    <FaWallet size={16} className="sm:size-[20px] smallS8:size-[12px] text-[#0099CC]" />
+                                                    <Stethoscope size={16} className="sm:size-[20px] smallS8:size-[12px] text-[#0099CC]" />
                                                 </div>
                                             </div>
                                             <div className="flex flex-col gap-1 smallS8:text-[4px]">
@@ -378,7 +378,7 @@ const InsurancePage = () => {
                                                 <div
                                                     className="w-[30px] sm:w-[40px] smallS8:w-[24px] h-[30px] sm:h-[40px] smallS8:h-[24px] 
                    rounded-full bg-[#343839] bg-opacity-70 flex items-center justify-center">
-                                                    <FaWallet size={16} className="sm:size-[20px] smallS8:size-[12px] text-[#0099CC]" />
+                                                    <Ambulance size={16} className="sm:size-[20px] smallS8:size-[12px] text-[#0099CC]" />
                                                 </div>
                                             </div>
                                             <div className="flex flex-col gap-1 smallS8:text-[4px]">
@@ -474,7 +474,7 @@ const InsurancePage = () => {
                                                 <div
                                                     className="w-[30px] sm:w-[40px] smallS8:w-[24px] h-[30px] sm:h-[40px] smallS8:h-[24px] 
                    rounded-full bg-[#343839] bg-opacity-70 flex items-center justify-center">
-                                                    <FaAmbulance size={16} className="sm:size-[20px] smallS8:size-[12px] text-[#0099CC]" />
+                                                    <Stethoscope size={16} className="sm:size-[20px] smallS8:size-[12px] text-[#0099CC]" />
                                                 </div>
                                             </div>
                                             <div className="flex flex-col gap-1 smallS8:text-[4px]">
@@ -521,7 +521,7 @@ const InsurancePage = () => {
                                                 <div
                                                     className="w-[30px] sm:w-[40px] smallS8:w-[24px] h-[30px] sm:h-[40px] smallS8:h-[24px] 
                    rounded-full bg-[#343839] bg-opacity-70 flex items-center justify-center">
-                                                    <BsCurrencyDollar size={16} className="sm:size-[20px] smallS8:size-[12px] text-[#0099CC]" />
+                                                    <Ambulance size={16} className="sm:size-[20px] smallS8:size-[12px] text-[#0099CC]" />
                                                 </div>
                                             </div>
                                             <div className="flex flex-col gap-1 smallS8:text-[4px]">
@@ -568,7 +568,7 @@ const InsurancePage = () => {
                                                 <div
                                                     className="w-[30px] sm:w-[40px] smallS8:w-[24px] h-[30px] sm:h-[40px] smallS8:h-[24px] 
                    rounded-full bg-[#343839] bg-opacity-70 flex items-center justify-center">
-                                                    <FaAmbulance size={16} className="sm:size-[20px] smallS8:size-[12px] text-[#0099CC]" />
+                                                    <Glasses size={16} className="sm:size-[20px] smallS8:size-[12px] text-[#0099CC]" />
                                                 </div>
                                             </div>
                                             <div className="flex flex-col gap-1 smallS8:text-[4px]">
@@ -615,7 +615,7 @@ const InsurancePage = () => {
                                                 <div
                                                     className="w-[30px] sm:w-[40px] smallS8:w-[24px] h-[30px] sm:h-[40px] smallS8:h-[24px] 
                    rounded-full bg-[#343839] bg-opacity-70 flex items-center justify-center">
-                                                    <FaWallet size={16} className="sm:size-[20px] smallS8:size-[12px] text-[#0099CC]" />
+                                                    <Glasses size={16} className="sm:size-[20px] smallS8:size-[12px] text-[#0099CC]" />
                                                 </div>
                                             </div>
                                             <div className="flex flex-col gap-1 smallS8:text-[4px]">
@@ -710,7 +710,7 @@ const InsurancePage = () => {
                                                 <div
                                                     className="w-[30px] sm:w-[40px] smallS8:w-[24px] h-[30px] sm:h-[40px] smallS8:h-[24px] 
                    rounded-full bg-[#343839] bg-opacity-70 flex items-center justify-center">
-                                                    <BsCurrencyDollar size={16} className="sm:size-[20px] smallS8:size-[12px] text-[#0099CC]" />
+                                                    <Ambulance size={16} className="sm:size-[20px] smallS8:size-[12px] text-[#0099CC]" />
                                                 </div>
                                             </div>
                                             <div className="flex flex-col gap-1 smallS8:text-[4px]">
@@ -757,7 +757,7 @@ const InsurancePage = () => {
                                                 <div
                                                     className="w-[30px] sm:w-[40px] smallS8:w-[24px] h-[30px] sm:h-[40px] smallS8:h-[24px] 
                    rounded-full bg-[#343839] bg-opacity-70 flex items-center justify-center">
-                                                    <FaWallet size={16} className="sm:size-[20px] smallS8:size-[12px] text-[#0099CC]" />
+                                                    <Glasses size={16} className="sm:size-[20px] smallS8:size-[12px] text-[#0099CC]" />
                                                 </div>
                                             </div>
                                             <div className="flex flex-col gap-1 smallS8:text-[4px]">
@@ -800,7 +800,7 @@ const InsurancePage = () => {
 
                                         <div className="w-[160px] sm:w-[219px] smallS8:w-[130px] h-[80px] sm:h-[96px] smallS8:h-[64px] flex flex-col justify-between">
                                             <div className="flex justify-between">
-                                                <p className="text-[14px] sm:text-[18px] smallS8:text-[10px] font-medium text-white">Ambuance Service</p>
+                                                <p className="text-[14px] sm:text-[18px] smallS8:text-[10px] font-medium text-white">Ambulance Service</p>
                                                 <div
                                                     className="w-[30px] sm:w-[40px] smallS8:w-[24px] h-[30px] sm:h-[40px] smallS8:h-[24px] 
                    rounded-full bg-[#343839] bg-opacity-70 flex items-center justify-center">
