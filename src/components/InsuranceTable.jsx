@@ -285,40 +285,40 @@ const InsuranceTable = ({ closePopup }) => {
                                 <tr>
                                     <td className='heading-last'></td>
                                     <td className="signup-button">
-                                        <button><Link to='/insurance?plan=365' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '365' }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/insurance?plan=500' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '500' }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/insurance?plan=750' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '750' }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/insurance?plan=900' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '900' }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/insurance?plan=1000' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '1000' }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/insurance?plan=1200' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '1200' }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/insurance?plan=2500' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '2500' }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/insurance?plan=2800' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '2800' }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/insurance?plan=5000' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '5000' }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/insurance?plan=5500' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '5500' }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/insurance?plan=10000' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '10000' }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/insurance?plan=11000' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '11000' }}>Sign Up</Link></button>
                                     </td>
                                 </tr>
                                 {/* Add more rows */}

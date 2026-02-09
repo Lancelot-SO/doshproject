@@ -65,7 +65,11 @@ export const transformToSignupPayload = (formData) => {
 
     const cleanFirstName = firstName?.trim() || '';
     const cleanLastName = lastName?.trim() || '';
-    const cleanPhone = phoneNumber.replace(/\D/g, '');
+
+    // Combine country code and digits
+    const code = formData.country.replace(/\+/g, '');
+    const digits = phoneNumber.replace(/\D/g, '');
+    const cleanPhone = `${code}${digits}`;
 
     // Calculate paymentFor based on insuranceOption and accountOption (for insuranceOnly sub-paths)
     let paymentFor = MAPPINGS.paymentFor[insuranceOption] || 'insurance';

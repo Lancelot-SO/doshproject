@@ -89,19 +89,19 @@ const FinanceTable = ({ closePopup }) => {
                                 <tr>
                                     <td className='heading-last'></td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: 'Personal' }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: 'Family' }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: 'SOHO' }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: 'SMB' }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: 'Enterprise' }}>Sign Up</Link></button>
                                     </td>
                                 </tr>
                             </table>

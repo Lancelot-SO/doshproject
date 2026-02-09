@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import newAnime from "../images/sphoto.png";
-import PhoneInput from 'react-phone-number-input';
-import 'react-phone-number-input/style.css'
+import { countryList } from '../utils/countries';
 import { validateSignupForm } from '../utils/validation';
 import { useSignup } from '../hooks/useSignup';
 import { toast, ToastContainer } from 'react-toastify';
@@ -61,6 +60,49 @@ const Select = ({ name, value, onChange, options, error, placeholder, ...props }
     </div>
 );
 
+// Custom Country Selector Component
+const CountrySelector = ({ value, onChange, options, error, placeholder }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const selectedOption = options.find(opt => opt.value === value);
+
+    return (
+        <div className="mb-4 relative">
+            <div
+                onClick={() => setIsOpen(!isOpen)}
+                className={`w-full px-4 py-3 rounded-lg border cursor-pointer flex justify-between items-center transition-all duration-200 bg-gray-50 ${error ? 'border-red-500 ring-red-200' : 'border-gray-300 focus:ring-blue-100 focus:border-blue-500'}`}
+            >
+                <span className={selectedOption ? "text-gray-800" : "text-gray-400"}>
+                    {selectedOption ? selectedOption.label : (placeholder || "-- Select Country --")}
+                </span>
+                <svg className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </div>
+
+            {isOpen && (
+                <>
+                    <div className="fixed inset-0 z-10" onClick={() => setIsOpen(false)}></div>
+                    <div className="absolute z-20 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-xl max-h-60 overflow-y-auto animate-fade-in-up">
+                        {options.map((opt) => (
+                            <div
+                                key={opt.value}
+                                onClick={() => {
+                                    onChange({ target: { name: 'country', value: opt.value } });
+                                    setIsOpen(false);
+                                }}
+                                className={`px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center ${value === opt.value ? 'bg-blue-50 font-semibold text-blue-600' : 'text-gray-700'}`}
+                            >
+                                {opt.label}
+                            </div>
+                        ))}
+                    </div>
+                </>
+            )}
+            {error && <p className="mt-1 text-xs text-red-500 font-medium">{error}</p>}
+        </div>
+    );
+};
+
 const Insurance = () => {
     const { signup, loading, successData, errorMessage, setErrorMessage, setSuccessData } = useSignup();
     const location = useLocation();
@@ -81,7 +123,7 @@ const Insurance = () => {
         productType: 'Personal',
         paymentMode: '',
         phoneNumber: '',
-        country: 'Ghana',
+        country: '+233',
         idType: '',
         idNumber: '',
         email: '',
@@ -101,26 +143,38 @@ const Insurance = () => {
     const [errors, setErrors] = useState({});
     const [formStepsNum, setFormStepsNum] = useState(0);
     const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [fromPackage, setFromPackage] = useState(false); // Track if user came from insurance package
 
-    // Read plan from URL query params (e.g., /insurance?plan=365)
+    // Read plan from location state (preferred) or URL query params (fallback)
     // Pre-select insurance-only registration with the specified plan
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
-        const planParam = searchParams.get('plan');
+        const planFromUrl = searchParams.get('plan');
+        const planParam = location.state?.plan || planFromUrl;
 
         if (planParam) {
-            // Valid plan types that exist in the dropdown
-            const validPlans = ['365', '750', '1000', '2500', '5000', '10000'];
+            // Valid insurance plan types
+            const validInsurancePlans = ['365', '500', '750', '900', '1000', '1200', '2500', '2800', '5000', '5500', '10000', '11000'];
+            // Valid financial plan types
+            const validFinancialPlans = ['Individual', 'Personal', 'Family', 'SOHO', 'SMB', 'Enterprise'];
 
-            if (validPlans.includes(planParam)) {
+            if (validInsurancePlans.includes(planParam)) {
                 setFormData(prev => ({
                     ...prev,
                     insuranceOption: 'insuranceOnly',
                     insuranceType: `DOSH ${planParam}`
                 }));
+                setFromPackage(true);
+            } else if (validFinancialPlans.includes(planParam)) {
+                setFormData(prev => ({
+                    ...prev,
+                    insuranceOption: 'financial',
+                    productType: planParam === 'Individual' ? 'Personal' : planParam
+                }));
+                setFromPackage(true);
             }
         }
-    }, [location.search]);
+    }, [location.state, location.search]);
 
     const getPricing = () => {
         const type = formData.insuranceType;
@@ -146,28 +200,22 @@ const Insurance = () => {
         return base;
     };
 
-    const getBenefitInfo = () => {
-        const type = formData.insuranceType;
-        const isInsurancePath = ['insuranceOnly', 'plan', 'account'].includes(formData.insuranceOption);
-        if (!type || !isInsurancePath) return null;
-
-        const benefits = {
-            'DOSH 365': "365 GHS/year, total cover 9,000 GHS, Out Patient cover 1,500 GHS and 7,500 GHS In-patient cover",
-            'DOSH 750': "750 GHS/year, total cover 15,000 GHS, Out Patient cover 2,500 GHS and 12,500 GHS In-patient cover",
-            'DOSH 1000': "1000 GHS/year, total cover 20,000 GHS, Out Patient cover 3,500 GHS and 16,500 GHS In-patient cover"
-        };
-
-        return benefits[type] || null;
-    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
 
+        // If phone number, only allow digits
+        if (name === 'phoneNumber') {
+            const cleanValue = value.replace(/\D/g, '');
+            setFormData(prev => ({ ...prev, [name]: cleanValue }));
+            if (errors[name]) {
+                setErrors(prev => ({ ...prev, [name]: '' }));
+            }
+            return;
+        }
+
         setFormData(prev => {
             const next = { ...prev, [name]: value };
-            if (name === 'insuranceOption' && value === 'financial') {
-                // Remove the automatic 'daily' override to allow user selection
-            }
             return next;
         });
 
@@ -176,17 +224,17 @@ const Insurance = () => {
         }
     };
 
-    const handlePhoneChange = (value) => {
-        setFormData(prev => ({ ...prev, phoneNumber: value }));
-        if (errors.phoneNumber) {
-            setErrors(prev => ({ ...prev, phoneNumber: '' }));
-        }
-    };
-
     const handleNextStep = () => {
         const { isValid, errors: validationErrors } = validateSignupForm(formData, formStepsNum);
         if (isValid) {
             setErrors({});
+
+            // Special Case: Financial signup triggers payment at Step 2
+            if (formStepsNum === 2 && formData.insuranceOption === 'financial') {
+                setShowConfirmModal(true);
+                return;
+            }
+
             setFormStepsNum(prevNum => prevNum + 1);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
@@ -219,10 +267,19 @@ const Insurance = () => {
         setShowConfirmModal(false);
         try {
             await signup(formData);
-            toast.info("Registration initiated. Redirecting soon...");
-            setTimeout(() => {
-                window.location.href = '/login';
-            }, 30000);
+
+            if (formData.insuranceOption === 'financial') {
+                toast.success("Payment initiated! Now please complete your profile details.");
+                // Advance to Profile step
+                setFormStepsNum(3);
+                // We keep successData so the user sees the username/ref if they want, 
+                // but the modal needs to be closable or automatically dismissed to see Step 3.
+            } else {
+                toast.info("Registration initiated. Redirecting soon...");
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 30000);
+            }
         } catch (error) {
             toast.error(error.message || "Registration failed.");
         }
@@ -230,8 +287,8 @@ const Insurance = () => {
 
     // --- Options Arrays ---
     const insuranceOptions = [
-        { value: "financial", label: "Create financial-only account" },
-        { value: "insuranceOnly", label: "Create insurance-only account" },
+        { value: "financial", label: "DOSH Financial" },
+        { value: "insuranceOnly", label: "DOSH Insurance" },
         { value: "plan", label: "No, create one for my payment plan (Combo)" },
         { value: "account", label: "Already have a DOSH financial account (Insurance Add-on)" },
     ];
@@ -267,7 +324,7 @@ const Insurance = () => {
     const accountOptionChoices = [
         { value: "existingAccount", label: "Already have a DOSH financial account" },
         { value: "createPlan", label: "No, create one for my payment plan" },
-        { value: "insuranceOnly", label: "Create insurance-only account" },
+        { value: "insuranceOnly", label: "DOSH Insurance" },
     ];
 
     // Options for daily payment (only 2 options, no "insurance-only" for daily)
@@ -292,23 +349,11 @@ const Insurance = () => {
         { value: "GBP", label: "GBP" },
     ];
 
-    const countryOptions = [
-        { value: "+233", label: "+233 (Ghana)" },
-        { value: "+234", label: "+234 (Nigeria)" },
-    ];
+    const countryOptions = countryList.map(c => ({
+        value: c.code,
+        label: `${c.flag} ${c.code} (${c.name})`
+    }));
 
-    const idTypeOptions = [
-        { value: "Ghana Card", label: "Ghana Card" },
-        { value: "Passport", label: "Passport" },
-        { value: "Voters ID", label: "Voters ID" },
-    ];
-
-    const regionOptions = [
-        { value: "Greater Accra", label: "Greater Accra" },
-        { value: "Ashanti", label: "Ashanti" },
-        { value: "Central", label: "Central" },
-        { value: "Western", label: "Western" },
-    ];
 
 
     return (
@@ -391,7 +436,11 @@ const Insurance = () => {
                                         options={insuranceOptions}
                                         error={errors.insuranceOption}
                                         placeholder="-- Select Registration Type --"
+                                        disabled={fromPackage}
                                     />
+                                    {fromPackage && (
+                                        <p className="mt-1 text-xs text-gray-500 italic">Pre-selected from your chosen insurance package</p>
+                                    )}
                                 </div>
 
                                 {['insuranceOnly', 'plan', 'account'].includes(formData.insuranceOption) && (
@@ -399,13 +448,51 @@ const Insurance = () => {
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div>
                                                 <Label htmlFor="insuranceCategory">Insurance Category Type</Label>
-                                                <Select name="insuranceCategory" value={formData.insuranceCategory} onChange={handleChange} options={categoryOptions} error={errors.insuranceCategory} />
+                                                <Select
+                                                    name="insuranceCategory"
+                                                    value={formData.insuranceCategory}
+                                                    onChange={handleChange}
+                                                    options={categoryOptions}
+                                                    error={errors.insuranceCategory}
+                                                    disabled={fromPackage}
+                                                />
+                                                {fromPackage && (
+                                                    <p className="mt-1 text-xs text-gray-500 italic">Pre-selected from your chosen insurance package</p>
+                                                )}
                                             </div>
                                             <div>
                                                 <Label htmlFor="insuranceType">Insurance Type</Label>
-                                                <Select name="insuranceType" value={formData.insuranceType} onChange={handleChange} options={typeOptions} error={errors.insuranceType} />
+                                                <Select
+                                                    name="insuranceType"
+                                                    value={formData.insuranceType}
+                                                    onChange={handleChange}
+                                                    options={typeOptions}
+                                                    error={errors.insuranceType}
+                                                    disabled={fromPackage}
+                                                />
+                                                {fromPackage && (
+                                                    <p className="mt-1 text-xs text-gray-500 italic">Pre-selected from your chosen insurance package</p>
+                                                )}
                                             </div>
                                         </div>
+                                    </div>
+                                )}
+
+                                {formData.insuranceOption === 'financial' && (
+                                    <div className="animate-fade-in pt-4 border-t border-gray-100">
+                                        <Label htmlFor="productType" required>Product Type</Label>
+                                        <Select
+                                            name="productType"
+                                            value={formData.productType}
+                                            onChange={handleChange}
+                                            options={financialAccountOptions}
+                                            error={errors.productType}
+                                            placeholder="Please select product type"
+                                            disabled={fromPackage}
+                                        />
+                                        {fromPackage && (
+                                            <p className="mt-1 text-xs text-gray-500 italic">Pre-selected from your chosen financial package</p>
+                                        )}
                                     </div>
                                 )}
 
@@ -419,59 +506,12 @@ const Insurance = () => {
                             </div>
                         )}
 
-                        {/* STEP 1: Payment Frequency & Product Type */}
+                        {/* STEP 1: Pre-Health Condition, Above 60, Payment Frequency & Product Type */}
                         {formStepsNum === 1 && (
                             <div className="space-y-6 animate-fade-in-up">
-                                <div>
-                                    <Label htmlFor="paymentMethod" required>Payment Frequency</Label>
-                                    <Select
-                                        name="paymentMethod"
-                                        value={formData.paymentMethod}
-                                        onChange={handleChange}
-                                        options={paymentFreqOptions}
-                                        error={errors.paymentMethod}
-                                        placeholder="-- Select Frequency --"
-                                    />
-                                </div>
-
-                                {formData.insuranceOption === 'financial' && (
-                                    <div className="animate-fade-in">
-                                        <Label htmlFor="productType" required>Product Type</Label>
-                                        <Select
-                                            name="productType"
-                                            value={formData.productType}
-                                            onChange={handleChange}
-                                            options={financialAccountOptions}
-                                            error={errors.productType}
-                                            placeholder="Please select product type"
-                                        />
-                                    </div>
-                                )}
-
-                                <div className="flex gap-4 mt-8">
-                                    <button
-                                        type="button"
-                                        onClick={handlePrevStep}
-                                        className="w-1/3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3.5 px-6 rounded-lg transition"
-                                    >
-                                        Back
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={handleNextStep}
-                                        className="w-2/3 bg-[#987c55] hover:bg-[#7d6542] text-white font-bold py-3.5 px-6 rounded-lg shadow-lg transform transition hover:-translate-y-0.5"
-                                    >
-                                        Continue
-                                    </button>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* STEP 2: Payments & Health & Account */}
-                        {formStepsNum === 2 && (
-                            <div className="space-y-6 animate-fade-in-up">
+                                {/* Pre-Health and Above 60 sections - Only for insurance paths */}
                                 {formData.insuranceOption === 'insuranceOnly' && (
-                                    <div className="space-y-6">
+                                    <>
                                         <div className="py-2">
                                             <label className="block text-sm font-semibold mb-3 text-gray-700">
                                                 Pre-Health Condition
@@ -504,6 +544,47 @@ const Insurance = () => {
                                             {errors.above60 && <p className="mt-2 text-xs text-red-500 font-medium">{errors.above60}</p>}
                                         </div>
 
+                                        <hr className="border-gray-200" />
+                                    </>
+                                )}
+
+                                <div>
+                                    <Label htmlFor="paymentMethod" required>Payment Frequency</Label>
+                                    <Select
+                                        name="paymentMethod"
+                                        value={formData.paymentMethod}
+                                        onChange={handleChange}
+                                        options={paymentFreqOptions}
+                                        error={errors.paymentMethod}
+                                        placeholder="-- Select Frequency --"
+                                    />
+                                </div>
+
+
+                                <div className="flex gap-4 mt-8">
+                                    <button
+                                        type="button"
+                                        onClick={handlePrevStep}
+                                        className="w-1/3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3.5 px-6 rounded-lg transition"
+                                    >
+                                        Back
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={handleNextStep}
+                                        className="w-2/3 bg-[#987c55] hover:bg-[#7d6542] text-white font-bold py-3.5 px-6 rounded-lg shadow-lg transform transition hover:-translate-y-0.5"
+                                    >
+                                        Continue
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* STEP 2: Payments & Account Options */}
+                        {formStepsNum === 2 && (
+                            <div className="space-y-6 animate-fade-in-up">
+                                {formData.insuranceOption === 'insuranceOnly' && (
+                                    <div className="space-y-6">
                                         <div className="animate-fade-in">
                                             <Label htmlFor="accountOption" required>Choose the option that applies to you</Label>
                                             <Select
@@ -550,12 +631,6 @@ const Insurance = () => {
 
                                     {formData.paymentMode === 'Debit and Credit Cards' && (
                                         <div className="col-span-1 md:col-span-2 space-y-4">
-                                            <div className="flex items-center text-amber-700 bg-amber-50 p-3 rounded-lg text-sm border border-amber-200">
-                                                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                                                </svg>
-                                                Card transactions would be subject to a 5% fee
-                                            </div>
                                             <div>
                                                 <Label htmlFor="currency" required>Select Card Currency</Label>
                                                 <Select name="currency" value={formData.currency} onChange={handleChange} options={currencyOptions} error={errors.currency} />
@@ -569,18 +644,39 @@ const Insurance = () => {
 
                                     <div>
                                         <Label htmlFor="country" required>Country Code</Label>
-                                        <Select name="country" value={formData.country} onChange={handleChange} options={countryOptions} error={errors.country} />
+                                        <CountrySelector value={formData.country} onChange={handleChange} options={countryOptions} error={errors.country} />
                                     </div>
                                     <div>
                                         <Label htmlFor="phoneNumber" required>Phone Number</Label>
-                                        <PhoneInput defaultCountry='GH' value={formData.phoneNumber} onChange={handlePhoneChange} placeholder="eg. 054 868 6500" className={`w-full px-4 py-3 rounded-lg border ${errors.phoneNumber ? 'border-red-500' : 'border-gray-300'} bg-gray-50 flex items-center`} inputClassName="bg-transparent border-none focus:ring-0 w-full outline-none ml-2" />
-                                        {errors.phoneNumber && <p className="mt-1 text-xs text-red-500 font-medium">{errors.phoneNumber}</p>}
+                                        <Input
+                                            name="phoneNumber"
+                                            value={formData.phoneNumber}
+                                            onChange={handleChange}
+                                            placeholder="eg. 548686500"
+                                            error={errors.phoneNumber}
+                                            type="tel"
+                                        />
                                     </div>
+
+                                    {formData.paymentMode === 'Debit and Credit Cards' && (
+                                        <div className="col-span-1 md:col-span-2 mt-4 flex items-center text-amber-700 bg-amber-50 p-3 rounded-lg text-sm border border-amber-200">
+                                            <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                                            </svg>
+                                            Card transactions would be subject to a 5% fee
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div className="flex gap-4 mt-8">
                                     <button type="button" onClick={handlePrevStep} className="w-1/3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3.5 px-6 rounded-lg transition">Back</button>
-                                    <button type="button" onClick={handleNextStep} className="w-2/3 bg-[#987c55] hover:bg-[#7d6542] text-white font-bold py-3.5 px-6 rounded-lg shadow-lg transform transition hover:-translate-y-0.5">Continue</button>
+                                    <button
+                                        type="button"
+                                        onClick={handleNextStep}
+                                        className="w-2/3 bg-[#987c55] hover:bg-[#7d6542] text-white font-bold py-3.5 px-6 rounded-lg shadow-lg transform transition hover:-translate-y-0.5"
+                                    >
+                                        {formData.insuranceOption === 'financial' ? 'Proceed' : 'Continue'}
+                                    </button>
                                 </div>
                             </div>
                         )}
@@ -613,7 +709,7 @@ const Insurance = () => {
                                 <div className="flex gap-4 mt-8">
                                     <button type="button" onClick={handlePrevStep} className="w-1/3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3.5 px-6 rounded-lg transition">Back</button>
                                     <button type="submit" disabled={loading} className="w-2/3 bg-[#987c55] hover:bg-[#7d6542] text-white font-bold py-3.5 px-6 rounded-lg shadow-lg transform transition hover:-translate-y-0.5">
-                                        {loading ? 'Processing...' : 'Complete Signup'}
+                                        {loading ? 'Processing...' : (formData.insuranceOption === 'financial' ? 'Finish Registration' : 'Complete Signup')}
                                     </button>
                                 </div>
                             </div>
@@ -754,32 +850,33 @@ const Insurance = () => {
                                     </a>
                                 </div>
                             ) : (
-                                <div className="bg-blue-50 border border-blue-100 rounded-lg p-4">
-                                    <p className="text-blue-800 font-medium">Check your phone ({formData.phoneNumber}) now!</p>
-                                    <p className="text-blue-600 text-sm mt-1">Enter PIN to authorize payment.</p>
-                                </div>
+                                <p className="text-gray-600 text-sm">Please check your phone for the MOMO prompt to authorize the transaction.</p>
                             )}
 
-                            <p className="text-xs text-gray-400">Redirecting to login in 30s...</p>
-
-                            <div className="flex gap-3">
+                            <div className="flex gap-4">
                                 <button
                                     onClick={() => setSuccessData(null)}
                                     className="flex-1 py-3 px-4 rounded-lg border border-gray-300 text-gray-600 font-semibold hover:bg-gray-50"
                                 >
                                     Close
                                 </button>
-                                <button
-                                    onClick={() => window.location.href = '/login'}
-                                    className="flex-1 py-3 px-4 rounded-lg bg-[#987c55] text-white font-bold hover:bg-[#7d6542]"
-                                >
-                                    Login Now
-                                </button>
+                                {formData.insuranceOption !== 'financial' && (
+                                    <button
+                                        onClick={() => window.location.href = '/login'}
+                                        className="flex-1 py-3 px-4 rounded-lg bg-[#987c55] text-white font-bold hover:bg-[#7d6542]"
+                                    >
+                                        Login Now
+                                    </button>
+                                )}
                             </div>
+                            {formData.insuranceOption === 'financial' && (
+                                <p className="text-xs text-[#987c55] italic">Closing this will allow you to complete your profile setup.</p>
+                            )}
                         </div>
                     </div>
                 </div>
             )}
+
             {/* ERROR MODAL */}
             {errorMessage && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
@@ -803,5 +900,4 @@ const Insurance = () => {
         </div>
     );
 };
-
 export default Insurance;

@@ -151,7 +151,12 @@ const FinanceSideModal = ({ onClose }) => {
                                 />
                             )}
                             <small>
-                                <Link to={activeDetail.link}>Sign up</Link>
+                                <Link
+                                    to="/register"
+                                    state={{ plan: activePackage }}
+                                >
+                                    Sign up
+                                </Link>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="28"

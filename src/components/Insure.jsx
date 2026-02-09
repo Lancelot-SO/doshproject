@@ -177,7 +177,14 @@ const Insure = ({ onClose }) => {
                         </div>
 
                         {detailToShow.link && (
-                            <Link to={detailToShow.link} target="_blank" rel="noopener noreferrer">
+                            <Link
+                                to="/register"
+                                state={{
+                                    plan: activePackage?.startsWith('DOSH ')
+                                        ? activePackage.split('DOSH ')[1]
+                                        : activePackage
+                                }}
+                            >
                                 <small>
                                     <h6 className="text-white">Sign up</h6>
                                     <FaArrowRight color="#fff" />

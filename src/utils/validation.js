@@ -31,16 +31,16 @@ export const validateSignupForm = (formData, step) => {
                 if (!insuranceCategory) errors.insuranceCategory = 'Required';
                 if (!insuranceType) errors.insuranceType = 'Required';
             }
+            if (formData.insuranceOption === 'financial' && !formData.productType) {
+                errors.productType = 'Required';
+            }
         }
     }
 
-    // Step 1: Payment Frequency & Product Type
+    // Step 1: Payment Frequency
     if (step === 1) {
         if (!paymentMethod) {
             errors.paymentMethod = 'Required';
-        }
-        if (formData.insuranceOption === 'financial' && !formData.productType) {
-            errors.productType = 'Required';
         }
     }
 
@@ -69,8 +69,8 @@ export const validateSignupForm = (formData, step) => {
 
         if (!country) errors.country = 'Required';
         if (!phoneNumber) errors.phoneNumber = 'Required';
-        else if (!/^\+?[0-9]{10,15}$/.test(phoneNumber.replace(/\s+/g, ''))) {
-            errors.phoneNumber = 'Invalid phone number format';
+        else if (phoneNumber.length < 7) {
+            errors.phoneNumber = 'Phone number is too short';
         }
     }
 

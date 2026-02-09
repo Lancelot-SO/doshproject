@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import login from "../images/login-image.png";
 import "./Login.css";
 import './Register.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 // import card from "../images/card.svg"
 // import RegModal from '../components/RegModal';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
@@ -12,6 +12,12 @@ const Register = () => {
     const [selectedOption, setSelectedOption] = useState("selfregister");
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    // Read plan from URL query params (fallback) or location state (preferred)
+    const searchParams = new URLSearchParams(location.search);
+    const planFromUrl = searchParams.get('plan');
+    const planParam = location.state?.plan || planFromUrl;
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -21,7 +27,8 @@ const Register = () => {
         event.preventDefault();
         if (selectedOption === "selfregister") {
             setShowModal(true);
-            navigate('/insurance');
+            // Pass the plan parameter to /insurance via state
+            navigate('/insurance', { state: { plan: planParam } });
         }
     };
     const closeModal = () => {
@@ -53,20 +60,20 @@ const Register = () => {
                                     <div className='radio__reg'>
                                         <div className='reg__input'>
                                             <input type='radio' name='registerOption' id='selfregister' value='selfregister' checked={selectedOption === "selfregister"} onChange={handleOptionChange} />
-                                            <label htmlFor='selfregister'>Self Register</label>
+                                            <label htmlFor='selfregister'>Self Registration</label>
                                         </div>
                                         <div className='reg__input'>
                                             <input type='radio' name='registerOption' id='usevoucher' value='usevoucher' checked={selectedOption === "usevoucher"} onChange={handleOptionChange} />
-                                            <label htmlFor='selfregister'>Enter Referral Code</label>
+                                            <label htmlFor='usevoucher'>By Voucher</label>
                                         </div>
                                     </div>
-                                    <form className='log__form' onSubmit={handleFormSubmit}>
-                                        <div className='form__log'>
-                                            <button type='submit' className='log__btn'>Continue</button>
-                                            <span>Already have an account ? <Link to='/login' className='linker__signup'>Login</Link></span>
-                                        </div>
-                                    </form>
                                 </div>
+                                <form className='log__form' onSubmit={handleFormSubmit}>
+                                    <div className='form__log'>
+                                        <button type='submit' className='log__btn'>Continue</button>
+                                        <span>Already have an account ? <Link to='/login' className='linker__signup'>Login</Link></span>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
