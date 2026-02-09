@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 const TrackPageVisit = ({ pageUrl }) => {
     useEffect(() => {
-        axios.post('https://doshcms.interactivedigital.com.gh/api/page-visit', {
+        axios.post('/api/page-visit', {
             page_url: pageUrl
         }, {
             headers: {

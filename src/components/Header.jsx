@@ -68,7 +68,7 @@ const Header = () => {
                 </ul>
                 <div className='nav__signup-container'>
                     <Link to='https://dsp.onenet.xyz:50443/login' target="_blank" rel="noopener noreferrer" className='nav__login'>Login</Link>
-                    <Link to='https://dsp.onenet.xyz:50443/#/?page=dosh-insurance' target="_blank" rel="noopener noreferrer">
+                    <Link to='https://dsp.onenet.xyz:50443/register' target="_blank" rel="noopener noreferrer" >
                         <div className='nav__signup'>
                             Sign Up
                             <svg
@@ -144,8 +144,8 @@ const Header = () => {
                                 </li>
                             </ul>
                             <div className='nav-mobile__signup'>
-                                <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer" className='nav__login-mobile'>Login</Link>
-                                <Link to='https://dsp.onenet.xyz:50443/#/' target="_blank" rel="noopener noreferrer">
+                                <Link to='/login' className='nav__login-mobile'>Login</Link>
+                                <Link to='/register'>
                                     <div className='nav__signup-mobile'>
                                         Sign Up
                                     </div>

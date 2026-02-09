@@ -285,40 +285,40 @@ const InsuranceTable = ({ closePopup }) => {
                                 <tr>
                                     <td className='heading-last'></td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/insurance?plan=365' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/insurance?plan=500' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/insurance?plan=750' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/insurance?plan=900' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/insurance?plan=1000' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/insurance?plan=1200' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/insurance?plan=2500' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/insurance?plan=2800' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/insurance?plan=5000' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/insurance?plan=5500' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/insurance?plan=10000' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
+                                        <button><Link to='/insurance?plan=11000' target="_blank" rel="noopener noreferrer">Sign Up</Link></button>
                                     </td>
                                 </tr>
                                 {/* Add more rows */}

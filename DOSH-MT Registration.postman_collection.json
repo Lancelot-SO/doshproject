@@ -1,0 +1,540 @@
+{
+  "info": {
+    "_postman_id": "11153783-4883-4772-bcf2-f2a7eccad4d4",
+    "name": "DOSH-MT Registration",
+    "description": "API for handling insurance, financial, and combo signup transactions\n\nContact Support:  \nName: API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "5248295",
+    "_collection_link": "https://go.postman.co/collection/44723104-11153783-4883-4772-bcf2-f2a7eccad4d4?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "transactions",
+      "item": [
+        {
+          "name": "signup",
+          "item": [
+            {
+              "name": "Insurance Only",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "x-csrf-token",
+                    "value": "MTc3MDAzMTA2ODI0MDowYTIwOWQyNzM2YWExMTc1MzYwZGU3NTZhYjBiNmY4ZTk0NzZkNjg2NTQwNWViYmM3YTY5OWM4ODNjZTAwNjAy",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "https://dsp.onenet.xyz:50443/",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"paymentMode\": \"mtn\",\n    \"accountNumber\": \"918709759624\",\n    \"phone\": \"917352945429\",\n    \"paymentMethod\": \"yearly\",\n    \"insuranceProduct\": \"DOSH 365 premium\",\n    \"nameToDebit\": \"Kwame Mensah\",\n    \"paymentFor\": \"insurance\",\n    \"insuranceCategory\": \"family\",\n    \"insuranceMetadata\": {\n        \"medicalConditions\": [],\n        \"isElderly\": false\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/transactions/signup",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "transactions",
+                    "signup"
+                  ]
+                },
+                "description": "Creates a new signup transaction for insurance, financial services, or a combination of both.\n\n**Supported Scenarios:**\n- Insurance Only: Subscribe to insurance products\n- Financial Only: Subscribe to financial services\n- Combo: Subscribe to both insurance and financial services\n"
+              },
+              "response": [
+                {
+                  "name": "Insurance Only Registration",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "x-csrf-token",
+                        "value": "MTc3MDAzMDI3NjE0Mjo2ODM5YzczNDNjMWQ3Y2JhMTY4MmVkNWI1NWRjYWVhODc5OWExNmZhNThhYzkyMGVhN2U5OWFmMzY3ZjJhY2Yw",
+                        "type": "text"
+                      },
+                      {
+                        "key": "Origin",
+                        "value": "https://dsp.onenet.xyz:50443/",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"paymentMode\": \"mtn\",\n    \"accountNumber\": \"918709759624\",\n    \"phone\": \"917352945429\",\n    \"paymentMethod\": \"yearly\",\n    \"lastname\": \"Mensah\",\n    \"firstname\": \"Kwame\",\n    \"insuranceProduct\": \"DOSH 365 premium\",\n    \"nameToDebit\": \"Kwame Mensah\",\n    \"paymentFor\": \"insurance\",\n    \"insuranceCategory\": \"family\",\n    \"insuranceMetadata\": {\n        \"medicalConditions\": [],\n        \"isElderly\": false\n    },\n    \"currency\": \"GHS\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{BASE_URL}}/transactions/signup",
+                      "host": [
+                        "{{BASE_URL}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "signup"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "Text",
+                  "header": [
+                    {
+                      "key": "X-Request-ID",
+                      "value": "c8821c0d-2345-4c40-8805-9ca96d6837de"
+                    },
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Access-Control-Allow-Methods",
+                      "value": "GET, HEAD, PUT, PATCH, POST, DELETE"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Mon, 02 Feb 2026 11:14:08 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "233"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"id\": \"cc93d26a-6a35-4ae0-b3d6-43f3bf94c64c\",\n    \"status\": \"success\",\n    \"message\": \"success\",\n    \"data\": {\n        \"status\": \"success\",\n        \"message\": \"Your request is being processed\",\n        \"referenceId\": \"cc93d26a-6a35-4ae0-b3d6-43f3bf94c64c\",\n        \"username\": \"5481460769\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Financial only",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "x-csrf-token",
+                    "value": "MTc3MDAzMTk1NzA1ODpmNDFmOTJjYzczMjM0YTdhM2M3ODU0Y2Q2MjJmN2ZiY2NmZjM4MTUxMzk2ZDg2NzFhMjczMDcxY2I1OTY4OTRl",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "https://dsp.onenet.xyz:50443/",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"paymentMode\": \"mtn\",\n    \"accountNumber\": \"917352945429\",\n    \"phone\": \"917352945429\",\n    \"paymentMethod\": \"daily\",\n    \"nameToDebit\": \"917352945429\",\n    \"paymentFor\": \"financial\",\n    \"productType\": \"personal\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/transactions/signup",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "transactions",
+                    "signup"
+                  ]
+                },
+                "description": "Creates a new signup transaction for insurance, financial services, or a combination of both.\n\n**Supported Scenarios:**\n- Insurance Only: Subscribe to insurance products\n- Financial Only: Subscribe to financial services\n- Combo: Subscribe to both insurance and financial services\n"
+              },
+              "response": [
+                {
+                  "name": "Financial only",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "x-csrf-token",
+                        "value": "MTc3MDAzMTk1NzA1ODpmNDFmOTJjYzczMjM0YTdhM2M3ODU0Y2Q2MjJmN2ZiY2NmZjM4MTUxMzk2ZDg2NzFhMjczMDcxY2I1OTY4OTRl",
+                        "type": "text"
+                      },
+                      {
+                        "key": "Origin",
+                        "value": "https://dsp.onenet.xyz:50443/",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"paymentMode\": \"mtn\",\n    \"accountNumber\": \"233244983601\",\n    \"phone\": \"233244983601\",\n    \"paymentMethod\": \"daily\",\n    \"nameToDebit\": \"233244983601\",\n    \"paymentFor\": \"financial\",\n    \"productType\": \"personal\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{base_url}}/transactions/signup",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "signup"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "Text",
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "nginx/1.18.0 (Ubuntu)"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Mon, 02 Feb 2026 11:33:00 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Transfer-Encoding",
+                      "value": "chunked"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "X-Request-ID",
+                      "value": "4fefead3-83c2-4a78-bd68-3ed407d603af"
+                    },
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Access-Control-Allow-Methods",
+                      "value": "GET, HEAD, PUT, PATCH, POST, DELETE"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"id\": \"ac73ef3c-052f-4754-b879-5794d6d2dcab\",\n    \"status\": \"success\",\n    \"message\": \"success\",\n    \"data\": {\n        \"status\": \"success\",\n        \"message\": \"Your request is being processed\",\n        \"referenceId\": \"ac73ef3c-052f-4754-b879-5794d6d2dcab\",\n        \"username\": \"2436889898\"\n    }\n}"
+                },
+                {
+                  "name": "existing unpaid - Failed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "x-csrf-token",
+                        "value": "MTc3MDAzMTk1NzA1ODpmNDFmOTJjYzczMjM0YTdhM2M3ODU0Y2Q2MjJmN2ZiY2NmZjM4MTUxMzk2ZDg2NzFhMjczMDcxY2I1OTY4OTRl",
+                        "type": "text"
+                      },
+                      {
+                        "key": "Origin",
+                        "value": "https://dsp.onenet.xyz:50443/",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"paymentMode\": \"mtn\",\n    \"accountNumber\": \"233244983601\",\n    \"phone\": \"233244983601\",\n    \"paymentMethod\": \"daily\",\n    \"nameToDebit\": \"233244983601\",\n    \"paymentFor\": \"financial\",\n    \"productType\": \"personal\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{base_url}}/transactions/signup",
+                      "host": [
+                        "{{base_url}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "signup"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity",
+                  "code": 422,
+                  "_postman_previewlanguage": "Text",
+                  "header": [
+                    {
+                      "key": "Server",
+                      "value": "nginx/1.18.0 (Ubuntu)"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Mon, 02 Feb 2026 11:33:19 GMT"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Transfer-Encoding",
+                      "value": "chunked"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "X-Request-ID",
+                      "value": "31993a91-b0c2-4920-b02a-3ae9bd279316"
+                    },
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Access-Control-Allow-Methods",
+                      "value": "GET, HEAD, PUT, PATCH, POST, DELETE"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"name\": \"ValidationError\",\n    \"message\": \"Please Pay unpiad pending registration\",\n    \"code\": 422,\n    \"type\": \"pending-unpaid-registration-found\",\n    \"data\": {\n        \"requestID\": \"31993a91-b0c2-4920-b02a-3ae9bd279316\"\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Combo",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "x-csrf-token",
+                    "value": "MTc3MDAzMDI3NjE0Mjo2ODM5YzczNDNjMWQ3Y2JhMTY4MmVkNWI1NWRjYWVhODc5OWExNmZhNThhYzkyMGVhN2U5OWFmMzY3ZjJhY2Yw",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "https://dsp.onenet.xyz:50443/",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"paymentMode\": \"mtn\",\n    \"accountNumber\": \"918709759624\",\n    \"phone\": \"917352945429\",\n    \"paymentMethod\": \"yearly\",\n    \"insuranceProduct\": \"DOSH 365 premium\",\n    \"nameToDebit\": \"Kwame Mensah\",\n    \"paymentFor\": \"financial-insurance\",\n    \"insuranceCategory\": \"family\",\n    \"insuranceMetadata\": {\n        \"medicalConditions\": [],\n        \"isElderly\": false\n    },\n    \"productType\": \"personal\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/transactions/signup",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "transactions",
+                    "signup"
+                  ]
+                },
+                "description": "Creates a new signup transaction for insurance, financial services, or a combination of both.\n\n**Supported Scenarios:**\n- Insurance Only: Subscribe to insurance products\n- Financial Only: Subscribe to financial services\n- Combo: Subscribe to both insurance and financial services\n"
+              },
+              "response": []
+            },
+            {
+              "name": "CSRF TOKEN",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{BASE_URL}}/csrf-token",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "csrf-token"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "CSRF TOKEN",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{BASE_URL}}/csrf-token",
+                      "host": [
+                        "{{BASE_URL}}"
+                      ],
+                      "path": [
+                        "csrf-token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "Text",
+                  "header": [
+                    {
+                      "key": "X-Request-ID",
+                      "value": "37ea9d4c-689f-4aa0-957f-294724831d75"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 31 Jan 2026 15:37:51 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "120"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"csrfToken\": \"MTc2OTg3Mzg3MTkxMjpkZmMyMTcyNjY5MjVmYjVlODRhYTA0N2IwOWYwOGE2MzMzMTZlMjhjMzc2ODNiMDA0YzdlM2YwZDVkY2NiMmU4\"\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://dsp.onenet.xyz:50443/api/v3"
+    },
+    {
+      "key": "BASE_URL",
+      "value": "https://dsp.onenet.xyz:50443/api/v3"
+    }
+  ]
+}

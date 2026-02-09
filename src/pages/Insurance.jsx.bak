@@ -1,0 +1,561 @@
+import React, { useState } from 'react';
+import "./Insurance.css";
+import newAnime from "../images/sphoto.png";
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css'
+import { validateSignupForm } from '../utils/validation';
+import { useSignup } from '../hooks/useSignup';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const Insurance = () => {
+    const { signup, loading, successData, errorMessage, setErrorMessage, setSuccessData } = useSignup();
+
+    const [formData, setFormData] = useState({
+        insuranceCategory: 'Personal',
+        insuranceType: 'DOSH 365',
+        medicalCondition: 'no',
+        paymentMethod: '',
+        insuranceOption: '',
+        productType: 'Personal',
+        paymentMode: '',
+        phoneNumber: '',
+        country: 'Ghana',
+        idType: '',
+        idNumber: '',
+        email: '',
+        region: '',
+        firstName: '',
+        lastName: '',
+        gender: '',
+        dob: '',
+        password: '',
+        confirmPassword: '',
+    });
+
+    const [errors, setErrors] = useState({});
+    const [formStepsNum, setFormStepsNum] = useState(0);
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+
+    const getPricing = () => {
+        const type = formData.insuranceType;
+        const frequency = formData.paymentMethod || 'yearly';
+
+        const rates = {
+            'DOSH 365': 365,
+            'DOSH 750': 750,
+            'DOSH 1000': 1000,
+            'DOSH 2500': 2500,
+            'DOSH 5000': 5000,
+            'DOSH 10000': 10000
+        };
+
+        const base = rates[type] || 0;
+
+        if (frequency === 'daily') {
+            if (type === 'DOSH 365') return 1;
+            return (base / 365).toFixed(2);
+        }
+
+        return base;
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        setFormData(prev => {
+            const next = { ...prev, [name]: value };
+
+            // If switching to Financial Only, force daily frequency
+            if (name === 'insuranceOption' && value === 'financial') {
+                next.paymentMethod = 'daily';
+            }
+
+            return next;
+        });
+
+        // Clear error when user types
+        if (errors[name]) {
+            setErrors(prev => ({ ...prev, [name]: '' }));
+        }
+    };
+
+    const handlePhoneChange = (value) => {
+        setFormData(prev => ({ ...prev, phoneNumber: value }));
+        if (errors.phoneNumber) {
+            setErrors(prev => ({ ...prev, phoneNumber: '' }));
+        }
+    };
+
+    const handleNextStep = () => {
+        const { isValid, errors: validationErrors } = validateSignupForm(formData, formStepsNum);
+        if (isValid) {
+            if (formStepsNum === 0) {
+                if (formData.insuranceOption === 'financial') {
+                    // Financial only submits directly from step 0
+                    setShowConfirmModal(true);
+                } else {
+                    // Skip Step 1 (ID Verification) as it's not in the API requirements
+                    setFormStepsNum(2);
+                }
+            } else {
+                setFormStepsNum(prevNum => prevNum + 1);
+            }
+            setErrors({});
+        } else {
+            setErrors(validationErrors);
+            toast.error("Please fix the errors before proceeding.");
+        }
+    };
+
+    const handlePrevStep = () => {
+        if (formStepsNum === 2) {
+            setFormStepsNum(0); // Go back over skipped step 1
+        } else {
+            setFormStepsNum(prevNum => prevNum - 1);
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const { isValid, errors: validationErrors } = validateSignupForm(formData, formStepsNum);
+
+        if (!isValid) {
+            setErrors(validationErrors);
+            toast.error("Please fix the errors before submitting.");
+            return;
+        }
+
+        setShowConfirmModal(true);
+    };
+
+    const performSignup = async () => {
+        setShowConfirmModal(false);
+        try {
+            await signup(formData);
+
+            // Success Toast is handled by hook's successData change or manual check
+            toast.info("Registration initiated. Redirecting soon...");
+
+            // Redirect delay after success
+            setTimeout(() => {
+                window.location.href = '/login';
+            }, 30000);
+        } catch (error) {
+            // Error toast is handled by hook's errorMessage or caught here
+            toast.error(error.message || "Registration failed.");
+        }
+    };
+
+    return (
+        <div className='insurance'>
+            <ToastContainer position="top-right" autoClose={5000} />
+            <div className='insurance__container'>
+                <div className='insurance__left'>
+                    <img src={newAnime} alt='anime' />
+                </div>
+                <div className='insurance__right'>
+                    <h2>DOSH Registration</h2>
+
+                    <div className='progressbar'>
+                        <div className={`progress`} id='progress' style={{ width: `${formStepsNum === 0 ? 0 : 100}%` }}></div>
+                        <div className={`progress__step ${formStepsNum >= 0 ? 'active' : ''}`} data-title="Product"></div>
+                        {(formData.insuranceOption !== 'financial') && (
+                            <div className={`progress__step ${formStepsNum >= 2 ? 'active' : ''}`} data-title="Personalize"></div>
+                        )}
+                    </div>
+
+                    <form className='insurance__form' onSubmit={handleSubmit}>
+                        {/* STEP 0: Payment & Product Selection */}
+                        {formStepsNum === 0 && (
+                            <div className={`form__step active`}>
+                                <div className='firststep_data'>
+                                    <label htmlFor='insuranceOption'>Registration Type</label>
+                                    <select
+                                        name="insuranceOption"
+                                        className="firststep_selector"
+                                        value={formData.insuranceOption}
+                                        onChange={handleChange}
+                                        required
+                                    >
+                                        <option value="">-- Select Option --</option>
+                                        <option value="financial">Create financial-only account</option>
+                                        <option value="insuranceOnly">Create insurance-only account</option>
+                                        <option value="plan">No, create one for my payment plan (Combo)</option>
+                                        <option value="account">Already have a DOSH financial account (Insurance Add-on)</option>
+                                    </select>
+                                    {errors.insuranceOption && <span className="error-text">{errors.insuranceOption}</span>}
+                                </div>
+
+                                {/* INSURANCE SPECIFIC FIELDS */}
+                                {(formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'plan' || formData.insuranceOption === 'account') && (
+                                    <>
+                                        <div className='firststep_data'>
+                                            <label htmlFor='insuranceCategory'>Insurance Category Type</label>
+                                            <select
+                                                name="insuranceCategory"
+                                                className="firststep_selector"
+                                                value={formData.insuranceCategory}
+                                                onChange={handleChange}
+                                            >
+                                                <option value="Personal">Personal</option>
+                                                <option value="Family">Family</option>
+                                            </select>
+                                            {errors.insuranceCategory && <span className="error-text">{errors.insuranceCategory}</span>}
+                                        </div>
+
+                                        <div className='firststep_data'>
+                                            <label htmlFor='insuranceType'>Insurance Type</label>
+                                            <select
+                                                name="insuranceType"
+                                                className="firststep_selector"
+                                                value={formData.insuranceType}
+                                                onChange={handleChange}
+                                            >
+                                                <option value="DOSH 365">DOSH 365</option>
+                                                <option value="DOSH 750">DOSH 750</option>
+                                                <option value="DOSH 1000">DOSH 1000</option>
+                                                <option value="DOSH 2500">DOSH 2500</option>
+                                                <option value="DOSH 5000">DOSH 5000</option>
+                                                <option value="DOSH 10000">DOSH 10000</option>
+                                            </select>
+                                            {errors.insuranceType && <span className="error-text">{errors.insuranceType}</span>}
+                                        </div>
+
+                                        <p className='firststep_condition'>
+                                            Diagnosed with any pre-existing condition in the past 5 years?
+                                        </p>
+                                        <div className='firststep_radiobtn'>
+                                            <input
+                                                type="radio"
+                                                name="medicalCondition"
+                                                value="yes"
+                                                checked={formData.medicalCondition === 'yes'}
+                                                onChange={handleChange}
+                                            />
+                                            <span>Yes</span>
+                                            <input
+                                                type="radio"
+                                                name="medicalCondition"
+                                                value="no"
+                                                checked={formData.medicalCondition === 'no'}
+                                                onChange={handleChange}
+                                            />
+                                            <span>No</span>
+                                        </div>
+                                    </>
+                                )}
+
+                                {/* FINANCIAL SPECIFIC FIELDS */}
+                                {(formData.insuranceOption === 'plan' || formData.insuranceOption === 'financial') && (
+                                    <div className='firststep_data'>
+                                        <label htmlFor='productType'>Financial Account Type</label>
+                                        <select
+                                            name="productType"
+                                            className="firststep_selector"
+                                            value={formData.productType}
+                                            onChange={handleChange}
+                                        >
+                                            <option value="Personal">Personal</option>
+                                            <option value="Family">Family</option>
+                                            <option value="SMB">SMB</option>
+                                            <option value="SOHO">SOHO</option>
+                                            <option value="Enterprise">Enterprise</option>
+                                        </select>
+                                    </div>
+                                )}
+
+                                {/* COMMON FIELDS */}
+                                {formData.insuranceOption !== 'financial' && (
+                                    <div className='firststep_data'>
+                                        <label htmlFor='paymentMethod'>Payment Frequency</label>
+                                        <select
+                                            name="paymentMethod"
+                                            className="firststep_selector"
+                                            value={formData.paymentMethod}
+                                            onChange={handleChange}
+                                            required
+                                        >
+                                            <option value="">-- Select Frequency --</option>
+                                            <option value="daily">Daily</option>
+                                            <option value="yearly">Yearly</option>
+                                        </select>
+                                        {errors.paymentMethod && <span className="error-text">{errors.paymentMethod}</span>}
+                                    </div>
+                                )}
+
+                                <div className='firststep_data'>
+                                    <label htmlFor='paymentMode'>Payment Mode</label>
+                                    <select
+                                        name="paymentMode"
+                                        className="firststep_selector"
+                                        required
+                                        value={formData.paymentMode}
+                                        onChange={handleChange}
+                                    >
+                                        <option value="">-- Select Payment Mode --</option>
+                                        <option value="DOSH">DOSH Account</option>
+                                        <option value="MTN Mobile Money">MTN Mobile Money</option>
+                                        <option value="AirtelTigo Money">AirtelTigo Money</option>
+                                        <option value="Telecel Cash">Telecel Cash</option>
+                                        <option value="Debit and Credit Cards">Debit and Credit Cards</option>
+                                    </select>
+                                    {errors.paymentMode && <span className="error-text">{errors.paymentMode}</span>}
+                                </div>
+
+                                <div className='firststep_data'>
+                                    <label htmlFor='phoneNumber'>Account/Phone Number</label>
+                                    <div>
+                                        <PhoneInput
+                                            defaultCountry='GH'
+                                            required
+                                            value={formData.phoneNumber}
+                                            onChange={handlePhoneChange}
+                                            placeholder="eg. 054 868 6500"
+                                            className='phone_number'
+                                        />
+                                    </div>
+                                    {errors.phoneNumber && <span className="error-text">{errors.phoneNumber}</span>}
+                                </div>
+
+                                <button type='button' onClick={handleNextStep} className='btn step__btn'>
+                                    {formData.insuranceOption === 'financial' ? 'COMPLETE REGISTRATION' : 'NEXT STEP'}
+                                </button>
+                            </div>
+                        )}
+
+                        {/* STEP 1: ID Verification */}
+                        {formStepsNum === 1 && (
+                            <div className={`form__step active`}>
+                                <div className='Payment__type'>
+                                    <label htmlFor='country'>Country</label>
+                                    <select name="country" className="mySelect" value={formData.country} onChange={handleChange}>
+                                        <option value="Ghana">Ghana</option>
+                                        <option value="Nigeria">Nigeria</option>
+                                    </select>
+                                </div>
+
+                                <div className='Payment__type'>
+                                    <label htmlFor='idType'>ID Type</label>
+                                    <select name="idType" className="mySelect" value={formData.idType} onChange={handleChange}>
+                                        <option value="">-- Select ID Type --</option>
+                                        <option value="Ghana Card">Ghana Card</option>
+                                        <option value="Passport">Passport</option>
+                                        <option value="Voters ID">Voters ID</option>
+                                    </select>
+                                    {errors.idType && <span className="error-text">{errors.idType}</span>}
+                                </div>
+
+                                <div className='Username__type'>
+                                    <label htmlFor='idNumber'>ID Number</label>
+                                    <input
+                                        type='text'
+                                        className='user__input'
+                                        name='idNumber'
+                                        value={formData.idNumber}
+                                        onChange={handleChange}
+                                        placeholder='GHA-XXXXXXXXX-X'
+                                    />
+                                    {errors.idNumber && <span className="error-text">{errors.idNumber}</span>}
+                                </div>
+
+                                <div className='financial__type'>
+                                    <label htmlFor='email'>Email Address</label>
+                                    <input
+                                        type='email'
+                                        className='finance__input'
+                                        name='email'
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        placeholder='example@gmail.com'
+                                    />
+                                    {errors.email && <span className="error-text">{errors.email}</span>}
+                                </div>
+
+                                <div className='Payment__type'>
+                                    <label htmlFor='region'>Region</label>
+                                    <select name="region" className="mySelect" value={formData.region} onChange={handleChange}>
+                                        <option value="">-- Select Region --</option>
+                                        <option value="Greater Accra">Greater Accra</option>
+                                        <option value="Ashanti">Ashanti</option>
+                                        <option value="Central">Central</option>
+                                        <option value="Western">Western</option>
+                                    </select>
+                                    {errors.region && <span className="error-text">{errors.region}</span>}
+                                </div>
+
+                                <button type='button' onClick={handleNextStep} className='btn step__btn'>NEXT STEP</button>
+                                <button type='button' onClick={handlePrevStep} className='btn steps__btn'>Back</button>
+                            </div>
+                        )}
+
+                        {/* STEP 2: Personalize - Only for Insurance/Combo */}
+                        {formStepsNum === 2 && (
+                            <div className={`form__step active`}>
+                                <div className='Username__type'>
+                                    <label htmlFor='firstName'>First Name</label>
+                                    <input
+                                        type='text'
+                                        className='user__input'
+                                        name='firstName'
+                                        required
+                                        value={formData.firstName}
+                                        onChange={handleChange}
+                                        placeholder='Enter your first name'
+                                    />
+                                    {errors.firstName && <span className="error-text">{errors.firstName}</span>}
+                                </div>
+                                <div className='Username__type'>
+                                    <label htmlFor='lastName'>Last Name</label>
+                                    <input
+                                        type='text'
+                                        className='user__input'
+                                        name='lastName'
+                                        required
+                                        value={formData.lastName}
+                                        onChange={handleChange}
+                                        placeholder='Enter your last name'
+                                    />
+                                    {errors.lastName && <span className="error-text">{errors.lastName}</span>}
+                                </div>
+
+                                <div className='Username__type'>
+                                    <label htmlFor='password'>Password</label>
+                                    <input
+                                        type='password'
+                                        name="password"
+                                        required
+                                        className='user__input'
+                                        value={formData.password}
+                                        onChange={handleChange}
+                                        placeholder='Minimum 6 characters'
+                                    />
+                                    {errors.password && <span className="error-text">{errors.password}</span>}
+                                </div>
+
+                                <div className='Username__type'>
+                                    <label htmlFor='confirmPassword'>Confirm Password</label>
+                                    <input
+                                        type='password'
+                                        name="confirmPassword"
+                                        required
+                                        className='user__input'
+                                        value={formData.confirmPassword}
+                                        onChange={handleChange}
+                                        placeholder='Confirm your password'
+                                    />
+                                    {errors.confirmPassword && <span className="error-text">{errors.confirmPassword}</span>}
+                                </div>
+
+                                <button
+                                    type='submit'
+                                    className='step__btn'
+                                    disabled={loading}
+                                >
+                                    {loading ? 'Processing...' : 'Complete Registration'}
+                                </button>
+                                <button type='button' onClick={handlePrevStep} className='btn steps__btn'>Back</button>
+                            </div>
+                        )}
+                    </form>
+                </div>
+            </div>
+
+            {/* Confirmation Modal */}
+            {showConfirmModal && (
+                <div className='modal__overlay'>
+                    <div className='modal__content confirmation__modal'>
+                        <h2>Confirm Transaction</h2>
+                        <div className='transaction__summary'>
+                            <div className='summary__item'>
+                                <span>Product:</span>
+                                <strong>{formData.insuranceType}</strong>
+                            </div>
+                            <div className='summary__item'>
+                                <span>Category:</span>
+                                <strong>{formData.insuranceCategory}</strong>
+                            </div>
+                            <div className='summary__item'>
+                                <span>Frequency:</span>
+                                <strong style={{ textTransform: 'capitalize' }}>{formData.paymentMethod}</strong>
+                            </div>
+                            <div className='summary__item'>
+                                <span>Amount:</span>
+                                <strong className='amount'>GHS {getPricing()}</strong>
+                            </div>
+                            <div className='summary__item'>
+                                <span>Payment Mode:</span>
+                                <strong>{formData.paymentMode}</strong>
+                            </div>
+                        </div>
+                        <p className='modal__hint'>
+                            An STK Push/Payment prompt will be sent to <strong>{formData.phoneNumber}</strong> upon clicking confirm.
+                        </p>
+                        <div className='modal__actions'>
+                            <button type="button" className='btn secondary__btn' onClick={() => setShowConfirmModal(false)}>Edit Details</button>
+                            <button type="button" className='btn primary__btn' onClick={performSignup}>Confirm & Pay</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Success Modal */}
+            {successData && (
+                <div className='modal__overlay'>
+                    <div className='modal__content success__modal'>
+                        <div className='success__icon'>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <h2>Registration Initiated!</h2>
+                        <p>Your DOSH account registration is being processed.</p>
+
+                        <div className='result__box'>
+                            <div className='result__item'>
+                                <span>Reference ID:</span>
+                                <strong>{successData?.referenceId || successData?.id || 'N/A'}</strong>
+                            </div>
+                            <div className='result__item'>
+                                <span>Login Username:</span>
+                                <strong className='highlight'>{successData?.username || 'N/A'}</strong>
+                            </div>
+                        </div>
+
+                        <div className='payment__instruction'>
+                            <h3>Action Required</h3>
+                            <p>Please check your phone (<strong>{formData.phoneNumber}</strong>) right now for the payment prompt.</p>
+                            <p>Enter your PIN to complete the transaction.</p>
+                        </div>
+
+                        <p className='redirect__notice'>
+                            Redirecting to login in 30 seconds...
+                        </p>
+
+                        <div className='modal__actions' style={{ justifyContent: 'center' }}>
+                            <button type="button" className='btn secondary__btn' onClick={() => setSuccessData(null)}>Close</button>
+                            <button type="button" className='btn primary__btn' onClick={() => window.location.href = '/login'}>
+                                Go to Login Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Error Display (optional, if toast isn't enough) */}
+            {errorMessage && (
+                <div className='modal__overlay'>
+                    <div className='modal__content error__modal'>
+                        <h2 style={{ color: '#e74c3c' }}>Registration Failed</h2>
+                        <p>{errorMessage}</p>
+                        <div className='modal__actions' style={{ justifyContent: 'center' }}>
+                            <button type="button" className='btn primary__btn' onClick={() => setErrorMessage('')}>Try Again</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default Insurance;

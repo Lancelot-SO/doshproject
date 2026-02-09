@@ -322,6 +322,12 @@ td {
         overflow: scroll;
     }
 
+    .signup-button {
+        text-align: center;
+        padding-top: 10px;
+        border: none;
+    }
+
     .signup-button button {
         font-size: 10px;
     }
@@ -329,4 +335,28 @@ td {
 
 .text-align-justify {
     text-align: justify;
+}
+
+@media screen and (max-width: 360px) {
+    .glass-table {
+        height: auto;
+        min-height: 600px;
+        max-height: 85vh;
+        overflow: scroll;
+        padding-bottom: 80px;
+    }
+
+    .signup-button {
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        border: none;
+    }
+
+    .signup-button button {
+        font-size: 8px;
+        padding: 6px 10px;
+        white-space: nowrap;
+        border-radius: 50px;
+    }
 }
