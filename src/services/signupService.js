@@ -64,6 +64,47 @@ async function fetchCsrfToken() {
     }
 }
 
+// ------------- SIGNUP FEE FETCHER -------------
+
+/**
+ * Fetches the signup fee for a given registration payload.
+ * @param {Object} payload - The transformed payload for the API.
+ * @returns {Promise<{ok: boolean, status: number, data?: any, message?: string}>}
+ */
+export async function getSignupFee(payload) {
+    // For live production: using the full URL without the /v3 prefix for the fee endpoint
+    const url = 'https://dsp.onenet.xyz:50443/api/transactions/signup/fee';
+    console.log('[Signup Debug] Fetching fee from:', url);
+    console.log('[Signup Debug] Fee Payload:', JSON.stringify(payload, null, 2));
+
+    try {
+        const csrfToken = await fetchCsrfToken();
+
+        const response = await axios.post(url, payload, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'x-csrf-token': csrfToken,
+            },
+            withCredentials: true
+        });
+
+        return {
+            ok: true,
+            status: response.status,
+            data: response.data
+        };
+    } catch (error) {
+        console.error('[Signup Fee Error]', error.response?.data || error.message);
+        return {
+            ok: false,
+            status: error.response?.status || 0,
+            data: error.response?.data || null,
+            message: error.response?.data?.message || 'Failed to fetch signup fee.'
+        };
+    }
+}
+
 // ------------- SIGNUP REQUEST -------------
 
 /**
@@ -112,7 +153,7 @@ export async function executeSignup(payload) {
                 return {
                     ok: false,
                     status,
-                    errorCode: 'UNPROCESSABLE_ENTITY',
+                    data: data,
                     message:
                         data?.message ||
                         'Signup failed: there is an existing unpaid transaction or invalid data.'
@@ -123,7 +164,7 @@ export async function executeSignup(payload) {
                 return {
                     ok: false,
                     status,
-                    errorCode: 'BAD_REQUEST',
+                    data: data,
                     message: data?.message || 'Invalid input. Please check your details.'
                 };
             }
@@ -132,7 +173,7 @@ export async function executeSignup(payload) {
                 return {
                     ok: false,
                     status,
-                    errorCode: 'UNAUTHORIZED',
+                    data: data,
                     message: 'You are not authorized. Please log in and try again.'
                 };
             }
@@ -140,7 +181,7 @@ export async function executeSignup(payload) {
             return {
                 ok: false,
                 status,
-                errorCode: 'SERVER_ERROR',
+                data: data,
                 message:
                     data?.message ||
                     'An error occurred while processing your signup. Please try again.'

@@ -106,7 +106,7 @@ const RegModal = () => {
                                         <span>DOSH</span>
                                         <h2>750</h2>
                                         <h3>Description</h3>
-                                        <p>DOSH 750 comes with add-ons and quintessential incentives targeted at individuals, families and their dependents with a slightly higher premium. It is gratifying to know that with DOSH, your family and dependents’ health care needs are furnished with a cover up to GHS 18,000 for only GHS 750 annual premium. This package is specially recommended for new employees or young families seeking affordable and cost-effective health insurance products. An annual premium of GHS 750 comes with health insurance cover of up to GHS 15,000 for In-Patient and GHS 3,000 for Out-Patient services respectively.
+                                        <p>DOSH 750 comes with add-ons and quintessential incentives targeted at individuals, families and their dependents with a slightly higher premium. It is gratifying to know that with DOSH, your family and dependents’ health care needs are furnished with a cover up to GHS 18,000 for only GHS 750 daily premium. This package is specially recommended for new employees or young families seeking affordable and cost-effective health insurance products. A daily premium of GHS 750 comes with health insurance cover of up to GHS 15,000 for In-Patient and GHS 3,000 for Out-Patient services respectively.
 
                                         </p>
                                         <Link to="/insurance" className='icon__button'>
@@ -137,7 +137,7 @@ const RegModal = () => {
                                         <span>DOSH</span>
                                         <h2>1000</h2>
                                         <h3>Description</h3>
-                                        <p>The package is distinctively designed to offer members absolute serenity with regards to their health care needs offering an extended cover of up to a whopping GHS 30,000 for an annual premium of only GHS1,000. DOSH1000 offers an In-Patient Limit of GHS 25,000 and Out-Patient Limit of GHS 5,000, offering members value for their investments.
+                                        <p>The package is distinctively designed to offer members absolute serenity with regards to their health care needs offering an extended cover of up to a whopping GHS 30,000 for a daily premium of only GHS1,000. DOSH1000 offers an In-Patient Limit of GHS 25,000 and Out-Patient Limit of GHS 5,000, offering members value for their investments.
                                         </p>
                                         <Link to="/insurance" className='icon__button'>
                                             <button type='submit' className='dosh__btn'>Continue</button>
@@ -167,7 +167,7 @@ const RegModal = () => {
                                         <span>DOSH</span>
                                         <h2>2500</h2>
                                         <h3>Description</h3>
-                                        <p>For Individuals and Corporate organizations interested in prudent financial planning in all crucial areas of life or business with the rainy-days in mind, DOSH 2500 health insurance plan comes highly recommended with an annual cover up to GHS 60,000. DOSH 2500 offers GHS 50,000 In-Patient and GHS 10,000 Out-Patient services for an annual premium of GHS 2,500.
+                                        <p>For Individuals and Corporate organizations interested in prudent financial planning in all crucial areas of life or business with the rainy-days in mind, DOSH 2500 health insurance plan comes highly recommended with an annual cover up to GHS 60,000. DOSH 2500 offers GHS 50,000 In-Patient and GHS 10,000 Out-Patient services for a daily premium of GHS 2,500.
                                         </p>
                                         <Link to="/insurance" className='icon__button'>
                                             <button type='submit' className='dosh__btn'>Continue</button>
@@ -227,7 +227,7 @@ const RegModal = () => {
                                         <span>DOSH</span>
                                         <h2>10000</h2>
                                         <h3>Description</h3>
-                                        <p>DOS 10,000 delivers health care services cover of up to GHS 190,000, and is highly suited for clients who desire peace of mind with regards to 360 healthcare delivery. This esteemed package provides up to GHS 150,000 for In-Patient and GHS 40,000 Out-Patient health care services at an annual premium of GHS 10,000 and accessible nationwide at all the major health care service providers.
+                                        <p>DOS 10,000 delivers health care services cover of up to GHS 190,000, and is highly suited for clients who desire peace of mind with regards to 360 healthcare delivery. This esteemed package provides up to GHS 150,000 for In-Patient and GHS 40,000 Out-Patient health care services at a daily premium of GHS 10,000 and accessible nationwide at all the major health care service providers.
                                         </p>
                                         <Link to="/insurance" className='icon__button'>
                                             <button type='submit' className='dosh__btn'>Continue</button>

@@ -89,19 +89,19 @@ const FinanceTable = ({ closePopup }) => {
                                 <tr>
                                     <td className='heading-last'></td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: 'Personal' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: 'Personal', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: 'Family' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: 'Family', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: 'SOHO' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: 'SOHO', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: 'SMB' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: 'SMB', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: 'Enterprise' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: 'Enterprise', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                 </tr>
                             </table>

@@ -1,11 +1,14 @@
-import { useState, useCallback } from 'react';
-import { executeSignup } from '../services/signupService';
+import { useCallback, useState } from 'react';
+import { executeSignup, getSignupFee } from '../services/signupService';
 import { transformToSignupPayload } from '../utils/transformers';
 
 export function useSignup() {
     const [loading, setLoading] = useState(false);
     const [successData, setSuccessData] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
+    const [errorData, setErrorData] = useState(null);
+    const [feeData, setFeeData] = useState(null);
+    const [feeLoading, setFeeLoading] = useState(false);
 
     /**
      * The primary signup function provided by the hook.
@@ -22,6 +25,7 @@ export function useSignup() {
             setLoading(true);
             setSuccessData(null);
             setErrorMessage('');
+            setErrorData(null);
 
             try {
                 const payload = transformToSignupPayload(formData);
@@ -36,6 +40,7 @@ export function useSignup() {
                 } else {
                     console.error('[Signup Error]', result);
                     setErrorMessage(result.message || 'Signup failed.');
+                    setErrorData(result.data || null);
                     throw result;
                 }
             } catch (err) {
@@ -52,11 +57,41 @@ export function useSignup() {
         [errorMessage]
     );
 
+    /**
+     * getFee: Fetches the pricing breakdown from the API.
+     */
+    const getFee = useCallback(
+        async (formData) => {
+            setFeeLoading(true);
+            try {
+                const payload = transformToSignupPayload(formData);
+                const result = await getSignupFee(payload);
+                if (result.ok) {
+                    setFeeData(result.data);
+                    return result.data;
+                } else {
+                    console.error('[Fee Fetch Error]', result);
+                    setFeeData(null);
+                }
+            } catch (err) {
+                console.error('[Fee Exception]', err);
+                setFeeData(null);
+            } finally {
+                setFeeLoading(false);
+            }
+        },
+        []
+    );
+
     return {
         signup,
+        getFee,
         loading,
+        feeLoading,
         successData,
+        feeData,
         errorMessage,
+        errorData,
         setErrorMessage,
         setSuccessData
     };

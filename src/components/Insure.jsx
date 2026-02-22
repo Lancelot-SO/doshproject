@@ -182,7 +182,8 @@ const Insure = ({ onClose }) => {
                                 state={{
                                     plan: activePackage?.startsWith('DOSH ')
                                         ? activePackage.split('DOSH ')[1]
-                                        : activePackage
+                                        : activePackage,
+                                    fromFlow: true
                                 }}
                             >
                                 <small>

@@ -86,19 +86,19 @@ const InsuranceTable = ({ closePopup }) => {
 
                                 </tr>
                                 <tr>
-                                    <td className='heading'>Annual Premium</td>
-                                    <td className='row-center'>GHS 365</td>
-                                    <td className='row-center'>GHS 500</td>
-                                    <td className='row-center'>GHS 750</td>
-                                    <td className='row-center'>GHS 900</td>
-                                    <td className='row-center'>GHS 1,000</td>
-                                    <td className='row-center'>GHS 1,200</td>
-                                    <td className='row-center'>GHS 2,500</td>
-                                    <td className='row-center'>GHS 2,800</td>
-                                    <td className='row-center'>GHS 5,000</td>
-                                    <td className='row-center'>GHS 5,500</td>
-                                    <td className='row-center'>GHS 10,000</td>
-                                    <td className='row-center'>GHS 11,000</td>
+                                    <td className='heading'>daily premium</td>
+                                    <td className='row-center'>GHS 1.00</td>
+                                    <td className='row-center'>GHS 1.37</td>
+                                    <td className='row-center'>GHS 2.05</td>
+                                    <td className='row-center'>GHS 2.47</td>
+                                    <td className='row-center'>GHS 2.74</td>
+                                    <td className='row-center'>GHS 3.29</td>
+                                    <td className='row-center'>GHS 6.85</td>
+                                    <td className='row-center'>GHS 7.67</td>
+                                    <td className='row-center'>GHS 13.70</td>
+                                    <td className='row-center'>GHS 15.07</td>
+                                    <td className='row-center'>GHS 27.40</td>
+                                    <td className='row-center'>GHS 30.14</td>
 
                                 </tr>
                                 <tr>
@@ -285,40 +285,40 @@ const InsuranceTable = ({ closePopup }) => {
                                 <tr>
                                     <td className='heading-last'></td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: '365' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '365', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: '500' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '500', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: '750' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '750', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: '900' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '900', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: '1000' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '1000', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: '1200' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '1200', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: '2500' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '2500', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: '2800' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '2800', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: '5000' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '5000', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: '5500' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '5500', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: '10000' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '10000', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                     <td className="signup-button">
-                                        <button><Link to='/register' state={{ plan: '11000' }}>Sign Up</Link></button>
+                                        <button><Link to='/register' state={{ plan: '11000', fromFlow: true }}>Sign Up</Link></button>
                                     </td>
                                 </tr>
                                 {/* Add more rows */}

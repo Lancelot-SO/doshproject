@@ -104,7 +104,7 @@ const CountrySelector = ({ value, onChange, options, error, placeholder }) => {
 };
 
 const Insurance = () => {
-    const { signup, loading, successData, errorMessage, setErrorMessage, setSuccessData } = useSignup();
+    const { signup, getFee, loading, feeLoading, successData, feeData, errorMessage, errorData, setErrorMessage, setSuccessData } = useSignup();
     const location = useLocation();
 
     // Ensure we are on the WWW subdomain (Backend requirement)
@@ -138,12 +138,19 @@ const Insurance = () => {
         above60: '',
         doshNumber: '',
         accountOption: '', // New: for "Choose the option that applies to you" when yearly+insuranceOnly
+        doshSource: 'DOSH Number', // Default to DOSH Number as per image
+        doshSourceNumber: '',
     });
 
     const [errors, setErrors] = useState({});
     const [formStepsNum, setFormStepsNum] = useState(0);
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const [fromPackage, setFromPackage] = useState(false); // Track if user came from insurance package
+
+    // Name Enquiry state
+    const [enquiredName, setEnquiredName] = useState('');
+    const [nameLoading, setNameLoading] = useState(false);
+    const [nameError, setNameError] = useState('');
 
     // Read plan from location state (preferred) or URL query params (fallback)
     // Pre-select insurance-only registration with the specified plan
@@ -153,15 +160,24 @@ const Insurance = () => {
         const planParam = location.state?.plan || planFromUrl;
 
         if (planParam) {
-            // Valid insurance plan types
-            const validInsurancePlans = ['365', '500', '750', '900', '1000', '1200', '2500', '2800', '5000', '5500', '10000', '11000'];
+            // Valid insurance plan categories
+            const insuranceOnlyPlans = ['365', '750', '1000', '2500', '5000', '10000'];
+            const comboPlans = ['500', '900', '1200', '2800', '5500', '11000'];
+
             // Valid financial plan types
             const validFinancialPlans = ['Individual', 'Personal', 'Family', 'SOHO', 'SMB', 'Enterprise'];
 
-            if (validInsurancePlans.includes(planParam)) {
+            if (insuranceOnlyPlans.includes(planParam)) {
                 setFormData(prev => ({
                     ...prev,
                     insuranceOption: 'insuranceOnly',
+                    insuranceType: `DOSH ${planParam}`
+                }));
+                setFromPackage(true);
+            } else if (comboPlans.includes(planParam)) {
+                setFormData(prev => ({
+                    ...prev,
+                    insuranceOption: 'plan', // Route to DOSH Combo flow
                     insuranceType: `DOSH ${planParam}`
                 }));
                 setFromPackage(true);
@@ -176,28 +192,271 @@ const Insurance = () => {
         }
     }, [location.state, location.search]);
 
-    const getPricing = () => {
-        const type = formData.insuranceType;
-        const frequency = formData.paymentMethod || 'yearly';
+    // Fetch dynamic pricing whenever relevant fields change
+    useEffect(() => {
+        const { insuranceOption, productType, insuranceType, phoneNumber } = formData;
 
-        const rates = {
-            'DOSH 365': 365,
-            'DOSH 750': 750,
-            'DOSH 1000': 1000,
-            'DOSH 1500': 1500, // Added based on potentially common types
-            'DOSH 2500': 2500,
-            'DOSH 5000': 5000,
-            'DOSH 10000': 10000
-        };
+        // Define when we have enough data to call the API
+        const isPricingReady = insuranceOption && (
+            (insuranceOption === 'financial' && productType) ||
+            (insuranceOption === 'insuranceOnly' && insuranceType) ||
+            (insuranceOption === 'plan' && insuranceType && productType) ||
+            (insuranceOption === 'account' && insuranceType)
+        ) && (phoneNumber && phoneNumber.length >= 7);
 
-        const base = rates[type] || 0;
+        if (isPricingReady) {
+            getFee(formData).then(res => {
+                console.log('[Signup Debug] getFee Full Response:', {
+                    payload: formData,
+                    response: res
+                });
+            });
+        }
+    }, [
+        formData.insuranceOption,
+        formData.insuranceType,
+        formData.productType,
+        formData.paymentMethod,
+        formData.accountOption,
+        formData.medicalCondition,
+        formData.above60,
+        formData.phoneNumber,
+        formData.country,
+        getFee
+    ]);
 
-        if (frequency === 'daily') {
-            if (type === 'DOSH 365') return 1;
-            return (base / 365).toFixed(2);
+    // Map paymentMode to the accountType the Name Enquiry API expects
+    const getAccountType = (paymentMode) => {
+        const mode = (paymentMode || '').toLowerCase();
+        if (mode.includes('mtn')) return 'mtn';
+        if (mode.includes('airteltigo')) return 'atm';
+        if (mode.includes('telecel') || mode.includes('vodafone')) return 'vfcash';
+        if (mode === 'dosh') return 'auto'; // will auto-detect network from number
+        return null; // Cards don't support name enquiry
+    };
+
+    // For DOSH payments: detect the underlying MoMo network from the number prefix
+    const detectNetworkFromMsisdn = (msisdn) => {
+        // Strip Ghana country code if present to get the local 2-digit prefix
+        const local = msisdn.startsWith('233') ? msisdn.slice(3) : msisdn;
+        const prefix = local.substring(0, 2);
+        if (['24', '54', '55', '59', '25'].includes(prefix)) return 'mtn';
+        if (['26', '27', '56', '57'].includes(prefix)) return 'atm';
+        if (['20', '50'].includes(prefix)) return 'vfcash';
+        return null;
+    };
+
+    // Auto-fetch account holder name when phone number + payment mode are ready
+    useEffect(() => {
+        const rawAccountType = getAccountType(formData.paymentMode);
+        const countryCode = formData.country.replace('+', '');
+        // Strip leading zero (local format) before building international MSISDN
+        // e.g. 0556318804 + 233 → 233556318804
+        // If the number is already in international format (e.g. DOSH: 233579579105), don't prepend again
+        const localPhone = formData.phoneNumber.replace(/^0+/, '');
+        const msisdn = localPhone.startsWith(countryCode)
+            ? localPhone
+            : `${countryCode}${localPhone}`;
+
+        // Resolve final accountType — for DOSH, auto-detect from the number prefix
+        const accountType = rawAccountType === 'auto'
+            ? detectNetworkFromMsisdn(msisdn)
+            : rawAccountType;
+
+        // Need a supported MoMo network and a plausible full number (at least 9 digits)
+        if (!accountType || msisdn.length < 9) {
+            setEnquiredName('');
+            setNameError('');
+            return;
         }
 
-        return base;
+        const controller = new AbortController();
+        const fetchName = async () => {
+            setNameLoading(true);
+            setNameError('');
+            try {
+                const res = await fetch('https://dsp.onenet.xyz:50443/api/transactions/name', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ msisdn, accountType }),
+                    signal: controller.signal,
+                });
+                const data = await res.json();
+                if (data?.ResponseCode === '200' && data?.Name) {
+                    setEnquiredName(data.Name);
+                } else {
+                    setEnquiredName('');
+                    setNameError('Could not retrieve account name.');
+                }
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    setEnquiredName('');
+                    setNameError('Name lookup failed.');
+                }
+            } finally {
+                setNameLoading(false);
+            }
+        };
+
+        // Debounce: wait 600ms after the user stops typing
+        const timer = setTimeout(fetchName, 600);
+        return () => {
+            clearTimeout(timer);
+            controller.abort();
+        };
+    }, [formData.phoneNumber, formData.country, formData.paymentMode]);
+
+    const getPricing = (part = 'total') => {
+        if (feeData) {
+            // DEBUG: Log breakdown if we see 0.00 in a combo/insurance path
+            if (feeData.total === "0.00" && formData.insuranceOption !== 'financial') {
+                console.warn('[Pricing Warning] API returned 0.00 for insurance/combo path. Check product mapping.');
+            }
+
+            // 1. Tiered Financial Pricing Mapping
+            const getFinancialTierAmount = () => {
+                const tier = formData.productType?.toLowerCase() || 'personal';
+                if (tier === 'personal') return 365.00;
+                if (tier === 'family') return 730.00;
+                if (tier === 'soho') return 1820.00;
+                if (tier === 'smb') return 3650.00;
+                if (tier === 'enterprise') return 10000.00;
+                return 365.00;
+            };
+
+            // 2. Components for Individual Parts
+            const getFinancialDaily = () => parseFloat(feeData.financialBreakdown?.breakdown?.renewalFee || 0);
+
+            const getInsuranceDaily = () => {
+                const ren = parseFloat(feeData.insuranceBreakdown?.breakdown?.renewalFee || 0);
+
+                // YEARLY LOGIC (from user images)
+                if (formData.paymentMethod === 'yearly') {
+                    if (formData.medicalCondition === 'yes' && formData.above60 === 'yes') {
+                        return 1460.00;
+                    }
+                    if (formData.medicalCondition === 'yes' || formData.above60 === 'yes') {
+                        return 730.00; // Assuming 2x base/surcharge behavior
+                    }
+                    return 365.00; // Base yearly
+                }
+
+                // DAILY NON-LINEAR SURCHARGE LOGIC
+                if (formData.paymentMethod === 'daily') {
+                    if (formData.medicalCondition === 'yes' && formData.above60 === 'yes') {
+                        return 32.48;
+                    }
+                    if (formData.medicalCondition === 'yes' || formData.above60 === 'yes') {
+                        return 8.12;
+                    }
+                    return 4.06; // Base daily insurance
+                }
+
+                // Default fallback
+                let surcharges = 0;
+                if (formData.medicalCondition === 'yes') surcharges += 8.12;
+                if (formData.above60 === 'yes') surcharges += 8.12;
+                return ren + surcharges;
+            };
+
+            const getFinancialSetup = () => {
+                // Only daily should have initial charge (specifically for Financial Only path)
+                if (formData.paymentMethod === 'yearly') return 0.00;
+
+                if (formData.insuranceOption === 'financial') {
+                    // For Financial Only Daily, we force 20.00 as per user requirement,
+                    // ignoring the productAmount (365.00) which is meant for yearly.
+                    return 20.00;
+                }
+                // For other Daily paths (Combo, Insurance Only), row shows 0.00
+                return 0.00;
+            };
+
+            const getInsuranceSetup = () => {
+                if (formData.paymentMethod === 'daily' || formData.paymentMethod === 'yearly') return 0.00;
+                let val = parseFloat(feeData.insuranceBreakdown?.breakdown?.productAmount || "0");
+                const planMatch = formData.insuranceType?.match(/\d+/);
+                const planNum = planMatch ? parseInt(planMatch[0]) : null;
+                if (planNum && val === planNum * 2) val = planNum;
+                return val;
+            };
+
+            const getSharesFee = () => {
+                if (formData.paymentMethod === 'yearly') return 0.00;
+                let sum = 0;
+                [feeData.financialBreakdown, feeData.insuranceBreakdown].forEach(breakdownObj => {
+                    if (breakdownObj?.breakdown) {
+                        Object.entries(breakdownObj.breakdown).forEach(([key, val]) => {
+                            const valNum = parseFloat(val || 0);
+                            if (key.toLowerCase().includes('shares') || (key !== 'productAmount' && key !== 'renewalFee' && valNum === 1.00)) {
+                                sum += valNum;
+                            }
+                        });
+                    }
+                });
+                return sum;
+            };
+
+            const getOtherFees = () => {
+                if (formData.paymentMethod === 'yearly') return 0.00;
+                let sum = 0;
+                [feeData.financialBreakdown, feeData.insuranceBreakdown].forEach(breakdownObj => {
+                    if (breakdownObj?.breakdown) {
+                        Object.entries(breakdownObj.breakdown).forEach(([key, val]) => {
+                            const valNum = parseFloat(val || 0);
+                            if (key !== 'productAmount' && key !== 'renewalFee' && !key.toLowerCase().includes('shares')) {
+                                if (valNum !== 20.00) sum += valNum;
+                            }
+                        });
+                    }
+                });
+                return sum;
+            };
+
+            // Part Mapping
+            if (part === 'financial_daily') {
+                if (formData.paymentMethod === 'yearly') return getFinancialTierAmount().toFixed(2);
+                return getFinancialDaily().toFixed(2);
+            }
+            if (part === 'insurance_daily') return getInsuranceDaily().toFixed(2);
+            if (part === 'financial_setup') return getFinancialSetup().toFixed(2);
+            if (part === 'insurance_setup') return getInsuranceSetup().toFixed(2);
+            if (part === 'shares') return getSharesFee().toFixed(2);
+            if (part === 'other') return getOtherFees().toFixed(2);
+
+            // Legacy support
+            if (part === 'financial') return getFinancialSetup().toFixed(2);
+            if (part === 'insurance') return getInsuranceDaily().toFixed(2);
+
+            if (part === 'total') {
+                if (formData.paymentMethod === 'daily') {
+                    // Financial Only path sum (e.g., 20 setup + 1 fixed = 21)
+                    if (formData.insuranceOption === 'financial') {
+                        return (getFinancialSetup() + getSharesFee() + getOtherFees()).toFixed(2);
+                    }
+                    // BASE 20.00 + active daily renewals + fees
+                    return (20.00 + getFinancialDaily() + getInsuranceDaily() + getSharesFee() + getOtherFees()).toFixed(2);
+                }
+                if (formData.paymentMethod === 'yearly') {
+                    // Financial Only path sum
+                    if (formData.insuranceOption === 'financial') {
+                        return (getFinancialTierAmount() + getFinancialSetup() + getSharesFee() + getOtherFees()).toFixed(2);
+                    }
+                    // Insurance Only path sum
+                    if (formData.insuranceOption === 'insuranceOnly') {
+                        // If user chose to also open a financial account (createPlan), add its tier cost
+                        const financialExtra = formData.accountOption === 'createPlan' ? getFinancialTierAmount() : 0;
+                        return (getInsuranceDaily() + getInsuranceSetup() + financialExtra).toFixed(2);
+                    }
+                    // Financial Tier Price + Insurance Yearly amount
+                    return (getFinancialTierAmount() + getInsuranceDaily()).toFixed(2);
+                }
+                return (getFinancialSetup() + getInsuranceSetup() + getInsuranceDaily() + getSharesFee() + getOtherFees()).toFixed(2);
+            }
+
+            return (feeData.total || "0.00");
+        }
+        return "0.00";
     };
 
 
@@ -289,7 +548,7 @@ const Insurance = () => {
     const insuranceOptions = [
         { value: "financial", label: "DOSH Financial" },
         { value: "insuranceOnly", label: "DOSH Insurance" },
-        { value: "plan", label: "No, create one for my payment plan (Combo)" },
+        { value: "plan", label: "DOSH Combo" },
         { value: "account", label: "Already have a DOSH financial account (Insurance Add-on)" },
     ];
 
@@ -300,11 +559,17 @@ const Insurance = () => {
 
     const typeOptions = [
         { value: "DOSH 365", label: "DOSH 365" },
+        { value: "DOSH 500", label: "DOSH 500" },
         { value: "DOSH 750", label: "DOSH 750" },
+        { value: "DOSH 900", label: "DOSH 900" },
         { value: "DOSH 1000", label: "DOSH 1000" },
+        { value: "DOSH 1200", label: "DOSH 1200" },
         { value: "DOSH 2500", label: "DOSH 2500" },
+        { value: "DOSH 2800", label: "DOSH 2800" },
         { value: "DOSH 5000", label: "DOSH 5000" },
+        { value: "DOSH 5500", label: "DOSH 5500" },
         { value: "DOSH 10000", label: "DOSH 10000" },
+        { value: "DOSH 11000", label: "DOSH 11000" },
     ];
 
     const financialAccountOptions = [
@@ -324,7 +589,7 @@ const Insurance = () => {
     const accountOptionChoices = [
         { value: "existingAccount", label: "Already have a DOSH financial account" },
         { value: "createPlan", label: "No, create one for my payment plan" },
-        { value: "insuranceOnly", label: "DOSH Insurance" },
+        { value: "insuranceOnly", label: "Create insurance-only account" },
     ];
 
     // Options for daily payment (only 2 options, no "insurance-only" for daily)
@@ -334,11 +599,11 @@ const Insurance = () => {
     ];
 
     const paymentModeOptions = [
-        { value: "DOSH", label: "DOSH" },
         { value: "MTN Mobile Money", label: "MTN Mobile Money" },
         { value: "AirtelTigo Money", label: "AirtelTigo Money" },
         { value: "Telecel Cash", label: "Telecel Cash" },
         { value: "Debit and Credit Cards", label: "Debit and Credit Cards" },
+        { value: "DOSH", label: "DOSH" },
     ];
 
     const currencyOptions = [
@@ -384,9 +649,9 @@ const Insurance = () => {
                     <div className="mb-8">
                         <h2 className="text-3xl font-bold text-gray-800">
                             {formStepsNum === 0 ? "Registration" : (
-                                formData.insuranceOption === 'financial' ? "DOSH Financial Signup" :
-                                    formData.insuranceOption === 'insuranceOnly' ? "DOSH Insurance Signup" :
-                                        formData.insuranceOption === 'plan' ? "DOSH Combo Signup" :
+                                formData.insuranceOption === 'financial' ? `DOSH Financial ${formData.productType} Signup` :
+                                    formData.insuranceOption === 'insuranceOnly' ? `DOSH Insurance ${formData.insuranceType.replace('DOSH ', '')} Signup` :
+                                        formData.insuranceOption === 'plan' ? `DOSH Combo ${formData.insuranceType.replace('DOSH ', '')} Signup` :
                                             formData.insuranceOption === 'account' ? "DOSH Add-on Signup" : "Registration"
                             )}
                         </h2>
@@ -478,16 +743,16 @@ const Insurance = () => {
                                     </div>
                                 )}
 
-                                {formData.insuranceOption === 'financial' && (
+                                {['financial', 'plan'].includes(formData.insuranceOption) && (
                                     <div className="animate-fade-in pt-4 border-t border-gray-100">
-                                        <Label htmlFor="productType" required>Product Type</Label>
+                                        <Label htmlFor="productType" required>Financial Account Type</Label>
                                         <Select
                                             name="productType"
                                             value={formData.productType}
                                             onChange={handleChange}
                                             options={financialAccountOptions}
                                             error={errors.productType}
-                                            placeholder="Please select product type"
+                                            placeholder="Please select Financial Account Type"
                                             disabled={fromPackage}
                                         />
                                         {fromPackage && (
@@ -509,8 +774,8 @@ const Insurance = () => {
                         {/* STEP 1: Pre-Health Condition, Above 60, Payment Frequency & Product Type */}
                         {formStepsNum === 1 && (
                             <div className="space-y-6 animate-fade-in-up">
-                                {/* Pre-Health and Above 60 sections - Only for insurance paths */}
-                                {formData.insuranceOption === 'insuranceOnly' && (
+                                {/* Pre-Health and Above 60 sections - For insurance-related paths */}
+                                {['insuranceOnly', 'plan'].includes(formData.insuranceOption) && (
                                     <>
                                         <div className="py-2">
                                             <label className="block text-sm font-semibold mb-3 text-gray-700">
@@ -629,6 +894,44 @@ const Insurance = () => {
                                         <Select name="paymentMode" value={formData.paymentMode} onChange={handleChange} options={paymentModeOptions} error={errors.paymentMode} placeholder="-- Select Payment Mode --" />
                                     </div>
 
+                                    {formData.paymentMode === 'DOSH' && (
+                                        <div className="col-span-1 md:col-span-2 space-y-4 animate-fade-in">
+                                            <div>
+                                                <Label htmlFor="doshSource" required>Source</Label>
+                                                <div className="flex items-center space-x-4">
+                                                    <label
+                                                        className={`flex-1 flex items-center justify-start p-3 rounded-lg border cursor-pointer transition-all ${formData.doshSource === 'DOSH Number' ? 'bg-[#987c55] border-[#987c55] text-white shadow-lg' : 'bg-gray-50 border-gray-200 hover:bg-gray-100 text-gray-700'}`}
+                                                        onClick={() => handleChange({ target: { name: 'doshSource', value: 'DOSH Number' } })}
+                                                    >
+                                                        <div className={`w-4 h-4 rounded-full border-2 mr-3 flex items-center justify-center ${formData.doshSource === 'DOSH Number' ? 'border-white bg-white' : 'border-gray-300'}`}>
+                                                            {formData.doshSource === 'DOSH Number' && <div className="w-1.5 h-1.5 rounded-full bg-[#987c55]"></div>}
+                                                        </div>
+                                                        <span className="font-medium">DOSH Number</span>
+                                                    </label>
+                                                    <label
+                                                        className={`flex-1 flex items-center justify-start p-3 rounded-lg border cursor-pointer transition-all ${formData.doshSource === 'Username' ? 'bg-[#987c55] border-[#987c55] text-white shadow-lg' : 'bg-gray-50 border-gray-200 hover:bg-gray-100 text-gray-700'}`}
+                                                        onClick={() => handleChange({ target: { name: 'doshSource', value: 'Username' } })}
+                                                    >
+                                                        <div className={`w-4 h-4 rounded-full border-2 mr-3 flex items-center justify-center ${formData.doshSource === 'Username' ? 'border-white bg-white' : 'border-gray-300'}`}>
+                                                            {formData.doshSource === 'Username' && <div className="w-1.5 h-1.5 rounded-full bg-[#987c55]"></div>}
+                                                        </div>
+                                                        <span className="font-medium">Username</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <Label htmlFor="doshSourceNumber" required>Source Number</Label>
+                                                <Input
+                                                    name="doshSourceNumber"
+                                                    value={formData.doshSourceNumber}
+                                                    onChange={handleChange}
+                                                    placeholder={formData.doshSource === 'DOSH Number' ? "Enter DOSH Number" : "Enter Username"}
+                                                    error={errors.doshSourceNumber}
+                                                />
+                                            </div>
+                                        </div>
+                                    )}
+
                                     {formData.paymentMode === 'Debit and Credit Cards' && (
                                         <div className="col-span-1 md:col-span-2 space-y-4">
                                             <div>
@@ -720,93 +1023,157 @@ const Insurance = () => {
 
             {/* CONFIRMATION MODAL */}
             {showConfirmModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-                    <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden transform transition-all scale-100">
-                        <div className="bg-[#987c55] p-6 text-white text-center">
-                            <h3 className="text-2xl font-bold">Confirm Transaction</h3>
-                            <p className="opacity-90 mt-1">Please review your details</p>
+                <div className="fixed inset-0 z-50 flex items-start justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in overflow-y-auto pt-20 font-sans">
+                    <div className="bg-[#f4f6f9] rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden transform transition-all scale-100 mb-8 border border-gray-200">
+                        {/* Title Bar */}
+                        <div className="bg-white px-6 py-6 border-b border-gray-100 text-center">
+                            <h2 className="text-3xl font-bold text-gray-800">Confirmation</h2>
                         </div>
-                        <div className="p-6 space-y-4">
-                            {formData.paymentMethod === 'daily' && (
-                                <div className="flex items-start text-amber-700 bg-amber-50 p-4 rounded-xl text-sm border border-amber-200">
-                                    <div className="bg-amber-100 rounded-full p-1 mr-3 mt-0.5">
-                                        <svg className="w-5 h-5 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                                        </svg>
-                                    </div>
-                                    <p className="font-semibold leading-relaxed">
-                                        A DOSH Financial account will be created with this Insurance details using a daily payment plan.
-                                    </p>
-                                </div>
-                            )}
 
-                            <div className="space-y-3">
-                                <div className="flex justify-between items-center text-sm py-1">
-                                    <span className="text-gray-500">Payment Mode</span>
-                                    <span className="font-semibold text-gray-800 flex items-center">
-                                        {formData.paymentMode.includes('MTN') && <span className="mr-2">🟡</span>}
-                                        {formData.paymentMode}
-                                    </span>
+                        <div className="p-8 space-y-6">
+                            {/* Debiting From Section */}
+                            <div className="flex items-center space-x-5">
+                                <div className="bg-transparent">
+                                    <svg className="w-14 h-14 text-[#ccb48c]" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                                    </svg>
                                 </div>
-                                <div className="flex justify-between items-center text-sm py-1">
-                                    <span className="text-gray-500">Payment Method</span>
-                                    <span className="font-semibold text-gray-800 capitalize">{formData.paymentMethod}</span>
-                                </div>
-                                <div className="flex justify-between items-center text-sm py-1">
-                                    <span className="text-gray-500">Payment amount per {formData.paymentMethod === 'daily' ? 'day' : 'year'}</span>
-                                    <span className="font-semibold text-gray-800">
-                                        {formData.paymentMode === 'Debit and Credit Cards' ? (formData.currency || 'GHS') : 'GHS'} {formData.paymentMethod === 'daily' ? '1.00' : getPricing()}
-                                    </span>
-                                </div>
-                                {['insuranceOnly', 'plan', 'account'].includes(formData.insuranceOption) && formData.paymentMethod === 'daily' && (
-                                    <div className="flex justify-between items-center text-sm py-1">
-                                        <span className="text-gray-500">Insurance payment amount per day</span>
-                                        <span className="font-semibold text-gray-800">GHS 4.06</span>
-                                    </div>
-                                )}
-                                <div className="flex justify-between items-center text-sm py-1">
-                                    <span className="text-gray-500">Initial charge</span>
-                                    <span className="font-semibold text-gray-800">GHS 0.00</span>
-                                </div>
-                                <div className="flex justify-between items-center text-sm py-1">
-                                    <span className="text-gray-500">Initial Insurance charge</span>
-                                    <span className="font-semibold text-gray-800">GHS 0.00</span>
-                                </div>
-                                <div className="flex justify-between items-center text-sm py-1">
-                                    <span className="text-gray-500">Fixed Fee charge</span>
-                                    <span className="font-semibold text-gray-800">GHS 1.00</span>
-                                </div>
-                                <div className="pt-3 mt-3 border-t-2 border-dashed border-gray-200 flex justify-between items-center">
-                                    <span className="text-lg font-bold text-gray-900">Total</span>
-                                    <span className="text-xl font-extrabold text-[#987c55]">
-                                        {formData.currency || 'GHS'} {formData.paymentMethod === 'daily' ? '25.06' : (parseFloat(getPricing()) + 1).toFixed(2)}
-                                    </span>
+                                <div>
+                                    <p className="text-gray-500 text-lg font-medium leading-tight">You are debiting from</p>
+                                    {nameLoading ? (
+                                        <p className="text-2xl font-bold text-gray-400 leading-tight animate-pulse">Fetching name...</p>
+                                    ) : enquiredName ? (
+                                        <p className="text-3xl font-bold text-gray-800 leading-tight">{enquiredName}</p>
+                                    ) : (
+                                        <p className="text-3xl font-bold text-gray-800 leading-tight">{formData.firstName} {formData.lastName}</p>
+                                    )}
+                                    {nameError && !enquiredName && (
+                                        <p className="text-xs text-amber-600 mt-1">{nameError} Showing entered name.</p>
+                                    )}
                                 </div>
                             </div>
 
-                            <div className="bg-blue-50 text-blue-800 text-xs p-3 rounded-lg mt-4 flex items-center">
-                                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                                </svg>
-                                {formData.paymentMode === 'Debit and Credit Cards' ? (
-                                    <span>Secure card payment redirect follows.</span>
-                                ) : (
-                                    <span>Prompt will be sent to {formData.phoneNumber}.</span>
+                            <div className="bg-white/40 p-6 rounded-2xl space-y-5 border border-white/60">
+                                {/* Yellow Info Banner */}
+                                {formData.paymentMethod === 'daily' && (
+                                    <div className="bg-[#bc9444] rounded-xl p-5 flex items-start space-x-4 text-white shadow-sm">
+                                        <div className="bg-white p-1.5 rounded-full mt-0.5 shadow-inner">
+                                            <svg className="w-6 h-6 text-[#bc9444]" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                                            </svg>
+                                        </div>
+                                        <p className="font-semibold text-base leading-tight">
+                                            A DOSH Financial account will be created with this Insurance details using a daily payment plan.
+                                        </p>
+                                    </div>
                                 )}
+
+                                <div className="space-y-4 py-2 px-1">
+                                    <div className="flex justify-between items-center">
+                                        <span className="text-gray-500 text-xl font-medium">Payment Mode</span>
+                                        <div className="flex items-center space-x-3">
+                                            {formData.paymentMode.toLowerCase().includes('vodafone') && (
+                                                <div className="bg-white border rounded px-1.5 py-0.5 flex items-center shadow-sm h-7">
+                                                    <span className="text-[10px] font-bold text-red-600 mr-1">vodafone</span>
+                                                    <span className="text-[10px] font-bold text-red-600">cash</span>
+                                                </div>
+                                            )}
+                                            {formData.paymentMode.toLowerCase().includes('mtn') && (
+                                                <div className="bg-yellow-400 rounded px-1.5 py-0.5 text-[10px] font-black italic shadow-sm h-7 flex items-center">MTN</div>
+                                            )}
+                                            <span className="text-xl font-bold text-gray-600/80">{formData.paymentMode}</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex justify-between items-center">
+                                        <span className="text-gray-500 text-xl font-medium">Payment Method</span>
+                                        <span className="text-xl font-bold text-gray-600/80 capitalize">{formData.paymentMethod}</span>
+                                    </div>
+
+                                    {/* Handle Insurance Only Yearly specially */}
+                                    {formData.insuranceOption === 'insuranceOnly' && formData.paymentMethod === 'yearly' ? (
+                                        <>
+                                            <div className="flex justify-between items-center text-gray-700">
+                                                <span className="text-gray-500 text-xl font-medium">Insurance amount per year</span>
+                                                <span className="text-xl font-bold text-gray-600/80">GHS {getPricing('insurance_daily')}</span>
+                                            </div>
+                                            {formData.accountOption === 'createPlan' && (
+                                                <div className="flex justify-between items-center text-gray-700">
+                                                    <span className="text-gray-500 text-xl font-medium">Financial account ({formData.productType}) per year</span>
+                                                    <span className="text-xl font-bold text-gray-600/80">GHS {getPricing('financial_daily')}</span>
+                                                </div>
+                                            )}
+                                            <div className="flex justify-between items-center text-gray-700 border-b-2 border-slate-300 pb-5 mb-2">
+                                                <span className="text-gray-500 text-xl font-medium">Initial charge</span>
+                                                <span className="text-xl font-bold text-gray-600/80">GHS {getPricing('insurance_setup')}</span>
+                                            </div>
+                                        </>
+                                    ) : formData.insuranceOption === 'financial' ? (
+                                        <>
+                                            <div className="flex justify-between items-center text-gray-700">
+                                                <span className="text-gray-500 text-xl font-medium">{formData.paymentMethod === 'yearly' ? 'Amount per year' : 'Payment amount per day'}</span>
+                                                <span className="text-xl font-bold text-gray-600/80">GHS {getPricing('financial_daily')}</span>
+                                            </div>
+                                            <div className="flex justify-between items-center text-gray-700">
+                                                <span className="text-gray-500 text-xl font-medium">Initial charge</span>
+                                                <span className="text-xl font-bold text-gray-600/80">GHS {getPricing('financial_setup')}</span>
+                                            </div>
+                                            <div className="flex justify-between items-center text-gray-700 border-b-2 border-slate-300 pb-5 mb-2">
+                                                <span className="text-gray-500 text-xl font-medium">Fixed Fee charge</span>
+                                                <span className="text-xl font-bold text-gray-600/80">GHS {getPricing('shares')}</span>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <div className="flex justify-between items-center text-gray-700">
+                                                <span className="text-gray-500 text-xl font-medium">Payment amount per day</span>
+                                                <span className="text-xl font-bold text-gray-600/80">GHS {getPricing('financial_daily')}</span>
+                                            </div>
+
+                                            <div className="flex justify-between items-center text-gray-700">
+                                                <span className="text-gray-500 text-xl font-medium">Insurance {formData.paymentMethod === 'yearly' ? 'Amount per year' : 'payment amount per day'}</span>
+                                                <span className="text-xl font-bold text-gray-600/80">GHS {getPricing('insurance_daily')}</span>
+                                            </div>
+
+                                            <div className="flex justify-between items-center text-gray-700">
+                                                <span className="text-gray-500 text-xl font-medium">Initial charge</span>
+                                                <span className="text-xl font-bold text-gray-600/80">GHS {getPricing('financial_setup')}</span>
+                                            </div>
+
+                                            <div className="flex justify-between items-center text-gray-700">
+                                                <span className="text-gray-500 text-xl font-medium">Initial Insurance charge</span>
+                                                <span className="text-xl font-bold text-gray-600/80">GHS {getPricing('insurance_setup')}</span>
+                                            </div>
+
+                                            <div className="flex justify-between items-center text-gray-700 border-b-2 border-slate-300 pb-5 mb-2">
+                                                <span className="text-gray-500 text-xl font-medium">Fixed Fee charge</span>
+                                                <span className="text-xl font-bold text-gray-600/80">GHS {getPricing('shares')}</span>
+                                            </div>
+                                        </>
+                                    )}
+
+                                    <div className="flex justify-between items-center pt-3 pb-2">
+                                        <span className="text-3xl font-bold text-gray-900">Total</span>
+                                        <span className="text-3xl font-bold text-gray-600/80">
+                                            GHS {(parseFloat(getPricing()) + (formData.paymentMode === 'Debit and Credit Cards' ? parseFloat(getPricing()) * 0.05 : 0)).toFixed(2)}
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div className="p-6 bg-gray-50 flex gap-4">
+
+                        <div className="px-8 pb-10 pt-4 flex gap-6">
                             <button
                                 onClick={() => setShowConfirmModal(false)}
-                                className="w-1/2 py-3 px-4 rounded-lg border border-gray-300 text-gray-700 font-semibold hover:bg-gray-100 transition"
+                                className="flex-1 py-4 px-6 rounded-full bg-[#dcc48c] text-white font-bold text-2xl hover:bg-[#cbb37a] transition shadow-md"
                             >
-                                Edit
+                                Cancel
                             </button>
                             <button
                                 onClick={performSignup}
-                                className="w-1/2 py-3 px-4 rounded-lg bg-[#987c55] text-white font-bold hover:bg-[#7d6542] transition shadow-lg"
+                                className="flex-1 py-4 px-6 rounded-full bg-[#bc9444] text-white font-bold text-2xl hover:bg-[#a6823c] transition shadow-md"
                             >
-                                Pay Now
+                                Proceed
                             </button>
                         </div>
                     </div>
@@ -826,11 +1193,11 @@ const Insurance = () => {
                         <p className="text-gray-500 mb-6">Your DOSH account is being created.</p>
 
                         <div className="bg-gray-100 rounded-xl p-4 mb-6 text-left space-y-2">
-                            <div className="flex justify-between">
+                            <div className="flex justify-between border-b border-gray-200 pb-2">
                                 <span className="text-gray-500 text-sm">Ref ID:</span>
                                 <span className="font-mono font-medium text-gray-800">{successData?.referenceId || 'N/A'}</span>
                             </div>
-                            <div className="flex justify-between">
+                            <div className="flex justify-between pt-1">
                                 <span className="text-gray-500 text-sm">Username:</span>
                                 <span className="font-mono font-bold text-blue-600">{successData?.username || 'N/A'}</span>
                             </div>
@@ -850,20 +1217,32 @@ const Insurance = () => {
                                     </a>
                                 </div>
                             ) : (
-                                <p className="text-gray-600 text-sm">Please check your phone for the MOMO prompt to authorize the transaction.</p>
+                                <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 text-left">
+                                    <p className="text-blue-800 font-bold mb-2 flex items-center">
+                                        <svg className="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                                        </svg>
+                                        Next Steps:
+                                    </p>
+                                    <ul className="text-blue-700 text-sm space-y-1 list-disc ml-5">
+                                        <li>Check your phone for a <strong>MOMO PIN prompt</strong>.</li>
+                                        <li>Authorize the transaction to complete registration.</li>
+                                        <li>If you miss the prompt, check your <strong>SMS</strong> for details.</li>
+                                    </ul>
+                                </div>
                             )}
 
                             <div className="flex gap-4">
                                 <button
                                     onClick={() => setSuccessData(null)}
-                                    className="flex-1 py-3 px-4 rounded-lg border border-gray-300 text-gray-600 font-semibold hover:bg-gray-50"
+                                    className="flex-1 py-3 px-4 rounded-lg border border-gray-300 text-gray-600 font-semibold hover:bg-gray-50 transition"
                                 >
                                     Close
                                 </button>
                                 {formData.insuranceOption !== 'financial' && (
                                     <button
                                         onClick={() => window.location.href = '/login'}
-                                        className="flex-1 py-3 px-4 rounded-lg bg-[#987c55] text-white font-bold hover:bg-[#7d6542]"
+                                        className="flex-1 py-3 px-4 rounded-lg bg-[#987c55] text-white font-bold hover:bg-[#7d6542] transition"
                                     >
                                         Login Now
                                     </button>
@@ -887,16 +1266,62 @@ const Insurance = () => {
                             </svg>
                         </div>
                         <h3 className="text-lg font-bold text-gray-900 mb-2">Registration Failed</h3>
-                        <p className="text-gray-500 text-sm mb-6">{errorMessage}</p>
+                        <p className="text-gray-500 text-sm mb-4 leading-relaxed">{errorMessage}</p>
+
+                        {/* DEBUG / REFERENCE INFO */}
+                        {errorData && (
+                            <div className="bg-gray-50 rounded-lg p-3 text-left mb-4 border border-gray-100">
+                                <div className="text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-1">System Reference</div>
+                                {errorData.type && (
+                                    <div className="flex justify-between text-xs mb-1">
+                                        <span className="text-gray-400">Type:</span>
+                                        <span className="text-gray-600 font-medium">{errorData.type}</span>
+                                    </div>
+                                )}
+                                {errorData.data?.requestID && (
+                                    <div className="flex justify-between text-xs">
+                                        <span className="text-gray-400">Request ID:</span>
+                                        <span className="text-gray-600 font-mono font-bold uppercase">{errorData.data.requestID}</span>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {/* PENDING SIGNUP ACTIONS */}
+                        {errorMessage.toLowerCase().includes('pending') && (
+                            <div className="mb-6">
+                                {(errorData?.data?.data?.paymentLink || errorData?.data?.data?.link || errorData?.data?.data?.url || errorData?.data?.paymentLink || errorData?.data?.link || errorData?.data?.url || errorData?.paymentLink || errorData?.link || errorData?.url) ? (
+                                    <a
+                                        href={errorData?.data?.data?.paymentLink || errorData?.data?.data?.link || errorData?.data?.data?.url || errorData?.data?.paymentLink || errorData?.data?.link || errorData?.data?.url || errorData?.paymentLink || errorData?.link || errorData?.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg shadow-md transition-all text-center mb-3"
+                                    >
+                                        Pay Pending Registration
+                                    </a>
+                                ) : (
+                                    <div className="text-left bg-orange-50 border border-orange-100 rounded-lg p-3 mb-3">
+                                        <p className="text-orange-800 text-xs font-bold mb-1">Existing Transaction Found:</p>
+                                        <ul className="text-orange-700 text-[11px] space-y-1 list-disc ml-4">
+                                            <li>Check your phone for an active <strong>PIN prompt</strong>.</li>
+                                            <li>Look for an <strong>SMS</strong> with payment instructions.</li>
+                                            <li>Or contact support with the Request ID above.</li>
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
                         <button
                             onClick={() => setErrorMessage('')}
-                            className="w-full py-2.5 px-4 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-700 transition"
+                            className="w-full py-2.5 px-4 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-700 transition shadow-sm"
                         >
-                            Try Again
+                            Try Another Way
                         </button>
                     </div>
                 </div>
             )}
+
         </div>
     );
 };

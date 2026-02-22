@@ -28,7 +28,7 @@ const Register = () => {
         if (selectedOption === "selfregister") {
             setShowModal(true);
             // Pass the plan parameter to /insurance via state
-            navigate('/insurance', { state: { plan: planParam } });
+            navigate('/insurance', { state: { plan: planParam, fromFlow: true } });
         }
     };
     const closeModal = () => {

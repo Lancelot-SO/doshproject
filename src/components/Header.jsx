@@ -145,7 +145,7 @@ const Header = () => {
                             </ul>
                             <div className='nav-mobile__signup'>
                                 <Link to='/login' className='nav__login-mobile'>Login</Link>
-                                <Link to='/register'>
+                                <Link to='/register' state={{ fromFlow: true }}>
                                     <div className='nav__signup-mobile'>
                                         Sign Up
                                     </div>

@@ -153,7 +153,7 @@ const FinanceSideModal = ({ onClose }) => {
                             <small>
                                 <Link
                                     to="/register"
-                                    state={{ plan: activePackage }}
+                                    state={{ plan: activePackage, fromFlow: true }}
                                 >
                                     Sign up
                                 </Link>

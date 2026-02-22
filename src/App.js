@@ -33,6 +33,15 @@ import Terms from './components/Terms';
 import TrackPageVisit from './components/TrackPageVisit';
 import Privacy from './components/Privacy';
 
+const FlowGuard = ({ children }) => {
+  const location = useLocation();
+  // Allow access only if coming from an internal flow (state.fromFlow must be true)
+  if (!location.state?.fromFlow) {
+    return <Navigate to="/" replace />;
+  }
+  return children;
+};
+
 const Layout = () => {
   const location = useLocation();  // Get the current route location
   // if a link set state.background, use that to render the “page” behind the modal
@@ -50,19 +59,19 @@ const Layout = () => {
         <Route path='/errorpage' element={<ErrorPage />} />
         <Route path='/popup' element={<VideoParent />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
+        <Route path='/register' element={<FlowGuard><Register /></FlowGuard>} />
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/serviceproviders' element={<ServiceProviders />} />
         <Route path='/productservices' element={<ProductServices />} />
-        <Route path='/financial' element={<Financial />} />
-        <Route path='/insure' element={<Insure />} />
+        <Route path='/financial' element={<FlowGuard><Financial /></FlowGuard>} />
+        <Route path='/insure' element={<FlowGuard><Insure /></FlowGuard>} />
         <Route path="/terms" element={<Terms onClose={() => window.history.back()} />} />
         <Route path="/privacy" element={<Privacy onClose={() => window.history.back()} />} />
-        <Route path='/financemodal' element={<FinanceSideModal />} />
-        <Route path='/insuredetails' element={<InsuranceDetails />} />
-        <Route path='/financedetails' element={<FinancialDetails />} />
-        <Route path='/riskdetails' element={<RiskDetails />} />
+        <Route path='/financemodal' element={<FlowGuard><FinanceSideModal /></FlowGuard>} />
+        <Route path='/insuredetails' element={<FlowGuard><InsuranceDetails /></FlowGuard>} />
+        <Route path='/financedetails' element={<FlowGuard><FinancialDetails /></FlowGuard>} />
+        <Route path='/riskdetails' element={<FlowGuard><RiskDetails /></FlowGuard>} />
         <Route path='/signin' element={<SignIn />} />
         <Route path='/otp' element={<Otp />} />
         <Route path='/flyer' element={<Flyer />} />
@@ -70,7 +79,7 @@ const Layout = () => {
         <Route path='/ecommerce' element={<Ecommerce />} />
         <Route path='/erp' element={<Erp />} />
         <Route path='/regmodal' element={<RegModal />} />
-        <Route path='/insurance' element={<Insurance />} />
+        <Route path='/insurance' element={<FlowGuard><Insurance /></FlowGuard>} />
         <Route path='/home_preview' element={<HomePreview />} />
         <Route path='/dashboard' element={<MainDashboard />} />
         <Route path='/video' element={<VideoParent />} />

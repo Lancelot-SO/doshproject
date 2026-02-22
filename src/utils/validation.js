@@ -31,7 +31,7 @@ export const validateSignupForm = (formData, step) => {
                 if (!insuranceCategory) errors.insuranceCategory = 'Required';
                 if (!insuranceType) errors.insuranceType = 'Required';
             }
-            if (formData.insuranceOption === 'financial' && !formData.productType) {
+            if (['financial', 'plan'].includes(formData.insuranceOption) && !formData.productType) {
                 errors.productType = 'Required';
             }
         }
@@ -51,12 +51,16 @@ export const validateSignupForm = (formData, step) => {
             errors.currency = 'Required';
         }
 
+        if (paymentMode === 'DOSH' && !formData.doshSourceNumber) {
+            errors.doshSourceNumber = 'Required';
+        }
+
         if (formData.insuranceOption === 'account' && !formData.doshNumber) {
             errors.doshNumber = 'Required';
         }
 
-        if (formData.insuranceOption === 'insuranceOnly') {
-            if (!formData.accountOption) {
+        if (['insuranceOnly', 'plan'].includes(formData.insuranceOption)) {
+            if (formData.insuranceOption === 'insuranceOnly' && !formData.accountOption) {
                 errors.accountOption = 'Required';
             }
             if (formData.accountOption === 'existingAccount' && !formData.doshNumber) {

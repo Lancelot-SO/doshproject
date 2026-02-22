@@ -18,11 +18,17 @@ const MAPPINGS = {
     },
     insuranceProduct: {
         'DOSH 365': 'DOSH 365 premium',
+        'DOSH 500': 'DOSH-500',
         'DOSH 750': 'DOSH 750 premium',
+        'DOSH 900': 'DOSH-900',
         'DOSH 1000': 'DOSH 1000 premium',
+        'DOSH 1200': 'DOSH-1200',
         'DOSH 2500': 'DOSH 2500 premium',
+        'DOSH 2800': 'DOSH-2800',
         'DOSH 5000': 'DOSH 5000 premium',
+        'DOSH 5500': 'DOSH-5500',
         'DOSH 10000': 'DOSH 10000 premium',
+        'DOSH 11000': 'DOSH-11000',
     },
     insuranceCategory: {
         'Family': 'family',
@@ -59,16 +65,21 @@ export const transformToSignupPayload = (formData) => {
         firstName,
         lastName,
         medicalCondition,
-        isElderly,
+        above60,
         productType,
     } = formData;
+
+    const isElderly = above60 === 'yes';
 
     const cleanFirstName = firstName?.trim() || '';
     const cleanLastName = lastName?.trim() || '';
 
-    // Combine country code and digits
+    // Combine country code and digits (Drop leading zero if it exists)
     const code = formData.country.replace(/\+/g, '');
-    const digits = phoneNumber.replace(/\D/g, '');
+    let digits = phoneNumber.replace(/\D/g, '');
+    if (digits.startsWith('0')) {
+        digits = digits.substring(1);
+    }
     const cleanPhone = `${code}${digits}`;
 
     // Calculate paymentFor based on insuranceOption and accountOption (for insuranceOnly sub-paths)
@@ -92,8 +103,13 @@ export const transformToSignupPayload = (formData) => {
         phone: cleanPhone,
         // Postman Check: 'financial' can be 'daily' or 'yearly'. Default to 'daily' if not set for financial.
         paymentMethod: (paymentMethod?.toLowerCase() || (paymentFor === 'financial' ? 'daily' : 'yearly')),
+        renewalPlan: (paymentMethod?.toLowerCase() || (paymentFor === 'financial' ? 'daily' : 'yearly')),
         paymentFor: paymentFor,
+        username: cleanPhone,
         currency: formData.currency || 'GHS', // Use selected currency or default to GHS
+        // Add default names to avoid API errors if validation is strict
+        firstname: cleanFirstName || 'Guest',
+        lastname: cleanLastName || 'User',
     };
 
     if (formData.email) {
@@ -102,21 +118,37 @@ export const transformToSignupPayload = (formData) => {
 
     // INSURANCE ONLY or COMBO
     if (paymentFor === 'insurance' || paymentFor === 'financial-insurance') {
-        payload.firstname = cleanFirstName;
-        payload.lastname = cleanLastName;
-        payload.insuranceProduct = MAPPINGS.insuranceProduct[insuranceType] || insuranceType;
+        payload.firstname = cleanFirstName || 'Guest';
+        payload.lastname = cleanLastName || 'User';
 
-        // Ensure no double spaces in nameToDebit
-        payload.nameToDebit = `${cleanFirstName} ${cleanLastName}`.replace(/\s+/g, ' ').trim();
+        // PRODUCT MAPPING LOGIC
+        const mappedProduct = MAPPINGS.insuranceProduct[insuranceType];
+        payload.insuranceProduct = mappedProduct || insuranceType;
 
-        // Postman file confirms 'family' is used. 'personal' is used for productType, 
-        // so we'll stick to 'personal' for category as well (reverting from 'individual').
-        payload.insuranceCategory = MAPPINGS.insuranceCategory[insuranceCategory] || insuranceCategory?.toLowerCase() || 'personal';
+        console.log('[Transformer Debug] Product Selection:', {
+            input: insuranceType,
+            mapped: mappedProduct,
+            final: payload.insuranceProduct
+        });
+
+        // nameToDebit fallback: Ensure it's a string name, not a number, as API might validate format
+        const fullName = `${cleanFirstName} ${cleanLastName}`.trim();
+        payload.nameToDebit = fullName || 'Guest User';
+
+        // Mapping categories precisely to API expectations
+        const categoryMap = { 'Individual': 'personal', 'Family': 'family', 'Group': 'group' };
+        payload.insuranceCategory = categoryMap[insuranceCategory] || insuranceCategory?.toLowerCase() || 'personal';
 
         payload.insuranceMetadata = {
             medicalConditions: medicalCondition === 'yes' ? ['pre-existing'] : [],
             isElderly: !!isElderly,
+            above60: above60 === 'yes',
+            medicalCondition: medicalCondition === 'yes'
         };
+        // For the fee endpoint and registration
+        payload.medicalConditions = medicalCondition === 'yes';
+        payload.above60 = above60 === 'yes';
+        payload.isElderly = above60 === 'yes';
     }
 
     // FINANCIAL ONLY
@@ -129,6 +161,8 @@ export const transformToSignupPayload = (formData) => {
     if (paymentFor === 'financial-insurance') {
         payload.productType = productType?.toLowerCase() || 'personal';
     }
+
+    console.log('[Transformer Debug] Final Resulting Payload:', JSON.stringify(payload, null, 2));
 
     return payload;
 };
