@@ -231,39 +231,35 @@ const Insurance = () => {
         if (mode.includes('mtn')) return 'mtn';
         if (mode.includes('airteltigo')) return 'atm';
         if (mode.includes('telecel') || mode.includes('vodafone')) return 'vfcash';
-        if (mode === 'dosh') return 'auto'; // will auto-detect network from number
+        if (mode === 'dosh') return 'doshNumber';
         return null; // Cards don't support name enquiry
     };
 
-    // For DOSH payments: detect the underlying MoMo network from the number prefix
-    const detectNetworkFromMsisdn = (msisdn) => {
-        // Strip Ghana country code if present to get the local 2-digit prefix
-        const local = msisdn.startsWith('233') ? msisdn.slice(3) : msisdn;
-        const prefix = local.substring(0, 2);
-        if (['24', '54', '55', '59', '25'].includes(prefix)) return 'mtn';
-        if (['26', '27', '56', '57'].includes(prefix)) return 'atm';
-        if (['20', '50'].includes(prefix)) return 'vfcash';
-        return null;
-    };
 
     // Auto-fetch account holder name when phone number + payment mode are ready
     useEffect(() => {
         const rawAccountType = getAccountType(formData.paymentMode);
         const countryCode = formData.country.replace('+', '');
+
+        // Logic for Source resolution: 
+        // If payment mode is DOSH and the source is "DOSH Number", fetch name for that source number.
+        // Otherwise, fetch name for the primary registration phone number.
+        const isDoshPayment = formData.paymentMode === 'DOSH';
+        const isDoshNumberSource = isDoshPayment && formData.doshSource === 'DOSH Number';
+        const sourceInput = isDoshNumberSource ? formData.doshSourceNumber : formData.phoneNumber;
+
         // Strip leading zero (local format) before building international MSISDN
         // e.g. 0556318804 + 233 → 233556318804
         // If the number is already in international format (e.g. DOSH: 233579579105), don't prepend again
-        const localPhone = formData.phoneNumber.replace(/^0+/, '');
+        const localPhone = sourceInput.replace(/^0+/, '');
         const msisdn = localPhone.startsWith(countryCode)
             ? localPhone
             : `${countryCode}${localPhone}`;
 
-        // Resolve final accountType — for DOSH, auto-detect from the number prefix
-        const accountType = rawAccountType === 'auto'
-            ? detectNetworkFromMsisdn(msisdn)
-            : rawAccountType;
+        // Resolve final accountType
+        const accountType = rawAccountType;
 
-        // Need a supported MoMo network and a plausible full number (at least 9 digits)
+        // Need a supported network and a plausible full number (at least 9 digits)
         if (!accountType || msisdn.length < 9) {
             setEnquiredName('');
             setNameError('');
@@ -275,14 +271,19 @@ const Insurance = () => {
             setNameLoading(true);
             setNameError('');
             try {
-                const res = await fetch('https://dsp.onenet.xyz:50443/api/transactions/name', {
+                const body = {
+                    accountNumber: msisdn,
+                    accountType: accountType
+                };
+
+                const res = await fetch('https://dsp.onenet.xyz:50443/api/v2/transactions/name', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ msisdn, accountType }),
+                    body: JSON.stringify(body),
                     signal: controller.signal,
                 });
                 const data = await res.json();
-                if (data?.ResponseCode === '200' && data?.Name) {
+                if (data?.ResponseCode === '00' && data?.Name) {
                     setEnquiredName(data.Name);
                 } else {
                     setEnquiredName('');
@@ -304,7 +305,7 @@ const Insurance = () => {
             clearTimeout(timer);
             controller.abort();
         };
-    }, [formData.phoneNumber, formData.country, formData.paymentMode]);
+    }, [formData.phoneNumber, formData.country, formData.paymentMode, formData.doshSource, formData.doshSourceNumber]);
 
     const getPricing = (part = 'total') => {
         if (feeData) {
@@ -470,6 +471,15 @@ const Insurance = () => {
             if (errors[name]) {
                 setErrors(prev => ({ ...prev, [name]: '' }));
             }
+            return;
+        }
+
+        if (name === 'doshSource' && value === 'Username' && enquiredName) {
+            setFormData(prev => ({
+                ...prev,
+                [name]: value,
+                doshSourceNumber: enquiredName
+            }));
             return;
         }
 
@@ -920,7 +930,18 @@ const Insurance = () => {
                                                 </div>
                                             </div>
                                             <div>
-                                                <Label htmlFor="doshSourceNumber" required>Source Number</Label>
+                                                <div className="flex justify-between items-end mb-1">
+                                                    <Label htmlFor="doshSourceNumber" required>Source Number</Label>
+                                                    {formData.doshSource === 'Username' && enquiredName && formData.doshSourceNumber !== enquiredName && (
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setFormData(prev => ({ ...prev, doshSourceNumber: enquiredName }))}
+                                                            className="text-[10px] font-bold text-[#987c55] hover:underline mb-1"
+                                                        >
+                                                            Use: {enquiredName}
+                                                        </button>
+                                                    )}
+                                                </div>
                                                 <Input
                                                     name="doshSourceNumber"
                                                     value={formData.doshSourceNumber}
