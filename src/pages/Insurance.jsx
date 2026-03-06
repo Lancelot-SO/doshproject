@@ -337,33 +337,25 @@ const Insurance = () => {
             const getInsuranceDaily = () => {
                 const ren = parseFloat(feeData.insuranceBreakdown?.breakdown?.renewalFee || 0);
 
-                // YEARLY LOGIC (from user images)
+                const planMatch = formData.insuranceType?.match(/\d+/);
+                const planNum = planMatch ? parseInt(planMatch[0]) : 365;
+
+                let multiplier = 1;
+                if (formData.medicalCondition === 'yes' && formData.above60 === 'yes') {
+                    multiplier = 4;
+                } else if (formData.medicalCondition === 'yes' || formData.above60 === 'yes') {
+                    multiplier = 2;
+                }
+
                 if (formData.paymentMethod === 'yearly') {
-                    if (formData.medicalCondition === 'yes' && formData.above60 === 'yes') {
-                        return 1460.00;
-                    }
-                    if (formData.medicalCondition === 'yes' || formData.above60 === 'yes') {
-                        return 730.00; // Assuming 2x base/surcharge behavior
-                    }
-                    return 365.00; // Base yearly
+                    return planNum * multiplier;
                 }
 
-                // DAILY NON-LINEAR SURCHARGE LOGIC
                 if (formData.paymentMethod === 'daily') {
-                    if (formData.medicalCondition === 'yes' && formData.above60 === 'yes') {
-                        return 16.24;
-                    }
-                    if (formData.medicalCondition === 'yes' || formData.above60 === 'yes') {
-                        return 8.12;
-                    }
-                    return 4.06; // Base daily insurance
+                    return (planNum / 90) * multiplier;
                 }
 
-                // Default fallback
-                let surcharges = 0;
-                if (formData.medicalCondition === 'yes') surcharges += 8.12;
-                if (formData.above60 === 'yes') surcharges += 8.12;
-                return ren + surcharges;
+                return ren * multiplier;
             };
 
             const getFinancialSetup = () => {
@@ -418,54 +410,55 @@ const Insurance = () => {
 
             // Part Mapping
             if (part === 'financial_daily') {
-                if (formData.paymentMethod === 'yearly') return getFinancialTierAmount().toFixed(2);
-                return getFinancialDaily().toFixed(2);
+                if (formData.paymentMethod === 'yearly') return getFinancialTierAmount();
+                return getFinancialDaily();
             }
-            if (part === 'insurance_daily') return getInsuranceDaily().toFixed(2);
-            if (part === 'financial_setup') return getFinancialSetup().toFixed(2);
-            if (part === 'insurance_setup') return getInsuranceSetup().toFixed(2);
-            if (part === 'shares') return getSharesFee().toFixed(2);
-            if (part === 'other') return getOtherFees().toFixed(2);
+            if (part === 'insurance_daily') return getInsuranceDaily();
+            if (part === 'financial_setup') return getFinancialSetup();
+            if (part === 'insurance_setup') return getInsuranceSetup();
+            if (part === 'shares') return getSharesFee();
+            if (part === 'other') return getOtherFees();
 
             // Legacy support
-            if (part === 'financial') return getFinancialSetup().toFixed(2);
-            if (part === 'insurance') return getInsuranceDaily().toFixed(2);
+            if (part === 'financial') return getFinancialSetup();
+            if (part === 'insurance') return getInsuranceDaily();
 
             if (part === 'total') {
                 if (formData.paymentMethod === 'daily') {
-                    // USER REQUIREMENT: Total should be 37.24 (Setup 20 + Fixed Fee 1 + Insurance Daily 16.24)
-                    // It EXCLUDES the GHS 1.00 daily financial renewal from the "Due Now" total.
-                    const setup = getFinancialSetup(); // 20.00
-                    const insuranceDaily = parseFloat(getInsuranceDaily()); // e.g., 16.24
-                    const shares = getSharesFee(); // e.g., 1.00
-                    const other = getOtherFees(); // e.g., 0.00
+                    const setup = getFinancialSetup();
+                    const insuranceDaily = getInsuranceDaily();
+                    const shares = getSharesFee();
+                    const other = getOtherFees();
+
+                    // If tier > Personal (365), add the extra daily financial cost (TierAmt / 365)
+                    const tier = formData.productType?.toLowerCase() || 'personal';
+                    const financialDailyRate = getFinancialTierAmount() / 365;
+                    const extraFinancialDaily = (tier !== 'personal' && (formData.insuranceOption === 'combo' || formData.accountOption === 'createPlan')) ? financialDailyRate : 0;
 
                     if (formData.insuranceOption === 'financial') {
-                        return (setup + shares + other).toFixed(2);
+                        const financialDaily = getFinancialTierAmount() / 365;
+                        const extraDaily = tier !== 'personal' ? financialDaily : 0;
+                        return (setup + shares + other + extraDaily);
                     }
 
-                    return (setup + insuranceDaily + shares + other).toFixed(2);
+                    return (setup + insuranceDaily);
                 }
                 if (formData.paymentMethod === 'yearly') {
-                    // Financial Only path sum
                     if (formData.insuranceOption === 'financial') {
-                        return (getFinancialTierAmount() + getFinancialSetup() + getSharesFee() + getOtherFees()).toFixed(2);
+                        return (getFinancialTierAmount() + getFinancialSetup() + getSharesFee() + getOtherFees());
                     }
-                    // Insurance Only path sum
                     if (formData.insuranceOption === 'insuranceOnly') {
-                        // If user chose to also open a financial account (createPlan), add its tier cost
                         const financialExtra = formData.accountOption === 'createPlan' ? getFinancialTierAmount() : 0;
-                        return (getInsuranceDaily() + getInsuranceSetup() + financialExtra).toFixed(2);
+                        return (getInsuranceDaily() + getInsuranceSetup() + financialExtra);
                     }
-                    // Financial Tier Price + Insurance Yearly amount
-                    return (getFinancialTierAmount() + getInsuranceDaily()).toFixed(2);
+                    return (getFinancialTierAmount() + getInsuranceDaily());
                 }
-                return (getFinancialSetup() + getInsuranceSetup() + getInsuranceDaily() + getSharesFee() + getOtherFees()).toFixed(2);
+                return (getFinancialSetup() + getInsuranceSetup() + getInsuranceDaily() + getSharesFee() + getOtherFees());
             }
 
-            return (feeData.total || "0.00");
+            return parseFloat(feeData.total || "0");
         }
-        return "0.00";
+        return 0;
     };
 
 
@@ -1084,8 +1077,8 @@ const Insurance = () => {
 
                             {/* Grey Info Box Area */}
                             <div className="bg-[#f2f4f7] rounded-[1.5rem] p-6 md:p-8 space-y-6">
-                                {/* Gold Alert Box */}
-                                {formData.paymentMethod === 'daily' && (
+                                {/* Gold Alert Box - only for non-financial daily (insurance/combo) */}
+                                {formData.paymentMethod === 'daily' && formData.insuranceOption !== 'financial' && (
                                     <div className="bg-[#bc9444] rounded-xl p-4 flex items-start space-x-3 text-white">
                                         <div className="bg-white rounded-full p-1 mt-0.5 flex-shrink-0">
                                             <svg className="w-4 h-4 text-[#bc9444]" fill="currentColor" viewBox="0 0 20 20">
@@ -1117,39 +1110,78 @@ const Insurance = () => {
                                         <span className="font-bold text-gray-600 capitalize">{formData.paymentMethod}</span>
                                     </div>
 
-                                    {/* Payment amount per day (GHS 1.00 constant) */}
+                                    {/* Payment amount per day - daily only */}
                                     {formData.paymentMethod === 'daily' && (
                                         <div className="flex justify-between items-center text-lg">
                                             <span className="text-gray-500 font-medium">Payment amount per day</span>
-                                            <span className="font-bold text-gray-600">GHS 1.00</span>
+                                            <span className="font-bold text-gray-600">
+                                                GHS {formData.insuranceOption === 'financial'
+                                                    ? ((() => {
+                                                        const tier = formData.productType?.toLowerCase() || 'personal';
+                                                        const tierAmounts = { personal: 365, family: 730, soho: 1820, smb: 3650, enterprise: 10000 };
+                                                        return (tierAmounts[tier] / 365).toFixed(2);
+                                                    })())
+                                                    : ((() => {
+                                                        const planMatch = formData.insuranceType?.match(/\d+/);
+                                                        const planNum = planMatch ? parseInt(planMatch[0]) : 365;
+                                                        // Multipliers based on conditions
+                                                        let multiplier = 1;
+                                                        if (formData.medicalCondition === 'yes' && formData.above60 === 'yes') {
+                                                            multiplier = 4;
+                                                        } else if (formData.medicalCondition === 'yes' || formData.above60 === 'yes') {
+                                                            multiplier = 2;
+                                                        }
+                                                        return ((planNum / 90) * multiplier).toFixed(2);
+                                                    })())}
+                                            </span>
                                         </div>
                                     )}
 
-                                    {/* Insurance payment amount per day/year */}
-                                    <div className="flex justify-between items-center text-lg">
-                                        <span className="text-gray-500 font-medium">
-                                            Insurance {formData.paymentMethod === 'yearly' ? 'amount per year' : 'payment amount per day'}
-                                        </span>
-                                        <span className="font-bold text-gray-600">GHS {getPricing('insurance_daily')}</span>
-                                    </div>
+                                    {/* Financial yearly amount - for financial-only OR combo OR insurance-only with create-plan */}
+                                    {(formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || (formData.insuranceOption === 'insuranceOnly' && formData.accountOption === 'createPlan')) && formData.paymentMethod === 'yearly' && (
+                                        <div className="flex justify-between items-center text-lg">
+                                            <span className="text-gray-500 font-medium tracking-tight">
+                                                DOSH Financial {formData.productType} Yearly Payment
+                                            </span>
+                                            <span className="font-bold text-gray-600">GHS {parseFloat(getPricing('financial_daily')).toFixed(2)}</span>
+                                        </div>
+                                    )}
 
-                                    {/* Initial charge */}
-                                    <div className="flex justify-between items-center text-lg">
-                                        <span className="text-gray-500 font-medium">Initial charge</span>
-                                        <span className="font-bold text-gray-600">GHS {getPricing('financial_setup')}</span>
-                                    </div>
+                                    {/* Insurance payment amount per day/year - hidden for financial-only */}
+                                    {formData.insuranceOption !== 'financial' && (
+                                        <div className="flex justify-between items-center text-lg">
+                                            <span className="text-gray-500 font-medium">
+                                                {formData.paymentMethod === 'yearly'
+                                                    ? `${formData.insuranceType || 'Insurance'} Yearly Payment`
+                                                    : 'Insurance payment amount per day'}
+                                            </span>
+                                            <span className="font-bold text-gray-600">GHS {parseFloat(getPricing('insurance_daily')).toFixed(2)}</span>
+                                        </div>
+                                    )}
 
-                                    {/* Initial Insurance charge */}
-                                    <div className="flex justify-between items-center text-lg">
-                                        <span className="text-gray-500 font-medium">Initial Insurance charge</span>
-                                        <span className="font-bold text-gray-600">GHS 0.00</span>
-                                    </div>
+                                    {/* Initial charge - daily only */}
+                                    {formData.paymentMethod !== 'yearly' && (
+                                        <div className="flex justify-between items-center text-lg">
+                                            <span className="text-gray-500 font-medium">Initial charge</span>
+                                            <span className="font-bold text-gray-600">GHS {parseFloat(getPricing('financial_setup')).toFixed(2)}</span>
+                                        </div>
+                                    )}
 
-                                    {/* Fixed Fee charge */}
-                                    <div className="flex justify-between items-center text-lg">
-                                        <span className="text-gray-500 font-medium">Fixed Fee charge</span>
-                                        <span className="font-bold text-gray-600">GHS {getPricing('shares')}</span>
-                                    </div>
+                                    {/* Initial Insurance charge - daily only, hidden for financial */}
+                                    {formData.paymentMethod !== 'yearly' && formData.insuranceOption !== 'financial' && (
+                                        <div className="flex justify-between items-center text-lg">
+                                            <span className="text-gray-500 font-medium">Initial Insurance charge</span>
+                                            <span className="font-bold text-gray-600">GHS 0.00</span>
+                                        </div>
+                                    )}
+
+                                    {/* Fixed Fee charge - daily only */}
+                                    {formData.paymentMethod !== 'yearly' && (
+                                        <div className="flex justify-between items-center text-lg">
+                                            <span className="text-gray-500 font-medium">Fixed Fee charge</span>
+                                            <span className="font-bold text-gray-600">GHS {parseFloat(getPricing('shares')).toFixed(2)}</span>
+                                        </div>
+                                    )}
 
                                     {/* Separator */}
                                     <hr className="border-gray-300 my-4" />
