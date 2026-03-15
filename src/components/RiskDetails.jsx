@@ -21,10 +21,10 @@ const RiskDetails = ({ onClose }) => {
             try {
                 const response = await fetch('https://doshcms.interactivedigital.com.gh/api/risk-insurance-modal');
                 const data = await response.json();
-                console.log('riskdetails Data:', data);
+
                 setRiskModal(data[0]);
             } catch (error) {
-                console.error('Error fetching risk detail data:', error);
+
             }
         };
         fetchRiskDetail();

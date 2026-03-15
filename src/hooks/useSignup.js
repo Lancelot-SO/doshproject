@@ -29,16 +29,16 @@ export function useSignup() {
 
             try {
                 const payload = transformToSignupPayload(formData);
-                console.log('[Signup Debug] Sending Payload:', payload);
+
 
                 const result = await executeSignup(payload);
 
                 if (result.ok) {
-                    console.log('[Signup Success]', result.data);
+
                     setSuccessData(result.data);
                     return result.data;
                 } else {
-                    console.error('[Signup Error]', result);
+
                     setErrorMessage(result.message || 'Signup failed.');
                     setErrorData(result.data || null);
                     throw result;
@@ -70,11 +70,11 @@ export function useSignup() {
                     setFeeData(result.data);
                     return result.data;
                 } else {
-                    console.error('[Fee Fetch Error]', result);
+
                     setFeeData(null);
                 }
             } catch (err) {
-                console.error('[Fee Exception]', err);
+
                 setFeeData(null);
             } finally {
                 setFeeLoading(false);

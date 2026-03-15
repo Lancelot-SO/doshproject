@@ -49,7 +49,7 @@ export default function Refer() {
                 )}
 
                 {/* Popup */}
-                {showAddRefer && <AddRefer onClose={handleCloseAddRefer} onSubmit={() => console.log("Form submitted")} />}
+                {showAddRefer && <AddRefer onClose={handleCloseAddRefer} onSubmit={() => {}} />}
             </div>
             <div className='fixed lg:top-[100px] top-[190px] right-0 z-20'>
                 <QuickActions />

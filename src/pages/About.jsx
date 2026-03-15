@@ -89,10 +89,10 @@ const About = () => {
             try {
                 const response = await fetch('https://doshcms.interactivedigital.com.gh/api/fetch-about-data');
                 const data = await response.json();
-                console.log('about Data:', data);
+
                 setAboutDta(data[0]);
             } catch (error) {
-                console.error('Error fetching about data:', error);
+
             }
         };
         fetchaboutData();

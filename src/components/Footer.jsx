@@ -42,11 +42,11 @@ const Footer = () => {
                 // remove stray trailing space
                 const response = await fetch('https://doshcms.interactivedigital.com.gh/api/privacy-statement')
                 const data = await response.json()
-                console.log('privacy Data:', data)
+
                 // pull the actual field from the returned JSON
                 setPrivacyStatement(data.privacy_statement)
             } catch (error) {
-                console.error('Error fetching privacy data:', error)
+
                 setPrivacyStatement('<p>Unable to load privacy policy at this time.</p>')
             }
         }

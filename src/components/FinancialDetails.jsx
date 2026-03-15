@@ -32,10 +32,10 @@ const FinanceDetails = ({ onClose }) => {
             try {
                 const response = await fetch('https://doshcms.interactivedigital.com.gh/api/financial-insurance-modal');
                 const data = await response.json();
-                console.log('financedetails Data:', data);
+
                 setFinanceModal(data[0]);
             } catch (error) {
-                console.error('Error fetching finance detail data:', error);
+
             }
         };
         fetchFinanceDetail();

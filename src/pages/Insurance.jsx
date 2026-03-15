@@ -206,10 +206,7 @@ const Insurance = () => {
 
         if (isPricingReady) {
             getFee(formData).then(res => {
-                console.log('[Signup Debug] getFee Full Response:', {
-                    payload: formData,
-                    response: res
-                });
+
             });
         }
     }, [
@@ -236,17 +233,42 @@ const Insurance = () => {
     };
 
 
-    // Auto-fetch account holder name when phone number + payment mode are ready
+    // Auto-fetch account holder name when phone number + payment mode are ready,
+    // or when user enters a DOSH number for an existing account
     useEffect(() => {
         const rawAccountType = getAccountType(formData.paymentMode);
         const countryCode = formData.country.replace('+', '');
 
         // Logic for Source resolution: 
-        // If payment mode is DOSH and the source is "DOSH Number", fetch name for that source number.
-        // Otherwise, fetch name for the primary registration phone number.
+        // 1. If user has selected "Already have a DOSH financial account" and entered a DOSH number, look up that number.
+        // 2. If payment mode is DOSH and the source is "DOSH Number", fetch name for that source number.
+        // 3. Otherwise, fetch name for the primary registration phone number.
+        const isExistingAccountDosh = formData.accountOption === 'existingAccount' && formData.doshNumber && formData.doshNumber.length >= 9;
         const isDoshPayment = formData.paymentMode === 'DOSH';
         const isDoshNumberSource = isDoshPayment && formData.doshSource === 'DOSH Number';
-        const sourceInput = isDoshNumberSource ? formData.doshSourceNumber : formData.phoneNumber;
+
+        let sourceInput, accountType, isDoshLookup;
+
+        if (isExistingAccountDosh) {
+            // Priority: Existing DOSH account number lookup
+            sourceInput = formData.doshNumber;
+            accountType = 'doshNumber';
+            isDoshLookup = true;
+        } else if (isDoshNumberSource) {
+            sourceInput = formData.doshSourceNumber;
+            accountType = rawAccountType;
+            isDoshLookup = true;
+        } else {
+            sourceInput = formData.phoneNumber;
+            accountType = rawAccountType;
+            isDoshLookup = false;
+        }
+
+        if (!sourceInput) {
+            setEnquiredName('');
+            setNameError('');
+            return;
+        }
 
         // Strip leading zero (local format) before building international MSISDN
         // e.g. 0556318804 + 233 → 233556318804
@@ -255,9 +277,6 @@ const Insurance = () => {
         const msisdn = localPhone.startsWith(countryCode)
             ? localPhone
             : `${countryCode}${localPhone}`;
-
-        // Resolve final accountType
-        const accountType = rawAccountType;
 
         // Need a supported network and a plausible full number (at least 9 digits)
         if (!accountType || msisdn.length < 9) {
@@ -271,14 +290,11 @@ const Insurance = () => {
             setNameLoading(true);
             setNameError('');
             try {
-                const isDosh = accountType === 'doshNumber';
-                const url = isDosh
-                    ? 'https://dsp.onenet.xyz:50443/api/v2/transactions/name'
-                    : 'https://dsp.onenet.xyz:50443/api/transactions/name';
+                // Using the v2 endpoint universally for all supported types
+                const url = 'https://dsp.onenet.xyz:50443/api/v2/transactions/name';
 
-                const body = isDosh
-                    ? { accountNumber: msisdn, accountType }
-                    : { msisdn, accountType };
+                // Both doshNumber and MOMO use the same v2 format
+                const body = { accountNumber: msisdn, accountType };
 
                 const res = await fetch(url, {
                     method: 'POST',
@@ -288,8 +304,8 @@ const Insurance = () => {
                 });
                 const data = await res.json();
 
-                const successCode = isDosh ? '00' : '200';
-                if (data?.ResponseCode === successCode && data?.Name) {
+                // v2 always returns "00" on success 
+                if (data?.ResponseCode === "00" && data?.Name) {
                     setEnquiredName(data.Name);
                 } else {
                     setEnquiredName('');
@@ -311,35 +327,35 @@ const Insurance = () => {
             clearTimeout(timer);
             controller.abort();
         };
-    }, [formData.phoneNumber, formData.country, formData.paymentMode, formData.doshSource, formData.doshSourceNumber]);
+    }, [formData.phoneNumber, formData.country, formData.paymentMode, formData.doshSource, formData.doshSourceNumber, formData.doshNumber, formData.accountOption]);
 
     const getPricing = (part = 'total') => {
+        // 1. Tiered Financial Pricing Mapping (Independent of feeData)
+        const getFinancialTierAmount = () => {
+            const tier = formData.productType?.toLowerCase() || 'personal';
+            if (tier === 'personal') return 365.00;
+            if (tier === 'family') return 730.00;
+            if (tier === 'soho') return 1820.00;
+            if (tier === 'smb') return 3650.00;
+            if (tier === 'enterprise') return 10000.00;
+            return 365.00;
+        };
+
+        const getFinancialDailyRate = () => {
+            const tier = formData.productType?.toLowerCase() || 'personal';
+            if (tier === 'personal') return 1.00;
+            if (tier === 'family') return 2.00;
+            if (tier === 'soho') return 5.00;
+            if (tier === 'smb') return 10.00;
+            if (tier === 'enterprise') return 30.00;
+            return 1.00;
+        };
+
         if (feeData) {
             // DEBUG: Log breakdown if we see 0.00 in a combo/insurance path
             if (feeData.total === "0.00" && formData.insuranceOption !== 'financial') {
                 console.warn('[Pricing Warning] API returned 0.00 for insurance/combo path. Check product mapping.');
             }
-
-            // 1. Tiered Financial Pricing Mapping
-            const getFinancialTierAmount = () => {
-                const tier = formData.productType?.toLowerCase() || 'personal';
-                if (tier === 'personal') return 365.00;
-                if (tier === 'family') return 730.00;
-                if (tier === 'soho') return 1820.00;
-                if (tier === 'smb') return 3650.00;
-                if (tier === 'enterprise') return 10000.00;
-                return 365.00;
-            };
-
-            const getFinancialDailyRate = () => {
-                const tier = formData.productType?.toLowerCase() || 'personal';
-                if (tier === 'personal') return 1.00;
-                if (tier === 'family') return 2.00;
-                if (tier === 'soho') return 5.00;
-                if (tier === 'smb') return 10.00;
-                if (tier === 'enterprise') return 30.00;
-                return 1.00;
-            };
 
             // 2. Components for Individual Parts
             const getFinancialDaily = () => parseFloat(feeData.financialBreakdown?.breakdown?.renewalFee || 0);
@@ -448,8 +464,9 @@ const Insurance = () => {
                         return (setup + other + totalFinancialDaily);
                     }
 
-                    // Combo/Insurance registration: Setup (20) + Fixed (1) + Insurance Daily (-1) + First Day Deposit
-                    return (setup + shares + other + (insuranceDaily - 1) + totalFinancialDaily);
+                    // Combo/Insurance registration: Setup (20) + Fixed (1) + Insurance Daily (-1)
+                    // Note: Financial amount per day is displayed but NOT included in the total
+                    return (setup + shares + other + (insuranceDaily - 1));
                 }
                 if (formData.paymentMethod === 'yearly') {
                     if (formData.insuranceOption === 'financial') {
@@ -464,8 +481,112 @@ const Insurance = () => {
                 return (getFinancialSetup() + getInsuranceSetup() + getInsuranceDaily() + getSharesFee() + getOtherFees());
             }
 
+            // If the API explictly returned total: "0.00", force a calculation instead of returning 0
+            if (feeData.total === "0.00" || feeData.total === 0 || !feeData.total) {
+                if (formData.paymentMethod === 'daily') {
+                    const setup = getFinancialSetup();
+                    const insuranceDaily = getInsuranceDaily();
+                    const shares = getSharesFee();
+                    const other = getOtherFees();
+
+                    const financialDailyRate = getFinancialDailyRate();
+                    const hasFinancial = formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.accountOption === 'createPlan';
+                    const totalFinancialDaily = hasFinancial ? financialDailyRate : 0;
+
+                    if (formData.insuranceOption === 'financial') {
+                        return (setup + other + totalFinancialDaily);
+                    }
+                    return (setup + shares + other + (insuranceDaily - 1));
+                }
+                if (formData.paymentMethod === 'yearly') {
+                    if (formData.insuranceOption === 'financial') {
+                        return (getFinancialTierAmount() + getFinancialSetup() + getSharesFee() + getOtherFees());
+                    }
+                    if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'account' || formData.accountOption === 'createPlan') {
+                        // Manual fallback math to match what the screenshot expects
+                        const planMatch = formData.insuranceType?.match(/\d+/);
+                        const planNum = planMatch ? parseInt(planMatch[0]) : 365;
+                        let multiplier = 1;
+                        if (formData.medicalCondition === 'yes' && formData.above60 === 'yes') {
+                            multiplier = 4;
+                        } else if (formData.medicalCondition === 'yes' || formData.above60 === 'yes') {
+                            multiplier = 2;
+                        }
+                        
+                        const insuranceYearly = planNum * multiplier;
+                        const financialExtra = formData.accountOption === 'createPlan' ? getFinancialTierAmount() : 0;
+                        
+                        // Yearly insurance has no setup or shares fees
+                        if (part === 'insurance_daily') return insuranceYearly;
+                        if (part === 'insurance_setup') return 0;
+                        if (part === 'shares') return 0;
+                        if (part === 'financial_setup') return 0;
+                        if (part === 'other') return 0;
+                        if (part === 'tier_amount') return financialExtra;
+                        
+                        if (part === 'total') return insuranceYearly + financialExtra;
+                        
+                        return insuranceYearly + financialExtra;
+                    }
+                    return (getFinancialTierAmount() + getInsuranceDaily());
+                }
+                return (getFinancialSetup() + getInsuranceSetup() + getInsuranceDaily() + getSharesFee() + getOtherFees());
+            }
+
             return parseFloat(feeData.total || "0");
         }
+        
+        // If feeData is completely null (API failed entirely), run the manual fallback calculation
+        if (formData.paymentMethod === 'daily') {
+            const planMatch = formData.insuranceType?.match(/\d+/);
+            const planNum = planMatch ? parseInt(planMatch[0]) : 365;
+            let multiplier = 1;
+            if (formData.medicalCondition === 'yes' && formData.above60 === 'yes') {
+                multiplier = 4;
+            } else if (formData.medicalCondition === 'yes' || formData.above60 === 'yes') {
+                multiplier = 2;
+            }
+            const insuranceDaily = (Math.ceil((planNum / 90) * 100) / 100) * multiplier;
+            
+            const shares = 1.00;
+            const setup = formData.accountOption === 'yes' ? 0.00 : 20.00;
+            const other = 0.0;
+            
+            if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'account' || formData.insuranceOption === 'plan') {
+                return (setup + shares + other + (insuranceDaily - 1));
+            }
+        }
+        
+        if (formData.paymentMethod === 'yearly') {
+            const planMatch = formData.insuranceType?.match(/\d+/);
+            const planNum = planMatch ? parseInt(planMatch[0]) : 365;
+            let multiplier = 1;
+
+            // Apply multipliers based on conditions
+            if (formData.medicalCondition === 'yes' && formData.above60 === 'yes') {
+                multiplier = 4; // Two conditions (e.g., 2500 * 4 = 10000)
+            } else if (formData.medicalCondition === 'yes' || formData.above60 === 'yes') {
+                multiplier = 2; // One condition (e.g., 2500 * 2 = 5000)
+            }
+            
+            const insuranceYearly = planNum * multiplier;
+            const financialExtra = formData.accountOption === 'createPlan' ? getFinancialTierAmount() : 0;
+
+            // Specifically mapping individual parts for the UI components
+            if (part === 'insurance_daily') return insuranceYearly; // The UI labels it "Amount per year" but ties it to insuranceDaily functionally for yearly
+            if (part === 'insurance_setup') return 0;
+            if (part === 'shares') return 0;
+            if (part === 'financial_setup') return 0;
+            if (part === 'other') return 0;
+            if (part === 'tier_amount') return financialExtra;
+            
+            if (part === 'total') {
+                if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'account' || formData.accountOption === 'createPlan') {
+                     return insuranceYearly + financialExtra;
+                }
+            }
+        }
+
         return 0;
     };
 

@@ -136,7 +136,7 @@ const ProductServices = () => {
                 ];
                 setProducts(newProducts);
             })
-            .catch(error => console.error("Error fetching slider data:", error));
+            .catch(error => {});
     }, []);
 
     //fetch api for video data
@@ -145,10 +145,10 @@ const ProductServices = () => {
             try {
                 const response = await fetch('https://doshcms.interactivedigital.com.gh/api/fetch-pns-video-sec');
                 const data = await response.json();
-                console.log('video Data:', data);
+
                 setVideoData(data);
             } catch (error) {
-                console.error('Error fetching video data:', error);
+
             }
         };
         fetchVideoData();

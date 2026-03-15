@@ -13,19 +13,19 @@ const TrackPageVisit = ({ pageUrl }) => {
         })
             .then(response => {
                 // Optionally log or ignore
-                console.log('Visit tracked:', response.data.message);
+
             })
             .catch(error => {
                 // Graceful error handling
                 if (error.response) {
                     // Request made, server responded with error code
-                    console.warn('Track visit failed:', error.response.status, error.response.data?.error);
+
                 } else if (error.request) {
                     // Request made, no response received
-                    console.warn('Track visit error: No response from server');
+
                 } else {
                     // Something else went wrong
-                    console.warn('Unexpected error:', error.message);
+
                 }
             });
     }, [pageUrl]);

@@ -20,7 +20,7 @@ const CallModal = ({ onClose }) => {
             emailType: "requestCallForm",
         };
 
-        console.log('📤 Sending form data:', formData);
+
 
         try {
             const response = await fetch('/send-email.php', {
@@ -33,15 +33,15 @@ const CallModal = ({ onClose }) => {
 
             const result = await response.json();
             if (result.status === 'success') {
-                console.log('✅ Response:', result);
+
                 toast.success(result.message);
                 e.target.reset();
             } else {
-                console.error('❌ Failed:', result);
+
                 toast.error(result.message);
             }
         } catch (error) {
-            console.error('⚠️ Error:', error);
+
             toast.error('An error occurred. Please try again.');
         }
     };

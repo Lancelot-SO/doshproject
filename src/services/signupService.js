@@ -26,7 +26,7 @@ const joinUrl = (base, path) => {
  */
 async function fetchCsrfToken() {
     const url = joinUrl(FINAL_BASE_URL, CSRF_ENDPOINT);
-    console.log('[Signup Debug] Fetching CSRF from:', url);
+
 
     try {
         const response = await axios.get(url, {
@@ -48,18 +48,13 @@ async function fetchCsrfToken() {
             response.headers['x-csrf-token'];
 
         if (!token) {
-            console.error('CSRF response:', response.data, response.headers);
+
             throw new Error('CSRF token not found in response');
         }
 
         return token;
     } catch (error) {
-        console.error('Failed to fetch CSRF token:', {
-            message: error.message,
-            url: url,
-            status: error.response?.status,
-            data: error.response?.data
-        });
+
         throw new Error('Unable to connect to the server (CORS or Network Error). Please ensure you are on a whitelisted domain.');
     }
 }
@@ -74,8 +69,7 @@ async function fetchCsrfToken() {
 export async function getSignupFee(payload) {
     // For live production: using the full URL without the /v3 prefix for the fee endpoint
     const url = 'https://dsp.onenet.xyz:50443/api/transactions/signup/fee';
-    console.log('[Signup Debug] Fetching fee from:', url);
-    console.log('[Signup Debug] Fee Payload:', JSON.stringify(payload, null, 2));
+
 
     try {
         const csrfToken = await fetchCsrfToken();
@@ -95,7 +89,7 @@ export async function getSignupFee(payload) {
             data: response.data
         };
     } catch (error) {
-        console.error('[Signup Fee Error]', error.response?.data || error.message);
+
         return {
             ok: false,
             status: error.response?.status || 0,
@@ -123,7 +117,7 @@ export async function getSignupFee(payload) {
  */
 export async function executeSignup(payload) {
     const url = joinUrl(FINAL_BASE_URL, '/transactions/signup');
-    console.log('[Signup Debug] Posting to:', url);
+
 
     try {
         // 1. Get CSRF token
@@ -189,7 +183,7 @@ export async function executeSignup(payload) {
         }
 
         // Network / timeout / other errors
-        console.error('Network or unknown error', error);
+
         return {
             ok: false,
             status: 0,

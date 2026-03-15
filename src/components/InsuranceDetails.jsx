@@ -32,10 +32,10 @@ const InsuranceDetails = ({ onClose }) => {
             try {
                 const response = await fetch('https://doshcms.interactivedigital.com.gh/api/health-insurance-modal');
                 const data = await response.json();
-                console.log('insurancedetails Data:', data);
+
                 setInsureModal(data[0]);
             } catch (error) {
-                console.error('Error fetching insurance detail data:', error);
+
             }
         };
         fetchInsuranceDetail();

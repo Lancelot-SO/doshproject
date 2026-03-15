@@ -213,7 +213,7 @@ export default function AuthCode() {
                                     Close
                                 </button>
                                 <button
-                                    onClick={() => console.log("Continue clicked")}
+                                    onClick={() => {}}
                                     className="flex-1 bg-[#B39B7D] hover:bg-[#9A846A] text-white py-2 rounded-lg"
                                 >
                                     Continue

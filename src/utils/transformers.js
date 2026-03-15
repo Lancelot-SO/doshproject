@@ -23,11 +23,11 @@ const MAPPINGS = {
         'DOSH 900': 'DOSH-900',
         'DOSH 1000': 'DOSH 1000 premium',
         'DOSH 1200': 'DOSH-1200',
-        'DOSH 2500': 'DOSH 2500 premium',
+        'DOSH 2500': 'DOSH-2500',
         'DOSH 2800': 'DOSH-2800',
-        'DOSH 5000': 'DOSH 5000 premium',
+        'DOSH 5000': 'DOSH-5000',
         'DOSH 5500': 'DOSH-5500',
-        'DOSH 10000': 'DOSH 10000 premium',
+        'DOSH 10000': 'DOSH-10000',
         'DOSH 11000': 'DOSH-11000',
     },
     insuranceCategory: {
@@ -125,11 +125,6 @@ export const transformToSignupPayload = (formData) => {
         const mappedProduct = MAPPINGS.insuranceProduct[insuranceType];
         payload.insuranceProduct = mappedProduct || insuranceType;
 
-        console.log('[Transformer Debug] Product Selection:', {
-            input: insuranceType,
-            mapped: mappedProduct,
-            final: payload.insuranceProduct
-        });
 
         // nameToDebit fallback: Ensure it's a string name, not a number, as API might validate format
         const fullName = `${cleanFirstName} ${cleanLastName}`.trim();
@@ -162,7 +157,7 @@ export const transformToSignupPayload = (formData) => {
         payload.productType = productType?.toLowerCase() || 'personal';
     }
 
-    console.log('[Transformer Debug] Final Resulting Payload:', JSON.stringify(payload, null, 2));
+
 
     return payload;
 };

@@ -23,7 +23,7 @@ const Contact = () => {
             emailType: 'Contact Form',
         };
 
-        console.log('📤 Sending form data:', formData);
+
 
         try {
             const response = await fetch('/send-email.php', {
@@ -37,15 +37,15 @@ const Contact = () => {
             const result = await response.json();
 
             if (result.status === 'success') {
-                console.log('✅ Response:', result);
+
                 toast.success(result.message);
                 e.target.reset();
             } else {
-                console.error('❌ Failed:', result);
+
                 toast.error(result.message);
             }
         } catch (error) {
-            console.error('⚠️ Error:', error);
+
             toast.error('An error occurred. Please try again.');
         }
     };
@@ -60,10 +60,10 @@ const Contact = () => {
             try {
                 const response = await fetch('https://doshcms.interactivedigital.com.gh/api/fetch-contact-data');
                 const data = await response.json();
-                console.log('contact Data:', data);
+
                 setContactData(data);
             } catch (error) {
-                console.error('Error fetching contact data:', error);
+
             }
         };
         fetchContactData();

@@ -12,7 +12,7 @@ const doshApi = {
      */
     getCsrfToken: async () => {
         try {
-            console.log('[API Debug] Fetching CSRF token...');
+
             const response = await api.get('csrf-token', {
                 headers: {
                     'Content-Type': 'application/json',
@@ -30,14 +30,14 @@ const doshApi = {
 
             const token = response.data?.csrfToken;
             if (!token) {
-                console.error('[API Error] CSRF token missing in response:', response.data);
+
                 throw new Error('CSRF token not found in server response.');
             }
 
-            console.log('[API Debug] CSRF Token successfully obtained:', token);
+
             return token;
         } catch (error) {
-            console.error('Failed to fetch CSRF token:', error);
+
             throw error;
         }
     },
@@ -71,15 +71,15 @@ const doshApi = {
             // 3. Defensive check: Ensure response is JSON and not HTML
             if (typeof response.data === 'string' && response.data.trim().toLowerCase().startsWith('<!doctype html')) {
                 console.error('[API Error] Signup endpoint returned HTML instead of JSON.');
-                console.debug('[API Debug] HTML Snippet:', response.data.substring(0, 500));
+
                 throw new Error('Server returned an invalid response (HTML). Please contact support.');
             }
 
-            console.log('[API Debug] Signup Response Body:', response.data);
+
             return response.data;
         } catch (error) {
             const errorDetail = error.response?.data || error;
-            console.error('[API Debug] Signup Error Detail:', errorDetail);
+
             // Return error data for UI handling
             throw errorDetail;
         }
