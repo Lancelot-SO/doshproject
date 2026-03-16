@@ -290,11 +290,19 @@ const Insurance = () => {
             setNameLoading(true);
             setNameError('');
             try {
-                // Using the v2 endpoint universally for all supported types
-                const url = 'https://dsp.onenet.xyz:50443/api/v2/transactions/name';
+                let url, body, successCode;
 
-                // Both doshNumber and MOMO use the same v2 format
-                const body = { accountNumber: msisdn, accountType };
+                if (accountType === 'doshNumber' || accountType === 'vfcash') {
+                    // Endpoint for DOSH and Telecel account lookups (V2 supports more networks)
+                    url = 'https://dsp.onenet.xyz:50443/api/v2/transactions/name';
+                    body = { accountNumber: msisdn, accountType: accountType };
+                    successCode = "00";
+                } else {
+                    // Endpoint for MTN, Telecel (vfcash), and AirtelTigo (atm) as per Postman
+                    url = 'https://dsp.onenet.xyz:50443/api/transactions/name';
+                    body = { msisdn: msisdn, accountType: accountType };
+                    successCode = "200";
+                }
 
                 const res = await fetch(url, {
                     method: 'POST',
@@ -304,9 +312,12 @@ const Insurance = () => {
                 });
                 const data = await res.json();
 
-                // v2 always returns "00" on success 
-                if (data?.ResponseCode === "00" && data?.Name) {
-                    setEnquiredName(data.Name);
+                // Check for success using both the preferred ResponseCode and common fallbacks (status/Status)
+                const isSuccess = data?.ResponseCode === successCode || data?.status === "00" || data?.Status === "00" || data?.status === "200" || data?.Status === "200";
+                const resultName = data?.Name || data?.name || data?.data?.name;
+
+                if (isSuccess && resultName) {
+                    setEnquiredName(resultName);
                 } else {
                     setEnquiredName('');
                     setNameError('Could not retrieve account name.');
@@ -332,29 +343,140 @@ const Insurance = () => {
     const getPricing = (part = 'total') => {
         // 1. Tiered Financial Pricing Mapping (Independent of feeData)
         const getFinancialTierAmount = () => {
-            const tier = formData.productType?.toLowerCase() || 'personal';
-            if (tier === 'personal') return 365.00;
-            if (tier === 'family') return 730.00;
-            if (tier === 'soho') return 1820.00;
-            if (tier === 'smb') return 3650.00;
-            if (tier === 'enterprise') return 10000.00;
-            return 365.00;
+            const product = (formData.productType || '').toLowerCase();
+            if (product.includes('family')) return 730.00;
+            if (product.includes('soho')) return 1820.00;
+            if (product.includes('smb')) return 3650.00;
+            if (product.includes('enterprise')) return 10000.00;
+            return 365.00; // Default to Personal
         };
 
         const getFinancialDailyRate = () => {
-            const tier = formData.productType?.toLowerCase() || 'personal';
-            if (tier === 'personal') return 1.00;
-            if (tier === 'family') return 2.00;
-            if (tier === 'soho') return 5.00;
-            if (tier === 'smb') return 10.00;
-            if (tier === 'enterprise') return 30.00;
-            return 1.00;
+            const product = (formData.productType || '').toLowerCase();
+            if (product.includes('family')) return 2.00;
+            if (product.includes('soho')) return 5.00;
+            if (product.includes('smb')) return 10.00;
+            if (product.includes('enterprise')) return 30.00;
+            return 1.00; // Default to Personal
         };
 
         if (feeData) {
             // DEBUG: Log breakdown if we see 0.00 in a combo/insurance path
             if (feeData.total === "0.00" && formData.insuranceOption !== 'financial') {
                 console.warn('[Pricing Warning] API returned 0.00 for insurance/combo path. Check product mapping.');
+            }
+
+            // If the API explictly returned total: "0.00", force a calculation intercept for both totals and parts
+            if (feeData.total === "0.00" || feeData.total === 0 || !feeData.total) {
+                if (formData.paymentMethod === 'daily') {
+                    // Precision fix: round up to 2 decimals first (e.g. 365/90 = 4.06, 1000/90 = 11.12)
+                    const planMatch = formData.insuranceType?.match(/\d+/);
+                    const planNum = planMatch ? parseInt(planMatch[0]) : 365;
+                    let multiplier = 1;
+                    if (formData.medicalCondition === 'yes' && formData.above60 === 'yes') {
+                        multiplier = 4;
+                    } else if (formData.medicalCondition === 'yes' || formData.above60 === 'yes') {
+                        multiplier = 2;
+                    }
+                    const insuranceDaily = (Math.ceil((planNum / 90) * 100) / 100) * multiplier;
+                    
+                    const financialDailyRate = getFinancialDailyRate();
+                    const hasFinancial = formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan';
+                    const totalFinancialDaily = hasFinancial ? financialDailyRate : 0;
+                    
+                    const shares = 1.00;
+                    const setup = formData.accountOption === 'yes' ? 0.00 : 20.00;
+                    const other = 0.0;
+                    
+                    if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'account') {
+                        if (part === 'insurance_daily') return insuranceDaily;
+                        if (part === 'shares') return 20.00; // Mapped to Fixed Fee charge in the UI
+                        if (part === 'insurance_setup') return 0;
+                        if (part === 'financial_setup') return 0;
+                        if (part === 'tier_amount') return 0;
+                        if (part === 'other') return 0;
+                        if (part === 'financial_daily_rate') return totalFinancialDaily; 
+                        
+                        // Total requested
+                        if (part === 'total') return Number((insuranceDaily + 20 + totalFinancialDaily).toFixed(2));
+                        return Number((insuranceDaily + 20 + totalFinancialDaily).toFixed(2));
+                    }
+
+                    if (formData.insuranceOption === 'combo' || formData.accountOption === 'createPlan' || formData.insuranceOption === 'plan') {
+                        if (part === 'insurance_daily') return insuranceDaily;
+                        if (part === 'shares') return 20.00;
+                        if (part === 'insurance_setup') return 0;
+                        if (part === 'financial_setup') return 0;
+                        if (part === 'tier_amount') return 0;
+                        if (part === 'other') return 0;
+                        if (part === 'financial_daily_rate') return financialDailyRate;
+                        
+                        if (part === 'total') return Number((insuranceDaily + financialDailyRate + 20).toFixed(2));
+                        return Number((insuranceDaily + financialDailyRate + 20).toFixed(2));
+                    }
+
+                    if (formData.insuranceOption === 'financial') {
+                        if (part === 'total') return (setup + other + totalFinancialDaily);
+                        return (setup + other + totalFinancialDaily);
+                    }
+                    
+                    if (part === 'total') return (setup + shares + other + (insuranceDaily - 1));
+                    return (setup + shares + other + (insuranceDaily - 1));
+                }
+                
+                if (formData.paymentMethod === 'yearly') {
+                    if (formData.insuranceOption === 'financial') {
+                        // Keep legacy behavior for pure financial
+                        if (part === 'total') return (getFinancialTierAmount() + 20.00 + 1.00 + 0.0);
+                        return (getFinancialTierAmount() + 20.00 + 1.00 + 0.0);
+                    }
+                    
+                    if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'account') {
+                        // Manual fallback math to match what the screenshot expects
+                        const planMatch = formData.insuranceType?.match(/\d+/);
+                        const planNum = planMatch ? parseInt(planMatch[0]) : 365;
+                        let multiplier = 1;
+                        if (formData.medicalCondition === 'yes' && formData.above60 === 'yes') {
+                            multiplier = 4;
+                        } else if (formData.medicalCondition === 'yes' || formData.above60 === 'yes') {
+                            multiplier = 2;
+                        }
+                        
+                        const insuranceYearly = planNum * multiplier;
+                        const financialExtra = formData.accountOption === 'createPlan' ? getFinancialTierAmount() : 0;
+                        
+                        // Yearly insurance has no setup or shares fees
+                        if (part === 'insurance_daily') return insuranceYearly;
+                        if (part === 'insurance_setup') return 0;
+                        if (part === 'shares') return 0;
+                        if (part === 'financial_setup') return 0;
+                        if (part === 'other') return 0;
+                        if (part === 'tier_amount') return financialExtra;
+                        
+                        if (part === 'total') return insuranceYearly + financialExtra;
+                        
+                        return insuranceYearly + financialExtra;
+                    }
+                    
+                    if (formData.accountOption === 'createPlan') {
+                         // Fallback for combo/create plan
+                         const planMatch = formData.insuranceType?.match(/\d+/);
+                         const planNum = planMatch ? parseInt(planMatch[0]) : 365;
+                         let multiplier = 1;
+                         if (formData.medicalCondition === 'yes' && formData.above60 === 'yes') multiplier = 4;
+                         else if (formData.medicalCondition === 'yes' || formData.above60 === 'yes') multiplier = 2;
+                         
+                         const insuranceYearly = planNum * multiplier;
+                         const financialExtra = getFinancialTierAmount();
+                         
+                         if (part === 'insurance_daily') return insuranceYearly;
+                         if (part === 'tier_amount') return financialExtra;
+                         if (part === 'total') return insuranceYearly + financialExtra;
+                         return insuranceYearly + financialExtra;
+                    }
+                    if (part === 'total') return (getFinancialTierAmount() + 365.00); // generic fallback
+                    return (getFinancialTierAmount() + 365.00);
+                }
             }
 
             // 2. Components for Individual Parts
@@ -454,7 +576,7 @@ const Insurance = () => {
 
                     // Tier-based financial daily rate
                     const financialDailyRate = getFinancialDailyRate();
-                    const hasFinancial = formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.accountOption === 'createPlan';
+                    const hasFinancial = formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan';
 
                     const totalFinancialDaily = hasFinancial ? financialDailyRate : 0;
 
@@ -465,8 +587,12 @@ const Insurance = () => {
                     }
 
                     // Combo/Insurance registration: Setup (20) + Fixed (1) + Insurance Daily (-1)
-                    // Note: Financial amount per day is displayed but NOT included in the total
-                    return (setup + shares + other + (insuranceDaily - 1));
+                    // Note: For combo plans, the financial amount per day IS now included in the total checkout sum
+                    if (hasFinancial) {
+                        return Number((setup + shares + other + (insuranceDaily - 1) + financialDailyRate).toFixed(2));
+                    }
+                    
+                    return Number((setup + shares + other + (insuranceDaily - 1)).toFixed(2));
                 }
                 if (formData.paymentMethod === 'yearly') {
                     if (formData.insuranceOption === 'financial') {
@@ -490,13 +616,41 @@ const Insurance = () => {
                     const other = getOtherFees();
 
                     const financialDailyRate = getFinancialDailyRate();
-                    const hasFinancial = formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.accountOption === 'createPlan';
+                    const hasFinancial = formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan';
                     const totalFinancialDaily = hasFinancial ? financialDailyRate : 0;
+                    
+                    if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'account') {
+                        if (part === 'insurance_daily') return insuranceDaily;
+                        if (part === 'shares') return 20.00; // Mapped to Fixed Fee charge in the UI
+                        if (part === 'insurance_setup') return 0;
+                        if (part === 'financial_setup') return 0;
+                        if (part === 'tier_amount') return 0;
+                        if (part === 'other') return 0;
+                        
+                        if (part === 'total') return Number((insuranceDaily + 20).toFixed(2));
+                        return Number((insuranceDaily + 20).toFixed(2));
+                    }
 
                     if (formData.insuranceOption === 'financial') {
                         return (setup + other + totalFinancialDaily);
                     }
-                    return (setup + shares + other + (insuranceDaily - 1));
+                    
+                    if (formData.insuranceOption === 'combo' || formData.accountOption === 'createPlan' || formData.insuranceOption === 'plan') {
+                        if (part === 'insurance_daily') return insuranceDaily;
+                        if (part === 'shares') return 20.00;
+                        if (part === 'insurance_setup') return 0;
+                        if (part === 'financial_setup') return 0;
+                        if (part === 'tier_amount') return 0;
+                        if (part === 'other') return 0;
+                        
+                        if (part === 'total') return Number((insuranceDaily + financialDailyRate + 20).toFixed(2));
+                        return Number((insuranceDaily + financialDailyRate + 20).toFixed(2));
+                    }
+                    if (hasFinancial) {
+                        return Number((setup + shares + other + (insuranceDaily - 1) + financialDailyRate).toFixed(2));
+                    }
+                    
+                    return Number((setup + shares + other + (insuranceDaily - 1)).toFixed(2));
                 }
                 if (formData.paymentMethod === 'yearly') {
                     if (formData.insuranceOption === 'financial') {
@@ -552,8 +706,36 @@ const Insurance = () => {
             const setup = formData.accountOption === 'yes' ? 0.00 : 20.00;
             const other = 0.0;
             
-            if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'account' || formData.insuranceOption === 'plan') {
-                return (setup + shares + other + (insuranceDaily - 1));
+            if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'account') {
+                 const financialDailyRate = getFinancialDailyRate();
+                 const hasFinancial = formData.accountOption === 'createPlan';
+                 const extraDaily = hasFinancial ? financialDailyRate : 0;
+
+                 if (part === 'insurance_daily') return insuranceDaily;
+                 if (part === 'shares') return 20.00; // Mapped to Fixed Fee charge in the UI
+                 if (part === 'insurance_setup') return 0;
+                 if (part === 'financial_setup') return 0;
+                 if (part === 'tier_amount') return 0;
+                 if (part === 'other') return 0;
+                 if (part === 'financial_daily_rate') return extraDaily;
+                 
+                 if (part === 'total') return Number((insuranceDaily + 20 + extraDaily).toFixed(2));
+                 return Number((insuranceDaily + 20 + extraDaily).toFixed(2));
+            }
+            
+            if (formData.insuranceOption === 'combo' || formData.accountOption === 'createPlan' || formData.insuranceOption === 'plan') {
+                 const financialDailyRate = getFinancialDailyRate();
+                 if (part === 'insurance_daily') return insuranceDaily;
+                 if (part === 'shares') return 20.00; 
+                 if (part === 'insurance_setup') return 0;
+                 if (part === 'financial_setup') return 0;
+                 if (part === 'tier_amount') return 0;
+                 if (part === 'other') return 0;
+                 if (part === 'financial_daily_rate') return financialDailyRate;
+                 
+                 // Total = Setup (20.00) + Insurance Daily + Financial Daily
+                 if (part === 'total') return Number((insuranceDaily + financialDailyRate + 20).toFixed(2));
+                 return Number((insuranceDaily + financialDailyRate + 20).toFixed(2));
             }
         }
         
@@ -1249,7 +1431,7 @@ const Insurance = () => {
                                                 <span className="text-gray-500 font-medium">Financial amount per day</span>
                                                 <span className="font-bold text-gray-600">
                                                     GHS {(() => {
-                                                        const hasFinancial = formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.accountOption === 'createPlan';
+                                                        const hasFinancial = formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan';
                                                         if (!hasFinancial) return '0.00';
                                                         const rate = getPricing('financial_daily_rate');
                                                         return rate.toFixed(2);
