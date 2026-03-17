@@ -1185,7 +1185,30 @@ const Insurance = () => {
                                 {(formData.insuranceOption === 'account' || (formData.insuranceOption === 'insuranceOnly' && formData.accountOption === 'existingAccount')) && (
                                     <div className="animate-fade-in">
                                         <Label htmlFor="doshNumber" required>Enter your DOSH number</Label>
-                                        <Input name="doshNumber" value={formData.doshNumber} onChange={handleChange} placeholder="Enter your DOSH number" error={errors.doshNumber} />
+                                        <Input 
+                                            name="doshNumber" 
+                                            value={formData.doshNumber} 
+                                            onChange={handleChange} 
+                                            placeholder="Enter your DOSH number" 
+                                            error={errors.doshNumber || nameError} 
+                                        />
+                                        {nameLoading && (
+                                            <p className="mt-1 text-xs text-blue-500 font-medium animate-pulse flex items-center">
+                                                <svg className="animate-spin h-3 w-3 mr-2" viewBox="0 0 24 24">
+                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                </svg>
+                                                Verifying name...
+                                            </p>
+                                        )}
+                                        {enquiredName && !nameLoading && (
+                                            <p className="mt-1 text-xs text-green-600 font-bold flex items-center">
+                                                <svg className="h-3 w-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                                </svg>
+                                                Account Name: {enquiredName}
+                                            </p>
+                                        )}
                                     </div>
                                 )}
 
@@ -1305,7 +1328,24 @@ const Insurance = () => {
                                     <button
                                         type="button"
                                         onClick={handleNextStep}
-                                        className="w-2/3 bg-[#987c55] hover:bg-[#7d6542] text-white font-bold py-3.5 px-6 rounded-lg shadow-lg transform transition hover:-translate-y-0.5"
+                                        disabled={(() => {
+                                            const isAccountLookup = formData.insuranceOption === 'account' || (formData.insuranceOption === 'insuranceOnly' && formData.accountOption === 'existingAccount');
+                                            if (!isAccountLookup) return false;
+                                            
+                                            // Disable if loading, if there's an error, if empty, or if we have no enquired name for a number that's been entered
+                                            const hasNumber = formData.doshNumber && formData.doshNumber.trim() !== '';
+                                            return nameLoading || !!nameError || !hasNumber || (hasNumber && formData.doshNumber.length >= 7 && !enquiredName);
+                                        })()}
+                                        className={`w-2/3 font-bold py-3.5 px-6 rounded-lg shadow-lg transform transition focus:outline-none ${
+                                            (() => {
+                                                const isAccountLookup = formData.insuranceOption === 'account' || (formData.insuranceOption === 'insuranceOnly' && formData.accountOption === 'existingAccount');
+                                                const hasNumber = formData.doshNumber && formData.doshNumber.trim() !== '';
+                                                const isDisabled = isAccountLookup && (nameLoading || !!nameError || !hasNumber || (hasNumber && formData.doshNumber.length >= 7 && !enquiredName));
+                                                return isDisabled 
+                                                    ? "bg-gray-400 cursor-not-allowed opacity-75" 
+                                                    : "bg-[#987c55] hover:bg-[#7d6542] hover:-translate-y-0.5"
+                                            })()
+                                        }`}
                                     >
                                         {formData.insuranceOption === 'financial' ? 'Proceed' : 'Continue'}
                                     </button>
