@@ -1525,14 +1525,7 @@ const Insurance = () => {
                                     {/* Yearly Breakdown Rows - only show if method is yearly */}
                                     {formData.paymentMethod === 'yearly' && (
                                         <>
-                                            {formData.accountOption !== 'insuranceOnly' && (
-                                                <div className="flex justify-between items-center text-lg">
-                                                    <span className="text-gray-500 font-medium">Financial amount per year</span>
-                                                    <span className="font-bold text-gray-600">
-                                                        GHS {parseFloat(getPricing('tier_amount')).toFixed(2)}
-                                                    </span>
-                                                </div>
-                                            )}
+
                                             {formData.insuranceOption !== 'financial' && (
                                                 <div className="flex justify-between items-center text-lg">
                                                     <span className="text-gray-500 font-medium">Insurance amount per year</span>
