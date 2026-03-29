@@ -1492,14 +1492,16 @@ const Insurance = () => {
                                                         </span>
                                                     </div>
 
-                                                    <div className="flex justify-between items-center text-lg">
-                                                        <span className="text-gray-500 font-medium">
-                                                            Insurance amount per day
-                                                        </span>
-                                                        <span className="font-bold text-gray-600">
-                                                            GHS {parseFloat(getPricing('insurance_daily')).toFixed(2)}
-                                                        </span>
-                                                    </div>
+                                                    {formData.insuranceOption !== 'financial' && (
+                                                        <div className="flex justify-between items-center text-lg">
+                                                            <span className="text-gray-500 font-medium">
+                                                                Insurance amount per day
+                                                            </span>
+                                                            <span className="font-bold text-gray-600">
+                                                                GHS {parseFloat(getPricing('insurance_daily')).toFixed(2)}
+                                                            </span>
+                                                        </div>
+                                                    )}
 
                                                     <div className="flex justify-between items-center text-lg">
                                                         <span className="text-gray-500 font-medium">Initial charge</span>
