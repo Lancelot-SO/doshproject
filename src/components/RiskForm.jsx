@@ -331,7 +331,6 @@ const RiskForm = ({ onClose }) => {
                 setTimeout(() => onClose?.(), 5000);
             }
         } catch (err) {
-            console.error("Send error:", err);
             toast.error(err.message);
         }
     };

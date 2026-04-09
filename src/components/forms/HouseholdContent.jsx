@@ -135,7 +135,6 @@ const HouseholdContent = ({ onClose, userData }) => {
                 toast.error(json.message);
             }
         } catch (err) {
-            console.error(err);
             toast.error("An error occurred. Please try again.");
         }
     };

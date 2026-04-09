@@ -88,7 +88,6 @@ const GuaranteeClaim = ({ onClose, userData }) => {
                 toast.error(result.message);
             }
         } catch (err) {
-            console.error(err);
             toast.error('An error occurred. Please try again.');
         }
     };

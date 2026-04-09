@@ -36,7 +36,6 @@ const ServiceProviders = () => {
                 setBaseData(regionData);
                 runSearch(searchQuery, regionData);
             } catch (err) {
-                console.error('Error fetching hospitals for region:', err);
                 setBaseData([]);
                 setFilteredData([]);
             }
@@ -115,7 +114,6 @@ const ServiceProviders = () => {
                 setBaseData(allHspJson);
                 setFilteredData(allHspJson); // show all initially
             } catch (err) {
-                console.error(err);
             }
         })();
     }, []);

@@ -133,7 +133,6 @@ const HouseholdInsuranceForm = ({ onClose, userData }) => {
                 toast.error(json.message || "Failed to send message.");
             }
         } catch (err) {
-            console.error(err);
             toast.error("An error occurred. Please try again.");
         }
     };

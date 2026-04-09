@@ -88,7 +88,6 @@ export default function HealthInsurance({ onClose, userData }) {
                 toast.error(result.message);
             }
         } catch (err) {
-            console.error("Submission error:", err);
             toast.error("An error occurred. Please try again.");
         }
     };

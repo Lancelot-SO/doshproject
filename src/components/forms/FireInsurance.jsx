@@ -144,7 +144,6 @@ const FireInsurance = ({ onClose, userData }) => {
                 toast.error(result.message);
             }
         } catch (error) {
-            console.error(error);
             toast.error(error.message);
         }
     };

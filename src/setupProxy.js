@@ -28,7 +28,6 @@ module.exports = function (app) {
                     proxyRes.headers['access-control-allow-credentials'] = 'true';
                 },
                 error: (err, req, res) => {
-                    console.error('[Proxy Error]:', err);
                 }
             }
         })

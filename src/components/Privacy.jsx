@@ -13,7 +13,6 @@ const Privacy = ({ onClose }) => {
                 const data = await response.json();
                 setPrivacyStatement(data.privacy_statement);
             } catch (error) {
-                console.error("Error fetching privacy data:", error);
                 setPrivacyStatement(
                     "<p>Unable to load privacy policy at this time.</p>"
                 );

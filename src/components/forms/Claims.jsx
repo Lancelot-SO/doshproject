@@ -126,7 +126,6 @@ const Claims = ({ onClose, userData }) => {
                 throw new Error(result.message);
             }
         } catch (err) {
-            console.error(err);
             toast.error(err.message || 'Failed to submit claim. Please try again.', { autoClose: 5000 });
         }
     };

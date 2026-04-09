@@ -22,7 +22,6 @@ const api = axios.create({
 api.interceptors.response.use(
     (response) => response,
     (error) => {
-        console.error('[API Global Error]:', error.response || error);
         return Promise.reject(error);
     }
 );

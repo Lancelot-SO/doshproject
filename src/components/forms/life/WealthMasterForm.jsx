@@ -210,7 +210,6 @@ function WealthMasterForm({ onClose, userData }) {
                 toast.error(result.message);
             }
         } catch (err) {
-            console.error('Error submitting form:', err);
             toast.error('An error occurred. Please try again.');
         }
     };

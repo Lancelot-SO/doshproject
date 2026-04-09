@@ -80,7 +80,6 @@ const Home = () => {
                 const data = await response.json();
                 setHomeData(data[0]);
             } catch (error) {
-                console.error("Error fetching home data:", error);
             }
         };
         fetchHomeData();

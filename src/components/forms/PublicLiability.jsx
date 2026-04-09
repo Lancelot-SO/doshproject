@@ -61,7 +61,6 @@ const PublicLiability = ({ onClose, userData }) => {
                 toast.error(result.message);
             }
         } catch (err) {
-            console.error("Submission error:", err);
             toast.error("Something went wrong while submitting.");
         }
     };

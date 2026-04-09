@@ -380,6 +380,7 @@ footer {
   display: flex;
 }
 
+
 .footer__text p {
   width: 250px;
   color: #fff;
@@ -500,6 +501,7 @@ footer {
   .footer__text {
     padding-left: 20px;
   }
+
 
   .footer__logo {
     padding-left: 20px;

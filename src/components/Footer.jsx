@@ -4,6 +4,8 @@ import { FaFacebook, FaYoutube, FaInstagram, FaLinkedin, FaTiktok, FaTimes } fro
 import { FaXTwitter } from "react-icons/fa6"
 import { Link } from 'react-router-dom'
 import bg from "../images/footer-bg.png"
+import appStoreBadge from "../images/app_store.jpg"
+import googlePlayBadge from "../images/play_store.png"
 import "../App.css"
 
 // 2-letter country codes as returned by ipapi.co (GB → UK)
@@ -81,6 +83,14 @@ const Footer = () => {
     return (
         <div className='main__footer'>
             <img src={bg} alt='footerbg' className='bg_image' />
+            <div className="flex flex-col gap-3 absolute top-[170px] right-4 lg:hidden">
+                <Link to="https://apps.apple.com/in/app/dosh-is-life/id6757186583" target="_blank" rel="noopener noreferrer">
+                    <img src={appStoreBadge} alt="App Store" className="rounded-lg w-[130px] h-auto object-contain hover:scale-105 transition-transform" />
+                </Link>
+                <Link to="https://play.google.com/store/apps/details?id=com.opintechnologies.mobiledosh" target="_blank" rel="noopener noreferrer">
+                    <img src={googlePlayBadge} alt="Google Play" className="rounded-lg w-[130px] h-auto object-contain hover:scale-105 transition-transform" />
+                </Link>
+            </div>
 
             <footer>
                 <div className='container footer__container'>

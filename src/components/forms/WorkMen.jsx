@@ -140,7 +140,6 @@ const WorkMen = ({ onClose, userData }) => {
                 toast.error(json.message);
             }
         } catch (err) {
-            console.error('⚠️ Error:', err);
             toast.error('An error occurred. Please try again.');
         }
     };

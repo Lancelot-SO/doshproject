@@ -38,7 +38,6 @@ async function fetchCsrfToken() {
         // Defensive check: If server returns HTML instead of JSON, the proxy is misconfigured
         const contentType = response.headers['content-type'];
         if (contentType && contentType.includes('text/html')) {
-            console.error('[Signup Error] Received HTML instead of JSON. Check your server proxy configuration.');
             throw new Error('Server configuration error: The API proxy is returning HTML instead of JSON. Please check your .htaccess or Nginx config.');
         }
 

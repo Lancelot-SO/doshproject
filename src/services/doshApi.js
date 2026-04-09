@@ -24,7 +24,6 @@ const doshApi = {
             if (typeof response.data === 'string' && response.data.trim().toLowerCase().startsWith('<!doctype html')) {
                 const snippet = response.data.substring(0, 1000);
                 const title = snippet.match(/<title>(.*?)<\/title>/)?.[1] || 'Unknown';
-                console.error(`[API Error] CSRF endpoint returned HTML. Page Title: ${title}`);
                 throw new Error(`Server returned HTML instead of JSON. Possible redirect or storage quota error. Title: ${title}`);
             }
 
@@ -70,8 +69,6 @@ const doshApi = {
 
             // 3. Defensive check: Ensure response is JSON and not HTML
             if (typeof response.data === 'string' && response.data.trim().toLowerCase().startsWith('<!doctype html')) {
-                console.error('[API Error] Signup endpoint returned HTML instead of JSON.');
-
                 throw new Error('Server returned an invalid response (HTML). Please contact support.');
             }
 

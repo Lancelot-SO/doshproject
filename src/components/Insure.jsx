@@ -62,7 +62,6 @@ const Insure = ({ onClose }) => {
                 setMergedInsuranceDetails(updatedStandard);
                 setMergedEnhanceDetails(updatedEnhanced);
             } catch (err) {
-                console.error('Error fetching insurance packages:', err);
             }
         }
 

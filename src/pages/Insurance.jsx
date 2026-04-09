@@ -292,13 +292,13 @@ const Insurance = () => {
             try {
                 let url, body, successCode;
 
-                if (accountType === 'doshNumber' || accountType === 'vfcash') {
-                    // Endpoint for DOSH and Telecel account lookups (V2 supports more networks)
+                if (accountType === 'doshNumber') {
+                    // V2 endpoint: DOSH account lookups only
                     url = 'https://dsp.onenet.xyz:50443/api/v2/transactions/name';
                     body = { accountNumber: msisdn, accountType: accountType };
                     successCode = "00";
                 } else {
-                    // Endpoint for MTN, Telecel (vfcash), and AirtelTigo (atm) as per Postman
+                    // V1 endpoint: MTN, Telecel (vfcash), and AirtelTigo (atm)
                     url = 'https://dsp.onenet.xyz:50443/api/transactions/name';
                     body = { msisdn: msisdn, accountType: accountType };
                     successCode = "200";
@@ -363,7 +363,6 @@ const Insurance = () => {
         if (feeData) {
             // DEBUG: Log breakdown if we see 0.00 in a combo/insurance path
             if (feeData.total === "0.00" && formData.insuranceOption !== 'financial') {
-                console.warn('[Pricing Warning] API returned 0.00 for insurance/combo path. Check product mapping.');
             }
 
             // If the API explictly returned total: "0.00", force a calculation intercept for both totals and parts

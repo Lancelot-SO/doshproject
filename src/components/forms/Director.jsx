@@ -159,7 +159,6 @@ const Director = ({ onClose, userData }) => {
                 toast.error(result.message);
             }
         } catch (err) {
-            console.error(err);
             toast.error(err.message);
         }
     };

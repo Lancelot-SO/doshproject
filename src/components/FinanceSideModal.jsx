@@ -61,7 +61,6 @@ const FinanceSideModal = ({ onClose }) => {
                 setMergedPersonalDetails(updatedPersonal);
                 setMergedBusinessDetails(updatedBusiness);
             } catch (err) {
-                console.error('Error fetching finance packages:', err);
             }
         }
 
