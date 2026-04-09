@@ -83,7 +83,7 @@ const Footer = () => {
     return (
         <div className='main__footer'>
             <img src={bg} alt='footerbg' className='bg_image' />
-            <div className="flex flex-col gap-3 absolute top-[170px] right-8 lg:hidden">
+            <div className="flex flex-col gap-3 absolute top-[170px] right-8 lg:hidden z-40">
                 <Link to="https://apps.apple.com/in/app/dosh-is-life/id6757186583" target="_blank" rel="noopener noreferrer">
                     <img src={appStoreBadge} alt="App Store" className="rounded-lg w-[130px] h-auto object-contain hover:scale-105 transition-transform border-2 border-[#987c55]" />
                 </Link>
