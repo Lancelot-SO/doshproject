@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './FinanceSideModal.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
     personalPackages,
     businessPackages,
@@ -11,6 +11,9 @@ import {
 const BASE_URL = 'https://doshcms.interactivedigital.com.gh/';
 
 const FinanceSideModal = ({ onClose }) => {
+    const navigate = useNavigate();
+    const handleClose = onClose || (() => navigate(-1));
+
     // UI state
     const [activeLabel, setActiveLabel] = useState('Personal');
     const [activePackage, setActivePackage] = useState('Individual');
@@ -93,7 +96,7 @@ const FinanceSideModal = ({ onClose }) => {
             <div className="insure-content">
                 <div className="top__section">
                     <h2 className="text-[32px] text-[#A2865F]">DOSH Financial Services</h2>
-                    <button onClick={onClose} className="top__section-close">X</button>
+                    <button onClick={handleClose} className="top__section-close">X</button>
                 </div>
 
                 {/* Labels */}

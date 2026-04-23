@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Insure.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Flyer from './Flyer';
 import Terms from './Terms';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
@@ -18,6 +18,9 @@ import enhanced from '../images/mainenhanced.jpg';
 const BASE_URL = 'https://doshcms.interactivedigital.com.gh/';
 
 const Insure = ({ onClose }) => {
+    const navigate = useNavigate();
+    const handleClose = onClose || (() => navigate(-1));
+
     // UI state
     const [activeLabel, setActiveLabel] = useState('Standard');
     const [currentPackageList, setCurrentPackageList] = useState(packagelist);
@@ -119,7 +122,7 @@ const Insure = ({ onClose }) => {
             <div className="insure-content">
                 <div className="top__section">
                     <h2 className="text-[32px] text-[#A2865F]">DOSH Health Insurance</h2>
-                    <button onClick={onClose} className="top__section-close">X</button>
+                    <button onClick={handleClose} className="top__section-close">X</button>
                 </div>
 
                 {/* Label tabs */}

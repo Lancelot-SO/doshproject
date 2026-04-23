@@ -65,13 +65,13 @@ const Layout = () => {
         <Route path='/serviceproviders' element={<ServiceProviders />} />
         <Route path='/productservices' element={<ProductServices />} />
         <Route path='/financial' element={<FlowGuard><Financial /></FlowGuard>} />
-        <Route path='/insure' element={<FlowGuard><Insure /></FlowGuard>} />
+        <Route path='/insure' element={<Insure />} />
         <Route path="/terms" element={<Terms onClose={() => window.history.back()} />} />
         <Route path="/privacy" element={<Privacy onClose={() => window.history.back()} />} />
-        <Route path='/financemodal' element={<FlowGuard><FinanceSideModal /></FlowGuard>} />
-        <Route path='/insuredetails' element={<FlowGuard><InsuranceDetails /></FlowGuard>} />
-        <Route path='/financedetails' element={<FlowGuard><FinancialDetails /></FlowGuard>} />
-        <Route path='/riskdetails' element={<FlowGuard><RiskDetails /></FlowGuard>} />
+        <Route path='/financemodal' element={<FinanceSideModal />} />
+        <Route path='/insuredetails' element={<InsuranceDetails />} />
+        <Route path='/financedetails' element={<FinancialDetails />} />
+        <Route path='/riskdetails' element={<RiskDetails />} />
         <Route path='/signin' element={<SignIn />} />
         <Route path='/otp' element={<Otp />} />
         <Route path='/flyer' element={<Flyer />} />

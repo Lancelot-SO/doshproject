@@ -246,6 +246,25 @@ const ProductServices = () => {
     const handleMouseEnter = (e) => e.target.play();
     const handleMouseLeave = (e) => e.target.pause();
 
+    // handle modal query parameters
+    useEffect(() => {
+        if (products.length > 0) {
+            const params = new URLSearchParams(location.search);
+            const modal = params.get("modal");
+            if (modal === "readmore") {
+                openModal(0);
+            } else if (modal === "readmore-finance") {
+                openModal(1);
+            } else if (modal === "readmore-risk") {
+                openModal(2);
+            } else if (modal === "pickpackage") {
+                setInsureOpen(true);
+            } else if (modal === "pickpackage-finance") {
+                setFinancialPopupOpen(true);
+            }
+        }
+    }, [products, location.search]);
+
     return (
         <div className='ps__page'>
             <div className='main__product'>

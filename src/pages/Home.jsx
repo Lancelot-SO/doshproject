@@ -70,8 +70,21 @@ const Home = () => {
         AOS.refresh();
     }, []);
 
+    // handle modal query parameters
+    useEffect(() => {
+        const modal = queryParams.get("modal");
+        if (modal === "readmore") {
+            setInsuranceDetailModal(true);
+        } else if (modal === "readmore-finance") {
+            setShowFinanceDetailModal(true);
+        } else if (modal === "readmore-risk") {
+            setShowRiskModal(true);
+        }
+    }, [location.search]);
+
     // fetch api for homepage data
     useEffect(() => {
+
         const fetchHomeData = async () => {
             try {
                 const response = await fetch(

@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // import fam from "../images/finance_detail.png";
 import FinanceTable from './FinanceTable';
 import FinanceSideModal from './FinanceSideModal';
 
 const FinanceDetails = ({ onClose }) => {
+    const navigate = useNavigate();
+    const handleClose = onClose || (() => navigate(-1));
+
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [isfinanceOpen, setFinanceOpen] = useState(false);
 
@@ -49,7 +53,7 @@ const FinanceDetails = ({ onClose }) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4">
             <div className="w-full max-w-4xl mt-16 h-[85vh] z-40 bg-white rounded-xl shadow-md overflow-y-auto relative flex flex-col">
                 <button
-                    onClick={onClose}
+                    onClick={handleClose}
                     className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-10 h-10 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 transition duration-300 ease-in-out z-10"
                     aria-label="Close"
                 >

@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // import fam from "../images/risk_detail.png";
 import RiskForm from './RiskForm';
 
 const RiskDetails = ({ onClose }) => {
+    const navigate = useNavigate();
+    const handleClose = onClose || (() => navigate(-1));
+
     const [isPopupOpen, setPopupOpen] = useState(false);
 
     const [riskModal, setRiskModal] = useState(null);
@@ -38,7 +42,7 @@ const RiskDetails = ({ onClose }) => {
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4'>
             <div className="w-full max-w-4xl mt-16 h-[85vh] bg-white rounded-xl shadow-md overflow-hidden relative flex flex-col">
                 <button
-                    onClick={onClose}
+                    onClick={handleClose}
                     className="absolute top-4 right-4 bg-[#9E825B] text-white rounded-full w-10 h-10 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 transition duration-300 ease-in-out z-10"
                     aria-label="Close"
                 >
