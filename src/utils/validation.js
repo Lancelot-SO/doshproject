@@ -31,7 +31,7 @@ export const validateSignupForm = (formData, step) => {
                 if (!insuranceCategory) errors.insuranceCategory = 'Required';
                 if (!insuranceType) errors.insuranceType = 'Required';
             }
-            if (['financial', 'plan'].includes(formData.insuranceOption) && !formData.productType) {
+            if (formData.insuranceOption === 'financial' && !formData.productType) {
                 errors.productType = 'Required';
             }
         }
@@ -60,8 +60,11 @@ export const validateSignupForm = (formData, step) => {
         }
 
         if (['insuranceOnly', 'plan'].includes(formData.insuranceOption)) {
-            if (formData.insuranceOption === 'insuranceOnly' && !formData.accountOption) {
+            if (!formData.accountOption) {
                 errors.accountOption = 'Required';
+            }
+            if (formData.accountOption === 'createPlan' && !formData.productType) {
+                errors.productType = 'Required';
             }
             if (formData.accountOption === 'existingAccount' && !formData.doshNumber) {
                 errors.doshNumber = 'Required';

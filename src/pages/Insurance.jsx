@@ -430,7 +430,7 @@ const Insurance = () => {
                         return (getFinancialTierAmount() + 20.00 + 1.00 + 0.0);
                     }
                     
-                    if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'account') {
+                    if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'account' || formData.insuranceOption === 'plan') {
                         // Manual fallback math to match what the screenshot expects
                         const planMatch = formData.insuranceType?.match(/\d+/);
                         const planNum = planMatch ? parseInt(planMatch[0]) : 365;
@@ -442,7 +442,7 @@ const Insurance = () => {
                         }
                         
                         const insuranceYearly = planNum * multiplier;
-                        const financialExtra = formData.accountOption === 'createPlan' ? getFinancialTierAmount() : 0;
+                        const financialExtra = (formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'existingAccount' ? getFinancialTierAmount() : 0;
                         
                         // Yearly insurance has no setup or shares fees
                         if (part === 'insurance_daily') return insuranceYearly;
@@ -593,8 +593,8 @@ const Insurance = () => {
                     if (formData.insuranceOption === 'financial') {
                         return (getFinancialTierAmount() + getFinancialSetup() + getSharesFee() + getOtherFees());
                     }
-                    if (formData.insuranceOption === 'insuranceOnly') {
-                        const financialExtra = formData.accountOption === 'createPlan' ? getFinancialTierAmount() : 0;
+                    if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'plan') {
+                        const financialExtra = (formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'existingAccount' ? getFinancialTierAmount() : 0;
                         return (getInsuranceDaily() + getInsuranceSetup() + financialExtra);
                     }
                     return (getFinancialTierAmount() + getInsuranceDaily());
@@ -651,7 +651,7 @@ const Insurance = () => {
                     if (formData.insuranceOption === 'financial') {
                         return (getFinancialTierAmount() + getFinancialSetup() + getSharesFee() + getOtherFees());
                     }
-                    if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'account' || formData.accountOption === 'createPlan') {
+                    if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'account' || formData.accountOption === 'createPlan' || formData.insuranceOption === 'plan') {
                         // Manual fallback math to match what the screenshot expects
                         const planMatch = formData.insuranceType?.match(/\d+/);
                         const planNum = planMatch ? parseInt(planMatch[0]) : 365;
@@ -663,7 +663,7 @@ const Insurance = () => {
                         }
                         
                         const insuranceYearly = planNum * multiplier;
-                        const financialExtra = formData.accountOption === 'createPlan' ? getFinancialTierAmount() : 0;
+                        const financialExtra = (formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'existingAccount' ? getFinancialTierAmount() : 0;
                         
                         // Yearly insurance has no setup or shares fees
                         if (part === 'insurance_daily') return insuranceYearly;
@@ -747,7 +747,7 @@ const Insurance = () => {
             }
             
             const insuranceYearly = planNum * multiplier;
-            const financialExtra = formData.accountOption === 'createPlan' ? getFinancialTierAmount() : 0;
+            const financialExtra = (formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'existingAccount' ? getFinancialTierAmount() : 0;
 
             // Specifically mapping individual parts for the UI components
             if (part === 'insurance_daily') return insuranceYearly; // The UI labels it "Amount per year" but ties it to insuranceDaily functionally for yearly
@@ -758,7 +758,7 @@ const Insurance = () => {
             if (part === 'tier_amount') return financialExtra;
             
             if (part === 'total') {
-                if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'account' || formData.accountOption === 'createPlan') {
+                if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'account' || formData.accountOption === 'createPlan' || formData.insuranceOption === 'plan') {
                      return insuranceYearly + financialExtra;
                 }
             }
@@ -1060,7 +1060,7 @@ const Insurance = () => {
                                     </div>
                                 )}
 
-                                {['financial', 'plan'].includes(formData.insuranceOption) && (
+                                {formData.insuranceOption === 'financial' && (
                                     <div className="animate-fade-in pt-4 border-t border-gray-100">
                                         <Label htmlFor="productType" required>Financial Account Type</Label>
                                         <Select
@@ -1165,7 +1165,7 @@ const Insurance = () => {
                         {/* STEP 2: Payments & Account Options */}
                         {formStepsNum === 2 && (
                             <div className="space-y-6 animate-fade-in-up">
-                                {formData.insuranceOption === 'insuranceOnly' && (
+                                {['insuranceOnly', 'plan'].includes(formData.insuranceOption) && (
                                     <div className="space-y-6">
                                         <div className="animate-fade-in">
                                             <Label htmlFor="accountOption" required>Choose the option that applies to you</Label>
@@ -1211,7 +1211,7 @@ const Insurance = () => {
                                     </div>
                                 )}
 
-                                {formData.insuranceOption === 'insuranceOnly' && formData.accountOption === 'createPlan' && (
+                                {['insuranceOnly', 'plan'].includes(formData.insuranceOption) && formData.accountOption === 'createPlan' && (
                                     <div className="animate-fade-in space-y-4">
                                         <div className="flex items-start bg-[#987c55]/10 border border-[#987c55] p-4 rounded-lg">
                                             <div className="bg-[#987c55] rounded-full p-1 mr-3 mt-0.5 flex-shrink-0">

@@ -85,8 +85,8 @@ export const transformToSignupPayload = (formData) => {
     // Calculate paymentFor based on insuranceOption and accountOption (for insuranceOnly sub-paths)
     let paymentFor = MAPPINGS.paymentFor[insuranceOption] || 'insurance';
 
-    // Handle accountOption sub-paths when insuranceOnly (both daily and yearly)
-    if (insuranceOption === 'insuranceOnly' && formData.accountOption) {
+    // Handle accountOption sub-paths when insuranceOnly or plan (both daily and yearly)
+    if (['insuranceOnly', 'plan'].includes(insuranceOption) && formData.accountOption) {
         if (formData.accountOption === 'existingAccount') {
             paymentFor = 'insurance'; // Insurance add-on to existing account
         } else if (formData.accountOption === 'createPlan') {
