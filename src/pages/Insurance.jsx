@@ -147,10 +147,15 @@ const Insurance = () => {
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const [fromPackage, setFromPackage] = useState(false); // Track if user came from insurance package
 
-    // Name Enquiry state
+    // Name Enquiry state for payment source
     const [enquiredName, setEnquiredName] = useState('');
     const [nameLoading, setNameLoading] = useState(false);
     const [nameError, setNameError] = useState('');
+
+    // Name Enquiry state for existing DOSH account target
+    const [doshAccountName, setDoshAccountName] = useState('');
+    const [doshNameLoading, setDoshNameLoading] = useState(false);
+    const [doshNameError, setDoshNameError] = useState('');
 
     // Read plan from location state (preferred) or URL query params (fallback)
     // Pre-select insurance-only registration with the specified plan
@@ -239,24 +244,17 @@ const Insurance = () => {
         const rawAccountType = getAccountType(formData.paymentMode);
         const countryCode = formData.country.replace('+', '');
 
-        // Logic for Source resolution: 
-        // 1. If user has selected "Already have a DOSH financial account" and entered a DOSH number, look up that number.
-        // 2. If payment mode is DOSH and the source is "DOSH Number", fetch name for that source number.
-        // 3. Otherwise, fetch name for the primary registration phone number.
-        const isExistingAccountDosh = formData.accountOption === 'existingAccount' && formData.doshNumber && formData.doshNumber.length >= 9;
+        // Logic for Source resolution (Payment Source ONLY): 
+        // 1. If payment mode is DOSH and the source is "DOSH Number", fetch name for that source number.
+        // 2. Otherwise, fetch name for the primary registration phone number.
         const isDoshPayment = formData.paymentMode === 'DOSH';
         const isDoshNumberSource = isDoshPayment && formData.doshSource === 'DOSH Number';
 
         let sourceInput, accountType, isDoshLookup;
 
-        if (isExistingAccountDosh) {
-            // Priority: Existing DOSH account number lookup
-            sourceInput = formData.doshNumber;
-            accountType = 'doshNumber';
-            isDoshLookup = true;
-        } else if (isDoshNumberSource) {
+        if (isDoshNumberSource) {
             sourceInput = formData.doshSourceNumber;
-            accountType = rawAccountType;
+            accountType = 'doshNumber';
             isDoshLookup = true;
         } else {
             sourceInput = formData.phoneNumber;
@@ -338,7 +336,72 @@ const Insurance = () => {
             clearTimeout(timer);
             controller.abort();
         };
-    }, [formData.phoneNumber, formData.country, formData.paymentMode, formData.doshSource, formData.doshSourceNumber, formData.doshNumber, formData.accountOption]);
+    }, [formData.phoneNumber, formData.country, formData.paymentMode, formData.doshSource, formData.doshSourceNumber]);
+
+    // Auto-fetch DOSH account holder name when user enters a DOSH number for an existing account
+    useEffect(() => {
+        const isExistingAccountDosh = (formData.insuranceOption === 'account' || (['insuranceOnly', 'plan'].includes(formData.insuranceOption) && formData.accountOption === 'existingAccount'));
+        const sourceInput = formData.doshNumber;
+        const countryCode = formData.country.replace('+', '');
+
+        if (!isExistingAccountDosh || !sourceInput) {
+            setDoshAccountName('');
+            setDoshNameError('');
+            return;
+        }
+
+        const localPhone = sourceInput.replace(/^0+/, '');
+        const msisdn = localPhone.startsWith(countryCode)
+            ? localPhone
+            : `${countryCode}${localPhone}`;
+
+        if (msisdn.length < 9) {
+            setDoshAccountName('');
+            setDoshNameError('');
+            return;
+        }
+
+        const controller = new AbortController();
+        const fetchDoshName = async () => {
+            setDoshNameLoading(true);
+            setDoshNameError('');
+            try {
+                const url = 'https://dsp.onenet.xyz:50443/api/v2/transactions/name';
+                const body = { accountNumber: msisdn, accountType: 'doshNumber' };
+
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body),
+                    signal: controller.signal,
+                });
+                const data = await res.json();
+
+                const isSuccess = data?.ResponseCode === "00" || data?.status === "00" || data?.Status === "00" || data?.status === "200" || data?.Status === "200";
+                const resultName = data?.Name || data?.name || data?.data?.name;
+
+                if (isSuccess && resultName) {
+                    setDoshAccountName(resultName);
+                } else {
+                    setDoshAccountName('');
+                    setDoshNameError('Could not retrieve DOSH account name.');
+                }
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    setDoshAccountName('');
+                    setDoshNameError('DOSH name lookup failed.');
+                }
+            } finally {
+                setDoshNameLoading(false);
+            }
+        };
+
+        const timer = setTimeout(fetchDoshName, 600);
+        return () => {
+            clearTimeout(timer);
+            controller.abort();
+        };
+    }, [formData.doshNumber, formData.country, formData.accountOption, formData.insuranceOption]);
 
     const getPricing = (part = 'total') => {
         // 1. Tiered Financial Pricing Mapping (Independent of feeData)
@@ -380,7 +443,7 @@ const Insurance = () => {
                     const insuranceDaily = (Math.ceil((planNum / 90) * 100) / 100) * multiplier;
                     
                     const financialDailyRate = getFinancialDailyRate();
-                    const hasFinancial = formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan';
+                    const hasFinancial = (formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'insuranceOnly';
                     const totalFinancialDaily = hasFinancial ? financialDailyRate : 0;
                     
                     const shares = 1.00;
@@ -442,7 +505,7 @@ const Insurance = () => {
                         }
                         
                         const insuranceYearly = planNum * multiplier;
-                        const financialExtra = (formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'existingAccount' ? getFinancialTierAmount() : 0;
+                        const financialExtra = (formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && !['existingAccount', 'insuranceOnly'].includes(formData.accountOption) ? getFinancialTierAmount() : 0;
                         
                         // Yearly insurance has no setup or shares fees
                         if (part === 'insurance_daily') return insuranceYearly;
@@ -571,7 +634,7 @@ const Insurance = () => {
 
                     // Tier-based financial daily rate
                     const financialDailyRate = getFinancialDailyRate();
-                    const hasFinancial = formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan';
+                    const hasFinancial = (formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'insuranceOnly';
 
                     const totalFinancialDaily = hasFinancial ? financialDailyRate : 0;
 
@@ -594,7 +657,7 @@ const Insurance = () => {
                         return (getFinancialTierAmount() + getFinancialSetup() + getSharesFee() + getOtherFees());
                     }
                     if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'plan') {
-                        const financialExtra = (formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'existingAccount' ? getFinancialTierAmount() : 0;
+                        const financialExtra = (formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && !['existingAccount', 'insuranceOnly'].includes(formData.accountOption) ? getFinancialTierAmount() : 0;
                         return (getInsuranceDaily() + getInsuranceSetup() + financialExtra);
                     }
                     return (getFinancialTierAmount() + getInsuranceDaily());
@@ -611,7 +674,7 @@ const Insurance = () => {
                     const other = getOtherFees();
 
                     const financialDailyRate = getFinancialDailyRate();
-                    const hasFinancial = formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan';
+                    const hasFinancial = (formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'insuranceOnly';
                     const totalFinancialDaily = hasFinancial ? financialDailyRate : 0;
                     
                     if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'account') {
@@ -663,7 +726,7 @@ const Insurance = () => {
                         }
                         
                         const insuranceYearly = planNum * multiplier;
-                        const financialExtra = (formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'existingAccount' ? getFinancialTierAmount() : 0;
+                        const financialExtra = (formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && !['existingAccount', 'insuranceOnly'].includes(formData.accountOption) ? getFinancialTierAmount() : 0;
                         
                         // Yearly insurance has no setup or shares fees
                         if (part === 'insurance_daily') return insuranceYearly;
@@ -703,7 +766,7 @@ const Insurance = () => {
             
             if (formData.insuranceOption === 'insuranceOnly' || formData.insuranceOption === 'account') {
                  const financialDailyRate = getFinancialDailyRate();
-                 const hasFinancial = formData.accountOption === 'createPlan';
+                 const hasFinancial = formData.accountOption === 'createPlan' && formData.accountOption !== 'insuranceOnly';
                  const extraDaily = hasFinancial ? financialDailyRate : 0;
 
                  if (part === 'insurance_daily') return insuranceDaily;
@@ -747,7 +810,7 @@ const Insurance = () => {
             }
             
             const insuranceYearly = planNum * multiplier;
-            const financialExtra = (formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'existingAccount' ? getFinancialTierAmount() : 0;
+            const financialExtra = (formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && !['existingAccount', 'insuranceOnly'].includes(formData.accountOption) ? getFinancialTierAmount() : 0;
 
             // Specifically mapping individual parts for the UI components
             if (part === 'insurance_daily') return insuranceYearly; // The UI labels it "Amount per year" but ties it to insuranceDaily functionally for yearly
@@ -1181,7 +1244,7 @@ const Insurance = () => {
                                     </div>
                                 )}
 
-                                {(formData.insuranceOption === 'account' || (formData.insuranceOption === 'insuranceOnly' && formData.accountOption === 'existingAccount')) && (
+                                {(formData.insuranceOption === 'account' || (['insuranceOnly', 'plan'].includes(formData.insuranceOption) && formData.accountOption === 'existingAccount')) && (
                                     <div className="animate-fade-in">
                                         <Label htmlFor="doshNumber" required>Enter your DOSH number</Label>
                                         <Input 
@@ -1189,23 +1252,23 @@ const Insurance = () => {
                                             value={formData.doshNumber} 
                                             onChange={handleChange} 
                                             placeholder="Enter your DOSH number" 
-                                            error={errors.doshNumber || nameError} 
+                                            error={errors.doshNumber || doshNameError} 
                                         />
-                                        {nameLoading && (
+                                        {doshNameLoading && (
                                             <p className="mt-1 text-xs text-blue-500 font-medium animate-pulse flex items-center">
                                                 <svg className="animate-spin h-3 w-3 mr-2" viewBox="0 0 24 24">
                                                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                                 </svg>
-                                                Verifying name...
+                                                Verifying DOSH account name...
                                             </p>
                                         )}
-                                        {enquiredName && !nameLoading && (
+                                        {doshAccountName && !doshNameLoading && (
                                             <p className="mt-1 text-xs text-green-600 font-bold flex items-center">
                                                 <svg className="h-3 w-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                                 </svg>
-                                                Account Name: {enquiredName}
+                                                Account Name: {doshAccountName}
                                             </p>
                                         )}
                                     </div>
@@ -1328,18 +1391,18 @@ const Insurance = () => {
                                         type="button"
                                         onClick={handleNextStep}
                                         disabled={(() => {
-                                            const isAccountLookup = formData.insuranceOption === 'account' || (formData.insuranceOption === 'insuranceOnly' && formData.accountOption === 'existingAccount');
+                                            const isAccountLookup = formData.insuranceOption === 'account' || (['insuranceOnly', 'plan'].includes(formData.insuranceOption) && formData.accountOption === 'existingAccount');
                                             if (!isAccountLookup) return false;
                                             
                                             // Disable if loading, if there's an error, if empty, or if we have no enquired name for a number that's been entered
                                             const hasNumber = formData.doshNumber && formData.doshNumber.trim() !== '';
-                                            return nameLoading || !!nameError || !hasNumber || (hasNumber && formData.doshNumber.length >= 7 && !enquiredName);
+                                            return doshNameLoading || !!doshNameError || !hasNumber || (hasNumber && formData.doshNumber.length >= 7 && !doshAccountName);
                                         })()}
                                         className={`w-2/3 font-bold py-3.5 px-6 rounded-lg shadow-lg transform transition focus:outline-none ${
                                             (() => {
-                                                const isAccountLookup = formData.insuranceOption === 'account' || (formData.insuranceOption === 'insuranceOnly' && formData.accountOption === 'existingAccount');
+                                                const isAccountLookup = formData.insuranceOption === 'account' || (['insuranceOnly', 'plan'].includes(formData.insuranceOption) && formData.accountOption === 'existingAccount');
                                                 const hasNumber = formData.doshNumber && formData.doshNumber.trim() !== '';
-                                                const isDisabled = isAccountLookup && (nameLoading || !!nameError || !hasNumber || (hasNumber && formData.doshNumber.length >= 7 && !enquiredName));
+                                                const isDisabled = isAccountLookup && (doshNameLoading || !!doshNameError || !hasNumber || (hasNumber && formData.doshNumber.length >= 7 && !doshAccountName));
                                                 return isDisabled 
                                                     ? "bg-gray-400 cursor-not-allowed opacity-75" 
                                                     : "bg-[#987c55] hover:bg-[#7d6542] hover:-translate-y-0.5"
@@ -1483,7 +1546,7 @@ const Insurance = () => {
                                                         <span className="text-gray-500 font-medium">Financial amount per day</span>
                                                         <span className="font-bold text-gray-600">
                                                             GHS {(() => {
-                                                                const hasFinancial = formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan';
+                                                                const hasFinancial = (formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'insuranceOnly';
                                                                 if (!hasFinancial) return '0.00';
                                                                 const rate = getPricing('financial_daily_rate');
                                                                 return rate.toFixed(2);
@@ -1526,6 +1589,21 @@ const Insurance = () => {
                                     {/* Yearly Breakdown Rows - only show if method is yearly */}
                                     {formData.paymentMethod === 'yearly' && (
                                         <>
+                                            {(() => {
+                                                const hasFinancial = (formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'insuranceOnly';
+                                                const financialTier = getPricing('tier_amount');
+                                                if (hasFinancial && financialTier > 0) {
+                                                    return (
+                                                        <div className="flex justify-between items-center text-lg">
+                                                            <span className="text-gray-500 font-medium">Financial amount per year</span>
+                                                            <span className="font-bold text-gray-600">
+                                                                GHS {parseFloat(financialTier).toFixed(2)}
+                                                            </span>
+                                                        </div>
+                                                    );
+                                                }
+                                                return null;
+                                            })()}
 
                                             {formData.insuranceOption !== 'financial' && (
                                                 <div className="flex justify-between items-center text-lg">

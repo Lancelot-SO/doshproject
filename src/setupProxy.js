@@ -40,6 +40,54 @@ module.exports = function (app) {
             target: 'https://doshcms.interactivedigital.com.gh',
             changeOrigin: true,
             xfwd: true,
+            on: {
+                proxyReq: (proxyReq) => {
+                    proxyReq.setHeader('Origin', 'https://www.0800dosh.me');
+                }
+            }
+        })
+    );
+
+    // 3. DOSH CMS Proxy (Intercepts hardcoded absolute URLs)
+    app.use(
+        '/doshcms-proxy',
+        createProxyMiddleware({
+            target: 'https://doshcms.interactivedigital.com.gh',
+            changeOrigin: true,
+            secure: false,
+            pathRewrite: { '^/doshcms-proxy': '' },
+            on: {
+                proxyReq: (proxyReq) => {
+                    proxyReq.setHeader('Origin', 'https://www.0800dosh.me');
+                }
+            }
+        })
+    );
+
+    // 4. DSP Legacy/V1 API Proxy (Intercepts hardcoded absolute URLs)
+    app.use(
+        '/dsp-proxy',
+        createProxyMiddleware({
+            target: 'https://dsp.onenet.xyz:50443',
+            changeOrigin: true,
+            secure: false,
+            pathRewrite: { '^/dsp-proxy': '' },
+            on: {
+                proxyReq: (proxyReq) => {
+                    proxyReq.setHeader('Origin', 'https://www.0800dosh.me');
+                }
+            }
+        })
+    );
+
+    // 5. IP API Proxy
+    app.use(
+        '/ipapi-proxy',
+        createProxyMiddleware({
+            target: 'https://ipapi.co',
+            changeOrigin: true,
+            secure: false,
+            pathRewrite: { '^/ipapi-proxy': '' }
         })
     );
 };
