@@ -83,12 +83,12 @@ const Footer = () => {
     return (
         <div className='main__footer'>
             <img src={bg} alt='footerbg' className='bg_image' />
-            <div className="flex flex-col gap-3 absolute top-[170px] right-8 lg:hidden z-40">
+            <div className="flex flex-col lg:flex-row gap-3 absolute top-[170px] lg:top-[102px] right-10 lg:right-[150px] 3xl:right-[275px] 4xl:right-[330px] z-40">
                 <Link to="https://apps.apple.com/in/app/dosh-is-life/id6757186583" target="_blank" rel="noopener noreferrer">
                     <img src={appStoreBadge} alt="App Store" className="rounded-lg w-[130px] h-auto object-contain hover:scale-105 transition-transform border-2 border-[#987c55]" />
                 </Link>
                 <Link to="https://play.google.com/store/apps/details?id=com.opintechnologies.mobiledosh" target="_blank" rel="noopener noreferrer">
-                    <img src={googlePlayBadge} alt="Google Play" className="rounded-lg w-[130px] h-auto object-contain hover:scale-105 transition-transform border-2 border-[#987c55]" />
+                    <img src={googlePlayBadge} alt="Google Play" className="rounded-lg w-[130px] h-auto lg:h-[46px] object-contain hover:scale-105 transition-transform border-2 border-[#987c55]" />
                 </Link>
             </div>
 
@@ -106,8 +106,8 @@ const Footer = () => {
                         <div className='contacts'>
                             <h3>CONTACTS</h3>
                             <div className='location'>
-                                <p>Phone: 0800-DOSH-ME (0800367463)</p>
-                                <p>Fax: 0800-DOSH-ME (0800367463)</p>
+                                <p>Phone: {countryKey === 'US' ? '+18337692767' : '0800-DOSH-ME (0800367463)'}</p>
+                                <p>Fax: {countryKey === 'US' ? '+18337692767' : '0800-DOSH-ME (0800367463)'}</p>
                                 <Link to="/contact">Online Support</Link>
                                 <p
                                     className='text-white cursor-pointer hover:text-[#987c55]'
