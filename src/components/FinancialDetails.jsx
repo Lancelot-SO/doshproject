@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 // import fam from "../images/finance_detail.png";
 import FinanceTable from './FinanceTable';
 import FinanceSideModal from './FinanceSideModal';
+import { getCloudinaryUrl } from '../utils/cloudinary';
 
 const FinanceDetails = ({ onClose }) => {
     const navigate = useNavigate();
@@ -66,7 +67,7 @@ const FinanceDetails = ({ onClose }) => {
                     {/* Scrollable image */}
                     <img
                         className="w-full h-[400px] object-cover"
-                        src={financeModal?.image ? `https://doshcms.interactivedigital.com.gh/${financeModal.image}` : "assets/elevate.png"}
+                        src={financeModal?.image ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${financeModal.image}`) : "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560520/elevate_enyrxc.png"}
                         alt="financial security"
                     />
                     {/* Scrollable text content */}

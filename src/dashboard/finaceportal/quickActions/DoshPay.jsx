@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import blurry from "../../../images/dashboard/finance/blur.png";
-import doshtemp from "../../../images/dashboard/finance/doshtemp.png";
 import { ChevronDown } from "lucide-react";
+const blurry = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560266/blur_qsmw7y.png";
+const doshtemp = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560270/doshtemp_cikrtp.png";
 
 export default function DoshPay() {
     const [pin, setPin] = useState("");

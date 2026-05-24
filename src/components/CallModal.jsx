@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
-import caller from "../images/caller.png";
 import { BsPerson } from "react-icons/bs";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+const caller = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560478/caller_attkap.png";
 
 const CallModal = ({ onClose }) => {
     const modalRef = useRef();

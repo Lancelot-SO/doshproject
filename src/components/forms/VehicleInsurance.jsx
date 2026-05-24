@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import image from "../../images/commvehicle.png";
-import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
 import { ToastContainer, toast } from "react-toastify";
+const image = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560487/commvehicle_khs23h.png";
+const formlogo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560601/formlogo_fpypyo.png";
 
 const VehicleInsurance = ({ onClose, userData }) => {
     const formRef = useRef();

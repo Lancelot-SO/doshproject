@@ -1,6 +1,6 @@
 import { useState } from "react";
-import pendingImg from "../../../../images/dashboard/claims/pendingImg.png";
 import QuickActions from "../../quickActions/QuickActions";
+const pendingImg = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560084/pendingImg_qw80mh.png";
 
 export default function AuthCode() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);

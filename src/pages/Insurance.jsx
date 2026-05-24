@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import newAnime from "../images/sphoto.png";
 import { countryList } from '../utils/countries';
 import { validateSignupForm } from '../utils/validation';
 import { useSignup } from '../hooks/useSignup';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+const newAnime = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560665/sphoto_zbzree.png";
 
 // Reusable Label Component
 const Label = ({ htmlFor, children, required }) => (

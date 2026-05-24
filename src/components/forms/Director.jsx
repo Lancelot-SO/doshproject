@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import image from "../../images/director.png";
-import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+const image = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560489/director_f9ecvg.png";
+const formlogo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560601/formlogo_fpypyo.png";
 
 const Director = ({ onClose, userData }) => {
 

@@ -2,15 +2,15 @@ import React from 'react';
 // import AccurateGlassEffectCard from './AccurateGlassEffectCard';
 import './InsurancePage.css'
 import { IoWallet } from "react-icons/io5";
-import glasscard from "../../images/dashboard/glasscard.png"
-import mobileglasscard from "../../images/dashboard/mobileglassbg.png"
 import { FaAmbulance, FaWallet } from "react-icons/fa";
 import { RiArrowRightDownLine, RiArrowRightUpLine } from "react-icons/ri";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { Ambulance, ChevronRight, Glasses, Stethoscope } from 'lucide-react';
 
-import profile from "../../images/dashboard/profilepic.png"
 import Circle from '../Circle';
+const glasscard = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560340/glasscard_wyowgb.png";
+const mobileglasscard = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560340/mobileglassbg_qpchfu.png";
+const profile = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560323/profilepic_xzyt3a.png";
 
 
 

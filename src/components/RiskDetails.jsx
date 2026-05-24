@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import fam from "../images/risk_detail.png";
 import RiskForm from './RiskForm';
+import { getCloudinaryUrl } from "../utils/cloudinary";
 
 const RiskDetails = ({ onClose }) => {
     const navigate = useNavigate();
@@ -54,7 +55,7 @@ const RiskDetails = ({ onClose }) => {
                     <div className="flex-shrink-0">
                         <img
                             className="w-full h-[400px] object-cover"
-                            src={riskModal?.image ? `https://doshcms.interactivedigital.com.gh/${riskModal.image}` : ""}
+                            src={riskModal?.image ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${riskModal.image}`) : ""}
                             alt="Risk Management"
                         />
                     </div>

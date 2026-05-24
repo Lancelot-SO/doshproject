@@ -18,6 +18,7 @@ import FinanceSideModal from '../components/FinanceSideModal.jsx';
 import RiskDetails from '../components/RiskDetails.jsx';
 import Terms from '../components/Terms.jsx';
 import { Link, useLocation } from 'react-router-dom';
+import { getCloudinaryUrl } from '../utils/cloudinary';
 
 const ProductServices = () => {
     // Modal and UI states
@@ -270,7 +271,7 @@ const ProductServices = () => {
             <div className='main__product'>
                 <img
                     data-aos="fade-down"
-                    src={require('../images/pnsheader.png')}
+                    src={"https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560641/pnsheader_basbxw.png"}
                     alt='product & services'
                     className='object-cover'
                     loading='lazy'
@@ -377,7 +378,7 @@ const ProductServices = () => {
                                         {/* Image Section */}
                                         <div className="flex-1 w-full pr-4 pl-1 lg:pr-6">
                                             <img
-                                                src={product?.image ? `https://doshcms.interactivedigital.com.gh/${product.image}` : ""}
+                                                src={product?.image ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${product.image}`) : ""}
                                                 alt={product.title}
                                                 className="w-full h-full object-cover rounded-lg shadow-lg"
                                             />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import dosh from "../images/dosh_logo.png";
 import "./InsuranceTable.css";
+const dosh = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779559820/dosh_logo_x6snnv.png";
 
 
 const FinanceTable = ({ closePopup }) => {

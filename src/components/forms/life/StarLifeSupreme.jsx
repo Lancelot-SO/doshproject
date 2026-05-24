@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import image from "../../../images/supreme.png";
-import formlogo from "../../../images/formlogo.png";
+const image = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560666/supreme_avhhe0.png";
+const formlogo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560601/formlogo_fpypyo.png";
 
 const initialState = {
 

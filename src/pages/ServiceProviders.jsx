@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ServiceProviders.css';
-import services from '../images/clinic3.png';
-import servicesmobile from "../images/clinicmobile.png";
+import { getCloudinaryUrl } from "../utils/cloudinary";
 import { FaFilter } from 'react-icons/fa';
 import { IoIosSearch } from 'react-icons/io';
 import FilterModal from '../components/FilterModal';
@@ -9,6 +8,8 @@ import CallModal from '../components/CallModal';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import HospitalTable from '../components/HospitalTable';
+const services = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560484/clinic3_clj8x9.png";
+const servicesmobile = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560485/clinicmobile_wz0mrf.png";
 
 const ServiceProviders = () => {
     const [index, setIndex] = useState(0);
@@ -125,7 +126,7 @@ const ServiceProviders = () => {
             <div className='main__services'>
                 <img
                     data-aos="fade-down"
-                    src={serviceData?.image ? `https://doshcms.interactivedigital.com.gh/${serviceData.image}` : services}
+                    src={serviceData?.image ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${serviceData.image}`) : services}
                     alt="service providers"
                     loading="lazy"
                     className="desktop__img"

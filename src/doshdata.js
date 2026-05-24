@@ -1,35 +1,35 @@
-// import Finance from "./images/DOSH-financial.png"
-import Lady from "./images/prettylady.jpg"
-import Personal from "./images/personalnew.png"
-import Insurance from "./images/elevate2.png"
-import Family from "./images/familynew.png"
-// import Risk from "./images/seamless.png"
-// import Money from "./images/Financial_img.png"
-// import Money from "./images/money.png"
-import Ride from "./images/ride.png"
-import Ecommerce from "./images/Vector334.png"
-import Scale from "./images/scale.png"
-
-import Enterprise from "./images/enterprisenew.png"
-import Soho from "./images/soho.png"
-import Smb from "./images/smbnew.png"
+// const Finance = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560514/DOSH-financial_rufngv.png";
+// const Risk = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560651/seamless_buzdyp.png";
+// const Money = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560533/Financial_img_vcfhqp.png";
+// const Money = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560626/money_zos5bl.png";
 
 
-import Ph1 from "./images/ph1.png"
-import ph2 from "./images/ph2.png"
-import ph3 from "./images/ph3.png"
-import ph4 from "./images/ph4.png"
-import ph5 from "./images/ph5.png"
-import ph6 from "./images/ph6.png"
+
 
 //enhanced images
 
-import Phone from "./images/dosh500.jpg"
-import Phone1 from "./images/dosh900.jpg"
-import Phone2 from "./images/dosh1200.jpg"
 import Phone3 from "./images/dosh2800.jpg"
-import Phone4 from "./images/dosh5500.png"
-import Phone5 from "./images/dosh11000.jpg"
+const Lady = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560648/prettylady_yda2m5.jpg";
+const Personal = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560626/personalnew_jlm1ak.png";
+const Insurance = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560522/elevate2_rvs0co.png";
+const Family = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560527/familynew_xlfodv.png";
+const Ride = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560647/ride_nfqwuu.png";
+const Ecommerce = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560679/Vector334_yxe1c6.png";
+const Scale = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560650/scale_muz7ge.png";
+const Enterprise = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560524/enterprisenew_fxvnx6.png";
+const Soho = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560663/soho_ctrff7.png";
+const Smb = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560662/smbnew_jn7qzp.png";
+const Ph1 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560628/ph1_mwp3yk.png";
+const ph2 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560636/ph2_et9tpm.png";
+const ph3 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560633/ph3_fiu6wn.png";
+const ph4 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560635/ph4_cjfaxg.png";
+const ph5 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560636/ph5_geun4y.png";
+const ph6 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560637/ph6_ogqesr.png";
+const Phone = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560494/dosh500_xk2sa5.jpg";
+const Phone1 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560497/dosh900_mnnggp.jpg";
+const Phone2 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560501/dosh1200_ngbmkn.jpg";
+const Phone4 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560506/dosh5500_uvapel.png";
+const Phone5 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560508/dosh11000_f3hebk.jpg";
 
 
 

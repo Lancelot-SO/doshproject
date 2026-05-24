@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import image from "../images/imagebg.png";
-import formlogo from "../images/formlogo.png";
 import AssetsAllRisk from './forms/AssetsAllRisk';
 import PublicLiability from './forms/PublicLiability';
 import MarineOpenCover from './forms/MarineOpenCover';
@@ -29,6 +27,8 @@ import LifetimeNeeds from './forms/life/LifetimeNeeds';
 import Claims from './forms/Claims';
 import HealthInsurance from './forms/HealthInsurance';
 import CorporateInsurance from './forms/CorporateInsurance';
+const image = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560615/imagebg_ymald6.png";
+const formlogo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560601/formlogo_fpypyo.png";
 
 const RiskForm = ({ onClose }) => {
     const form = useRef();

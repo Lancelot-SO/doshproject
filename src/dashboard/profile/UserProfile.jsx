@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import profilebg from "../../images/dashboard/profile/profilebg.png";
 import { FaUserEdit } from "react-icons/fa";
 import { FiArrowLeft } from "react-icons/fi";
 import { Link } from 'react-scroll';
-import map from "../../images/dashboard/profile/map.png"
-import profilepic from "../../images/dashboard/profile/profilepic.png";
+const profilebg = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560322/profilebg_pfl6al.png";
+const map = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560321/map_mngiyv.png";
+const profilepic = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560323/profilepic_xzyt3a.png";
 
 const UserProfile = () => {
     const [currentTime, setCurrentTime] = useState(new Date());

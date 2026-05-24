@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import './RegModal.css'
 import { Link } from 'react-router-dom'
-import animefive from "../images/dosh-5000.png"
-import animetwo from "../images/dosh-2500.png"
-import animeth from "../images/dosh-1000.png"
-import animesev from "../images/dosh-750.png"
-import animethr from "../images/dosh-financial.jpg"
-import animeten from "../images/dosh-10000.png"
-import animeper from "../images/dosh-personal.png"
-import animefam from "../images/dosh-family.png"
-import animesoho from "../images/soho.png"
-import animesmb from "../images/SMB.png"
-import animeent from "../images/Enterprise.png"
+const animethr = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779562417/DOSH-financial_cqvsc0.png";
+const animefive = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560502/dosh-5000_fy2lrw.png";
+const animetwo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560501/dosh-2500_yuppiz.png";
+const animeth = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560497/dosh-1000_usxefy.png";
+const animesev = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560494/dosh-750_uwjifu.png";
+const animeten = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560506/dosh-10000_q1uyz1.png";
+const animeper = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560515/dosh-personal_z2rfcg.png";
+const animefam = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560510/dosh-family_xhav6p.png";
+const animesoho = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560663/soho_ctrff7.png";
+const animesmb = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560661/SMB_mrgess.png";
+const animeent = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560523/Enterprise_esflqq.png";
 
 const RegModal = () => {
     const [selectedPackage, setSelectedPackage] = useState("dosh__thr");

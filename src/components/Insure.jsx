@@ -12,8 +12,9 @@ import {
     enhancelist
 } from '../doshdata';
 
-import standard from '../images/ph1.png';
-import enhanced from '../images/mainenhanced.jpg';
+const standard = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560628/ph1_mwp3yk.png";
+const enhanced = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560635/mainenhanced_wxv7dp.jpg";
+
 
 const BASE_URL = 'https://doshcms.interactivedigital.com.gh/';
 

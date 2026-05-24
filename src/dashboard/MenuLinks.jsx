@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import logo from "../images/dashboard/dash_logo.png";
 import { ChevronRight, ChevronLeft } from "lucide-react";
+const logo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560337/dash_logo_nbimdc.png";
 
 const MenuLinks = ({ onMenuClick }) => {
     const [isExpanded, setIsExpanded] = useState(false);

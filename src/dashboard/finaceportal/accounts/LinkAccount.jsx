@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import linkwallet from "../../../images/dashboard/finance/linkwallet.png";
-import walletcard from "../../../images/dashboard/finance/Cards.png";
 import { FaPlus } from "react-icons/fa";
 import WalletOtp from "./WalletOtp"; // Import the OTP component
 import "./Investment.css";
 import QuickActions from "../quickActions/QuickActions";
+const linkwallet = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560274/linkwallet_p6pruk.png";
+const walletcard = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560267/Cards_c6r5ng.png";
 
 const LinkAccount = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import image from "../../images/guarantee.png"
-import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+const image = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560605/guarantee_o1rmoy.png";
+const formlogo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560601/formlogo_fpypyo.png";
 
 
 const GuaranteeClaim = ({ onClose, userData }) => {

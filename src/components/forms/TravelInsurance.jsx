@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import image from "../../images/travelins.png";
-import formlogo from "../../images/formlogo.png";
 import { X } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
+const image = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560677/travelins_add6aj.png";
+const formlogo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560601/formlogo_fpypyo.png";
 
 const initialFormData = {
     firstname: '',

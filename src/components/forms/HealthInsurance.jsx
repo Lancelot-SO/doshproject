@@ -4,8 +4,8 @@ import Select from 'react-select';
 import countryList from 'react-select-country-list';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import image from "../../images/hI.png";
-import formlogo from "../../images/formlogo.png";
+const image = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560610/hI_f0xehp.png";
+const formlogo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560601/formlogo_fpypyo.png";
 
 const countryOptions = countryList().getData();
 

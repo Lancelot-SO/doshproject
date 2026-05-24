@@ -19,7 +19,7 @@
     padding: 20px;
     flex-direction: column;
     position: relative;
-    background: url('../images/flyer4.jpg') no-repeat center center;
+    background: url('https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560599/flyer4_wzy3xu.jpg') no-repeat center center;
     background-size: cover;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     image-rendering: auto;

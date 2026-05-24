@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import "../../Dashboard.css"
-import wallet from "../../../images/dashboard/finance/wallet.png"
-import plant from "../../../images/dashboard/finance/financeplant.png"
+const wallet = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560278/wallet_ksaf0o.png";
+const plant = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560272/financeplant_bhkczi.png";
 
 
 export default function TopSection() {

@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import image from "../../images/transit.png";
-import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
+const image = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560676/transit_kwmkon.png";
+const formlogo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560601/formlogo_fpypyo.png";
 
 const Transit = ({ onClose, userData }) => {
     const formRef = useRef();

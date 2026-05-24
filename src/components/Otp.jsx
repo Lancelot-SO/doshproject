@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./Otp.css";
-import sphoto from "../images/sphoto.png";
 import SignIn from './SignIn';
+const sphoto = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560665/sphoto_zbzree.png";
 
 const Otp = ({ onClose }) => {
 

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import logo from "../images/dosh-footer-logo.png"
 import { FaFacebook, FaYoutube, FaInstagram, FaLinkedin, FaTiktok, FaTimes } from "react-icons/fa"
 import { FaXTwitter } from "react-icons/fa6"
 import { Link } from 'react-router-dom'
-import bg from "../images/footer-bg.png"
-import appStoreBadge from "../images/app_store.jpg"
-import googlePlayBadge from "../images/play_store.png"
 import "../App.css"
+const logo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560514/dosh-footer-logo_x9sxdj.png";
+const bg = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560599/footer-bg_wq9xh7.png";
+const appStoreBadge = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560473/app_store_jmoora.jpg";
+const googlePlayBadge = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560639/play_store_vphww8.png";
 
 // 2-letter country codes as returned by ipapi.co (GB → UK)
 const ADDRESS_MAP = {
@@ -82,7 +82,7 @@ const Footer = () => {
 
     return (
         <div className='main__footer'>
-            <img src={bg} alt='footerbg' className='bg_image' />
+            <img src={bg} alt='footerbg' className='bg_image' width="1920" height="300" />
             <div className="flex flex-col lg:flex-row gap-3 absolute top-[170px] lg:top-[102px] right-10 lg:right-[150px] 3xl:right-[275px] 4xl:right-[330px] z-40">
                 <Link to="https://apps.apple.com/in/app/dosh-is-life/id6757186583" target="_blank" rel="noopener noreferrer">
                     <img src={appStoreBadge} alt="App Store" className="rounded-lg w-[130px] h-auto object-contain hover:scale-105 transition-transform border-2 border-[#987c55]" />
@@ -96,7 +96,7 @@ const Footer = () => {
                 <div className='container footer__container'>
                     <div className='contact__logo2'>
                         <div className='footer__logo'>
-                            <img src={logo} alt='dosh-logo' />
+                            <img src={logo} alt='dosh-logo' width="112" height="56" />
                         </div>
                         <div className="footer__text">
                             <Link to={mapUrl} target="_blank" rel="noopener noreferrer">

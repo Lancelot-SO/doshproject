@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import image from "../../images/publicliability.png";
-import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
+const formlogo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560601/formlogo_fpypyo.png";
 
 const PublicLiability = ({ onClose, userData }) => {
     const initialData = {

@@ -1,7 +1,7 @@
 import Ekow from "./images/tom.png"
-import Joel from "./images/Image-1.png"
-import Nat from "./images/Image-2.png"
-import Jerry from "./images/jerry.png"
+const Joel = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560612/Image-1_ykcfxn.png";
+const Nat = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560613/Image-2_lapabi.png";
+const Jerry = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560616/jerry_r2xn6g.png";
 
 
 const people = [

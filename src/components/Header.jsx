@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom"
-import logo from "../images/dosh_logo.png";
 import '../App.css'
 import { RiMenu4Fill } from "react-icons/ri";
 import { FaTimes } from 'react-icons/fa'
+const logo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779559820/dosh_logo_x6snnv.png";
 
 const Header = () => {
     const [activeLink, setActiveLink] = useState(null);
@@ -18,7 +18,7 @@ const Header = () => {
         <nav>
             <div className='container nav__container'>
                 <Link to='/' className="nav__logo">
-                    <img src={logo} alt='navbar logo' />
+                    <img src={logo} alt='navbar logo' width="96" height="48" />
                 </Link>
                 <ul className='nav__menu'>
                     <li>

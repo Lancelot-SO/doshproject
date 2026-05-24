@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 // import fam from "../images/dosh-financial.jpg";
 import InsuranceTable from '../components/InsuranceTable.jsx';
 import Insure from './Insure.jsx';
+import { getCloudinaryUrl } from "../utils/cloudinary";
 
 const InsuranceDetails = ({ onClose }) => {
     const navigate = useNavigate();
@@ -65,7 +66,7 @@ const InsuranceDetails = ({ onClose }) => {
                 <div className="flex-grow overflow-y-auto">
                     <img
                         className="w-full h-[400px] object-cover"
-                        src={InsureModal?.image ? `https://doshcms.interactivedigital.com.gh/${InsureModal.image}` : "assets/elevate.png"}
+                        src={InsureModal?.image ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${InsureModal.image}`) : "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560520/elevate_enyrxc.png"}
                         alt="Family enjoying financial security"
                         loading='lazy'
                     />

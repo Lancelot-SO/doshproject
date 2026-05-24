@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import pendingImg from "../../images/dashboard/claims/pendingImg.png";
-import logo from "../../images/dashboard/dash_logo.png";
 import { FaAddressBook, FaPlus } from "react-icons/fa";
 import AddDependent from './AddDependent';
+const pendingImg = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560084/pendingImg_qw80mh.png";
+const logo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560337/dash_logo_nbimdc.png";
 
 const Dependent = () => {
     const [showAddDependent, setShowAddDependent] = useState(false);

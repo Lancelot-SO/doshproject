@@ -49,6 +49,12 @@ module.exports = function (app) {
     );
 
     // 3. DOSH CMS Proxy (Intercepts hardcoded absolute URLs)
+    const cmsEmail = process.env.REACT_APP_CMS_EMAIL;
+    const cmsPassword = process.env.REACT_APP_CMS_PASSWORD;
+    const cmsBasicAuth = cmsEmail && cmsPassword
+        ? 'Basic ' + Buffer.from(`${cmsEmail}:${cmsPassword}`).toString('base64')
+        : null;
+
     app.use(
         '/doshcms-proxy',
         createProxyMiddleware({
@@ -59,6 +65,9 @@ module.exports = function (app) {
             on: {
                 proxyReq: (proxyReq) => {
                     proxyReq.setHeader('Origin', 'https://www.0800dosh.me');
+                    if (cmsBasicAuth) {
+                        proxyReq.setHeader('Authorization', cmsBasicAuth);
+                    }
                 }
             }
         })

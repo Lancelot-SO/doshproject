@@ -1,6 +1,6 @@
 // import { Users } from 'lucide-react'
-import pendingImg from "../../../../images/dashboard/claims/pendingImg.png"
 import QuickActions from "../../quickActions/QuickActions";
+const pendingImg = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560084/pendingImg_qw80mh.png";
 export default function DoshTill() {
     return (
         <div className="w-[1260px] h-[630px] max-w-full mx-auto border border-gray-500 bg-gray-900 rounded-[36px] relative overflow-hidden overflow-x-hidden">

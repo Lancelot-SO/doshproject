@@ -1,5 +1,5 @@
 // import { Users } from 'lucide-react';
-import pendingImg from "../../images/dashboard/claims/pendingImg.png"
+const pendingImg = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560084/pendingImg_qw80mh.png";
 
 export default function Referral() {
     return (

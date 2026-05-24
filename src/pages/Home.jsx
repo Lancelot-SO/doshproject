@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Home.css";
 import { Link, useLocation } from "react-router-dom";
+import { getCloudinaryUrl } from "../utils/cloudinary";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -144,8 +145,8 @@ const Home = () => {
                         <img
                             src={
                                 homeData?.health_insurance_image
-                                    ? `https://doshcms.interactivedigital.com.gh/${homeData.health_insurance_image}`
-                                    : "assets/elevate.png"
+                                    ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${homeData.health_insurance_image}`)
+                                    : "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560520/elevate_enyrxc.png"
                             }
                             alt=""
                             loading="lazy"
@@ -184,8 +185,8 @@ const Home = () => {
                         <img
                             src={
                                 homeData?.finance_image
-                                    ? `https://doshcms.interactivedigital.com.gh/${homeData.finance_image}`
-                                    : "assets/elevate.png"
+                                    ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${homeData.finance_image}`)
+                                    : "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560520/elevate_enyrxc.png"
                             }
                             alt="student"
                             loading="lazy"
@@ -215,8 +216,8 @@ const Home = () => {
                         <img
                             src={
                                 homeData?.risk_image
-                                    ? `https://doshcms.interactivedigital.com.gh/${homeData.risk_image}`
-                                    : "assets/elevate.png"
+                                    ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${homeData.risk_image}`)
+                                    : "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560520/elevate_enyrxc.png"
                             }
                             alt="digital"
                             loading="lazy"
@@ -239,8 +240,8 @@ const Home = () => {
                         <img
                             src={
                                 homeData?.ride_image
-                                    ? `https://doshcms.interactivedigital.com.gh/${homeData.ride_image}`
-                                    : "assets/elevate.png"
+                                    ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${homeData.ride_image}`)
+                                    : "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560520/elevate_enyrxc.png"
                             }
                             alt="ride"
                             loading="lazy"
@@ -264,8 +265,8 @@ const Home = () => {
                         <img
                             src={
                                 homeData?.erp_image
-                                    ? `https://doshcms.interactivedigital.com.gh/${homeData.erp_image}`
-                                    : "assets/elevate.png"
+                                    ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${homeData.erp_image}`)
+                                    : "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560520/elevate_enyrxc.png"
                             }
                             alt="digital"
                             loading="lazy"
@@ -288,8 +289,8 @@ const Home = () => {
                             data-aos="zoom-in-right"
                             src={
                                 homeData?.commerce_image
-                                    ? `https://doshcms.interactivedigital.com.gh/${homeData.commerce_image}`
-                                    : "assets/elevate.png"
+                                    ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${homeData.commerce_image}`)
+                                    : "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560520/elevate_enyrxc.png"
                             }
                             alt="ride"
                             loading="lazy"

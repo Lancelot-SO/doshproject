@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import image from "../../images/privatemotor.png";
-import formlogo from "../../images/formlogo.png";
 import { X } from 'lucide-react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+const image = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560643/privatemotor_u9abcd.png";
+const formlogo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560601/formlogo_fpypyo.png";
 
 const PrivateMotor = ({ onClose, userData }) => {
     const [formData, setFormData] = useState({

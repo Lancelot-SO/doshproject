@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import login from "../images/login-image.png";
 import { IoMdRefresh } from "react-icons/io";
 import "./Login.css";
 import { Link } from 'react-router-dom';
 import SignIn from '../components/SignIn';
+const login = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560626/login-image_uoeu6k.png";
 
 const Login = ({ onClose }) => {
     const [captcha, setCaptcha] = useState('');

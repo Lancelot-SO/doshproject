@@ -1,13 +1,7 @@
 import React from 'react';
 import "./Investment.css"
-import investbg from "../../../images/dashboard/finance/investbg.png"
 import { BsArrowUpRightCircle } from "react-icons/bs";
 
-import doshLogo from "../../../images/dashboard/finance/doshLife.png"
-import visaLogo from "../../../images/dashboard/finance/visa.png"
-import chip from "../../../images/dashboard/finance/Chip_Card.png"
-import wifi from "../../../images/dashboard/finance/wifi.png"
-import sendata from "../../../images/dashboard/finance/sendata.png"
 
 import {
     LineChart,
@@ -21,6 +15,12 @@ import {
 } from "recharts";
 import TradingChart from '../financeSections/TradingChart';
 import QuickActions from '../quickActions/QuickActions';
+const investbg = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560273/investbg_pdv6n1.png";
+const doshLogo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560269/doshLife_mhmxim.png";
+const visaLogo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560276/visa_rcsqxr.png";
+const chip = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560268/Chip_Card_rjek1g.png";
+const wifi = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560279/wifi_qrheni.png";
+const sendata = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560275/sendata_kss3mb.png";
 
 const data = [
     { date: "20 Jun", profits: 90, cashBond: 85 },

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import login from "../images/login-image.png";
 import "./Login.css";
 import './Register.css';
 import { Link, useLocation } from 'react-router-dom';
-// import card from "../images/card.svg"
+// const card = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560479/card_sirypz.svg";
 // import RegModal from '../components/RegModal';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import Insurance from './Insurance';
+const login = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560626/login-image_uoeu6k.png";
 
 const Register = () => {
     const [selectedOption, setSelectedOption] = useState("selfregister");

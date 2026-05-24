@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { animateScroll as scroll } from 'react-scroll';
 import { IoIosArrowUp } from "react-icons/io";
-import whatsapp from "../images/whatsapp.png";
 import { useLocation } from 'react-router-dom';
 import "../App.css";
+const whatsapp = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560681/whatsapp_jxzpcb.png";
 
 const BackToTopBtn = () => {
     const [show, setShow] = useState(false);

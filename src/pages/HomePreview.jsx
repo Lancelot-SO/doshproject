@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import { getCloudinaryUrl } from '../utils/cloudinary';
 
 const HomePreview = () => {
 
@@ -38,7 +39,6 @@ const HomePreview = () => {
             });
     }, []);
 
-    const baseURL = 'https://doshcms.interactivedigital.com.gh/';
     const index = 1; //index of the items in my database
 
     // Check if the slides array has an item at the specified index
@@ -55,7 +55,7 @@ const HomePreview = () => {
                         <input type="radio" name="radio-button" id="radio1" />
                         <div>
                             <div className='slide first' key={index}>
-                                <img src={`${baseURL}${slide.slideshow_image.replace(/\\/g, '')}`} alt='bing' loading='lazy' />
+                                <img src={getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${slide.slideshow_image.replace(/\\/g, '')}`)} alt='bing' loading='lazy' />
                                 <div className='hero__text'>
                                     <p className='first_slider'>{slide.caption}</p>
                                     <p className='first_slider-p'>{slide.body}</p>
@@ -70,11 +70,11 @@ const HomePreview = () => {
                                                 width="28"
                                                 height="28"
                                                 fill="currentColor"
-                                                class="bi bi-arrow-right"
+                                                className="bi bi-arrow-right"
                                                 viewBox="0 0 16 16"
                                             >
                                                 <path
-                                                    fill-rule="evenodd"
+                                                    fillRule="evenodd"
                                                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
                                                 />
                                             </svg>

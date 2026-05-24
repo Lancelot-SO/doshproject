@@ -3,11 +3,11 @@ import { ChevronDown, FileText, UserPlus, Grid } from 'lucide-react';
 import { MdPrivacyTip } from "react-icons/md";
 import { FaLink, FaBars, FaTimes, FaExchangeAlt, FaCoins, FaUserFriends } from 'react-icons/fa';
 import { MdLock, MdGroups, MdAssignment, MdAccountBalance, MdSavings, MdAttachMoney, MdPerson } from 'react-icons/md';
-import logo from "../images/dashboard/dash_logo.png";
-import profilepic from "../images/dashboard/profile/profilepic.png";
 import './Sidebar.css';
 import ReferralPopup from './ReferralPopup';
 import PrivacyPolicy from './PrivacyPolicy';
+const logo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560337/dash_logo_nbimdc.png";
+const profilepic = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560323/profilepic_xzyt3a.png";
 
 const Sidebar = ({ activeMenu, onSubmenuClick, onProfileClick }) => {
     const [showClaimsSubmenu, setShowClaimsSubmenu] = useState(false);

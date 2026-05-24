@@ -1,8 +1,8 @@
 // SignIn.jsx
 import React, { useState } from 'react';
 import "./SignIn.css";
-import sphoto from "../images/sphoto.png";
 import { Link, useNavigate } from 'react-router-dom';
+const sphoto = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560665/sphoto_zbzree.png";
 
 const SignIn = ({ username, onClose }) => {
     const [password, setPassword] = useState('');

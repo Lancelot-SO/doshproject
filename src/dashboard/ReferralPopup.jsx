@@ -1,7 +1,7 @@
-import referprofile from "../images/dashboard/referprofile.png"
-import referbg from "../images/dashboard/referbg.png"
 import { Share2 } from 'lucide-react';
 import './Sidebar.css';
+const referprofile = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560344/referprofile_hd3k92.png";
+const referbg = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560343/referbg_h1lkdg.png";
 
 
 

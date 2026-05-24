@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Contact.css';
 import { toast, ToastContainer } from 'react-toastify';
+import { getCloudinaryUrl } from "../utils/cloudinary";
 import 'react-toastify/dist/ReactToastify.css';
-import logo from '../images/dosh_logo.png';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+const logo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779559820/dosh_logo_x6snnv.png";
 
 const Contact = () => {
     const form = useRef();
@@ -83,7 +84,7 @@ const Contact = () => {
             <div className="contact__head">
                 <img
                     data-aos="fade-down"
-                    src={ContactData?.header_image ? `https://doshcms.interactivedigital.com.gh/${ContactData.header_image}` : "contact image"}
+                    src={ContactData?.header_image ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${ContactData.header_image}`) : "contact image"}
                     alt="about"
                     loading="lazy"
                 />
@@ -180,7 +181,7 @@ const Contact = () => {
                     </form>
                     <div className="dosh-contact-image">
                         <img
-                            src={ContactData?.section_image ? `https://doshcms.interactivedigital.com.gh/${ContactData.section_image}` : "assets/elevate.png"}
+                            src={ContactData?.section_image ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${ContactData.section_image}`) : "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560520/elevate_enyrxc.png"}
                             alt="dosh"
                             loading='lazy'
                         />

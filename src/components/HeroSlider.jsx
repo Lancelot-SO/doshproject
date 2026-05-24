@@ -2,28 +2,28 @@
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+const slider1 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560603/fourthhero_qa0vlt.png";
+const slider3 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560529/fifthhero_aird4o.png";
+const slider4 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560668/tenthhero_qlfpgz.png";
+const slider5 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560658/sixthhero_cr8bpu.png";
+const slider6 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560656/seventhhero_dtocmu.png";
+const slider7 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560653/secondhero_zmgbfk.png";
+const slider2 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560672/thirdhero_dc4pbz.png";
+const slider8 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560518/eigthhero_s7y32v.png";
+const slider9 = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560536/firsthero_mmtzuq.png";
+const slider1m = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560604/fourthmobile_zljnhk.png";
+const slider2m = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560673/thirdmobile_obnhcw.png";
+const slider3m = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560530/fifthmobile_hpc03y.png";
+const slider4m = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560669/tenthmobile_npnflv.png";
+const slider5m = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560659/sixthmobile_albp5c.png";
+const slider6m = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560657/seventhmobile_guoxzr.png";
+const slider7m = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560654/secondmobile_nasg35.png";
+const slider8m = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560517/eightmobile_sqjryy.png";
+const slider9m = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560537/firstmobile_lxwgpn.png";
 
 // Desktop images
-import slider1 from "../images/fourthhero.png";
-import slider3 from "../images/fifthhero.png";
-import slider4 from "../images/tenthhero.png";
-import slider5 from "../images/sixthhero.png";
-import slider6 from "../images/seventhhero.png";
-import slider7 from "../images/secondhero.png";
-import slider2 from "../images/thirdhero.png";
-import slider8 from "../images/eigthhero.png";
-import slider9 from "../images/firsthero.png";
 
 // Mobile images (match order above)
-import slider1m from "../images/fourthmobile.png";
-import slider2m from "../images/thirdmobile.png";
-import slider3m from "../images/fifthmobile.png";
-import slider4m from "../images/tenthmobile.png";
-import slider5m from "../images/sixthmobile.png";
-import slider6m from "../images/seventhmobile.png";
-import slider7m from "../images/secondmobile.png";
-import slider8m from "../images/eightmobile.png";
-import slider9m from "../images/firstmobile.png";
 
 // Desktop
 const DEFAULT_IMAGES_DESKTOP = [

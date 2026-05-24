@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import './About.css'
-// import about from '../images/business.png'
-// import handshake from "../images/about-handshake.png"
-// import board from "../images/about-board.png"
-import settings from "../images/about-settings.png"
-// import banner from '../images/dosh-banner.png'
+import { getCloudinaryUrl } from "../utils/cloudinary";
+// const about = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560478/business_ijcb40.png";
+// const handshake = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560470/about-handshake_tyqaov.png";
+// const board = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560469/about-board_f76zoh.png";
+// const banner = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560510/dosh-banner_hrv20w.png";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { IoIosArrowDown } from 'react-icons/io'
 import InsuranceDetails from '../components/InsuranceDetails';
 import { Link } from 'react-router-dom';
+const settings = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560472/about-settings_wmtpg5.png";
 
 const About = () => {
 
@@ -105,7 +106,7 @@ const About = () => {
         <div className='sect extralarge:px-[200px]'>
             <section data-aos="fade-down" className='about__header'>
                 <img
-                    src={aboutData?.aboutus_header_image ? `https://doshcms.interactivedigital.com.gh/${aboutData.aboutus_header_image}` : "assets/elevate.png"}
+                    src={aboutData?.aboutus_header_image ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${aboutData.aboutus_header_image}`) : "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560520/elevate_enyrxc.png"}
                     alt='about' className='object-cover' loading='lazy' />
                 <h5 className='absolute bottom-20 left-3 lg:left-[190px] text-white text-[40px] lg:text-[52px] font-extrabold'>Who We Are </h5>
 
@@ -122,7 +123,7 @@ const About = () => {
                     </div>
                     <div data-aos="zoom-in" className='top_about_right'>
                         <img
-                            src={aboutData?.who_we_are_image ? `https://doshcms.interactivedigital.com.gh/${aboutData.who_we_are_image}` : "assets/elevate.png"}
+                            src={aboutData?.who_we_are_image ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${aboutData.who_we_are_image}`) : "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560520/elevate_enyrxc.png"}
                             className='about__image' alt='handshake' loading='lazy' />
                     </div>
                 </div> */}
@@ -139,8 +140,8 @@ const About = () => {
                         <img
                             src={
                                 aboutData?.who_we_are_image
-                                    ? `https://doshcms.interactivedigital.com.gh/${aboutData.who_we_are_image}`
-                                    : "assets/elevate.png"
+                                    ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${aboutData.who_we_are_image}`)
+                                    : "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560520/elevate_enyrxc.png"
                             }
                             className="lg:w-[500px] h-[400px] lg:rounded-[30px]"
                             alt="handshake"
@@ -154,7 +155,7 @@ const About = () => {
                 <div data-aos="zoom-in" className='container next-about__hand-shake'>
                     <div className='next-about_left'>
                         <img
-                            src={aboutData?.mission_image ? `https://doshcms.interactivedigital.com.gh/${aboutData.mission_image}` : "assets/elevate.png"}
+                            src={aboutData?.mission_image ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${aboutData.mission_image}`) : "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560520/elevate_enyrxc.png"}
                             className='about__image object-cover'
                             alt='handshake'
                             loading='lazy' />
@@ -196,7 +197,7 @@ const About = () => {
 
                     <Link className='flex flex-col cursor-pointer w-full' onClick={() => { setReadMore(true) }}>
                         <img
-                            src={aboutData?.banner_image ? `https://doshcms.interactivedigital.com.gh/${aboutData.banner_image}` : "assets/elevate.png"}
+                            src={aboutData?.banner_image ? getCloudinaryUrl(`https://doshcms.interactivedigital.com.gh/${aboutData.banner_image}`) : "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779560520/elevate_enyrxc.png"}
                             alt='banner'
                             loading='lazy' />
                     </Link>
