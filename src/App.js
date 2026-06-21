@@ -115,7 +115,7 @@ const Layout = () => {
 
       {/* BackToTop should still render even on the dashboard */}
       <BackToTop />
-      <TrackPageVisit pageUrl={window.location.href} />
+      <TrackPageVisit />
 
     </>
   );

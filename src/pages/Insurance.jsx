@@ -145,6 +145,18 @@ const Insurance = () => {
     const [errors, setErrors] = useState({});
     const [formStepsNum, setFormStepsNum] = useState(0);
     const [showConfirmModal, setShowConfirmModal] = useState(false);
+
+    // Track signup steps for analytics
+    useEffect(() => {
+        if (typeof window.gtag === 'function') {
+            const stepNames = ["Type Selection", "Plan Details", "Payments", "Profile Details"];
+            window.gtag('event', 'signup_step_viewed', {
+                'event_category': 'Signup Flow',
+                'event_label': stepNames[formStepsNum] || `Step ${formStepsNum}`,
+                'step_number': formStepsNum + 1
+            });
+        }
+    }, [formStepsNum]);
     const [fromPackage, setFromPackage] = useState(false); // Track if user came from insurance package
 
     // Name Enquiry state for payment source

@@ -194,6 +194,12 @@ const ProductServices = () => {
     const openModal = (index) => {
         const product = products[index];
         if (product) {
+            if (typeof window.gtag === 'function') {
+                window.gtag('event', 'read_more_clicked', {
+                    'event_category': 'Product Overview',
+                    'event_label': product.title
+                });
+            }
             if (product.id === 1) {
                 setCurrentModal({ type: 'insurance', data: product });
             } else if (product.id === 2) {
@@ -207,10 +213,24 @@ const ProductServices = () => {
     const closeModal = () => setCurrentModal(null);
 
     // Other modal functions
-    const openInsure = () => setInsureOpen(true);
+    const openInsure = () => {
+        if (typeof window.gtag === 'function') {
+            window.gtag('event', 'pick_package_clicked', {
+                'event_category': 'Product Overview',
+                'event_label': 'Health Insurance'
+            });
+        }
+        setInsureOpen(true);
+    };
     const closeInsure = () => setInsureOpen(false);
     const openPopup = (productIndex) => {
         const product = products[productIndex];
+        if (product && typeof window.gtag === 'function') {
+            window.gtag('event', 'compare_table_viewed', {
+                'event_category': 'Product Overview',
+                'event_label': product.title
+            });
+        }
         if (product && product.id === 2) {
             setFinanceTableOpen(true);
         } else {
@@ -221,7 +241,15 @@ const ProductServices = () => {
         setPopupOpen(false);
         setFinanceTableOpen(false);
     };
-    const openFinancialPopup = () => setFinancialPopupOpen(true);
+    const openFinancialPopup = () => {
+        if (typeof window.gtag === 'function') {
+            window.gtag('event', 'pick_package_clicked', {
+                'event_category': 'Product Overview',
+                'event_label': 'Financial Services'
+            });
+        }
+        setFinancialPopupOpen(true);
+    };
     const closeFinancialPopup = () => setFinancialPopupOpen(false);
 
     useEffect(() => {

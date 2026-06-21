@@ -84,6 +84,17 @@ const Insure = ({ onClose }) => {
         setActivePackage(null);
     }, [activeLabel, mergedInsuranceDetails, mergedEnhanceDetails]);
 
+    // Track when a user views a specific package inside Insure
+    useEffect(() => {
+        if (typeof window.gtag === 'function' && activePackage) {
+            window.gtag('event', 'package_viewed', {
+                'event_category': 'Product Overview',
+                'event_label': activePackage,
+                'package_type': activeLabel
+            });
+        }
+    }, [activePackage, activeLabel]);
+
     // 3️⃣ Determine which detail to render
     const activeDetail = activePackage
         ? currentDetailList.find(d => d.category === activePackage)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './RegModal.css'
 import { Link } from 'react-router-dom'
 const animethr = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779562417/DOSH-financial_cqvsc0.png";
@@ -22,6 +22,16 @@ const RegModal = () => {
         setShowPackDetails(!showPackDetails);
         setActiveLink(link);
     };
+
+    // Track package selection for analytics
+    useEffect(() => {
+        if (typeof window.gtag === 'function' && selectedPackage) {
+            window.gtag('event', 'package_viewed', {
+                'event_category': 'Product Registration',
+                'event_label': selectedPackage
+            });
+        }
+    }, [selectedPackage]);
 
     return (
         <div className='reg__modal'>

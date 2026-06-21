@@ -83,6 +83,17 @@ const FinanceSideModal = ({ onClose }) => {
         }
     }, [activeLabel, mergedPersonalDetails, mergedBusinessDetails]);
 
+    // Track when a user views a specific financial package
+    useEffect(() => {
+        if (typeof window.gtag === 'function' && activePackage) {
+            window.gtag('event', 'package_viewed', {
+                'event_category': 'Product Overview',
+                'event_label': activePackage,
+                'package_type': activeLabel
+            });
+        }
+    }, [activePackage, activeLabel]);
+
     // switch label
     const handleLabelChange = (label) => {
         setActiveLabel(label);
