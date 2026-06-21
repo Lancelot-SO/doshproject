@@ -3,11 +3,13 @@ import { Link } from "react-router-dom"
 import '../App.css'
 import { RiMenu4Fill } from "react-icons/ri";
 import { FaTimes } from 'react-icons/fa'
+import isoCert from '../assets/Logo_iso_cert/download.jpeg'
 const logo = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_auto,q_auto/v1779559820/dosh_logo_x6snnv.png";
 
 const Header = () => {
     const [activeLink, setActiveLink] = useState(null);
     const [nav, setNav] = useState(false);
+    const [showIsoCert, setShowIsoCert] = useState(false);
 
 
     const handleLinkClick = (index) => {
@@ -17,9 +19,17 @@ const Header = () => {
     return (
         <nav>
             <div className='container nav__container'>
-                <Link to='/' className="nav__logo">
-                    <img src={logo} alt='navbar logo' width="96" height="48" />
-                </Link>
+                <div className="nav__logo-group">
+                    <Link to='/' className="nav__logo">
+                        <img src={logo} alt='navbar logo' width="96" height="48" />
+                    </Link>
+                    <img
+                        src={isoCert}
+                        alt='ISO 27001 Certified by CertiTrust'
+                        className="nav__iso-badge"
+                        onClick={() => setShowIsoCert(true)}
+                    />
+                </div>
                 <ul className='nav__menu'>
                     <li>
                         <Link
@@ -157,6 +167,22 @@ const Header = () => {
                 }
 
             </div>
+
+            {showIsoCert && (
+                <div className="iso-overlay" onClick={() => setShowIsoCert(false)}>
+                    <div className="iso-overlay__content" onClick={(e) => e.stopPropagation()}>
+                        <button
+                            className="iso-overlay__close"
+                            onClick={() => setShowIsoCert(false)}
+                            aria-label="Close ISO certificate"
+                        >
+                            <FaTimes size={20} />
+                        </button>
+                        <img src={isoCert} alt='ISO 27001 Certified by CertiTrust' className="iso-overlay__img" />
+                        <p className="iso-overlay__text">ISO 27001:2022 Certified by CertiTrust</p>
+                    </div>
+                </div>
+            )}
         </nav>
     )
 }

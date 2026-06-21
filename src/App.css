@@ -154,6 +154,102 @@ nav {
   display: block;
 }
 
+.nav__logo-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.nav__iso-badge {
+  width: 2.2rem;
+  height: auto;
+  border-radius: 4px;
+  object-fit: contain;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav__iso-badge:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(152, 124, 85, 0.5);
+}
+
+/* ISO Certificate Overlay */
+.iso-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: isoFadeIn 0.25s ease;
+}
+
+@keyframes isoFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.iso-overlay__content {
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem 2rem 1.5rem;
+  max-width: 340px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  animation: isoScaleIn 0.3s ease;
+  text-align: center;
+}
+
+@keyframes isoScaleIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.iso-overlay__close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #987c55;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.iso-overlay__close:hover {
+  background: #7a6344;
+}
+
+.iso-overlay__img {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+.iso-overlay__text {
+  margin-top: 1rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 0.3px;
+}
+
 .nav__menu {
   display: flex;
   align-items: center;
@@ -240,6 +336,14 @@ nav {
 
   .nav__logo {
     margin-left: 30px;
+  }
+
+  .nav__logo-group {
+    margin-left: 10px;
+  }
+
+  .nav__iso-badge {
+    width: 1.8rem;
   }
 
   /* .container {
