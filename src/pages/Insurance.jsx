@@ -879,12 +879,6 @@ const Insurance = () => {
         if (isValid) {
             setErrors({});
 
-            // Special Case: Financial signup triggers payment at Step 2
-            if (formStepsNum === 2 && formData.insuranceOption === 'financial') {
-                setShowConfirmModal(true);
-                return;
-            }
-
             setFormStepsNum(prevNum => prevNum + 1);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
@@ -918,18 +912,10 @@ const Insurance = () => {
         try {
             await signup(formData);
 
-            if (formData.insuranceOption === 'financial') {
-                toast.success("Payment initiated! Now please complete your profile details.");
-                // Advance to Profile step
-                setFormStepsNum(3);
-                // We keep successData so the user sees the username/ref if they want, 
-                // but the modal needs to be closable or automatically dismissed to see Step 3.
-            } else {
-                toast.info("Registration initiated. Redirecting soon...");
-                setTimeout(() => {
-                    window.location.href = '/login';
-                }, 30000);
-            }
+            toast.info("Registration initiated. Redirecting soon...");
+            setTimeout(() => {
+                window.location.href = '/login';
+            }, 30000);
         } catch (error) {
             toast.error(error.message || "Registration failed.");
         }
@@ -1443,7 +1429,7 @@ const Insurance = () => {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <Label htmlFor="password" required>Password</Label>
-                                        <Input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Min 6 chars" error={errors.password} />
+                                        <Input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Min 8 chars" error={errors.password} />
                                     </div>
                                     <div>
                                         <Label htmlFor="confirmPassword" required>Confirm Password</Label>
@@ -1496,82 +1482,111 @@ const Insurance = () => {
                             </div>
                             {/* Grey Info Box Area */}
                             <div className="bg-[#f2f4f7] rounded-[1.5rem] p-6 md:p-8 space-y-6">
-                                {/* Gold Alert Box - for all non-financial insurance/combo plans */}
-                                {formData.insuranceOption !== 'financial' && (
-                                    <div className="bg-[#bc9444] rounded-xl p-4 flex items-start space-x-3 text-white">
-                                        <div className="bg-white rounded-full p-1 mt-0.5 flex-shrink-0">
-                                            <svg className="w-4 h-4 text-[#bc9444]" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                                            </svg>
-                                        </div>
-                                        <p className="text-xs font-semibold leading-tight">
-                                            A DOSH Financial account will be created with this Insurance details using a {formData.paymentMethod?.toLowerCase() || 'daily'} payment plan.
-                                        </p>
-                                    </div>
-                                )}
-                                {/* Financial Section */}
-                                <div className="space-y-3">
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-gray-800 font-bold text-lg">Financial</span>
-                                        <span className="bg-[#bc9444]/10 text-[#bc9444] text-xs font-bold px-3 py-1 rounded-full border border-[#bc9444]/20">
-                                            GHS {(() => {
-                                                const formatGHS = (val) => new Intl.NumberFormat('en-GH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(parseFloat(val || 0));
-                                                if (formData.paymentMethod === 'yearly') {
-                                                    return formatGHS(getPricing('tier_amount') || 365);
-                                                }
-                                                const setup = parseFloat(getPricing('financial_setup') || 20);
-                                                const hasFinancial = (formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'insuranceOnly';
-                                                const rate = hasFinancial ? parseFloat(getPricing('financial_daily_rate') || 1) : 0;
-                                                const shares = parseFloat(getPricing('shares') || 1);
-                                                return formatGHS(setup + (hasFinancial ? rate : shares));
-                                            })()}
-                                        </span>
-                                    </div>
-                                    <div className="pl-2 space-y-2">
-                                        <div className="flex justify-between items-center text-sm text-gray-500 font-medium">
-                                            <span>• Initial charge</span>
-                                            <span>GHS {(() => {
-                                                const formatGHS = (val) => new Intl.NumberFormat('en-GH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(parseFloat(val || 0));
-                                                return formatGHS(formData.paymentMethod === 'yearly' ? 0 : (getPricing('financial_setup') || 20));
-                                            })()}</span>
-                                        </div>
-                                        <div className="flex justify-between items-center text-sm text-gray-500 font-medium">
-                                            <span>• {formData.paymentMethod === 'yearly' ? 'Yearly' : 'Daily'} Charge</span>
-                                            <span>GHS {(() => {
-                                                const formatGHS = (val) => new Intl.NumberFormat('en-GH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(parseFloat(val || 0));
-                                                if (formData.paymentMethod === 'yearly') {
-                                                    return formatGHS(getPricing('tier_amount') || 365);
-                                                }
-                                                const hasFinancial = (formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'insuranceOnly';
-                                                const rate = hasFinancial ? parseFloat(getPricing('financial_daily_rate') || 1) : 0;
-                                                const shares = parseFloat(getPricing('shares') || 1);
-                                                return formatGHS(hasFinancial ? rate : shares);
-                                            })()}</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                {/* Determine if Financial Section should be shown */}
+                                {(() => {
+                                    const hasFinancial = (formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'insuranceOnly' && formData.accountOption !== 'existingAccount';
+                                    
+                                    return (
+                                        <>
+                                            {/* Gold Alert Box - for all non-financial insurance/combo plans */}
+                                            {formData.insuranceOption !== 'financial' && hasFinancial && (
+                                                <div className="bg-[#bc9444] rounded-xl p-4 flex items-start space-x-3 text-white">
+                                                    <div className="bg-white rounded-full p-1 mt-0.5 flex-shrink-0">
+                                                        <svg className="w-4 h-4 text-[#bc9444]" fill="currentColor" viewBox="0 0 20 20">
+                                                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                                                        </svg>
+                                                    </div>
+                                                    <p className="text-xs font-semibold leading-tight">
+                                                        A DOSH Financial account will be created with this Insurance details using a {formData.paymentMethod?.toLowerCase() || 'daily'} payment plan.
+                                                    </p>
+                                                </div>
+                                            )}
+                                            {/* Financial Section */}
+                                            {hasFinancial && (
+                                                <div className="space-y-3">
+                                                    <div className="flex justify-between items-center">
+                                                        <span className="text-gray-800 font-bold text-lg">Financial</span>
+                                                        <span className="bg-[#bc9444]/10 text-[#bc9444] text-xs font-bold px-3 py-1 rounded-full border border-[#bc9444]/20">
+                                                            GHS {(() => {
+                                                                const formatGHS = (val) => new Intl.NumberFormat('en-GH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(parseFloat(val || 0));
+                                                                if (formData.paymentMethod === 'yearly') {
+                                                                    const tier = getPricing('tier_amount');
+                                                                    return formatGHS(tier !== undefined ? tier : 365);
+                                                                }
+                                                                const rawSetup = getPricing('financial_setup');
+                                                                const setup = parseFloat(rawSetup !== undefined ? rawSetup : 20);
+                                                                const rawRate = getPricing('financial_daily_rate');
+                                                                const rate = parseFloat(rawRate !== undefined ? rawRate : 1);
+                                                                const rawShares = getPricing('shares');
+                                                                const shares = parseFloat(rawShares !== undefined ? rawShares : 1);
+                                                                return formatGHS(setup + rate);
+                                                            })()}
+                                                        </span>
+                                                    </div>
+                                                    <div className="pl-2 space-y-2">
+                                                        <div className="flex justify-between items-center text-sm text-gray-500 font-medium">
+                                                            <span>• Initial charge</span>
+                                                            <span>GHS {(() => {
+                                                                const formatGHS = (val) => new Intl.NumberFormat('en-GH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(parseFloat(val || 0));
+                                                                const rawSetup = getPricing('financial_setup');
+                                                                return formatGHS(formData.paymentMethod === 'yearly' ? 0 : (rawSetup !== undefined ? rawSetup : 20));
+                                                            })()}</span>
+                                                        </div>
+                                                        <div className="flex justify-between items-center text-sm text-gray-500 font-medium">
+                                                            <span>• {formData.paymentMethod === 'yearly' ? 'Yearly' : 'Daily'} Charge</span>
+                                                            <span>GHS {(() => {
+                                                                const formatGHS = (val) => new Intl.NumberFormat('en-GH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(parseFloat(val || 0));
+                                                                if (formData.paymentMethod === 'yearly') {
+                                                                    const tier = getPricing('tier_amount');
+                                                                    return formatGHS(tier !== undefined ? tier : 365);
+                                                                }
+                                                                const rawRate = getPricing('financial_daily_rate');
+                                                                const rate = parseFloat(rawRate !== undefined ? rawRate : 1);
+                                                                return formatGHS(rate);
+                                                            })()}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </>
+                                    );
+                                })()}
 
                                 {/* Insurance Section - only for non-financial plans */}
-                                {formData.insuranceOption !== 'financial' && (
-                                    <div className="space-y-3">
-                                        <div className="flex justify-between items-center">
-                                            <span className="text-gray-800 font-bold text-lg">Insurance</span>
-                                            <span className="bg-[#bc9444]/10 text-[#bc9444] text-xs font-bold px-3 py-1 rounded-full border border-[#bc9444]/20">
-                                                GHS {new Intl.NumberFormat('en-GH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(parseFloat(getPricing('insurance_daily') || 0) + parseFloat(getPricing('insurance_setup') || 0))}
-                                            </span>
-                                        </div>
-                                        <div className="pl-2 space-y-2">
-                                            <div className="flex justify-between items-center text-sm text-gray-500 font-medium">
-                                                <span>• Initial charge</span>
-                                                <span>GHS {new Intl.NumberFormat('en-GH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(parseFloat(getPricing('insurance_setup') || 0))}</span>
+                                {formData.insuranceOption !== 'financial' && (() => {
+                                    const hasFinancial = (formData.insuranceOption === 'financial' || formData.insuranceOption === 'combo' || formData.insuranceOption === 'plan' || formData.accountOption === 'createPlan') && formData.accountOption !== 'insuranceOnly' && formData.accountOption !== 'existingAccount';
+                                    
+                                    let setupFee = parseFloat(getPricing('insurance_setup') || 0);
+                                    if (!hasFinancial && formData.paymentMethod !== 'yearly') {
+                                        const rawFinSetup = getPricing('financial_setup');
+                                        setupFee += parseFloat(rawFinSetup !== undefined ? rawFinSetup : 20);
+                                    }
+                                    
+                                    let dailyFee = parseFloat(getPricing('insurance_daily') || 0);
+                                    
+                                    const formatGHS = (val) => new Intl.NumberFormat('en-GH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(val);
+
+                                    return (
+                                        <div className="space-y-3">
+                                            <div className="flex justify-between items-center">
+                                                <span className="text-gray-800 font-bold text-lg">Insurance</span>
+                                                <span className="bg-[#bc9444]/10 text-[#bc9444] text-xs font-bold px-3 py-1 rounded-full border border-[#bc9444]/20">
+                                                    GHS {formatGHS(dailyFee + setupFee)}
+                                                </span>
                                             </div>
-                                            <div className="flex justify-between items-center text-sm text-gray-500 font-medium">
-                                                <span>• {formData.paymentMethod === 'yearly' ? 'Yearly' : 'Daily'} Charge</span>
-                                                <span>GHS {new Intl.NumberFormat('en-GH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(parseFloat(getPricing('insurance_daily') || 0))}</span>
+                                            <div className="pl-2 space-y-2">
+                                                <div className="flex justify-between items-center text-sm text-gray-500 font-medium">
+                                                    <span>• Initial charge</span>
+                                                    <span>GHS {formatGHS(setupFee)}</span>
+                                                </div>
+                                                <div className="flex justify-between items-center text-sm text-gray-500 font-medium">
+                                                    <span>• {formData.paymentMethod === 'yearly' ? 'Yearly' : 'Daily'} Charge</span>
+                                                    <span>GHS {formatGHS(dailyFee)}</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                )}
+                                    );
+                                })()}
                             </div>
 
                             {/* Total Line - Outside the grey box */}

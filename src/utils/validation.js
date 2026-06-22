@@ -87,9 +87,16 @@ export const validateSignupForm = (formData, step) => {
         if (!lastName) errors.lastName = 'Required';
         if (!password) {
             errors.password = 'Required';
-        } else if (password.length < 6) {
-            errors.password = 'Minimum 6 characters';
+        } else if (password.length < 8) {
+            errors.password = 'Minimum 8 characters';
+        } else if (!/[A-Z]/.test(password)) {
+            errors.password = 'Must contain at least 1 uppercase letter';
+        } else if (!/[0-9]/.test(password)) {
+            errors.password = 'Must contain at least 1 number';
+        } else if (!/[^A-Za-z0-9]/.test(password)) {
+            errors.password = 'Must contain at least 1 symbol';
         }
+        
         if (password && password !== confirmPassword) {
             errors.confirmPassword = 'Passwords do not match';
         }
