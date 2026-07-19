@@ -99,4 +99,26 @@ module.exports = function (app) {
             pathRewrite: { '^/ipapi-proxy': '' }
         })
     );
+
+    // 6. ipwho.is Proxy (geo-IP fallback)
+    app.use(
+        '/ipwho-proxy',
+        createProxyMiddleware({
+            target: 'https://ipwho.is',
+            changeOrigin: true,
+            secure: false,
+            pathRewrite: { '^/ipwho-proxy': '' }
+        })
+    );
+
+    // 7. api.country.is Proxy (geo-IP fallback)
+    app.use(
+        '/countryis-proxy',
+        createProxyMiddleware({
+            target: 'https://api.country.is',
+            changeOrigin: true,
+            secure: false,
+            pathRewrite: { '^/countryis-proxy': '' }
+        })
+    );
 };

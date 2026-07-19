@@ -16,6 +16,10 @@ if (process.env.NODE_ENV === 'development') {
         resource = resource.replace('https://dsp.onenet.xyz:50443', '/dsp-proxy');
       } else if (resource.startsWith('https://ipapi.co')) {
         resource = resource.replace('https://ipapi.co', '/ipapi-proxy');
+      } else if (resource.startsWith('https://ipwho.is')) {
+        resource = resource.replace('https://ipwho.is', '/ipwho-proxy');
+      } else if (resource.startsWith('https://api.country.is')) {
+        resource = resource.replace('https://api.country.is', '/countryis-proxy');
       }
     }
     return originalFetch(resource, config);
@@ -29,6 +33,10 @@ if (process.env.NODE_ENV === 'development') {
         config.url = config.url.replace('https://dsp.onenet.xyz:50443', '/dsp-proxy');
       } else if (config.url.startsWith('https://ipapi.co')) {
         config.url = config.url.replace('https://ipapi.co', '/ipapi-proxy');
+      } else if (config.url.startsWith('https://ipwho.is')) {
+        config.url = config.url.replace('https://ipwho.is', '/ipwho-proxy');
+      } else if (config.url.startsWith('https://api.country.is')) {
+        config.url = config.url.replace('https://api.country.is', '/countryis-proxy');
       }
     }
     return config;

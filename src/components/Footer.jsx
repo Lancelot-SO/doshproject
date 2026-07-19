@@ -12,30 +12,61 @@ const googlePlayBadge = "https://res.cloudinary.com/dcqd4u6ux/image/upload/f_aut
 const ADDRESS_MAP = {
     US: {
         text: `2 Park Place<br/>Hartford CT 06106<br/>USA`,
-        mapUrl: 'https://maps.app.goo.gl/WAL6SMGMBJWJHhBu7'
+        mapUrl: 'https://maps.app.goo.gl/WAL6SMGMBJWJHhBu7',
+        phone: '+1 844-367-4630',
+        fax: '+1 844-367-4630',
     },
     GH: {
         text: `10 MIREKU WE LP<br/>Dansoman-Accra<br/>GA-504-4280 <br/>Ghana`,
-        mapUrl: 'https://maps.app.goo.gl/d7qvqRwCwEeuM5Le6'
+        mapUrl: 'https://maps.app.goo.gl/d7qvqRwCwEeuM5Le6',
+        phone: '0800-DOSH-ME (0800367463)',
+        fax: '0800-DOSH-ME (0800367463)',
     },
     IE: {
         text: `Ground Floor,<br/>71 Baggot Street Lower,<br/>Dublin 2,<br/>D02 P593,<br/>Ireland`,
-        mapUrl: 'https://maps.app.goo.gl/qkCh5ZRjgQoc1hCbA'
+        mapUrl: 'https://maps.app.goo.gl/qkCh5ZRjgQoc1hCbA',
+        phone: '+353 (01) 726 6403',
+        fax: '+353 (01) 726 6403',
     },
     UK: {
-        text: `5th Floor,<br/>167-169 Great Portland Street<br/>London<br/>W1W 5PF<br/>United Kingdom`,
-        mapUrl: 'https://maps.app.goo.gl/7RfBeVto112Uxcaj6'
+        text: `124 City Road,<br/>EC1V 2NX<br/>London<br/>United Kingdom`,
+        mapUrl: 'https://maps.app.goo.gl/eLokT3UfRzGnqiSRA',
+        phone: '+44 20 7566 1191',
+        fax: '+44 20 7566 1191',
+    },
+    // Catch-all for other European countries — uses Ireland office
+    EU: {
+        text: `Ground Floor,<br/>71 Baggot Street Lower,<br/>Dublin 2,<br/>D02 P593,<br/>Ireland`,
+        mapUrl: 'https://maps.app.goo.gl/qkCh5ZRjgQoc1hCbA',
+        phone: '+353 (01) 726 6403',
+        fax: '+353 (01) 726 6403',
     },
     DEFAULT: {
         text: `10 MIREKU WE LP<br/>Dansoman-Accra<br/>GA-504-4280`,
-        mapUrl: 'https://maps.app.goo.gl/d7qvqRwCwEeuM5Le6'
+        mapUrl: 'https://maps.app.goo.gl/d7qvqRwCwEeuM5Le6',
+        phone: '0800-DOSH-ME (0800367463)',
+        fax: '0800-DOSH-ME (0800367463)',
     }
+}
+
+// European country codes → display names (excludes GB and IE — they have their own entries)
+const EUROPEAN_COUNTRY_NAMES = {
+    AL: 'Albania', AD: 'Andorra', AT: 'Austria', BY: 'Belarus', BE: 'Belgium',
+    BA: 'Bosnia and Herzegovina', BG: 'Bulgaria', HR: 'Croatia', CY: 'Cyprus',
+    CZ: 'Czech Republic', DK: 'Denmark', EE: 'Estonia', FI: 'Finland', FR: 'France',
+    DE: 'Germany', GR: 'Greece', HU: 'Hungary', IS: 'Iceland', IT: 'Italy',
+    XK: 'Kosovo', LV: 'Latvia', LI: 'Liechtenstein', LT: 'Lithuania', LU: 'Luxembourg',
+    MT: 'Malta', MD: 'Moldova', MC: 'Monaco', ME: 'Montenegro', NL: 'Netherlands',
+    MK: 'North Macedonia', NO: 'Norway', PL: 'Poland', PT: 'Portugal', RO: 'Romania',
+    RU: 'Russia', SM: 'San Marino', RS: 'Serbia', SK: 'Slovakia', SI: 'Slovenia',
+    ES: 'Spain', SE: 'Sweden', CH: 'Switzerland', UA: 'Ukraine', VA: 'Vatican City',
 }
 
 const Footer = () => {
     const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false)
     const [privacyStatement, setPrivacyStatement] = useState(null)
     const [countryKey, setCountryKey] = useState('DEFAULT')
+    const [euCountryName, setEuCountryName] = useState('')
 
     // 1️⃣ Fetch privacy-statement from CMS
     useEffect(() => {
@@ -55,18 +86,57 @@ const Footer = () => {
         fetchPrivacyData()
     }, [])
 
-    // 2️⃣ Fetch geo-IP for address
+    // 2️⃣ Fetch geo-IP for address (with fallback providers)
     useEffect(() => {
-        fetch('https://ipapi.co/json/')
-            .then(res => res.json())
-            .then(data => {
-                let code = data.country  // e.g. "US", "GB", "IE", "GH"
-                if (code === 'GB') code = 'UK'    // our map uses UK
-                setCountryKey(ADDRESS_MAP[code] ? code : 'DEFAULT')
-            })
-            .catch(() => {
-                // on error, stick with DEFAULT
-            })
+        const geoProviders = [
+            {
+                url: 'https://ipapi.co/json/',
+                extract: (data) => data.country,       // "US", "GB", "IE", "GH"
+            },
+            {
+                url: 'https://ipwho.is/',
+                extract: (data) => data.country_code,   // "US", "GB", "IE", "GH"
+            },
+            {
+                url: 'https://api.country.is/',
+                extract: (data) => data.country,        // "US", "GB", "IE", "GH"
+            },
+        ]
+
+        const fetchGeoIP = async () => {
+            for (const provider of geoProviders) {
+                try {
+                    const res = await fetch(provider.url)
+                    if (!res.ok) {
+                        console.warn(`[Footer GeoIP] ${provider.url} returned HTTP ${res.status}`)
+                        continue
+                    }
+                    const data = await res.json()
+                    let code = provider.extract(data)
+                    if (!code) {
+                        console.warn(`[Footer GeoIP] ${provider.url} returned no country code`, data)
+                        continue
+                    }
+                    if (code === 'GB') code = 'UK'  // our ADDRESS_MAP uses "UK"
+                    // Resolve to a key: direct match → European fallback → DEFAULT
+                    let key = 'DEFAULT'
+                    if (ADDRESS_MAP[code]) {
+                        key = code
+                    } else if (EUROPEAN_COUNTRY_NAMES[code]) {
+                        key = 'EU'
+                        setEuCountryName(EUROPEAN_COUNTRY_NAMES[code])
+                    }
+                    console.info(`[Footer GeoIP] Detected country: ${code} → key: ${key} (via ${provider.url})`)
+                    setCountryKey(key)
+                    return  // success — stop trying further providers
+                } catch (err) {
+                    console.warn(`[Footer GeoIP] ${provider.url} failed:`, err.message)
+                }
+            }
+            console.warn('[Footer GeoIP] All providers failed — defaulting to Ghana address')
+        }
+
+        fetchGeoIP()
     }, [])
 
     // show a loading state until we have the privacyStatement
@@ -78,7 +148,9 @@ const Footer = () => {
         setShowPrivacyPolicy(prev => !prev)
     }
 
-    const { text, mapUrl } = ADDRESS_MAP[countryKey]
+    const { text, mapUrl, phone, fax } = ADDRESS_MAP[countryKey]
+    // For EU countries, show the country name instead of the Ireland address
+    const displayText = countryKey === 'EU' && euCountryName ? euCountryName : text
 
     return (
         <div className='main__footer'>
@@ -100,14 +172,14 @@ const Footer = () => {
                         </div>
                         <div className="footer__text">
                             <Link to={mapUrl} target="_blank" rel="noopener noreferrer">
-                                <p dangerouslySetInnerHTML={{ __html: text }} />
+                                <p dangerouslySetInnerHTML={{ __html: displayText }} />
                             </Link>
                         </div>
                         <div className='contacts'>
                             <h3>CONTACTS</h3>
                             <div className='location'>
-                                <p>Phone: {countryKey === 'US' ? '+18337692767' : '0800-DOSH-ME (0800367463)'}</p>
-                                <p>Fax: {countryKey === 'US' ? '+18337692767' : '0800-DOSH-ME (0800367463)'}</p>
+                                <p>Phone: {phone}</p>
+                                <p>Fax: {fax}</p>
                                 <Link to="/contact">Online Support</Link>
                                 <p
                                     className='text-white cursor-pointer hover:text-[#987c55]'
